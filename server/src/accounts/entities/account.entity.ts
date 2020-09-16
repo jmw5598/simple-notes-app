@@ -4,6 +4,7 @@ import { Profile } from './profile.entity';
 import { Plan } from '../../plans/entities/plan.entity';
 import { User } from '../../users/entities/user.entity';
 import { StripeCustomer } from './stripe-customers.entity';
+import { Topic } from '../../topics/entities/topic.entity';
 
 @Entity()
 export class Account extends BaseEntity {
@@ -26,4 +27,7 @@ export class Account extends BaseEntity {
 
   @OneToOne(type => Profile, profile => profile.account)
   public profile: Profile;
+
+  @OneToMany(type => Topic, topic => topic.account)
+  public topics: Topic[];
 }
