@@ -1,0 +1,31 @@
+<div class="container-navbar-adjust container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+      <!-- Topics list -->
+      <div *ngIf="topics && topics.length > 0" class="card">
+        <div class="card-header">Current Topics</div>
+        <div class="card-body">
+          <sn-topic-list
+              [topics]="topics"
+              (onDelete)="onDelete($event)">
+          </sn-topic-list>
+        </div>
+      </div>
+      <!-- End Topics list -->
+
+      <!-- No Topics Message -->
+      <div *ngIf="!topics || topics.length === 0" class="card card-info">
+        <div class="card-body">
+          <div class="alert alert-secondary">
+            <h3>Message</h3>
+            <p>You currently do not have any <strong>Topics</strong> started.</p>
+            <button class="btn btn-lg btn-success" [routerLink]="['create']">Start A New Topic</button>
+          </div>
+        </div>
+      </div>
+      <!-- End No Topics Message -->
+
+    </div>
+  </div>
+</div>

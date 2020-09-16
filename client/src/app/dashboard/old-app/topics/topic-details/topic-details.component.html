@@ -1,0 +1,87 @@
+<div *ngIf="topic" class="container-navbar-adjust container">
+  <div class="row">
+
+    <!-- Topic Details List -->
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+      <ul class="list-group">
+        <li class="list-group-item bg-secondary">
+          <legend>{{ topic.title }}</legend>
+          <p>{{ topic.synopsis }}</p>
+        </li>
+        <li class="list-group-item">
+          Created: <span class="float-sm-right badge badge-dark">{{ topic.createdOn | date:short }}</span>
+        </li>
+        <li class="list-group-item">
+          Modified: <span class="float-sm-right badge badge-dark">{{ topic.lastModified | date:short }}</span>
+        </li>
+      </ul>
+    </div>
+    <!-- End Topic Details List -->
+
+    <!-- Sections List -->
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
+
+      <!-- Section Table -->
+      <div  class="card">
+        <div *ngIf="topic.sections && topic.sections.length > 0" class="card-body">
+          <h5>
+            Sections
+            <!-- Header Buttons -->
+            <span class="float-right">
+              <button [routerLink]="['sections', 'create']" role="button" class="btn btn-sm btn-outline-dark btn-border-none">
+                <span class="oi oi-document oi-margin"></span>
+                New
+              </button>
+              <button role="button" class="btn btn-sm btn-outline-dark btn-border-none" (click)="showExportModal()">
+                <span class="oi oi-external-link oi-margin"></span>
+                Export
+              </button>
+            </span>
+            <!-- End Header Buttons -->
+          </h5>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Synopsis</th>
+                <th>Modified</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let section of topic.sections">
+                <td>{{ section.title }}</td>
+                <td>{{ section.synopsis }}</td>
+                <td>{{ section.lastModified | date:short }}</td>
+                <td class="text-right">
+                  <button role="button" class="btn btn-outline-primary btn-sm btn-border-none" [routerLink]="['sections', section.id]">
+                    <span class="oi oi-pencil"></span>
+                  </button>
+                  <button role="button" class="btn btn-outline-primary btn-sm btn-border-none" (click)="delete(section.id)">
+                    <span class="oi oi-trash"></span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- End Section Table -->
+        <!-- No Sections Alert -->
+        <div *ngIf="topic.sections && topic.sections.length === 0" class="card-body">
+          <div class="alert alert-secondary">
+            <h3>Message</h3>
+            <p>You currently do not have any <strong>Sections</strong> started.</p>
+            <button class="btn btn-lg btn-success" [routerLink]="['sections','create']">Start A New Section</button>
+          </div>
+        </div>
+        <!-- End No Sections Alert -->
+
+      </div>
+    </div>
+    <!-- End Sections List -->
+  </div>
+</div>
+<sn-topic-export
+    [options]="exportModalOptions"
+    (onConfirm)="export($event)">
+<sn-topic-export>

@@ -1,0 +1,46 @@
+<div class="container-navbar-adjust container">
+
+  <!-- Search Categories -->
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+
+          <!-- Search Categories -->
+          <legend><h5>Category Filter</h5></legend>
+          <hr />
+          <form>
+            <div class="form-group">
+              <sn-tag-input
+                [items]="tags"
+                (onAdd)="onAdd($event)"
+                (onRemove)="onRemove($event)">
+              </sn-tag-input>
+            </div>
+          </form>
+          <!-- End Search Categories -->
+
+          <!-- Search Results -->
+          <ng-container *ngIf="results && results.length > 0">
+            <legend><h5>Results</h5></legend>
+            <sn-topic-list
+                [topics]="results">
+            </sn-topic-list>
+          </ng-container>
+          <!-- End Search Results -->
+
+          <!-- Message alert -->
+          <ng-container *ngIf="!results || results.length === 0">
+            <div class="alert alert-light">
+              <h3>Message</h3>
+              <p *ngIf="!categories || categories.length === 0">Enter <strong>Category</strong> tags to search for <strong>Topics</strong>.</p>
+              <p *ngIf="categories && categories.length > 0 && results && results.length === 0">No <strong>Topics</strong> found for your search query.</p>
+            </div>
+          </ng-container>
+          <!-- End Message alert -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

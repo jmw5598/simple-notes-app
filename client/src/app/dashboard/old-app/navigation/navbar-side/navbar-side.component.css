@@ -1,0 +1,58 @@
+hr {
+  margin: 0;
+  padding: 0;
+}
+.navbar-side {
+  position: fixed;
+  top: 71px;
+  bottom: 0;
+  left: 0;
+  width: 350px;
+  z-index: 100000;
+  margin-left: -350px;
+  overflow: auto;
+  opacity: 0;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  -webkit-box-shadow: 7px 7px 11px -11px rgba(136,136,136,1);
+  -moz-box-shadow: 7px 7px 11px -11px rgba(136,136,136,1);
+  box-shadow: 7px 7px 11px -11px rgba(136,136,136,1);
+}
+
+.navbar-side > .nav > .nav-item > a {
+  border-radius: 0 !important;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.navbar-side > .nav > .nav-item > a:hover {
+  background: inherit !important;
+}
+
+.nav-submenu > .nav-submenu-item {
+  padding: 8px 16px;
+}
+
+.nav-submenu > .nav-submenu-item:hover {
+  background: #f7f7f7;
+}
+
+.nav-submenu > .nav-submenu-item-active {
+
+}
+
+.nav-submenu > .nav-submenu-item > a {
+  display: block !important;
+  width: 100%;
+}
+
+.nav-submenu > .nav-submenu-item > a:hover {
+  text-decoration: none !important;
+}
+
+.navbar-side-show {
+  left: 350px;
+  opacity: 1;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}

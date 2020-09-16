@@ -1,0 +1,17 @@
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+.spinner-outer {
+  position: relative;
+}
+
+.spinner-outer > .spinner-inner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-top-color: #07d;
+  animation: spinner .6s linear infinite;
+}

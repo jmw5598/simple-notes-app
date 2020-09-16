@@ -1,0 +1,72 @@
+<nz-layout [@fadeAnimation]>
+  <nz-sider nzCollapsible nzTheme="light" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="light" nzMode="inline">
+      <li nz-menu-item [nzMatchRouter]="true" [routerLink]="['home']">
+        <i nz-icon nzType="pie-chart"></i>
+        <span>Dashboard</span>
+      </li>
+      <li nz-menu-item [nzMatchRouter]="true" [routerLink]="['product-items', 'manage']">
+        <i nz-icon nzType="barcode"></i>
+        <span>Products</span>
+      </li>
+      <li nz-submenu nzTitle="Stockrooms" nzIcon="reconciliation" [nzOpen]="false">
+        <ul>
+          <li nz-menu-item [nzMatchRouter]="true" [routerLink]="['stockrooms', 'manage']">Manage</li>
+          <ng-container *ngFor="let stockroom of (stockroomState$ | async)" >
+            <li nz-menu-item [nzMatchRouter]="true" [routerLink]="['stockrooms', stockroom.id, 'details']">{{ stockroom.name }}</li>
+          </ng-container>
+        </ul>
+      </li>
+      <li nz-menu-item [nzMatchRouter]="true" [routerLink]="['stock-items', 'manage']">
+        <i nz-icon nzType="group"></i>
+        <span>Stock Items</span>
+      </li>
+      <li nz-submenu nzTitle="Listings" nzIcon="tags" [nzOpen]="false">
+        <ul>
+          <li nz-menu-item>Active</li>
+          <li nz-menu-item>Sold</li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Account" nzIcon="user" [nzOpen]="false">
+        <ul>
+          <li nz-menu-item [nzMatchRouter]="true" [routerLink]="['/dashboard', 'account']">Account Info</li>
+          <li nz-menu-item [routerLink]="['/auth', 'logout']">Logout</li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout class="layout-main-content">
+    <nz-header>
+      <nz-row>
+        <nz-col nzSpan="12" class="header-left-content">
+          <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed"></i>
+        </nz-col>
+        <nz-col nzSpan="12" class="header-right-content">
+          <div class="notifications-dropdown">
+
+          </div>
+          <div class="user-dropdown">
+            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" nzPlacement="bottomRight">
+              <nz-avatar [nzText]="getUserInitials(authenticatedUser$ | async)"></nz-avatar>
+            </a>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu style="margin-top: 1rem;">
+                <li nz-menu-item [routerLink]="['/dashboard', 'account', 'details']">Account Details</li>
+                <li nz-menu-item [routerLink]="['/auth', 'logout']">Logout</li>
+              </ul>
+            </nz-dropdown-menu>
+          </div>
+        </nz-col>
+      </nz-row>
+    </nz-header>
+    <nz-content>
+      <nz-breadcrumb [nzAutoGenerate]="true" [nzRouteLabel]="'breadcrumb'">
+        <!-- <nz-breadcrumb-item>User</nz-breadcrumb-item>
+        <nz-breadcrumb-item>Bill</nz-breadcrumb-item> -->
+      </nz-breadcrumb>
+      <router-outlet></router-outlet>
+    </nz-content>
+    <nz-footer>Inventory Project ©2020 By Jason White</nz-footer>
+  </nz-layout>
+</nz-layout>

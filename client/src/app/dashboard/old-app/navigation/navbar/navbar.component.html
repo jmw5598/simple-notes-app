@@ -1,0 +1,41 @@
+<div class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <div class="container">
+    <ul class="nav navbar-nav navbar-menu-btn">
+      <li class="nav-item">
+        <a class="nav-link" (click)="toggleSideNav()">
+            <span class="oi oi-magnifying-glass oi-menu"></span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Navbar Brand -->
+    <a [routerLink]="['/']" class="navbar-brand">
+      <img src="assets/images/simple-notes-logo.svg" width="30" height="30" alt="">
+      <span class="brand-text">Simple Notes</span>
+    </a>
+    <!-- End Navbar Brand -->
+
+    <!-- Responsive Toggle Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- End Responsive Toggle Button -->
+
+    <!-- Navbar Lists -->
+    <div class="collapse navbar-collapse">
+      <!-- Nav Buttons Right -->
+      <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()" target="_blank">
+            <div class="btn btn-outline-secondary my-2 my-sm-0">
+              <span class="oi oi-lock-unlocked oi-margin"></span>
+              Logout
+            </div>
+          </a>
+        </li>
+      </ul>
+      <!-- End Nav Buttons Right -->
+    </div>
+    <!-- End Navbar Lists -->
+  </div>
+</div>

@@ -1,0 +1,113 @@
+<div class="stock-item-form" [formGroup]="form.get('stockItem')">
+  <!-- Purchase Date Input -->
+  <nz-form-item>
+    <input type="hidden" name="id" id="id" formControlName="id" />
+    <nz-form-label nzSpan="24" nzFor="purchaseDate" nzRequired>Purchase Date</nz-form-label>
+    <nz-form-control nzSpan="24" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="purchaseDateErrorTpl">
+      <nz-date-picker 
+          style="width: 100%" 
+          nzFormat="MM/dd/yyyy"
+          [nzSize]="'large'" 
+          formControlName="purchaseDate" 
+          name="purchaseDate" 
+          id="purchaseDate"
+          autocomplete="off"
+          nzInputReadOnly="true">
+      </nz-date-picker>
+      <ng-template #purchaseDateErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">
+          Please input a purchase date!
+        </ng-container>
+        <ng-container *ngIf="control.hasError('pattern')">
+          Invalid date format!
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  
+  <!-- Purchase Price Input -->
+  <nz-row [nzGutter]="['16', '0']">
+    <nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="12" ngXl="12">
+      <nz-form-item nzRow>
+        <nz-form-label nzSpan="24" nzFor="purchasePrice" nzRequired>Purchase Price</nz-form-label>
+        <nz-form-control nzSpan="24" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="purchasePriceErrorTpl">
+          <input nzSize="large" formControlName="purchasePrice" nz-input name="purchasePrice" type="text" id="purchasePrice" autocomplete="off">
+          <ng-template #purchasePriceErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              Please input a purchase price!
+            </ng-container>
+            <ng-container *ngIf="control.hasError('pattern')">
+              Purchase price must be numerical! 
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+
+    <!-- Quantity Input -->
+    <nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="12" ngXl="12">
+        <nz-form-item>
+          <nz-form-label nzSpan="24" nzFor="quantity" nzRequired>Quantity</nz-form-label>
+          <nz-form-control nzSpan="24" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="quantityErrorTpl">
+            <input nzSize="large" formControlName="quantity" nz-input name="quantity" type="text" id="quantity" autocomplete="off">
+            <ng-template #quantityErrorTpl let-control>
+              <ng-container *ngIf="control.hasError('required')">
+                Please input a quantity!
+              </ng-container>
+              <ng-container *ngIf="control.hasError('pattern')">
+                Quantity must be numerical! 
+              </ng-container>
+            </ng-template>
+          </nz-form-control>
+      </nz-form-item> 
+    </nz-col>
+  </nz-row>
+
+  <!-- Item Condition Input -->
+  <nz-form-item>
+    <nz-form-label [nzSpan]="24" nzFor="itemConditionId" nzRequired>Item Condition</nz-form-label>
+    <nz-form-control [nzSpan]="24" nzHasFeedback nzErrorTip="Item condition is required">
+      <nz-select nzSize="large" formControlName="itemConditionId" nzPlaceHolder="">
+        <nz-option 
+            *ngFor="let condition of itemConditions" 
+            [nzValue]="condition.id" 
+            [nzLabel]="condition.description">
+        </nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-row [nzGutter]="['16', '0']">
+    <!-- Stockroom Input -->
+    <nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="12" ngXl="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="stockroomId" nzRequired>Stockroom</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzHasFeedback nzErrorTip="Stockroom is required">
+          <nz-select nzSize="large" formControlName="stockroomId" nzPlaceHolder="" (ngModelChange)="onStockroomChange($event)">
+            <nz-option 
+                *ngFor="let stockroom of stockrooms" 
+                [nzValue]="stockroom.id" 
+                [nzLabel]="stockroom.name">
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+
+    <!-- Locaiton Select -->
+    <nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="12" ngXl="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="locationId">Location</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzHasFeedback>
+          <nz-select nzSize="large" formControlName="locationId" [nzDisabled]="!form.get('stockItem').value.stockroomId">
+            <nz-option 
+                *ngFor="let location of locations" 
+                [nzValue]="location.id" 
+                [nzLabel]="location.description">
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+</div>
