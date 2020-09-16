@@ -2,7 +2,7 @@ import { Injectable, Logger, Scope } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable({ scope: Scope.TRANSIENT })
-export class InvLoggerService extends Logger {
+export class SnLoggerService extends Logger {
   private readonly _ENV: string;
 
   constructor(private _configService: ConfigService) {

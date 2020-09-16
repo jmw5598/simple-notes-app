@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { InvLoggerService } from './inv-logger.service';
+import { SnLoggerService } from './sn-logger.service';
 
 @Module({
   providers: [
-    InvLoggerService
+    SnLoggerService
   ],
   exports: [
-    InvLoggerService
+    SnLoggerService
   ]
 })
 export class LoggerModule {}
