@@ -10,7 +10,7 @@ export class Section extends BaseEntity {
   @Column({ nullable: false })
   public synopsis: string;
 
-  @Column({ type: 'text', nullable: false })
+  @Column({ type: 'text', nullable: true })
   public notes: string;
 
   @ManyToOne(type => Topic)

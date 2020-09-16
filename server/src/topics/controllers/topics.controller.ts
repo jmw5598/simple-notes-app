@@ -24,7 +24,8 @@ export class TopicsController {
       const accountId: number = +request.user.accountId;
       return this._topicsService.createTopic(accountId, createTopicDto);
     } catch (error) {
-      this._logger.error('Error create new topic!', error)
+      this._logger.error('Error create new topic!', error);
+      throw error;
     }
   }
 

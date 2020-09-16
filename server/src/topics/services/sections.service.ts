@@ -8,6 +8,7 @@ import { SectionMapper } from '../mappers/section.mapper';
 import { Topic } from '../entities/topic.entity';
 import { TopicNotFoundException } from '../exceptions/topic-not-found.exception';
 import { SectionNotFoundException } from '../exceptions/section-not-found.exception';
+import { UpdateSectionDto } from '../dtos/update-section.dto';
 
 @Injectable()
 export class SectionsService {
@@ -35,7 +36,22 @@ export class SectionsService {
     return SectionMapper.toSectionDto(section);
   }
 
+  public async updateSectionById(
+    accountId: number, topicId: number, sectionId: number, 
+    updateSectionDto: UpdateSectionDto): Promise<SectionDto> {
+      const section: Section = await this._getSectionById(accountId, topicId, sectionId);
+      section.title = updateSectionDto.title;
+      section.synopsis = updateSectionDto.synopsis;
+      section.notes = updateSectionDto.notes;
+      return SectionMapper.toSectionDto(await this._sectionsRepository.save(section));
+  }
+
   public async getSectionById(accountId: number, topicId: number, sectionId: number): Promise<SectionDto> {
+    const section: Section = await this._getSectionById(accountId, topicId, sectionId);
+    return SectionMapper.toSectionDto(section);
+  }
+
+  private async _getSectionById(accountId: number, topicId: number, sectionId: number): Promise<Section> {
     const section: Section = await this._sectionsRepository.findOne({
       id: sectionId,
       topic: {
@@ -44,6 +60,6 @@ export class SectionsService {
       }
     });
     if (!section) throw new SectionNotFoundException();
-    return SectionMapper.toSectionDto(section);
+    return section;
   }
 }
