@@ -8,17 +8,17 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
-  // {
-  //   path: 'dashboard',
-  //   canActivate: [AuthenticationGuard],
-  //   loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
-  //   data: { breadcrumb: 'Dashboard' }
-  // },
-  // {
-  //   path: '**',
-  //   redirectTo: 'dashboard',
-  //   pathMatch: 'full'
-  // }
+  {
+    path: 'dashboard',
+    canActivate: [AuthenticationGuard],
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+    data: { breadcrumb: 'Dashboard' }
+  },
+  {
+    path: '**',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
