@@ -18,13 +18,13 @@ export class TopicsGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this._getPlansFromStoreOrApi().pipe(
+    return this._getTopicsFromStoreOrApi().pipe(
       switchMap(() => of(true)),
       catchError(() => of(false))
     );
   }
 
-  private _getPlansFromStoreOrApi(): Observable<Topic[]> {
+  private _getTopicsFromStoreOrApi(): Observable<Topic[]> {
     return this._store.select(selectTopics).pipe(
       tap((plans: Topic[]) => {
         if (!plans) {
