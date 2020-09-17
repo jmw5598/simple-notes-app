@@ -17,13 +17,13 @@ export class SectionsController {
   }
 
   @Post()
-  public async createTopic(
+  public async createSection(
       @Request() request, 
       @Param('topicId') topicId: number, 
-      @Body() createTopicDto: CreateSectionDto): Promise<SectionDto> {
+      @Body() createSectionDto: CreateSectionDto): Promise<SectionDto> {
     try {
       const accountId: number = +request.user.accountId;
-      return this._sectionsService.createSection(accountId, topicId, createTopicDto);
+      return this._sectionsService.createSection(accountId, topicId, createSectionDto);
     } catch (error) {
       this._logger.error('Error create new section!', error)
       throw error;
