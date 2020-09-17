@@ -14,8 +14,10 @@ import { authenticationReducer } from './store/reducers/authentication.reducer';
 import { HttpErrorEffects } from './store/effects/http-error.effects';
 import { planReducer } from './store/reducers/plan.reducer';
 import { PlanEffects } from './store/effects/plan.effects';
+import { topicReducer } from './store/reducers/topic.reducer';
+import { TopicEffects } from './store/effects/topic.effects';
 
-import { AccountsService, AuthenticationService, PlansService } from './services';
+import { AuthenticationService } from './services';
 
 const jwtTokenInterceptor = {
   provide: HTTP_INTERCEPTORS,
@@ -37,13 +39,15 @@ const authenticationAppInitializer = {
     StoreModule.forRoot({
       accounts: accountReducer,
       authentication: authenticationReducer,
-      plans: planReducer
+      plans: planReducer,
+      topics: topicReducer
     }, { metaReducers: [resetStateOnLogout] }),
     EffectsModule.forRoot([
       AccountEffects,
       AuthenticationEffects,
       HttpErrorEffects,
-      PlanEffects
+      PlanEffects,
+      TopicEffects
     ]),
     HttpClientModule,
   ],
