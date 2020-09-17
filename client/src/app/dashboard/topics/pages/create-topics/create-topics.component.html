@@ -1,0 +1,87 @@
+<div class="container-navbar-adjust container" [@fadeAnimation]>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6">
+      <div class="card">
+        <div class="card-header">Create New Topic</div>
+        <div class="card-body">
+
+          <!-- New Topic Form -->
+          <form (ngSubmit)="submit(form.value)" [formGroup]="form" novalidate>
+            <fieldset>
+
+              <!-- Title Field Input -->
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input
+                    class="form-control"
+                    type="text" name="title"
+                    formControlName="title"
+                    [ngClass]="{'is-invalid':!form.controls['title'].valid && form.controls['title'].touched  }" />
+              </div>
+              <!-- End Title Field Input -->
+
+              <!-- Synopsis Field Input -->
+              <div class="form-group">
+                <label for="synopsis">Synopsis</label>
+                <textarea
+                    class="form-control"
+                    name="synopsis"
+                    formControlName="synopsis"
+                    [ngClass]="{'is-invalid':!form.controls['synopsis'].valid && form.controls['synopsis'].touched  }">
+                </textarea>
+              </div>
+              <!-- End Synopsis Field Input -->
+
+              <!-- Permission Field -->
+              <div class="form-group">
+                Permission
+                <div class="form-check">
+                  <input
+                      id="private"
+                      class="form-check-input"
+                      name="permission"
+                      formControlName="permission"
+                      type="radio"
+                      [value]="permission.PRIVATE" checked>
+                  <label class="form-check-label" for="private">
+                    Private
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                      id="public"
+                      class="form-check-input"
+                      name="permission"
+                      formControlName="permission"
+                      type="radio"
+                      [value]="permission.PUBLIC">
+                  <label class="form-check-label" for="public">
+                    Public
+                  </label>
+                </div>
+              </div>
+              <!-- End Permission Field -->
+
+              <div class="form-group">
+                <label for="categories">Categories</label>
+                <sn-tag-input
+                    id="categories"
+                    [placeholder]="'Add search tags'"
+                    (onAdd)="onAddCategory($event)"
+                    (onRemove)="onRemoveCategory($event)">
+                </sn-tag-input>
+
+              </div>
+
+              <hr />
+              <button role="button" type="submit" class="btn btn-primary" [disabled]="!form.valid">Create</button>
+
+            </fieldset>
+          </form>
+          <!-- End New Topic Form -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
