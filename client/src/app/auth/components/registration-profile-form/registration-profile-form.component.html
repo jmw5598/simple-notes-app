@@ -4,7 +4,14 @@
     <div class="col">
       <div class="form-group">
         <label for="firstName">First Name</label>
-        <input class="form-control" formControlName="firstName" name="firstName" type="text" id="firstName" autocomplete="off">
+        <input 
+            class="form-control" 
+            formControlName="firstName" 
+            name="firstName" 
+            type="text" 
+            id="firstName" 
+            autocomplete="off"
+            [ngClass]="{ 'is-invalid':!form.get('profile').get('firstName').valid && form.get('profile').get('firstName').touched  }">
         <small 
             class="text-danger text-bold" 
             *ngIf="
@@ -31,7 +38,14 @@
     <div class="col">
       <div class="form-group">
         <label for="lastName">Last Name</label>
-        <input class="form-control" formControlName="lastName" nz-input name="lastName" type="text" id="lastName" autocomplete="off">
+        <input 
+            class="form-control" 
+            formControlName="lastName" 
+            name="lastName" 
+            type="text" 
+            id="lastName" 
+            autocomplete="off"
+            [ngClass]="{ 'is-invalid':!form.get('profile').get('lastName').valid && form.get('profile').get('lastName').touched  }">
         <small 
             class="text-danger text-bold" 
             *ngIf="
@@ -63,7 +77,13 @@
   <!-- Email Input -->
   <div class="form-group">
     <label for="email">Email</label>
-    <input class="form-control" formControlName="email" name="email" type="text" id="email">
+    <input 
+        class="form-control" 
+        formControlName="email" 
+        name="email" 
+        type="text" 
+        id="email"
+        [ngClass]="{ 'is-invalid':!form.get('profile').get('email').valid && form.get('profile').get('email').touched  }">
     <small 
         class="text-danger text-bold" 
         *ngIf="
