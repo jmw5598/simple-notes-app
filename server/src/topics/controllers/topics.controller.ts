@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Request, UseGuards } from '@nestjs/common';
 import { JwtAuthenticationGuard } from '../../authentication/guards/jwt-authentication.guard';
 import { TopicsService } from '../services/topics.service';
 import { SnLoggerService } from '../../logger/sn-logger.service';
@@ -56,6 +56,19 @@ export class TopicsController {
       return this._topicsService.updateTopic(accountId, topicId, updateTopicDto);
     } catch (error) {
       this._logger.error('Error updating topic!', error);
+      throw error;
+    }
+  }
+
+  @Delete(':id')
+  public async deleteTopicById(
+      @Request() request, 
+      @Param('id') topicId: number): Promise<TopicDto> {
+    try {
+      const accountId: number = +request.user.accountId;
+      return this._topicsService.deleteTopic(accountId, topicId);
+    } catch (error) {
+      this._logger.error('Error deleting topic!', error);
       throw error;
     }
   }
