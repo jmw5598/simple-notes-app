@@ -11,7 +11,7 @@ import { fadeAnimation } from '@sn/shared/animations';
 import { selectPasswordRequestResult } from '@sn/core/store/selectors';
 
 @Component({
-  selector: 'inv-password-request',
+  selector: 'sn-password-request',
   templateUrl: './password-request.component.html',
   styleUrls: ['./password-request.component.scss'],
   animations: [fadeAnimation]

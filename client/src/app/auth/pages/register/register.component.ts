@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+import { buildUserFormGroup, buildProfileFormGroup, buildAccountFormGroup } from '@sn/shared/forms';
+
 import { Registration, RegistrationResult } from '@sn/core/dtos';
 import { AccountValidators } from '@sn/core/validators';
 import { Plan } from '@sn/core/models';
@@ -15,7 +17,7 @@ import { RegistrationStep } from './registration-step.enum';
 import { selectPlans, selectRegistrationResult } from '@sn/core/store/selectors';
 
 @Component({
-  selector: 'inv-register',
+  selector: 'sn-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
   animations: [fadeAnimation]
@@ -37,7 +39,20 @@ export class RegisterComponent implements OnInit {
     private _router: Router
   ) {
     this._subscriptionSubject$ = new Subject<void>();
-    this.form = this._formBuilder.group({});
+    this.form = this._formBuilder.group({
+      user: buildUserFormGroup(
+        this._formBuilder,
+        this._accountValidators
+      ),
+      profile: buildProfileFormGroup(
+        this._formBuilder,
+        this._accountValidators
+      ),
+      account: buildAccountFormGroup(
+        this._formBuilder,
+        this._accountValidators
+      )
+    });
   }
 
   ngOnInit(): void {
@@ -57,6 +72,7 @@ export class RegisterComponent implements OnInit {
   }
 
   public next(): void {
+    console.log("next", this.form.value, this.form.valid);
     this.currentStep += 1;
     this.changeContent();
   }

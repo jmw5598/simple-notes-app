@@ -6,7 +6,7 @@ import { logoutUser } from '@sn/core/store/actions';
 import { fadeAnimation } from '@sn/shared/animations';
 
 @Component({
-  selector: 'inv-logout',
+  selector: 'sn-logout',
   templateUrl: './logout.component.html',
   styleUrls: ['./logout.component.scss'],
   animations: [fadeAnimation]

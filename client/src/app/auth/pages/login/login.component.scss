@@ -1,31 +1,39 @@
-nz-card {
-  max-width: 350px;
-  padding: 24px;
-  margin: auto;
+.login-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
 
-  .login-form {
-    max-width: 300px;
+.login-title {
+  font-weight: bold;
+}
 
-    nz-alert {
-      margin-bottom: 24px;
-    }
+.login-container .col-center {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
 
-    .login-form-margin {
-      margin-bottom: 16px;
-    }
+.logo {
+  font-family: 'Tinos', serif;
+  color: #FFF;
+  margin: 32px 0;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-    .login-form-forgot {
-      float: right;
-    }
 
-    .login-form-button {
-      width: 100%;
-    }
-  }
-  
-  .login-title {
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
+.logo .logo-text {
+  font-size: 64px;
+  display: table-cell;
+  vertical-align: bottom;
+  margin-bottom: 16px;
+}
+
+.logo .logo-image > img {
+  width: 90px;
+  height: 90px;
 }

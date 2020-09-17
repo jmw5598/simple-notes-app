@@ -13,7 +13,7 @@ import { passwordReset, passwordResetResult } from '@sn/core/store/actions';
 import { selectPasswordResetResult } from '@sn/core/store/selectors';
 
 @Component({
-  selector: 'inv-password-reset',
+  selector: 'sn-password-reset',
   templateUrl: './password-reset.component.html',
   styleUrls: ['./password-reset.component.scss'],
   animations: [fadeAnimation]
@@ -44,7 +44,7 @@ export class PasswordResetComponent implements OnInit {
         this.form.reset();
         setTimeout(() => {
           this._store.dispatch(passwordResetResult(null));
-          this._router.navigate(['../login']);
+          this._router.navigate(['/auth', 'login']);
         }, 5000)
       })   
     );
@@ -55,6 +55,7 @@ export class PasswordResetComponent implements OnInit {
   }
 
   public onSubmit(resetValues: PasswordReset): void {
+    console.log("resetting", resetValues);
     this._store.dispatch(passwordReset(resetValues));
   }
 }

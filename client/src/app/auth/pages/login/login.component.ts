@@ -14,7 +14,7 @@ import { selectAuthenticationState } from '@sn/core/store/selectors';
 import { fadeAnimation } from '@sn/shared/animations';
 
 @Component({
-  selector: 'inv-login',
+  selector: 'sn-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   animations: [fadeAnimation]

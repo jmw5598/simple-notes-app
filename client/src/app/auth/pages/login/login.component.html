@@ -1,1 +1,49 @@
-<h1>Login</h1>
+<div class="card" [@fadeAnimation]>
+  <div class="card-body p-5">
+  <h1 class="login-title text-center">Sign In</h1>
+  <form [formGroup]="form" class="login-form" (ngSubmit)="submitForm(form.value)">
+    <!-- TODO Refactor these two alerts into one alert somehow? -->
+    <div class="alert alert-danger" 
+        *ngIf="authenticationState && authenticationState.errorMessage">
+      {{ authenticationState.errorMessage }}
+    </div>
+    <div class="alert alert-success"
+        *ngIf="(queryParamMessage$ | async)">
+      {{ (queryParamMessage$ | async) }}
+    </div>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input class="form-control" type="text" formControlName="username" />
+    </div>
+    <div class="form-group">
+      <label for="label">Password</label>
+      <input class="form-control" type="password" formControlName="password" />
+    </div>
+    <div div class="row">
+      <div class="col-sm-6">
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" name="rememberMe" id="rememberMe" formControlName="rememberMe" />
+          <label for="rememberMe">Remember me</label>
+        </div>
+      </div>
+      <div class="col-sm-6 text-right">
+        <a class="login-form-forgot" [routerLink]="['../password-request']">Forgot password</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <button 
+            class="col-sm 12 login-form-button login-form-margin btn btn-primary"
+            [disabled]="form.invalid">
+          Login
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 mt-4 text-center">
+        Or <a [routerLink]="['../register']"> register now! </a>
+      </div>
+    </div>
+  </form>
+  </div>
+</div>

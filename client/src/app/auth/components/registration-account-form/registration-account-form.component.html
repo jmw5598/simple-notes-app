@@ -1,0 +1,11 @@
+<div class="form-group" [formGroup]="form.get('account')">
+  <label>Plan</label>
+  <ng-container *ngIf="plans">
+    <select class="form-control" formControlName="plan">
+      <option *ngFor="let plan of plans"
+          [value]="plan.id">
+        {{ plan.name }}
+      </option>
+    </select>
+  </ng-container>
+</div>
