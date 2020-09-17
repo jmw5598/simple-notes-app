@@ -7,8 +7,8 @@ export class Topic {
   public id: number;
   public title: string;
   public synopsis: string;
-  public createdOn: Date;
-  public lastModified: Date;
+  public createdAt: Date;
+  public updatedAt: Date;
   public permission: Permission;
   public owner: string;
   public tags: Category[]
@@ -18,8 +18,8 @@ export class Topic {
     id: number,
     title: string,
     synopsis: string,
-    createdOn: Date,
-    lastModified: Date,
+    createdAt: Date,
+    updatedAt: Date,
     permission: Permission,
     owner: string,
     tags: Category[]
@@ -27,8 +27,8 @@ export class Topic {
     this.id = id;
     this.title = title;
     this.synopsis = synopsis;
-    this.createdOn = createdOn;
-    this.lastModified = lastModified;
+    this.createdAt = createdAt;
+    this.createdAt = createdAt;
     this.permission = permission;
     this.owner = owner;
     this.tags = tags;

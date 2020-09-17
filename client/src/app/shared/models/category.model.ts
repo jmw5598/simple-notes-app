@@ -1,14 +1,14 @@
 export class Category {
 
   public id: number;
-  public description: string;
+  public name: string;
 
   constructor(
     id: number,
     description: string
   ) {
     this.id = id;
-    this.description = description;
+    this.name = name;
   }
 
 }
