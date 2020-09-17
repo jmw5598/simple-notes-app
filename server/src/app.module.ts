@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AccountsModule } from './accounts/accounts.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { LoggerModule } from './logger/logger.module';
+import { PlansModule } from './plans/plans.module';
 import { TopicsModule } from './topics/topics.module';
 import { UsersModule } from './users/users.module';
 
@@ -14,6 +15,7 @@ import { UsersModule } from './users/users.module';
     AuthenticationModule,
     ConfigModule.forRoot({ isGlobal: true }),
     LoggerModule,
+    PlansModule,
     TopicsModule,
     TypeOrmModule.forRoot(),
     UsersModule,
