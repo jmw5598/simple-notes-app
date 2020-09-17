@@ -1,8 +1,0 @@
-<form [formGroup]="form" (ngSubmit)="submitForm(form.value)" novalidate>
-  <nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="8" nzXl="8">
-    <inv-account-details-form [plans]="(plans$ | async)"></inv-account-details-form>
-    <nz-form-item>
-      <button nz-button nzType="primary" role="button" type="submit">Save Details</button>
-    </nz-form-item>
-  </nz-col>
-</form>
