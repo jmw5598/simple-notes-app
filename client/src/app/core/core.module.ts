@@ -12,6 +12,8 @@ import { accountReducer } from './store/reducers/account.reducer';
 import { JwtTokenInterceptor } from './interceptors/jwt-token.interceptor';
 import { authenticationReducer } from './store/reducers/authentication.reducer';
 import { HttpErrorEffects } from './store/effects/http-error.effects';
+import { planReducer } from './store/reducers/plan.reducer';
+import { PlanEffects } from './store/effects/plan.effects';
 
 import { AccountsService, AuthenticationService, PlansService } from './services';
 
@@ -35,11 +37,13 @@ const authenticationAppInitializer = {
     StoreModule.forRoot({
       accounts: accountReducer,
       authentication: authenticationReducer,
+      plans: planReducer
     }, { metaReducers: [resetStateOnLogout] }),
     EffectsModule.forRoot([
       AccountEffects,
       AuthenticationEffects,
       HttpErrorEffects,
+      PlanEffects
     ]),
     HttpClientModule,
   ],
