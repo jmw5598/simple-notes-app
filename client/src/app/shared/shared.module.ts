@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { TagInputComponent } from './components/tag-input/tag-input.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
     SpinnerComponent,
-    TagInputComponent
+    TagInputComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { TagInputComponent } from './components/tag-input/tag-input.component';
     FormsModule,
     ReactiveFormsModule,
     SpinnerComponent,
-    TagInputComponent
+    TagInputComponent,
+    LoadingSpinnerComponent
   ]
 })
 export class SharedModule { }

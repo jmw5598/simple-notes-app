@@ -1,8 +1,10 @@
-<div class="bg-primary" [@fadeAnimation]>
+<div class="logout-container" [@fadeAnimation]>
   <div class="logout-logo">
-    <div>LOGO</div>
+    <div></div>
   </div>
   <div class="logout-spinner">
-    <sn-spinner></sn-spinner>
+    <sn-loading-spinner 
+        [size]="SpinnerSize.MEDIUM">
+    </sn-loading-spinner>
   </div>
 </div>

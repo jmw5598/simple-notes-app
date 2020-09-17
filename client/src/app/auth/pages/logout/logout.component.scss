@@ -1,26 +1,14 @@
-.logout-logo {
-  margin-bottom: 72px;
-}
-
-.logout-spinner {
-  // margin-bottom: 72px;
-  text-align: center;
-}
-nz-layout {
-  background: var(--primary-color);
-  position: relative;
+.logout-container {
+  width: 100vh;
   height: 100vh;
-  width: 100vw;
+  position: relative;
 
-  nz-content {
-    nz-card {
-      border: 0;
-      width: 350px;
-      padding: 24px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -70%);
-    }
+  .logout-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -150%);
+    margin-bottom: 72px;
+    text-align: center;
   }
 }
