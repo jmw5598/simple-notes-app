@@ -1,4 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
+import { Permission } from '../enums/permission.enum';
 
 export class CreateTopicDto {
   @IsNotEmpty()
@@ -6,6 +7,9 @@ export class CreateTopicDto {
 
   @IsNotEmpty()
   public synopsis: string;
+
+  @IsNotEmpty()
+  public permission: Permission;
 
   // TODO categories....
 }

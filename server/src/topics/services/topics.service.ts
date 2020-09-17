@@ -6,6 +6,7 @@ import { Topic } from '../entities/topic.entity';
 import { TopicDto } from '../dtos/topic.dto';
 import { TopicMapper } from '../mappers/topic.mapper';
 import { UpdateTopicDto } from '../dtos/update-topic.dto';
+import { TopicNotFoundException } from '../exceptions/topic-not-found.exception';
 
 @Injectable()
 export class TopicsService {
@@ -13,6 +14,13 @@ export class TopicsService {
     @InjectRepository(Topic)
     private readonly _topicsRepository: Repository<Topic>
   ) { }
+
+  public async getAllTopics(accountId: number): Promise<TopicDto[]> {
+    const topics: Topic[] = await this._topicsRepository.find({
+      account: { id: accountId }
+    });
+    return TopicMapper.toTopicDtoList(topics);
+  }
 
   public async createTopic(accountId: number, createTopicDto: CreateTopicDto): Promise<TopicDto> {
     const topic: Topic = await this._topicsRepository.save(

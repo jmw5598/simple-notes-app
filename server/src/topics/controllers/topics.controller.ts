@@ -5,6 +5,7 @@ import { SnLoggerService } from '../../logger/sn-logger.service';
 import { CreateTopicDto } from '../dtos/create-topic.dto';
 import { TopicDto } from '../dtos/topic.dto';
 import { UpdateTopicDto } from '../dtos/update-topic.dto';
+import { request } from 'express';
 
 @Controller('topics')
 @UseGuards(JwtAuthenticationGuard)
@@ -25,6 +26,17 @@ export class TopicsController {
       return this._topicsService.createTopic(accountId, createTopicDto);
     } catch (error) {
       this._logger.error('Error create new topic!', error);
+      throw error;
+    }
+  }
+
+  @Get()
+  public async getAllTopics(@Request() request): Promise<TopicDto[]> {
+    try {
+      const accountId: number = +request.user.accountId;
+      return this._topicsService.getAllTopics(accountId);
+    } catch (error) {
+      this._logger.error('Error getting all topics!', error);
       throw error;
     }
   }
