@@ -1,4 +1,5 @@
 import { Permission } from "../enums/permission.enum";
+import { SectionDto } from '../dtos/section.dto';
 
 export class TopicDto {
   public id: number;
@@ -7,4 +8,5 @@ export class TopicDto {
   public permission: Permission;
   public createdAt: Date;
   public updatedAt: Date;
+  public sections: SectionDto[];
 }

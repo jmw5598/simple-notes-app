@@ -55,4 +55,13 @@ export class TopicsService {
     topic.deletedAt = new Date();
     return TopicMapper.toTopicDto(await this._topicsRepository.save(topic));
   }
+
+  public async getTopicById(accountId: number, topicId: number): Promise<TopicDto> {
+    const topic: Topic = await this._topicsRepository.findOne({
+      id: topicId,
+      account: { id: accountId }
+    });
+    if (!topic) throw new TopicNotFoundException();
+    return TopicMapper.toTopicDto(topic);
+  }
 }

@@ -10,4 +10,8 @@ export class SectionMapper {
       notes: section.notes
     } as SectionDto;
   }
+
+  public static toSectionDtoList(topics: Section[]): SectionDto[] {
+    return topics.map(topic => SectionMapper.toSectionDto(topic));
+  }
 }

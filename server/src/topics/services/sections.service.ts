@@ -46,6 +46,16 @@ export class SectionsService {
       return SectionMapper.toSectionDto(await this._sectionsRepository.save(section));
   }
 
+  public async getSectionsByTopicId(accountId: number, topicId: number): Promise<SectionDto[]> {
+    const sections: Section[] = await this._sectionsRepository.find({
+      topic: {
+        id: topicId,
+        account: { id: accountId }
+      }
+    });
+    return SectionMapper.toSectionDtoList(sections);
+  }
+
   public async getSectionById(accountId: number, topicId: number, sectionId: number): Promise<SectionDto> {
     const section: Section = await this._getSectionById(accountId, topicId, sectionId);
     return SectionMapper.toSectionDto(section);

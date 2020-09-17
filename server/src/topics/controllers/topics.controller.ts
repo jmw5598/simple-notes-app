@@ -1,17 +1,19 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Request, UseGuards } from '@nestjs/common';
 import { JwtAuthenticationGuard } from '../../authentication/guards/jwt-authentication.guard';
 import { TopicsService } from '../services/topics.service';
+import { SectionsService } from '../services/sections.service';
 import { SnLoggerService } from '../../logger/sn-logger.service';
 import { CreateTopicDto } from '../dtos/create-topic.dto';
 import { TopicDto } from '../dtos/topic.dto';
+import { SectionDto } from '../dtos/section.dto';
 import { UpdateTopicDto } from '../dtos/update-topic.dto';
-import { request } from 'express';
 
 @Controller('topics')
 @UseGuards(JwtAuthenticationGuard)
 export class TopicsController {
   constructor(
     private readonly _topicsService: TopicsService,
+    private readonly _sectionsService: SectionsService,
     private readonly _logger: SnLoggerService
   ) {
     this._logger.setContext(this.constructor.name);
@@ -41,9 +43,20 @@ export class TopicsController {
     }
   }
 
-  @Get(':id')
-  public async getTopicById(@Param('id') topicId: number): Promise<any> {
-    return { topic: "This is a topic" };
+  @Get(':topicId')
+  public async getTopicById(
+      @Request() request,
+      @Param('topicId') topicId: number): Promise<any> {
+    try {
+      const accountId: number = +request.user.accountId;
+      const topic: TopicDto = await this._topicsService.getTopicById(accountId, topicId);
+      const sections: SectionDto[] = await this._sectionsService.getSectionsByTopicId(accountId, topicId);
+      topic.sections = sections;
+      return topic;
+    } catch (error) {
+      this._logger.error('Error getting all topics!', error);
+      throw error;
+    }
   }
 
   @Put(':id')
