@@ -7,3 +7,8 @@ export const selectTopics = createSelector(
   selectTopicState,
   (state: ITopicState) => state.topics
 );
+
+export const selectSelectedTopic = createSelector(
+  selectTopicState,
+  (state: ITopicState) => state.selectedTopic
+);

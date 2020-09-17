@@ -4,6 +4,8 @@ import { Topic } from '@sn/shared/models';
 export enum TopicActions {
   GET_ALL_TOPICS = '[Topic] Get All Topics',
   GET_ALL_TOPICS_SUCCESS = '[Topic] Get All Topics Success',
+  GET_TOPIC_BY_ID = '[Topic] Get Topic By Id',
+  SET_SELECTED_TOPIC = '[Topic] Set Selected Topic',
   CREATE_TOPIC = '[Topic] Create Topic',
   CREATE_TOPIC_SUCCESS = '[Topic] Create Topic Success',
   DELETE_TOPIC = '[Topic] Delete Topic',
@@ -19,6 +21,16 @@ export const getAllTopics = createAction(
 export const getAllTopicsSuccess = createAction(
   TopicActions.GET_ALL_TOPICS_SUCCESS,
   props<{ topics: Topic[] }>()
+);
+
+export const getTopicById = createAction(
+  TopicActions.GET_TOPIC_BY_ID,
+  props<{ id: number}>()
+);
+
+export const setSelectedTopic = createAction(
+  TopicActions.SET_SELECTED_TOPIC,
+  props<{ topic: Topic }>()
 );
 
 export const createTopic = createAction(

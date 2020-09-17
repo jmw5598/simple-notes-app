@@ -1,9 +1,11 @@
 import { Topic } from '@sn/shared/models';
 
 export interface ITopicState {
-  topics: Topic[]
+  topics: Topic[],
+  selectedTopic: Topic
 };
 
 export const initialTopicState: ITopicState = {
-  topics: null
+  topics: null,
+  selectedTopic: null
 };

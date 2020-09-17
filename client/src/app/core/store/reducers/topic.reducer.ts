@@ -1,7 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
-import { getAllTopicsSuccess, deleteTopicSuccess } from '../actions/topic.actions';
+import { getAllTopicsSuccess, deleteTopicSuccess, setSelectedTopic } from '../actions/topic.actions';
 import { initialTopicState } from '../state/topic.state';
 import { Topic } from '@sn/shared/models';
+import { selectSelectedTopic } from '../selectors';
 
 const _topicReducer = createReducer(
   initialTopicState,
@@ -12,11 +13,16 @@ const _topicReducer = createReducer(
     }
   }),
   on(deleteTopicSuccess, (state, { topic }) => {
-    console.log("parse out topic by id and update topics")
-    const topics: Topic[] = state.topics.filter(t => t.id === topic.id);
+    const topics: Topic[] = state.topics.filter(t => t.id !== topic.id);
     return {
       ...state,
       topics: topics
+    }
+  }),
+  on(setSelectedTopic, (state, { topic }) => {
+    return {
+      ...state,
+      selectedTopic: topic
     }
   })
 );
