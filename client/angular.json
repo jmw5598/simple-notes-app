@@ -28,9 +28,16 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/bootswatch-lumen-theme.min.css",
+              "src/assets/css/open-iconic-bootstrap.min.css",
+              "src/assets/css/github-markdown.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery-3.3.1.min.js",
+              "src/assets/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
