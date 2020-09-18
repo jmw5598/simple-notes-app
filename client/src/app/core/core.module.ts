@@ -16,6 +16,8 @@ import { planReducer } from './store/reducers/plan.reducer';
 import { PlanEffects } from './store/effects/plan.effects';
 import { topicReducer } from './store/reducers/topic.reducer';
 import { TopicEffects } from './store/effects/topic.effects';
+import { sectionReducer } from './store/reducers/section.reducer';
+import { SectionEffects } from './store/effects/section.effects';
 
 import { AuthenticationService } from './services';
 
@@ -40,14 +42,16 @@ const authenticationAppInitializer = {
       accounts: accountReducer,
       authentication: authenticationReducer,
       plans: planReducer,
-      topics: topicReducer
+      topics: topicReducer,
+      sections: sectionReducer
     }, { metaReducers: [resetStateOnLogout] }),
     EffectsModule.forRoot([
       AccountEffects,
       AuthenticationEffects,
       HttpErrorEffects,
       PlanEffects,
-      TopicEffects
+      TopicEffects,
+      SectionEffects
     ]),
     HttpClientModule,
   ],
