@@ -7,6 +7,7 @@ import { CreateTopicDto } from '../dtos/create-topic.dto';
 import { TopicDto } from '../dtos/topic.dto';
 import { SectionDto } from '../dtos/section.dto';
 import { UpdateTopicDto } from '../dtos/update-topic.dto';
+import { ExportConfig } from '../models/export-config.dto';
 
 @Controller('topics')
 @UseGuards(JwtAuthenticationGuard)
@@ -59,10 +60,10 @@ export class TopicsController {
     }
   }
 
-  @Put(':id')
+  @Put(':topicId')
   public async updateTopicById(
       @Request() request, 
-      @Param('id') topicId: number, 
+      @Param('topicId') topicId: number, 
       @Body() updateTopicDto: UpdateTopicDto): Promise<TopicDto> {
     try {
       const accountId: number = +request.user.accountId;
@@ -73,10 +74,10 @@ export class TopicsController {
     }
   }
 
-  @Delete(':id')
+  @Delete(':topicId')
   public async deleteTopicById(
       @Request() request, 
-      @Param('id') topicId: number): Promise<TopicDto> {
+      @Param('topicId') topicId: number): Promise<TopicDto> {
     try {
       const accountId: number = +request.user.accountId;
       return this._topicsService.deleteTopic(accountId, topicId);
@@ -84,5 +85,21 @@ export class TopicsController {
       this._logger.error('Error deleting topic!', error);
       throw error;
     }
+  }
+
+  @Post(':topicId/download')
+  public async exportTopicById(
+      @Request() request,
+      @Param('topicId') topicId: number,
+      @Body() config: ExportConfig): Promise<any> {
+    try {
+      this._logger.debug(`Export topic with id ${topicId}`);
+      this._logger.debug(`Export topic with config ${config}`);
+      return {} as TopicDto;
+    } catch (error) {
+      this._logger.error('Error exporting topic!', error);
+      throw error;
+    }
+      
   }
 }
