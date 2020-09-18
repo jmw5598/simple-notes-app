@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+.vh {
+  height: 100vh !important;
+}
+
+.oi-margin {
+  margin-right: 4px;
+}
+
+.btn-border-none {
+  border: none !important;
+}
+
+.btn-border-none:hover {
+  margin-top: 0 !important;
+}
