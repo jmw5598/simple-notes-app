@@ -32,7 +32,7 @@ export class SectionByIdGuard implements CanActivate {
         if (!topic || topic.id !== topicId) {
           this._store.dispatch(getSectionById({ 
             topicId: topicId,
-            sectionId: topicId 
+            sectionId: sectionId
           }))
         }
       }),
