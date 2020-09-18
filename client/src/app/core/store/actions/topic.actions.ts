@@ -76,7 +76,7 @@ export const updateTopicSuccess = createAction(
 
 export const getSectionById = createAction(
   TopicActions.GET_SECTION_BY_ID,
-  props<{ id: number}>()
+  props<{ topicId: number, sectionId: number}>()
 );
 
 export const setSelectedSection = createAction(

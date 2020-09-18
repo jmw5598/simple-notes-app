@@ -17,7 +17,8 @@ import {
   createSectionSuccess,
   deleteSectionSuccess, 
   setCreateTopicResponseMessage,
-  setCreateSectionResponseMessage } from '../actions/topic.actions';
+  setCreateSectionResponseMessage,
+  setSelectedSection } from '../actions/topic.actions';
 
 @Injectable()
 export class TopicEffects {
@@ -109,13 +110,13 @@ export class TopicEffects {
     )
   ));
 
-  // getSectionById$ = createEffect(() => this._actions.pipe(
-  //   ofType(SectionActions.GET_SECTION_BY_ID),
-  //   mergeMap(({id}) => this._topicsService.findOne(id)
-  //     .pipe(
-  //       map(result => setSelectedSection({ topic: result })),
-  //       catchError(error => of(handleHttpError(error)))
-  //     )
-  //   )
-  // ));
+  getSectionById$ = createEffect(() => this._actions.pipe(
+    ofType(TopicActions.GET_SECTION_BY_ID),
+    mergeMap(({topicId, sectionId}) => this._sectionsService.findOne(topicId, sectionId)
+      .pipe(
+        map(result => setSelectedSection({ section: result })),
+        catchError(error => of(handleHttpError(error)))
+      )
+    )
+  ));
 }

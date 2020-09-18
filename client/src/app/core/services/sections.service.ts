@@ -23,7 +23,12 @@ export class SectionsService {
     );
   }
 
+  public findOne(topicId: number, sectionId: number): Observable<Section> {
+    return this._http.get<Section>(
+      `${environment.api.baseUrl}/topics/${topicId}/sections/${sectionId}`
+    );
+  }
+
   // public update(id: ID, t: T): Observable<T>;
-  // public findOne(id: ID): Observable<T>;
   // public findAll(): Observable<T[]>  
 }
