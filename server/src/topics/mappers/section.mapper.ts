@@ -7,7 +7,9 @@ export class SectionMapper {
       id: section.id,
       title: section.title,
       synopsis: section.synopsis,
-      notes: section.notes
+      notes: section.notes,
+      createdAt: section.createdAt,
+      updatedAt: section.updatedAt
     } as SectionDto;
   }
 
