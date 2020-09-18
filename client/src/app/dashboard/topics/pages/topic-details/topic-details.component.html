@@ -32,7 +32,7 @@
                 <span class="oi oi-document oi-margin"></span>
                 New
               </button>
-              <button role="button" class="btn btn-sm btn-outline-dark btn-border-none" (click)="showExportModal()">
+              <button role="button" class="btn btn-sm btn-outline-dark btn-border-none" (click)="exportTopic()">
                 <span class="oi oi-external-link oi-margin"></span>
                 Export
               </button>
@@ -81,6 +81,7 @@
     <!-- End Sections List -->
   </div>
 </div>
+<pre>{{ (exportTopicResponseMessage$ | async) | json }}</pre>
 <!-- <sn-topic-export
     [options]="exportModalOptions"
     (onConfirm)="export($event)">
