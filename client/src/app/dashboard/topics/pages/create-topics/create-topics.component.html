@@ -5,6 +5,13 @@
         <div class="card-header">Create New Topic</div>
         <div class="card-body">
 
+          <!-- Feedback Message -->
+          <div *ngIf="(responseMessage$ | async)" [@showHide] class="alert alert-success">
+            <span>
+              <strong>{{ (responseMessage$ | async).status | uppercase }}</strong>: {{ (responseMessage$ | async).message }}
+            </span>
+          </div>
+
           <!-- New Topic Form -->
           <form (ngSubmit)="submit(form.value)" [formGroup]="form" novalidate>
             <fieldset>

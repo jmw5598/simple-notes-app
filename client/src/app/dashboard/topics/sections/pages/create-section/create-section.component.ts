@@ -1,21 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { take, tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { IAppState } from '@sn/core/store/state';
 import { Section } from '@sn/shared/models';
-import { createSection } from '@sn/core/store/actions';
+import { createSection, setCreateSectionResponseMessage } from '@sn/core/store/actions';
+import { selectCreateSectionResponseMessage } from '@sn/core/store/selectors';
+import { ResponseMessage } from '@sn/core/models';
+import { fadeAnimation, showHide } from '@sn/shared/animations';
 
 @Component({
   selector: 'sn-create-section',
   templateUrl: './create-section.component.html',
-  styleUrls: ['./create-section.component.scss']
+  styleUrls: ['./create-section.component.scss'],
+  animations: [fadeAnimation, showHide]
 })
 export class CreateSectionComponent implements OnInit {
   public form: FormGroup;
   private _topicId: number;
+  public responseMessage$: Observable<ResponseMessage>;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -29,6 +35,14 @@ export class CreateSectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.responseMessage$ = this._store.select(selectCreateSectionResponseMessage).pipe(
+      tap((message: ResponseMessage) => {
+        if (message) {
+          this.form.reset();
+          setTimeout(() => this._store.dispatch(setCreateSectionResponseMessage(null)), 3000);
+        }
+      })
+    );
     this.form = this._formBuilder.group({
       title: ['', Validators.required],
       synopsis: ['', Validators.required]

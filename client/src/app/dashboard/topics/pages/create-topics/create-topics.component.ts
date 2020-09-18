@@ -1,22 +1,27 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { IAppState } from '@sn/core/store/state';
-import { createTopic, getAllTopics, getAllTopicsSuccess } from '@sn/core/store/actions';
+import { createTopic, getAllTopics } from '@sn/core/store/actions';
 import { Router } from '@angular/router';
 import { Category, Permission, Topic } from '@sn/shared/models';
-import { fadeAnimation } from '@sn/shared/animations';
+import { fadeAnimation, showHide } from '@sn/shared/animations';
+import { ResponseMessage } from '@sn/core/models';
+import { selectCreateTopicResponseMessage } from '@sn/core/store/selectors';
+import { setCreateTopicResponseMessage } from '@sn/core/store/actions';
 
 @Component({
   selector: 'sn-create-topics',
   templateUrl: './create-topics.component.html',
   styleUrls: ['./create-topics.component.scss'],
-  animations: [fadeAnimation]
+  animations: [fadeAnimation, showHide]
 })
 export class CreateTopicsComponent implements OnInit, OnDestroy {
-
-  permission = Permission;
-  form: FormGroup;
+  public permission = Permission;
+  public form: FormGroup;
+  public responseMessage$: Observable<ResponseMessage>;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -25,6 +30,14 @@ export class CreateTopicsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.responseMessage$ = this._store.select(selectCreateTopicResponseMessage).pipe(
+      tap((message: ResponseMessage) => {
+        if (message) {
+          this.form.reset();
+          setTimeout(() => this._store.dispatch(setCreateTopicResponseMessage(null)), 3000);
+        }
+      })
+    );
     this.form = this._formBuilder.group({
       title: ['', [Validators.required]],
       synopsis: ['', [Validators.required]],
