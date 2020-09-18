@@ -6,6 +6,7 @@ import { SectionsService } from '../services/sections.service';
 import { JwtAuthenticationGuard } from '../../authentication/guards/jwt-authentication.guard';
 import { UpdateSectionDto } from '../dtos/update-section.dto';
 import { request } from 'express';
+import { UpdateSectionNotesDto } from '../dtos/update-section-notes.dto';
 
 @Controller('topics/:topicId/sections')
 @UseGuards(JwtAuthenticationGuard)
@@ -74,7 +75,22 @@ export class SectionsController {
       const accountId: number = +request.user.accountId;
       return this._sectionsService.deleteSectionById(accountId, topicId, sectionId);
     } catch (error) {
-      this._logger.error('Error getting section by id!', error);
+      this._logger.error('Error deleting section by id!', error);
+      throw error;
+    }
+  }
+
+  @Put(':sectionId/notes')
+  public async updateSectionNotesById(
+      @Request() request,
+      @Param('topicId') topicId: number,
+      @Param('sectionId') sectionId: number,
+      @Body() updateSectionNotesDto: UpdateSectionNotesDto): Promise<SectionDto> {
+    try {
+      const accountId: number = +request.user.accountId;
+      return this._sectionsService.updateSectionNotesById(accountId, updateSectionNotesDto);
+    } catch (error) {
+      this._logger.error('Error updating section notes by id!', error);
       throw error;
     }
   }

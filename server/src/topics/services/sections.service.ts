@@ -9,6 +9,7 @@ import { Topic } from '../entities/topic.entity';
 import { TopicNotFoundException } from '../exceptions/topic-not-found.exception';
 import { SectionNotFoundException } from '../exceptions/section-not-found.exception';
 import { UpdateSectionDto } from '../dtos/update-section.dto';
+import { UpdateSectionNotesDto } from '../dtos/update-section-notes.dto';
 
 @Injectable()
 export class SectionsService {
@@ -73,6 +74,20 @@ export class SectionsService {
   public async getSectionById(accountId: number, topicId: number, sectionId: number): Promise<SectionDto> {
     const section: Section = await this._getSectionById(accountId, topicId, sectionId);
     return SectionMapper.toSectionDto(section);
+  }
+
+  public async updateSectionNotesById(
+    accountId: number, updateSectionNotesDto: UpdateSectionNotesDto): Promise<SectionDto> {
+    const section: Section = await this._sectionsRepository.findOne({
+      id: updateSectionNotesDto.sectionId,
+      topic: {
+        id: updateSectionNotesDto.topicId,
+        account: { id: accountId }
+      }
+    })
+    if (!section) throw new SectionNotFoundException();
+    section.notes = updateSectionNotesDto.notes;
+    return SectionMapper.toSectionDto(await this._sectionsRepository.save(section));
   }
 
   private async _getSectionById(accountId: number, topicId: number, sectionId: number): Promise<Section> {
