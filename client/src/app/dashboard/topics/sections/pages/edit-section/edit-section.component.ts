@@ -1,78 +1,98 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, takeUntil, take, tap, distinctUntilChanged } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { IAppState } from '@sn/core/store/state';
 
 import { EditorMessage } from './editor-message.enum';
 import { Section } from '@sn/shared/models';
-// import { SectionsService } from '../../../core/services/sections.service';
+import { selectSelectedSection, selectUpdateSectionNotesResponseMessage } from '@sn/core/store/selectors';
+import { setSelectedSection, updateSectionNotes } from '@sn/core/store/actions';
+import { ResponseMessage } from '@sn/core/models';
+import { ResponseStatus } from '@sn/core/enums';
 
 @Component({
   selector: 'sn-edit-section',
   templateUrl: './edit-section.component.html',
   styleUrls: ['./edit-section.component.scss']
 })
-export class EditSectionComponent implements OnInit {
+export class EditSectionComponent implements OnInit, OnDestroy {
 
-  notes: string = 'testing';
-
-  private subscription: Subscription;
-  private saveTimer: any;
+  public section$: Observable<Section>;
+  public sectionNotes: string = '';  
+  private _subscriptionSubject$: Subject<void>;
+  private _sectionNoteChangeSubject$: Subject<string>;
+  private _topicId: number;
+  private _sectionId: number;
   public saveMessage: EditorMessage;
-  topicId: number;
-  sectionId: number;
-  section: Section = {
-    title: 'testig',
-    synopsis: 'testing syn',
-    notes: 'testing notes'
-  } as Section;
 
   constructor(
-    private route: ActivatedRoute,
-    // private sectionsService: SectionsService
-  ) { }
+    private _route: ActivatedRoute,
+    private _store: Store<IAppState> 
+  ) {
+    this._subscriptionSubject$ = new Subject<void>();
+    this._sectionNoteChangeSubject$ = new Subject<string>();
+  }
 
   ngOnInit() {
-    this.subscription = this.route.params
-      .subscribe(
-        params => {
-          this.topicId = +params['id'];
-          this.sectionId = +params['sectionId'];
-          this.retrieveSection();
+    this._store.select(selectUpdateSectionNotesResponseMessage)
+      .pipe(
+        takeUntil(this._subscriptionSubject$),
+        distinctUntilChanged(),
+        tap((response: ResponseMessage) => {
+          if (response) {
+            const successMessage: boolean = response.status === ResponseStatus.SUCCESS;
+            this.saveMessage = successMessage ? EditorMessage.SAVED : EditorMessage.ERROR;
+            this._resetEditorMessage();
+          }
+        })
+      ).subscribe();
+
+    this._sectionNoteChangeSubject$
+      .pipe(
+        takeUntil(this._subscriptionSubject$),
+        debounceTime(2000),
+        distinctUntilChanged(),
+        tap(notes => this.onSaveSectionNotes(notes))
+      ).subscribe();
+
+    this.section$ = this._store.select(selectSelectedSection).pipe(
+      tap((section: Section) => this.sectionNotes = section.notes)
+    );
+
+    this._route.paramMap.pipe(take(1))
+      .subscribe(params => {
+          this._topicId = +params.get('topicId');
+          this._sectionId = +params.get('sectionId');
         }
       );
   }
 
-  save() {
+  public onSaveSectionNotes(notes: string): void {
     this.saveMessage = EditorMessage.SAVING;
-    // this.sectionsService.update(this.topicId, this.sectionId, this.section)
-    //   .subscribe(
-    //     data => {
-    //       setTimeout(() => this.saveMessage = EditorMessage.SAVED, 1000);
-    //       this.section = data.section;
-    //     },
-    //     error => this.saveMessage = EditorMessage.ERROR
-    //   );
+    this._store.dispatch(updateSectionNotes({
+      topicId: this._topicId,
+      sectionId: this._sectionId,
+      notes: this.sectionNotes
+    }));
   }
 
-  // figure out a cleaner way to do this, maybe using a directive?
-  autoSave() {
-    clearTimeout(this.saveTimer);
-    this.saveTimer = setTimeout(() => {
-      this.save();
-    }, 2000)
+  public onSectionNotesChangeKeyUp($event): void {
+    this._sectionNoteChangeSubject$.next($event.target.value);
   }
 
-  private retrieveSection() {
-    // this.sectionsService.findById(this.topicId, this.sectionId)
-    //   .subscribe(
-    //     data => this.section = data.section,
-    //     error => console.log("error retrieving section with id: " + this.sectionId + "& topidId: " + this.topicId)
-    //   );
+  private _resetEditorMessage(): void {
+    setTimeout(() => {
+      if (this.saveMessage !== EditorMessage.SAVING) {
+        this.saveMessage = null;
+      }
+    }, 3000);
   }
 
-  ngOnDestroy() {
-    if(this.subscription)
-      this.subscription.unsubscribe();
+  ngOnDestroy(): void {
+    this._store.dispatch(setSelectedSection(null));
+    this._subscriptionSubject$.next();
+    this._subscriptionSubject$.complete();
   }
-
 }

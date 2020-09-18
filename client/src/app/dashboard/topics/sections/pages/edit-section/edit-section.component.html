@@ -1,4 +1,4 @@
-<div *ngIf="section" class="container-navbar-adjust container-fluid section-edit">
+<div *ngIf="(section$ | async)" class="container-navbar-adjust container-fluid section-edit">
   <div class="row">
 
     <!-- TODO: Convert to a form possibly? -->
@@ -6,10 +6,10 @@
     <div class="col-sm-12 col-md-6 sn-editor-column">
       <div class="card">
         <div class="card-header">
-          Section Editor : {{ section.title }}
+          <strong>Title</strong>: {{ (section$ | async).title }}
           <div class="float-right">
             <span class="badge badge-default text-dark">{{ saveMessage }}</span>
-            <button (click)="save()" class="btn btn-sm btn-outline-success btn-border-none" role="button">
+            <button (click)="onSaveSectionNotes(sectionNotes)" class="btn btn-sm btn-outline-success btn-border-none" role="button">
               <span class="oi oi-data-transfer-upload oi-margin"></span>
               Save
             </button>
@@ -22,7 +22,7 @@
         <div class="card-body">
           <!-- Edit form -->
           <div class="form-group">
-            <textarea [(ngModel)]="section.notes" (keydown)="autoSave()" class="form-control" name="notes" height="100"></textarea>
+            <textarea [(ngModel)]="sectionNotes" (keyup)="onSectionNotesChangeKeyUp($event)" class="form-control" name="notes" height="100"></textarea>
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@
     <div class="col-sm-12 col-md-6 sn-editor-column">
       <div class="card">
         <div class="card-body">
-          <markdown class="markdown-body" [data]="section.notes"></markdown>
+          <markdown class="markdown-body" [data]="sectionNotes"></markdown>
         </div>
       </div>
     </div>
