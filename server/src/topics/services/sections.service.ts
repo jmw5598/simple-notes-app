@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, IsNull } from 'typeorm';
 import { CreateSectionDto } from '../dtos/create-section.dto';
 import { Section } from '../entities/section.entity';
 import { SectionDto } from '../dtos/section.dto';
@@ -46,12 +46,26 @@ export class SectionsService {
       return SectionMapper.toSectionDto(await this._sectionsRepository.save(section));
   }
 
-  public async getSectionsByTopicId(accountId: number, topicId: number): Promise<SectionDto[]> {
-    const sections: Section[] = await this._sectionsRepository.find({
+  public async deleteSectionById(accountId: number, topicId: number, sectionId: number): Promise<SectionDto> {
+    const section: Section = await this._sectionsRepository.findOne({
+      id: sectionId,
       topic: {
         id: topicId,
         account: { id: accountId }
       }
+    }); 
+    if (!section) throw new SectionNotFoundException();
+    section.deletedAt = new Date();
+    return SectionMapper.toSectionDto(await this._sectionsRepository.save(section));
+  }
+
+  public async getSectionsByTopicId(accountId: number, topicId: number): Promise<SectionDto[]> {
+    const sections: Section[] = await this._sectionsRepository.find({
+      topic: {
+        id: topicId,
+        account: { id: accountId },
+      }, 
+      deletedAt: IsNull()
     });
     return SectionMapper.toSectionDtoList(sections);
   }

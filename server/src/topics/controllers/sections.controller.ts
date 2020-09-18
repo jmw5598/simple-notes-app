@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Param, Request, Body, UseGuards, Put } from '@nestjs/common';
+import { Controller, Get, Post, Param, Request, Body, UseGuards, Put, Delete } from '@nestjs/common';
 import { SnLoggerService } from 'src/logger/sn-logger.service';
 import { SectionDto } from '../dtos/section.dto';
 import { CreateSectionDto } from '../dtos/create-section.dto';
 import { SectionsService } from '../services/sections.service';
 import { JwtAuthenticationGuard } from '../../authentication/guards/jwt-authentication.guard';
 import { UpdateSectionDto } from '../dtos/update-section.dto';
+import { request } from 'express';
 
 @Controller('topics/:topicId/sections')
 @UseGuards(JwtAuthenticationGuard)
@@ -58,6 +59,20 @@ export class SectionsController {
     try {
       const accountId: number = +request.user.accountId;
       return this._sectionsService.updateSectionById(accountId, topicId, sectionId, updateSectionDto);
+    } catch (error) {
+      this._logger.error('Error getting section by id!', error);
+      throw error;
+    }
+  }
+
+  @Delete(':sectionId')
+  public async deleteSectionById(
+      @Request() request,
+      @Param('topicId') topicId: number,
+      @Param('sectionId') sectionId: number): Promise<SectionDto> {
+    try {
+      const accountId: number = +request.user.accountId;
+      return this._sectionsService.deleteSectionById(accountId, topicId, sectionId);
     } catch (error) {
       this._logger.error('Error getting section by id!', error);
       throw error;
