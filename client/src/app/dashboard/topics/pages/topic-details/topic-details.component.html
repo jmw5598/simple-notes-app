@@ -52,7 +52,7 @@
               <tr *ngFor="let section of (topic$ | async).sections">
                 <td>{{ section.title }}</td>
                 <td>{{ section.synopsis }}</td>
-                <td>{{ section.lastModified | date:short }}</td>
+                <td>{{ section.updatedAt | date:short }}</td>
                 <td class="text-right">
                   <button role="button" class="btn btn-outline-primary btn-sm btn-border-none" [routerLink]="['../sections', section.id, 'edit']">
                     <span class="oi oi-pencil"></span>
