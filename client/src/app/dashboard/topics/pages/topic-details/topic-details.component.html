@@ -28,7 +28,7 @@
             Sections
             <!-- Header Buttons -->
             <span class="float-right">
-              <button [routerLink]="['sections', 'create']" role="button" class="btn btn-sm btn-outline-dark btn-border-none">
+              <button [routerLink]="['../sections', 'create']" role="button" class="btn btn-sm btn-outline-dark btn-border-none">
                 <span class="oi oi-document oi-margin"></span>
                 New
               </button>
@@ -54,7 +54,7 @@
                 <td>{{ section.synopsis }}</td>
                 <td>{{ section.lastModified | date:short }}</td>
                 <td class="text-right">
-                  <button role="button" class="btn btn-outline-primary btn-sm btn-border-none" [routerLink]="['sections', section.id]">
+                  <button role="button" class="btn btn-outline-primary btn-sm btn-border-none" [routerLink]="['../sections', section.id, 'edit']">
                     <span class="oi oi-pencil"></span>
                   </button>
                   <button role="button" class="btn btn-outline-primary btn-sm btn-border-none" (click)="delete(section.id)">
