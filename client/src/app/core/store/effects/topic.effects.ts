@@ -5,6 +5,8 @@ import { SectionsService } from '../../services/sections.service';
 import { handleHttpError } from '../actions/http-error.actions';
 import { of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
+import { ResponseMessage } from '@sn/core/models';
+import { ResponseStatus } from '@sn/core/enums';
 
 import { 
   TopicActions, 
@@ -13,7 +15,9 @@ import {
   deleteTopicSuccess, 
   setSelectedTopic,
   createSectionSuccess,
-  deleteSectionSuccess } from '../actions/topic.actions';
+  deleteSectionSuccess, 
+  setCreateTopicResponseMessage,
+  setCreateSectionResponseMessage } from '../actions/topic.actions';
 
 @Injectable()
 export class TopicEffects {
@@ -41,6 +45,17 @@ export class TopicEffects {
         catchError(error => of(handleHttpError(error)))
       )
     )
+  ));
+
+  createTopicSuccess$ = createEffect(() => this._actions.pipe(
+    ofType(TopicActions.CREATE_TOPIC_SUCCESS),
+    mergeMap(({topic}) => {
+      const message: ResponseMessage = {
+        status: ResponseStatus.SUCCESS,
+        message: `Successfully create new topic!`
+      } as ResponseMessage
+      return of(setCreateTopicResponseMessage({ message: message }))
+    })
   ));
 
   deleteTopic$ = createEffect(() => this._actions.pipe(
@@ -71,6 +86,17 @@ export class TopicEffects {
         catchError(error => of(handleHttpError(error)))
       )
     )
+  ));
+
+  createSectionSuccess$ = createEffect(() => this._actions.pipe(
+    ofType(TopicActions.CREATE_SECTION_SUCCESS),
+    mergeMap(({section}) => {
+      const message: ResponseMessage = {
+        status: ResponseStatus.SUCCESS,
+        message: `Successfully create new section!`
+      } as ResponseMessage
+      return of(setCreateSectionResponseMessage({ message: message }))
+    })
   ));
 
   deleteSection$ = createEffect(() => this._actions.pipe(

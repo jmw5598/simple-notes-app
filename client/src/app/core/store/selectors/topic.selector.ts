@@ -17,3 +17,13 @@ export const selectSelectedSection = createSelector(
   selectTopicState,
   (state: ITopicState) => state.selectedSection
 );
+
+export const selectCreateTopicResponseMessage = createSelector(
+  selectTopicState,
+  (state: ITopicState) => state.createTopicResponseMessage
+);
+
+export const selectCreateSectionResponseMessage = createSelector(
+  selectTopicState,
+  (state: ITopicState) => state.createSectionResponseMessage
+);

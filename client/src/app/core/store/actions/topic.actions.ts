@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { ResponseMessage } from '@sn/core/models';
 import { Topic, Section } from '@sn/shared/models';
 
 export enum TopicActions {
@@ -19,7 +20,9 @@ export enum TopicActions {
   DELETE_SECTION = '[Section] Delete Section',
   DELETE_SECTION_SUCCESS = '[Section] Delete Section Success',
   UPDATE_SECTION = '[Section] Update Section',
-  UPDATE_SECTION_SUCCESS = '[Section] Update Section Success'
+  UPDATE_SECTION_SUCCESS = '[Section] Update Section Success',
+  SET_CREATE_TOPIC_RESPONSE_MESSAGE = '[Topic] Set Create Topic Response Message',
+  SET_CREATE_SECTION_RESPONSE_MESSAGE = '[Topic] Set Create Section Response Message'
 }
 
 export const getAllTopics = createAction(
@@ -109,4 +112,14 @@ export const updateSection = createAction(
 export const updateSectionSuccess = createAction(
   TopicActions.UPDATE_SECTION_SUCCESS,
   props<{ section: Section }>()
+);
+
+export const setCreateTopicResponseMessage = createAction(
+  TopicActions.SET_CREATE_TOPIC_RESPONSE_MESSAGE,
+  props<{ message: ResponseMessage }>()
+);
+
+export const setCreateSectionResponseMessage = createAction(
+  TopicActions.SET_CREATE_SECTION_RESPONSE_MESSAGE,
+  props<{ message: ResponseMessage }>()
 );

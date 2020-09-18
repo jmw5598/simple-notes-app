@@ -6,7 +6,9 @@ import {
   deleteTopicSuccess, 
   setSelectedTopic, 
   setSelectedSection,
-  deleteSectionSuccess } from '../actions/topic.actions';
+  deleteSectionSuccess,
+  setCreateSectionResponseMessage,
+  setCreateTopicResponseMessage } from '../actions/topic.actions';
 
 const _topicReducer = createReducer(
   initialTopicState,
@@ -42,6 +44,18 @@ const _topicReducer = createReducer(
       ...state,
       selectedTopic: selectedTopic
     };
+  }),
+  on(setCreateTopicResponseMessage, (state, { message }) => {
+    return {
+      ...state,
+      createTopicResponseMessage: message
+    }
+  }),
+  on(setCreateSectionResponseMessage, (state, { message }) => {
+    return {
+      ...state,
+      createSectionResponseMessage: message
+    }
   })
 );
 
