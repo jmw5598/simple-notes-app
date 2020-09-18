@@ -1,5 +1,6 @@
 export * from './category.model';
-export * from './file-type.enum';
+export * from './export-config.model';
+export * from './export-format.enum';
 export * from './permission.enum';
 export * from './section-resource.model';
 export * from './section.model';

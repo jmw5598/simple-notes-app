@@ -1,4 +1,4 @@
-export enum FileType {
+export enum ExportFormat {
   PDF = <any>"pdf",
   MD = <any>"md",
   DOCX = <any>"docx",
