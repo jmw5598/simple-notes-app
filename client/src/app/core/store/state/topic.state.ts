@@ -6,7 +6,8 @@ export interface ITopicState {
   selectedTopic: Topic,
   selectedSection: Section,
   createTopicResponseMessage: ResponseMessage
-  createSectionResponseMessage: ResponseMessage
+  createSectionResponseMessage: ResponseMessage,
+  updateSectionNotesResponseMessage: ResponseMessage
 };
 
 export const initialTopicState: ITopicState = {
@@ -14,5 +15,6 @@ export const initialTopicState: ITopicState = {
   selectedTopic: null,
   selectedSection: null,
   createTopicResponseMessage: null,
-  createSectionResponseMessage: null
+  createSectionResponseMessage: null,
+  updateSectionNotesResponseMessage: null
 };

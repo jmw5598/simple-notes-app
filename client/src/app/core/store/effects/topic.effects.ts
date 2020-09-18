@@ -18,7 +18,8 @@ import {
   deleteSectionSuccess, 
   setCreateTopicResponseMessage,
   setCreateSectionResponseMessage,
-  setSelectedSection } from '../actions/topic.actions';
+  setSelectedSection,
+  setUpdateSectionNotesResponseMessage } from '../actions/topic.actions';
 
 @Injectable()
 export class TopicEffects {
@@ -116,6 +117,28 @@ export class TopicEffects {
       .pipe(
         map(result => setSelectedSection({ section: result })),
         catchError(error => of(handleHttpError(error)))
+      )
+    )
+  ));
+
+  updateSectionNotes$ = createEffect(() => this._actions.pipe(
+    ofType(TopicActions.UPDATE_SECTION_NOTES),
+    mergeMap(({ topicId, sectionId, notes }) => this._sectionsService.updateNotes(topicId, sectionId, notes)
+      .pipe(
+        map(result => {
+          const successMessage: ResponseMessage = {
+            status: ResponseStatus.SUCCESS,
+            message: `Successfully save your notes!`
+          }
+          return setUpdateSectionNotesResponseMessage({ message: successMessage })
+        }),
+        catchError(error => {
+          const errorMessage: ResponseMessage = {
+            status: ResponseStatus.ERROR,
+            message: `Error updating your notes, please try again`
+          }
+          return of(setUpdateSectionNotesResponseMessage({ message: errorMessage }));
+        })
       )
     )
   ));

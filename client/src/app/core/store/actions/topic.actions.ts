@@ -21,8 +21,10 @@ export enum TopicActions {
   DELETE_SECTION_SUCCESS = '[Section] Delete Section Success',
   UPDATE_SECTION = '[Section] Update Section',
   UPDATE_SECTION_SUCCESS = '[Section] Update Section Success',
+  UPDATE_SECTION_NOTES = '[Section] Update Section Notes',
   SET_CREATE_TOPIC_RESPONSE_MESSAGE = '[Topic] Set Create Topic Response Message',
-  SET_CREATE_SECTION_RESPONSE_MESSAGE = '[Topic] Set Create Section Response Message'
+  SET_CREATE_SECTION_RESPONSE_MESSAGE = '[Topic] Set Create Section Response Message',
+  SET_UPDATE_SECTION_NOTES_RESPONSE_MESSAGE = '[Topic] Set Update Section Notes Response Message'
 }
 
 export const getAllTopics = createAction(
@@ -114,6 +116,15 @@ export const updateSectionSuccess = createAction(
   props<{ section: Section }>()
 );
 
+export const updateSectionNotes = createAction(
+  TopicActions.UPDATE_SECTION_NOTES,
+  props<{
+    topicId: number,
+    sectionId: number,
+    notes: string
+  }>()
+)
+
 export const setCreateTopicResponseMessage = createAction(
   TopicActions.SET_CREATE_TOPIC_RESPONSE_MESSAGE,
   props<{ message: ResponseMessage }>()
@@ -121,5 +132,10 @@ export const setCreateTopicResponseMessage = createAction(
 
 export const setCreateSectionResponseMessage = createAction(
   TopicActions.SET_CREATE_SECTION_RESPONSE_MESSAGE,
+  props<{ message: ResponseMessage }>()
+);
+
+export const setUpdateSectionNotesResponseMessage = createAction(
+  TopicActions.SET_UPDATE_SECTION_NOTES_RESPONSE_MESSAGE,
   props<{ message: ResponseMessage }>()
 );

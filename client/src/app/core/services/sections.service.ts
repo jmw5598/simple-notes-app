@@ -29,6 +29,17 @@ export class SectionsService {
     );
   }
 
+  public updateNotes(topicId: number, sectionId: number, notes: string): Observable<Section> {
+    const body = {
+      topicId: topicId,
+      sectionId: sectionId,
+      notes: notes
+    }
+    return this._http.put<Section>(
+      `${environment.api.baseUrl}/topics/${topicId}/sections/${sectionId}/notes`, body
+    );
+  }
+
   // public update(id: ID, t: T): Observable<T>;
   // public findAll(): Observable<T[]>  
 }

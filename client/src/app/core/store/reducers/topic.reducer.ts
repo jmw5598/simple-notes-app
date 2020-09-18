@@ -8,7 +8,8 @@ import {
   setSelectedSection,
   deleteSectionSuccess,
   setCreateSectionResponseMessage,
-  setCreateTopicResponseMessage } from '../actions/topic.actions';
+  setCreateTopicResponseMessage,
+  setUpdateSectionNotesResponseMessage } from '../actions/topic.actions';
 
 const _topicReducer = createReducer(
   initialTopicState,
@@ -55,6 +56,12 @@ const _topicReducer = createReducer(
     return {
       ...state,
       createSectionResponseMessage: message
+    }
+  }),
+  on(setUpdateSectionNotesResponseMessage, (state, { message }) => {
+    return {
+      ...state,
+      updateSectionNotesResponseMessage: message
     }
   })
 );
