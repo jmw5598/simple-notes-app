@@ -19,7 +19,9 @@ import {
   setCreateTopicResponseMessage,
   setCreateSectionResponseMessage,
   setSelectedSection,
-  setUpdateSectionNotesResponseMessage } from '../actions/topic.actions';
+  setUpdateSectionNotesResponseMessage,
+  setExportTopicResponseMessage,
+  exportTopicSuccess } from '../actions/topic.actions';
 
 @Injectable()
 export class TopicEffects {
@@ -141,5 +143,32 @@ export class TopicEffects {
         })
       )
     )
+  ));
+
+  exportTopic$ = createEffect(() => this._actions.pipe(
+    ofType(TopicActions.EXPORT_TOPIC),
+    mergeMap(({topicId, config}) => this._topicsService.exportTopic(topicId, config)
+      .pipe(
+        map(result => exportTopicSuccess({ file: result })),
+        catchError(error => {
+          const errorMessage: ResponseMessage = {
+            status: ResponseStatus.ERROR,
+            message: `We encountered an error exporting your topic!`
+          } as ResponseMessage
+          return of(setExportTopicResponseMessage({ message: errorMessage }))
+        })
+      )
+    )
+  )); 
+
+  exportTopicSuccess$ = createEffect(() => this._actions.pipe(
+    ofType(TopicActions.EXPORT_TOPIC_SUCCESS),
+    mergeMap(({file}) => {
+      const message: ResponseMessage = {
+        status: ResponseStatus.SUCCESS,
+        message: `We successfully export your topic!`
+      } as ResponseMessage
+      return of(setExportTopicResponseMessage({ message: message }))
+    })
   ));
 }

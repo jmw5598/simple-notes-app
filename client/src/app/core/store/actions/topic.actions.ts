@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { ResponseMessage } from '@sn/core/models';
-import { Topic, Section } from '@sn/shared/models';
+import { Topic, Section, ExportConfig } from '@sn/shared/models';
 
 export enum TopicActions {
   GET_ALL_TOPICS = '[Topic] Get All Topics',
@@ -24,7 +24,10 @@ export enum TopicActions {
   UPDATE_SECTION_NOTES = '[Section] Update Section Notes',
   SET_CREATE_TOPIC_RESPONSE_MESSAGE = '[Topic] Set Create Topic Response Message',
   SET_CREATE_SECTION_RESPONSE_MESSAGE = '[Topic] Set Create Section Response Message',
-  SET_UPDATE_SECTION_NOTES_RESPONSE_MESSAGE = '[Topic] Set Update Section Notes Response Message'
+  SET_UPDATE_SECTION_NOTES_RESPONSE_MESSAGE = '[Topic] Set Update Section Notes Response Message',
+  EXPORT_TOPIC = '[Topic] Export Topic',
+  EXPORT_TOPIC_SUCCESS = '[Topic] Export Topic Success',
+  SET_EXPORT_TOPIC_RESPONSE_MESSAGE = '[Topic] Export Topic Response Message'
 }
 
 export const getAllTopics = createAction(
@@ -137,5 +140,20 @@ export const setCreateSectionResponseMessage = createAction(
 
 export const setUpdateSectionNotesResponseMessage = createAction(
   TopicActions.SET_UPDATE_SECTION_NOTES_RESPONSE_MESSAGE,
+  props<{ message: ResponseMessage }>()
+);
+
+export const exportTopic = createAction(
+  TopicActions.EXPORT_TOPIC,
+  props<{ topicId: number, config: ExportConfig }>()
+);
+
+export const exportTopicSuccess = createAction(
+  TopicActions.EXPORT_TOPIC_SUCCESS,
+  props<{ file: Blob }>()
+);
+
+export const setExportTopicResponseMessage = createAction(
+  TopicActions.SET_EXPORT_TOPIC_RESPONSE_MESSAGE,
   props<{ message: ResponseMessage }>()
 );

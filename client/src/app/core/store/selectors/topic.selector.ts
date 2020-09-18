@@ -32,3 +32,8 @@ export const selectUpdateSectionNotesResponseMessage = createSelector(
   selectTopicState,
   (state: ITopicState) => state.updateSectionNotesResponseMessage
 );
+
+export const selectExportTopicResponseMessage = createSelector(
+  selectTopicState,
+  (state: ITopicState) => state.exportTopicResponseMessage
+);
