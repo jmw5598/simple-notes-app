@@ -1,8 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
-import { getAllTopicsSuccess, deleteTopicSuccess, setSelectedTopic, setSelectedSection } from '../actions/topic.actions';
 import { initialTopicState } from '../state/topic.state';
 import { Topic } from '@sn/shared/models';
-import { selectSelectedTopic } from '../selectors';
+import { 
+  getAllTopicsSuccess, 
+  deleteTopicSuccess, 
+  setSelectedTopic, 
+  setSelectedSection,
+  deleteSectionSuccess } from '../actions/topic.actions';
 
 const _topicReducer = createReducer(
   initialTopicState,
@@ -30,6 +34,14 @@ const _topicReducer = createReducer(
       ...state,
       selectedSection: section
     }
+  }),
+  on(deleteSectionSuccess, (state, { section }) => {
+    const selectedTopic: Topic = { ...state.selectedTopic };
+    selectedTopic.sections = selectedTopic.sections.filter(s => s.id !== section.id);
+    return {
+      ...state,
+      selectedTopic: selectedTopic
+    };
   })
 );
 
