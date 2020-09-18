@@ -11,10 +11,19 @@ export class SectionsService {
   constructor(private _http: HttpClient) { }
 
   public save(topicId: number, section: Section): Observable<Section> {
-    return this._http.post<Section>(`${environment.api.baseUrl}/topics/${topicId}/sections`, section);
+    return this._http.post<Section>(
+      `${environment.api.baseUrl}/topics/${topicId}/sections`,
+      section
+    );
   }
+
+  public delete(topicId: number, sectionId: number): Observable<Section> {
+    return this._http.delete<Section>(
+      `${environment.api.baseUrl}/topics/${topicId}/sections/${sectionId}`
+    );
+  }
+
   // public update(id: ID, t: T): Observable<T>;
-  // public delete(id: ID): Observable<T>;
   // public findOne(id: ID): Observable<T>;
   // public findAll(): Observable<T[]>  
 }
