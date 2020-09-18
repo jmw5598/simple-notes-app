@@ -12,3 +12,8 @@ export const selectSelectedTopic = createSelector(
   selectTopicState,
   (state: ITopicState) => state.selectedTopic
 );
+
+export const selectSelectedSection = createSelector(
+  selectTopicState,
+  (state: ITopicState) => state.selectedSection
+);

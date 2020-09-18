@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { getAllTopicsSuccess, deleteTopicSuccess, setSelectedTopic } from '../actions/topic.actions';
+import { getAllTopicsSuccess, deleteTopicSuccess, setSelectedTopic, setSelectedSection } from '../actions/topic.actions';
 import { initialTopicState } from '../state/topic.state';
 import { Topic } from '@sn/shared/models';
 import { selectSelectedTopic } from '../selectors';
@@ -24,10 +24,15 @@ const _topicReducer = createReducer(
       ...state,
       selectedTopic: topic
     }
+  }),
+  on(setSelectedSection, (state, { section }) => {
+    return {
+      ...state,
+      selectedSection: section
+    }
   })
 );
 
 export function topicReducer(state, action) {
   return _topicReducer(state, action);
 }
-

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Topic } from '@sn/shared/models';
+import { Topic, Section } from '@sn/shared/models';
 
 export enum TopicActions {
   GET_ALL_TOPICS = '[Topic] Get All Topics',
@@ -12,6 +12,14 @@ export enum TopicActions {
   DELETE_TOPIC_SUCCESS = '[Topic] Delete Topic Success',
   UPDATE_TOPIC = '[Topic] Update Topic',
   UPDATE_TOPIC_SUCCESS = '[Topic] Update Topic Success',
+  GET_SECTION_BY_ID = '[Section] Get Section By Id',
+  SET_SELECTED_SECTION = '[Section] Set Selected Section',
+  CREATE_SECTION = '[Section] Create Section',
+  CREATE_SECTION_SUCCESS = '[Section] Create Section Success',
+  DELETE_SECTION = '[Section] Delete Section',
+  DELETE_SECTION_SUCCESS = '[Section] Delete Section Success',
+  UPDATE_SECTION = '[Section] Update Section',
+  UPDATE_SECTION_SUCCESS = '[Section] Update Section Success'
 }
 
 export const getAllTopics = createAction(
@@ -61,4 +69,44 @@ export const updateTopic = createAction(
 export const updateTopicSuccess = createAction(
   TopicActions.UPDATE_TOPIC_SUCCESS,
   props<{ topic: Topic }>()
+);
+
+export const getSectionById = createAction(
+  TopicActions.GET_SECTION_BY_ID,
+  props<{ id: number}>()
+);
+
+export const setSelectedSection = createAction(
+  TopicActions.SET_SELECTED_SECTION,
+  props<{ section: Section }>()
+);
+
+export const createSection = createAction(
+  TopicActions.CREATE_SECTION,
+  props<{ topicId: number, section: Section }>()
+);
+
+export const createSectionSuccess = createAction(
+  TopicActions.CREATE_SECTION_SUCCESS,
+  props<{ section: Section }>()
+);
+
+export const deleteSection = createAction(
+  TopicActions.DELETE_SECTION,
+  props<{ topicId: number, sectionId: number }>()
+);
+
+export const deleteSectionSuccess = createAction(
+  TopicActions.DELETE_SECTION_SUCCESS,
+  props<{ section: Section }>()
+);
+
+export const updateSection = createAction(
+  TopicActions.UPDATE_SECTION,
+  props<{ id: number, section: Section }>()
+);
+
+export const updateSectionSuccess = createAction(
+  TopicActions.UPDATE_SECTION_SUCCESS,
+  props<{ section: Section }>()
 );
