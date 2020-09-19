@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Request, Res, UseGuards, HttpCode, Header } from '@nestjs/common';
 import { JwtAuthenticationGuard } from '../../authentication/guards/jwt-authentication.guard';
 import { TopicsService } from '../services/topics.service';
 import { SectionsService } from '../services/sections.service';
@@ -7,7 +7,10 @@ import { CreateTopicDto } from '../dtos/create-topic.dto';
 import { TopicDto } from '../dtos/topic.dto';
 import { SectionDto } from '../dtos/section.dto';
 import { UpdateTopicDto } from '../dtos/update-topic.dto';
-import { ExportConfig } from '../models/export-config.dto';
+import { ExportConfig } from '../models/export-config.model';
+import { DocumentsService } from '../services/documents.service';
+import { Readable } from 'stream';
+import { response } from 'express';
 
 @Controller('topics')
 @UseGuards(JwtAuthenticationGuard)
@@ -15,6 +18,7 @@ export class TopicsController {
   constructor(
     private readonly _topicsService: TopicsService,
     private readonly _sectionsService: SectionsService,
+    private readonly _documentsService: DocumentsService,
     private readonly _logger: SnLoggerService
   ) {
     this._logger.setContext(this.constructor.name);
@@ -88,14 +92,30 @@ export class TopicsController {
   }
 
   @Post(':topicId/download')
+  @HttpCode(201)
+  @Header('Content-Type', 'application/octet-stream')
+  @Header('Access-Control-Expose-Headers', 'Content-Disposition')
   public async exportTopicById(
       @Request() request,
+      @Res() response,
       @Param('topicId') topicId: number,
-      @Body() config: ExportConfig): Promise<any> {
+      @Body() config: ExportConfig): Promise<Readable> {
     try {
-      this._logger.debug(`Export topic with id ${topicId}`);
-      this._logger.debug(`Export topic with config ${config}`);
-      return {} as TopicDto;
+      const accountId: number = +request.user.accountId;
+      const topicDto: TopicDto = await this._topicsService.getTopicById(accountId, topicId);
+      const sectionDtos: SectionDto[] = await this._sectionsService.getSectionsByTopicId(accountId, topicId);
+      topicDto.sections = sectionDtos;
+
+      const fileStream: Readable = await this._documentsService.exportTopic(topicDto, config);
+      const filename = await this._documentsService.getFilename(topicDto.title, config);
+
+      response.set({
+        'Content-Disposition': `attachment; filename=${filename}`,
+      });
+
+      fileStream.pipe(response);
+      return;
+      
     } catch (error) {
       this._logger.error('Error exporting topic!', error);
       throw error;

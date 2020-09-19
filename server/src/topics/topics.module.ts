@@ -1,4 +1,4 @@
-import { Logger, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { Category } from './entities/category.entity';
@@ -9,6 +9,7 @@ import { TopicsService } from './services/topics.service';
 import { Section } from './entities/section.entity';
 import { SectionsController } from './controllers/sections.controller';
 import { SectionsService } from './services/sections.service';
+import { DocumentsService } from './services/documents.service';
 
 @Module({
   imports: [
@@ -25,7 +26,8 @@ import { SectionsService } from './services/sections.service';
   ],
   providers: [
     TopicsService, 
-    SectionsService
+    SectionsService,
+    DocumentsService
   ]
 })
 export class TopicsModule {}
