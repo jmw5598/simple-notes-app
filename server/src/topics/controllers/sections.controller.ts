@@ -5,7 +5,6 @@ import { CreateSectionDto } from '../dtos/create-section.dto';
 import { SectionsService } from '../services/sections.service';
 import { JwtAuthenticationGuard } from '../../authentication/guards/jwt-authentication.guard';
 import { UpdateSectionDto } from '../dtos/update-section.dto';
-import { request } from 'express';
 import { UpdateSectionNotesDto } from '../dtos/update-section-notes.dto';
 
 @Controller('topics/:topicId/sections')
