@@ -36,6 +36,7 @@
     "bcrypt": "^5.0.0",
     "class-transformer": "^0.3.1",
     "class-validator": "^0.12.2",
+    "node-pandoc-promise": "0.0.6",
     "nodemailer": "^6.4.11",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
