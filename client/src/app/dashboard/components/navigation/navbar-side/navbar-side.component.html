@@ -1,6 +1,4 @@
-<nav class="navbar-side bg-light" [ngClass]="{ 'navbar-side-show' : isShown }">
-
-  <!-- Side Nav Menu -->
+<nav class="navbar-side bg-light" [ngClass]="{ 'navbar-side-show' : (isShown$ | async) }">
   <ul class="nav nav-pills flex-column">
     <li class="nav-item">
       <hr />
@@ -24,10 +22,8 @@
       <hr />
       <ul class="nav nav-submenu flex-column">
         <li class="nav-submenu-item"><a class="text-dark" href="#">My Account Details</a></li>
-        <li class="nav-submenu-item"><a class="text-dark" href="#" (click)="logout()">Logout</a></li>
+        <li class="nav-submenu-item"><a class="text-dark" [routerLink]="['/auth', 'logout']">Logout</a></li>
       </ul>
     </li>
   </ul>
-  <!-- End Side Nav Menu -->
-
 </nav>
