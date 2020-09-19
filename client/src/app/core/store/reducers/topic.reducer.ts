@@ -9,7 +9,10 @@ import {
   deleteSectionSuccess,
   setCreateSectionResponseMessage,
   setCreateTopicResponseMessage,
-  setUpdateSectionNotesResponseMessage, exportTopicSuccess, setExportTopicResponseMessage } from '../actions/topic.actions';
+  setUpdateSectionNotesResponseMessage, 
+  exportTopicSuccess, 
+  setExportTopicResponseMessage, 
+  setExportTopicFileResponse } from '../actions/topic.actions';
 
 const _topicReducer = createReducer(
   initialTopicState,
@@ -67,13 +70,19 @@ const _topicReducer = createReducer(
   on(exportTopicSuccess, (state, { file }) => {
     return {
       ...state,
-      exportTopicFile: file
+      exportTopicFileResponse: file
     }
   }),
   on(setExportTopicResponseMessage, (state, { message }) => {
     return {
       ...state,
       exportTopicResponseMessage: message
+    }
+  }),
+  on(setExportTopicFileResponse, (state, { file }) => {
+    return {
+      ...state,
+      exportTopicFileResponse: file
     }
   })
 );

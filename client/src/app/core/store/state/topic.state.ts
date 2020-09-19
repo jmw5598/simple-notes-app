@@ -1,5 +1,5 @@
 import { ResponseMessage } from '@sn/core/models';
-import { Topic, Section } from '@sn/shared/models';
+import { Topic, Section, FileResponse } from '@sn/shared/models';
 
 export interface ITopicState {
   topics: Topic[],
@@ -9,7 +9,7 @@ export interface ITopicState {
   createSectionResponseMessage: ResponseMessage,
   updateSectionNotesResponseMessage: ResponseMessage,
   exportTopicResponseMessage: ResponseMessage,
-  exportTopicFile: Blob
+  exportTopicFileResponse: FileResponse
 };
 
 export const initialTopicState: ITopicState = {
@@ -20,5 +20,5 @@ export const initialTopicState: ITopicState = {
   createSectionResponseMessage: null,
   updateSectionNotesResponseMessage: null,
   exportTopicResponseMessage: null,
-  exportTopicFile: null
+  exportTopicFileResponse: null
 };

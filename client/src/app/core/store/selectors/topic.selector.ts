@@ -37,3 +37,8 @@ export const selectExportTopicResponseMessage = createSelector(
   selectTopicState,
   (state: ITopicState) => state.exportTopicResponseMessage
 );
+
+export const selectExportTopicFile = createSelector(
+  selectTopicState,
+  (state: ITopicState) => state.exportTopicFileResponse
+);
