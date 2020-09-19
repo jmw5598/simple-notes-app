@@ -6,3 +6,4 @@ export * from './section-resource.model';
 export * from './section.model';
 export * from './topic-resource.model';
 export * from './topic.model';
+export * from './file-response.model';

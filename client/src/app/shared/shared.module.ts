@@ -4,12 +4,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { TagInputComponent } from './components/tag-input/tag-input.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { ModalService } from './components/modal/modal.service';
 
 @NgModule({
   declarations: [
     SpinnerComponent,
     TagInputComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +24,11 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     ReactiveFormsModule,
     SpinnerComponent,
     TagInputComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ModalComponent
+  ],
+  providers: [
+    ModalService
   ]
 })
 export class SharedModule { }
