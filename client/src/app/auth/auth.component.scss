@@ -16,9 +16,35 @@
 
   .left-col {
     .auth-marketing {
-      max-width: 556px;
+      max-width: 650px;
+      height: 100%;
       padding: 3rem;
       margin: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      .logo {
+        font-family: 'Tinos', serif;
+        color: #158cba;
+        margin:  1rem 0;
+        display: table;
+
+        .logo-text {
+          font-size: 64px;
+          display: table-cell;
+          vertical-align: bottom;
+          margin-bottom: 16px;
+        }
+
+        .logo-image {
+          img {
+            display: block;
+            width: 90px;
+            height: 90px;
+          }
+        }
+      }
     }
   }
 
