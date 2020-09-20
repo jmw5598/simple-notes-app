@@ -33,8 +33,8 @@ p {
 
 @media only screen and (max-width : 576px) {
   h1 {
-    font-size: 2.5rem;
-    line-height: 3rem;
+    font-size: 1.5rem;
+    line-height: 2.5rem;
   }
 
   .auth-marketing-container {
@@ -44,7 +44,7 @@ p {
       justify-content: center !important;
 
       .logo-text {
-        font-size: 42px;
+        font-size: 36px !important;
         line-height: 58px;
         vertical-align: middle;
         text-align: center;
