@@ -62,11 +62,14 @@ export class SectionsService {
 
   public async getSectionsByTopicId(accountId: number, topicId: number): Promise<SectionDto[]> {
     const sections: Section[] = await this._sectionsRepository.find({
-      topic: {
-        id: topicId,
-        account: { id: accountId },
-      }, 
-      deletedAt: IsNull()
+      where: {
+        topic: {
+          id: topicId,
+          account: { id: accountId },
+        }, 
+        deletedAt: IsNull()
+      },
+      order: { createdAt: 'ASC' }
     });
     return SectionMapper.toSectionDtoList(sections);
   }
