@@ -7,6 +7,8 @@ import { RefreshToken } from './entities/refresh-token.entity';
 import { AuthenticatedUser } from './models/authenticated-user.model';
 import * as bcrypt from 'bcrypt';
 import { UserDetails } from './models/user-details.model';
+import { InvalidUsernamePasswordException } from './exceptions/invalid-username-password.exception';
+import { UnconfirmedAccountException } from './exceptions/unconfirmed-account.exception';
 
 @Injectable()
 export class AuthenticationService {
@@ -18,11 +20,17 @@ export class AuthenticationService {
 
   public async validateUser(username: string, password: string): Promise<any> {
     const user: User = await this.userService.findByUsername(username);
-    if (user && await bcrypt.compare(password, user.password) && user.account.isConfirmed) {
-      const { password, resetToken, ...result } = user;
-      return result;
+
+    if (!user || !await bcrypt.compare(password, user.password)) {
+      throw new InvalidUsernamePasswordException();
     }
-    return null;
+
+    if (!user.account.isConfirmed) {
+      throw new UnconfirmedAccountException();
+    }
+
+    const { password: storedPassword, resetToken, ...result } = user;
+    return result;
   }
 
   public async login(user: User): Promise<AuthenticatedUser> {
