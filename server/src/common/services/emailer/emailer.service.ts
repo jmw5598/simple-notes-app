@@ -12,25 +12,31 @@ export class EmailerService {
   public async sendConfirmationEmail(email: string, code: string): Promise<any> {
     const emailTemplate: string = await this.generateConfirmationEmailTemplate(code);
     try {
-    this._mailerService
-      .sendMail({
-        to: email,
-        subject: 'Confirm your email address for your new Simple Notes account!',
-        html: emailTemplate,
-      })
+      this._mailerService
+        .sendMail({
+          to: email,
+          subject: 'Confirm your email address for your new Simple Notes account!',
+          html: emailTemplate,
+        })
     } catch (error) {
       console.log(error);
+      throw error;
     }
   }
 
   public async sendPasswordResetEmail(email: string, code: string): Promise<any> {
     const emailTemplate: string = await this.generatePasswordResetEmailTemplate(code);
-    this._mailerService
+    try {
+      this._mailerService
       .sendMail({
         to: email,
         subject: 'Password Reset Request!',
         html: emailTemplate,
       })
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
   }
 
   private async generateConfirmationEmailTemplate(code: string): Promise<string> {

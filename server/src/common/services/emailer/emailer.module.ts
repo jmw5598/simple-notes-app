@@ -11,7 +11,16 @@ dotenv.config();
   ],
   imports: [
     MailerModule.forRoot({
-      transport: `smtps://${process.env.MAIL_USERNAME}:${process.env.MAIL_PASSWORD}@${process.env.MAIL_URL}:${process.env.MAIL_PORT}`,
+      transport: {
+        host: `${process.env.MAIL_URL}`,
+        port: `${process.env.PORT}`,
+        ignoreTLS: true,
+        secure: true,
+        auth: {
+          user: `${process.env.MAIL_USERNAME}`,
+          pass: `${process.env.MAIL_PASSWORD}`,
+        },
+      },
       defaults: {
         from:'"no-reply" <noreply.invmnt@gmail.com>',
       },
