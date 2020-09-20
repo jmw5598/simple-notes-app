@@ -11,7 +11,7 @@ export class TopicMapper {
       permission: topic.permission,
       createdAt: topic.createdAt,
       updatedAt: topic.updatedAt,
-      owner: topic.account.user.username
+      owner: topic?.account?.user?.username
     } as TopicDto;
   }
 
