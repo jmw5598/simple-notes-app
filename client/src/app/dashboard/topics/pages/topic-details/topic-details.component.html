@@ -2,7 +2,7 @@
   <div class="row">
 
     <!-- Topic Details List -->
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 mb-4">
       <ul class="list-group">
         <li class="list-group-item bg-secondary">
           <legend>{{ (topic$ | async).title }}</legend>
@@ -37,31 +37,33 @@
               </button>
             </span>
           </h5>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Synopsis</th>
-                <th>Modified</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let section of (topic$ | async).sections">
-                <td>{{ section.title }}</td>
-                <td>{{ section.synopsis }}</td>
-                <td>{{ section.updatedAt | date:short }}</td>
-                <td class="text-right">
-                  <button role="button" class="btn btn-outline-primary btn-sm btn-border-none" [routerLink]="['../sections', section.id, 'edit']">
-                    <span class="oi oi-pencil"></span>
-                  </button>
-                  <button role="button" class="btn btn-outline-primary btn-sm btn-border-none" (click)="delete(section.id)">
-                    <span class="oi oi-trash"></span>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Synopsis</th>
+                  <th>Modified</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let section of (topic$ | async).sections">
+                  <td>{{ section.title }}</td>
+                  <td>{{ section.synopsis }}</td>
+                  <td>{{ section.updatedAt | date:short }}</td>
+                  <td class="text-right">
+                    <button role="button" class="btn btn-outline-primary btn-sm btn-border-none" [routerLink]="['../sections', section.id, 'edit']">
+                      <span class="oi oi-pencil"></span>
+                    </button>
+                    <button role="button" class="btn btn-outline-primary btn-sm btn-border-none" (click)="delete(section.id)">
+                      <span class="oi oi-trash"></span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <!-- No Sections Alert -->
