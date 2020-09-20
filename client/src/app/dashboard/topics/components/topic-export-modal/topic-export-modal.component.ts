@@ -13,7 +13,7 @@ import { showHide } from '@sn/shared/animations';
 })
 export class TopicExportModalComponent implements OnInit {
   private readonly DEFAULT_FORM_VALUE = {
-    format: null,
+    format: ExportFormat.PDF,
     includeTopicTitle: true,
     includeTopicSynopsis: true,
     includeSectionTitle: true,
@@ -44,7 +44,7 @@ export class TopicExportModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this._formBuilder.group({
-      format: ['', [Validators.required]],
+      format: [ExportFormat.PDF, [Validators.required]],
       includeTopicTitle: [true],
       includeTopicSynopsis: [true],
       includeSectionTitle: [true],
