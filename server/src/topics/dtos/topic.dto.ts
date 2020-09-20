@@ -9,4 +9,5 @@ export class TopicDto {
   public createdAt: Date;
   public updatedAt: Date;
   public sections: SectionDto[];
+  public owner: string;
 }

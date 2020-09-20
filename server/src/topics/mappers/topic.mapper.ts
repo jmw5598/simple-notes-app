@@ -10,7 +10,8 @@ export class TopicMapper {
       synopsis: topic.synopsis,
       permission: topic.permission,
       createdAt: topic.createdAt,
-      updatedAt: topic.updatedAt
+      updatedAt: topic.updatedAt,
+      owner: topic.account.user.username
     } as TopicDto;
   }
 

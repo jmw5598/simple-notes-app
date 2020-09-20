@@ -18,8 +18,11 @@ export class TopicsService {
 
   public async getAllTopics(accountId: number): Promise<TopicDto[]> {
     const topics: Topic[] = await this._topicsRepository.find({
-      account: { id: accountId },
-      deletedAt: IsNull()
+      relations: ['account', 'account.user'],
+      where: {
+        account: { id: accountId },
+        deletedAt: IsNull()
+      }
     });
     return TopicMapper.toTopicDtoList(topics);
   }
@@ -36,6 +39,7 @@ export class TopicsService {
 
   public async updateTopic(accountId: number, topicId: number, updateTopicDto: UpdateTopicDto): Promise<TopicDto> {
     const topic: Topic = await this._topicsRepository.findOne({
+      relations: ['account', 'account.user'],
       where: {
         id: topicId,
         account: { id: accountId }
@@ -58,8 +62,11 @@ export class TopicsService {
 
   public async getTopicById(accountId: number, topicId: number): Promise<TopicDto> {
     const topic: Topic = await this._topicsRepository.findOne({
-      id: topicId,
-      account: { id: accountId }
+      relations: ['account', 'account.user'],
+      where: {
+        id: topicId,
+        account: { id: accountId }
+      }
     });
     if (!topic) throw new TopicNotFoundException();
     return TopicMapper.toTopicDto(topic);
