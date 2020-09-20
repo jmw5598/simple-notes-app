@@ -33,7 +33,7 @@ export class CreateTopicsComponent implements OnInit, OnDestroy {
     this.responseMessage$ = this._store.select(selectCreateTopicResponseMessage).pipe(
       tap((message: ResponseMessage) => {
         if (message) {
-          this.form.reset();
+          this._resetForm();
           setTimeout(() => this._store.dispatch(setCreateTopicResponseMessage(null)), 3000);
         }
       })
@@ -47,8 +47,8 @@ export class CreateTopicsComponent implements OnInit, OnDestroy {
   }
 
   public onAddCategory(category: string): void {
-    let categories = this.form.controls["categories"] as FormArray;
-    categories.push(new FormControl(new Category(null, category)));
+    // let categories = this.form.controls["categories"] as FormArray;
+    // categories.push(new FormControl(new Category(null, category)));
   }
 
   public onRemoveCategory(category: string): void {
@@ -60,6 +60,13 @@ export class CreateTopicsComponent implements OnInit, OnDestroy {
 
   public submit(topic: Topic): void {
     this._store.dispatch(createTopic({ topic: topic }));
+  }
+
+  private _resetForm(): void {
+    const categories: FormArray = this._formBuilder.array([]);
+    this.form.setControl('categories', categories);
+    this.form.reset();
+
   }
 
   ngOnDestroy(): void {
