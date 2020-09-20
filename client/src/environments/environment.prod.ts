@@ -4,6 +4,6 @@ export const environment = {
     baseUrl: 'https://notesapi.jasonwhite.xyz/auth'
   },
   api: {
-    baseUrl: 'http://notesapi.jasonwhite.xyz'
+    baseUrl: 'https://notesapi.jasonwhite.xyz'
   }
 };
