@@ -11,11 +11,13 @@ import { selectSelectedSection, selectUpdateSectionNotesResponseMessage } from '
 import { setSelectedSection, updateSectionNotes } from '@sn/core/store/actions';
 import { ResponseMessage } from '@sn/core/models';
 import { ResponseStatus } from '@sn/core/enums';
+import { fadeAnimation } from '@sn/shared/animations';
 
 @Component({
   selector: 'sn-edit-section',
   templateUrl: './edit-section.component.html',
-  styleUrls: ['./edit-section.component.scss']
+  styleUrls: ['./edit-section.component.scss'],
+  animations: [fadeAnimation]
 })
 export class EditSectionComponent implements OnInit, OnDestroy {
 
