@@ -80,7 +80,16 @@ export class SectionsService {
   }
 
   public async updateSectionNotesById(
-    accountId: number, updateSectionNotesDto: UpdateSectionNotesDto): Promise<SectionDto> {
+      accountId: number, updateSectionNotesDto: UpdateSectionNotesDto): Promise<SectionDto> {
+    const topic: Topic = await this._topicsRepository.findOne({
+      id: updateSectionNotesDto.topicId,
+      account: { id: accountId }
+    });
+
+    if (!topic) throw new TopicNotFoundException();
+    topic.updatedAt = new Date();
+    this._topicsRepository.save(topic);
+
     const section: Section = await this._sectionsRepository.findOne({
       id: updateSectionNotesDto.sectionId,
       topic: {
@@ -88,8 +97,11 @@ export class SectionsService {
         account: { id: accountId }
       }
     })
+
     if (!section) throw new SectionNotFoundException();
     section.notes = updateSectionNotesDto.notes;
+    section.updatedAt = new Date();
+
     return SectionMapper.toSectionDto(await this._sectionsRepository.save(section));
   }
 
