@@ -19,7 +19,7 @@ export class AuthenticationService {
   ) {}
 
   public async validateUser(username: string, password: string): Promise<any> {
-    const user: User = await this.userService.findByUsername(username);
+    const user: User = await this.userService.findByUsername(username.trim().toLowerCase());
 
     if (!user || !await bcrypt.compare(password, user.password)) {
       throw new InvalidUsernamePasswordException();
