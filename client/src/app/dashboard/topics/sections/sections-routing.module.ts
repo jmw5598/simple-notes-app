@@ -14,7 +14,7 @@ const routes: Routes = [
     canActivate: [SectionByIdGuard],
     children: [
       {
-        path: 'edit',
+        path: 'editor',
         component: EditSectionComponent
       }
     ]
