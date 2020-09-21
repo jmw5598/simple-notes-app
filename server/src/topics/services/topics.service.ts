@@ -22,7 +22,8 @@ export class TopicsService {
       where: {
         account: { id: accountId },
         deletedAt: IsNull()
-      }
+      },
+      order: { updatedAt: 'DESC' }
     });
     return TopicMapper.toTopicDtoList(topics);
   }
