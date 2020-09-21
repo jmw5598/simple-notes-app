@@ -37,38 +37,10 @@
               </button>
             </span>
           </h5>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Synopsis</th>
-                  <th>Modified</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let section of (topic$ | async).sections">
-                  <td>{{ section.title }}</td>
-                  <td>{{ section.synopsis }}</td>
-                  <td>{{ section.updatedAt | date:short }}</td>
-                  <td class="text-right">
-                    <button role="button" class="btn btn-outline-primary btn-sm btn-border-none" [routerLink]="['../sections', section.id, 'edit']">
-                      <span class="oi oi-pencil"></span>
-                    </button>
-                    <button 
-                        mwlConfirmationPopover
-                        placement="left"
-                        (confirm)="delete(section.id)"
-                        role="button" 
-                        class="btn btn-outline-primary btn-sm btn-border-none">
-                      <span class="oi oi-trash"></span>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <sn-section-list
+              [sections]="(topic$ | async)?.sections"
+              (onDelete)="onDeleteSection($event)">
+          </sn-section-list>
         </div>
 
         <!-- No Sections Alert -->

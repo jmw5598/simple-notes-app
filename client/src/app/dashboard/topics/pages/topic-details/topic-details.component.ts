@@ -45,7 +45,7 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
       }));
   }
 
-  public delete(sectionId: number): void {
+  public onDeleteSection(sectionId: number): void {
     this._store.dispatch(deleteSection({
       sectionId: sectionId,
       topicId: this._topicId

@@ -8,6 +8,7 @@ import { TopicListComponent } from './components/topic-list/topic-list.component
 import { TopicDetailsComponent } from './pages/topic-details/topic-details.component';
 import { TopicExportModalComponent } from './components/topic-export-modal/topic-export-modal.component';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { SectionListComponent } from './components/section-list/section-list.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     CreateTopicsComponent,
     TopicListComponent,
     TopicDetailsComponent,
-    TopicExportModalComponent
+    TopicExportModalComponent,
+    SectionListComponent
   ],
   imports: [
     CommonModule,
