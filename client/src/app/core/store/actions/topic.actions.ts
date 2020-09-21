@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { ResponseMessage } from '@sn/core/models';
 import { Topic, Section, ExportConfig, FileResponse } from '@sn/shared/models';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 export enum TopicActions {
   GET_ALL_TOPICS = '[Topic] Get All Topics',
@@ -24,6 +25,8 @@ export enum TopicActions {
   UPDATE_SECTION_NOTES = '[Section] Update Section Notes',
   SET_CREATE_TOPIC_RESPONSE_MESSAGE = '[Topic] Set Create Topic Response Message',
   SET_CREATE_SECTION_RESPONSE_MESSAGE = '[Topic] Set Create Section Response Message',
+  SET_UPDATE_TOPIC_RESPONSE_MESSAGE = '[Topic] Set Update Topic Response Message',
+  SET_UPDATE_SECTION_RESPONSE_MESSAGE = '[Topic] Set Update Section Response Message',
   SET_UPDATE_SECTION_NOTES_RESPONSE_MESSAGE = '[Topic] Set Update Section Notes Response Message',
   EXPORT_TOPIC = '[Topic] Export Topic',
   EXPORT_TOPIC_SUCCESS = '[Topic] Export Topic Success',
@@ -136,6 +139,16 @@ export const setCreateTopicResponseMessage = createAction(
 
 export const setCreateSectionResponseMessage = createAction(
   TopicActions.SET_CREATE_SECTION_RESPONSE_MESSAGE,
+  props<{ message: ResponseMessage }>()
+);
+
+export const setUpdateTopicResponseMessage = createAction(
+  TopicActions.SET_UPDATE_TOPIC_RESPONSE_MESSAGE,
+  props<{ message: ResponseMessage }>()
+);
+
+export const setUpdateSectionResponseMessage = createAction(
+  TopicActions.SET_UPDATE_SECTION_RESPONSE_MESSAGE,
   props<{ message: ResponseMessage }>()
 );
 

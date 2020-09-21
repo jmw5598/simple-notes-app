@@ -7,6 +7,8 @@ export interface ITopicState {
   selectedSection: Section,
   createTopicResponseMessage: ResponseMessage
   createSectionResponseMessage: ResponseMessage,
+  updateTopicResponseMessage: ResponseMessage,
+  updateSectionResponseMessage: ResponseMessage,
   updateSectionNotesResponseMessage: ResponseMessage,
   exportTopicResponseMessage: ResponseMessage,
   exportTopicFileResponse: FileResponse
@@ -18,6 +20,8 @@ export const initialTopicState: ITopicState = {
   selectedSection: null,
   createTopicResponseMessage: null,
   createSectionResponseMessage: null,
+  updateTopicResponseMessage: null,
+  updateSectionResponseMessage: null,
   updateSectionNotesResponseMessage: null,
   exportTopicResponseMessage: null,
   exportTopicFileResponse: null

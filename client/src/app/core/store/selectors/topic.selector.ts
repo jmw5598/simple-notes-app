@@ -28,6 +28,16 @@ export const selectCreateSectionResponseMessage = createSelector(
   (state: ITopicState) => state.createSectionResponseMessage
 );
 
+export const selectUpdateTopicResponseMessage = createSelector(
+  selectTopicState,
+  (state: ITopicState) => state.updateTopicResponseMessage
+);
+
+export const selectUpdateSectionResponseMessage = createSelector(
+  selectTopicState,
+  (state: ITopicState) => state.updateSectionResponseMessage
+);
+
 export const selectUpdateSectionNotesResponseMessage = createSelector(
   selectTopicState,
   (state: ITopicState) => state.updateSectionNotesResponseMessage

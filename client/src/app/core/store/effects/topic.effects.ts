@@ -21,7 +21,7 @@ import {
   setSelectedSection,
   setUpdateSectionNotesResponseMessage,
   setExportTopicResponseMessage,
-  exportTopicSuccess } from '../actions/topic.actions';
+  exportTopicSuccess, updateTopicSuccess, setUpdateTopicResponseMessage } from '../actions/topic.actions';
 
 @Injectable()
 export class TopicEffects {
@@ -59,6 +59,33 @@ export class TopicEffects {
         message: `Successfully create new topic!`
       } as ResponseMessage
       return of(setCreateTopicResponseMessage({ message: message }))
+    })
+  ));
+
+  updateTopic$ = createEffect(() => this._actions.pipe(
+    ofType(TopicActions.UPDATE_TOPIC),
+    mergeMap(({id, topic}) => this._topicsService.update(id, topic)
+      .pipe(
+        map(result => updateTopicSuccess({ topic: result })),
+        catchError(error => {
+          const message: ResponseMessage = {
+            status: ResponseStatus.ERROR,
+            message: `We encountered an error updating your topic, please try again!`
+          } as ResponseMessage;
+          return of(setUpdateTopicResponseMessage({ message: message }));
+        })
+      )
+    )
+  ));
+
+  updateTopicSuccess$ = createEffect(() => this._actions.pipe(
+    ofType(TopicActions.UPDATE_TOPIC_SUCCESS),
+    mergeMap(({topic}) => {
+      const message: ResponseMessage = {
+        status: ResponseStatus.SUCCESS,
+        message: `Successfully updated topic!`
+      } as ResponseMessage
+      return of(setUpdateTopicResponseMessage({ message: message }))
     })
   ));
 
