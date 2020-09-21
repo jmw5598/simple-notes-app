@@ -56,7 +56,12 @@
                     <button role="button" class="btn btn-outline-primary btn-sm btn-border-none" [routerLink]="['../sections', section.id, 'edit']">
                       <span class="oi oi-pencil"></span>
                     </button>
-                    <button role="button" class="btn btn-outline-primary btn-sm btn-border-none" (click)="delete(section.id)">
+                    <button 
+                        mwlConfirmationPopover
+                        placement="left"
+                        (confirm)="delete(section.id)"
+                        role="button" 
+                        class="btn btn-outline-primary btn-sm btn-border-none">
                       <span class="oi oi-trash"></span>
                     </button>
                   </td>

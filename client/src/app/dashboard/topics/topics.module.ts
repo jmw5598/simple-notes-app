@@ -7,6 +7,7 @@ import { TopicsRoutingModule } from './topics-routing.module';
 import { TopicListComponent } from './components/topic-list/topic-list.component';
 import { TopicDetailsComponent } from './pages/topic-details/topic-details.component';
 import { TopicExportModalComponent } from './components/topic-export-modal/topic-export-modal.component';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,12 @@ import { TopicExportModalComponent } from './components/topic-export-modal/topic
   imports: [
     CommonModule,
     SharedModule,
-    TopicsRoutingModule
+    TopicsRoutingModule,
+    ConfirmationPopoverModule.forRoot({
+      popoverMessage: 'Are you sure?',
+      cancelButtonType: 'btn-default btn-sm bg-secondary',
+      confirmButtonType: 'btn-primary btn-sm bg-primary text-light'
+    })
   ],
   entryComponents: [
     TopicExportModalComponent

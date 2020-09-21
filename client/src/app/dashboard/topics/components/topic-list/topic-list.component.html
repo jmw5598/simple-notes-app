@@ -21,7 +21,13 @@
           <a class="btn btn-outline-primary btn-sm btn-border-none" [routerLink]="['../', topic.id, 'details']">
             <span class="oi oi-pencil"></span>
           </a>
-          <button role="button" class="btn btn-outline-primary btn-sm btn-border-none" (click)="delete(topic.id)">
+          
+          <button 
+              mwlConfirmationPopover
+              placement="left"
+              (confirm)="delete(topic.id)"
+              role="button" 
+              class="btn btn-outline-primary btn-sm btn-border-none">
             <span class="oi oi-trash"></span>
           </button>
         </td>
