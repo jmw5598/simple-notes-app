@@ -115,7 +115,11 @@ export const deleteSectionSuccess = createAction(
 
 export const updateSection = createAction(
   TopicActions.UPDATE_SECTION,
-  props<{ id: number, section: Section }>()
+  props<{
+    topicId: number, 
+    sectionId: number, 
+    section: Section
+  }>()
 );
 
 export const updateSectionSuccess = createAction(

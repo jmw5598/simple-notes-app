@@ -21,6 +21,12 @@
             <span class="oi oi-pencil"></span>
           </button>
           <button 
+              role="button" 
+              class="btn btn-outline-primary btn-sm btn-border-none" 
+              [routerLink]="['../sections', section.id, 'edit']">
+            <span class="oi oi-info"></span>
+          </button>
+          <button 
               mwlConfirmationPopover
               placement="left"
               (confirm)="delete(section.id)"

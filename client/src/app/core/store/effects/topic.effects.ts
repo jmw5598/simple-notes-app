@@ -21,7 +21,11 @@ import {
   setSelectedSection,
   setUpdateSectionNotesResponseMessage,
   setExportTopicResponseMessage,
-  exportTopicSuccess, updateTopicSuccess, setUpdateTopicResponseMessage } from '../actions/topic.actions';
+  exportTopicSuccess, 
+  updateTopicSuccess, 
+  setUpdateTopicResponseMessage,
+  updateSectionSuccess,
+  setUpdateSectionResponseMessage } from '../actions/topic.actions';
 
 @Injectable()
 export class TopicEffects {
@@ -127,6 +131,33 @@ export class TopicEffects {
         message: `Successfully create new section!`
       } as ResponseMessage
       return of(setCreateSectionResponseMessage({ message: message }))
+    })
+  ));
+
+  updateSection$ = createEffect(() => this._actions.pipe(
+    ofType(TopicActions.UPDATE_SECTION),
+    mergeMap(({topicId, sectionId, section}) => this._sectionsService.update(topicId, sectionId, section)
+      .pipe(
+        map(result => updateSectionSuccess({ section: result })),
+        catchError(error => {
+          const message: ResponseMessage = {
+            status: ResponseStatus.ERROR,
+            message: `We encountered an error updating your section, please try again!`
+          } as ResponseMessage;
+          return of(setUpdateSectionResponseMessage({ message: message }));
+        })
+      )
+    )
+  ));
+
+  updateSectionSuccess$ = createEffect(() => this._actions.pipe(
+    ofType(TopicActions.UPDATE_SECTION_SUCCESS),
+    mergeMap(({topic}) => {
+      const message: ResponseMessage = {
+        status: ResponseStatus.SUCCESS,
+        message: `Successfully updated section!`
+      } as ResponseMessage
+      return of(setUpdateSectionResponseMessage({ message: message }))
     })
   ));
 

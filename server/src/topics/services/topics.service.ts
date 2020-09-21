@@ -48,6 +48,7 @@ export class TopicsService {
     });
     topic.title = updateTopicDto.title;
     topic.synopsis = updateTopicDto.synopsis;
+    topic.permission = updateTopicDto.permission;
     topic.updatedAt = new Date();
     return TopicMapper.toTopicDto(await this._topicsRepository.save(topic));
   }

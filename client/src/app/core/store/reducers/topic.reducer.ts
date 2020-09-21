@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { initialTopicState } from '../state/topic.state';
-import { Topic } from '@sn/shared/models';
+import { Topic, Section } from '@sn/shared/models';
 import { 
   getAllTopicsSuccess, 
   deleteTopicSuccess, 
@@ -14,7 +14,9 @@ import {
   setExportTopicResponseMessage, 
   setExportTopicFileResponse,
   setUpdateSectionResponseMessage,
-  setUpdateTopicResponseMessage, updateTopicSuccess } from '../actions/topic.actions';
+  setUpdateTopicResponseMessage, 
+  updateTopicSuccess, 
+  updateSectionSuccess } from '../actions/topic.actions';
 
 const _topicReducer = createReducer(
   initialTopicState,
@@ -36,6 +38,13 @@ const _topicReducer = createReducer(
     return {
       ...state,
       selectedTopic: updatedTopic
+    }
+  }),
+  on(updateSectionSuccess, (state, { section }) => {
+    const updatedSection: Section = { ...state.selectedSection, ...section }
+    return {
+      ...state,
+      selectedSection: updatedSection
     }
   }),
   on(setSelectedTopic, (state, { topic }) => {

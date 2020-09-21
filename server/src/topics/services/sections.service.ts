@@ -45,7 +45,7 @@ export class SectionsService {
       const section: Section = await this._getSectionById(accountId, topicId, sectionId);
       section.title = updateSectionDto.title;
       section.synopsis = updateSectionDto.synopsis;
-      section.notes = updateSectionDto.notes;
+      section.updatedAt = new Date();
       return SectionMapper.toSectionDto(await this._sectionsRepository.save(section));
   }
 
