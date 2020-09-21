@@ -3,6 +3,7 @@ import { Permission } from '@sn/shared/models';
 
 export const buildTopicFormGroup = (formBuilder: FormBuilder): FormGroup => {
   return formBuilder.group({
+    id: [''],
     title: ['', [Validators.required]],
     synopsis: ['', [Validators.required]],
     permission: [Permission.PRIVATE, [Validators.required]],

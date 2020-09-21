@@ -10,6 +10,7 @@ import { TopicExportModalComponent } from './components/topic-export-modal/topic
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { SectionListComponent } from './components/section-list/section-list.component';
 import { TopicFormComponent } from './components/topic-form/topic-form.component';
+import { UpdateTopicComponent } from './pages/update-topic/update-topic.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TopicFormComponent } from './components/topic-form/topic-form.component
     TopicDetailsComponent,
     TopicExportModalComponent,
     SectionListComponent,
-    TopicFormComponent
+    TopicFormComponent,
+    UpdateTopicComponent
   ],
   imports: [
     CommonModule,

@@ -71,6 +71,8 @@ export class TopicsController {
       @Body() updateTopicDto: UpdateTopicDto): Promise<TopicDto> {
     try {
       const accountId: number = +request.user.accountId;
+      console.log('accountid: ', accountId);
+      console.log('topicid: ', topicId);
       return this._topicsService.updateTopic(accountId, topicId, updateTopicDto);
     } catch (error) {
       this._logger.error('Error updating topic!', error);
