@@ -1,6 +1,6 @@
 export enum ExportFormat {
   PDF = 'pdf',
-  MD = 'md',
+  MD = 'markdown',
   DOCX = 'docx',
   HTML = 'html'
 }
