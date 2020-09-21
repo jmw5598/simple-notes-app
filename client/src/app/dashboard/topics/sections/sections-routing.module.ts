@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SectionByIdGuard } from '@sn/core/guards';
 import { CreateSectionComponent } from './pages/create-section/create-section.component';
-import { EditSectionComponent } from './pages/edit-section/edit-section.component';
+import { EditSectionNotesComponent } from './pages/edit-section-notes/edit-section-notes.component';
 
 const routes: Routes = [
   {
@@ -15,7 +15,7 @@ const routes: Routes = [
     children: [
       {
         path: 'editor',
-        component: EditSectionComponent
+        component: EditSectionNotesComponent
       }
     ]
   },

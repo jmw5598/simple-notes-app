@@ -14,12 +14,12 @@ import { ResponseStatus } from '@sn/core/enums';
 import { fadeAnimation } from '@sn/shared/animations';
 
 @Component({
-  selector: 'sn-edit-section',
-  templateUrl: './edit-section.component.html',
-  styleUrls: ['./edit-section.component.scss'],
+  selector: 'sn-edit-section-notes',
+  templateUrl: './edit-section-notes.component.html',
+  styleUrls: ['./edit-section-notes.component.scss'],
   animations: [fadeAnimation]
 })
-export class EditSectionComponent implements OnInit, OnDestroy {
+export class EditSectionNotesComponent implements OnInit, OnDestroy {
 
   public section$: Observable<Section>;
   public sectionNotes: string = '';  
