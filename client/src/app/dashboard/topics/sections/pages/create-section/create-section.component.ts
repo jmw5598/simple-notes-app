@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import { Section } from '@sn/shared/models';
 import { createSection, setCreateSectionResponseMessage } from '@sn/core/store/actions';
 import { selectCreateSectionResponseMessage } from '@sn/core/store/selectors';
 import { ResponseMessage } from '@sn/core/models';
+import { buildSectionFormGroup } from '../../components/section-form/section-form.builder';
 import { fadeAnimation, showHide } from '@sn/shared/animations';
 
 @Component({
@@ -43,14 +44,10 @@ export class CreateSectionComponent implements OnInit {
         }
       })
     );
-    this.form = this._formBuilder.group({
-      title: ['', Validators.required],
-      synopsis: ['', Validators.required]
-    })
+    this.form = buildSectionFormGroup(this._formBuilder);
   }
 
   public submit(section: Section): void {
-    console.log('create section');
     this._store.dispatch(createSection({
       topicId: this._topicId,
       section: section

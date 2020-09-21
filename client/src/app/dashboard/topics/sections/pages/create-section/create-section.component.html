@@ -3,8 +3,7 @@
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6">
       <div class="card">
         <div class="card-header">Create New Section</div>
-        <div class="card-body">
-          
+        <div class="card-body">          
           <!-- Feedback Message -->
           <div *ngIf="(responseMessage$ | async)" [@showHide] class="alert alert-success">
             <span>
@@ -14,37 +13,11 @@
 
           <!-- New Topic Form -->
           <form (ngSubmit)="submit(form.value)" [formGroup]="form" novalidate>
-            <fieldset>
-
-              <!-- Title Field Input -->
-              <div class="form-group">
-                <label for="title">Title</label>
-                <input
-                    class="form-control"
-                    type="text" name="title"
-                    formControlName="title"
-                    [ngClass]="{'is-invalid':!form.controls['title'].valid && form.controls['title'].touched  }" />
-              </div>
-              <!-- End Title Field Input -->
-
-              <!-- Synopsis Field Input -->
-              <div class="form-group">
-                <label for="synopsis">Synopsis</label>
-                <textarea
-                    class="form-control"
-                    name="synopsis"
-                    formControlName="synopsis"
-                    [ngClass]="{'is-invalid':!form.controls['synopsis'].valid && form.controls['synopsis'].touched  }">
-                </textarea>
-              </div>
-              <!-- End Synopsis Field Input -->
-              <hr />
+            <sn-section-form></sn-section-form>
+            <div clas="form-group">
               <button role="button" type="submit" class="btn btn-primary" [disabled]="!form.valid">Create</button>
-
-            </fieldset>
+            </div> 
           </form>
-          <!-- End New Topic Form -->
-
         </div>
       </div>
     </div>
