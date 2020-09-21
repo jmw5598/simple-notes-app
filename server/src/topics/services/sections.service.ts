@@ -27,6 +27,8 @@ export class SectionsService {
     });
 
     if (!topic) throw new TopicNotFoundException();
+    topic.updatedAt = new Date();
+    this._topicsRepository.save(topic);
 
     const section: Section = await this._sectionsRepository.save(
       this._sectionsRepository.create({
