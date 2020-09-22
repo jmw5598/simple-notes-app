@@ -1,9 +1,9 @@
 export const environment = {
   production: true,
   auth: {
-    baseUrl: 'https://notesapi.jasonwhite.xyz/auth'
+    baseUrl: 'https://snapi.jasonwhite.xyz/auth'
   },
   api: {
-    baseUrl: 'https://notesapi.jasonwhite.xyz'
+    baseUrl: 'https://snapi.jasonwhite.xyz'
   }
 };
