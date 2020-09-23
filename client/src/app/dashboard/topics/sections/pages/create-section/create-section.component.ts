@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 
 import { IAppState } from '@sn/core/store/state';
 import { Section } from '@sn/shared/models';
-import { createSection, setCreateSectionResponseMessage } from '@sn/core/store/actions';
+import { createSection, getTopicById, setCreateSectionResponseMessage } from '@sn/core/store/actions';
 import { selectCreateSectionResponseMessage } from '@sn/core/store/selectors';
 import { ResponseMessage } from '@sn/core/models';
 import { buildSectionFormGroup } from '../../components/section-form/section-form.builder';
@@ -19,7 +19,7 @@ import { fadeAnimation, showHide } from '@sn/shared/animations';
   styleUrls: ['./create-section.component.scss'],
   animations: [fadeAnimation, showHide]
 })
-export class CreateSectionComponent implements OnInit {
+export class CreateSectionComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   private _topicId: number;
   public responseMessage$: Observable<ResponseMessage>;
@@ -53,5 +53,9 @@ export class CreateSectionComponent implements OnInit {
       topicId: this._topicId,
       section: newSection as Section 
     }));
+  }
+
+  ngOnDestroy(): void {
+    this._store.dispatch(getTopicById({ id: this._topicId }));
   }
 }

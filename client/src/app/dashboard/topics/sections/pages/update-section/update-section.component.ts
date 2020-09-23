@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 
 import { IAppState } from '@sn/core/store/state';
 import { Section } from '@sn/shared/models';
-import { updateSection, setUpdateSectionResponseMessage } from '@sn/core/store/actions';
+import { updateSection, setUpdateSectionResponseMessage, getTopicById } from '@sn/core/store/actions';
 import { selectSelectedSection, selectUpdateSectionResponseMessage } from '@sn/core/store/selectors';
 import { ResponseMessage } from '@sn/core/models';
 import { buildSectionFormGroup } from '../../components/section-form/section-form.builder';
@@ -19,7 +19,7 @@ import { fadeAnimation, showHide } from '@sn/shared/animations';
   styleUrls: ['./update-section.component.scss'],
   animations: [fadeAnimation, showHide]
 })
-export class UpdateSectionComponent implements OnInit {
+export class UpdateSectionComponent implements OnInit, OnDestroy {
 public form: FormGroup;
   private _topicId: number;
   public section$: Observable<Section>;
@@ -60,5 +60,9 @@ public form: FormGroup;
       sectionId: section.id,
       section: section
     }));
+  }
+
+  ngOnDestroy(): void {
+    this._store.dispatch(getTopicById({ id: this._topicId }));
   }
 }
