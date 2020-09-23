@@ -48,9 +48,10 @@ export class CreateSectionComponent implements OnInit {
   }
 
   public submit(section: Section): void {
+    const { id, ...newSection } = section;
     this._store.dispatch(createSection({
       topicId: this._topicId,
-      section: section
+      section: newSection as Section 
     }));
   }
 }

@@ -40,7 +40,8 @@ export class CreateTopicsComponent implements OnInit, OnDestroy {
   }
 
   public submit(topic: Topic): void {
-    this._store.dispatch(createTopic({ topic: topic }));
+    const { id, ...newTopic } = topic;
+    this._store.dispatch(createTopic({ topic: newTopic as Topic }));
   }
 
   private _resetForm(): void {
