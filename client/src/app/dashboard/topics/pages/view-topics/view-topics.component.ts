@@ -25,7 +25,7 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
   constructor(
     private _store: Store<IAppState>
   ) {
-    this.DEFAULT_PAGE = PageRequest.from(1, 100, 'updatedAt', 'DESC');
+    this.DEFAULT_PAGE = PageRequest.from(1, 10, 'updatedAt', 'DESC');
   }
 
   ngOnInit(): void {
@@ -46,6 +46,14 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
   public onDelete(id: number): void {
     console.log("deletling ", id);
     this._store.dispatch(deleteTopic({ id: id }));
+  }
+
+  public onGoToPage(pageable: IPageable): void {
+    const topicSearch: TopicSearch = {
+      searchTerm: this.searchTerm,
+      pageable: pageable
+    };
+    this._store.dispatch(searchTopics({ search: topicSearch }));
   }
 
   ngOnDestroy() {
