@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { IAppState } from '@sn/core/store/state';
 import { Topic } from '@sn/shared/models';
 import { fadeAnimation } from '@sn/shared/animations';
-import { selectTopics } from '@sn/core/store/selectors';
-import { deleteTopic } from '@sn/core/store/actions';
+import { selectTopics, selectSearchTopicsResult} from '@sn/core/store/selectors';
+import { deleteTopic, searchTopics, TopicSearch, searchTopicsResult } from '@sn/core/store/actions';
+import { Page, IPageable, PageRequest } from '@sn/core/models';
 
 @Component({
   selector: 'sn-view-topics',
@@ -14,18 +15,36 @@ import { deleteTopic } from '@sn/core/store/actions';
   styleUrls: ['./view-topics.component.scss'],
   animations: [fadeAnimation]
 })
-export class ViewTopicsComponent implements OnInit {
+export class ViewTopicsComponent implements OnInit, OnDestroy {
+  private readonly DEFAULT_PAGE: IPageable;
   public topics$: Observable<Topic[]>;
+  public searchTopicsResult$: Observable<Page<Topic>>;
 
   constructor(
     private _store: Store<IAppState>
-  ) { }
+  ) {
+    this.DEFAULT_PAGE = PageRequest.from(1, 100, 'updatedAt', 'ASC');
+  }
 
   ngOnInit(): void {
     this.topics$ = this._store.select(selectTopics);
+    this.searchTopicsResult$ = this._store.select(selectSearchTopicsResult);
+    this.onSearchTopics('');
+  }
+  
+  public onSearchTopics(searchTerm: string): void {
+    const topicSearch: TopicSearch = {
+      searchTerm: searchTerm,
+      pageable: this.DEFAULT_PAGE
+    };
+    this._store.dispatch(searchTopics({ search: topicSearch }));
   }
 
   public onDelete(id: number): void {
     this._store.dispatch(deleteTopic({ id: id }));
+  }
+
+  ngOnDestroy() {
+    this._store.dispatch(searchTopicsResult({ page: null }));
   }
 }

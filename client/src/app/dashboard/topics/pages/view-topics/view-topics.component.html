@@ -4,10 +4,20 @@
 
       <!-- Topics list -->
       <div *ngIf="(topics$ | async)?.length > 0" class="card">
-        <div class="card-header">Current Topics</div>
+        <!-- <div class="card-header">Current Topics</div> -->
         <div class="card-body">
+          <h5 class="m-0 p-0 topic-list-heading">
+            Topics
+            <!-- Header Buttons -->
+            <span class="float-right">
+              <sn-debounced-search
+                  debounceTime="500"
+                  (onSearch)="onSearchTopics($event)">
+              </sn-debounced-search>
+            </span>
+          </h5>
           <sn-topic-list
-              [topics]="topics$ | async"
+              [topics]="(searchTopicsResult$ | async)?.elements"
               (onDelete)="onDelete($event)">
           </sn-topic-list>
         </div>
