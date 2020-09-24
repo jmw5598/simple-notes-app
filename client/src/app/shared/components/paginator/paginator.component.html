@@ -1,0 +1,17 @@
+<nav class="paginator mt-4" aria-label="Page navigation example" *ngIf="page && page.totalElements > 0">
+  <span class="mb-3 mr-3">{{ page?.current?.page }} of {{ page.totalPages }}</span>
+  <ul class="pagination justify-content-end">
+    <li class="page-item" [class.disabled]="+page.current.page === +page.previous.page">
+      <a class="page-link" (click)="previousPage()" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li class="page-item" [class.disabled]="+page.current.page === +page.next.page">
+      <a class="page-link" (click)="nextPage()" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
