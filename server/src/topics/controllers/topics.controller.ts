@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Request, Res, UseGuards, HttpCode, Header } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Request, Res, UseGuards, HttpCode, Header, Query } from '@nestjs/common';
 import { JwtAuthenticationGuard } from '../../authentication/guards/jwt-authentication.guard';
 import { TopicsService } from '../services/topics.service';
 import { SectionsService } from '../services/sections.service';
@@ -10,7 +10,12 @@ import { UpdateTopicDto } from '../dtos/update-topic.dto';
 import { ExportConfig } from '../models/export-config.model';
 import { DocumentsService } from '../services/documents.service';
 import { Readable } from 'stream';
-import { response } from 'express';
+
+import { IPageable } from '../../common/models/pageable.interface';
+import { Page } from '../../common/models/page.model';
+import { PageRequest } from '../../common/models/page-request.model';
+import { SortDirection } from '../../common/enums/sort-direction.enum';
+import { Topic } from '../entities/topic.entity';
 
 @Controller('topics')
 @UseGuards(JwtAuthenticationGuard)
@@ -48,6 +53,19 @@ export class TopicsController {
     }
   }
 
+  @Get('search')
+  public async serachProductItems(
+      @Request() req,
+      @Query('page') page: number = 1,
+      @Query('size') size: number = 10,
+      @Query('sortCol') sortCol: string = 'title',
+      @Query('sortDir') sortDir: SortDirection = SortDirection.ASCENDING,
+      @Query('searchTerm') searchTerm: string = ''): Promise<Page<TopicDto>> {
+    const pageable: IPageable = PageRequest.from(page, size, sortCol, sortDir); 
+    const accountId: number = req.user.accountId;
+    return this._topicsService.searchTopics(accountId, searchTerm, pageable);  
+  }
+
   @Get(':topicId')
   public async getTopicById(
       @Request() request,
@@ -71,8 +89,6 @@ export class TopicsController {
       @Body() updateTopicDto: UpdateTopicDto): Promise<TopicDto> {
     try {
       const accountId: number = +request.user.accountId;
-      console.log('accountid: ', accountId);
-      console.log('topicid: ', topicId);
       return this._topicsService.updateTopic(accountId, topicId, updateTopicDto);
     } catch (error) {
       this._logger.error('Error updating topic!', error);
