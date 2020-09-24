@@ -25,7 +25,7 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
   constructor(
     private _store: Store<IAppState>
   ) {
-    this.DEFAULT_PAGE = PageRequest.from(1, 100, 'updatedAt', 'ASC');
+    this.DEFAULT_PAGE = PageRequest.from(1, 100, 'updatedAt', 'DESC');
   }
 
   ngOnInit(): void {
