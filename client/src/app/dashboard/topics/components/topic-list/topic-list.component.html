@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <table *ngIf="topics" class="table table-striped">
+  <table *ngIf="topics" class="table table-striped mb-0">
     <thead>
       <tr>
         <th>Created</th>
@@ -10,6 +10,19 @@
         <th></th>
       </tr>
     </thead>
+    <tbody *ngIf="!topics || topics.length === 0">
+      <tr class="bg-white">
+        <td colspan="6">
+          <sn-empty-data 
+              message="No topics found!"
+              [extraContent]="createNewButton">
+          </sn-empty-data>
+          <ng-template #createNewButton>
+            <a [routerLink]="['../create']" class="btn btn-success text-light">Create a topic</a>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
     <tbody *ngIf="topics">
       <tr *ngFor="let topic of topics">
         <td>{{ topic.createdAt | date:short}}</td>

@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <table class="table table-striped">
+  <table class="table table-striped mb-0">
     <thead>
       <tr>
         <th>Title</th>
@@ -8,7 +8,20 @@
         <th></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="!sections || sections.length === 0">
+      <tr class="bg-white">
+        <td colspan="6">
+          <sn-empty-data 
+              message="No sections found!"
+              [extraContent]="createNewButton">
+          </sn-empty-data>
+          <ng-template #createNewButton>
+            <a [routerLink]="['../sections', 'create']" class="btn btn-success text-light">Create a section</a>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="sections">
       <tr *ngFor="let section of sections">
         <td>{{ section.title }}</td>
         <td>{{ section.synopsis }}</td>
