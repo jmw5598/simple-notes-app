@@ -7,6 +7,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { ModalComponent } from './components/modal/modal.component';
 import { ModalService } from './components/modal/modal.service';
 import { DebouncedSearchComponent } from './components/debounced-search/debounced-search.component';
+import { EmptyDataComponent } from './components/empty-data/empty-data.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { DebouncedSearchComponent } from './components/debounced-search/debounce
     TagInputComponent,
     LoadingSpinnerComponent,
     ModalComponent,
-    DebouncedSearchComponent
+    DebouncedSearchComponent,
+    EmptyDataComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { DebouncedSearchComponent } from './components/debounced-search/debounce
     TagInputComponent,
     LoadingSpinnerComponent,
     ModalComponent,
-    DebouncedSearchComponent
+    DebouncedSearchComponent,
+    EmptyDataComponent
   ],
   providers: [
     ModalService
