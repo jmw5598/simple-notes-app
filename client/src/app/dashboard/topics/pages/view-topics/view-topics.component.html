@@ -3,7 +3,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
       <!-- Topics list -->
-      <div *ngIf="(topics$ | async)?.length > 0" class="card">
+      <div *ngIf="(searchTopicsResult$ | async)?.elements?.length > 0" class="card">
         <!-- <div class="card-header">Current Topics</div> -->
         <div class="card-body">
           <h5 class="m-0 p-0 topic-list-heading">
@@ -24,7 +24,7 @@
       </div>
 
       <!-- No Topics Message -->
-      <div *ngIf="(topics$ | async)?.length === 0" class="card card-info">
+      <div *ngIf="(searchTopicsResult$ | async)?.totalElements === 0" class="card card-info">
         <div class="card-body">
           <div class="alert alert-secondary">
             <h3>Message</h3>

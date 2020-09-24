@@ -20,6 +20,8 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
   public topics$: Observable<Topic[]>;
   public searchTopicsResult$: Observable<Page<Topic>>;
 
+  public searchTerm: string = '';
+
   constructor(
     private _store: Store<IAppState>
   ) {
@@ -33,6 +35,7 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
   }
   
   public onSearchTopics(searchTerm: string): void {
+    this.searchTerm = searchTerm;
     const topicSearch: TopicSearch = {
       searchTerm: searchTerm,
       pageable: this.DEFAULT_PAGE
@@ -41,6 +44,7 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
   }
 
   public onDelete(id: number): void {
+    console.log("deletling ", id);
     this._store.dispatch(deleteTopic({ id: id }));
   }
 
