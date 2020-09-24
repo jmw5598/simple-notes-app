@@ -16,7 +16,8 @@ import {
   setUpdateSectionResponseMessage,
   setUpdateTopicResponseMessage, 
   updateTopicSuccess, 
-  updateSectionSuccess } from '../actions/topic.actions';
+  updateSectionSuccess,
+  searchTopicsResult } from '../actions/topic.actions';
 
 const _topicReducer = createReducer(
   initialTopicState,
@@ -113,6 +114,12 @@ const _topicReducer = createReducer(
     return {
       ...state,
       exportTopicFileResponse: file
+    }
+  }),
+  on(searchTopicsResult, (state, { page }) => {
+    return {
+      ...state,
+      searchTopicsResult: page
     }
   })
 );

@@ -52,3 +52,8 @@ export const selectExportTopicFile = createSelector(
   selectTopicState,
   (state: ITopicState) => state.exportTopicFileResponse
 );
+
+export const selectSearchTopicsResult = createSelector(
+  selectTopicState,
+  (state: ITopicState) => state.searchTopicsResult
+);

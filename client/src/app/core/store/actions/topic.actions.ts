@@ -1,7 +1,11 @@
 import { createAction, props } from '@ngrx/store';
-import { ResponseMessage } from '@sn/core/models';
+import { Page, IPageable, ResponseMessage } from '@sn/core/models';
 import { Topic, Section, ExportConfig, FileResponse } from '@sn/shared/models';
-import { Action } from 'rxjs/internal/scheduler/Action';
+
+export interface TopicSearch {
+  searchTerm: string;
+  pageable: IPageable
+}
 
 export enum TopicActions {
   GET_ALL_TOPICS = '[Topic] Get All Topics',
@@ -32,6 +36,8 @@ export enum TopicActions {
   EXPORT_TOPIC_SUCCESS = '[Topic] Export Topic Success',
   SET_EXPORT_TOPIC_RESPONSE_MESSAGE = '[Topic] Export Topic Response Message',
   SET_EXPORT_TOPIC_FILE_RESPONSE = '[Topic] Export Topic File Response',
+  SEARCH_TOPICS = '[Topic] Search Topic',
+  SEARCH_TOPICS_RESULT = '[Topic] Search Topic Result'
 }
 
 export const getAllTopics = createAction(
@@ -179,4 +185,14 @@ export const setExportTopicResponseMessage = createAction(
 export const setExportTopicFileResponse = createAction(
   TopicActions.SET_EXPORT_TOPIC_FILE_RESPONSE,
   props<{ file: FileResponse }>()
+);
+
+export const searchTopics = createAction(
+  TopicActions.SEARCH_TOPICS,
+  props<{ search: TopicSearch }>()
+);
+
+export const searchTopicsResult = createAction(
+  TopicActions.SEARCH_TOPICS_RESULT,
+  props<{ page: Page<Topic> }>()
 );

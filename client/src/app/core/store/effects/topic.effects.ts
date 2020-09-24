@@ -4,9 +4,10 @@ import { TopicsService } from '../../services/topics.service';
 import { SectionsService } from '../../services/sections.service';
 import { handleHttpError } from '../actions/http-error.actions';
 import { of } from 'rxjs';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { switchMap, map, mergeMap, catchError } from 'rxjs/operators';
 import { ResponseMessage } from '@sn/core/models';
 import { ResponseStatus } from '@sn/core/enums';
+import { TopicSearch } from '../actions/topic.actions';
 
 import { 
   TopicActions, 
@@ -25,7 +26,8 @@ import {
   updateTopicSuccess, 
   setUpdateTopicResponseMessage,
   updateSectionSuccess,
-  setUpdateSectionResponseMessage } from '../actions/topic.actions';
+  setUpdateSectionResponseMessage,
+  searchTopicsResult } from '../actions/topic.actions';
 
 @Injectable()
 export class TopicEffects {
@@ -228,5 +230,18 @@ export class TopicEffects {
       } as ResponseMessage
       return of(setExportTopicResponseMessage({ message: message }))
     })
+  ));
+
+  searchTopics$ = createEffect(() => this._actions.pipe(
+    ofType(TopicActions.SEARCH_TOPICS),
+    switchMap(({search}) => {
+      const searchs: TopicSearch = search
+      return this._topicsService.searchTopics(searchs.searchTerm, searchs.pageable)
+      .pipe(
+        map(result => searchTopicsResult({ page: result })),
+        catchError(error => of(handleHttpError(error)))
+      )
+    }
+    )
   ));
 }
