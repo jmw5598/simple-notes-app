@@ -1,0 +1,7 @@
+<div class="debounced-search" [ngClass]="inputClasses">
+  <input class="debounced-search-input" type="text" [(ngModel)]="searchTerm" (keyup)="onSearchInputKeyUp($event)" />
+  <div class="btn btn-sm btn-outline-dark btn-border-none debounced-search-icon">
+    <span class="oi oi-magnifying-glass"></span>
+    Search
+  </div>
+</div>

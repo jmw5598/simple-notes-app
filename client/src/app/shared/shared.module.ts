@@ -6,13 +6,15 @@ import { TagInputComponent } from './components/tag-input/tag-input.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { ModalService } from './components/modal/modal.service';
+import { DebouncedSearchComponent } from './components/debounced-search/debounced-search.component';
 
 @NgModule({
   declarations: [
     SpinnerComponent,
     TagInputComponent,
     LoadingSpinnerComponent,
-    ModalComponent
+    ModalComponent,
+    DebouncedSearchComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { ModalService } from './components/modal/modal.service';
     SpinnerComponent,
     TagInputComponent,
     LoadingSpinnerComponent,
-    ModalComponent
+    ModalComponent,
+    DebouncedSearchComponent
   ],
   providers: [
     ModalService
