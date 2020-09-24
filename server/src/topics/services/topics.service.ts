@@ -31,11 +31,7 @@ export class TopicsService {
   }
 
   public async searchTopics(accountId: number, searchTerm: string, pageable: IPageable): Promise<Page<TopicDto>> {
-    const sort: {[key: string]: string} = {
-      updatedAt: 'DESC',
-      ...pageable.getSort().asKeyValue()
-    };
-    sort
+    const sort: {[key: string]: string} = pageable.getSort().asKeyValue();
     const where = await this._generateSearchWhereClause(accountId, searchTerm);
     const result = await this._topicsRepository.findAndCount({
       relations: ['account', 'account.user'],
