@@ -9,6 +9,7 @@ import { searchSections } from '@sn/core/store/actions';
 import { selectSearchSectionsResult } from '@sn/core/store/selectors';
 import { Section } from '@sn/shared/models'
 import { Page, PageRequest, PageableSearch, IPageable } from '../models';
+import { DEFAULT_SEARCH_SECTIONS_PAGE } from '../defaults';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class SectionsSearchResultGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const topicId: number = +next.paramMap.get('topicId');
-    const pageable: IPageable = PageRequest.from(1, 10, 'updatedAt', 'DESC');
+    const pageable: IPageable = DEFAULT_SEARCH_SECTIONS_PAGE;
     const search: PageableSearch = {
       searchTerm: '',
       pageable: pageable
