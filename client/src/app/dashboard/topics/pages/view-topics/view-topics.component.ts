@@ -9,6 +9,7 @@ import { fadeAnimation } from '@sn/shared/animations';
 import { selectTopics, selectSearchTopicsResult} from '@sn/core/store/selectors';
 import { deleteTopic, searchTopics, searchTopicsResult } from '@sn/core/store/actions';
 import { Page, IPageable, PageRequest } from '@sn/core/models';
+import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/core/defaults';
 
 @Component({
   selector: 'sn-view-topics',
@@ -17,7 +18,7 @@ import { Page, IPageable, PageRequest } from '@sn/core/models';
   animations: [fadeAnimation]
 })
 export class ViewTopicsComponent implements OnInit, OnDestroy {
-  private readonly DEFAULT_PAGE: IPageable;
+  private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_TOPICS_PAGE;
   public topics$: Observable<Topic[]>;
   public searchTopicsResult$: Observable<Page<Topic>>;
 
@@ -25,14 +26,11 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
 
   constructor(
     private _store: Store<IAppState>
-  ) {
-    this.DEFAULT_PAGE = PageRequest.from(1, 10, 'updatedAt', 'DESC');
-  }
+  ) { }
 
   ngOnInit(): void {
     this.topics$ = this._store.select(selectTopics);
     this.searchTopicsResult$ = this._store.select(selectSearchTopicsResult);
-    this.onSearchTopics('');
   }
   
   public onSearchTopics(searchTerm: string): void {
@@ -45,7 +43,6 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
   }
 
   public onDelete(id: number): void {
-    console.log("deletling ", id);
     this._store.dispatch(deleteTopic({ id: id }));
   }
 
