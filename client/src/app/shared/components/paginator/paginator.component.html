@@ -1,15 +1,34 @@
-<nav class="paginator mt-4" aria-label="Page navigation example" *ngIf="page && page.totalElements > 0">
-  <span class="mb-3 mr-3">{{ page?.current?.page }} of {{ page.totalPages }}</span>
+<nav class="paginator text-dark mt-4" aria-label="Page navigation example" *ngIf="currentPage && currentPage.totalElements > 0">
+  <span class="mb-3 mr-3">{{ currentPage?.current?.page }} of {{ currentPage.totalPages }}</span>
   <ul class="pagination justify-content-end">
-    <li class="page-item" [class.disabled]="+page.current.page === +page.previous.page">
+
+    <!-- Previous Page -->
+    <li class="page-item" [class.disabled]="+currentPage.current.page < +currentPage.previous.page">
       <a class="page-link" (click)="previousPage()" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
+        <!-- <span aria-hidden="true">&laquo;</span> -->
+        <span class="oi oi-caret-left"></span>
         <span class="sr-only">Previous</span>
       </a>
     </li>
-    <li class="page-item" [class.disabled]="+page.current.page === +page.next.page">
+
+    <!-- Numbers & Dots -->
+    <ng-container *ngFor="let p of pages">
+      <ng-container *ngIf="p !== '...'; else etcTemplate">
+        <li class="page-item" [ngClass]="{ 'active' : +currentPage.current.page === +p }">
+          <a class="page-link" (click)="goToPage(p)">{{ p }}</a>
+        </li>
+      </ng-container>
+      <ng-template #etcTemplate>
+        <li class="page-item disabled" [ngClass]="{ 'active' : +currentPage.current.page === +p }">
+          <a class="page-link ">{{ p }}</a>
+        </li>
+      </ng-template>
+    </ng-container>
+
+    <!-- Next Page -->
+    <li class="page-item" [class.disabled]="+currentPage.current.page > +currentPage.next.page">
       <a class="page-link" (click)="nextPage()" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
+        <span class="oi oi-caret-right"></span>
         <span class="sr-only">Next</span>
       </a>
     </li>
