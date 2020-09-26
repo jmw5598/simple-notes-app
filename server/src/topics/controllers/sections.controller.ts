@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Param, Request, Body, UseGuards, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Param, Request, Body, UseGuards, Put, Delete, Query } from '@nestjs/common';
 import { SnLoggerService } from 'src/logger/sn-logger.service';
 import { SectionDto } from '../dtos/section.dto';
 import { CreateSectionDto } from '../dtos/create-section.dto';
@@ -6,6 +6,10 @@ import { SectionsService } from '../services/sections.service';
 import { JwtAuthenticationGuard } from '../../authentication/guards/jwt-authentication.guard';
 import { UpdateSectionDto } from '../dtos/update-section.dto';
 import { UpdateSectionNotesDto } from '../dtos/update-section-notes.dto';
+import { Page } from '../../common/models/page.model';
+import { IPageable } from '../../common/models/pageable.interface';
+import { PageRequest } from '../../common/models/page-request.model';
+import { SortDirection } from '../../common/enums/sort-direction.enum';
 
 @Controller('topics/:topicId/sections')
 @UseGuards(JwtAuthenticationGuard)
@@ -34,6 +38,25 @@ export class SectionsController {
   @Get()
   public async getSectionsByTopic(@Param('topicId') topicId: number): Promise<any> {
     return { sections: `These are sections for topic with id ${topicId}` };
+  }
+
+  @Get('search')
+  public async searchSectionByTopicId(
+      @Request() request,
+      @Param('topicId') topicId: number,
+      @Query('page') page: number = 1,
+      @Query('size') size: number = 10,
+      @Query('sortCol') sortCol: string = 'title',
+      @Query('sortDir') sortDir: SortDirection = SortDirection.ASCENDING,
+      @Query('searchTerm') searchTerm: string = ''): Promise<Page<SectionDto>> {
+    try {
+      const pageable: IPageable = PageRequest.from(page, size, sortCol, sortDir); 
+      const accountId: number = +request.user.accountId;
+      return this._sectionsService.searchSections(accountId, topicId, searchTerm, pageable);
+    } catch (error) {
+      this._logger.error('Error seaching sections by topic!', error);
+      throw error;
+    }
   }
 
   @Get(':sectionId')
