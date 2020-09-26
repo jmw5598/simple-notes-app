@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Section } from '@sn/shared/models';
+import { IPageable, Page } from '@sn/core/models';
 import { environment } from '@env/environment';
 
 @Injectable({
@@ -43,6 +44,20 @@ export class SectionsService {
     }
     return this._http.put<Section>(
       `${environment.api.baseUrl}/topics/${topicId}/sections/${sectionId}/notes`, body
+    );
+  }
+
+  public searchSections(topicId: number, searchTerm: string, page?: IPageable): Observable<Page<Section>> {
+    const params: {[key: string]: any} = !page ? {} : {
+      searchTerm: searchTerm,
+      page: page.page,
+      size: page.size,
+      sortCol: page.sort.column,
+      sortDir: page.sort.direction
+    };
+    return this._http.get<Page<Section>>(
+      `${environment.api.baseUrl}/topics/${topicId}/sections/search`, 
+      { params: params }
     );
   }
 
