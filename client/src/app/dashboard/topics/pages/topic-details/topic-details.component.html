@@ -38,11 +38,24 @@
                 Export
               </button>
             </span>
+            <span class="float-right" style="margin-top: -0.5rem;">
+              <sn-debounced-search
+                  style="display: inline"
+                  debounceTime="500"
+                  (onSearch)="onSearchSections($event)">
+              </sn-debounced-search>
+            </span>
           </h5>
           <sn-section-list
-              [sections]="(topic$ | async)?.sections"
+              [sections]="(searchSectionsResult$ | async)?.elements"
               (onDelete)="onDeleteSection($event)">
           </sn-section-list>
+          <sn-paginator
+              [page]="(searchSectionsResult$ | async)"
+              (onNextPage)="onGoToPage($event)"
+              (onPreviousPage)="onGoToPage($event)"
+              (onGoToPage)="onGoToPage($event)">
+          </sn-paginator>
         </div>
       </div>
     </div>

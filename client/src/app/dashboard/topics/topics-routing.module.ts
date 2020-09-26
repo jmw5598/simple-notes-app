@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateTopicsComponent } from './pages/create-topics/create-topics.component';
 import { ViewTopicsComponent } from './pages/view-topics/view-topics.component';
-import { TopicByIdGuard, TopicsGuard } from '@sn/core/guards';
+import { SectionsSearchResultGuard, TopicByIdGuard, TopicsGuard } from '@sn/core/guards';
 import { TopicDetailsComponent } from './pages/topic-details/topic-details.component';
 import { UpdateTopicComponent } from './pages/update-topic/update-topic.component';
 
@@ -22,6 +22,7 @@ const routes: Routes = [
     children: [
       {
         path: 'details',
+        canActivate: [SectionsSearchResultGuard],
         component: TopicDetailsComponent
       },
       {
