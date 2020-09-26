@@ -73,8 +73,6 @@ export class TopicsController {
     try {
       const accountId: number = +request.user.accountId;
       const topic: TopicDto = await this._topicsService.getTopicById(accountId, topicId);
-      const sections: SectionDto[] = await this._sectionsService.getSectionsByTopicId(accountId, topicId);
-      topic.sections = sections;
       return topic;
     } catch (error) {
       this._logger.error('Error getting all topics!', error);
