@@ -57,3 +57,8 @@ export const selectSearchTopicsResult = createSelector(
   selectTopicState,
   (state: ITopicState) => state.searchTopicsResult
 );
+
+export const selectSearchSectionsResult = createSelector(
+  selectTopicState,
+  (state: ITopicState) => state.searchSectionsResult
+);

@@ -13,7 +13,8 @@ export interface ITopicState {
   updateSectionNotesResponseMessage: ResponseMessage,
   exportTopicResponseMessage: ResponseMessage,
   exportTopicFileResponse: FileResponse,
-  searchTopicsResult: Page<Topic>
+  searchTopicsResult: Page<Topic>,
+  searchSectionsResult: Page<Section>
 };
 
 export const initialTopicState: ITopicState = {
@@ -27,5 +28,6 @@ export const initialTopicState: ITopicState = {
   updateSectionNotesResponseMessage: null,
   exportTopicResponseMessage: null,
   exportTopicFileResponse: null,
-  searchTopicsResult: null
+  searchTopicsResult: null,
+  searchSectionsResult: null
 };

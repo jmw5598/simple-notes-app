@@ -32,7 +32,9 @@ export enum TopicActions {
   SET_EXPORT_TOPIC_RESPONSE_MESSAGE = '[Topic] Export Topic Response Message',
   SET_EXPORT_TOPIC_FILE_RESPONSE = '[Topic] Export Topic File Response',
   SEARCH_TOPICS = '[Topic] Search Topic',
-  SEARCH_TOPICS_RESULT = '[Topic] Search Topic Result'
+  SEARCH_TOPICS_RESULT = '[Topic] Search Topic Result',
+  SEARCH_SECTIONS = '[Topic] Search Sections',
+  SEARCH_SECTIONS_RESULT = '[Topic] Search Section Result'
 }
 
 export const getAllTopics = createAction(
@@ -190,4 +192,14 @@ export const searchTopics = createAction(
 export const searchTopicsResult = createAction(
   TopicActions.SEARCH_TOPICS_RESULT,
   props<{ page: Page<Topic> }>()
+);
+
+export const searchSections = createAction(
+  TopicActions.SEARCH_SECTIONS,
+  props<{ topicId: number, search: PageableSearch }>()
+);
+
+export const searchSectionsResult = createAction(
+  TopicActions.SEARCH_SECTIONS_RESULT,
+  props<{ page: Page<Section> }>()
 );
