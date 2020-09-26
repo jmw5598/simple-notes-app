@@ -17,3 +17,4 @@ export * from './paging/pageable.interface';
 export * from './paging/sort-direction.enum';
 export * from './paging/sort.model';
 export * from './paging/sortable.interface';
+export * from './paging/pageable-search.model';

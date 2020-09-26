@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 
 import { IAppState } from '@sn/core/store/state';
 import { Topic } from '@sn/shared/models';
+import { PageableSearch } from '@sn/core/models';
 import { fadeAnimation } from '@sn/shared/animations';
 import { selectTopics, selectSearchTopicsResult} from '@sn/core/store/selectors';
-import { deleteTopic, searchTopics, TopicSearch, searchTopicsResult } from '@sn/core/store/actions';
+import { deleteTopic, searchTopics, searchTopicsResult } from '@sn/core/store/actions';
 import { Page, IPageable, PageRequest } from '@sn/core/models';
 
 @Component({
@@ -36,7 +37,7 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
   
   public onSearchTopics(searchTerm: string): void {
     this.searchTerm = searchTerm;
-    const topicSearch: TopicSearch = {
+    const topicSearch: PageableSearch = {
       searchTerm: searchTerm,
       pageable: this.DEFAULT_PAGE
     };
@@ -49,7 +50,7 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
   }
 
   public onGoToPage(pageable: IPageable): void {
-    const topicSearch: TopicSearch = {
+    const topicSearch: PageableSearch = {
       searchTerm: this.searchTerm,
       pageable: pageable
     };

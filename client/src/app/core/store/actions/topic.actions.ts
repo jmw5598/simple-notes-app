@@ -1,11 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { Page, IPageable, ResponseMessage } from '@sn/core/models';
+import { Page, IPageable, PageableSearch, ResponseMessage } from '@sn/core/models';
 import { Topic, Section, ExportConfig, FileResponse } from '@sn/shared/models';
-
-export interface TopicSearch {
-  searchTerm: string;
-  pageable: IPageable
-}
 
 export enum TopicActions {
   GET_ALL_TOPICS = '[Topic] Get All Topics',
@@ -189,7 +184,7 @@ export const setExportTopicFileResponse = createAction(
 
 export const searchTopics = createAction(
   TopicActions.SEARCH_TOPICS,
-  props<{ search: TopicSearch }>()
+  props<{ search: PageableSearch }>()
 );
 
 export const searchTopicsResult = createAction(
