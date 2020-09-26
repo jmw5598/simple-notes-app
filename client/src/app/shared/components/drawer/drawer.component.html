@@ -1,0 +1,13 @@
+<div class="overlay-side-panel" [class.collapsed]="!isDrawerVisible">
+  <div class="overlay" [ngClass]="overlayStyle" 
+      *ngIf="isDrawerVisible" [@fadeAnimation] (click)="close()">
+  </div>
+  <div class="side-panel shadow">
+    <div class="close text-dark">
+      <span class="oi oi-x" (click)="close()"></span>
+    </div>
+    <div class="content">
+      <ng-container #content></ng-container>
+    </div>
+  </div>
+</div>

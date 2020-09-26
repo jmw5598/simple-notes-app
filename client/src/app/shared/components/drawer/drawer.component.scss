@@ -1,0 +1,72 @@
+// @import '../_shared/scss/variables';
+// @import '../_shared/scss/mixins';
+
+.overlay-side-panel {
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2000;
+
+    &.overlay-style-transparent {
+      background: transparent;
+    }
+
+    &.overlay-style-dim-dark {
+      background: rgba(#000, 0.3);
+    }
+
+    &.overlay-style-dim-light {
+      background: rgba(#FFF, 0.5);
+    }
+  }
+  
+  .side-panel {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 450px;
+    margin-right: 0;
+    background: #FFF;
+    overflow-y: auto;
+    transition: margin-right 0.3s;
+    z-index: 2001;
+    // @include box-shadow;
+
+    .close,
+    .content {
+      padding: 1.25rem;
+    }  
+
+    .close {
+      background: #FFF;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      line-height: 1rem;
+      font-size: 1rem;
+      font-weight: bold;
+      
+      span {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &.collapsed {
+    .side-panel {
+      margin-right: -450px;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .overlay-side-panel {
+    .side-panel {
+      width: 100%;
+    }
+  }
+}

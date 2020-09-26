@@ -9,6 +9,8 @@ import { ModalService } from './components/modal/modal.service';
 import { DebouncedSearchComponent } from './components/debounced-search/debounced-search.component';
 import { EmptyDataComponent } from './components/empty-data/empty-data.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
+import { DrawerComponent } from './components/drawer/drawer.component';
+import { DrawerService } from './components';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
     ModalComponent,
     DebouncedSearchComponent,
     EmptyDataComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    DrawerComponent
   ],
   imports: [
     CommonModule,
@@ -34,10 +37,12 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
     ModalComponent,
     DebouncedSearchComponent,
     EmptyDataComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    DrawerComponent
   ],
   providers: [
-    ModalService
+    ModalService,
+    DrawerService
   ]
 })
 export class SharedModule { }
