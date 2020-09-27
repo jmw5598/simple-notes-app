@@ -15,17 +15,21 @@ export class DebouncedSearchComponent implements OnInit, OnDestroy {
   public debounceTime: number = 700;
 
   @Input()
-  public inputClasses: string;
+  public isSearching: boolean;
 
   @Output()
   public onSearch: EventEmitter<string>;
 
   public searchTerm: string;
+  public isInputShown: boolean;
 
   constructor() {
     this.onSearch = new EventEmitter<string>();
     this._searchTextChangeSubject = new Subject<string>();
     this._subscriptionSubject = new Subject<void>();
+    this.searchTerm = '';
+    this.isSearching = false;
+    this.isInputShown = false;
   }
 
   ngOnInit(): void {
@@ -45,6 +49,10 @@ export class DebouncedSearchComponent implements OnInit, OnDestroy {
 
   public search(searchTerm: string): void {
     this.onSearch.emit(searchTerm);
+  }
+
+  public onToggleSearchInput(): void {
+    this.isInputShown = !this.isInputShown;
   }
 
   ngOnDestroy(): void {

@@ -18,7 +18,7 @@
     height: 28px;
   }
 
-  &:hover {
+  &.show {
     > .debounced-search-input {
       width: 240px;
       border-bottom: 1px solid lightgray;
