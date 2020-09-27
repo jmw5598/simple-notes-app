@@ -1,5 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { initialTopicState } from '../state/topic.state';
+import { Page } from '@sn/core/models';
 import { Topic, Section } from '@sn/shared/models';
 import * as fromActions from '../actions';
 
@@ -12,10 +13,11 @@ const _topicReducer = createReducer(
     }
   }),
   on(fromActions.deleteTopicSuccess, (state, { topic }) => {
-    const topics: Topic[] = state.topics.filter(t => t.id !== topic.id);
+    const page: Page<Topic> = { ...state.searchTopicsResult } as Page<Topic>;
+    page.elements = page.elements.filter(t => t.id !== topic.id)
     return {
       ...state,
-      topics: topics
+      searchTopicsResult: page
     }
   }),
   on(fromActions.updateTopicSuccess, (state, { topic }) => {

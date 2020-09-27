@@ -20,10 +20,11 @@ const _sectionReducer = createReducer(
     }
   }),
   on(fromActions.deleteSectionSuccess, (state, { section }) => {
-    const searchSectionsResult: Page<Section> = { ...state.searchSectionsResult };
+    const page: Page<Section> = { ...state.searchSectionsResult } as Page<Section>;
+    page.elements = page.elements.filter(s => s.id !== section.id);
     return {
       ...state,
-      searchSectionsResult: searchSectionsResult
+      searchSectionsResult: page
     };
   }),
   on(fromActions.setCreateSectionResponseMessage, (state, { message }) => {
