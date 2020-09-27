@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { AccountsService } from '@sn/core/services';
 import { of } from 'rxjs';
-import { tap, map, mergeMap, catchError } from 'rxjs/operators';
+import { exhaustMap, switchMap, tap, map, catchError } from 'rxjs/operators';
 import * as fromActions from '../actions';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class AccountEffects {
 
   getAccountDetails$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.getAccountDetails),
-    mergeMap(() => this._accountsService.getAccountDetails()
+    switchMap(() => this._accountsService.getAccountDetails()
       .pipe(
         map(details => fromActions.getAccountDetailsSuccess({ account: details })),
         catchError(error => of(fromActions.handleHttpError({ error: error })))
@@ -25,7 +25,7 @@ export class AccountEffects {
 
   getAccountProfile$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.getAccountProfile),
-    mergeMap(() => this._accountsService.getAccountProfile()
+    switchMap(() => this._accountsService.getAccountProfile()
       .pipe(
         map((profile) => fromActions.getAccountProfileSuccess({ profile: profile })),
         catchError(error => of(fromActions.handleHttpError({ error: error })))
@@ -35,7 +35,7 @@ export class AccountEffects {
 
   registerNewAccount$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.registerNewAccount),
-    mergeMap(({ registration }) => this._accountsService.registerNewAccount(registration)
+    exhaustMap(({ registration }) => this._accountsService.registerNewAccount(registration)
       .pipe(
         map(result => fromActions.registerNewAccountResult({ result: result })),
         catchError(error => of(fromActions.registerNewAccountResult({ result: {
@@ -48,7 +48,7 @@ export class AccountEffects {
 
   passwordReqeust$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.passwordRequestReset),
-    mergeMap(({ request }) => this._accountsService.passwordRequestReset(request)
+    exhaustMap(({ request }) => this._accountsService.passwordRequestReset(request)
       .pipe(
         map(response => fromActions.passwordRequestResetResult({ result: response })),
         catchError(error => of(fromActions.handleHttpError({ error: error })))
@@ -58,7 +58,7 @@ export class AccountEffects {
 
   passwordReset$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.passwordReset),
-    mergeMap(({ request }) => this._accountsService.passwordReset(request)
+    exhaustMap(({ request }) => this._accountsService.passwordReset(request)
       .pipe(
         map(response => fromActions.passwordResetResult({ result: response })),
         catchError(error => of(fromActions.handleHttpError({ error: error })))
@@ -68,7 +68,7 @@ export class AccountEffects {
 
   updateAccountDetails$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.updateAccountDetails),
-    mergeMap(({ account }) => this._accountsService.updateAccountDetails(account)
+    switchMap(({ account }) => this._accountsService.updateAccountDetails(account)
       .pipe(
         map(response => fromActions.updateAccountDetailsSuccess({ account: response })),
         catchError(error => of(fromActions.handleHttpError({ error: error })))
@@ -85,7 +85,7 @@ export class AccountEffects {
 
   updateAccountProfile$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.updateAccountProfile),
-    mergeMap(({ profile })=> this._accountsService.updateAccountProfile(profile)
+    switchMap(({ profile })=> this._accountsService.updateAccountProfile(profile)
       .pipe(
         map(response => fromActions.updateAccountProfileSuccess({ profile: response })),
         catchError(error => of(fromActions.handleHttpError({ error: error })))

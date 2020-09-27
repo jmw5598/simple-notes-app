@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { SectionsService } from '../../services/sections.service';
 import { handleHttpError } from '../actions/http-error.actions';
 import { of } from 'rxjs';
-import { switchMap, map, mergeMap, catchError } from 'rxjs/operators';
+import { exhaustMap, switchMap, map, catchError, debounceTime } from 'rxjs/operators';
 import { PageableSearch, ResponseMessage } from '@sn/core/models';
 import { ResponseStatus } from '@sn/core/enums';
 import * as fromActions from '../actions';
@@ -17,7 +17,7 @@ export class SectionEffects {
 
   createSection$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.createSection),
-    mergeMap(({topicId, section}) => this._sectionsService.save(topicId, section)
+    exhaustMap(({topicId, section}) => this._sectionsService.save(topicId, section)
       .pipe(
         map(result => fromActions.createSectionSuccess({ section: result })),
         catchError(error => of(handleHttpError(error)))
@@ -27,7 +27,7 @@ export class SectionEffects {
 
   createSectionSuccess$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.createSectionSuccess),
-    mergeMap(({section}) => {
+    switchMap(({section}) => {
       const message: ResponseMessage = {
         status: ResponseStatus.SUCCESS,
         message: `Successfully create new section!`
@@ -38,7 +38,7 @@ export class SectionEffects {
 
   updateSection$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.updateSection),
-    mergeMap(({topicId, sectionId, section}) => this._sectionsService.update(topicId, sectionId, section)
+    switchMap(({topicId, sectionId, section}) => this._sectionsService.update(topicId, sectionId, section)
       .pipe(
         map(result => fromActions.updateSectionSuccess({ section: result })),
         catchError(error => {
@@ -54,7 +54,7 @@ export class SectionEffects {
 
   updateSectionSuccess$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.updateSectionSuccess),
-    mergeMap(() => {
+    switchMap(() => {
       const message: ResponseMessage = {
         status: ResponseStatus.SUCCESS,
         message: `Successfully updated section!`
@@ -65,7 +65,7 @@ export class SectionEffects {
 
   deleteSection$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.deleteSection),
-    mergeMap(({topicId, sectionId}) => this._sectionsService.delete(topicId, sectionId)
+    exhaustMap(({topicId, sectionId}) => this._sectionsService.delete(topicId, sectionId)
       .pipe(
         map(result => fromActions.deleteSectionSuccess({ section: result })),
         catchError(error => of(handleHttpError(error)))
@@ -75,7 +75,7 @@ export class SectionEffects {
 
   getSectionById$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.getSectionById),
-    mergeMap(({topicId, sectionId}) => this._sectionsService.findOne(topicId, sectionId)
+    switchMap(({topicId, sectionId}) => this._sectionsService.findOne(topicId, sectionId)
       .pipe(
         map(result => fromActions.setSelectedSection({ section: result })),
         catchError(error => of(handleHttpError(error)))
@@ -85,7 +85,8 @@ export class SectionEffects {
 
   updateSectionNotes$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.updateSectionNotes),
-    mergeMap(({ topicId, sectionId, notes }) => this._sectionsService.updateNotes(topicId, sectionId, notes)
+    debounceTime(1000),
+    switchMap(({ topicId, sectionId, notes }) => this._sectionsService.updateNotes(topicId, sectionId, notes)
       .pipe(
         map(result => {
           const successMessage: ResponseMessage = {

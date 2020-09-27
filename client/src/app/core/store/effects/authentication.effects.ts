@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, mergeMap, catchError, tap } from 'rxjs/operators';
+import { exhaustMap, map, catchError, tap } from 'rxjs/operators';
 
 import { AuthenticationService } from '@sn/core/services';
 import { AuthenticatedUser } from '@sn/core/models';
@@ -18,7 +18,7 @@ export class AuthenticationEffects {
 
   loginUser$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.loginUser),
-    mergeMap(({ credentials }) => this._authenticationService.authenticateUser(credentials)
+    exhaustMap(({ credentials }) => this._authenticationService.authenticateUser(credentials)
       .pipe(
         map(user => fromActions.loginUserSuccess({ user: user })),
         catchError(error => of(fromActions.loginUserError({ error: error })))
@@ -36,7 +36,7 @@ export class AuthenticationEffects {
 
   refreshToken$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.refreshToken),
-    mergeMap(() => {
+    exhaustMap(() => {
       const authenticatedUser: AuthenticatedUser = this._authenticationService.getStoredAuthenticatedUser();
       const accessToken: string = authenticatedUser.accessToken;
       const refreshToken: string = authenticatedUser.refreshToken;

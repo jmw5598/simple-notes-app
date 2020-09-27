@@ -4,7 +4,7 @@ import { TopicsService } from '../../services/topics.service';
 import { SectionsService } from '../../services/sections.service';
 import { handleHttpError } from '../actions/http-error.actions';
 import { of } from 'rxjs';
-import { switchMap, map, mergeMap, catchError } from 'rxjs/operators';
+import { exhaustMap, switchMap, map, catchError } from 'rxjs/operators';
 import { PageableSearch, ResponseMessage } from '@sn/core/models';
 import { ResponseStatus } from '@sn/core/enums';
 import * as fromActions from '../actions';
@@ -19,7 +19,7 @@ export class TopicEffects {
 
   getAllTopics$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.getAllTopics),
-    mergeMap(() => this._topicsService.findAll()
+    switchMap(() => this._topicsService.findAll()
       .pipe(
         map(topics => fromActions.getAllTopicsSuccess({ topics: topics })),
         catchError(error => of(handleHttpError(error)))
@@ -29,7 +29,7 @@ export class TopicEffects {
 
   createTopic$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.createTopic),
-    mergeMap(({topic}) => this._topicsService.save(topic)
+    exhaustMap(({topic}) => this._topicsService.save(topic)
       .pipe(
         map(result => fromActions.createTopicSuccess({ topic: result })),
         catchError(error => of(handleHttpError(error)))
@@ -39,7 +39,7 @@ export class TopicEffects {
 
   createTopicSuccess$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.createTopicSuccess),
-    mergeMap(({topic}) => {
+    switchMap(({topic}) => {
       const message: ResponseMessage = {
         status: ResponseStatus.SUCCESS,
         message: `Successfully create new topic!`
@@ -50,7 +50,7 @@ export class TopicEffects {
 
   updateTopic$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.updateTopic),
-    mergeMap(({id, topic}) => this._topicsService.update(id, topic)
+    switchMap(({id, topic}) => this._topicsService.update(id, topic)
       .pipe(
         map(result => fromActions.updateTopicSuccess({ topic: result })),
         catchError(error => {
@@ -66,7 +66,7 @@ export class TopicEffects {
 
   updateTopicSuccess$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.updateTopicSuccess),
-    mergeMap(({topic}) => {
+    switchMap(({topic}) => {
       const message: ResponseMessage = {
         status: ResponseStatus.SUCCESS,
         message: `Successfully updated topic!`
@@ -77,7 +77,7 @@ export class TopicEffects {
 
   deleteTopic$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.deleteTopic),
-    mergeMap(({id}) => this._topicsService.delete(id)
+    exhaustMap(({id}) => this._topicsService.delete(id)
       .pipe(
         map(result => fromActions.deleteTopicSuccess({ topic: result })),
         catchError(error => of(handleHttpError(error)))
@@ -87,7 +87,7 @@ export class TopicEffects {
 
   getTopicById$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.getTopicById),
-    mergeMap(({id}) => this._topicsService.findOne(id)
+    switchMap(({id}) => this._topicsService.findOne(id)
       .pipe(
         map(result => fromActions.setSelectedTopic({ topic: result })),
         catchError(error => of(handleHttpError(error)))
@@ -97,7 +97,7 @@ export class TopicEffects {
 
   exportTopic$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.exportTopic),
-    mergeMap(({topicId, config}) => this._topicsService.exportTopic(topicId, config)
+    exhaustMap(({topicId, config}) => this._topicsService.exportTopic(topicId, config)
       .pipe(
         map(result => fromActions.exportTopicSuccess({ file: result })),
         catchError(error => {
@@ -113,7 +113,7 @@ export class TopicEffects {
 
   exportTopicSuccess$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.exportTopicSuccess),
-    mergeMap(({file}) => {
+    switchMap(({file}) => {
       const message: ResponseMessage = {
         status: ResponseStatus.SUCCESS,
         message: `We successfully export your topic!`
