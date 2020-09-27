@@ -4,7 +4,7 @@ import { TopicsService } from '../../services/topics.service';
 import { SectionsService } from '../../services/sections.service';
 import { handleHttpError } from '../actions/http-error.actions';
 import { of } from 'rxjs';
-import { exhaustMap, switchMap, map, catchError } from 'rxjs/operators';
+import { exhaustMap, switchMap, map, catchError, debounceTime } from 'rxjs/operators';
 import { PageableSearch, ResponseMessage } from '@sn/core/models';
 import { ResponseStatus } from '@sn/core/enums';
 import * as fromActions from '../actions';
@@ -124,6 +124,7 @@ export class TopicEffects {
 
   searchTopics$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.searchTopics),
+    debounceTime(500),
     switchMap(({search}) => {
       const searchs: PageableSearch = search
       return this._topicsService.searchTopics(searchs.searchTerm, searchs.pageable)

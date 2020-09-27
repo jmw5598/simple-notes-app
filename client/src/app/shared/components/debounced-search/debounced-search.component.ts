@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { tap, takeUntil, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { fadeAnimation } from '../../animations';
 
 @Component({
   selector: 'sn-debounced-search',
   templateUrl: './debounced-search.component.html',
-  styleUrls: ['./debounced-search.component.scss']
+  styleUrls: ['./debounced-search.component.scss'],
+  animations: [fadeAnimation]
 })
 export class DebouncedSearchComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<void>;

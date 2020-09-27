@@ -108,6 +108,7 @@ export class SectionEffects {
 
   searchSections$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.searchSections),
+    debounceTime(500),
     switchMap(({topicId, search}) => {
       const searchs: PageableSearch = search;
       return this._sectionsService.searchSections(topicId, searchs.searchTerm, searchs.pageable)

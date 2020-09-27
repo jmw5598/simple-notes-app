@@ -26,6 +26,7 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
   private _topicId: number;
   public searchSectionsResult$: Observable<Page<Section>>;
   public searchTerm: string = '';
+  public isSearching: boolean = false;
 
   constructor(
     private _store: Store<IAppState>,
@@ -33,7 +34,13 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.searchSectionsResult$ = this._store.select(selectSearchSectionsResult);
+    this.searchSectionsResult$ = this._store.select(selectSearchSectionsResult).pipe(
+      tap((page: Page<Section>) => {
+        if (page) {
+          this.isSearching = false;
+        }
+      })
+    );
     this.exportTopicResponseMessage$ = this._store.select(selectExportTopicResponseMessage);
     this.exportTopicFile$ = this._store.select(selectExportTopicFile)
       .pipe(
@@ -73,6 +80,7 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
   }
 
   public onSearchSections(searchTerm: string): void {
+    this.isSearching = true;
     this.searchTerm = searchTerm;
     const topicSearch: PageableSearch = {
       searchTerm: searchTerm,

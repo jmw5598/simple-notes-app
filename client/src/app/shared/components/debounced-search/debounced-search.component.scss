@@ -6,6 +6,11 @@
   justify-content: center;
   align-items: center;
 
+  .debounced-search-spinner {
+    margin-top: -1rem;
+    margin-right: 0.5rem;
+  }
+
   .debounced-search-input {
     border: none;
     background: none;

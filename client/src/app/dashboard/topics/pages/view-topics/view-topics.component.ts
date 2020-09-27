@@ -10,6 +10,7 @@ import { selectTopics, selectSearchTopicsResult} from '@sn/core/store/selectors'
 import { deleteTopic, searchTopics, searchTopicsResult } from '@sn/core/store/actions';
 import { Page, IPageable, PageRequest } from '@sn/core/models';
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/core/defaults';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'sn-view-topics',
@@ -23,6 +24,7 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
   public searchTopicsResult$: Observable<Page<Topic>>;
 
   public searchTerm: string = '';
+  public isSearching: boolean = false;
 
   constructor(
     private _store: Store<IAppState>
@@ -30,11 +32,18 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.topics$ = this._store.select(selectTopics);
-    this.searchTopicsResult$ = this._store.select(selectSearchTopicsResult);
+    this.searchTopicsResult$ = this._store.select(selectSearchTopicsResult).pipe(
+      tap((page: Page<Topic>) => {
+        if (page) {
+          this.isSearching = false;
+        }
+      })
+    );
   }
   
   public onSearchTopics(searchTerm: string): void {
     this.searchTerm = searchTerm;
+    this.isSearching = true;
     const topicSearch: PageableSearch = {
       searchTerm: searchTerm,
       pageable: this.DEFAULT_PAGE
