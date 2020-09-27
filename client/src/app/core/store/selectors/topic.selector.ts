@@ -1,7 +1,7 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { ITopicState } from '../state/topic.state';
 
-export const selectTopicState = createFeatureSelector<ITopicState>("topics");
+export const selectTopicState = createFeatureSelector<ITopicState>('topics');
 
 export const selectTopics = createSelector(
   selectTopicState,
@@ -13,34 +13,14 @@ export const selectSelectedTopic = createSelector(
   (state: ITopicState) => state.selectedTopic
 );
 
-export const selectSelectedSection = createSelector(
-  selectTopicState,
-  (state: ITopicState) => state.selectedSection
-);
-
 export const selectCreateTopicResponseMessage = createSelector(
   selectTopicState,
   (state: ITopicState) => state.createTopicResponseMessage
 );
 
-export const selectCreateSectionResponseMessage = createSelector(
-  selectTopicState,
-  (state: ITopicState) => state.createSectionResponseMessage
-);
-
 export const selectUpdateTopicResponseMessage = createSelector(
   selectTopicState,
   (state: ITopicState) => state.updateTopicResponseMessage
-);
-
-export const selectUpdateSectionResponseMessage = createSelector(
-  selectTopicState,
-  (state: ITopicState) => state.updateSectionResponseMessage
-);
-
-export const selectUpdateSectionNotesResponseMessage = createSelector(
-  selectTopicState,
-  (state: ITopicState) => state.updateSectionNotesResponseMessage
 );
 
 export const selectExportTopicResponseMessage = createSelector(
@@ -56,9 +36,4 @@ export const selectExportTopicFile = createSelector(
 export const selectSearchTopicsResult = createSelector(
   selectTopicState,
   (state: ITopicState) => state.searchTopicsResult
-);
-
-export const selectSearchSectionsResult = createSelector(
-  selectTopicState,
-  (state: ITopicState) => state.searchSectionsResult
 );

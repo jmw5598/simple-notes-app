@@ -55,7 +55,6 @@ export class PasswordResetComponent implements OnInit {
   }
 
   public onSubmit(resetValues: PasswordReset): void {
-    console.log("resetting", resetValues);
-    this._store.dispatch(passwordReset(resetValues));
+    this._store.dispatch(passwordReset({ request: resetValues }));
   }
 }

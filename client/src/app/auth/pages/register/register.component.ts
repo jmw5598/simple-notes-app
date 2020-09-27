@@ -112,7 +112,7 @@ export class RegisterComponent implements OnInit {
   }
 
   public onSubmit(registration: Registration): void {
-    this._store.dispatch(registerNewAccount(registration))
+    this._store.dispatch(registerNewAccount({ registration: registration }))
   }
 
   private _handleNewRegistrationResult(result: RegistrationResult): void {
@@ -121,7 +121,7 @@ export class RegisterComponent implements OnInit {
         this.form.reset();
       this.registrationResult = result
       this.result();
-      this._store.dispatch(registerNewAccountResult(null));
+      this._store.dispatch(registerNewAccountResult({ result: null }));
       setTimeout(() => this._handleRedirectAfterSuccess(), 5000)
     }
   }

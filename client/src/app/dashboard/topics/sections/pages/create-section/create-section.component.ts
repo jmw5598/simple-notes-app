@@ -40,7 +40,7 @@ export class CreateSectionComponent implements OnInit, OnDestroy {
       tap((message: ResponseMessage) => {
         if (message) {
           this.form.reset();
-          setTimeout(() => this._store.dispatch(setCreateSectionResponseMessage(null)), 3000);
+          setTimeout(() => this._store.dispatch(setCreateSectionResponseMessage({ message: null })), 3000);
         }
       })
     );

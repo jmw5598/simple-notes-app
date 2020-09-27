@@ -2,87 +2,70 @@ import { createAction, props } from '@ngrx/store';
 import { Account, Profile, PasswordRequestReset, PasswordReset, ResponseMessage } from '@sn/core/models';
 import { Registration, RegistrationResult } from '@sn/core/dtos';
 
-export enum AccountActions {
-  GET_ACCOUNT_DETAILS = '[Account] Get Account Details',
-  GET_ACCOUNT_DETAILS_SUCCESS = '[Account] Get Account Details Success',
-  GET_ACCOUNT_PROFILE = '[Account] Get Account Profile',
-  GET_ACCOUNT_PROFILE_SUCCESS = '[Account] Get Account Profile Success',
-  PASSWORD_REQUEST_RESET = '[Account] Password Request Reset',
-  PASSWORD_REQUEST_RESET_RESULT = '[Account] Password Request Reset Result',
-  PASSWORD_RESET = '[Account] Password Reset',
-  PASSWORD_RESET_RESULT = '[Account] Password Reset Result',
-  REGISTER_NEW_ACCOUNT = '[Acount] Register New Account',
-  REGISTER_NEW_ACCOUNT_RESULT= '[Account] Register New Account Result',
-  UPDATE_ACCOUNT_DETAILS = '[Account] Update Account Details',
-  UPDATE_ACCOUNT_DETAILS_SUCCESS = '[Account] Update Account Details Success',
-  UPDATE_ACCOUNT_PROFILE = '[Account] Update Account Profile',
-  UPDATE_ACCOUNT_PROFILE_SUCCESS = '[Account] Update Account Profile Success',
-};
-
 export const getAccountDetails = createAction(
-  AccountActions.GET_ACCOUNT_DETAILS
+  '[Account] Get Account Details'
 );
 
 export const getAccountDetailsSuccess = createAction(
-  AccountActions.GET_ACCOUNT_DETAILS_SUCCESS,
-  (account: Account) => ({ payload: account })
+  '[Account] Get Account Details Success',
+  props<{account: Account}>()
 );
 
 export const getAccountProfile = createAction(
-  AccountActions.GET_ACCOUNT_PROFILE
+  '[Account] Get Account Profile'
 );
 
 export const getAccountProfileSuccess = createAction(
-  AccountActions.GET_ACCOUNT_PROFILE_SUCCESS,
-  (profile: Profile) => ({ payload: profile })
+  '[Account] Get Account Profile Success',
+  props<{ profile: Profile }>()
 );
 
 export const registerNewAccount = createAction(
-  AccountActions.REGISTER_NEW_ACCOUNT,
-  props<Registration>()
+  '[Acount] Register New Account',
+  props<{ registration: Registration }>()
 );
 
 export const registerNewAccountResult = createAction(
-  AccountActions.REGISTER_NEW_ACCOUNT_RESULT,
-  (result: RegistrationResult) => ({ payload: result })
+  '[Account] Register New Account Result',
+  props<{ result: RegistrationResult }>()
 );
 
 export const passwordRequestReset = createAction(
-  AccountActions.PASSWORD_REQUEST_RESET,
-  props<PasswordRequestReset>()
+  '[Account] Password Request Reset',
+  props<{ request: PasswordRequestReset }>()
 );
 
 export const passwordRequestResetResult = createAction(
-  AccountActions.PASSWORD_REQUEST_RESET_RESULT,
-  (result: ResponseMessage) => ({ payload: result })
+  '[Account] Password Request Reset Result',
+  props<{ result: ResponseMessage }>()
 );
 
 export const passwordReset = createAction(
-  AccountActions.PASSWORD_RESET,
-  props<PasswordReset>()
+  '[Account] Password Reset',
+  props<{ request: PasswordReset }>()
 );
 
 export const passwordResetResult = createAction(
-  AccountActions.PASSWORD_RESET_RESULT,
-  (result: ResponseMessage) => ({ payload: result })
+  '[Account] Password Reset Result',
+  props<{ result: ResponseMessage }>()
 );
 
 export const updateAccountDetails = createAction(
-  AccountActions.UPDATE_ACCOUNT_DETAILS,
-  props<Account>()
+  '[Account] Update Account Details',
+  props<{ account: Account }>()
 );
 
 export const updateAccountDetailsSuccess = createAction(
-  AccountActions.UPDATE_ACCOUNT_DETAILS_SUCCESS,
-  (account: Account) => ({ payload: account })
+  '[Account] Update Account Details Success',
+  props<{ account: Account}>()
 );
 
 export const updateAccountProfile = createAction(
-  AccountActions.UPDATE_ACCOUNT_PROFILE,
-  props<Profile>()
+  '[Account] Update Account Profile',
+  props<{ profile: Profile }>()
 );
 
 export const updateAccountProfileSuccess = createAction(
-  AccountActions.UPDATE_ACCOUNT_PROFILE_SUCCESS,
-  (profile: Profile) => ({ payload: profile })
+  '[Account] Update Account Profile Success',
+  props<{ profile: Profile}>()
 );

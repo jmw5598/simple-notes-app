@@ -1,19 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { handleHttpError } from '../actions/http-error.actions';
 import { AccountsService } from '@sn/core/services';
 import { of } from 'rxjs';
 import { tap, map, mergeMap, catchError } from 'rxjs/operators';
-import { 
-  AccountActions, 
-  registerNewAccountResult, 
-  passwordRequestResetResult, 
-  passwordResetResult, 
-  getAccountDetailsSuccess, 
-  getAccountProfileSuccess, 
-  updateAccountDetailsSuccess,
-  updateAccountProfileSuccess } from '../actions/account.actions';
+import * as fromActions from '../actions';
 
 @Injectable()
 export class AccountEffects {
@@ -23,88 +14,88 @@ export class AccountEffects {
   ) {}
 
   getAccountDetails$ = createEffect(() => this._actions.pipe(
-    ofType(AccountActions.GET_ACCOUNT_DETAILS),
+    ofType(fromActions.getAccountDetails),
     mergeMap(() => this._accountsService.getAccountDetails()
       .pipe(
-        map(details => getAccountDetailsSuccess(details)),
-        catchError(error => of(handleHttpError(error)))
+        map(details => fromActions.getAccountDetailsSuccess({ account: details })),
+        catchError(error => of(fromActions.handleHttpError({ error: error })))
       )
     )
   ));
 
   getAccountProfile$ = createEffect(() => this._actions.pipe(
-    ofType(AccountActions.GET_ACCOUNT_PROFILE),
+    ofType(fromActions.getAccountProfile),
     mergeMap(() => this._accountsService.getAccountProfile()
       .pipe(
-        map(profile => getAccountProfileSuccess(profile)),
-        catchError(error => of(handleHttpError(error)))
+        map((profile) => fromActions.getAccountProfileSuccess({ profile: profile })),
+        catchError(error => of(fromActions.handleHttpError({ error: error })))
       )
     )
   ));
 
   registerNewAccount$ = createEffect(() => this._actions.pipe(
-    ofType(AccountActions.REGISTER_NEW_ACCOUNT),
-    mergeMap(registration => this._accountsService.registerNewAccount(registration)
+    ofType(fromActions.registerNewAccount),
+    mergeMap(({ registration }) => this._accountsService.registerNewAccount(registration)
       .pipe(
-        map(result => registerNewAccountResult(result)),
-        catchError(error => of(registerNewAccountResult({
+        map(result => fromActions.registerNewAccountResult({ result: result })),
+        catchError(error => of(fromActions.registerNewAccountResult({ result: {
           status: 'ERROR',
           message: error.error.message
-        })))
+        }})))
       )
     )
   ));
 
   passwordReqeust$ = createEffect(() => this._actions.pipe(
-    ofType(AccountActions.PASSWORD_REQUEST_RESET),
-    mergeMap(request => this._accountsService.passwordRequestReset(request)
+    ofType(fromActions.passwordRequestReset),
+    mergeMap(({ request }) => this._accountsService.passwordRequestReset(request)
       .pipe(
-        map(response => passwordRequestResetResult(response)),
-        catchError(error => of(handleHttpError(error)))
+        map(response => fromActions.passwordRequestResetResult({ result: response })),
+        catchError(error => of(fromActions.handleHttpError({ error: error })))
       )
     )
   ));
 
   passwordReset$ = createEffect(() => this._actions.pipe(
-    ofType(AccountActions.PASSWORD_RESET),
-    mergeMap(resetRequest => this._accountsService.passwordReset(resetRequest)
+    ofType(fromActions.passwordReset),
+    mergeMap(({ request }) => this._accountsService.passwordReset(request)
       .pipe(
-        map(response => passwordResetResult(response)),
-        catchError(error => of(handleHttpError(error)))
+        map(response => fromActions.passwordResetResult({ result: response })),
+        catchError(error => of(fromActions.handleHttpError({ error: error })))
       )
     )
   ));
 
   updateAccountDetails$ = createEffect(() => this._actions.pipe(
-    ofType(AccountActions.UPDATE_ACCOUNT_DETAILS),
-    mergeMap(details => this._accountsService.updateAccountDetails(details)
+    ofType(fromActions.updateAccountDetails),
+    mergeMap(({ account }) => this._accountsService.updateAccountDetails(account)
       .pipe(
-        map(response => updateAccountDetailsSuccess(response)),
-        catchError(error => of(handleHttpError(error)))
+        map(response => fromActions.updateAccountDetailsSuccess({ account: response })),
+        catchError(error => of(fromActions.handleHttpError({ error: error })))
       )
     )
   ));
 
   updateAccountDetailsSuccess$ = createEffect(() => this._actions.pipe(
-    ofType(AccountActions.UPDATE_ACCOUNT_DETAILS_SUCCESS),
-    tap(({ payload }) => {
+    ofType(fromActions.updateAccountDetailsSuccess),
+    tap(({ account }) => {
       this._openNewNotificationSuccess(`We successfully updated your account details!`);
     })
   ), { dispatch: false });
 
   updateAccountProfile$ = createEffect(() => this._actions.pipe(
-    ofType(AccountActions.UPDATE_ACCOUNT_PROFILE),
-    mergeMap(profile => this._accountsService.updateAccountProfile(profile)
+    ofType(fromActions.updateAccountProfile),
+    mergeMap(({ profile })=> this._accountsService.updateAccountProfile(profile)
       .pipe(
-        map(response => updateAccountProfileSuccess(response)),
-        catchError(error => of(handleHttpError(error)))
+        map(response => fromActions.updateAccountProfileSuccess({ profile: response })),
+        catchError(error => of(fromActions.handleHttpError({ error: error })))
       )
     )
   ));
 
   updateAccountProfileSuccess$ = createEffect(() => this._actions.pipe(
-    ofType(AccountActions.UPDATE_ACCOUNT_PROFILE_SUCCESS),
-    tap(({ payload }) => {
+    ofType(fromActions.updateAccountProfileSuccess),
+    tap(({ profile }) => {
       this._openNewNotificationSuccess(`We successfully updated your account profile!`);
     })
   ), { dispatch: false });

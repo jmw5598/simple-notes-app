@@ -90,8 +90,8 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._store.dispatch(searchSectionsResult(null));
-    this._store.dispatch(setExportTopicResponseMessage(null));
-    this._store.dispatch(setExportTopicFileResponse(null));
+    this._store.dispatch(searchSectionsResult({ page: null }));
+    this._store.dispatch(setExportTopicResponseMessage({ message : null }));
+    this._store.dispatch(setExportTopicFileResponse({ file: null }));
   }
 }

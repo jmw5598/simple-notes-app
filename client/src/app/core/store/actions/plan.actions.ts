@@ -1,16 +1,11 @@
-import { createAction } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 import { Plan } from '../../models';
 
-export enum PlanActions {
-  GET_PLANS = '[Plan] Get Plans',
-  GET_PLANS_SUCCESS = '[Plan] Get Plans Success'
-};
-
 export const getPlans = createAction(
-  PlanActions.GET_PLANS
+  '[Plan] Get Plans'
 );
 
 export const getPlansSuccess = createAction(
-  PlanActions.GET_PLANS_SUCCESS,
-  (plans: Plan[]) => ({ payload: plans })
+  '[Plan] Get Plans Success',
+  props<{ plans: Plan[] }>()
 );

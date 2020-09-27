@@ -5,20 +5,20 @@ import { initialAuthenticationState } from '../state/authentication.state';
 
 const _authenticationReducer = createReducer(
   initialAuthenticationState,
-  on(loginUserSuccess, (state, { payload }) => {
+  on(loginUserSuccess, (state, { user }) => {
     return {
       ...state,
-      authenticatedUser: payload,
+      authenticatedUser: user,
       authenticatedStatus: AuthenticatedStatus.AUTHENTICATED,
       errorMessage: null
     };
   }),
-  on(loginUserError, (state, { payload }) => {
+  on(loginUserError, (state, { error }) => {
     return {
       ...state,
       authenticatedUser: null,
       authenticatedStatus: AuthenticatedStatus.UNAUTHENTICATED,
-      errorMessage: payload.error.message
+      errorMessage: error.error.message
     }
   }),
   on(logoutUser, (state) => {
@@ -29,18 +29,18 @@ const _authenticationReducer = createReducer(
       errorMessage: null
     }
   }),
-  on(refreshTokenSuccess, (state, { payload }) => {
+  on(refreshTokenSuccess, (state, { user }) => {
     return {
       ...state,
-      authenticatedUser: payload,
+      authenticatedUser: user,
       authenticatedStatus: AuthenticatedStatus.AUTHENTICATED,
       errorMessage: null
     }
   }),
-  on(setAuthenticatedUser, (state, { payload }) => {
+  on(setAuthenticatedUser, (state, { user }) => {
     return {
       ...state,
-      authenticatedUser: payload
+      authenticatedUser: user 
     }
   })
 );

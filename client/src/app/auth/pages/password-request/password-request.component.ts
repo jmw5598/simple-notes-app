@@ -39,10 +39,10 @@ export class PasswordRequestComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit(passwordRequest: PasswordRequestReset): void {
-    this._store.dispatch(passwordRequestReset(passwordRequest));
+    this._store.dispatch(passwordRequestReset({ request: passwordRequest }));
   }
 
   ngOnDestroy(): void {
-     this._store.dispatch(passwordRequestResetResult(null))
+     this._store.dispatch(passwordRequestResetResult({ result: null }))
   }
 }

@@ -1,9 +1,9 @@
 import { ActionReducer } from '@ngrx/store';
-import { AuthenticationActions } from '../actions/authentication.actions';
+import * as fromActions from '../actions';
 
 export function resetStateOnLogout(reducer: ActionReducer<any>): ActionReducer<any> {
   return function (state, action) {
-    if (action.type === AuthenticationActions.LOGOUT_USER) {
+    if (action.type === fromActions.logoutUser.type) {
       state = undefined;
     }
     return reducer(state, action);

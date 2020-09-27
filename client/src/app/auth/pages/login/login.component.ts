@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: form.password,
       rememberMe: form.rememberMe
     }) as UserCredentials;
-    this._store.dispatch(loginUser(user));
+    this._store.dispatch(loginUser({ credentials: user }));
   }
 
   ngOnDestroy() {

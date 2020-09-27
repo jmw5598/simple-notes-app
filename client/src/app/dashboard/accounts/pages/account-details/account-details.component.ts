@@ -54,12 +54,11 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   public onUpdateProfile(formValue: { profile: Profile }): void {
-    this._store.dispatch(updateAccountProfile(formValue.profile));
+    this._store.dispatch(updateAccountProfile({ profile: formValue.profile }));
     this.onEditingProfile(false);
   }
 
   public updateProfile(formValue: { profile: Profile }): void {
-    console.log("update profile", formValue.profile);
     this.isEditingProfile = false;
   }
 }

@@ -13,46 +13,46 @@ import {
 
 const _accountReducer = createReducer(
   initialAccountState,
-  on(getAccountDetailsSuccess, (state, { payload }) => {
+  on(getAccountDetailsSuccess, (state, { account }) => {
     return {
       ...state,
-      details: payload
+      details: account
     }
   }),
-  on(getAccountProfileSuccess, (state, { payload }) => {
+  on(getAccountProfileSuccess, (state, { profile }) => {
     return {
       ...state,
-      profile: payload
+      profile: profile 
     }
   }),
-  on(registerNewAccountResult, (state, { payload }) => {
+  on(registerNewAccountResult, (state, { result }) => {
     return {
       ...state,
-      registrationResult: payload
+      registrationResult: result 
     }
   }),
-  on(passwordRequestResetResult, (state, { payload }) => {
+  on(passwordRequestResetResult, (state, { result }) => {
     return {
       ...state,
-      passwordRequestResetResult: payload
+      passwordRequestResetResult: result 
     }
   }),
-  on(passwordResetResult, (state, { payload }) => {
+  on(passwordResetResult, (state, { result }) => {
     return {
       ...state,
-      passwordResetResult: payload
+      passwordResetResult: result
     }
   }),
-  on(updateAccountDetailsSuccess, (state, { payload }) => {
+  on(updateAccountDetailsSuccess, (state, { account }) => {
     return {
       ...state,
-      details: payload
+      details: account
     }
   }),
-  on(updateAccountProfileSuccess, (state, { payload }) => {
+  on(updateAccountProfileSuccess, (state, { profile }) => {
     return {
       ...state,
-      profile: payload 
+      profile: profile
     }
   })
 );

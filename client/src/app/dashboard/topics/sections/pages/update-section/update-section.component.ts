@@ -47,7 +47,7 @@ public form: FormGroup;
     this.responseMessage$ = this._store.select(selectUpdateSectionResponseMessage).pipe(
       tap((message: ResponseMessage) => {
         if (message) {
-          setTimeout(() => this._store.dispatch(setUpdateSectionResponseMessage(null)), 3000);
+          setTimeout(() => this._store.dispatch(setUpdateSectionResponseMessage({ message: null })), 3000);
         }
       })
     );

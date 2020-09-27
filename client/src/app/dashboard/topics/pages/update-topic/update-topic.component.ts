@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -18,7 +18,7 @@ import { buildTopicFormGroup } from '../../components/topic-form/topic-form.buil
   styleUrls: ['./update-topic.component.scss'],
   animations: [fadeAnimation, showHide]
 })
-export class UpdateTopicComponent implements OnInit, OnDestroy {
+export class UpdateTopicComponent implements OnInit {
 public form: FormGroup;
   public topic$: Observable<Topic>;
   public responseMessage$: Observable<ResponseMessage>;
@@ -58,9 +58,5 @@ public form: FormGroup;
     const categories: FormArray = this._formBuilder.array([]);
     this.form.setControl('categories', categories);
     this.form.reset();
-  }
-
-  ngOnDestroy(): void {
-    this._store.dispatch(getAllTopics());
   }
 }

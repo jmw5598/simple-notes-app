@@ -1,132 +1,70 @@
 import { createReducer, on } from '@ngrx/store';
 import { initialTopicState } from '../state/topic.state';
 import { Topic, Section } from '@sn/shared/models';
-import { 
-  getAllTopicsSuccess, 
-  deleteTopicSuccess, 
-  setSelectedTopic, 
-  setSelectedSection,
-  deleteSectionSuccess,
-  setCreateSectionResponseMessage,
-  setCreateTopicResponseMessage,
-  setUpdateSectionNotesResponseMessage, 
-  exportTopicSuccess, 
-  setExportTopicResponseMessage, 
-  setExportTopicFileResponse,
-  setUpdateSectionResponseMessage,
-  setUpdateTopicResponseMessage, 
-  updateTopicSuccess, 
-  updateSectionSuccess,
-  searchTopicsResult,
-  searchSectionsResult } from '../actions/topic.actions';
+import * as fromActions from '../actions';
 
 const _topicReducer = createReducer(
   initialTopicState,
-  on(getAllTopicsSuccess, (state, { topics }) => {
+  on(fromActions.getAllTopicsSuccess, (state, { topics }) => {
     return {
       ...state,
       topics: topics
     }
   }),
-  on(deleteTopicSuccess, (state, { topic }) => {
+  on(fromActions.deleteTopicSuccess, (state, { topic }) => {
     const topics: Topic[] = state.topics.filter(t => t.id !== topic.id);
     return {
       ...state,
       topics: topics
     }
   }),
-  on(updateTopicSuccess, (state, { topic }) => {
+  on(fromActions.updateTopicSuccess, (state, { topic }) => {
     const updatedTopic: Topic = { ...state.selectedTopic, ...topic };
     return {
       ...state,
       selectedTopic: updatedTopic
     }
   }),
-  on(updateSectionSuccess, (state, { section }) => {
-    const updatedSection: Section = { ...state.selectedSection, ...section }
-    return {
-      ...state,
-      selectedSection: updatedSection
-    }
-  }),
-  on(setSelectedTopic, (state, { topic }) => {
+  on(fromActions.setSelectedTopic, (state, { topic }) => {
     return {
       ...state,
       selectedTopic: topic
     }
   }),
-  on(setSelectedSection, (state, { section }) => {
-    return {
-      ...state,
-      selectedSection: section
-    }
-  }),
-  on(deleteSectionSuccess, (state, { section }) => {
-    const selectedTopic: Topic = { ...state.selectedTopic };
-    selectedTopic.sections = selectedTopic.sections.filter(s => s.id !== section.id);
-    return {
-      ...state,
-      selectedTopic: selectedTopic
-    };
-  }),
-  on(setCreateTopicResponseMessage, (state, { message }) => {
+  on(fromActions.setCreateTopicResponseMessage, (state, { message }) => {
     return {
       ...state,
       createTopicResponseMessage: message
     }
   }),
-  on(setCreateSectionResponseMessage, (state, { message }) => {
-    return {
-      ...state,
-      createSectionResponseMessage: message
-    }
-  }),
-  on(setUpdateTopicResponseMessage, (state, { message }) => {
+  on(fromActions.setUpdateTopicResponseMessage, (state, { message }) => {
     return {
       ...state,
       updateTopicResponseMessage: message
     }
   }),
-  on(setUpdateSectionResponseMessage, (state, { message }) => {
-    return {
-      ...state,
-      updateSectionResponseMessage: message
-    }
-  }),
-  on(setUpdateSectionNotesResponseMessage, (state, { message }) => {
-    return {
-      ...state,
-      updateSectionNotesResponseMessage: message
-    }
-  }),
-  on(exportTopicSuccess, (state, { file }) => {
+  on(fromActions.exportTopicSuccess, (state, { file }) => {
     return {
       ...state,
       exportTopicFileResponse: file
     }
   }),
-  on(setExportTopicResponseMessage, (state, { message }) => {
+  on(fromActions.setExportTopicResponseMessage, (state, { message }) => {
     return {
       ...state,
       exportTopicResponseMessage: message
     }
   }),
-  on(setExportTopicFileResponse, (state, { file }) => {
+  on(fromActions.setExportTopicFileResponse, (state, { file }) => {
     return {
       ...state,
       exportTopicFileResponse: file
     }
   }),
-  on(searchTopicsResult, (state, { page }) => {
+  on(fromActions.searchTopicsResult, (state, { page }) => {
     return {
       ...state,
       searchTopicsResult: page
-    }
-  }),
-  on(searchSectionsResult, (state, { page }) => {
-    return {
-      ...state,
-      searchSectionsResult: page
     }
   })
 );

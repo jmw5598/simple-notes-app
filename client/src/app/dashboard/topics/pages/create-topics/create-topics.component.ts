@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -18,7 +18,7 @@ import { buildTopicFormGroup } from '../../components/topic-form/topic-form.buil
   styleUrls: ['./create-topics.component.scss'],
   animations: [fadeAnimation, showHide]
 })
-export class CreateTopicsComponent implements OnInit, OnDestroy {
+export class CreateTopicsComponent implements OnInit {
   public form: FormGroup;
   public responseMessage$: Observable<ResponseMessage>;
 
@@ -32,7 +32,7 @@ export class CreateTopicsComponent implements OnInit, OnDestroy {
       tap((message: ResponseMessage) => {
         if (message) {
           this._resetForm();
-          setTimeout(() => this._store.dispatch(setCreateTopicResponseMessage(null)), 3000);
+          setTimeout(() => this._store.dispatch(setCreateTopicResponseMessage({ message: null })), 3000);
         }
       })
     );
@@ -48,9 +48,5 @@ export class CreateTopicsComponent implements OnInit, OnDestroy {
     const categories: FormArray = this._formBuilder.array([]);
     this.form.setControl('categories', categories);
     this.form.reset();
-  }
-
-  ngOnDestroy(): void {
-    this._store.dispatch(getAllTopics());
   }
 }

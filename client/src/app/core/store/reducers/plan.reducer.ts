@@ -4,10 +4,10 @@ import { initialPlanState } from '../state/plan.state';
 
 const _planReducer = createReducer(
   initialPlanState,
-  on(getPlansSuccess, (state, { payload }) => {
+  on(getPlansSuccess, (state, { plans }) => {
     return {
       ...state,
-      plans: payload
+      plans: plans
     };
   })
 );

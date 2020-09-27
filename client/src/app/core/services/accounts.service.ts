@@ -8,6 +8,7 @@ import { Account } from '../models/account.model';
 import { Profile } from '../models/profile.model';
 import { PasswordRequestReset } from '../models/password-request-reset.model';
 import { PasswordReset } from '../models/password-reset.model';
+import { Registration } from '../dtos';
 import { RegistrationResult } from '../dtos/registration-result.dto';
 import { ResponseMessage } from '../models/response-message.model';
 import { ValidatorResult } from '../models/validator-result.model';
@@ -39,7 +40,7 @@ export class AccountsService extends AbstractCrudService<Account, number> {
   }
 
   public registerNewAccount(
-      registration: RegistrationResult): Observable<RegistrationResult> {
+      registration: Registration): Observable<RegistrationResult> {
     return this._http.post<RegistrationResult>(`${this._base}/register`, registration);
   }
 

@@ -93,7 +93,7 @@ export class EditSectionNotesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._store.dispatch(setSelectedSection(null));
+    this._store.dispatch(setSelectedSection({ section: null }));
     this._subscriptionSubject$.next();
     this._subscriptionSubject$.complete();
   }
