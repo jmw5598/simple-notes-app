@@ -8,6 +8,7 @@ import { LoggerModule } from './logger/logger.module';
 import { PlansModule } from './plans/plans.module';
 import { TopicsModule } from './topics/topics.module';
 import { UsersModule } from './users/users.module';
+import { DocumentsModule } from './documents/documents.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { UsersModule } from './users/users.module';
     TopicsModule,
     TypeOrmModule.forRoot(),
     UsersModule,
+    DocumentsModule
   ],
   controllers: [],
   providers: [],

@@ -11,7 +11,9 @@ import { Document } from './entities/document.entity';
   ],
   imports: [
     LoggerModule,
-    TypeOrmModule.forFeature([Document])
+    TypeOrmModule.forFeature([
+      Document 
+    ])
   ],
   providers: [
     DocumentsService

@@ -25,6 +25,5 @@ export class Topic extends BaseEntity {
 
   @ManyToMany(type => Category, category => category.topics)
   @JoinTable({ name: 'topic_category' })
-  @JoinColumn({ name: 'category_id' })
   public categories: Category[];
 }

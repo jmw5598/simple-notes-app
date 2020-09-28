@@ -3,6 +3,7 @@ import { BaseEntity } from '../../database/entities/base.entity';
 import { Account } from '../../accounts/entities/account.entity';
 import { Section } from '../../topics/entities/section.entity';
 
+@Entity()
 export class Document extends BaseEntity {
   @Column({ name: 'name', nullable: false })
   public name: string;
@@ -13,6 +14,5 @@ export class Document extends BaseEntity {
 
   @ManyToMany(type => Section, section => section.documents)
   @JoinTable({ name: 'document_section' })
-  @JoinColumn({ name: 'section_id' })
   public sections: Section[];
 }

@@ -1,6 +1,7 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
 import { BaseEntity } from '../../database/entities/base.entity';
 import { Topic } from './topic.entity';
+import { Document } from '../../documents/entities/document.entity';
 
 @Entity()
 export class Section extends BaseEntity {
@@ -16,4 +17,8 @@ export class Section extends BaseEntity {
   @ManyToOne(type => Topic)
   @JoinColumn({ name: 'topic_id' })
   public topic: Topic;
+
+  @ManyToMany(type => Document, document => document.sections)
+  @JoinTable({ name: 'document_section' })
+  public documents: Document[];
 }
