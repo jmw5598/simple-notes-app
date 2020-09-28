@@ -13,7 +13,7 @@ dotenv.config();
     MailerModule.forRoot({
       transport: {
         host: `${process.env.MAIL_URL}`,
-        port: `${process.env.PORT}`,
+        port: `${process.env.MAIL_PORT}`,
         ignoreTLS: true,
         secure: true,
         auth: {
