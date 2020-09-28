@@ -5,3 +5,4 @@ export * from './profiles.service';
 export * from './plans.service';
 export * from './sections.service';
 export * from './topics.service';
+export * from './documents.service';

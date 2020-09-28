@@ -19,7 +19,8 @@ import { sectionReducer } from './store/reducers/section.reducer';
 import { topicReducer } from './store/reducers/topic.reducer';
 import { TopicEffects } from './store/effects/topic.effects';
 import { AuthenticationService } from './services';
-
+import { documentReducer } from './store/reducers/document.reducer';
+import { DocumentEffects } from './store/effects/document.effects';
 
 const jwtTokenInterceptor = {
   provide: HTTP_INTERCEPTORS,
@@ -43,7 +44,8 @@ const authenticationAppInitializer = {
       authentication: authenticationReducer,
       plans: planReducer,
       sections: sectionReducer,
-      topics: topicReducer
+      topics: topicReducer,
+      documents: documentReducer
     }, { metaReducers: [resetStateOnLogout] }),
     EffectsModule.forRoot([
       AccountEffects,
@@ -51,7 +53,8 @@ const authenticationAppInitializer = {
       HttpErrorEffects,
       PlanEffects,
       SectionEffects,
-      TopicEffects
+      TopicEffects,
+      DocumentEffects
     ]),
     HttpClientModule,
   ],
