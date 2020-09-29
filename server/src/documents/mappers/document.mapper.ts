@@ -10,7 +10,7 @@ export class DocumentMapper {
       createdAt: document.createdAt,
       updatedAt: document.updatedAt,
       name: document.name,
-      sections: SectionMapper.toSectionDtoList(document.sections)
+      sections: document.sections ? SectionMapper.toSectionDtoList(document.sections) : []
     } as DocumentDto
   }
 
