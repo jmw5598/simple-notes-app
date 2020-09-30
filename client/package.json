@@ -25,6 +25,7 @@
     "angular-confirmation-popover": "^6.0.0",
     "angular2-markdown": "^2.2.3",
     "file-saver": "^2.0.2",
+    "ngx-bootstrap": "^6.1.0",
     "rxjs": "~6.5.5",
     "rxjs-compat": "^6.6.3",
     "tslib": "^2.0.0",
