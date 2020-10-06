@@ -69,4 +69,13 @@ export class CalendarEventsService {
       await this._calendarEventRepository.save(event)
     );
   }
+
+  public async getCalendarEventById(accountId: number, eventId: number): Promise<CalendarEventDto> {
+    const event: CalendarEvent = await this._calendarEventRepository.findOne({
+      id: eventId,
+      account: { id: accountId }
+    });
+    if (!event) throw new CalendarEventNotFoundException();
+    return CalendarEventMapper.toCalendarEventDto(event);
+  }
 }

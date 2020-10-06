@@ -43,6 +43,19 @@ export class CalendarEventsController {
     }
   }
 
+  @Get(':id')
+  public async getCalendarEventById(
+      @Request() request,
+      @Param('id') eventId: number): Promise<CalendarEventDto> {
+    try {
+      const accountId: number = +request.user.accountId;
+      return this._calendarEventsService.getCalendarEventById(accountId, eventId);
+    } catch (error) {
+      this._logger.error('Error getting calendar event by id!', error);
+      throw error;
+    }
+  }
+
   @Put(':id')
   public async updateCalendarEvent(
       @Request() request,
