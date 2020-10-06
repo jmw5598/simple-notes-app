@@ -1,6 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class CreateCalendarEventDto {
+export class UpdateCalendarEventDto {
   @IsNotEmpty()
   public title: string;
 
