@@ -37,7 +37,10 @@ export class DrawerComponent implements OnInit, OnDestroy {
 
     this._drawerService.onContentChange()
       .pipe(takeUntil(this._drawerServiceSubject$))
-      .subscribe((component: Type<any>) => this._setDrawerContent(component));
+      .subscribe((component: Type<any>) => {
+        if (component) 
+          this._setDrawerContent(component)
+      });
   }
 
   public close(): void {
