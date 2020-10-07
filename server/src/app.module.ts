@@ -9,6 +9,7 @@ import { PlansModule } from './plans/plans.module';
 import { TopicsModule } from './topics/topics.module';
 import { UsersModule } from './users/users.module';
 import { DocumentsModule } from './documents/documents.module';
+import { CalendarEventsModule } from './calendar-events/calendar-events.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { DocumentsModule } from './documents/documents.module';
     TopicsModule,
     TypeOrmModule.forRoot(),
     UsersModule,
-    DocumentsModule
+    DocumentsModule,
+    CalendarEventsModule
   ],
   controllers: [],
   providers: [],
