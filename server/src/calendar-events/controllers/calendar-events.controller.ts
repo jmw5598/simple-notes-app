@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Request, UseGuards, Query } from '@nestjs/common';
 import { CalendarEventsService } from '../services/calendar-events.service';
 import { CalendarEventDto } from '../dtos/calendar-event.dto';
 import { SnLoggerService } from '../../logger/sn-logger.service';
@@ -43,11 +43,27 @@ export class CalendarEventsController {
     }
   }
 
+  @Get('between')
+  public async getCalendarEventsBetween(
+      @Request() request,
+      @Query('startDate') startDate: string,
+      @Query('endDate') endDate: string): Promise<CalendarEventDto[]> {
+    try {
+      const accountId: number = +request.user.accountId;
+      return this._calendarEventsService.getCalendarEventsBetweenDates(
+        accountId, new Date(startDate), new Date(endDate));
+    } catch (error) {
+      this._logger.error('Error getting calendar events between!', error);
+      throw error;
+    }
+  }
+
   @Get(':id')
   public async getCalendarEventById(
       @Request() request,
       @Param('id') eventId: number): Promise<CalendarEventDto> {
     try {
+      console.log("GETTING BY ID")
       const accountId: number = +request.user.accountId;
       return this._calendarEventsService.getCalendarEventById(accountId, eventId);
     } catch (error) {

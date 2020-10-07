@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { IsNull, Repository } from 'typeorm';
+import { MoreThanOrEqual, LessThanOrEqual, IsNull, Repository } from 'typeorm';
 import { CalendarEventMapper } from '../mappers/calendar-event.mapper';
 import { CalendarEventDto } from '../dtos/calendar-event.dto';
 import { CalendarEvent } from '../entities/calendar-event.entity';
@@ -77,5 +77,15 @@ export class CalendarEventsService {
     });
     if (!event) throw new CalendarEventNotFoundException();
     return CalendarEventMapper.toCalendarEventDto(event);
+  }
+
+  public async getCalendarEventsBetweenDates(accountId: number, startDate: Date, endDate: Date): Promise<CalendarEventDto[]> {
+    const events: CalendarEvent[] = await this._calendarEventRepository.find({
+      account: { id: accountId },
+      deletedAt: IsNull(),
+      startDateTime: MoreThanOrEqual(startDate.toISOString()),
+      endDateTime: LessThanOrEqual(endDate.toISOString())
+    })
+    return CalendarEventMapper.toCalendarEventDtoList(events);
   }
 }
