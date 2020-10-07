@@ -2,6 +2,7 @@ export * from './account.model';
 export * from './address.model';
 export * from './authenticated-user.model';
 export * from './base.model';
+export * from './calendar-event.model';
 export * from './password-request-reset.model';
 export * from './password-reset.model';
 export * from './plan.model';
