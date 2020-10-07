@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <div clas="card">
+        <div class="card-body">
+
+          <div class="form-group">
+            <input [(ngModel)]="selected"
+                [typeahead]="topics"
+                [typeaheadItemTemplate]="customItemTemplate"
+                class="form-control mb-3">
+            <pre class="card card-block card-header mb-3">Model: {{selected | json}}</pre>
+            <ng-template #customItemTemplate let-model="item" let-index="index">
+              <h5>This is: {{model | json}} Index: {{ index }}</h5>
+            </ng-template>
+          </div>
+          
+          <ul 
+              class="list-group"
+              cdkDropList
+              #todoList="cdkDropList"
+              [cdkDropListData]="todos"
+              [cdkDropListConnectedTo]="[doneList]"
+              (cdkDropListDropped)="onDrop($event)">
+            <li class="list-group-item" *ngFor="let todo of todos" cdkDrag>
+              <h4>{{ todo.name }}</h4>
+              <p>{{ todo.category }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <div clas="card">
+        <div class="card-body">
+          <ul 
+              class="list-group"
+              cdkDropList
+              #doneList="cdkDropList"
+              [cdkDropListData]="completed"
+              [cdkDropListConnectedTo]="todoList"
+              (cdkDropListDropped)="onDrop($event)">
+            <li class="list-group-item" *ngFor="let complete of completed" cdkDrag>
+              <h4>{{ complete.name }}</h4>
+              <p>{{ complete.category }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
