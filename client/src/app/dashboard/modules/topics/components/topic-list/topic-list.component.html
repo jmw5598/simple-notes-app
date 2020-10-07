@@ -1,0 +1,50 @@
+<div class="table-responsive">
+  <table *ngIf="topics" class="table table-striped mb-0">
+    <thead>
+      <tr>
+        <th>Created</th>
+        <th>Owner</th>
+        <th>Title</th>
+        <th>Permission</th>
+        <th>LastModified</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="!topics || topics.length === 0">
+      <tr class="bg-white">
+        <td colspan="6">
+          <sn-empty-data 
+              message="No topics found!"
+              [extraContent]="createNewButton">
+          </sn-empty-data>
+          <ng-template #createNewButton>
+            <a [routerLink]="['../create']" class="btn btn-success text-light">Create a topic</a>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="topics">
+      <tr *ngFor="let topic of topics">
+        <td>{{ topic.createdAt | date:short}}</td>
+        <td>{{ topic.owner | titlecase }}</td>
+        <td>{{ topic.title }}</td>
+        <td>{{ topic.permission | titlecase }}</td>
+        <td>{{ topic.updatedAt | date:short }}</td>
+        <td class="text-right">
+          <a class="btn btn-outline-primary btn-sm btn-border-none" [routerLink]="['../', topic.id, 'details']">
+            <span class="oi oi-eye"></span>
+          </a>
+          
+          <button 
+              mwlConfirmationPopover
+              placement="left"
+              (confirm)="delete(topic.id)"
+              role="button" 
+              class="btn btn-outline-primary btn-sm btn-border-none">
+            <span class="oi oi-trash"></span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
