@@ -15,4 +15,8 @@ export class CalendarEventDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.data$ = this._drawerService.onDataChange();
   }
+
+  public onClose(): void {
+    this._drawerService.close();
+  }
 }

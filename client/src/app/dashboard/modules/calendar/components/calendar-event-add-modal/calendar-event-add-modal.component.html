@@ -3,6 +3,13 @@
         <h3 class="font-weight-bold text-right mb-3">Create New Event</h3>
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
 
+      <!-- Response Message -->
+      <div *ngIf="(responseMessage$ | async)" [@showHide] class="alert alert-success">
+        <span>
+          <strong>{{ (responseMessage$ | async).status | uppercase }}</strong>: {{ (responseMessage$ | async).message }}
+        </span>
+      </div>
+
       <!-- Title Input -->
       <div class="form-group">
         <label for="title">Title</label>
@@ -16,7 +23,11 @@
             <label for="startDate">Start Date & Time</label>
             <div class="row">
               <div class="col-sm-12 col-md-6">
-                <input type="text" class="form-control" formControlName="startDate" />
+                <input type="text"
+                    class="form-control"
+                    formControlName="startDate"
+                    bsDatepicker
+                    [bsConfig]="datepickerConfig">
               </div>
               <div class="col-sm-12 col-md-6">
                 <timepicker 
@@ -36,7 +47,12 @@
             <label for="endDate">End Date & Time</label>
             <div class="row">
               <div class="col-sm-12 col-md-6">
-                <input type="text" class="form-control" formControlName="endDate" />
+                <input type="text"
+                    class="form-control"
+                    formControlName="endDate"
+                    bsDatepicker
+                    [bsConfig]="datepickerConfig">
+
               </div>
               <div class="col-sm-12 col-md-6">
                 <timepicker 
@@ -61,7 +77,7 @@
 
       <div class="form-group text-right">
         <button class="btn btn-primary mr-3">Create</button>
-        <button class="btn btn-secondary">Cancel</button>
+        <button class="btn btn-secondary" (click)="onClose()">Cancel</button>
       </div>
       
     </form>

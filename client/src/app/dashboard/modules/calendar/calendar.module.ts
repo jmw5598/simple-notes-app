@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-import { DatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { DrawerService } from '@sn/shared/components';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import bootstrapPlugin from '@fullcalendar/bootstrap';
@@ -35,7 +35,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ModalModule.forChild(),
     SharedModule,
     TimepickerModule,
-    DatepickerModule
+    BsDatepickerModule.forRoot()
   ],
   providers: [
     DrawerService

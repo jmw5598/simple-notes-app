@@ -3,4 +3,9 @@
   <pre>
     {{ (data$ | async) | json }}
   </pre>
+
+  <div class="form-group text-right">
+    <button class="btn btn-primary mr-3">Edit</button>
+    <button class="btn btn-secondary" (click)="onClose()">Delete</button>
+  </div>
 </div>
