@@ -9,9 +9,56 @@
       </a>
       <hr />
       <ul class="nav nav-submenu flex-column">
-        <li class="nav-submenu-item"><a class="text-dark" [routerLink]="['topics']">Dashboard</a></li>
-        <li class="nav-submenu-item"><a class="text-dark" [routerLink]="['topics','create']">Create Topic</a></li>
-        <li class="nav-submenu-item"><a class="text-dark" [routerLink]="['topics', 'search']">Search Topics</a></li>
+        <li 
+            class="nav-submenu-item" 
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">
+          <a class="text-dark" [routerLink]="['topics', 'view']">Dashboard</a>
+        </li>
+        <li 
+            class="nav-submenu-item" 
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">
+          <a class="text-dark" [routerLink]="['topics','create']">Create Topic</a>
+        </li>
+        <li 
+            class="nav-submenu-item" 
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">
+          <a class="text-dark" [routerLink]="['topics', 'search']">Search Topics</a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <hr />
+      <a class="nav-link text-dark" href="#">
+        <span class="oi oi-document oi-margin"></span>
+        Documents
+      </a>
+      <hr />
+      <ul class="nav nav-submenu flex-column">
+        <li 
+            class="nav-submenu-item" 
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">
+          <a class="text-dark" [routerLink]="['documents', 'builder']">Docmnet Builder (WIP)</a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <hr />
+      <a class="nav-link text-dark" href="#">
+        <span class="oi oi-calendar oi-margin"></span>
+        Calendar
+      </a>
+      <hr />
+      <ul class="nav nav-submenu flex-column">
+        <li 
+            class="nav-submenu-item" 
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">
+          <a class="text-dark" [routerLink]="['calendar']">View Calendar Events (WIP)</a>
+        </li>
       </ul>
     </li>
     <li class="nav-item">
@@ -22,8 +69,18 @@
       </a>
       <hr />
       <ul class="nav nav-submenu flex-column">
-        <li class="nav-submenu-item"><a class="text-dark" [routerLink]="['accounts', 'details']">My Account Details</a></li>
-        <li class="nav-submenu-item"><a class="text-dark" [routerLink]="['/auth', 'logout']">Logout</a></li>
+        <li 
+            class="nav-submenu-item"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">
+          <a class="text-dark" [routerLink]="['accounts', 'details']">My Account Details</a>
+        </li>
+        <li 
+            class="nav-submenu-item"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">
+          <a class="text-dark" [routerLink]="['/auth', 'logout']">Logout</a>
+        </li>
       </ul>
     </li>
   </ul>
