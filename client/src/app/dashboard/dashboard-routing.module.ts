@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AccountsRoutingModule } from './accounts/accounts-routing.module';
 import { DashboardComponent } from './dashboard.component';
 
 const routes: Routes = [
@@ -10,11 +9,19 @@ const routes: Routes = [
     children: [
       {
         path: 'accounts',
-        loadChildren: () => import('./accounts/accounts.module').then(m => m.AccountsModule)
+        loadChildren: () => import('./modules/accounts/accounts.module').then(m => m.AccountsModule)
+      },
+      {
+        path: 'calendar',
+        loadChildren: () => import('./modules/calendar/calendar.module').then(m => m.CalendarModule)
       },
       {
         path: 'topics',
-        loadChildren: () => import('./topics/topics.module').then(m => m.TopicsModule)
+        loadChildren: () => import('./modules/topics/topics.module').then(m => m.TopicsModule)
+      },
+      {
+        path: 'documents',
+        loadChildren: () => import('./modules/documents/documents.module').then(m => m.DocumentsModule)
       },
       {
         path: '**',
