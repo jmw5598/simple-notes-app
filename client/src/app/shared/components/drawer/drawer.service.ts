@@ -28,12 +28,9 @@ export class DrawerService {
     return this._dataChangeSource.asObservable();
   }
 
-  public setContent(content: Type<any>, data?: any): void {
+  public show(content: Type<any>, data?: any): void {
     this._contentChangeSource.next(content);
     this._dataChangeSource.next(data);
-  }
-
-  public show(): void {
     this._isDrawerVisible = true;
     this._closeDrawerSource.next(this._isDrawerVisible);
   }

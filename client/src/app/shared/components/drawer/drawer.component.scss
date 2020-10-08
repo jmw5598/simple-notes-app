@@ -27,28 +27,17 @@
     position: fixed;
     top: 0;
     bottom: 0;
-    right: 0;
     width: 450px;
-    margin-right: 0;
     background: #FFF;
     overflow-y: auto;
-    transition: margin-right 0.3s;
     z-index: 2001;
-    // @include box-shadow;
-
-    .close,
-    .content {
-      padding: 1.25rem;
-    }  
+    display: flex;
+    flex-direction: column; 
 
     .close {
-      background: #FFF;
-      position: sticky;
-      top: 0;
-      z-index: 2;
       line-height: 1rem;
       font-size: 1rem;
-      font-weight: bold;
+      text-align: right;
       
       span {
         cursor: pointer;
@@ -56,9 +45,25 @@
     }
   }
 
+  .side-panel-right {
+    right: 0;
+    margin-right: 0;
+    transition: margin-right 0.3s;
+  }
+
+  .side-panel-left {
+    left: 0;
+    margin-left: 0;
+    transition: margin-left 0.3s; 
+  }
+
   &.collapsed {
-    .side-panel {
+    .side-panel-right {
       margin-right: -450px;
+    }
+
+    .side-panel-left {
+      margin-left: -450px;
     }
   }
 }

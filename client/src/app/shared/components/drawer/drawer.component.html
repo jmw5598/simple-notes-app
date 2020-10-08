@@ -1,12 +1,18 @@
-<div class="overlay-side-panel" [class.collapsed]="!isDrawerVisible">
+<div 
+    class="overlay-side-panel" 
+    [class.collapsed]="!isDrawerVisible">
   <div class="overlay" [ngClass]="overlayStyle" 
       *ngIf="isDrawerVisible" [@fadeAnimation] (click)="close()">
   </div>
-  <div class="side-panel shadow">
-    <div class="close text-dark">
+  <div class="side-panel shadow"
+    [ngClass]="{ 
+      'side-panel-right' : drawerLocation === DrawerLocation.RIGHT, 
+      'side-panel-left' : drawerLocation === DrawerLocation.LEFT
+    }">
+    <div class="close text-dark p-4">
       <span class="oi oi-x" (click)="close()"></span>
     </div>
-    <div class="content">
+    <div class="content py-0 px-4">
       <ng-container #content></ng-container>
     </div>
   </div>

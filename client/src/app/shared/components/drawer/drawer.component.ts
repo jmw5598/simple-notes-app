@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { fadeAnimation } from '../../animations';
 import { DrawerOverlayStyle } from './drawer-overlay-style.enum';
+import { DrawerLocation } from './drawer-location.enum';
 import { DrawerService } from './drawer.service';
 
 @Component({
@@ -18,7 +19,11 @@ export class DrawerComponent implements OnInit, OnDestroy {
   @Input()
   public overlayStyle: DrawerOverlayStyle;
 
+  @Input()
+  public drawerLocation: DrawerLocation;
+
   public isDrawerVisible: boolean;
+  public DrawerLocation = DrawerLocation;
 
   private _drawerServiceSubject$: Subject<void>;
 
@@ -27,7 +32,8 @@ export class DrawerComponent implements OnInit, OnDestroy {
     private _drawerService: DrawerService
   ) {
     this._drawerServiceSubject$ = new Subject<void>();
-    this.overlayStyle = DrawerOverlayStyle.DIM_DARK
+    this.overlayStyle = DrawerOverlayStyle.DIM_DARK;
+    this.drawerLocation = DrawerLocation.RIGHT;
   }
 
   ngOnInit(): void {
