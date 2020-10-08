@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Renderer2 } from '@angular/core';
 import { DrawerService } from '@sn/shared/components';
 import { Store } from '@ngrx/store';
 import { IAppState } from '@sn/core/store/state';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, take } from 'rxjs/operators';
 import { createCalendarEvent, setCreateCalendarEventResponseMessage } from '@sn/core/store/actions';
 import { selectCreateCalendarEventResponseMessage } from '@sn/core/store/selectors';
 import { CalendarEvent, ResponseMessage } from '@sn/core/models';
@@ -16,7 +16,7 @@ import { showHide } from '@sn/shared/animations';
   styleUrls: ['./calendar-event-add-modal.component.scss'],
   animations: [showHide]
 })
-export class CalendarEventAddModalComponent implements OnInit {
+export class CalendarEventAddModalComponent implements OnInit, AfterViewInit {
   public datepickerConfig = { adaptivePosition: true, containerClass: 'theme-blue' };
   public form: FormGroup;
   public data$: Observable<any>;
@@ -28,7 +28,8 @@ export class CalendarEventAddModalComponent implements OnInit {
   constructor(
     private _store: Store<IAppState>,
     private _formBuilder: FormBuilder,
-    private _drawerService: DrawerService
+    private _drawerService: DrawerService,
+    private _renderer: Renderer2
   ) { }
 
   ngOnInit(): void {
@@ -38,11 +39,11 @@ export class CalendarEventAddModalComponent implements OnInit {
         tap((message: ResponseMessage) => {
           this.form.reset();
           setTimeout(() => this._store.dispatch(setCreateCalendarEventResponseMessage({ message: null })), 3000);
-          // TODO: set focus to title, refetch calendare data!
+          this._setFocusToTitleInput();
         })
       );
     
-      this.form = this._formBuilder.group({
+    this.form = this._formBuilder.group({
       title: ['', [Validators.required]],
       startDate: ['', [Validators.required]],
       startTime: ['', [Validators.required]],
@@ -50,6 +51,20 @@ export class CalendarEventAddModalComponent implements OnInit {
       endTime: ['', [Validators.required]],
       location: ['', [Validators.required]],
       description: ['', [Validators.required]]
+    });
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this._setFocusToTitleInput();
+      this.data$.pipe(take(1))
+        .subscribe(data => {
+          if (data && data.date) {
+            const selectedDate: Date = new Date(data.date);
+            this.form.get('startDate').patchValue(selectedDate);
+            this.form.get('endDate').patchValue(selectedDate);
+          }
+        })
     })
   }
 
@@ -82,5 +97,9 @@ export class CalendarEventAddModalComponent implements OnInit {
     date.setMinutes(time.getMinutes());
     date.setSeconds(time.getSeconds());
     return date;
+  }
+
+  private _setFocusToTitleInput(): void {
+    this._renderer.selectRootElement('#title').focus();
   }
 }
