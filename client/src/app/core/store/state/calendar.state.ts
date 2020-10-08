@@ -1,9 +1,15 @@
-import { CalendarEvent } from '@sn/core/models';
+import { CalendarEvent, ResponseMessage } from '@sn/core/models';
 
 export interface ICalendarState {
-  currentCalendarEvents: CalendarEvent[];
+  currentCalendarEvents: CalendarEvent[],
+  createCalendarEventResponseMessage: ResponseMessage,
+  updateCalendarEventResponseMessage: ResponseMessage,
+  deleteCalendarEventResponseMessage: ResponseMessage
 }
 
 export const initialCalendarState: ICalendarState = {
-  currentCalendarEvents: null
+  currentCalendarEvents: null,
+  createCalendarEventResponseMessage: null,
+  updateCalendarEventResponseMessage: null,
+  deleteCalendarEventResponseMessage: null
 }

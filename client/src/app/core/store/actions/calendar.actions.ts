@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { CalendarEvent } from '@sn/core/models';
+import { CalendarEvent, ResponseMessage } from '@sn/core/models';
 
 export const createCalendarEvent = createAction(
   '[Calendar Events] Create Calendar Event',
@@ -9,6 +9,11 @@ export const createCalendarEvent = createAction(
 export const createCalendarEventSuccess = createAction(
   '[Calendar Events] Create Calendar Event Success',
   props<{ event: CalendarEvent }>()
+);
+
+export const setCreateCalendarEventResponseMessage = createAction(
+  '[Calendar Events] Set Create Calendar Event Response Message',
+  props<{ message: ResponseMessage }>()
 );
 
 export const updateCalendarEvent = createAction(
@@ -21,6 +26,11 @@ export const updateCalendarEventSuccess = createAction(
   props<{ event: CalendarEvent }>()
 );
 
+export const setUpdateCalendarEventResponseMessage = createAction(
+  '[Calendar Events] Set Update Calendar Event Response Message',
+  props<{ message: ResponseMessage }>()
+);
+
 export const deleteCalendarEvent = createAction(
   '[Calendar Events] Delete Calendar Event',
   props<{ id: number }>()
@@ -28,7 +38,12 @@ export const deleteCalendarEvent = createAction(
 
 export const deleteCalendarEventSuccess = createAction(
   '[Calendar Events] Delete Calendar Event Success',
-  props<{ id: number }>()
+  props<{ event: CalendarEvent }>()
+);
+
+export const setDeleteCalendarEventResponseMessage = createAction(
+  '[Calendar Events] Set Delete Calendar Event Response Message',
+  props<{ message: ResponseMessage }>()
 );
 
 export const getCalendarEventsBetweenDates = createAction(

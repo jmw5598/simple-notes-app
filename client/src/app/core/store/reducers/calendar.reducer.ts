@@ -10,7 +10,25 @@ const _calendarReducer = createReducer(
       ...state,
       currentCalendarEvents: events
     }
-  })
+  }),
+  on(fromActions.setCreateCalendarEventResponseMessage, (state, { message }) => {
+    return {
+      ...state,
+      createCalendarEventResponseMessage: message
+    }
+  }),
+  on(fromActions.setUpdateCalendarEventResponseMessage, (state, { message }) => {
+    return {
+      ...state,
+      updateCalendarEventResponseMessage: message
+    }
+  }),
+  on(fromActions.setDeleteCalendarEventResponseMessage, (state, { message }) => {
+    return {
+      ...state,
+      deleteCalendarEventResponseMessage: message
+    }
+  }),
 );
 
 export function calendarReducer(state, action) {
