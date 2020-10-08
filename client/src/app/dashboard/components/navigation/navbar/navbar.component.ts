@@ -1,29 +1,27 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { NavbarSideService } from '../navbar-side/navbar-side.service';
-// import { AuthenticationService } from '../../authentication/services/authentication.service';
+import { NavbarSideComponent } from '../navbar-side/navbar-side.component';
+import { DrawerService, DrawerLocation } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
+  providers: [DrawerService]
 })
 export class NavbarComponent {
+  public DrawerLocation = DrawerLocation;
 
   constructor(
     private router: Router,
-    // private authenticationService: AuthenticationService,
-    private navbarSideSevice: NavbarSideService
+    private _drawerService: DrawerService
   ) {}
 
   logout() {
-    // this.authenticationService.unauthenticate();
     this.router.navigate(['login']);
   }
 
   toggleSideNav() {
-    this.navbarSideSevice.toggle();
+    this._drawerService.show(NavbarSideComponent);
   }
-
 }

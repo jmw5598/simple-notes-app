@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
-import { NavbarSideService } from './navbar-side.service';
 
 @Component({
   selector: 'sn-navbar-side',
@@ -8,13 +6,10 @@ import { NavbarSideService } from './navbar-side.service';
   styleUrls: ['./navbar-side.component.scss']
 })
 export class NavbarSideComponent implements OnInit {
-  public isShown$: Observable<boolean>;
 
-  constructor(
-    private navbarSideService: NavbarSideService,
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    this.isShown$ = this.navbarSideService.shown;
   }
+
 }
