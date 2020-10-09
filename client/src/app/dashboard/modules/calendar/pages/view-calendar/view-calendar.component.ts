@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { IAppState } from '@sn/core/store/state';
 import { CalendarOptions, EventInput, FullCalendarComponent } from '@fullcalendar/angular';
 import { DrawerService } from '@sn/shared/components';
-import { CalendarEventDetailsComponent } from '../../components/calendar-event-details/calendar-event-details.component';
+import { CalendarEventViewComponent } from '../../components/calendar-event-view/calendar-event-view.component';
 import { CalendarEventCreateComponent } from '../../components/calendar-event-create/calendar-event-create.component';
 import { fadeAnimation } from '@sn/shared/animations';
 import { CALENDAR_OPTIONS_DEFAULT } from '../../calendar-options.defaults';
@@ -71,7 +71,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
 
   public handleCalendarEventClick(args): void {
     this._drawerService.show(
-      CalendarEventDetailsComponent,
+      CalendarEventViewComponent,
       args.event.extendedProps
     )
   }
