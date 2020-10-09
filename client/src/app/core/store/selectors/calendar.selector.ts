@@ -1,4 +1,5 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
+import { createCalendarEvent } from '../actions';
 import { ICalendarState } from '../state/calendar.state';
 
 export const selectCalendarState = createFeatureSelector<ICalendarState>("calendar");
@@ -21,4 +22,9 @@ export const selectUpdateCalendarEventResponseMessage = createSelector(
 export const selectDeleteCalendarEventResponseMessage = createSelector(
   selectCalendarState,
   (state: ICalendarState) => state.deleteCalendarEventResponseMessage
+);
+
+export const selectCurrentCalendarDateRanges = createSelector(
+  selectCalendarState,
+  (state: ICalendarState) => state.currentCalendarDateRanges
 );

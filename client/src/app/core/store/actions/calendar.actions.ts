@@ -58,3 +58,11 @@ export const setCurrentCalendarEvents = createAction(
   '[Calendar Events] Set Calendar Events Between Dates',
   props<{ events: CalendarEvent[] }>()
 );
+
+export const setCurrentCalendarDateRanges = createAction(
+  '[Calendar Events] Set Current Calendar Date Ranges',
+  props<{ 
+    startDate: Date, 
+    endDate: Date 
+  }>()
+);

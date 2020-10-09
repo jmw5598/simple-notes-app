@@ -1,6 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
 import { initialCalendarState } from '../state/calendar.state';
-import { CalendarEvent } from '@sn/core/models';
 import * as fromActions from '../actions';
 
 const _calendarReducer = createReducer(
@@ -9,6 +8,31 @@ const _calendarReducer = createReducer(
     return {
       ...state,
       currentCalendarEvents: events
+    }
+  }),
+  on(fromActions.createCalendarEventSuccess, (state, { event }) => {
+    return {
+      ...state,
+      currentCalendarEvents: [
+        ...state.currentCalendarEvents,
+        event
+      ]
+    }
+  }),
+  on(fromActions.deleteCalendarEventSuccess, (state, { event }) => {
+    return {
+      ...state,
+      currentCalendarEvents: state.currentCalendarEvents
+        .filter(e => e.id !== event.id)
+    }
+  }),
+  on(fromActions.updateCalendarEventSuccess, (state, { event }) => {
+    return {
+      ...state,
+      currentCalendarEvents: [
+        ...state.currentCalendarEvents.filter(e => e.id !== event.id),
+        event
+      ]
     }
   }),
   on(fromActions.setCreateCalendarEventResponseMessage, (state, { message }) => {
@@ -29,6 +53,15 @@ const _calendarReducer = createReducer(
       deleteCalendarEventResponseMessage: message
     }
   }),
+  on(fromActions.setCurrentCalendarDateRanges, (state, { startDate, endDate }) => {
+    return {
+      ...state,
+      currentCalendarDateRanges: {
+        startDate: startDate,
+        endDate: endDate
+      }
+    }
+  })
 );
 
 export function calendarReducer(state, action) {
