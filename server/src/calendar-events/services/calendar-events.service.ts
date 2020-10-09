@@ -30,6 +30,7 @@ export class CalendarEventsService {
       title: createCalendarEventDto.title,
       startDateTime: createCalendarEventDto.startDateTime,
       endDateTime: createCalendarEventDto.endDateTime,
+      isAllDay: createCalendarEventDto.isAllDay,
       location: createCalendarEventDto.location,
       description: createCalendarEventDto.description,
       account: { id: accountId }
@@ -49,6 +50,7 @@ export class CalendarEventsService {
     event.title = updateCalendarEventDto.title;
     event.startDateTime = updateCalendarEventDto.startDateTime;
     event.endDateTime = updateCalendarEventDto.endDateTime;
+    event.isAllDay = updateCalendarEventDto.isAllDay;
     event.location = updateCalendarEventDto.location;
     event.description = updateCalendarEventDto.description;
     

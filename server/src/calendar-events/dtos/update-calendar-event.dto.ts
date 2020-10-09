@@ -11,6 +11,9 @@ export class UpdateCalendarEventDto {
   public endDateTime: Date;
 
   @IsNotEmpty()
+  public isAllDay: boolean;
+
+  @IsNotEmpty()
   public location: string;
 
   @IsNotEmpty()

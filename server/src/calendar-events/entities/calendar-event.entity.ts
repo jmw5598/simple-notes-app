@@ -13,6 +13,9 @@ export class CalendarEvent extends BaseEntity {
   @Column({ name: 'end_date_time', nullable: false, type: 'timestamp with time zone' })
   public endDateTime: Date;
 
+  @Column({ name: 'is_all_day', default: false })
+  public isAllDay: boolean = false;
+
   @Column()
   public location: string;
   

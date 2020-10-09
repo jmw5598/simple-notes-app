@@ -8,6 +8,7 @@ export class CalendarEventMapper {
       title: event.title,
       startDateTime: event.startDateTime,
       endDateTime: event.endDateTime,
+      isAllDay: event.isAllDay,
       location: event.location,
       description: event.description
     } as CalendarEventDto
