@@ -49,6 +49,7 @@ export class CalendarEventAddModalComponent implements OnInit, AfterViewInit {
       startTime: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
       endTime: ['', [Validators.required]],
+      isAllDay: [false, [Validators.required]],
       location: ['', [Validators.required]],
       description: ['', [Validators.required]]
     });
@@ -79,11 +80,12 @@ export class CalendarEventAddModalComponent implements OnInit, AfterViewInit {
       new Date(value.endDate), new Date(value.endTime));
 
     const event: CalendarEvent = {
-      title: value.title,
-      location: value.location,
-      description: value.description,
-      startDateTime: startDateTime,
-      endDateTime: endDateTime
+      title: value.title || '',
+      location: value.location || '',
+      description: value.description || '',
+      startDateTime: startDateTime || new Date(),
+      endDateTime: endDateTime || new Date(),
+      isAllDay: value.isAllDay || false
     } as CalendarEvent;
     this._store.dispatch(createCalendarEvent({ event: event }));
   }

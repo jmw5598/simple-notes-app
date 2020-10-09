@@ -98,6 +98,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
         title: event.title,
         start: event.startDateTime,
         end: event.endDateTime,
+        allDay: event.isAllDay,
         extendedProps: event
       } as EventInput
     }) as EventInput[];
