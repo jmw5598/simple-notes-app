@@ -5,7 +5,19 @@
   </pre>
 
   <div class="form-group text-right">
-    <button class="btn btn-primary mr-3">Edit</button>
-    <button class="btn btn-secondary" (click)="onClose()">Delete</button>
+    <button 
+        class="btn btn-primary mr-3" 
+        type="button" 
+        (click)="onEdit()">
+      Edit
+    </button>
+    <button 
+        mwlConfirmationPopover
+        placement="left"
+        (confirm)="onDelete()"
+        class="btn btn-secondary" 
+        type="button">
+      Delete
+    </button>
   </div>
 </div>

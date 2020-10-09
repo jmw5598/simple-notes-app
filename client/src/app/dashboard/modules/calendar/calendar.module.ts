@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { DrawerService } from '@sn/shared/components';
@@ -35,7 +36,12 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ModalModule.forChild(),
     SharedModule,
     TimepickerModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    ConfirmationPopoverModule.forRoot({
+      popoverMessage: 'Are you sure?',
+      cancelButtonType: 'btn-default btn-sm bg-secondary',
+      confirmButtonType: 'btn-primary btn-sm bg-primary text-light'
+    })
   ],
   providers: [
     DrawerService
