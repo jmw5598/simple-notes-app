@@ -13,7 +13,7 @@ import { CalendarEvent } from '@sn/core/models';
 import { 
   getCalendarEventsBetweenDates, 
   setCurrentCalendarEvents,
-  setCurrentCalendarDateRanges } from '@sn/core/store/actions';
+  setCurrentCalendarDateRanges, updateCalendarEvent } from '@sn/core/store/actions';
 import { selectCurrentCalendarEvents } from '@sn/core/store/selectors';
 
 @Component({
@@ -81,11 +81,32 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
     // TODO creating loading spinner??
   }
 
+  public handleCalendarEventDrop(args): void {
+    const event: CalendarEvent = args.event.extendedProps;
+    const newStartDateTime: Date = this._generateDateTimeValue(
+      args.event.start, new Date(event.startDateTime));
+    
+    const newEndDateTime: Date = this._generateDateTimeValue(
+      args.event.end, new Date(event.endDateTime));
+
+    const newEvent: CalendarEvent = {
+      ...event,
+      startDateTime: newStartDateTime,
+      endDateTime: newEndDateTime
+    } as CalendarEvent;
+
+    this._store.dispatch(updateCalendarEvent({ 
+      id: newEvent.id, 
+      event: newEvent
+    }));
+  }
+
   private _configureCalendarOptions(): void {
     this.calendarOptions = CALENDAR_OPTIONS_DEFAULT;
     this.calendarOptions.dateClick = this.handleCalendarDateClick.bind(this);
     this.calendarOptions.eventClick = this.handleCalendarEventClick.bind(this);
     this.calendarOptions.loading = this.handleCalendarEventSourceLoading.bind(this);
+    this.calendarOptions.eventDrop = this.handleCalendarEventDrop.bind(this);
     this.calendarOptions.eventSources = [
       { id: 'calendarEventSource', events: this.handleCalendarEventsFetch.bind(this) }
     ];
@@ -103,6 +124,13 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
       } as EventInput
     }) as EventInput[];
   } 
+
+  private _generateDateTimeValue(date: Date, time: Date): Date {
+    date.setHours(time.getHours());
+    date.setMinutes(time.getMinutes());
+    date.setSeconds(time.getSeconds());
+    return date;
+  }
 
   ngOnDestroy(): void {
     this._subscriptionSubject.next();

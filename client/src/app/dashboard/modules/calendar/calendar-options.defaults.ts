@@ -16,5 +16,6 @@ export const CALENDAR_OPTIONS_DEFAULT: CalendarOptions = {
   ],
   eventBackgroundColor: BACKGROUND_COLOR_DEFAULT,
   eventBorderColor: BORDER_COLOR_DEFAULT,
-  eventTextColor: TEXT_COLOR_DEFAULT
+  eventTextColor: TEXT_COLOR_DEFAULT,
+  editable: true
 };
