@@ -13,7 +13,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 
 import { CalendarRoutingModule } from './calendar-routing.module';
 import { ViewCalendarComponent } from './pages/view-calendar/view-calendar.component';
-import { CalendarEventAddModalComponent } from './components/calendar-event-add-modal/calendar-event-add-modal.component';
+import { CalendarEventCreateComponent } from './components/calendar-event-create/calendar-event-create.component';
 import { SharedModule } from '@sn/shared/shared.module';
 import { CalendarEventDetailsComponent } from './components/calendar-event-details/calendar-event-details.component';
 
@@ -26,7 +26,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 @NgModule({
   declarations: [
     ViewCalendarComponent,
-    CalendarEventAddModalComponent,
+    CalendarEventCreateComponent,
     CalendarEventDetailsComponent
   ],
   imports: [
@@ -47,7 +47,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     DrawerService
   ],
   entryComponents: [
-    CalendarEventAddModalComponent,
+    CalendarEventCreateComponent,
     CalendarEventDetailsComponent
   ]
 })

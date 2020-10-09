@@ -11,12 +11,12 @@ import { CalendarEvent, ResponseMessage } from '@sn/core/models';
 import { showHide } from '@sn/shared/animations';
 
 @Component({
-  selector: 'sn-calendar-event-add-modal',
-  templateUrl: './calendar-event-add-modal.component.html',
-  styleUrls: ['./calendar-event-add-modal.component.scss'],
+  selector: 'sn-calendar-event-create',
+  templateUrl: './calendar-event-create.component.html',
+  styleUrls: ['./calendar-event-create.component.scss'],
   animations: [showHide]
 })
-export class CalendarEventAddModalComponent implements OnInit, AfterViewInit {
+export class CalendarEventCreateComponent implements OnInit, AfterViewInit {
   public datepickerConfig = { adaptivePosition: true, containerClass: 'theme-blue' };
   public form: FormGroup;
   public data$: Observable<any>;

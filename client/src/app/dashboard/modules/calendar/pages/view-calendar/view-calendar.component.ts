@@ -6,7 +6,7 @@ import { IAppState } from '@sn/core/store/state';
 import { CalendarOptions, EventInput, FullCalendarComponent } from '@fullcalendar/angular';
 import { DrawerService } from '@sn/shared/components';
 import { CalendarEventDetailsComponent } from '../../components/calendar-event-details/calendar-event-details.component';
-import { CalendarEventAddModalComponent } from '../../components/calendar-event-add-modal/calendar-event-add-modal.component';
+import { CalendarEventCreateComponent } from '../../components/calendar-event-create/calendar-event-create.component';
 import { fadeAnimation } from '@sn/shared/animations';
 import { CALENDAR_OPTIONS_DEFAULT } from '../../calendar-options.defaults';
 import { CalendarEvent } from '@sn/core/models';
@@ -64,7 +64,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
 
   public handleCalendarDateClick(args): void {
     this._drawerService.show(
-      CalendarEventAddModalComponent,
+      CalendarEventCreateComponent,
       { date: new Date(args.date) }
     )
   }
