@@ -1,4 +1,15 @@
-<div>
-  <h1>Event Edit</h1>
-  <pre>{{ event | json }}</pre>
-<div>
+<div class="row">
+  <div class="col-sm-12 px-4">
+    <h3 class="font-weight-bold text-right mb-3">Edit Calendar Event</h3>
+    <hr />
+    <!-- Response Message -->
+    <div *ngIf="(responseMessage$ | async)" [@showHide] class="alert alert-success">
+      <span>
+        <strong>{{ (responseMessage$ | async).status | uppercase }}</strong>: {{ (responseMessage$ | async).message }}
+      </span>
+    </div>
+    <div [formGroup]="form">
+      <sn-calendar-event-form></sn-calendar-event-form>   
+    </div>
+  </div>
+</div>

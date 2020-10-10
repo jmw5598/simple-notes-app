@@ -1,4 +1,28 @@
-<div>
-  <h1>Event Details</h1>
-  <pre>{{ event | json }}</pre>
-<div>
+<div class="row">
+  <div class="col-sm-12 px-4">
+    <div *ngIf="event">
+      <h3 class="font-weight-bold text-right mb-3">Calendar Event Details</h3>
+      <hr />
+      <h4 class="font-weight-bold mb-2">
+        {{ event?.title }}
+        <span *ngIf="event?.isAllDay" class="badge badge-pill badge-success float-right">All Day</span>
+      </h4>
+
+      <ul class="list-unstyled mb-4 list-style-none">
+        <li class="text-dark mb-3">
+          <div>
+            <span style="width: 1rem;" class="oi oi-calendar"></span>
+            <span class="font-italic"> {{ event?.startDateTime | date: 'MM/dd/yyyy hh:mm a' }} - {{ event?.endDateTime | date: 'MM/dd/yyyy hh:mm a' }}</span>
+          </div>
+          <div>
+            <span style="width: 1rem;" class="oi oi-map-marker"></span>
+            <span class="font-italic"> {{ event?.location }}</span>
+          </div>
+        </li>
+        <li class="card card-body mb-3 p-3">
+          <p class="text-dark m-0 p-0">{{ event?.description }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

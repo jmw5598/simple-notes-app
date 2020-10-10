@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { DrawerService } from '@sn/shared/components';
 import { Store } from '@ngrx/store';
 import { IAppState } from '@sn/core/store/state';
@@ -10,6 +10,7 @@ import { selectCreateCalendarEventResponseMessage } from '@sn/core/store/selecto
 import { CalendarEvent, ResponseMessage } from '@sn/core/models';
 import { showHide } from '@sn/shared/animations';
 import { buildCalendarEventFormGroup } from '../calendar-event-form/calendar-event-form.builder';
+import { CalendarEventFormComponent } from '../calendar-event-form/calendar-event-form.component';
 
 @Component({
   selector: 'sn-calendar-event-create',
@@ -18,19 +19,17 @@ import { buildCalendarEventFormGroup } from '../calendar-event-form/calendar-eve
   animations: [showHide]
 })
 export class CalendarEventCreateComponent implements OnInit, AfterViewInit {
-  public datepickerConfig = { adaptivePosition: true, containerClass: 'theme-blue' };
+  @ViewChild(CalendarEventFormComponent, { static: true })
+  public calendarEventForm: CalendarEventFormComponent;
+
   public form: FormGroup;
   public data$: Observable<any>;
   public responseMessage$: Observable<ResponseMessage>;
-
-  public startTime: any;
-  public endTime: any;
 
   constructor(
     private _store: Store<IAppState>,
     private _formBuilder: FormBuilder,
     private _drawerService: DrawerService,
-    private _renderer: Renderer2
   ) { }
 
   ngOnInit(): void {
@@ -38,9 +37,8 @@ export class CalendarEventCreateComponent implements OnInit, AfterViewInit {
     this.responseMessage$ = this._store.select(selectCreateCalendarEventResponseMessage)
       .pipe(
         tap((message: ResponseMessage) => {
-          this.form.reset();
+          this.calendarEventForm.reset();
           setTimeout(() => this._store.dispatch(setCreateCalendarEventResponseMessage({ message: null })), 3000);
-          this._setFocusToTitleInput();
         })
       );
     this.form = buildCalendarEventFormGroup(this._formBuilder);
@@ -48,7 +46,6 @@ export class CalendarEventCreateComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this._setFocusToTitleInput();
       this.data$.pipe(take(1))
         .subscribe(data => {
           if (data && data.date) {
@@ -90,9 +87,5 @@ export class CalendarEventCreateComponent implements OnInit, AfterViewInit {
     date.setMinutes(time.getMinutes());
     date.setSeconds(time.getSeconds());
     return date;
-  }
-
-  private _setFocusToTitleInput(): void {
-    this._renderer.selectRootElement('#title').focus();
   }
 }
