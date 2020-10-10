@@ -8,7 +8,11 @@ import { FormGroup, ControlContainer } from '@angular/forms';
 })
 export class CalendarEventFormComponent implements OnInit, AfterViewInit {
   public form: FormGroup;
-  public datepickerConfig = { adaptivePosition: true, containerClass: 'theme-blue' };
+  public datepickerConfig = { 
+    adaptivePosition: true, 
+    containerClass: 'theme-blue',
+    isAnimated: true
+  };
 
   constructor(
     private _renderer: Renderer2,
