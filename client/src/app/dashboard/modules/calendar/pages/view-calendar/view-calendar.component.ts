@@ -81,16 +81,16 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
     // TODO creating loading spinner??
   }
 
-  public handleCalendarEventDrop(args): void {
-    const event: CalendarEvent = args.event.extendedProps;
+  public handleCalendarEventEdit(args): void {
+    const oldEvent: CalendarEvent = args.event.extendedProps;
     const newStartDateTime: Date = this._generateDateTimeValue(
-      args.event.start, new Date(event.startDateTime));
+      args.event.start, new Date(oldEvent.startDateTime));
     
     const newEndDateTime: Date = this._generateDateTimeValue(
-      args.event.end, new Date(event.endDateTime));
+      args.event.end, new Date(oldEvent.endDateTime));
 
     const newEvent: CalendarEvent = {
-      ...event,
+      ...oldEvent,
       startDateTime: newStartDateTime,
       endDateTime: newEndDateTime
     } as CalendarEvent;
@@ -106,7 +106,8 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
     this.calendarOptions.dateClick = this.handleCalendarDateClick.bind(this);
     this.calendarOptions.eventClick = this.handleCalendarEventClick.bind(this);
     this.calendarOptions.loading = this.handleCalendarEventSourceLoading.bind(this);
-    this.calendarOptions.eventDrop = this.handleCalendarEventDrop.bind(this);
+    this.calendarOptions.eventDrop = this.handleCalendarEventEdit.bind(this);
+    this.calendarOptions.eventResize = this.handleCalendarEventEdit.bind(this)
     this.calendarOptions.eventSources = [
       { id: 'calendarEventSource', events: this.handleCalendarEventsFetch.bind(this) }
     ];
