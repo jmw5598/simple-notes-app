@@ -5,9 +5,10 @@ import { Store } from '@ngrx/store';
 import { IAppState } from '@sn/core/store/state';
 import { DrawerService } from '@sn/shared/components';
 import { tap } from 'rxjs/operators';
-import { deleteCalendarEvent } from '@sn/core/store/actions';
-import { CalendarEvent } from '@sn/core/models';
+import { deleteCalendarEvent, setUpdateCalendarEventResponseMessage, updateCalendarEvent } from '@sn/core/store/actions';
+import { CalendarEvent, ResponseMessage } from '@sn/core/models';
 import { buildCalendarEventFormGroup } from '../calendar-event-form/calendar-event-form.builder';
+import { selectUpdateCalendarEventResponseMessage } from '@sn/core/store/selectors';
 
 @Component({
   selector: 'sn-calendar-event-view',
@@ -17,6 +18,7 @@ import { buildCalendarEventFormGroup } from '../calendar-event-form/calendar-eve
 export class CalendarEventViewComponent implements OnInit {
   public form: FormGroup;
   public data$: Observable<CalendarEvent>;
+  public responseMessage$: Observable<ResponseMessage>;
   public data: any;
   public calendarEventView: string;
 
@@ -30,11 +32,19 @@ export class CalendarEventViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // TODO make subscription subject  since async pipe wont be use in template or maybe it will?
     this.data$ = this._drawerService.onDataChange()
-      .pipe(tap(
-        data => this.data = data
+      .pipe(tap(data => this.data = data
       ));
+
+    this.responseMessage$ = this._store.select(selectUpdateCalendarEventResponseMessage)
+      .pipe(
+        tap((message: ResponseMessage) => {
+          if (message) {
+            setTimeout(() => this._store.dispatch(
+              setUpdateCalendarEventResponseMessage({ message: null })), 3000);
+          }
+        })
+      );
   }
 
   public onEdit(): void {
@@ -51,6 +61,32 @@ export class CalendarEventViewComponent implements OnInit {
   }
 
   public onUpdate(value: any): void {
-    console.log("updating aclendar evetn: ", value);
+    const startDateTime: Date = this._generateDateTimeValue(
+      new Date(value.startDate), new Date(value.startTime));
+    const endDateTime: Date = this._generateDateTimeValue(
+      new Date(value.endDate), new Date(value.endTime));
+    
+    const event: CalendarEvent = {
+      id: value.id,
+      title: value.title || '',
+      location: value.location || '',
+      description: value.description || '',
+      startDateTime: startDateTime || new Date(),
+      endDateTime: endDateTime || new Date(),
+      isAllDay: value.isAllDay || false
+    } as CalendarEvent;
+
+    this._store.dispatch(updateCalendarEvent({ id: event.id, event: event }));
+  }
+
+  public onCancel(): void {
+    this._drawerService.close();
+  }
+
+  private _generateDateTimeValue(date: Date, time: Date): Date {
+    date.setHours(time.getHours());
+    date.setMinutes(time.getMinutes());
+    date.setSeconds(time.getSeconds());
+    return date;
   }
 }

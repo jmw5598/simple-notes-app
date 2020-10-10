@@ -15,9 +15,9 @@
       <sn-calendar-event-details
           [event]="data$ | async">
       </sn-calendar-event-details>
-      <div class="form-group text-right">
+      <div class="form-group text-right mx-2">
         <button 
-            class="btn btn-primary mr-3" 
+            class="btn btn-primary mr-2" 
             type="button" 
             (click)="onEdit()">
           Edit
@@ -26,18 +26,27 @@
             mwlConfirmationPopover
             placement="left"
             (confirm)="onDelete()"
-            class="btn btn-secondary" 
+            class="btn btn-outline-primary mr-2" 
             type="button">
           Delete
         </button>
+        <button 
+              (click)="onCancel()"
+              class="btn btn-secondary" 
+              type="button">
+            Cancel
+          </button>
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'edit'">
       <form [formGroup]="form" (ngSubmit)="onUpdate(form.value)" novalidate>
-        <sn-calendar-event-update [event]="data$ | async"></sn-calendar-event-update>
-        <div class="form-group text-right">
+        <sn-calendar-event-update 
+            [event]="data$ | async"
+            [responseMessage]="responseMessage$ | async">
+        </sn-calendar-event-update>
+        <div class="form-group text-right mx-2">
           <button 
-              class="btn btn-primary mr-3" 
+              class="btn btn-primary mr-2" 
               type="submit">
             Save
           </button>

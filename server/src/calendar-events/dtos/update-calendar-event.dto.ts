@@ -2,6 +2,9 @@ import { IsNotEmpty } from 'class-validator';
 
 export class UpdateCalendarEventDto {
   @IsNotEmpty()
+  public id: number;
+  
+  @IsNotEmpty()
   public title: string;
 
   @IsNotEmpty()

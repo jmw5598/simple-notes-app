@@ -13,7 +13,7 @@
       <sn-calendar-event-form></sn-calendar-event-form>
 
       <div class="form-group text-right">
-        <button class="btn btn-primary mr-3" type="submit">Create</button>
+        <button class="btn btn-primary mr-3" type="submit" [disabled]="form.invalid">Create</button>
         <button class="btn btn-secondary" type="button" (click)="onClose()">Cancel</button>
       </div>
     </form>

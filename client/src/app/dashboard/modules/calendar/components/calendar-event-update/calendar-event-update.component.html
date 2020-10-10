@@ -3,9 +3,9 @@
     <h3 class="font-weight-bold text-right mb-3">Edit Calendar Event</h3>
     <hr />
     <!-- Response Message -->
-    <div *ngIf="(responseMessage$ | async)" [@showHide] class="alert alert-success">
+    <div *ngIf="responseMessage" [@showHide] class="alert alert-success">
       <span>
-        <strong>{{ (responseMessage$ | async).status | uppercase }}</strong>: {{ (responseMessage$ | async).message }}
+        <strong>{{ responseMessage?.status | uppercase }}</strong>: {{ responseMessage?.message }}
       </span>
     </div>
     <div [formGroup]="form">

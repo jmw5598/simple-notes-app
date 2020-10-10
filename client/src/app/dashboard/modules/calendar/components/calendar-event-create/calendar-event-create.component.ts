@@ -37,8 +37,10 @@ export class CalendarEventCreateComponent implements OnInit, AfterViewInit {
     this.responseMessage$ = this._store.select(selectCreateCalendarEventResponseMessage)
       .pipe(
         tap((message: ResponseMessage) => {
-          this.calendarEventForm.reset();
+          if (message) {
+            this.calendarEventForm.reset();
           setTimeout(() => this._store.dispatch(setCreateCalendarEventResponseMessage({ message: null })), 3000);
+          }
         })
       );
     this.form = buildCalendarEventFormGroup(this._formBuilder);

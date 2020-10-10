@@ -84,10 +84,10 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   public handleCalendarEventEdit(args): void {
     const oldEvent: CalendarEvent = args.event.extendedProps;
     const newStartDateTime: Date = this._generateDateTimeValue(
-      args.event.start, new Date(oldEvent.startDateTime));
+      new Date(args.event.start), new Date(oldEvent.startDateTime));
     
     const newEndDateTime: Date = this._generateDateTimeValue(
-      args.event.end, new Date(oldEvent.endDateTime));
+      new Date(args.event.end), new Date(oldEvent.endDateTime));
 
     const newEvent: CalendarEvent = {
       ...oldEvent,
@@ -127,6 +127,8 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   } 
 
   private _generateDateTimeValue(date: Date, time: Date): Date {
+    console.log("date", date);
+    console.log("time", time);
     date.setHours(time.getHours());
     date.setMinutes(time.getMinutes());
     date.setSeconds(time.getSeconds());

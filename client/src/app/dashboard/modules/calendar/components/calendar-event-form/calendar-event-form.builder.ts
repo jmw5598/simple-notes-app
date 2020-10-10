@@ -2,6 +2,7 @@
 
 export const buildCalendarEventFormGroup = (formBuilder: FormBuilder): FormGroup => {
   return formBuilder.group({
+    id: [''],
     title: ['', [Validators.required]],
     startDate: ['', [Validators.required]],
     startTime: ['', [Validators.required]],
