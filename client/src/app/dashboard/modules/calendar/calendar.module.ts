@@ -18,6 +18,7 @@ import { SharedModule } from '@sn/shared/shared.module';
 import { CalendarEventDetailsComponent } from './components/calendar-event-details/calendar-event-details.component';
 import { CalendarEventUpdateComponent } from './components/calendar-event-update/calendar-event-update.component';
 import { CalendarEventViewComponent } from './components/calendar-event-view/calendar-event-view.component';
+import { CalendarEventFormComponent } from './components/calendar-event-form/calendar-event-form.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -31,7 +32,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CalendarEventCreateComponent,
     CalendarEventDetailsComponent,
     CalendarEventUpdateComponent,
-    CalendarEventViewComponent
+    CalendarEventViewComponent,
+    CalendarEventFormComponent
   ],
   imports: [
     CommonModule,

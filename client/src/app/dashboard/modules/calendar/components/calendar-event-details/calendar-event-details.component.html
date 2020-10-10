@@ -1,34 +1,4 @@
 <div>
-  <h3 class="font-weight-bold text-right mb-3">Calendar Event Details</h3>
-  <pre>
-    {{ (data$ | async) | json }}
-  </pre>
-
-  <!-- 
-    Need to switch between 2 modes, edit and display.
-    - Should these be separate dummy components or just put into this component?
-    - calendar-event-details - display component
-    - calendar-event-edit - edit component
-    - calendar-event-view - wrapper component that switch between dummy components
-    
-    - TODO rename calendar-event-add-model t- calendar-event-create or add?
-  
-  -->
-
-  <div class="form-group text-right">
-    <button 
-        class="btn btn-primary mr-3" 
-        type="button" 
-        (click)="onEdit()">
-      Edit
-    </button>
-    <button 
-        mwlConfirmationPopover
-        placement="left"
-        (confirm)="onDelete()"
-        class="btn btn-secondary" 
-        type="button">
-      Delete
-    </button>
-  </div>
-</div>
+  <h1>Event Details</h1>
+  <pre>{{ event | json }}</pre>
+<div>

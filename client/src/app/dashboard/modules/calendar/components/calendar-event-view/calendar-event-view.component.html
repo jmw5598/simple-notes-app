@@ -1,9 +1,4 @@
 <div>
-  <h3 class="font-weight-bold text-right mb-3">Calendar Event Details</h3>
-  <pre>
-    {{ (data$ | async) | json }}
-  </pre>
-
   <!-- 
     Need to switch between 2 modes, edit and display.
     - Should these be separate dummy components or just put into this component?
@@ -15,20 +10,34 @@
   
   -->
 
-  <div class="form-group text-right">
-    <button 
-        class="btn btn-primary mr-3" 
-        type="button" 
-        (click)="onEdit()">
-      Edit
-    </button>
-    <button 
-        mwlConfirmationPopover
-        placement="left"
-        (confirm)="onDelete()"
-        class="btn btn-secondary" 
-        type="button">
-      Delete
-    </button>
-  </div>
+  <ng-container [ngSwitch]="calendarEventView">
+    <ng-container *ngSwitchCase="'display'">
+      <sn-calendar-event-details
+          [event]="data$ | async">
+      </sn-calendar-event-details>
+      <div class="form-group text-right">
+        <button 
+            class="btn btn-primary mr-3" 
+            type="button" 
+            (click)="onEdit()">
+          Edit
+        </button>
+        <button 
+            mwlConfirmationPopover
+            placement="left"
+            (confirm)="onDelete()"
+            class="btn btn-secondary" 
+            type="button">
+          Delete
+        </button>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'edit'">
+      <sn-calendar-event-update
+          [event]="data$ | async">
+      </sn-calendar-event-update>
+    </ng-container>
+  </ng-container>
+
+  
 </div>

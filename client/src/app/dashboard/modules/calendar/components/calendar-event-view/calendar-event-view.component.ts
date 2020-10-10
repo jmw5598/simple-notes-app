@@ -5,6 +5,7 @@ import { IAppState } from '@sn/core/store/state';
 import { DrawerService } from '@sn/shared/components';
 import { tap } from 'rxjs/operators';
 import { deleteCalendarEvent } from '@sn/core/store/actions';
+import { CalendarEvent } from '@sn/core/models';
 
 @Component({
   selector: 'sn-calendar-event-view',
@@ -12,13 +13,16 @@ import { deleteCalendarEvent } from '@sn/core/store/actions';
   styleUrls: ['./calendar-event-view.component.scss']
 })
 export class CalendarEventViewComponent implements OnInit {
-  public data$: Observable<any>;
+  public data$: Observable<CalendarEvent>;
   public data: any;
+  public calendarEventView: string;
 
   constructor(
     private _drawerService: DrawerService, 
     private _store: Store<IAppState>
-  ) { }
+  ) {
+    this.calendarEventView = 'display';
+  }
 
   ngOnInit(): void {
     // TODO make subscription subject  since async pipe wont be use in template or maybe it will?
@@ -29,7 +33,11 @@ export class CalendarEventViewComponent implements OnInit {
   }
 
   public onEdit(): void {
-    this._drawerService.close();
+    if (this.calendarEventView.toLowerCase() === 'display') {
+      this.calendarEventView = 'edit';
+    } else {
+      this.calendarEventView = 'display';
+    }
   }
 
   public onDelete(): void {

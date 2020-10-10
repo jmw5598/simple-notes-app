@@ -9,6 +9,7 @@ import { createCalendarEvent, setCreateCalendarEventResponseMessage } from '@sn/
 import { selectCreateCalendarEventResponseMessage } from '@sn/core/store/selectors';
 import { CalendarEvent, ResponseMessage } from '@sn/core/models';
 import { showHide } from '@sn/shared/animations';
+import { buildCalendarEventFormGroup } from '../calendar-event-form/calendar-event-form.builder';
 
 @Component({
   selector: 'sn-calendar-event-create',
@@ -42,17 +43,7 @@ export class CalendarEventCreateComponent implements OnInit, AfterViewInit {
           this._setFocusToTitleInput();
         })
       );
-    
-    this.form = this._formBuilder.group({
-      title: ['', [Validators.required]],
-      startDate: ['', [Validators.required]],
-      startTime: ['', [Validators.required]],
-      endDate: ['', [Validators.required]],
-      endTime: ['', [Validators.required]],
-      isAllDay: [false, [Validators.required]],
-      location: ['', [Validators.required]],
-      description: ['', [Validators.required]]
-    });
+    this.form = buildCalendarEventFormGroup(this._formBuilder);
   }
 
   ngAfterViewInit(): void {
