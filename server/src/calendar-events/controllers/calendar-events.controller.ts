@@ -2,11 +2,8 @@ import { Body, Controller, Delete, Get, Param, Post, Put, Request, UseGuards, Qu
 import { CalendarEventsService } from '../services/calendar-events.service';
 import { CalendarEventDto } from '../dtos/calendar-event.dto';
 import { SnLoggerService } from '../../logger/sn-logger.service';
-import { CalendarEvent } from '../entities/calendar-event.entity';
 import { JwtAuthenticationGuard } from '../../authentication/guards/jwt-authentication.guard';
-import { request } from 'express';
 import { CreateCalendarEventDto } from '../dtos/create-calendar-event.dto';
-import { create } from 'domain';
 import { UpdateCalendarEventDto } from '../dtos/update-calendar-event.dto';
 
 @Controller('calendar/events')
