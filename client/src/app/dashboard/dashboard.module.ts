@@ -13,7 +13,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     DashboardComponent,
     NavbarComponent,
     NavbarSideComponent, 
-    NavigationComponent, ToolbarComponent
+    NavigationComponent, 
+    ToolbarComponent
   ],
   imports: [
     CommonModule,
