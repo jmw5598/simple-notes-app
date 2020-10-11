@@ -3,23 +3,16 @@
     <ul class="nav navbar-nav navbar-menu-btn">
       <li class="nav-item">
         <a class="nav-link" (click)="toggleSideNav()">
-            <span class="oi oi-magnifying-glass oi-menu"></span>
+          <span class="oi oi-magnifying-glass oi-menu"></span>
         </a>
       </li>
     </ul>
 
     <!-- Navbar Brand -->
-    <a [routerLink]="['/']" class="navbar-brand">
+    <a [routerLink]="['/']" class="navbar-brand mr-auto">
       <img src="assets/images/simple-notes-logo.svg" width="30" height="30" alt="">
       <span class="brand-text">Simple Notes</span>
     </a>
-    <!-- End Navbar Brand -->
-
-    <!-- Responsive Toggle Button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <!-- End Responsive Toggle Button -->
 
     <!-- Navbar Lists -->
     <div class="collapse navbar-collapse">
@@ -41,18 +34,18 @@
             </div>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/auth', 'logout']">
-            <div class="btn btn-outline-secondary my-2 my-sm-0">
-              <span class="oi oi-lock-unlocked oi-margin"></span>
-              Logout
-            </div>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="assets/images/default-avatar.svg" class="img-fluid" style="height: 36px" />
           </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['accounts', 'details']">My Account Details</a>
+            <a class="dropdown-item" [routerLink]="['/auth', 'logout']">Logout</a>
+          </div>
         </li>
       </ul>
-      <!-- End Nav Buttons Right -->
     </div>
-    <!-- End Navbar Lists -->
+    
   </div>
 </div>
 <sn-drawer
