@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { tap, takeUntil, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { fadeAnimation } from '../../animations';
 
 @Component({
   selector: 'sn-debounced-search',
   templateUrl: './debounced-search.component.html',
-  styleUrls: ['./debounced-search.component.scss']
+  styleUrls: ['./debounced-search.component.scss'],
+  animations: [fadeAnimation]
 })
 export class DebouncedSearchComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<void>;
@@ -15,17 +17,21 @@ export class DebouncedSearchComponent implements OnInit, OnDestroy {
   public debounceTime: number = 700;
 
   @Input()
-  public inputClasses: string;
+  public isSearching: boolean;
 
   @Output()
   public onSearch: EventEmitter<string>;
 
   public searchTerm: string;
+  public isInputShown: boolean;
 
   constructor() {
     this.onSearch = new EventEmitter<string>();
     this._searchTextChangeSubject = new Subject<string>();
     this._subscriptionSubject = new Subject<void>();
+    this.searchTerm = '';
+    this.isSearching = false;
+    this.isInputShown = false;
   }
 
   ngOnInit(): void {
@@ -45,6 +51,10 @@ export class DebouncedSearchComponent implements OnInit, OnDestroy {
 
   public search(searchTerm: string): void {
     this.onSearch.emit(searchTerm);
+  }
+
+  public onToggleSearchInput(): void {
+    this.isInputShown = !this.isInputShown;
   }
 
   ngOnDestroy(): void {
