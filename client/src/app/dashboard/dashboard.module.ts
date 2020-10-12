@@ -8,6 +8,11 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
+import { 
+  TopicCreateComponent, 
+  TopicSearchComponent, 
+  CalendarEventCreateComponent } from '@sn/shared/components';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -22,7 +27,9 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     SharedModule
   ],
   entryComponents: [
-    NavbarSideComponent
+    TopicCreateComponent,
+    TopicSearchComponent,
+    CalendarEventCreateComponent
   ]
 })
 export class DashboardModule { }
