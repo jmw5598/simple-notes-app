@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DrawerService, DrawerLocation } from '@sn/shared/components';
-import { NavbarSideComponent } from '../navigation/navbar-side/navbar-side.component';
+
+import { 
+  TopicCreateComponent, 
+  TopicSearchComponent,
+  CalendarEventCreateComponent } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-toolbar',
@@ -17,14 +21,14 @@ export class ToolbarComponent implements OnInit {
   }
 
   public onCreateNewTopic(): void {
-    this._drawerService.show(NavbarSideComponent);
+    this._drawerService.show(TopicCreateComponent);
   }
 
   public onCreateNewCalendarEvent(): void {
-    this._drawerService.show(NavbarSideComponent);
+    this._drawerService.show(CalendarEventCreateComponent, { date: new Date() });
   }
 
   public onSearchTopics(): void {
-    this._drawerService.show(NavbarSideComponent);
+    this._drawerService.show(TopicSearchComponent);
   }
 }
