@@ -11,6 +11,13 @@ import { EmptyDataComponent } from './components/empty-data/empty-data.component
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { DrawerComponent } from './components/drawer/drawer.component';
 import { DrawerService } from './components';
+import { TopicFormComponent } from './forms/topic-form/topic-form.component';
+import { TopicCreateComponent } from './components/topic-create/topic-create.component';
+import { TopicSearchComponent } from './components/topic-search/topic-search.component';
+import { CalendarEventFormComponent } from './forms/calendar-event-form/calendar-event-form.component';
+import { CalendarEventCreateComponent } from './components/calendar-event-create/calendar-event-create.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 @NgModule({
   declarations: [
@@ -21,12 +28,19 @@ import { DrawerService } from './components';
     DebouncedSearchComponent,
     EmptyDataComponent,
     PaginatorComponent,
-    DrawerComponent
+    DrawerComponent,
+    TopicFormComponent,
+    TopicCreateComponent,
+    TopicSearchComponent,
+    CalendarEventFormComponent,
+    CalendarEventCreateComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TimepickerModule,
+    BsDatepickerModule.forRoot()
   ],
   exports: [
     FormsModule,
@@ -38,7 +52,12 @@ import { DrawerService } from './components';
     DebouncedSearchComponent,
     EmptyDataComponent,
     PaginatorComponent,
-    DrawerComponent
+    DrawerComponent,
+    TopicFormComponent,
+    TopicCreateComponent,
+    TopicSearchComponent,
+    CalendarEventFormComponent,
+    CalendarEventCreateComponent
   ],
   providers: [
     ModalService,

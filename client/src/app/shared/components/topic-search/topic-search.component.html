@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-sm-12 px-4">
+    <h3 class="font-weight-bold text-right mb-3">Search Topics</h3>
+    <hr />
+    <form (ngSubmit)="onSearch(form.value)" [formGroup]="form" novalidate>
+      <div class="form-group">
+        <label for="searchTerms">Keywords</label>
+        <input 
+            type="text" 
+            id="searchTerms" 
+            name="searchTerms" 
+            class="form-control"
+            formControlValue="searchTerms" />
+      </div>
+      <!-- 
+        TODO Create component to show search results.
+        Should be navigatible with arrows???
+        Should be able to link to the topic details page for each result      
+      -->
+    </form>
+  </div>
+</div>
