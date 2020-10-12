@@ -1,4 +1,4 @@
-import { Component, ComponentFactory, Input, OnInit, OnDestroy, Type, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { Component, ComponentFactory, Input, OnInit, OnDestroy, Type, ViewChild, ViewContainerRef, ComponentFactoryResolver, HostListener } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { fadeAnimation } from '../../animations';
@@ -22,6 +22,9 @@ export class DrawerComponent implements OnInit, OnDestroy {
   @Input()
   public drawerLocation: DrawerLocation;
 
+  @Input()
+  public closeOnEscape: boolean;
+
   public isDrawerVisible: boolean;
   public DrawerLocation = DrawerLocation;
 
@@ -34,6 +37,7 @@ export class DrawerComponent implements OnInit, OnDestroy {
     this._drawerServiceSubject$ = new Subject<void>();
     this.overlayStyle = DrawerOverlayStyle.DIM_DARK;
     this.drawerLocation = DrawerLocation.RIGHT;
+    this.closeOnEscape = true;
   }
 
   ngOnInit(): void {
@@ -57,6 +61,14 @@ export class DrawerComponent implements OnInit, OnDestroy {
     const componentFactory: ComponentFactory<any> = this._componentFactoryResolver.resolveComponentFactory(component);
     this.drawerContentRef.clear();
     this.drawerContentRef.createComponent(componentFactory);
+  }
+
+  @HostListener('document:keydown.escape', ['$event']) 
+  public onKeydownHandler(event: KeyboardEvent) {
+    if (this.closeOnEscape) {
+      event.preventDefault();
+      this._drawerService.close();
+    }
   }
 
   ngOnDestroy() {
