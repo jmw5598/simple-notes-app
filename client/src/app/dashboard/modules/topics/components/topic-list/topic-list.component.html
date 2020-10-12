@@ -32,7 +32,7 @@
         <td>{{ topic.updatedAt | date:short }}</td>
         <td class="text-right">
           <a class="btn btn-outline-primary btn-sm btn-border-none" [routerLink]="['../', topic.id, 'details']">
-            <span class="oi oi-eye"></span>
+            <i class="fas fa-eye"></i>
           </a>
           
           <button 
@@ -41,7 +41,7 @@
               (confirm)="delete(topic.id)"
               role="button" 
               class="btn btn-outline-primary btn-sm btn-border-none">
-            <span class="oi oi-trash"></span>
+            <i class="far fa-trash-alt"></i>
           </button>
         </td>
       </tr>

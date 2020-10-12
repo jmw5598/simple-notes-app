@@ -29,7 +29,6 @@
             ],
             "styles": [
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "src/assets/css/open-iconic-bootstrap.min.css",
               "src/assets/scss/bootstrap.scss",
               "node_modules/@fortawesome/fontawesome-free/css/all.css",
               "src/assets/css/github-markdown.css",

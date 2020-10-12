@@ -31,13 +31,13 @@
               role="button" 
               class="btn btn-outline-primary btn-sm btn-border-none" 
               [routerLink]="['../sections', section.id, 'editor']">
-            <span class="oi oi-pencil"></span>
+            <i class="fas fa-edit"></i>
           </button>
           <button 
               role="button" 
               class="btn btn-outline-primary btn-sm btn-border-none" 
               [routerLink]="['../sections', section.id, 'edit']">
-            <span class="oi oi-info"></span>
+            <i class="fas fa-info-circle"></i>
           </button>
           <button 
               mwlConfirmationPopover
@@ -45,7 +45,7 @@
               (confirm)="delete(section.id)"
               role="button" 
               class="btn btn-outline-primary btn-sm btn-border-none">
-            <span class="oi oi-trash"></span>
+            <i class="far fa-trash-alt"></i>
           </button>
         </td>
       </tr>

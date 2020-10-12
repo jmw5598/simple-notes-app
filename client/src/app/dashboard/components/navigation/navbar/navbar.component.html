@@ -3,7 +3,7 @@
     <ul class="nav navbar-nav navbar-menu-btn">
       <li class="nav-item">
         <a class="nav-link" (click)="toggleSideNav()">
-          <span class="oi oi-magnifying-glass oi-menu"></span>
+          <i class="fas fa-bars"></i>
         </a>
       </li>
     </ul>
@@ -21,7 +21,7 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['./calendar']">
             <div class="btn btn-outline-secondary my-2 my-sm-0">
-              <span class="oi oi-calendar oi-margin"></span>
+              <i class="far fa-calendar-alt icon-margin"></i>
               View Calendar
             </div>
           </a>
@@ -29,7 +29,7 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['./topics', 'create']">
             <div class="btn btn-outline-secondary my-2 my-sm-0">
-              <span class="oi oi-pencil oi-margin"></span>
+              <i class="fas fa-edit icon-margin"></i>
               Create New Topic
             </div>
           </a>
@@ -39,8 +39,14 @@
             <img src="assets/images/default-avatar.svg" class="img-fluid" style="height: 36px" />
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" [routerLink]="['accounts', 'details']">My Account Details</a>
-            <a class="dropdown-item" [routerLink]="['/auth', 'logout']">Logout</a>
+            <a class="dropdown-item" [routerLink]="['accounts', 'details']">
+              <i class="far fa-user-circle icon-margin"></i>
+              My Account Details
+            </a>
+            <a class="dropdown-item" [routerLink]="['/auth', 'logout']">
+              <i class="fas fa-unlock-alt icon-margin"></i>
+              Logout
+            </a>
           </div>
         </li>
       </ul>
