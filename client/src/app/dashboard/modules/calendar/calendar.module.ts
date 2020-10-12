@@ -13,12 +13,12 @@ import interactionPlugin from '@fullcalendar/interaction';
 
 import { CalendarRoutingModule } from './calendar-routing.module';
 import { ViewCalendarComponent } from './pages/view-calendar/view-calendar.component';
-import { CalendarEventCreateComponent } from './components/calendar-event-create/calendar-event-create.component';
 import { SharedModule } from '@sn/shared/shared.module';
 import { CalendarEventDetailsComponent } from './components/calendar-event-details/calendar-event-details.component';
 import { CalendarEventUpdateComponent } from './components/calendar-event-update/calendar-event-update.component';
 import { CalendarEventViewComponent } from './components/calendar-event-view/calendar-event-view.component';
-import { CalendarEventFormComponent } from './components/calendar-event-form/calendar-event-form.component';
+
+import { CalendarEventCreateComponent } from '@sn/shared/components';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -29,11 +29,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 @NgModule({
   declarations: [
     ViewCalendarComponent,
-    CalendarEventCreateComponent,
     CalendarEventDetailsComponent,
     CalendarEventUpdateComponent,
-    CalendarEventViewComponent,
-    CalendarEventFormComponent
+    CalendarEventViewComponent
   ],
   imports: [
     CommonModule,

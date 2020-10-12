@@ -7,7 +7,7 @@ import { DrawerService } from '@sn/shared/components';
 import { tap } from 'rxjs/operators';
 import { deleteCalendarEvent, setUpdateCalendarEventResponseMessage, updateCalendarEvent } from '@sn/core/store/actions';
 import { CalendarEvent, ResponseMessage } from '@sn/core/models';
-import { buildCalendarEventFormGroup } from '../calendar-event-form/calendar-event-form.builder';
+import { buildCalendarEventFormGroup } from '@sn/shared/forms';
 import { selectUpdateCalendarEventResponseMessage } from '@sn/core/store/selectors';
 
 @Component({
