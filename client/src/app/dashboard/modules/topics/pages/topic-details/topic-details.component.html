@@ -62,13 +62,6 @@
   </div>
 </div>
 
-<sn-modal>
-  <div container="modalHeader"><h4 class="mb-0">Export Topic</h4></div>
-  <sn-topic-export-modal
-      container="modalBody"
-      [topic]="(topic$ | async)"
-      [message]="(exportTopicResponseMessage$ | async)"
-      [file]="(exportTopicFile$ | async)"
-      (onExportTopic)="onExportTopic($event)">
-  </sn-topic-export-modal>
-</sn-modal>
+<sn-drawer
+    [drawerLocation]="DrawerLocation.RIGHT">
+</sn-drawer>

@@ -10,7 +10,7 @@ import { fadeAnimation, showHide } from '@sn/shared/animations';
 import { ResponseMessage } from '@sn/core/models';
 import { selectUpdateTopicResponseMessage, selectSelectedTopic } from '@sn/core/store/selectors';
 import { setUpdateTopicResponseMessage } from '@sn/core/store/actions';
-import { buildTopicFormGroup } from '../../components/topic-form/topic-form.builder';
+import { buildTopicFormGroup } from '@sn/shared/forms';
 
 @Component({
   selector: 'sn-update-topic',

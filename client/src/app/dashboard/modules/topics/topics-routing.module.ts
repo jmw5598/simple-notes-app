@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CreateTopicsComponent } from './pages/create-topics/create-topics.component';
 import { ViewTopicsComponent } from './pages/view-topics/view-topics.component';
 import { SectionsSearchResultGuard, TopicByIdGuard, TopicsSearchResultGuard } from '@sn/core/guards';
 import { TopicDetailsComponent } from './pages/topic-details/topic-details.component';
@@ -11,10 +10,6 @@ const routes: Routes = [
     path: 'view',
     canActivate: [TopicsSearchResultGuard],
     component: ViewTopicsComponent
-  },
-  {
-    path: 'create',
-    component: CreateTopicsComponent
   },
   {
     path: ':topicId',

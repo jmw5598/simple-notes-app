@@ -9,16 +9,19 @@ import { ExportConfig, ExportFormat, FileResponse, Topic, Section } from '@sn/sh
 import { fadeAnimation } from '@sn/shared/animations';
 import { PageableSearch, PageRequest, Page, IPageable, ResponseMessage } from '@sn/core/models';
 import * as FileSaver from 'file-saver';
-import { ModalService } from '@sn/shared/components';
+import { DrawerService, ModalService, DrawerLocation } from '@sn/shared/components';
 import { DEFAULT_SEARCH_SECTIONS_PAGE } from '@sn/core/defaults';
+import { TopicExportComponent } from '../../components/topic-export/topic-export.component';
 
 @Component({
   selector: 'sn-topic-details',
   templateUrl: './topic-details.component.html',
   styleUrls: ['./topic-details.component.scss'],
+  providers: [DrawerService],
   animations: [fadeAnimation]
 })
 export class TopicDetailsComponent implements OnInit, OnDestroy {
+  public DrawerLocation = DrawerLocation;
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_SECTIONS_PAGE;
   public topic$: Observable<Topic>;
   public exportTopicResponseMessage$: Observable<ResponseMessage>;
@@ -29,7 +32,8 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private _store: Store<IAppState>,
-    private _modalService: ModalService
+    private _modalService: ModalService,
+    private _drawerService: DrawerService
   ) { }
 
   ngOnInit(): void {
@@ -64,13 +68,25 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
     }));
   }
 
+
+  // TODO rename onOpenExportTopic
   public onOpenExportModal(): void {
-    this._modalService.show();
+    // this._modalService.show();
+    // TODO creat this components???
+    this._drawerService.show(TopicExportComponent);
   }
 
+  // TODO Remove this
   public onCloseExportModal(): void {
     this._modalService.close();
   }
+
+  // TODO Create this
+  public onUpdateTopic(): void {
+    // TODO Implement this component
+    // this._drawerService.open(UpdateTopicComponent, { data: topic$ }); // ?? topic$ is currently and Observable
+  }
+
 
   public onSearchSections(searchTerm: string): void {
     this.searchTerm = searchTerm;
