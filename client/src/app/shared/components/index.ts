@@ -1,5 +1,4 @@
 export * from './loading-spinner/spinner-size.enum';
-export * from './modal/modal.service';
 export * from './drawer/drawer.service';
 export * from './drawer/drawer-overlay-style.enum';
 export * from './drawer/drawer-location.enum';
