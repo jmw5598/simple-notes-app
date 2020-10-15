@@ -16,6 +16,7 @@ import { CalendarEventFormComponent } from './forms/calendar-event-form/calendar
 import { CalendarEventCreateComponent } from './components/calendar-event-create/calendar-event-create.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { DebounceDirective } from './directives/debounce.directive';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
     TopicCreateComponent,
     TopicSearchComponent,
     CalendarEventFormComponent,
-    CalendarEventCreateComponent
+    CalendarEventCreateComponent,
+    DebounceDirective
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,8 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
     TopicCreateComponent,
     TopicSearchComponent,
     CalendarEventFormComponent,
-    CalendarEventCreateComponent
+    CalendarEventCreateComponent,
+    DebounceDirective
   ],
   providers: [
     DrawerService
