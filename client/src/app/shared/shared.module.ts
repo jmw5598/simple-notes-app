@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { TagInputComponent } from './components/tag-input/tag-input.component';
@@ -39,7 +40,8 @@ import { DebounceDirective } from './directives/debounce.directive';
     FormsModule,
     ReactiveFormsModule,
     TimepickerModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    RouterModule
   ],
   exports: [
     FormsModule,
