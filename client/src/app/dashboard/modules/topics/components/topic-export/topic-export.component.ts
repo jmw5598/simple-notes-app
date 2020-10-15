@@ -6,7 +6,7 @@ import { takeUntil, tap } from 'rxjs/operators';
 import { IAppState } from '@sn/core/store/state';
 import { ResponseMessage } from '@sn/core/models';
 import { ExportConfig, ExportFormat, FileResponse, Topic } from '@sn/shared/models';
-import { DrawerService, ModalService } from '@sn/shared/components';
+import { DrawerService } from '@sn/shared/components';
 import { showHide } from '@sn/shared/animations';
 import { selectExportTopicResponseMessage, selectExportTopicFile } from '@sn/core/store/selectors';
 import { exportTopic } from '@sn/core/store/actions';
@@ -20,14 +20,6 @@ import * as FileSaver from 'file-saver';
   animations: [showHide]
 })
 export class TopicExportComponent implements OnInit, OnDestroy {
-
-  /*
-    TODO: This have to be refactored!
-    - Get data passed in by DrawerService
-    - Remove all these inputs and outputs.
-    - Select the file response from state?
-  */
-
   private readonly DEFAULT_FORM_VALUE = {
     format: ExportFormat.PDF,
     includeTopicTitle: true,
