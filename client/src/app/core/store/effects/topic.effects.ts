@@ -124,12 +124,24 @@ export class TopicEffects {
 
   searchTopics$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.searchTopics),
-    debounceTime(500),
     switchMap(({search}) => {
       const searchs: PageableSearch = search
       return this._topicsService.searchTopics(searchs.searchTerm, searchs.pageable)
         .pipe(
           map(result => fromActions.searchTopicsResult({ page: result })),
+          catchError(error => of(handleHttpError(error)))
+        )
+      }
+    )
+  ));
+
+  searchTopicsFromDrawer$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.searchTopicsFromDrawer),
+    switchMap(({search}) => {
+      const searchs: PageableSearch = search
+      return this._topicsService.searchTopics(searchs.searchTerm, searchs.pageable)
+        .pipe(
+          map(result => fromActions.searchTopicsFromDrawerResult({ page: result })),
           catchError(error => of(handleHttpError(error)))
         )
       }

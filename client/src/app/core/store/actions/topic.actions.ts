@@ -90,3 +90,13 @@ export const searchTopicsResult = createAction(
   '[Topic] Search Topic Result',
   props<{ page: Page<Topic> }>()
 );
+
+export const searchTopicsFromDrawer = createAction(
+  '[Topic] Search Topic From Drawer',
+  props<{ search: PageableSearch }>()
+);
+
+export const searchTopicsFromDrawerResult = createAction(
+  '[Topic] Search Topic From Drawer Result',
+  props<{ page: Page<Topic> }>()
+);

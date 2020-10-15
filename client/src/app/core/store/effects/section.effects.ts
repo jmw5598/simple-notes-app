@@ -85,7 +85,6 @@ export class SectionEffects {
 
   updateSectionNotes$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.updateSectionNotes),
-    debounceTime(1000),
     switchMap(({ topicId, sectionId, notes }) => this._sectionsService.updateNotes(topicId, sectionId, notes)
       .pipe(
         map(result => {
@@ -108,7 +107,6 @@ export class SectionEffects {
 
   searchSections$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.searchSections),
-    debounceTime(500),
     switchMap(({topicId, search}) => {
       const searchs: PageableSearch = search;
       return this._sectionsService.searchSections(topicId, searchs.searchTerm, searchs.pageable)

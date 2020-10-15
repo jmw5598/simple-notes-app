@@ -10,6 +10,7 @@ export interface ITopicState {
   exportTopicResponseMessage: ResponseMessage,
   exportTopicFileResponse: FileResponse,
   searchTopicsResult: Page<Topic>,
+  searchTopicsFromDrawerResult: Page<Topic>
 
 };
 
@@ -20,5 +21,6 @@ export const initialTopicState: ITopicState = {
   updateTopicResponseMessage: null,
   exportTopicResponseMessage: null,
   exportTopicFileResponse: null,
-  searchTopicsResult: null
+  searchTopicsResult: null,
+  searchTopicsFromDrawerResult: null
 };

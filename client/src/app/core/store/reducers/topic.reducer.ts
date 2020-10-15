@@ -68,6 +68,12 @@ const _topicReducer = createReducer(
       ...state,
       searchTopicsResult: page
     }
+  }),
+  on(fromActions.searchTopicsFromDrawerResult, (state, { page }) => {
+    return {
+      ...state,
+      searchTopicsFromDrawerResult: page
+    }
   })
 );
 

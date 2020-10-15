@@ -11,7 +11,8 @@
             type="text" 
             id="searchTerms" 
             name="searchTerms" 
-            class="form-control" />
+            class="form-control"
+            autocomplete="off" />
       </div>
       <div class="row">
         <div class="col-sm-12">
@@ -25,7 +26,7 @@
                 <div class="topic-item">
                   <h5 class="font-weight-bold mb-1">
                     {{ item.title }} 
-                    <span class="text-primary float-right">
+                    <span class="text-primary float-right topic-icon">
                       <a (click)="onGoToTopic(item.id)"><i class="fas fa-eye"></i></a>
                     </span>
                   </h5>

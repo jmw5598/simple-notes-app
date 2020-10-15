@@ -55,6 +55,7 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    console.log("dispatching null page for search topic results");
     this._store.dispatch(searchTopicsResult({ page: null }));
   }
 }

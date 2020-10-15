@@ -4,14 +4,14 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IAppState } from '@sn/core/store/state';
 import { fadeAnimation } from '@sn/shared/animations';
-import { selectSearchTopicsResult } from '@sn/core/store/selectors';
+import { selectSearchTopicsFromDrawerResult, selectSearchTopicsResult } from '@sn/core/store/selectors';
 import { Page } from '@sn/core/models';
 import { Topic } from '@sn/shared/models';
 import { IPageable } from '@sn/core/models';
 import { PageableSearch } from '@sn/core/models'
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/core/defaults';
-import { searchTopics, searchTopicsResult } from '@sn/core/store/actions';
-import { DrawerService } from '@sn/shared/components';
+import { searchTopicsFromDrawer, searchTopicsFromDrawerResult } from '@sn/core/store/actions';
+import { DrawerService } from '../drawer/drawer.service';
 
 @Component({
   selector: 'sn-topic-search',
@@ -30,14 +30,8 @@ export class TopicSearchComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.searchResults$ = this._store.select(selectSearchTopicsResult);
+    this.searchResults$ = this._store.select(selectSearchTopicsFromDrawerResult);
   }
-
-  // TODO Create separate piece of state for side panel search vs list search
-  // This is because the list search is filtered by the same piece of state so
-  // when the drawer is close and you navigate to topic list view, the list is
-  // filtered base on the drawer search.
-  // Tried clearing on onDestory of the drawer search compoent but wasnt working.
 
   public onSearchTopics(value: any): void {
     if (value) {
@@ -45,14 +39,18 @@ export class TopicSearchComponent implements OnInit, OnDestroy {
         searchTerm: value,
         pageable: this.DEFAULT_PAGE
       };
-      this._store.dispatch(searchTopics({ search: topicSearch }));
+      this._store.dispatch(searchTopicsFromDrawer({ search: topicSearch }));
     } else {
-      this._store.dispatch(searchTopicsResult({ page: null }));
+      this._store.dispatch(searchTopicsFromDrawerResult({ page: null }));
     }
   }
 
   public onGoToTopic(id: number): void {
     this._router.navigate(['/dashboard', 'topics', id, 'details']);
     this._drawerService.close();
+  }
+
+  ngOnDestroy(): void {
+    this._store.dispatch(searchTopicsFromDrawerResult({ page: null }));
   }
 }
