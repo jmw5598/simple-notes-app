@@ -4,7 +4,9 @@
     <label for="title">Title</label>
     <input
         class="form-control"
-        type="text" name="title"
+        type="text" 
+        name="title"
+        id="title"
         formControlName="title"
         [ngClass]="{'is-invalid':!form.controls['title'].valid && form.controls['title'].touched  }" />
   </div>
