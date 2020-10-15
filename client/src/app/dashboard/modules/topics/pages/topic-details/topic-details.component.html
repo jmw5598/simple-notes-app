@@ -29,7 +29,7 @@
             Sections
             <!-- Header Buttons -->
             <span class="float-right">
-              <button [routerLink]="['../sections', 'create']" role="button" class="btn btn-sm btn-outline-dark btn-border-none">
+              <button (click)="onCreateSection()" role="button" class="btn btn-sm btn-outline-dark btn-border-none">
                 <i class="far fa-file-alt icon-margin"></i>
                 New
               </button>
@@ -48,7 +48,8 @@
           </h5>
           <sn-section-list
               [sections]="(searchSectionsResult$ | async)?.elements"
-              (onDelete)="onDeleteSection($event)">
+              (onDelete)="onDeleteSection($event)"
+              (onEdit)="onEditSectionDetails($event)">
           </sn-section-list>
           <sn-paginator
               [page]="(searchSectionsResult$ | async)"

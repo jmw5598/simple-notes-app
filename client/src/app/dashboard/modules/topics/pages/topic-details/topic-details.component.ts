@@ -12,6 +12,8 @@ import { DrawerService, DrawerLocation } from '@sn/shared/components';
 import { DEFAULT_SEARCH_SECTIONS_PAGE } from '@sn/core/defaults';
 import { TopicExportComponent } from '../../components/topic-export/topic-export.component';
 import { TopicUpdateComponent } from '../../components/topic-update/topic-update.component';
+import { SectionUpdateComponent } from '../../components/section-update/section-update.component';
+import { SectionCreateComponent } from '../../components/section-create/section-create.component';
 
 @Component({
   selector: 'sn-topic-details',
@@ -59,13 +61,25 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
   }
 
   public onUpdateTopic(): void {
-    // TODO Implement this component
     this._drawerService.show(
       TopicUpdateComponent,
       this._topic
     );
   }
 
+  public onCreateSection(): void {
+    this._drawerService.show(
+      SectionCreateComponent,
+      { topic: this._topic }
+    );
+  }
+
+  public onEditSectionDetails(section: Section): void {
+    this._drawerService.show(
+      SectionUpdateComponent,
+      { topic: this._topic, section: section }
+    );
+  }
 
   public onSearchSections(searchTerm: string): void {
     this.searchTerm = searchTerm;

@@ -9,6 +9,9 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { SectionListComponent } from './components/section-list/section-list.component';
 import { TopicUpdateComponent } from './components/topic-update/topic-update.component';
 import { TopicExportComponent } from './components/topic-export/topic-export.component';
+import { SectionCreateComponent } from './components/section-create/section-create.component';
+import { SectionUpdateComponent } from './components/section-update/section-update.component';
+import { SectionFormComponent } from './components/section-form/section-form.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { TopicExportComponent } from './components/topic-export/topic-export.com
     TopicDetailsComponent,
     SectionListComponent,
     TopicUpdateComponent,
-    TopicExportComponent
+    TopicExportComponent,
+    SectionCreateComponent,
+    SectionUpdateComponent,
+    SectionFormComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +37,9 @@ import { TopicExportComponent } from './components/topic-export/topic-export.com
   ],
   entryComponents: [
     TopicExportComponent,
-    TopicUpdateComponent
+    TopicUpdateComponent,
+    SectionCreateComponent,
+    SectionUpdateComponent
   ]
 })
 export class TopicsModule { }

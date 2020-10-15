@@ -13,8 +13,12 @@ export class SectionListComponent implements OnInit {
   @Output()
   public onDelete: EventEmitter<number>;
 
+  @Output()
+  public onEdit: EventEmitter<Section>;
+
   constructor() {
     this.onDelete = new EventEmitter<number>();
+    this.onEdit = new EventEmitter<Section>();
   }
 
   ngOnInit(): void {
@@ -22,5 +26,9 @@ export class SectionListComponent implements OnInit {
 
   public delete(sectionId: number): void {
     this.onDelete.emit(sectionId);
+  }
+
+  public edit(section: Section): void {
+    this.onEdit.emit(section);
   }
 }

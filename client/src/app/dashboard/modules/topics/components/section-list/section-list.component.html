@@ -36,7 +36,7 @@
           <button 
               role="button" 
               class="btn btn-outline-primary btn-sm btn-border-none" 
-              [routerLink]="['../sections', section.id, 'edit']">
+              (click)="edit(section)">
             <i class="fas fa-info-circle"></i>
           </button>
           <button 
