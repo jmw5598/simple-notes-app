@@ -16,7 +16,7 @@
               [extraContent]="createNewButton">
           </sn-empty-data>
           <ng-template #createNewButton>
-            <a [routerLink]="['../sections', 'create']" class="btn btn-success text-light">Create a section</a>
+            <a (click)="create($event)" class="btn btn-success text-light">Create a section</a>
           </ng-template>
         </td>
       </tr>

@@ -49,7 +49,8 @@
           <sn-section-list
               [sections]="(searchSectionsResult$ | async)?.elements"
               (onDelete)="onDeleteSection($event)"
-              (onEdit)="onEditSectionDetails($event)">
+              (onEdit)="onEditSectionDetails($event)"
+              (onCreate)="onCreateSection($event)">
           </sn-section-list>
           <sn-paginator
               [page]="(searchSectionsResult$ | async)"

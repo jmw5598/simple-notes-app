@@ -16,9 +16,13 @@ export class SectionListComponent implements OnInit {
   @Output()
   public onEdit: EventEmitter<Section>;
 
+  @Output()
+  public onCreate: EventEmitter<void>;
+
   constructor() {
     this.onDelete = new EventEmitter<number>();
     this.onEdit = new EventEmitter<Section>();
+    this.onCreate = new EventEmitter<void>();
   }
 
   ngOnInit(): void {
@@ -30,5 +34,9 @@ export class SectionListComponent implements OnInit {
 
   public edit(section: Section): void {
     this.onEdit.emit(section);
+  }
+
+  public create(): void {
+    this.onCreate.emit();
   }
 }
