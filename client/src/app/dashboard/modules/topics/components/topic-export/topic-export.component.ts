@@ -1,13 +1,17 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
+import { takeUntil, tap } from 'rxjs/operators';
 import { IAppState } from '@sn/core/store/state';
 import { ResponseMessage } from '@sn/core/models';
 import { ExportConfig, ExportFormat, FileResponse, Topic } from '@sn/shared/models';
-import { ModalService } from '@sn/shared/components';
+import { DrawerService, ModalService } from '@sn/shared/components';
 import { showHide } from '@sn/shared/animations';
-import { selectExportTopicResponseMessage } from '@sn/core/store/selectors';
+import { selectExportTopicResponseMessage, selectExportTopicFile } from '@sn/core/store/selectors';
+import { exportTopic } from '@sn/core/store/actions';
+
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'sn-topic-export',
@@ -15,7 +19,7 @@ import { selectExportTopicResponseMessage } from '@sn/core/store/selectors';
   styleUrls: ['./topic-export.component.scss'],
   animations: [showHide]
 })
-export class TopicExportComponent implements OnInit {
+export class TopicExportComponent implements OnInit, OnDestroy {
 
   /*
     TODO: This have to be refactored!
@@ -31,27 +35,20 @@ export class TopicExportComponent implements OnInit {
     includeSectionTitle: true,
     includeSectionSynopsis: true
   } as ExportConfig;
-
-  @Input()
-  public topic: Topic;
-
+  
+  private _subscriptionSubject: Subject<void>;
   public responseMessage$: Observable<ResponseMessage>;
-
-  @Input()
-  public file: FileResponse;
-
-  @Output()
-  public onExportTopic: EventEmitter<ExportConfig>;
-
+  public exportTopicFile$: Observable<FileResponse>;
+  public topic: Topic;
   public form: FormGroup;
   public ExportFormat = ExportFormat;
 
   constructor(
     private _store: Store<IAppState>,
     private _formBuilder: FormBuilder,
-    private _modalService: ModalService
+    private _drawerService: DrawerService,
   ) {
-    this.onExportTopic = new EventEmitter<ExportConfig>();
+    this._subscriptionSubject = new Subject<void>();
   }
 
   ngOnInit(): void {
@@ -63,15 +60,36 @@ export class TopicExportComponent implements OnInit {
       includeSectionTitle: [true],
       includeSectionSynopsis: [true]
     });
+
+    this._drawerService.onDataChange()
+      .pipe(takeUntil(this._subscriptionSubject))
+      .subscribe(data => this.topic = data);
+
+    this.exportTopicFile$ = this._store.select(selectExportTopicFile)
+      .pipe(
+        tap((file:FileResponse) => {
+          console.log("got file? ", file)
+          if (file) {
+            FileSaver.saveAs(file.blob, file.filename)
+          }
+        })
+      );
   }
 
   public onSubmit(config: ExportConfig): void {
-    this.onExportTopic.emit(config);
+    this._store.dispatch(exportTopic({ 
+      topicId: this.topic.id,
+      config: config
+    }));
   }
 
   public onClose(): void {
     this.form.patchValue(this.DEFAULT_FORM_VALUE);
-    // this.message = null;
-    // this._modalService.close();
+    this._drawerService.close();
+  }
+
+  ngOnDestroy(): void {
+    this._subscriptionSubject.next();
+    this._subscriptionSubject.complete();
   }
 }

@@ -6,7 +6,8 @@
     <div *ngIf="(responseMessage$ | async)" [@showHide] class="alert alert-success">
       <span>
         <strong>{{ (responseMessage$ | async).status | uppercase }}</strong>: {{ (responseMessage$ | async).message }}
-      </span>
+      </span><br />
+      <strong *ngIf="exportTopicFile$ | async">Filename: </strong>{{ (exportTopicFile$ | async)?.filename }}
     </div>
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" novalidate>
       <!-- <div *ngIf="message" [@showHide] class="alert alert-success">
@@ -51,7 +52,7 @@
       </div>
       <div class="form-group text-right">
         <button class="btn btn-primary mr-2" type="submit">Export</button>
-        <button class="btn btn-secondary" (click)="onClose()">Close</button>
+        <button class="btn btn-secondary" type="button" (click)="onClose()">Close</button>
       </div>
     </form>
   </div>

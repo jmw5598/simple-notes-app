@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { ViewTopicsComponent } from './pages/view-topics/view-topics.component';
 import { SectionsSearchResultGuard, TopicByIdGuard, TopicsSearchResultGuard } from '@sn/core/guards';
 import { TopicDetailsComponent } from './pages/topic-details/topic-details.component';
-import { UpdateTopicComponent } from './pages/update-topic/update-topic.component';
 
 const routes: Routes = [
   {
@@ -19,10 +18,6 @@ const routes: Routes = [
         path: 'details',
         canActivate: [SectionsSearchResultGuard],
         component: TopicDetailsComponent
-      },
-      {
-        path: 'edit',
-        component: UpdateTopicComponent
       },
       {
         path: 'sections',

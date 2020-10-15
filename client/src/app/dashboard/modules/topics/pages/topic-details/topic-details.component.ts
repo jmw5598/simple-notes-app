@@ -3,15 +3,15 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { IAppState } from '@sn/core/store/state';
-import { selectSelectedTopic, selectSearchSectionsResult, selectExportTopicResponseMessage, selectExportTopicFile } from '@sn/core/store/selectors';
-import { searchSections, exportTopic, deleteSection, setExportTopicFileResponse, setExportTopicResponseMessage, searchSectionsResult } from '@sn/core/store/actions';
-import { ExportConfig, ExportFormat, FileResponse, Topic, Section } from '@sn/shared/models';
+import { selectSelectedTopic, selectSearchSectionsResult } from '@sn/core/store/selectors';
+import { searchSections, deleteSection, setExportTopicFileResponse, setExportTopicResponseMessage, searchSectionsResult } from '@sn/core/store/actions';
+import { FileResponse, Topic, Section } from '@sn/shared/models';
 import { fadeAnimation } from '@sn/shared/animations';
-import { PageableSearch, PageRequest, Page, IPageable, ResponseMessage } from '@sn/core/models';
-import * as FileSaver from 'file-saver';
-import { DrawerService, ModalService, DrawerLocation } from '@sn/shared/components';
+import { PageableSearch, Page, IPageable, ResponseMessage } from '@sn/core/models';
+import { DrawerService, DrawerLocation } from '@sn/shared/components';
 import { DEFAULT_SEARCH_SECTIONS_PAGE } from '@sn/core/defaults';
 import { TopicExportComponent } from '../../components/topic-export/topic-export.component';
+import { TopicUpdateComponent } from '../../components/topic-update/topic-update.component';
 
 @Component({
   selector: 'sn-topic-details',
@@ -23,68 +23,47 @@ import { TopicExportComponent } from '../../components/topic-export/topic-export
 export class TopicDetailsComponent implements OnInit, OnDestroy {
   public DrawerLocation = DrawerLocation;
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_SECTIONS_PAGE;
+
   public topic$: Observable<Topic>;
   public exportTopicResponseMessage$: Observable<ResponseMessage>;
   public exportTopicFile$: Observable<FileResponse>;
-  private _topicId: number;
+  private _topic: Topic;
   public searchSectionsResult$: Observable<Page<Section>>;
   public searchTerm: string = '';
 
   constructor(
     private _store: Store<IAppState>,
-    private _modalService: ModalService,
     private _drawerService: DrawerService
   ) { }
 
   ngOnInit(): void {
     this.searchSectionsResult$ = this._store.select(selectSearchSectionsResult);
-    this.exportTopicResponseMessage$ = this._store.select(selectExportTopicResponseMessage);
-    this.exportTopicFile$ = this._store.select(selectExportTopicFile)
-      .pipe(
-        tap((file:FileResponse) => {
-          if (file) {
-            FileSaver.saveAs(file.blob, file.filename)
-          }
-        })
-      );
-
     this.topic$ = this._store.select(selectSelectedTopic)
       .pipe(tap((topic: Topic) => {
-        this._topicId = topic.id;
+        this._topic = topic;
       }));
   }
 
   public onDeleteSection(sectionId: number): void {
     this._store.dispatch(deleteSection({
       sectionId: sectionId,
-      topicId: this._topicId
+      topicId: this._topic.id
     }))
   }
 
-  public onExportTopic(config: ExportConfig): void {
-    this._store.dispatch(exportTopic({
-      topicId: this._topicId,
-      config: config
-    }));
+  public onOpenExportTopic(): void {
+    this._drawerService.show(
+      TopicExportComponent, 
+      this._topic
+    );
   }
 
-
-  // TODO rename onOpenExportTopic
-  public onOpenExportModal(): void {
-    // this._modalService.show();
-    // TODO creat this components???
-    this._drawerService.show(TopicExportComponent);
-  }
-
-  // TODO Remove this
-  public onCloseExportModal(): void {
-    this._modalService.close();
-  }
-
-  // TODO Create this
   public onUpdateTopic(): void {
     // TODO Implement this component
-    // this._drawerService.open(UpdateTopicComponent, { data: topic$ }); // ?? topic$ is currently and Observable
+    this._drawerService.show(
+      TopicUpdateComponent,
+      this._topic
+    );
   }
 
 
@@ -94,7 +73,7 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
       searchTerm: searchTerm,
       pageable: this.DEFAULT_PAGE
     };
-    this._store.dispatch(searchSections({ topicId: this._topicId, search: topicSearch }));
+    this._store.dispatch(searchSections({ topicId: this._topic.id, search: topicSearch }));
   }
 
   public onGoToPage(pageable: IPageable): void {
@@ -102,7 +81,7 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
       searchTerm: this.searchTerm,
       pageable: pageable
     };
-    this._store.dispatch(searchSections({ topicId: this._topicId, search: topicSearch }));
+    this._store.dispatch(searchSections({ topicId: this._topic.id, search: topicSearch }));
   }
 
   ngOnDestroy(): void {

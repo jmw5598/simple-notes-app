@@ -7,7 +7,7 @@
         <li class="list-group-item bg-secondary topic-details-heading">
           <legend>{{ (topic$ | async).title }}</legend>
           <p>{{ (topic$ | async).synopsis }}</p>
-          <button [routerLink]="['../edit']" role="button" class="topic-details-edit-button btn btn-sm btn-secondary btn-border-none">
+          <button (click)="onUpdateTopic()" role="button" class="topic-details-edit-button btn btn-sm btn-secondary btn-border-none">
             <i class="fas fa-info-circle icon-margin"></i>
           </button>
         </li>
@@ -33,7 +33,7 @@
                 <i class="far fa-file-alt icon-margin"></i>
                 New
               </button>
-              <button role="button" class="btn btn-sm btn-outline-dark btn-border-none" (click)="onOpenExportModal()">
+              <button role="button" class="btn btn-sm btn-outline-dark btn-border-none" (click)="onOpenExportTopic()">
                 <i class="fas fa-download icon-margin"></i>
                 Export
               </button>
