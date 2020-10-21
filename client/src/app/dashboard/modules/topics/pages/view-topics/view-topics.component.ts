@@ -1,15 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { IAppState } from '@sn/core/store/state';
 import { Topic } from '@sn/shared/models';
-import { PageableSearch } from '@sn/core/models';
+import { PageableSearch, ResponseMessage } from '@sn/core/models';
 import { fadeAnimation } from '@sn/shared/animations';
-import { selectTopics, selectSearchTopicsResult} from '@sn/core/store/selectors';
-import { deleteTopic, searchSectionsResult, searchTopics, searchTopicsResult } from '@sn/core/store/actions';
-import { Page, IPageable, PageRequest } from '@sn/core/models';
+import { selectTopics, selectSearchTopicsResult, selectCreateTopicResponseMessage} from '@sn/core/store/selectors';
+import { deleteTopic, searchTopics, searchTopicsResult } from '@sn/core/store/actions';
+import { Page, IPageable } from '@sn/core/models';
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/core/defaults';
+import { ResponseStatus } from '@sn/core/enums';
 
 @Component({
   selector: 'sn-view-topics',
@@ -19,6 +21,7 @@ import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/core/defaults';
 })
 export class ViewTopicsComponent implements OnInit, OnDestroy {
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_TOPICS_PAGE;
+  private _subscriptionSubject: Subject<void>;
   public topics$: Observable<Topic[]>;
   public searchTopicsResult$: Observable<Page<Topic>>;
 
@@ -26,10 +29,19 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
 
   constructor(
     private _store: Store<IAppState>
-  ) { }
+  ) {
+    this._subscriptionSubject = new Subject<void>();
+  }
 
   ngOnInit(): void {
     this.topics$ = this._store.select(selectTopics);
+    this._store.select(selectCreateTopicResponseMessage)
+      .pipe(takeUntil(this._subscriptionSubject))
+      .subscribe((message: ResponseMessage) => {
+        if (message && message.status === ResponseStatus.SUCCESS) {
+          this.onSearchTopics(this.searchTerm);
+        }
+      });
     this.searchTopicsResult$ = this._store.select(selectSearchTopicsResult);
   }
   

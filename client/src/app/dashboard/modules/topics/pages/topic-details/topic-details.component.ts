@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { tap, takeUntil } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { IAppState } from '@sn/core/store/state';
-import { selectSelectedTopic, selectSearchSectionsResult } from '@sn/core/store/selectors';
+import { selectSelectedTopic, selectSearchSectionsResult, selectCreateSectionResponseMessage } from '@sn/core/store/selectors';
 import { searchSections, deleteSection, setExportTopicFileResponse, setExportTopicResponseMessage, searchSectionsResult } from '@sn/core/store/actions';
 import { FileResponse, Topic, Section } from '@sn/shared/models';
 import { fadeAnimation } from '@sn/shared/animations';
@@ -14,6 +14,7 @@ import { TopicExportComponent } from '../../components/topic-export/topic-export
 import { TopicUpdateComponent } from '../../components/topic-update/topic-update.component';
 import { SectionUpdateComponent } from '../../components/section-update/section-update.component';
 import { SectionCreateComponent } from '../../components/section-create/section-create.component';
+import { ResponseStatus } from '@sn/core/enums';
 
 @Component({
   selector: 'sn-topic-details',
@@ -25,6 +26,7 @@ import { SectionCreateComponent } from '../../components/section-create/section-
 export class TopicDetailsComponent implements OnInit, OnDestroy {
   public DrawerLocation = DrawerLocation;
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_SECTIONS_PAGE;
+  private _subscriptionSubject: Subject<void>;
 
   public topic$: Observable<Topic>;
   public exportTopicResponseMessage$: Observable<ResponseMessage>;
@@ -36,10 +38,19 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private _store: Store<IAppState>,
     private _drawerService: DrawerService
-  ) { }
+  ) {
+    this._subscriptionSubject = new Subject<void>();
+  }
 
   ngOnInit(): void {
     this.searchSectionsResult$ = this._store.select(selectSearchSectionsResult);
+    this._store.select(selectCreateSectionResponseMessage)
+      .pipe(takeUntil(this._subscriptionSubject))
+      .subscribe((message: ResponseMessage) => {
+        if (message && message.status === ResponseStatus.SUCCESS) {
+          this.onSearchSections(this.searchTerm);
+        }
+      })
     this.topic$ = this._store.select(selectSelectedTopic)
       .pipe(tap((topic: Topic) => {
         this._topic = topic;
