@@ -19,6 +19,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { DebounceDirective } from './directives/debounce.directive';
 
+import { ColorTwitterModule } from 'ngx-color/twitter'; // <color-twitter></color-twitter>
+
 @NgModule({
   declarations: [
     SpinnerComponent,
@@ -41,7 +43,8 @@ import { DebounceDirective } from './directives/debounce.directive';
     ReactiveFormsModule,
     TimepickerModule,
     BsDatepickerModule.forRoot(),
-    RouterModule
+    RouterModule,
+    ColorTwitterModule
   ],
   exports: [
     FormsModule,

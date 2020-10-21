@@ -1,0 +1,17 @@
+.color-input {
+  .color-picker {
+    position: relative;
+
+    color-twitter {
+      position: absolute;
+      top: 16px;
+      right: 0;
+    }
+  }
+
+  .color-picker-input-container {
+    .color-picker-input {
+      border-radius: 4px;
+    }
+  }
+}
