@@ -42,6 +42,7 @@
               <sn-debounced-search
                   style="display: inline"
                   debounceTime="500"
+                  [isSearching]="isSearching"
                   (onSearch)="onSearchSections($event)">
               </sn-debounced-search>
             </span>

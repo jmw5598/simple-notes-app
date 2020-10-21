@@ -11,6 +11,7 @@
             <span class="float-right">
               <sn-debounced-search
                   debounceTime="500"
+                  [isSearching]="isSearching"
                   (onSearch)="onSearchTopics($event)">
               </sn-debounced-search>
             </span>

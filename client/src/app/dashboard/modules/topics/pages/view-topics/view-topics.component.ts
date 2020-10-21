@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 
 import { IAppState } from '@sn/core/store/state';
 import { Topic } from '@sn/shared/models';
@@ -24,8 +24,9 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<void>;
   public topics$: Observable<Topic[]>;
   public searchTopicsResult$: Observable<Page<Topic>>;
-
+  
   public searchTerm: string = '';
+  public isSearching: boolean = false;
 
   constructor(
     private _store: Store<IAppState>
@@ -42,11 +43,13 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
           this.onSearchTopics(this.searchTerm);
         }
       });
-    this.searchTopicsResult$ = this._store.select(selectSearchTopicsResult);
+    this.searchTopicsResult$ = this._store.select(selectSearchTopicsResult)
+      .pipe(tap(() => this.isSearching = false));
   }
   
   public onSearchTopics(searchTerm: string): void {
     this.searchTerm = searchTerm;
+    this.isSearching = true;
     const topicSearch: PageableSearch = {
       searchTerm: searchTerm,
       pageable: this.DEFAULT_PAGE

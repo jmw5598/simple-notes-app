@@ -1,5 +1,5 @@
 <div class="debounced-search" [ngClass]="{ 'show' : isInputShown }">
-  <span class="debounced-search-spinner" *ngIf="isSearching" [fadeAnimation]>
+  <span class="debounced-search-spinner" *ngIf="isSearching" [@fadeAnimation]>
     <sn-spinner isSpinning="true"></sn-spinner>
   </span>
   <input class="debounced-search-input" type="text" [(ngModel)]="searchTerm" (keyup)="onSearchInputKeyUp($event)" />
