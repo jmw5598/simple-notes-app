@@ -9,6 +9,7 @@ export class CalendarEventMapper {
       startDateTime: event.startDateTime,
       endDateTime: event.endDateTime,
       isAllDay: event.isAllDay,
+      color: event.color,
       location: event.location,
       description: event.description
     } as CalendarEventDto

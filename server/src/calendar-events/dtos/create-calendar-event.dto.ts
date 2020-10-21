@@ -14,6 +14,9 @@ export class CreateCalendarEventDto {
   public isAllDay: boolean;
 
   @IsNotEmpty()
+  public color: string;
+
+  @IsNotEmpty()
   public location: string;
 
   @IsNotEmpty()

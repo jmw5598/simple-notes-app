@@ -16,6 +16,9 @@ export class CalendarEvent extends BaseEntity {
   @Column({ name: 'is_all_day', default: false })
   public isAllDay: boolean = false;
 
+  @Column({ nullable: false })
+  public color: string;
+
   @Column()
   public location: string;
   

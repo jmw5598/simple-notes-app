@@ -31,6 +31,7 @@ export class CalendarEventsService {
       startDateTime: createCalendarEventDto.startDateTime,
       endDateTime: createCalendarEventDto.endDateTime,
       isAllDay: createCalendarEventDto.isAllDay,
+      color: createCalendarEventDto.color,
       location: createCalendarEventDto.location,
       description: createCalendarEventDto.description,
       account: { id: accountId }
@@ -51,6 +52,7 @@ export class CalendarEventsService {
     event.startDateTime = updateCalendarEventDto.startDateTime;
     event.endDateTime = updateCalendarEventDto.endDateTime;
     event.isAllDay = updateCalendarEventDto.isAllDay;
+    event.color = updateCalendarEventDto.color;
     event.location = updateCalendarEventDto.location;
     event.description = updateCalendarEventDto.description;
     
