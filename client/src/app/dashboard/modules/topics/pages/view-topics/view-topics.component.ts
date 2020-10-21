@@ -7,7 +7,7 @@ import { Topic } from '@sn/shared/models';
 import { PageableSearch } from '@sn/core/models';
 import { fadeAnimation } from '@sn/shared/animations';
 import { selectTopics, selectSearchTopicsResult} from '@sn/core/store/selectors';
-import { deleteTopic, searchTopics, searchTopicsResult } from '@sn/core/store/actions';
+import { deleteTopic, searchSectionsResult, searchTopics, searchTopicsResult } from '@sn/core/store/actions';
 import { Page, IPageable, PageRequest } from '@sn/core/models';
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/core/defaults';
 
@@ -55,7 +55,6 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log("dispatching null page for search topic results");
     this._store.dispatch(searchTopicsResult({ page: null }));
   }
 }

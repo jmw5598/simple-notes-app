@@ -4,13 +4,13 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IAppState } from '@sn/core/store/state';
 import { fadeAnimation } from '@sn/shared/animations';
-import { selectSearchTopicsFromDrawerResult, selectSearchTopicsResult } from '@sn/core/store/selectors';
+import { selectSearchTopicsFromDrawerResult, selectSearchTopicsResult, selectSelectedTopic } from '@sn/core/store/selectors';
 import { Page } from '@sn/core/models';
 import { Topic } from '@sn/shared/models';
 import { IPageable } from '@sn/core/models';
 import { PageableSearch } from '@sn/core/models'
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/core/defaults';
-import { searchTopicsFromDrawer, searchTopicsFromDrawerResult } from '@sn/core/store/actions';
+import { searchSectionsResult, searchTopicsFromDrawer, searchTopicsFromDrawerResult, setSelectedTopic } from '@sn/core/store/actions';
 import { DrawerService } from '../drawer/drawer.service';
 
 @Component({

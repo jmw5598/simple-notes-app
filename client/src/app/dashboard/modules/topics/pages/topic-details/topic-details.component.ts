@@ -43,6 +43,10 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
     this.topic$ = this._store.select(selectSelectedTopic)
       .pipe(tap((topic: Topic) => {
         this._topic = topic;
+        if (topic) {
+          this.searchTerm = "";
+          this.onSearchSections("");
+        }
       }));
   }
 

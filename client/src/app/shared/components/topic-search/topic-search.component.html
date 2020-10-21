@@ -17,7 +17,7 @@
       <div class="row">
         <div class="col-sm-12">
           <ul class="list-group">
-            <ng-container *ngIf="!(searchResults$ | async)?.elements; else searchResults">
+            <ng-container *ngIf="!(searchResults$ | async) || (searchResults$ | async)?.elements?.length === 0; else searchResults">
               <sn-empty-data message="No results to display!"></sn-empty-data>
             </ng-container>
 
