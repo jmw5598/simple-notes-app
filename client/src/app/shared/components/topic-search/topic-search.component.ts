@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -19,11 +19,12 @@ import { DrawerService } from '../drawer/drawer.service';
   styleUrls: ['./topic-search.component.scss'],
   animations: [fadeAnimation]
 })
-export class TopicSearchComponent implements OnInit, OnDestroy {
+export class TopicSearchComponent implements OnInit, OnDestroy, AfterViewInit {
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_TOPICS_PAGE;
   public searchResults$: Observable<Page<Topic>>;
 
   constructor(
+    private _renderer: Renderer2,
     private _router: Router,
     private _store: Store<IAppState>,
     private _drawerService: DrawerService
@@ -31,6 +32,12 @@ export class TopicSearchComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.searchResults$ = this._store.select(selectSearchTopicsFromDrawerResult);
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this._setFocusToSearchInput();
+    });
   }
 
   public onSearchTopics(value: any): void {
@@ -48,6 +55,10 @@ export class TopicSearchComponent implements OnInit, OnDestroy {
   public onGoToTopic(id: number): void {
     this._router.navigate(['/dashboard', 'topics', id, 'details']);
     this._drawerService.close();
+  }
+
+  private _setFocusToSearchInput(): void {
+    this._renderer.selectRootElement("#searchTerms").focus();
   }
 
   ngOnDestroy(): void {
