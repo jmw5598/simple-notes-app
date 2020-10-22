@@ -55,9 +55,9 @@
     </div>
   </div>
 
-  <!-- Is All Day Checkbox -->
+  <!-- Is All Day Checkbox & Color Swatch Input-->
   <div class="row">
-    <div class="col-6">
+    <div class="col-sm-6">
        <div class="form-check mb-3">
         <input class="form-check-input" type="checkbox" name="isAllDay" formControlName="isAllDay">
         <label class="form-check-label text-right" for="isAllDay">
@@ -65,45 +65,41 @@
         </label>
       </div>
     </div>
-  </div>
- 
-  <!-- Color Swatch Picker Input -->
-  <div class="row">
-    <div class="col-6">
-      <!-- <div class="form-inline"> -->
-      <div class="form-group mb-3 color-input">
+    <div class="col-sm-6">
+      <div class="form-group mb-3 color-swatch">
         <label for="color" class="mr-4">Color <small class="text-danger">*</small></label>
-        <div class="color-picker-input-container" (click)="showColorSwatchPicker()">
+        <div class="color-swatch-input-container">
+          <div 
+              class="color-swatch-selected mr-3 mt-1"
+              (click)="showColorSwatchPicker()"
+              [style.background-color]="selectedHexColor">
+          </div>
           <input 
-              type="text" 
+              type="hidden" 
               class="form-control text-light color-swatch-input"
-              formControlName="color"
-              [style.background-color]="selectedHexColor"
-              [disabled]="true" />
-        </div>
-        <div class="color-picker col-3" *ngIf="isColorSwatchPickerShown" [@showHide]>
-          <color-twitter
-              triangle="top-left"
-              [colors]="colors"
-              (onChange)="handleColorSwatchChange($event)">
-          </color-twitter>
+              formControlName="color" />
+          <div class="color-swatch-picker col-3 float-right" *ngIf="isColorSwatchPickerShown" [@showHide]>
+            <color-twitter
+                triangle="top-right"
+                [colors]="colors"
+                (onChange)="handleColorSwatchChange($event)"
+                (onChangeComplete)="handleColorSwatchChangeComplete($event)">
+            </color-twitter>
+          </div>
         </div>
       </div>
-      <!-- </div> -->
-
     </div>
   </div>
   
-
+  <!-- Location Input -->
   <div class="form-group">
     <label for="location">Location <small class="text-danger">*</small></label>
     <input type="text" class="form-control" formControlName="location" />
   </div>
 
+  <!-- Description Textarea -->
   <div class="form-group">
     <label for="Description">Description <small class="text-danger">*</small></label>
     <textarea class="form-control" rows="6" formControlName="description"></textarea>
   </div>
 </div>
-
-              

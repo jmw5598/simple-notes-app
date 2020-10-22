@@ -1,15 +1,26 @@
-.color-input {
-  .color-picker {
-    position: relative;
+.color-swatch {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+
+  .color-swatch-picker {
+    
 
     color-twitter {
       position: absolute;
       top: 16px;
-      left: 0;
+      right: 0;
     }
   }
 
-  .color-picker-input-container {
+  .color-swatch-input-container {
+    position: relative;
+    .color-swatch-selected {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
     .color-picker-input {
       border-radius: 4px;
     }

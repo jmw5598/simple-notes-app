@@ -10,6 +10,7 @@ import { fadeAnimation, showHide } from '../../animations';
   animations: [fadeAnimation, showHide]
 })
 export class CalendarEventFormComponent implements OnInit, AfterViewInit {
+  private readonly ENTER_KEY: number = 13;
   public form: FormGroup;
   public colors: string[] = HEX_COLOR_STRING_ARRAY;
   public isColorSwatchPickerShown: boolean = false;
@@ -48,9 +49,16 @@ export class CalendarEventFormComponent implements OnInit, AfterViewInit {
   }
 
   public handleColorSwatchChange(color: any): void {
-    this.selectedHexColor = color.color.hex;
-    this.isColorSwatchPickerShown = !this.isColorSwatchPickerShown;
-    this.form.get('color').patchValue(color.color.hex);
+    color.$event.preventDefault();
+  }
+
+  public handleColorSwatchChangeComplete(color: any): void {
+    color.$event.preventDefault();
+    if (color.$event instanceof MouseEvent || color.$event.keyCode === this.ENTER_KEY) {
+      this.selectedHexColor = color.color.hex;
+      this.isColorSwatchPickerShown = !this.isColorSwatchPickerShown;
+      this.form.get('color').patchValue(color.color.hex);
+    }
   }
 
   private _setFocusToTitleInput(): void {

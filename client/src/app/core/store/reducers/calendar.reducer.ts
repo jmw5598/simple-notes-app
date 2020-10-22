@@ -14,7 +14,7 @@ const _calendarReducer = createReducer(
     return {
       ...state,
       currentCalendarEvents: [
-        ...state.currentCalendarEvents,
+        ...state.currentCalendarEvents || [],
         event
       ]
     }

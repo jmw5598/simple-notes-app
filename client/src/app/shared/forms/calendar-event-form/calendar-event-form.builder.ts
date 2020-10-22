@@ -11,7 +11,7 @@ export const buildCalendarEventFormGroup = (formBuilder: FormBuilder): FormGroup
     isAllDay: [false, [Validators.required]],
     color: ['', [
       Validators.required, 
-      Validators.pattern(/^[#]{1}[A-Fa-f0-9]{6}$/g)
+      Validators.pattern(/^[#]{1}[A-Fa-f0-9]{6}$/)
     ]],
     location: ['', [Validators.required]],
     description: ['', [Validators.required]]
