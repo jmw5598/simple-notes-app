@@ -81,6 +81,7 @@
           <div class="color-swatch-picker col-3 float-right" *ngIf="isColorSwatchPickerShown" [@showHide]>
             <color-twitter
                 triangle="top-right"
+                width="312"
                 [color]="form.get('color').value"
                 [colors]="colors"
                 (onChange)="handleColorSwatchChange($event)"
