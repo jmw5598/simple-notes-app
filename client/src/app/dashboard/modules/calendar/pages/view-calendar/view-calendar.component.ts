@@ -100,6 +100,15 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
     }));
   }
 
+  public handleEventDataTransform(event: any) {
+    if (event.allDay) {
+      const endDate: Date = new Date(event.end);
+      endDate.setDate(endDate.getDate() + 1);
+      event.end = endDate;
+    }
+    return event;
+  }
+
   private _configureCalendarOptions(): void {
     this.calendarOptions = CALENDAR_OPTIONS_DEFAULT;
     this.calendarOptions.dateClick = this.handleCalendarDateClick.bind(this);
@@ -110,6 +119,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
     this.calendarOptions.eventSources = [
       { id: 'calendarEventSource', events: this.handleCalendarEventsFetch.bind(this) }
     ];
+    this.calendarOptions.eventDataTransform = this.handleEventDataTransform.bind(this);
   }
 
   private _mapCalendarEvents(events: CalendarEvent[]): EventInput[] {
