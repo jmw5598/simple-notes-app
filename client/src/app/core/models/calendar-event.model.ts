@@ -5,6 +5,7 @@ export class CalendarEvent extends BaseModel {
   public startDateTime: Date;
   public endDateTime: Date;
   public isAllDay: boolean;
+  public color: string;
   public location: string;
   public description: string;
 }

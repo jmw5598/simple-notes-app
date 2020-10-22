@@ -1,11 +1,13 @@
 import { Component, OnInit, AfterViewInit, Renderer2 } from '@angular/core';
 import { FormGroup, ControlContainer } from '@angular/forms';
 import { HEX_COLOR_STRING_ARRAY } from '../../defaults/colors.defaults';
+import { fadeAnimation, showHide } from '../../animations';
 
 @Component({
   selector: 'sn-calendar-event-form',
   templateUrl: './calendar-event-form.component.html',
-  styleUrls: ['./calendar-event-form.component.scss']
+  styleUrls: ['./calendar-event-form.component.scss'],
+  animations: [fadeAnimation, showHide]
 })
 export class CalendarEventFormComponent implements OnInit, AfterViewInit {
   public form: FormGroup;
@@ -26,6 +28,8 @@ export class CalendarEventFormComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.form = this._parentControl.control as FormGroup;
+    this.selectedHexColor = HEX_COLOR_STRING_ARRAY[0];
+    this.form.get('color').patchValue(this.selectedHexColor);
   }
 
   ngAfterViewInit(): void {
@@ -44,8 +48,9 @@ export class CalendarEventFormComponent implements OnInit, AfterViewInit {
   }
 
   public handleColorSwatchChange(color: any): void {
-    console.log(color);
     this.selectedHexColor = color.color.hex;
+    this.isColorSwatchPickerShown = !this.isColorSwatchPickerShown;
+    this.form.get('color').patchValue(color.color.hex);
   }
 
   private _setFocusToTitleInput(): void {

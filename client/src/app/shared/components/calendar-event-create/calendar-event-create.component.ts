@@ -11,6 +11,7 @@ import { CalendarEvent, ResponseMessage } from '@sn/core/models';
 import { showHide } from '../../animations';
 import { buildCalendarEventFormGroup } from '../../forms/calendar-event-form/calendar-event-form.builder';
 import { CalendarEventFormComponent } from '../../forms/calendar-event-form/calendar-event-form.component';
+import { HEX_COLOR_STRING_ARRAY } from '../../defaults/colors.defaults';
 
 @Component({
   selector: 'sn-calendar-event-create',
@@ -75,7 +76,8 @@ export class CalendarEventCreateComponent implements OnInit, AfterViewInit {
       description: value.description || '',
       startDateTime: startDateTime || new Date(),
       endDateTime: endDateTime || new Date(),
-      isAllDay: value.isAllDay || false
+      isAllDay: value.isAllDay || false,
+      color: value.color || HEX_COLOR_STRING_ARRAY[0]
     } as CalendarEvent;
     this._store.dispatch(createCalendarEvent({ event: event }));
   }

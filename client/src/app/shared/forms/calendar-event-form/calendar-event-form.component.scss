@@ -5,7 +5,7 @@
     color-twitter {
       position: absolute;
       top: 16px;
-      right: 0;
+      left: 0;
     }
   }
 
@@ -14,4 +14,12 @@
       border-radius: 4px;
     }
   }
+}
+
+.color-swatch-input {
+  border: 0;
+  outline: 0;
+  width: 72px;
+  border-radius: 4px;
+  
 }

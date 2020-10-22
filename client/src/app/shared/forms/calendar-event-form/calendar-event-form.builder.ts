@@ -9,6 +9,10 @@ export const buildCalendarEventFormGroup = (formBuilder: FormBuilder): FormGroup
     endDate: ['', [Validators.required]],
     endTime: ['', [Validators.required]],
     isAllDay: [false, [Validators.required]],
+    color: ['', [
+      Validators.required, 
+      Validators.pattern(/^[#]{1}[A-Fa-f0-9]{6}$/g)
+    ]],
     location: ['', [Validators.required]],
     description: ['', [Validators.required]]
   });
