@@ -9,6 +9,7 @@ import { deleteCalendarEvent, setUpdateCalendarEventResponseMessage, updateCalen
 import { CalendarEvent, ResponseMessage } from '@sn/core/models';
 import { buildCalendarEventFormGroup } from '@sn/shared/forms';
 import { selectUpdateCalendarEventResponseMessage } from '@sn/core/store/selectors';
+import { HEX_COLOR_STRING_ARRAY } from '@sn/shared/defaults/colors.defaults';
 
 @Component({
   selector: 'sn-calendar-event-view',
@@ -73,7 +74,9 @@ export class CalendarEventViewComponent implements OnInit {
       description: value.description || '',
       startDateTime: startDateTime || new Date(),
       endDateTime: endDateTime || new Date(),
-      isAllDay: value.isAllDay || false
+      isAllDay: value.isAllDay || false,
+      color: value.color || HEX_COLOR_STRING_ARRAY[0]
+
     } as CalendarEvent;
 
     this._store.dispatch(updateCalendarEvent({ id: event.id, event: event }));

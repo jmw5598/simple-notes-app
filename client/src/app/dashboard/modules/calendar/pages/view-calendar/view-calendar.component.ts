@@ -127,8 +127,6 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   } 
 
   private _generateDateTimeValue(date: Date, time: Date): Date {
-    console.log("date", date);
-    console.log("time", time);
     date.setHours(time.getHours());
     date.setMinutes(time.getMinutes());
     date.setSeconds(time.getSeconds());

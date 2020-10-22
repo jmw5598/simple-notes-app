@@ -72,7 +72,7 @@
           <div 
               class="color-swatch-selected mr-3 mt-1"
               (click)="showColorSwatchPicker()"
-              [style.background-color]="selectedHexColor">
+              [style.background-color]="form.get('color').value">
           </div>
           <input 
               type="hidden" 
@@ -81,6 +81,7 @@
           <div class="color-swatch-picker col-3 float-right" *ngIf="isColorSwatchPickerShown" [@showHide]>
             <color-twitter
                 triangle="top-right"
+                [color]="form.get('color').value"
                 [colors]="colors"
                 (onChange)="handleColorSwatchChange($event)"
                 (onChangeComplete)="handleColorSwatchChangeComplete($event)">

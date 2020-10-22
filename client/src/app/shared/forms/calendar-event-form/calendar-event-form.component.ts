@@ -14,7 +14,6 @@ export class CalendarEventFormComponent implements OnInit, AfterViewInit {
   public form: FormGroup;
   public colors: string[] = HEX_COLOR_STRING_ARRAY;
   public isColorSwatchPickerShown: boolean = false;
-  public selectedHexColor: string = HEX_COLOR_STRING_ARRAY[0];
 
   public datepickerConfig = { 
     adaptivePosition: true, 
@@ -29,8 +28,7 @@ export class CalendarEventFormComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.form = this._parentControl.control as FormGroup;
-    this.selectedHexColor = HEX_COLOR_STRING_ARRAY[0];
-    this.form.get('color').patchValue(this.selectedHexColor);
+    this.form.get('color').patchValue(HEX_COLOR_STRING_ARRAY[0]);
   }
 
   ngAfterViewInit(): void {
@@ -50,12 +48,13 @@ export class CalendarEventFormComponent implements OnInit, AfterViewInit {
 
   public handleColorSwatchChange(color: any): void {
     color.$event.preventDefault();
+    
+    console.log(color);
   }
 
   public handleColorSwatchChangeComplete(color: any): void {
     color.$event.preventDefault();
     if (color.$event instanceof MouseEvent || color.$event.keyCode === this.ENTER_KEY) {
-      this.selectedHexColor = color.color.hex;
       this.isColorSwatchPickerShown = !this.isColorSwatchPickerShown;
       this.form.get('color').patchValue(color.color.hex);
     }
