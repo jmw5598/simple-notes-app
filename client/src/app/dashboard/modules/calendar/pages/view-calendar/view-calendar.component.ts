@@ -101,9 +101,10 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   }
 
   public handleEventDataTransform(event: any) {
-    if (event.allDay) {
-      const endDate: Date = new Date(event.end);
-      endDate.setDate(endDate.getDate() + 1);
+    const endDate: Date = new Date(event.end);
+    if (event.allDay && endDate.getHours() === 0) {
+      endDate.setHours(endDate.getHours() + 23);
+      endDate.setMinutes(endDate.getMinutes() + 59);
       event.end = endDate;
     }
     return event;
