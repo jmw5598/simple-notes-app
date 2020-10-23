@@ -1,3 +1,4 @@
 <span class="spinner-outer">
   <span class="spinner-inner"></span>
+  <span *ngIf="message" class="spinner-text">{{ message || '' }}</span>
 </span>

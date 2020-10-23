@@ -6,9 +6,11 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./spinner.component.scss']
 })
 export class SpinnerComponent implements OnInit {
+  @Input()
+  public isSpinning: boolean;
 
   @Input()
-  isSpinning: boolean;
+  public message: string;
 
   constructor() {
     this.isSpinning = false;
