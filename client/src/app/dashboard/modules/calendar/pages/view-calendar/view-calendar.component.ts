@@ -28,6 +28,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
 
   private _subscriptionSubject: Subject<void>; 
   public calendarOptions: CalendarOptions = CALENDAR_OPTIONS_DEFAULT;
+  public areCalendarEventsLoading: boolean = false;
 
   constructor(
     private _store: Store<IAppState>,
@@ -42,7 +43,9 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._subscriptionSubject))
       .subscribe((events: CalendarEvent[]) => {
         if (events) {
-          this.calendarOptions.events = this._mapCalendarEvents(events);
+          const renderableEvents = this._mapCalendarEvents(events)
+          this.calendar.getApi().removeAllEvents();
+          renderableEvents.forEach(e => this.calendar.getApi().addEvent(e))
         }
       });
   }
@@ -50,14 +53,12 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   public handleCalendarEventsFetch(info, success, error): void {
     const startDate: Date = new Date(info.startStr);
     const endDate: Date = new Date(info.endStr);
-    
     this._store.dispatch(setCurrentCalendarEvents({ events: null }));
     this._store.dispatch(setCurrentCalendarDateRanges({ startDate, endDate }));
     this._store.dispatch(getCalendarEventsBetweenDates({
       startDate: startDate,
       endDate: endDate
     }));
-
     success([]);
   }
 
@@ -76,8 +77,11 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   }
 
   public handleCalendarEventSourceLoading(args): void {
-    console.log("loading? ", args);
-    // TODO creating loading spinner??
+    if (args) {
+      setTimeout(() => this.areCalendarEventsLoading = true);
+    } else {
+      setTimeout(() => this.areCalendarEventsLoading = false);
+    }
   }
 
   public handleCalendarEventEdit(args): void {
@@ -145,6 +149,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this._store.dispatch(setCurrentCalendarEvents({ events: null }));
     this._subscriptionSubject.next();
     this._subscriptionSubject.complete();
   }

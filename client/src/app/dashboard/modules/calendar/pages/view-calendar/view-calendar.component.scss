@@ -1,0 +1,21 @@
+.calendar-container {
+  position: relative;
+
+  .calendar-events-loading {
+    position: absolute;
+    top: 0.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .calendar-container {
+    .calendar-events-loading {
+      bottom: -2rem;
+      top: initial;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
