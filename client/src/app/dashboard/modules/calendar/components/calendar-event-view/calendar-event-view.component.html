@@ -1,15 +1,4 @@
 <div>
-  <!-- 
-    Need to switch between 2 modes, edit and display.
-    - Should these be separate dummy components or just put into this component?
-    - calendar-event-details - display component
-    - calendar-event-edit - edit component
-    - calendar-event-view - wrapper component that switch between dummy components
-    
-    - TODO rename calendar-event-add-model t- calendar-event-create or add?
-  
-  -->
-
   <ng-container [ngSwitch]="calendarEventView">
     <ng-container *ngSwitchCase="'display'">
       <sn-calendar-event-details
