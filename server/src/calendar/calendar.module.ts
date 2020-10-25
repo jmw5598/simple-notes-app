@@ -19,4 +19,4 @@ import { CalendarEvent } from './entities/calendar-event.entity';
     CalendarEventsService
   ]
 })
-export class CalendarEventsModule {}
+export class CalendarModule {}

@@ -6,8 +6,8 @@ import { User } from '../../users/entities/user.entity';
 import { StripeCustomer } from './stripe-customers.entity';
 import { Topic } from '../../topics/entities/topic.entity';
 import { Document } from '../../documents/entities/document.entity';
-import { CalendarEvent } from '../../calendar-events/entities/calendar-event.entity';
-import { CalendarIntegration } from 'src/calendar-events/entities/calendar-integration.entity';
+import { CalendarEvent } from '../../calendar/entities/calendar-event.entity';
+import { CalendarIntegration } from '../../calendar/entities/calendar-integration.entity';
 
 @Entity()
 export class Account extends BaseEntity {
