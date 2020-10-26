@@ -1,3 +1,31 @@
-<div [@fadeAnimation]>
-  <h2 class="font-weight-bold">General</h2>
+<div class="account-settings-general" [@fadeAnimation]>
+  <h4 class="font-weight-bold mb-3">
+    <span *ngIf="isEditingProfile">Editing</span> Profile
+    <span
+        *ngIf="!isEditingProfile" 
+        (click)="editProfile(true)"
+        class="btn btn-sm btn-outline-primary btn-border-none float-right">
+      <i class="fas fa-edit icon-margin"></i>
+      Edit
+    </span>
+  </h4>
+  <hr />
+  <form [formGroup]="form" (ngSubmit)="onUpdateProfile(form.value)" novalidate>
+    <ng-container *ngIf="isEditingProfile; else displayProfile">
+      <div>
+        <sn-account-details-form
+            (onEditingComplete)="onEditingComplete($event)">
+        </sn-account-details-form>
+        <div class="form-group mt-2">
+          <button class="btn btn-primary mr-2" type="submit">Save</button>
+          <button class="btn btn-secondary" type="button" (click)="onEditingProfile(false)">Cancel</button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #displayProfile>
+      <sn-account-details-display
+          [profile]="(accountProfile$ | async)">
+      </sn-account-details-display>
+    </ng-template>
+  </form>
 </div>
