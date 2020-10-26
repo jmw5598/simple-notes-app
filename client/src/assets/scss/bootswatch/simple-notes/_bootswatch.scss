@@ -268,23 +268,29 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400
 }
 
 .nav-tabs {
-
+  border-bottom: $card-border-width solid $card-border-color;
   .nav-link {
     color: $body-color;
+    background: $gray-100;
+    margin-right: 4px;
+    border: $card-border-width solid $card-border-color;
 
     &,
     &.disabled,
     &.disabled:hover,
     &.disabled:focus {
-      margin-top: 6px;
+      // margin-top: 6px;
       border-color: $nav-tabs-border-color;
+      border-radius: 0;
+      border-bottom: $card-border-width solid $card-border-color;
       transition: all 0.2s ease-in-out;
     }
 
     &:not(.disabled):hover,
     &:not(.disabled):focus,
     &.active {
-      padding-bottom: calc(0.5em + 6px);
+      // padding-bottom: calc(0.5em + 6px);
+      border: $card-border-width solid $card-border-color;
       border-bottom-color: transparent;
       margin-top: 0;
     }
