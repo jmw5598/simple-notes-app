@@ -19,7 +19,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { DebounceDirective } from './directives/debounce.directive';
 
-import { ColorTwitterModule } from 'ngx-color/twitter'; // <color-twitter></color-twitter>
+import { ColorTwitterModule } from 'ngx-color/twitter';
+import { PageHeaderComponent } from './components/page-header/page-header.component'; // <color-twitter></color-twitter>
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ColorTwitterModule } from 'ngx-color/twitter'; // <color-twitter></colo
     TopicSearchComponent,
     CalendarEventFormComponent,
     CalendarEventCreateComponent,
-    DebounceDirective
+    DebounceDirective,
+    PageHeaderComponent
   ],
   imports: [
     CommonModule,
@@ -61,7 +63,8 @@ import { ColorTwitterModule } from 'ngx-color/twitter'; // <color-twitter></colo
     TopicSearchComponent,
     CalendarEventFormComponent,
     CalendarEventCreateComponent,
-    DebounceDirective
+    DebounceDirective,
+    PageHeaderComponent
   ],
   providers: [
     DrawerService
