@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="card-body">
+
+    <!-- Avatar -->
+    <div class="row">
+      <div class="col-sm-12 py-3 px-5">
+        <img src="assets/images/default-avatar.svg" class="img-fluid rounded-circle" style="width: 100%;" />
+      </div>
+    </div>
+
+    <!-- Details -->
+    <div class="row">
+      <div class="col-sm-12">
+        <h3 class="mt-3 text-center font-weight-bold">{{ profile?.firstName }} {{ profile?.lastName }}</h3>
+        <h5 class="mb-4 text-center text-sm text-dark font-style-italic">{{ profile?.email }}</h5>
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div class="row">
+      <div class="col-sm-12">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <strong>Account Status:</strong><span class="float-right badge badge-success badge-pill">Active</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>

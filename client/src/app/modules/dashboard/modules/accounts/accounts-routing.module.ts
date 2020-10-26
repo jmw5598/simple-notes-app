@@ -1,23 +1,36 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountDetailsGuard, AccountProfileGuard } from '@sn/core/guards';
-import { AccountDetailsComponent } from './pages/account-details/account-details.component';
 import { AccountSettingsComponent } from './pages/account-settings/account-settings.component';
 
 const routes: Routes = [
   {
-    path: 'details',
-    canActivate: [AccountDetailsGuard, AccountProfileGuard],
-    component: AccountDetailsComponent
-  },
-  {
     path: 'settings',
-    canActivate: [], // TODO need guards to get settings, need to create ngrx state also
-    component: AccountSettingsComponent
+    canActivate: [AccountDetailsGuard, AccountProfileGuard],
+    component: AccountSettingsComponent,
+    children: [
+      {
+        path: 'general',
+        loadChildren: () => import('./modules/account-settings-general/account-settings-general.module').then(m => m.AccountSettingsGeneralModule)
+      },
+      {
+        path: 'security',
+        loadChildren: () => import('./modules/account-settings-security/account-settings-security.module').then(m => m.AccountSettingsSecurityModule)
+      },
+      {
+        path: 'integrations',
+        loadChildren: () => import('./modules/account-settings-integrations/account-settings-integrations.module').then(m => m.AccountSettingsIntegrationsModule)
+      },
+      {
+        path: '**',
+        redirectTo: 'general',
+        pathMatch: 'full'
+      }
+    ]
   },
   {
     path: '**',
-    redirectTo: 'details',
+    redirectTo: 'settings',
     pathMatch: 'full'
   }
 ];

@@ -1,8 +1,36 @@
 <div [@fadeAnimation] class="container-navbar-adjust container">
   <div class="row">
-    <div clas="col-sm-12">
-      <h2>Account Settings</h2>
-      <blockquote>Account settings and intergrations will go here....</blockquote>
+    <div class="col-sm-12">
+      <sn-page-header
+          [heading]="'Account Settings'">
+      </sn-page-header>
+    </div>
+  </div>
+  <div class="row">
+    <!-- Column Left -->
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 mb-4">
+      <sn-account-user-card
+          [account]="accountDetails$ | async"
+          [profile]="accountProfile$ | async">
+      </sn-account-user-card>
+    </div>
+    <!-- Column Right -->
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
+      <div class="row mb-4">
+        <div class="col-sm-12">
+          <!-- Navigation Tabs -->
+          <tabset>
+            <tab heading="General" id="tab1" (selectTab)="navigateTo('general')"></tab>
+            <tab heading="Security" (selectTab)="navigateTo('security')"></tab>
+            <tab heading="Integrations" (selectTab)="navigateTo('integrations')"></tab>
+          </tabset>
+          <div class="card" style="border-top: 0;">
+            <div class="card-body">
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
