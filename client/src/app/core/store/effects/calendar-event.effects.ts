@@ -11,7 +11,7 @@ import { ResponseMessage } from '@sn/core/models';
 import { ResponseStatus } from '@sn/core/enums';
 
 @Injectable()
-export class CalendarEffects {
+export class CalendarEventEffects {
   constructor(
     private _actions: Actions,
     private _calendarEventsService: CalendarEventsService

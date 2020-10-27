@@ -1,9 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
-import { initialCalendarState } from '../state/calendar.state';
+import { initialCalendarEventState } from '../state/calendar-event.state';
 import * as fromActions from '../actions';
 
-const _calendarReducer = createReducer(
-  initialCalendarState,
+const _calendarEventReducer = createReducer(
+  initialCalendarEventState,
   on(fromActions.setCurrentCalendarEvents, (state, { events }) => {
     return {
       ...state,
@@ -64,6 +64,6 @@ const _calendarReducer = createReducer(
   })
 );
 
-export function calendarReducer(state, action) {
-  return _calendarReducer(state, action);
+export function calendarEventReducer(state, action) {
+  return _calendarEventReducer(state, action);
 }

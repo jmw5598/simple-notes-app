@@ -19,8 +19,10 @@ import { sectionReducer } from './store/reducers/section.reducer';
 import { topicReducer } from './store/reducers/topic.reducer';
 import { TopicEffects } from './store/effects/topic.effects';
 import { AuthenticationService } from './services';
-import { CalendarEffects } from './store/effects/calendar.effects';
-import { calendarReducer } from './store/reducers/calendar.reducer';
+import { CalendarEventEffects } from './store/effects/calendar-event.effects';
+import { calendarEventReducer } from './store/reducers/calendar-event.reducer';
+import { CalendarIntegrationEffects } from './store/effects/calendar-integration.effects';
+import { calendarIntegrationReducer } from './store/reducers/calendar-integration.reducer';
 
 const jwtTokenInterceptor = {
   provide: HTTP_INTERCEPTORS,
@@ -45,7 +47,8 @@ const authenticationAppInitializer = {
       plans: planReducer,
       sections: sectionReducer,
       topics: topicReducer,
-      calendar: calendarReducer
+      calendarEvents: calendarEventReducer,
+      calendarIntegrations: calendarIntegrationReducer
     }, { metaReducers: [resetStateOnLogout] }),
     EffectsModule.forRoot([
       AccountEffects,
@@ -54,7 +57,8 @@ const authenticationAppInitializer = {
       PlanEffects,
       SectionEffects,
       TopicEffects,
-      CalendarEffects
+      CalendarEventEffects,
+      CalendarIntegrationEffects
     ]),
     HttpClientModule,
   ],
