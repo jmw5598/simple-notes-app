@@ -1,31 +1,14 @@
 <div class="account-settings-general" [@fadeAnimation]>
   <h4 class="font-weight-bold mb-3">Integrations</h4>
   <hr />
-  
   <div class="card calendar-integration-container">
     <div class="card-body">
       <h5 class="font-weight-bold mb-3">Calendar Integrations</h5>
-
-      <div class="row">
+      <div *ngFor="let integration of calendarIntegrationsGroupedByType$ | async" class="row">
         <div class="col-sm-12">
-          <sn-calendar-integration [integration]="googleCalendarIntegration"></sn-calendar-integration>
+          <sn-calendar-integration [integration]="integration"></sn-calendar-integration>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <sn-calendar-integration [integration]="iCalendarIntegration"></sn-calendar-integration>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <sn-calendar-integration [integration]="yahooCalendarIntegration"></sn-calendar-integration> 
-        </div>
-      </div>
-
     </div>
   </div>
-
-  <pre>{{ (calendarIntegrationsGroupedByType$ | async) | json }}</pre>
-
-  <!-- <button role="button" type="button" (click)="authorizeGoogleCalendarIntegration()">Google Calendar</button> -->
 </div>

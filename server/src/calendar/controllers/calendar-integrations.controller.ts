@@ -20,12 +20,23 @@ export class CalendarIntegrationsController {
   }
 
   @Get()
-  public async getCalendarIntegrations(@Request() request): Promise<CalendarIntegrationTypeDto[]> {
+  public async getCalendarIntegration(@Request() request): Promise<CalendarIntegrationDto[]> {
+    try {
+      const accountId: number = +request.user.accountId;
+      return this._calendarIntegrationsService.getCalendarIntegrations(accountId);
+    } catch (error) {
+      this._logger.error(`Error getting calendar integrations, please try gain!`, error);
+      throw error;
+    }
+  }
+
+  @Get('bytype')
+  public async getCalendarIntegrationsGroupedByType(@Request() request): Promise<CalendarIntegrationTypeDto[]> {
     try {
       const accountId: number = +request.user.accountId;
       return this._calendarIntegrationsService.getCalendarIntegrationsGroupedByType(accountId); 
     } catch (error) {
-      this._logger.error(`Error getting calendar integrations, please try again`, error);
+      this._logger.error(`Error getting calendar integrations, please try again!`, error);
       throw error;
     }
   }

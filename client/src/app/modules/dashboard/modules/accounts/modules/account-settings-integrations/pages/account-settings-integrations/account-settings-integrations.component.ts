@@ -16,20 +16,6 @@ import { selectCalendarIntegrationsGroupedByType } from '@sn/core/store/selector
 export class AccountSettingsIntegrationsComponent implements OnInit {
   public IntegrationStatus = IntegrationStatus;
   public calendarIntegrationsGroupedByType$: Observable<CalendarIntegrationType[]>;
-  public googleCalendarIntegration: CalendarIntegrationState = {
-    type: 'Google Calendar',
-    status: IntegrationStatus.ACTIVE
-  } as CalendarIntegrationState;
-
-  public iCalendarIntegration: CalendarIntegrationState = {
-    type: 'iCalendar',
-    status: IntegrationStatus.EXPIRED
-  } as CalendarIntegrationState;
-
-  public yahooCalendarIntegration: CalendarIntegrationState = {
-    type: 'Yahoo Calendar',
-    status: IntegrationStatus.INACTIVE
-  } as CalendarIntegrationState;
 
   constructor(
     private _store: Store<IAppState>
@@ -42,5 +28,4 @@ export class AccountSettingsIntegrationsComponent implements OnInit {
   public authorizeGoogleCalendarIntegration(): void {
     this._store.dispatch(authorizeGoogleCalendarIntegration());
   }
-
 }

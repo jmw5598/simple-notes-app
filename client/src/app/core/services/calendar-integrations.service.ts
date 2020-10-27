@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { AbstractCrudService } from './abstract-crud.service';
 import { CalendarIntegration } from '../models/calendar-integration.model';
+import { CalendarIntegrationType } from '../models/calendar-integration-type.model';
 import { environment } from '@env/environment';
 
 @Injectable({
@@ -19,4 +20,7 @@ export class CalendarIntegrationsService extends AbstractCrudService<CalendarInt
   }
 
   // TODO create endpoint to findAllGroupedByType
+  public findAllGroupedByType(): Observable<CalendarIntegrationType[]> {
+    return this._http.get<CalendarIntegrationType[]>(`${environment.api.baseUrl}/calendar/integrations/bytype`);
+  }
 }

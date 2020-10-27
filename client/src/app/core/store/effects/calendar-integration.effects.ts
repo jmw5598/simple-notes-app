@@ -22,7 +22,7 @@ export class CalendarIntegrationEffects {
 
   getCalendarIntegrations$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.getCalendarIntegrationsGroupedByType),
-    switchMap(() => this._calendarIntegrationsService.findAll()
+    switchMap(() => this._calendarIntegrationsService.findAllGroupedByType()
       .pipe(
         map(integrations => fromActions.getCalendarIntegrationsGroupedByTypeSuccess({ integrations: integrations })),
         catchError(error => of(fromActions.handleHttpError({ error: error })))

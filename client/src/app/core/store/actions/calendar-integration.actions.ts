@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ResponseMessage, CalendarIntegration } from '../../models';
+import { ResponseMessage, CalendarIntegration, CalendarIntegrationType } from '../../models';
 
 export const authorizeGoogleCalendarIntegration = createAction(
   '[Calendar Integrations] Authorize Google Calendar Integration'
@@ -16,7 +16,7 @@ export const getCalendarIntegrationsGroupedByType = createAction(
 
 export const getCalendarIntegrationsGroupedByTypeSuccess = createAction(
   '[Calendar Integration] Get Calendar Integrations Grouped By Type Success',
-  props<{ integrations: CalendarIntegration[] }>()
+  props<{ integrations: CalendarIntegrationType[] }>()
 );
 
 export const createGoogleCalendarIntegration = createAction(

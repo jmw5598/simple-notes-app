@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CalendarIntegrationState, IntegrationStatus } from 'src/app/core/models';
+import { CalendarIntegration, CalendarIntegrationState, IntegrationStatus } from 'src/app/core/models';
+import { CalendarIntegrationType } from '@sn/core/models';
 
 @Component({
   selector: 'sn-calendar-integration',
@@ -8,7 +9,7 @@ import { CalendarIntegrationState, IntegrationStatus } from 'src/app/core/models
 })
 export class CalendarIntegrationComponent implements OnInit {
   @Input()
-  public integration: CalendarIntegrationState;
+  public integration: CalendarIntegrationType;
 
   @Output()
   public onActivateIntegration: EventEmitter<CalendarIntegrationState>;
@@ -28,5 +29,9 @@ export class CalendarIntegrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  public isTokenExpired(date: Date): boolean {
+    return new Date(date) < new Date();
   }
 }
