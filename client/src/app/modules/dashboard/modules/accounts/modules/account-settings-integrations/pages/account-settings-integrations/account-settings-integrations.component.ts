@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { IAppState } from '@sn/core/store/state';
+import { authorizeGoogleCalendarIntegration } from '@sn/core/store/actions';
 import { fadeAnimation } from '@sn/shared/animations';
 
 @Component({
@@ -9,9 +12,15 @@ import { fadeAnimation } from '@sn/shared/animations';
 })
 export class AccountSettingsIntegrationsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _store: Store<IAppState>
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  public authorizeGoogleCalendarIntegration(): void {
+    this._store.dispatch(authorizeGoogleCalendarIntegration());
   }
 
 }
