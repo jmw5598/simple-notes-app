@@ -19,3 +19,8 @@ export * from './paging/sort-direction.enum';
 export * from './paging/sort.model';
 export * from './paging/sortable.interface';
 export * from './paging/pageable-search.model';
+
+export * from './calendar-integration.model';
+export * from './calendar-integration-type.model';
+export * from './integrations/integration-status.enum';
+export * from './integrations/calendar-integration-state.model';

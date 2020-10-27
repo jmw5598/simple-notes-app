@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { CalendarIntegrationsService } from '../../services/calendar-integrations.service';
-import { handleHttpError } from '../actions/http-error.actions';
 import { of } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import * as fromActions from '../actions';
-import { createCalendarEventSuccess, deleteCalendarEventSuccess, setCreateCalendarEventResponseMessage, setDeleteCalendarEventResponseMessage, setUpdateCalendarEventResponseMessage, updateCalendarEventSuccess } from '../actions';
-import { ResponseMessage } from '@sn/core/models';
-import { ResponseStatus } from '@sn/core/enums';
+import { ResponseMessage } from '../../models';
+import { ResponseStatus } from '../../enums';
 
 @Injectable()
 export class CalendarIntegrationEffects {
@@ -21,4 +19,14 @@ export class CalendarIntegrationEffects {
     ofType(fromActions.authorizeGoogleCalendarIntegration),
     switchMap(() => this._calendarIntegrationsService.authorizeGoogleCalendarIntegration())
   ), { dispatch: false });
+
+  getCalendarIntegrations$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.getCalendarIntegrationsGroupedByType),
+    switchMap(() => this._calendarIntegrationsService.findAll()
+      .pipe(
+        map(integrations => fromActions.getCalendarIntegrationsGroupedByTypeSuccess({ integrations: integrations })),
+        catchError(error => of(fromActions.handleHttpError({ error: error })))
+      )
+    )
+  ));
 }

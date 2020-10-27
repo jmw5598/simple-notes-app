@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { AccountSettingsIntegrationsRoutingModule } from './account-settings-integrations-routing.module';
 import { AccountSettingsSecurityModule } from '../account-settings-security/account-settings-security.module';
 import { AccountSettingsIntegrationsComponent } from './pages/account-settings-integrations/account-settings-integrations.component';
+import { CalendarIntegrationComponent } from './components/calendar-integration/calendar-integration.component';
 
 @NgModule({
   declarations: [
-    AccountSettingsIntegrationsComponent
+    AccountSettingsIntegrationsComponent,
+    CalendarIntegrationComponent
   ],
   imports: [
     AccountSettingsIntegrationsRoutingModule,

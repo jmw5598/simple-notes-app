@@ -6,3 +6,4 @@ export * from './account-details.guard';
 export * from './account-profile.guard';
 export * from './sections-search-result.guard';
 export * from './topics-search-result.guard';
+export * from './calendar-integrations-grouped-by-type.guard';

@@ -1,18 +1,33 @@
-import { Controller, Get, Redirect, UseGuards } from '@nestjs/common';
+import { Controller, Get, Redirect, UseGuards, Request } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { SnLoggerService } from '../../logger/sn-logger.service';
 import { ResponseMessage } from '../../common/models/response-message.model';
 import { ResponseStatus } from '../../common/enums/response-status.enum';
 import { JwtAuthenticationGuard } from '../../authentication/guards/jwt-authentication.guard';
+import { CalendarIntegrationDto } from '../dtos/calendar-integration.dto';
+import { CalendarIntegrationTypeDto } from '../dtos/calendar-integration-type.dto';
+import { CalendarIntegrationsService } from '../services/calendar-integrations.service';
 
 @Controller('calendar/integrations')
-// @UseGuards(JwtAuthenticationGuard)
+@UseGuards(JwtAuthenticationGuard)
 export class CalendarIntegrationsController {
   constructor(
     private readonly _logger: SnLoggerService,
-    private readonly _configService: ConfigService
+    private readonly _configService: ConfigService,
+    private readonly _calendarIntegrationsService: CalendarIntegrationsService
   ) {
     this._logger.setContext(this.constructor.name);
+  }
+
+  @Get()
+  public async getCalendarIntegrations(@Request() request): Promise<CalendarIntegrationTypeDto[]> {
+    try {
+      const accountId: number = +request.user.accountId;
+      return this._calendarIntegrationsService.getCalendarIntegrationsGroupedByType(accountId); 
+    } catch (error) {
+      this._logger.error(`Error getting calendar integrations, please try again`, error);
+      throw error;
+    }
   }
 
   @Get('google')

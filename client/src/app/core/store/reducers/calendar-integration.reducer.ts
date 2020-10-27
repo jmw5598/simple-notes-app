@@ -3,7 +3,13 @@ import { initialCalendarIntegrationState } from '../state/calendar-integration.s
 import * as fromActions from '../actions';
 
 const _calendarIntegrationReducer = createReducer(
-  initialCalendarIntegrationState
+  initialCalendarIntegrationState,
+  on(fromActions.getCalendarIntegrationsGroupedByTypeSuccess, (state, { integrations }) => {
+    return {
+      ...state,
+      calendarIntegrationsGroupedByType: integrations
+    }
+  })
 );
 
 export function calendarIntegrationReducer(state, action) {

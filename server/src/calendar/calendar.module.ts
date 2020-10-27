@@ -5,6 +5,9 @@ import { CalendarEventsController } from './controllers/calendar-events.controll
 import { CalendarEventsService } from './services/calendar-events.service';
 import { CalendarEvent } from './entities/calendar-event.entity';
 import { CalendarIntegrationsController } from './controllers/calendar-integrations.controller';
+import { CalendarIntegrationsService } from './services/calendar-integrations.service';
+import { CalendarIntegration } from './entities/calendar-integration.entity';
+import { CalendarIntegrationType } from './entities/calendar-integration-type.entity';
 
 @Module({
   controllers: [
@@ -14,11 +17,14 @@ import { CalendarIntegrationsController } from './controllers/calendar-integrati
   imports: [
     LoggerModule,
     TypeOrmModule.forFeature([
-      CalendarEvent
+      CalendarEvent,
+      CalendarIntegration,
+      CalendarIntegrationType
     ])
   ],
   providers: [
-    CalendarEventsService
+    CalendarEventsService,
+    CalendarIntegrationsService
   ]
 })
 export class CalendarModule {}

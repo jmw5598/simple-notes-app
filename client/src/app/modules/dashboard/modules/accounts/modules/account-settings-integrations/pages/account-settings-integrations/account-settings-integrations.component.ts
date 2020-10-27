@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IAppState } from '@sn/core/store/state';
 import { authorizeGoogleCalendarIntegration } from '@sn/core/store/actions';
+import { CalendarIntegrationState, CalendarIntegrationType, IntegrationStatus } from '@sn/core/models';
 import { fadeAnimation } from '@sn/shared/animations';
+import { selectCalendarIntegrationsGroupedByType } from '@sn/core/store/selectors';
 
 @Component({
   selector: 'sn-account-settings-integrations',
@@ -11,12 +14,29 @@ import { fadeAnimation } from '@sn/shared/animations';
   animations: [fadeAnimation]
 })
 export class AccountSettingsIntegrationsComponent implements OnInit {
+  public IntegrationStatus = IntegrationStatus;
+  public calendarIntegrationsGroupedByType$: Observable<CalendarIntegrationType[]>;
+  public googleCalendarIntegration: CalendarIntegrationState = {
+    type: 'Google Calendar',
+    status: IntegrationStatus.ACTIVE
+  } as CalendarIntegrationState;
+
+  public iCalendarIntegration: CalendarIntegrationState = {
+    type: 'iCalendar',
+    status: IntegrationStatus.EXPIRED
+  } as CalendarIntegrationState;
+
+  public yahooCalendarIntegration: CalendarIntegrationState = {
+    type: 'Yahoo Calendar',
+    status: IntegrationStatus.INACTIVE
+  } as CalendarIntegrationState;
 
   constructor(
     private _store: Store<IAppState>
   ) { }
 
   ngOnInit(): void {
+    this.calendarIntegrationsGroupedByType$ = this._store.select(selectCalendarIntegrationsGroupedByType);
   }
 
   public authorizeGoogleCalendarIntegration(): void {

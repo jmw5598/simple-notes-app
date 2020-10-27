@@ -1,0 +1,28 @@
+<div class="calendar-integration">
+  {{ integration?.type || '' }}
+  <div class="float-right">
+    <ng-container [ngSwitch]="integration?.status">
+      <ng-container *ngSwitchCase="IntegrationStatus.ACTIVE">
+        <span class="badge badge-success mr-1">ACTIVE</span>
+        <span class="btn btn-sm btn-outline-dark btn-border-none">
+          <i class="fas fa-unlink"></i> 
+        </span>
+      </ng-container>
+      <ng-container *ngSwitchCase="IntegrationStatus.EXPIRED">
+        <span class="btn btn-sm btn-outline-dark btn-border-none">
+          <i class="fas fa-sync-alt"></i> 
+        </span>
+        <span class="badge badge-warning mr-1">EXPIRED</span>
+        <span class="btn btn-sm btn-outline-dark btn-border-none">
+          <i class="fas fa-unlink"></i> 
+        </span>
+      </ng-container>
+      <ng-container *ngSwitchCase="IntegrationStatus.INACTIVE">
+        <span class="badge badge-dark mr-1">INACTIVE</span>
+        <div class="btn btn-sm btn-outline-dark btn-border-none">
+          <i class="fas fa-link"></i> 
+        </div>
+      </ng-container>   
+    </ng-container>
+  </div>
+</div>
