@@ -1,5 +1,7 @@
 import { CalendarEvent, ResponseMessage } from '@sn/core/models';
 
+export const calendarEventsFeatureKey: string = 'calendarEvents';
+
 export interface ICalendarEventState {
   currentCalendarEvents: CalendarEvent[],
   createCalendarEventResponseMessage: ResponseMessage,

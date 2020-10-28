@@ -2,6 +2,8 @@ import { Account, Profile, ResponseMessage } from '@sn/core/models';
 import { AccountStatus } from '@sn/core/enums';
 import { RegistrationResult } from '@sn/core/dtos';
 
+export const accountFeatureKey: string = 'accounts';
+
 export interface IAccountState {
   details: Account,
   status: AccountStatus,

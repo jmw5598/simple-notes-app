@@ -2,6 +2,8 @@ import { ResponseMessage } from '@sn/core/models';
 import { Page } from '@sn/core/models'
 import { Document, FileResponse } from '@sn/shared/models';
 
+export const documentsFeatureKey: string = 'documents'
+
 export interface IDocumentState {
   selectedDocument: Document,
   createDocumentResponseMessage: ResponseMessage,

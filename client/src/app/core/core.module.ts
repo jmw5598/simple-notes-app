@@ -41,15 +41,16 @@ const authenticationAppInitializer = {
   declarations: [],
   imports: [
     CommonModule,
-    StoreModule.forRoot({
-      accounts: accountReducer,
-      authentication: authenticationReducer,
-      plans: planReducer,
-      sections: sectionReducer,
-      topics: topicReducer,
-      calendarEvents: calendarEventReducer,
-      calendarIntegrations: calendarIntegrationReducer
-    }, { metaReducers: [resetStateOnLogout] }),
+    // StoreModule.forRoot({
+    //   accounts: accountReducer,
+    //   authentication: authenticationReducer,
+    //   plans: planReducer,
+    //   sections: sectionReducer,
+    //   topics: topicReducer,
+    //   calendarEvents: calendarEventReducer,
+    //   calendarIntegrations: calendarIntegrationReducer
+    // }, { metaReducers: [resetStateOnLogout] }),
+
     EffectsModule.forRoot([
       AccountEffects,
       AuthenticationEffects,

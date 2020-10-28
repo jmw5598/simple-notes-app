@@ -2,6 +2,8 @@ import { ResponseMessage } from '@sn/core/models';
 import { Page } from '@sn/core/models';
 import { Topic, Section, FileResponse } from '@sn/shared/models';
 
+export const topicsFeatureKey: string = 'topics';
+
 export interface ITopicState {
   topics: Topic[],
   selectedTopic: Topic,

@@ -27,6 +27,7 @@
     "@fullcalendar/interaction": "^5.3.1",
     "@ngrx/effects": "^10.0.0",
     "@ngrx/store": "^10.0.0",
+    "@ngrx/store-devtools": "^10.0.1",
     "angular-confirmation-popover": "^6.0.0",
     "angular2-markdown": "^2.2.3",
     "file-saver": "^2.0.2",
@@ -55,6 +56,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.9.5"
+    "typescript": "^3.7.4"
   }
 }

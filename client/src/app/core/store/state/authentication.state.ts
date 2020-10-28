@@ -1,6 +1,8 @@
 import { AuthenticatedUser } from '@sn/core/models';
 import { AuthenticatedStatus } from '@sn/core/enums';
 
+export const authenticationFeatureKey: string = 'authentication';
+
 export interface IAuthenticationState {
   authenticatedUser: AuthenticatedUser;
   authenticatedStatus: AuthenticatedStatus;

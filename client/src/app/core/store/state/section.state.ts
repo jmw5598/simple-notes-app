@@ -1,7 +1,8 @@
-import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 import { ResponseMessage } from '@sn/core/models';
 import { Page } from '@sn/core/models';
 import { Section } from '@sn/shared/models';
+
+export const sectionsFeatureKey: string = 'sections';
 
 export interface ISectionState {
   selectedSection: Section,
