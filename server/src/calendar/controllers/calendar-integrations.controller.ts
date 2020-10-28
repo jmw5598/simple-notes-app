@@ -34,10 +34,11 @@ export class CalendarIntegrationsController {
   @Put(':id')
   public async refreshCalendarIntegration(
       @Request() request,
+      @Param('id') integrationId: number,
       @Body() refreshCalendarIntegration: CalendarIntegrationDto): Promise<CalendarIntegrationDto> {
     try {
-      // TODO
-      return null;
+      const accountId: number = +request.user.accountId;
+      return this._calendarIntegrationsService.refreshCalendarIntegration(accountId, integrationId,  refreshCalendarIntegration);
     } catch (error) {
       this._logger.error(`Error refreshing calendar integration, please try again!`, error);
       throw error;

@@ -31,7 +31,7 @@ export const createGoogleCalendarIntegrationSuccess = createAction(
 
 export const refreshCalendarIntegration = createAction(
   '[Calendar Integration] Refresh Calendar Integration',
-  props<{ integration: CalendarIntegration }>()
+  props<{ id: number, integration: CalendarIntegration }>()
 );
 
 export const refreshCalendarIntegrationSuccess = createAction(

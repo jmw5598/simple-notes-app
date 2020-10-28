@@ -31,7 +31,7 @@ export class CalendarIntegrationEffects {
 
   refreshCalendarIntegration$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.refreshCalendarIntegration),
-    switchMap(({integration}) => this._calendarIntegrationsService.update(integration.id, integration)
+    switchMap(({id, integration}) => this._calendarIntegrationsService.update(id, integration)
       .pipe(
         map(integration => refreshCalendarIntegrationSuccess({ integration: integration })),
         catchError(error => of(fromActions.handleHttpError({ error: error })))

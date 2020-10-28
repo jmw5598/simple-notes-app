@@ -6,7 +6,9 @@ export class CalendarIntegrationMapper {
   public static toCalendarIntegartionDto(integration: CalendarIntegration): CalendarIntegrationDto {
     return {
       id: integration.id,
-      expiresAt: integration.expiresAt
+      expiresAt: integration.expiresAt,
+      calendarIntegrationType: !integration.calendarIntegrationType ? 
+        null : CalendarIntegrationTypeMapper.toCalendarIntegartionTypeDto(integration.calendarIntegrationType)
     } as CalendarIntegrationDto;
   }
 

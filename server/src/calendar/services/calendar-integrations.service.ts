@@ -51,13 +51,32 @@ export class CalendarIntegrationsService {
       integrationId: number, 
       refreshCalendarIntegrationDto: CalendarIntegrationDto): Promise<CalendarIntegrationDto> {
 
-    return {} as CalendarIntegration;
+    const integration: CalendarIntegration = await this._calendarIntegrationsRepository.findOne({
+      relations: ['calendarIntegrationType'],
+      where: {
+        id: integrationId,
+        account: { id: accountId }
+      }
+    });
+    if (!integration) throw new CalendarIntegrationNotFoundException();
+
+    // TODO Make request to google with refresh token to refresh integration.
+    // TODO remove this as it is temporary
+    const newExpirationDate: Date = new Date();
+    newExpirationDate.setHours(newExpirationDate.getHours() + 1);
+    integration.expiresAt = newExpirationDate
+
+
+    return CalendarIntegrationMapper.toCalendarIntegartionDto(
+      await this._calendarIntegrationsRepository.save(integration)
+    );
   }
 
   public async inactiveCalendarIntegration(
       accountId: number, 
       integrationId: number): Promise<CalendarIntegrationDto> {
     const integration: CalendarIntegration = await this._calendarIntegrationsRepository.findOne({
+      relations: ['calendarIntegrationType'],
       where: {
         id: integrationId,
         account: { id: accountId }
