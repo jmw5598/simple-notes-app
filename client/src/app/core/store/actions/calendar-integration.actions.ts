@@ -41,7 +41,7 @@ export const refreshCalendarIntegrationSuccess = createAction(
 
 export const inactiveCalendarIntegration = createAction(
   '[Calendar Integration] Inactivate Calendar Integration',
-  props<{ integration; CalendarIntegration }>()
+  props<{ id: number }>()
 );
 
 export const inactiveCalendarIntegrationSucess = createAction(

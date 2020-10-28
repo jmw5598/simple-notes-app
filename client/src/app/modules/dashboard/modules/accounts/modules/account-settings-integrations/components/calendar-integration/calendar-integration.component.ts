@@ -12,23 +12,35 @@ export class CalendarIntegrationComponent implements OnInit {
   public integration: CalendarIntegrationType;
 
   @Output()
-  public onActivateIntegration: EventEmitter<CalendarIntegrationState>;
+  public onActivateIntegration: EventEmitter<CalendarIntegration>;
 
   @Output()
-  public onInactivateIntegration: EventEmitter<CalendarIntegrationState>;
+  public onInactivateIntegration: EventEmitter<CalendarIntegration>;
 
   @Output()
-  public onRefreshIntegration: EventEmitter<CalendarIntegrationState>;
+  public onRefreshIntegration: EventEmitter<CalendarIntegration>;
 
   public IntegrationStatus = IntegrationStatus;
 
   constructor() {
-    this.onActivateIntegration = new EventEmitter<CalendarIntegrationState>();
-    this.onInactivateIntegration = new EventEmitter<CalendarIntegrationState>();
-    this.onRefreshIntegration = new EventEmitter<CalendarIntegrationState>();
+    this.onActivateIntegration = new EventEmitter<CalendarIntegration>();
+    this.onInactivateIntegration = new EventEmitter<CalendarIntegration>();
+    this.onRefreshIntegration = new EventEmitter<CalendarIntegration>();
   }
 
   ngOnInit(): void {
+  }
+
+  public activateIntegration(): void {
+    // TODO
+  }
+
+  public inactivateIntegration(integration: CalendarIntegration): void {
+    this.onInactivateIntegration.emit(integration);
+  }
+
+  public refreshIntegration(integration: CalendarIntegration): void {
+    this.onRefreshIntegration.emit(integration);
   }
 
   public isTokenExpired(date: Date): boolean {

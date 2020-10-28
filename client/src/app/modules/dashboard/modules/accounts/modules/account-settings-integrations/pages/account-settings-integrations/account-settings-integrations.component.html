@@ -6,7 +6,9 @@
       <h5 class="font-weight-bold mb-3">Calendar Integrations</h5>
       <div *ngFor="let integration of calendarIntegrationsGroupedByType$ | async" class="row">
         <div class="col-sm-12">
-          <sn-calendar-integration [integration]="integration"></sn-calendar-integration>
+          <sn-calendar-integration 
+              [integration]="integration"
+              (onInactivateIntegration)="onInactivateIntegration($event)"></sn-calendar-integration>
         </div>
       </div>
     </div>

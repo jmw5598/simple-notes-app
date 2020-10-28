@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IAppState } from '@sn/core/store/state';
-import { authorizeGoogleCalendarIntegration } from '@sn/core/store/actions';
-import { CalendarIntegrationState, CalendarIntegrationType, IntegrationStatus } from '@sn/core/models';
+import { authorizeGoogleCalendarIntegration, inactiveCalendarIntegration } from '@sn/core/store/actions';
+import { CalendarIntegration, CalendarIntegrationState, CalendarIntegrationType, IntegrationStatus } from '@sn/core/models';
 import { fadeAnimation } from '@sn/shared/animations';
 import { selectCalendarIntegrationsGroupedByType } from '@sn/core/store/selectors';
 
@@ -27,5 +27,10 @@ export class AccountSettingsIntegrationsComponent implements OnInit {
 
   public authorizeGoogleCalendarIntegration(): void {
     this._store.dispatch(authorizeGoogleCalendarIntegration());
+  }
+
+  public onInactivateIntegration(integration: CalendarIntegration): void {
+    console.log("inactiating integratin...", integration);
+    this._store.dispatch(inactiveCalendarIntegration({ id: integration.id }));
   }
 }

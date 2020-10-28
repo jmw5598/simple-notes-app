@@ -9,6 +9,18 @@ const _calendarIntegrationReducer = createReducer(
       ...state,
       calendarIntegrationsGroupedByType: integrations
     }
+  }),
+  on(fromActions.refreshCalendarIntegrationSuccess, (state, { integration }) => {
+    // TODO find an update the integration
+    return {
+      ...state
+    }
+  }),
+  on(fromActions.inactiveCalendarIntegrationSucess, (state, { integration }) => {
+    // TODO find and remove the integration
+    return {
+      ...state
+    }
   })
 );
 

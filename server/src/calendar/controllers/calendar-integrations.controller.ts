@@ -1,4 +1,4 @@
-import { Controller, Get, Redirect, UseGuards, Request } from '@nestjs/common';
+import { Controller, Get, Redirect, UseGuards, Request, Put, Delete, Body, Param } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { SnLoggerService } from '../../logger/sn-logger.service';
 import { ResponseMessage } from '../../common/models/response-message.model';
@@ -7,6 +7,7 @@ import { JwtAuthenticationGuard } from '../../authentication/guards/jwt-authenti
 import { CalendarIntegrationDto } from '../dtos/calendar-integration.dto';
 import { CalendarIntegrationTypeDto } from '../dtos/calendar-integration-type.dto';
 import { CalendarIntegrationsService } from '../services/calendar-integrations.service';
+import { CalendarIntegration } from '../entities/calendar-integration.entity';
 
 @Controller('calendar/integrations')
 @UseGuards(JwtAuthenticationGuard)
@@ -26,6 +27,32 @@ export class CalendarIntegrationsController {
       return this._calendarIntegrationsService.getCalendarIntegrations(accountId);
     } catch (error) {
       this._logger.error(`Error getting calendar integrations, please try gain!`, error);
+      throw error;
+    }
+  }
+
+  @Put(':id')
+  public async refreshCalendarIntegration(
+      @Request() request,
+      @Body() refreshCalendarIntegration: CalendarIntegrationDto): Promise<CalendarIntegrationDto> {
+    try {
+      // TODO
+      return null;
+    } catch (error) {
+      this._logger.error(`Error refreshing calendar integration, please try again!`, error);
+      throw error;
+    }
+  }
+
+  @Delete(':id')
+  public async inactivateCalendarIntegration(
+      @Request() request,
+      @Param('id') integrationId: number): Promise<CalendarIntegrationDto> {
+    try {
+      const accountId: number = +request.user.accountId;
+      return this._calendarIntegrationsService.inactiveCalendarIntegration(accountId, integrationId);
+    } catch (error) {
+      this._logger.error(`Error inactivating calendar integration, please try again!`, error);
       throw error;
     }
   }

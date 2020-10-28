@@ -45,4 +45,26 @@ export class CalendarIntegrationsService {
       integrationTypes, integrations
     );
   }
+
+  public async refreshCalendarIntegration(
+      accountId: number, 
+      integrationId: number, 
+      refreshCalendarIntegrationDto: CalendarIntegrationDto): Promise<CalendarIntegrationDto> {
+
+    return {} as CalendarIntegration;
+  }
+
+  public async inactiveCalendarIntegration(
+      accountId: number, 
+      integrationId: number): Promise<CalendarIntegrationDto> {
+    const integration: CalendarIntegration = await this._calendarIntegrationsRepository.findOne({
+      where: {
+        id: integrationId,
+        account: { id: accountId }
+      }
+    });
+    if (!integration) throw new CalendarIntegrationNotFoundException();
+    this._calendarIntegrationsRepository.delete(integration.id);
+    return CalendarIntegrationMapper.toCalendarIntegartionDto(integration);
+  }
 }

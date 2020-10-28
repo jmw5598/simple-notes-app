@@ -5,8 +5,7 @@ import { CalendarIntegrationsService } from '../../services/calendar-integration
 import { of } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import * as fromActions from '../actions';
-import { ResponseMessage } from '../../models';
-import { ResponseStatus } from '../../enums';
+import { inactiveCalendarIntegrationSucess, refreshCalendarIntegrationSuccess } from '../actions';
 
 @Injectable()
 export class CalendarIntegrationEffects {
@@ -25,6 +24,26 @@ export class CalendarIntegrationEffects {
     switchMap(() => this._calendarIntegrationsService.findAllGroupedByType()
       .pipe(
         map(integrations => fromActions.getCalendarIntegrationsGroupedByTypeSuccess({ integrations: integrations })),
+        catchError(error => of(fromActions.handleHttpError({ error: error })))
+      )
+    )
+  ));
+
+  refreshCalendarIntegration$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.refreshCalendarIntegration),
+    switchMap(({integration}) => this._calendarIntegrationsService.update(integration.id, integration)
+      .pipe(
+        map(integration => refreshCalendarIntegrationSuccess({ integration: integration })),
+        catchError(error => of(fromActions.handleHttpError({ error: error })))
+      )
+    )
+  ));
+
+  inactiveCalendarIntegration$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.inactiveCalendarIntegration),
+    switchMap(({id}) => this._calendarIntegrationsService.delete(id)
+      .pipe(
+        map(integration => inactiveCalendarIntegrationSucess({ integration: integration })),
         catchError(error => of(fromActions.handleHttpError({ error: error })))
       )
     )
