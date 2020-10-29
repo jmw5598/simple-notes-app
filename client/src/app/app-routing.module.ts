@@ -6,17 +6,17 @@ import { AuthenticationGuard } from './core/guards/authentication.guard';
 const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'dashboard',
+    path: '',
     canActivate: [AuthenticationGuard],
-    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
+    loadChildren: () => import('./application/application.module').then(m => m.ApplicationModule),
     data: { breadcrumb: 'Dashboard' }
   },
   {
     path: '**',
-    redirectTo: 'dashboard',
+    redirectTo: '',
     pathMatch: 'full'
   }
 ];

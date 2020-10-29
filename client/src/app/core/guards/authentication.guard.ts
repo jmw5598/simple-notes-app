@@ -8,8 +8,8 @@ import { take, map } from 'rxjs/operators';
 import { AuthenticationService } from '@sn/core/services';
 import { AuthenticatedStatus } from '@sn/core/enums';
 import { IAppState } from '../store/state/app.state';
-import * as fromAuthenticationState from '@sn/modules/auth/store/state';
-import * as fromAuthenticationSelectors from '@sn/modules/auth/store/selectors';
+import * as fromAuthenticationState from '@sn/auth/store/state';
+import * as fromAuthenticationSelectors from '@sn/auth/store/selectors';
 
 @Injectable({
   providedIn: 'root'

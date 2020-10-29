@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './dashboard.component';
+import { ApplicationComponent } from './application.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
+    component: ApplicationComponent,
     children: [
       {
         path: 'accounts',
@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/documents/documents.module').then(m => m.DocumentsModule)
       },
       {
+        path: 'dashboard',
+        loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+      },
+      {
         path: '**',
         redirectTo: 'topics',
         pathMatch: 'full'
@@ -40,4 +44,4 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class DashboardRoutingModule { }
+export class ApplicationRoutingModule { }

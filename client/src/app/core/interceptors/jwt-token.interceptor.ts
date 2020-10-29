@@ -8,9 +8,9 @@ import { AuthenticatedStatus } from '../enums';
 import { AuthenticatedUser } from '../models';
 import { IAppState } from '../store/state/app.state';
 
-import * as fromAuthenticationState from '@sn/modules/auth/store/state';
-import * as fromAuthenticationSelectors from '@sn/modules/auth/store/selectors';
-import * as fromAuthenticationActions from '@sn/modules/auth/store/actions';
+import * as fromAuthenticationState from '@sn/auth/store/state';
+import * as fromAuthenticationSelectors from '@sn/auth/store/selectors';
+import * as fromAuthenticationActions from '@sn/auth/store/actions';
 
 @Injectable()
 export class JwtTokenInterceptor implements HttpInterceptor, OnDestroy {

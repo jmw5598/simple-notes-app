@@ -5,12 +5,10 @@ import { StoreModule, Store } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { resetStateOnLogout } from './store/reducers/global-meta.reducer';
-import { AuthenticationEffects } from '@sn/modules/auth/store/effects';
 import { authenticatedUserInitializer } from './initializers/authenticated-user.initializer';
 import { AccountEffects } from './store/effects/account.effects';
 import { accountReducer } from './store/reducers/account.reducer';
 import { JwtTokenInterceptor } from './interceptors/jwt-token.interceptor';
-import { authenticationReducer } from '@sn/modules/auth/store/reducers';
 import { HttpErrorEffects } from './store/effects/http-error.effects';
 import { planReducer } from './store/reducers/plan.reducer';
 import { PlanEffects } from './store/effects/plan.effects';
@@ -24,7 +22,9 @@ import { calendarEventReducer } from './store/reducers/calendar-event.reducer';
 import { CalendarIntegrationEffects } from './store/effects/calendar-integration.effects';
 import { calendarIntegrationReducer } from './store/reducers/calendar-integration.reducer';
 
-import * as fromAuthenticationState from '@sn/modules/auth/store/state';
+import * as fromAuthenticationState from '@sn/auth/store/state';
+import { AuthenticationEffects } from '@sn/auth/store/effects';
+import { authenticationReducer } from '@sn/auth/store/reducers';
 
 const jwtTokenInterceptor = {
   provide: HTTP_INTERCEPTORS,
