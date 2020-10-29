@@ -10,11 +10,11 @@ import { buildUserFormGroup, buildProfileFormGroup, buildAccountFormGroup } from
 import { Registration, RegistrationResult } from '@sn/core/dtos';
 import { AccountValidators } from '@sn/core/validators';
 import { Plan } from '@sn/core/models';
-import { IAppState } from '@sn/core/store/state';
 import { fadeAnimation } from '@sn/shared/animations';
 import { RegistrationStep } from './registration-step.enum';
 import { selectPlans } from '@sn/core/store/selectors';
 
+import * as fromAuth from '../../store/reducers';
 import * as fromActions from '../../store/actions';
 import * as fromSelectors from '../../store/selectors';
 
@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
   public plans: Plan[];
 
   constructor(
-    private _store: Store<IAppState>,
+    private _store: Store<fromAuth.IAuthenticationState>,
     private _formBuilder: FormBuilder,
     private _accountValidators: AccountValidators,
     private _router: Router

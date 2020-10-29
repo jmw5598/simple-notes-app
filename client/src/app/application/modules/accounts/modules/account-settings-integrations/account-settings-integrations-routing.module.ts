@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CalendarIntegrationsGroupedByTypeGuard } from '@sn/core/guards';
+import { CalendarIntegrationsGroupedByTypeGuard } from './guards';
 import { AccountSettingsIntegrationsComponent } from './pages/account-settings-integrations/account-settings-integrations.component';
 
 const routes: Routes = [

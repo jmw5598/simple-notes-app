@@ -9,7 +9,7 @@ import { AuthenticationService } from '@sn/core/services';
 import { AuthenticatedStatus } from '@sn/core/enums';
 import { UserCredentials } from '@sn/core/models';
 
-import * as fromState from '../../store/state';
+import * as fromAuth from '../../store/reducers';
 import * as fromActions from '../../store/actions';
 import * as fromSelectors from '../../store/selectors';
 
@@ -23,14 +23,14 @@ import { fadeAnimation } from '@sn/shared/animations';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private _authenticationStateSubscription: Subscription;
-  public authenticationState: fromState.IAuthenticationState;
+  public authenticationState: fromAuth.IAuthenticationState;
   public form: FormGroup;
   public queryParamMessage$: Observable<string>;
 
   constructor(
     private _authenticationService: AuthenticationService,
     private _formBuilder: FormBuilder,
-    private _store: Store<fromState.IAuthenticationState>,
+    private _store: Store<fromAuth.IAuthenticationState>,
     private _router: Router,
     private _route: ActivatedRoute
   ) {

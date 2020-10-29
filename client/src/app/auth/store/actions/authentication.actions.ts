@@ -41,31 +41,31 @@ export const setAuthenticatedUser = createAction(
 );
 
 export const registerNewAccount = createAction(
-  '[Acount] Register New Account',
+  '[Authentication] Register New Account',
   props<{ registration: Registration }>()
 );
 
 export const registerNewAccountResult = createAction(
-  '[Account] Register New Account Result',
+  '[Authentication] Register New Account Result',
   props<{ result: RegistrationResult }>()
 );
 
 export const passwordRequestReset = createAction(
-  '[Account] Password Request Reset',
+  '[Authentication] Password Request Reset',
   props<{ request: PasswordRequestReset }>()
 );
 
 export const passwordRequestResetResult = createAction(
-  '[Account] Password Request Reset Result',
+  '[Authentication] Password Request Reset Result',
   props<{ result: ResponseMessage }>()
 );
 
 export const passwordReset = createAction(
-  '[Account] Password Reset',
+  '[Authentication] Password Reset',
   props<{ request: PasswordReset }>()
 );
 
 export const passwordResetResult = createAction(
-  '[Account] Password Reset Result',
+  '[Authentication] Password Reset Result',
   props<{ result: ResponseMessage }>()
 );

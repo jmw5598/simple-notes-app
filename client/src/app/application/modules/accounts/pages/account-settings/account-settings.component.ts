@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { fadeAnimation } from '@sn/shared/animations'
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { IAppState } from '@sn/core/store/state';
+import { IAccountsState } from '../../store/reducers';
 import { Account, Profile } from '@sn/core/models';
-import { selectAccountDetails, selectAccountProfile } from '@sn/core/store/selectors';
+import { selectAccountDetails, selectAccountProfile } from '../../store/selectors';
 
 @Component({
   selector: 'sn-account-settings',
@@ -19,7 +19,7 @@ export class AccountSettingsComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _store: Store<IAppState>
+    private _store: Store<IAccountsState>
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +28,6 @@ export class AccountSettingsComponent implements OnInit {
   }
 
   public navigateTo(route: string): void {
-    this._router.navigateByUrl(`/dashboard/accounts/settings/${route}`);
+    this._router.navigateByUrl(`/accounts/settings/${route}`);
   }
 }

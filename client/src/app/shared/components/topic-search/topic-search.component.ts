@@ -2,15 +2,15 @@ import { Component, OnInit, OnDestroy, Renderer2, AfterViewInit } from '@angular
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { IAppState } from '@sn/core/store/state';
+import { ITopicsState } from '@sn/application/modules/topics/store/reducers';
 import { fadeAnimation } from '@sn/shared/animations';
-import { selectSearchTopicsFromDrawerResult, selectSearchTopicsResult, selectSelectedTopic } from '@sn/core/store/selectors';
+import { selectSearchTopicsFromDrawerResult } from '@sn/application/modules/topics/store/selectors';
 import { Page } from '@sn/core/models';
 import { Topic } from '@sn/shared/models';
 import { IPageable } from '@sn/core/models';
 import { PageableSearch } from '@sn/core/models'
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/core/defaults';
-import { searchSectionsResult, searchTopicsFromDrawer, searchTopicsFromDrawerResult, setSelectedTopic } from '@sn/core/store/actions';
+import { searchTopicsFromDrawer, searchTopicsFromDrawerResult } from '@sn/application/modules/topics/store/actions';
 import { DrawerService } from '../drawer/drawer.service';
 
 @Component({
@@ -26,7 +26,7 @@ export class TopicSearchComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private _renderer: Renderer2,
     private _router: Router,
-    private _store: Store<IAppState>,
+    private _store: Store<ITopicsState>,
     private _drawerService: DrawerService
   ) { }
 
@@ -53,7 +53,7 @@ export class TopicSearchComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   public onGoToTopic(id: number): void {
-    this._router.navigate(['/dashboard', 'topics', id, 'details']);
+    this._router.navigate(['/topics', id, 'details']);
     this._drawerService.close();
   }
 

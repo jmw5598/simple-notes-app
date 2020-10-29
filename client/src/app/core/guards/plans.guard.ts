@@ -5,15 +5,15 @@ import { tap, filter, take, switchMap, catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { Plan } from '@sn/core/models';
-import { IAppState } from '../store/state/app.state';
-import { getPlans } from '../store/actions/plan.actions';
-import { selectPlans } from '../store/selectors/plan.selector';
+import { IApplicationState } from '@sn/application/store/index';
+import { getPlans } from '../store/actions/plans.actions';
+import { selectPlans } from '../store/selectors/plans.selectors';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlansGuard implements CanActivate {
-  constructor(private _store: Store<IAppState>) {}
+  constructor(private _store: Store<IApplicationState>) {}
   
   canActivate(
     next: ActivatedRouteSnapshot,

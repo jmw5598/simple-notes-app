@@ -7,9 +7,9 @@ import { take, tap, filter } from 'rxjs/operators';
 
 import { PasswordReset, ResponseMessage } from '@sn/core/models';
 import { MatchValidators } from '@sn/core/validators';
-import { IAppState } from '@sn/core/store/state'
 import { fadeAnimation } from '@sn/shared/animations';
 
+import * as fromAuth from '../../store/reducers';
 import * as fromActions from '../../store/actions';
 import * as fromSelectors from '../../store/selectors';
 
@@ -25,7 +25,7 @@ export class PasswordResetComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _store: Store<IAppState>,
+    private _store: Store<fromAuth.IAuthenticationState>,
     private _router: Router,
     private _route: ActivatedRoute
   ) {

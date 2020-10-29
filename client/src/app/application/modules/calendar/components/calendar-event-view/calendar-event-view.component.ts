@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { IAppState } from '@sn/core/store/state';
+import { ICalendarEventsState } from '../../store/reducers';
 import { DrawerService } from '@sn/shared/components';
 import { tap } from 'rxjs/operators';
-import { deleteCalendarEvent, setUpdateCalendarEventResponseMessage, updateCalendarEvent } from '@sn/core/store/actions';
+import { deleteCalendarEvent, setUpdateCalendarEventResponseMessage, updateCalendarEvent } from '../../store/actions';
 import { CalendarEvent, ResponseMessage } from '@sn/core/models';
 import { buildCalendarEventFormGroup } from '@sn/shared/forms';
-import { selectUpdateCalendarEventResponseMessage } from '@sn/core/store/selectors';
+import { selectUpdateCalendarEventResponseMessage } from '../../store/selectors';
 import { HEX_COLOR_STRING_ARRAY } from '@sn/shared/defaults/colors.defaults';
 
 @Component({
@@ -26,7 +26,7 @@ export class CalendarEventViewComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _drawerService: DrawerService, 
-    private _store: Store<IAppState>
+    private _store: Store<ICalendarEventsState>
   ) {
     this.calendarEventView = 'display';
     this.form = buildCalendarEventFormGroup(this._formBuilder);

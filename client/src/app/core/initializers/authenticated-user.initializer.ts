@@ -2,12 +2,12 @@ import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { AuthenticationService } from '../services';
 import { AuthenticatedUser } from '../models';
-import { IAppState } from '../store/state/app.state';
+import { IApplicationState } from '@sn/application/store/index';
 import * as fromAuthenticationActions from '@sn/auth/store/actions';
 import * as fromAuthenticationSelectors from '@sn/auth/store/selectors';
 
 export function authenticatedUserInitializer(
-    store: Store<IAppState>, authenticationSerivce: AuthenticationService) {
+    store: Store<IApplicationState>, authenticationSerivce: AuthenticationService) {
 
   const user: AuthenticatedUser = authenticationSerivce.getStoredAuthenticatedUser();
 

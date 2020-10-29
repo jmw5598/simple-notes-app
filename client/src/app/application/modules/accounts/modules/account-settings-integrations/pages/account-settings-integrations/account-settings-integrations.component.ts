@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { IAppState } from '@sn/core/store/state';
-import { authorizeGoogleCalendarIntegration, inactiveCalendarIntegration, refreshCalendarIntegration } from '@sn/core/store/actions';
-import { CalendarIntegration, CalendarIntegrationState, CalendarIntegrationType, IntegrationStatus } from '@sn/core/models';
+import { ICalendarIntegrationsState } from '../../store/reducers';
+import { authorizeGoogleCalendarIntegration, inactiveCalendarIntegration, refreshCalendarIntegration } from '../../store/actions';
+import { CalendarIntegration, CalendarIntegrationType, IntegrationStatus } from '@sn/core/models';
 import { fadeAnimation } from '@sn/shared/animations';
-import { selectCalendarIntegrationsGroupedByType } from '@sn/core/store/selectors';
+import { selectCalendarIntegrationsGroupedByType } from '../../store/selectors';
 
 @Component({
   selector: 'sn-account-settings-integrations',
@@ -18,7 +18,7 @@ export class AccountSettingsIntegrationsComponent implements OnInit {
   public calendarIntegrationsGroupedByType$: Observable<CalendarIntegrationType[]>;
 
   constructor(
-    private _store: Store<IAppState>
+    private _store: Store<ICalendarIntegrationsState>
   ) { }
 
   ngOnInit(): void {

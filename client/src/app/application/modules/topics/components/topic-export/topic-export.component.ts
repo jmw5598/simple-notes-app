@@ -3,13 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, Observable } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
-import { IAppState } from '@sn/core/store/state';
+import { ITopicsState } from '../../store/reducers';
 import { ResponseMessage } from '@sn/core/models';
 import { ExportConfig, ExportFormat, FileResponse, Topic } from '@sn/shared/models';
 import { DrawerService } from '@sn/shared/components';
 import { showHide } from '@sn/shared/animations';
-import { selectExportTopicResponseMessage, selectExportTopicFile } from '@sn/core/store/selectors';
-import { exportTopic } from '@sn/core/store/actions';
+import { selectExportTopicResponseMessage, selectExportTopicFile } from '../../store/selectors';
+import { exportTopic } from '../../store/actions';
 
 import * as FileSaver from 'file-saver';
 
@@ -36,7 +36,7 @@ export class TopicExportComponent implements OnInit, OnDestroy {
   public ExportFormat = ExportFormat;
 
   constructor(
-    private _store: Store<IAppState>,
+    private _store: Store<ITopicsState>,
     private _formBuilder: FormBuilder,
     private _drawerService: DrawerService,
   ) {

@@ -3,13 +3,13 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, Observable } from 'rxjs';
 import { tap, takeUntil } from 'rxjs/operators';
-import { IAppState } from '@sn/core/store/state';
-import { updateTopic } from '@sn/core/store/actions';
+import { ITopicsState } from '../../store/reducers';
+import { updateTopic } from '../../store/actions';
 import { Topic } from '@sn/shared/models';
 import { showHide } from '@sn/shared/animations';
 import { ResponseMessage } from '@sn/core/models';
-import { selectUpdateTopicResponseMessage } from '@sn/core/store/selectors';
-import { setUpdateTopicResponseMessage } from '@sn/core/store/actions';
+import { selectUpdateTopicResponseMessage } from '../../store/selectors';
+import { setUpdateTopicResponseMessage } from '../../store/actions';
 import { buildTopicFormGroup } from '@sn/shared/forms';
 import { DrawerService } from '@sn/shared/components';
 
@@ -26,7 +26,7 @@ export class TopicUpdateComponent implements OnInit, OnDestroy {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _store: Store<IAppState>,
+    private _store: Store<ITopicsState>,
     private _drawerService: DrawerService
   ) {
     this._subscriptionSubject = new Subject<void>();

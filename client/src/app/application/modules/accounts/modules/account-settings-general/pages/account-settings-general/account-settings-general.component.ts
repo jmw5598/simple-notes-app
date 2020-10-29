@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Account, Profile } from '@sn/core/models';
 import { Store } from '@ngrx/store';
-import { IAppState } from '@sn/core/store/state';
-import { selectAccountDetails, selectAccountProfile } from '@sn/core/store/selectors';
+import { IAccountsState } from '../../../../store/reducers';
+import { selectAccountDetails, selectAccountProfile } from '../../../../store/selectors';
 import { fadeAnimation } from '@sn/shared/animations';
 import { AccountValidators } from '@sn/core/validators';
 import { buildProfileFormGroup } from '@sn/shared/forms';
-import { updateAccountProfile } from '@sn/core/store/actions';
+import { updateAccountProfile } from '../../../../store/actions';
 
 @Component({
   selector: 'sn-account-settings-general',
@@ -24,7 +24,7 @@ export class AccountSettingsGeneralComponent implements OnInit {
   public accountProfile$: Observable<Profile>;
 
   constructor(
-    private _store: Store<IAppState>,
+    private _store: Store<IAccountsState>,
     private _formBuilder: FormBuilder,
     private _accountValidators: AccountValidators
   ) {

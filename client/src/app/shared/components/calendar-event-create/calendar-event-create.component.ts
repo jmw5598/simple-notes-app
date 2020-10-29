@@ -1,12 +1,12 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { DrawerService } from '../drawer/drawer.service';
 import { Store } from '@ngrx/store';
-import { IAppState } from '@sn/core/store/state';
+import { ICalendarEventsState } from '@sn/application/modules/calendar/store/reducers';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap, take } from 'rxjs/operators';
-import { createCalendarEvent, setCreateCalendarEventResponseMessage } from '@sn/core/store/actions';
-import { selectCreateCalendarEventResponseMessage } from '@sn/core/store/selectors';
+import { createCalendarEvent, setCreateCalendarEventResponseMessage } from '@sn/application/modules/calendar/store/actions';
+import { selectCreateCalendarEventResponseMessage } from '@sn/application/modules/calendar/store/selectors';
 import { CalendarEvent, ResponseMessage } from '@sn/core/models';
 import { showHide } from '../../animations';
 import { buildCalendarEventFormGroup } from '../../forms/calendar-event-form/calendar-event-form.builder';
@@ -28,7 +28,7 @@ export class CalendarEventCreateComponent implements OnInit, AfterViewInit {
   public responseMessage$: Observable<ResponseMessage>;
 
   constructor(
-    private _store: Store<IAppState>,
+    private _store: Store<ICalendarEventsState>,
     private _formBuilder: FormBuilder,
     private _drawerService: DrawerService,
   ) { }
@@ -40,7 +40,7 @@ export class CalendarEventCreateComponent implements OnInit, AfterViewInit {
         tap((message: ResponseMessage) => {
           if (message) {
             this.calendarEventForm.reset();
-          setTimeout(() => this._store.dispatch(setCreateCalendarEventResponseMessage({ message: null })), 3000);
+            setTimeout(() => this._store.dispatch(setCreateCalendarEventResponseMessage({ message: null })), 3000);
           }
         })
       );

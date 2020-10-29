@@ -6,20 +6,20 @@ import { Store } from '@ngrx/store';
 
 import { AuthenticatedStatus } from '../enums';
 import { AuthenticatedUser } from '../models';
-import { IAppState } from '../store/state/app.state';
+import { IAuthenticationState } from '@sn/auth/store/reducers';
 
-import * as fromAuthenticationState from '@sn/auth/store/state';
+import * as fromAuthentication from '@sn/auth/store/reducers';
 import * as fromAuthenticationSelectors from '@sn/auth/store/selectors';
 import * as fromAuthenticationActions from '@sn/auth/store/actions';
 
 @Injectable()
 export class JwtTokenInterceptor implements HttpInterceptor, OnDestroy {
-  private _authenticatedState: fromAuthenticationState.IAuthenticationState;
+  private _authenticatedState: fromAuthentication.IAuthenticationState;
   private _authenticatedStateSubscription: Subscription;
   private _isRefreshing = false;
   private _refreshTokenSubject: BehaviorSubject<AuthenticatedUser> = new BehaviorSubject<AuthenticatedUser>(null);
 
-  constructor(private _store: Store<IAppState>) {
+  constructor(private _store: Store<IAuthenticationState>) {
     this._authenticatedStateSubscription = this._store.select(fromAuthenticationSelectors.selectAuthenticationState)
       .subscribe(state => this._authenticatedState = state);
   }

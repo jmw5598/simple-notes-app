@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '@sn/shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { MarkdownModule } from 'angular2-markdown';
 import { ViewTopicsComponent } from './pages/view-topics/view-topics.component';
 import { TopicsRoutingModule } from './topics-routing.module';
 import { TopicListComponent } from './components/topic-list/topic-list.component';
@@ -12,6 +15,10 @@ import { TopicExportComponent } from './components/topic-export/topic-export.com
 import { SectionCreateComponent } from './components/section-create/section-create.component';
 import { SectionUpdateComponent } from './components/section-update/section-update.component';
 import { SectionFormComponent } from './components/section-form/section-form.component';
+import { EditSectionNotesComponent } from './pages/edit-section-notes/edit-section-notes.component';
+
+import * as fromTopics from './store/reducers';
+import * as fromTopicsEffects from './store/effects';
 
 @NgModule({
   declarations: [
@@ -23,17 +30,25 @@ import { SectionFormComponent } from './components/section-form/section-form.com
     TopicExportComponent,
     SectionCreateComponent,
     SectionUpdateComponent,
-    SectionFormComponent
+    SectionFormComponent,
+    EditSectionNotesComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
+    MarkdownModule,
     TopicsRoutingModule,
     ConfirmationPopoverModule.forRoot({
       popoverMessage: 'Are you sure?',
       cancelButtonType: 'btn-default btn-sm bg-secondary',
       confirmButtonType: 'btn-primary btn-sm bg-primary text-light'
-    })
+    }),
+    StoreModule.forFeature(fromTopics.topicsFeatureKey, fromTopics.topicReducer),
+    StoreModule.forFeature(fromTopics.sectionsFeatureKey, fromTopics.sectionReducer),
+    EffectsModule.forFeature([
+      fromTopicsEffects.SectionsEffects,
+      fromTopicsEffects.TopicsEffects
+    ])
   ],
   entryComponents: [
     TopicExportComponent,

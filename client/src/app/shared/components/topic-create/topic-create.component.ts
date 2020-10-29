@@ -3,13 +3,13 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { IAppState } from '@sn/core/store/state';
-import { createTopic, getAllTopics } from '@sn/core/store/actions';
+import { ITopicsState } from '@sn/application/modules/topics/store/reducers';
+import { createTopic } from '@sn/application/modules/topics/store/actions';
 import { Topic } from '@sn/shared/models';
-import { fadeAnimation, showHide } from '@sn/shared/animations';
+import { showHide } from '@sn/shared/animations';
 import { ResponseMessage } from '@sn/core/models';
-import { selectCreateTopicResponseMessage } from '@sn/core/store/selectors';
-import { setCreateTopicResponseMessage } from '@sn/core/store/actions';
+import { selectCreateTopicResponseMessage } from '@sn/application/modules/topics/store/selectors';
+import { setCreateTopicResponseMessage } from '@sn/application/modules/topics/store/actions';
 import { buildTopicFormGroup } from '../../forms/topic-form/topic-form.builder';
 
 @Component({
@@ -24,7 +24,7 @@ export class TopicCreateComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _store: Store<IAppState>
+    private _store: Store<ITopicsState>
   ) { }
 
   ngOnInit(): void {

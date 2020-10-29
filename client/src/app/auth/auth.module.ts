@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
 
 import { AuthComponent } from './auth.component';
 import { AuthMarketingComponent } from './components/auth-marketing/auth-marketing.component';
@@ -17,10 +15,6 @@ import { LogoutComponent } from './pages/logout/logout.component';
 import { SharedModule } from '@sn/shared/shared.module';
 import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
 import { PasswordRequestComponent } from './pages/password-request/password-request.component';
-
-import * as fromReducers from './store/reducers';
-import * as fromState from './store/state';
-import { AuthenticationEffects } from './store/effects';
 
 @NgModule({
   declarations: [
@@ -40,14 +34,7 @@ import { AuthenticationEffects } from './store/effects';
   imports: [
     AuthRoutingModule,
     CommonModule,
-    SharedModule,
-    // StoreModule.forFeature(
-    //   fromState.authenticationFeatureKey,
-    //   fromReducers.authenticationReducer
-    // ),
-    // EffectsModule.forFeature([
-    //   AuthenticationEffects
-    // ])
+    SharedModule
   ]
 })
 export class AuthModule { }

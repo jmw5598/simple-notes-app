@@ -3,12 +3,12 @@ import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 
-import { IAppState } from '@sn/core/store/state';
+import { ITopicsState } from '../../store/reducers';
 import { Topic } from '@sn/shared/models';
 import { PageableSearch, ResponseMessage } from '@sn/core/models';
 import { fadeAnimation } from '@sn/shared/animations';
-import { selectTopics, selectSearchTopicsResult, selectCreateTopicResponseMessage} from '@sn/core/store/selectors';
-import { deleteTopic, searchTopics, searchTopicsResult } from '@sn/core/store/actions';
+import { selectTopics, selectSearchTopicsResult, selectCreateTopicResponseMessage} from '../../store/selectors';
+import { deleteTopic, searchTopics, searchTopicsResult } from '../../store/actions';
 import { Page, IPageable } from '@sn/core/models';
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/core/defaults';
 import { ResponseStatus } from '@sn/core/enums';
@@ -29,7 +29,7 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
   public isSearching: boolean = false;
 
   constructor(
-    private _store: Store<IAppState>
+    private _store: Store<ITopicsState>
   ) {
     this._subscriptionSubject = new Subject<void>();
   }

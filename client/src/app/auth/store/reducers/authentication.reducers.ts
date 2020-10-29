@@ -1,11 +1,33 @@
 import { createReducer, on } from '@ngrx/store';
 import { AuthenticatedStatus } from '@sn/core/enums';
+import { AuthenticatedUser, ResponseMessage } from '@sn/core/models';
+import { RegistrationResult } from '@sn/core/dtos';
+
 
 import * as fromActions from '../actions';
-import * as fromState from '../state';
 
-export const authenticationReducer = createReducer(
-  fromState.initialAuthenticationState,
+export const authenticationFeatureKey = 'authentication';
+
+export interface IAuthenticationState {
+  authenticatedUser: AuthenticatedUser;
+  authenticatedStatus: AuthenticatedStatus;
+  errorMessage: string;
+  registrationResult: RegistrationResult,
+  passwordRequestResetResult: ResponseMessage,
+  passwordResetResult: ResponseMessage
+}
+
+export const initialAuthenticationState: IAuthenticationState = {
+  authenticatedUser: null,
+  authenticatedStatus: AuthenticatedStatus.UNAUTHENTICATED,
+  errorMessage: null,
+  registrationResult: null,
+  passwordRequestResetResult: null,
+  passwordResetResult: null
+}
+
+const _authenticationReducer = createReducer(
+  initialAuthenticationState,
   on(fromActions.loginUserSuccess, (state, { user }) => {
     return {
       ...state,
@@ -64,6 +86,6 @@ export const authenticationReducer = createReducer(
   }),
 );
 
-// export function authenticationReducer(state, action) {
-//   return _authenticationReducer(state, action);
-// }
+export function authenticationReducer(state, action) {
+  return _authenticationReducer(state, action);
+}

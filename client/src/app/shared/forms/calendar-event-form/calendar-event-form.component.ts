@@ -38,7 +38,6 @@ export class CalendarEventFormComponent implements OnInit, AfterViewInit {
   }
 
   public reset(): void {
-    console.log("resetting form?");
     this.form.reset();
   }
 

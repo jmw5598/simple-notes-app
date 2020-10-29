@@ -2,9 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { tap, takeUntil } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { IAppState } from '@sn/core/store/state';
-import { selectSelectedTopic, selectSearchSectionsResult, selectCreateSectionResponseMessage } from '@sn/core/store/selectors';
-import { searchSections, deleteSection, setExportTopicFileResponse, setExportTopicResponseMessage, searchSectionsResult } from '@sn/core/store/actions';
+
+import { ISectionsState } from '../../store/reducers';
+import { selectSelectedTopic, selectSearchSectionsResult, selectCreateSectionResponseMessage } from '../../store/selectors';
+import { searchSections, deleteSection, setExportTopicFileResponse, setExportTopicResponseMessage, searchSectionsResult } from '../../store/actions';
 import { FileResponse, Topic, Section } from '@sn/shared/models';
 import { fadeAnimation } from '@sn/shared/animations';
 import { PageableSearch, Page, IPageable, ResponseMessage } from '@sn/core/models';
@@ -37,7 +38,7 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
   public isSearching: boolean = false;
 
   constructor(
-    private _store: Store<IAppState>,
+    private _store: Store<ISectionsState>,
     private _drawerService: DrawerService
   ) {
     this._subscriptionSubject = new Subject<void>();

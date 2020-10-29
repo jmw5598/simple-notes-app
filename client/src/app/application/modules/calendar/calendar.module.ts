@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
@@ -17,7 +16,6 @@ import { SharedModule } from '@sn/shared/shared.module';
 import { CalendarEventDetailsComponent } from './components/calendar-event-details/calendar-event-details.component';
 import { CalendarEventUpdateComponent } from './components/calendar-event-update/calendar-event-update.component';
 import { CalendarEventViewComponent } from './components/calendar-event-view/calendar-event-view.component';
-
 import { CalendarEventCreateComponent } from '@sn/shared/components';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins

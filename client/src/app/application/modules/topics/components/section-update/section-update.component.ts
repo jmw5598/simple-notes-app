@@ -3,13 +3,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, Observable } from 'rxjs';
 import { tap, takeUntil } from 'rxjs/operators';
-import { IAppState } from '@sn/core/store/state';
+import { ISectionsState } from '../../store/reducers';
 import { DrawerService } from '@sn/shared/components';
 import { buildSectionFormGroup } from '../section-form/section-form.builder';
 import { Section, Topic } from '@sn/shared/models';
 import { ResponseMessage } from '@sn/core/models';
-import { selectUpdateSectionResponseMessage } from '@sn/core/store/selectors';
-import { updateSection } from '@sn/core/store/actions';
+import { selectUpdateSectionResponseMessage } from '../../store/selectors';
+import { updateSection } from '../../store/actions';
 import { showHide } from '@sn/shared/animations';
 
 @Component({
@@ -27,7 +27,7 @@ export class SectionUpdateComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _store: Store<IAppState>,
+    private _store: Store<ISectionsState>,
     private _drawerServie: DrawerService
   ) {
     this._subscriptionSubject = new Subject<void>();

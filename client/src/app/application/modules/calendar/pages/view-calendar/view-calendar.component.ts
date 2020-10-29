@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { IAppState } from '@sn/core/store/state';
+import { ICalendarEventsState } from '../../store/reducers';
 import { CalendarOptions, EventInput, FullCalendarComponent } from '@fullcalendar/angular';
 import { DrawerService, CalendarEventCreateComponent } from '@sn/shared/components';
 import { CalendarEventViewComponent } from '../../components/calendar-event-view/calendar-event-view.component';
@@ -12,8 +12,8 @@ import { CalendarEvent } from '@sn/core/models';
 import { 
   getCalendarEventsBetweenDates, 
   setCurrentCalendarEvents,
-  setCurrentCalendarDateRanges, updateCalendarEvent } from '@sn/core/store/actions';
-import { selectCurrentCalendarEvents } from '@sn/core/store/selectors';
+  setCurrentCalendarDateRanges, updateCalendarEvent } from '../../store/actions';
+import { selectCurrentCalendarEvents } from '../../store/selectors';
 
 @Component({
   selector: 'sn-view-calendar',
@@ -31,7 +31,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   public areCalendarEventsLoading: boolean = false;
 
   constructor(
-    private _store: Store<IAppState>,
+    private _store: Store<ICalendarEventsState>,
     private _drawerService: DrawerService
   ) {
     this._subscriptionSubject = new Subject<void>();

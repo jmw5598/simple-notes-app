@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ControlContainer, FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,25 +6,12 @@ import { ControlContainer, FormGroup } from '@angular/forms';
   templateUrl: './section-form.component.html',
   styleUrls: ['./section-form.component.scss']
 })
-export class SectionFormComponent implements OnInit, AfterViewInit {
+export class SectionFormComponent implements OnInit {
   public form: FormGroup;
 
-  constructor(
-    private _renderer: Renderer2,
-    private _parentControl: ControlContainer
-  ) { }
+  constructor(private _parentControl: ControlContainer) { }
 
   ngOnInit(): void {
     this.form = this._parentControl.control as FormGroup;
-  }
-
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this._setFocusToTitleInput();
-    });
-  }
-
-  private _setFocusToTitleInput(): void {
-    this._renderer.selectRootElement('#title').focus();
   }
 }

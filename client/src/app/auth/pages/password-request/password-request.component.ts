@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { filter, tap, distinctUntilChanged } from 'rxjs/operators';
 
-import * as fromState from '../../store/state';
+import * as fromAuth from '../../store/reducers';
 import * as fromActions from '../../store/actions';
 import * as fromSelectors from '../../store/selectors';
 
@@ -23,7 +23,7 @@ export class PasswordRequestComponent implements OnInit, OnDestroy {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _store: Store<fromState.IAuthenticationState>
+    private _store: Store<fromAuth.IAuthenticationState>
   ) {
     this.form = this._formBuilder.group({
       email: ['', [Validators.required, Validators.email]]

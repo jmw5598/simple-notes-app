@@ -1,32 +1,26 @@
-// import { InjectionToken } from '@angular/core';
-// import { MetaReducer, Action, ActionReducerMap } from '@ngrx/store';
+import { InjectionToken } from '@angular/core';
+import { MetaReducer, Action, ActionReducerMap } from '@ngrx/store';
+import * as fromCore from '@sn/core/store/reducers';
+import * as fromAuth from '../../auth/store/reducers';
+import * as fromPlans from '../../core/store/reducers';
+import { environment } from '@env/environment';
 
-// import * as fromState from '../../core/store/state';
-// import * as fromReducers from '../../core/store/reducers';
-// import { environment } from '@env/environment';
+export const rootReducerKey = 'rootReducerKey';
 
-// export interface IAppState {
-//   [fromState.authenticationFeatureKey]?: fromState.IAuthenticationState;
-//   [fromState.plansFeatureKey]: fromState.IPlanState;
-//   [fromState.sectionsFeatureKey]: fromState.ISectionState;
-//   [fromState.topicsFeatureKey]: fromState.ITopicState;
-//   [fromState.calendarEventsFeatureKey]: fromState.ICalendarEventState;
-//   [fromState.calendarIntegrationsFeatureKey]: fromState.ICalendarIntegrationState;
-// }
+export interface IAppState {
+  [fromPlans.plansFeatureKey]: fromPlans.IPlansState,
+  [fromAuth.authenticationFeatureKey]?: fromAuth.IAuthenticationState;
+}
 
-// export const ROOT_REDUCERS = new InjectionToken<ActionReducerMap<any, Action>>(
-//   'Root reducers token', {
-//     factory: () => ({
-//       [fromState.authenticationFeatureKey]: fromReducers.authenticationReducer,
-//       [fromState.plansFeatureKey]: fromReducers.planReducer,
-//       [fromState.sectionsFeatureKey]: fromReducers.sectionReducer,
-//       [fromState.topicsFeatureKey]: fromReducers.topicReducer,
-//       [fromState.calendarEventsFeatureKey]: fromReducers.calendarEventReducer,
-//       [fromState.calendarIntegrationsFeatureKey]: fromReducers.calendarIntegrationReducer
-//     })
-//   }
-// );
+export const ROOT_REDUCERS = new InjectionToken<ActionReducerMap<any, Action>>(
+  rootReducerKey, {
+    factory: () => ({
+      [fromPlans.plansFeatureKey]: fromPlans.planReducer,
+      [fromAuth.authenticationFeatureKey]: fromAuth.authenticationReducer
+    })
+  }
+);
 
-// export const metaReducers: MetaReducer<IAppState>[] = !environment.production 
-//   ? [fromReducers.resetStateOnLogout] 
-//   : [fromReducers.resetStateOnLogout];
+export const metaReducers: MetaReducer<IAppState>[] = !environment.production 
+  ? [fromCore.resetStateOnLogout] 
+  : [fromCore.resetStateOnLogout];
