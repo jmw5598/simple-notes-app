@@ -32,40 +32,7 @@ export class AccountEffects {
       )
     )
   ));
-
-  registerNewAccount$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.registerNewAccount),
-    mergeMap(({ registration }) => this._accountsService.registerNewAccount(registration)
-      .pipe(
-        map(result => fromActions.registerNewAccountResult({ result: result })),
-        catchError(error => of(fromActions.registerNewAccountResult({ result: {
-          status: 'ERROR',
-          message: error.error.message
-        }})))
-      )
-    )
-  ));
-
-  passwordReqeust$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.passwordRequestReset),
-    mergeMap(({ request }) => this._accountsService.passwordRequestReset(request)
-      .pipe(
-        map(response => fromActions.passwordRequestResetResult({ result: response })),
-        catchError(error => of(fromActions.handleHttpError({ error: error })))
-      )
-    )
-  ));
-
-  passwordReset$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.passwordReset),
-    mergeMap(({ request }) => this._accountsService.passwordReset(request)
-      .pipe(
-        map(response => fromActions.passwordResetResult({ result: response })),
-        catchError(error => of(fromActions.handleHttpError({ error: error })))
-      )
-    )
-  ));
-
+  
   updateAccountDetails$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.updateAccountDetails),
     mergeMap(({ account }) => this._accountsService.updateAccountDetails(account)

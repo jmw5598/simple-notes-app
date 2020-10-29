@@ -3,10 +3,7 @@ import { initialAccountState } from '../state/account.state';
 
 import { 
   getAccountDetailsSuccess, 
-  getAccountProfileSuccess, 
-  registerNewAccountResult, 
-  passwordRequestResetResult, 
-  passwordResetResult, 
+  getAccountProfileSuccess,
   updateAccountDetailsSuccess,
   updateAccountProfileSuccess
 } from '../actions/account.actions';
@@ -23,24 +20,6 @@ const _accountReducer = createReducer(
     return {
       ...state,
       profile: profile 
-    }
-  }),
-  on(registerNewAccountResult, (state, { result }) => {
-    return {
-      ...state,
-      registrationResult: result 
-    }
-  }),
-  on(passwordRequestResetResult, (state, { result }) => {
-    return {
-      ...state,
-      passwordRequestResetResult: result 
-    }
-  }),
-  on(passwordResetResult, (state, { result }) => {
-    return {
-      ...state,
-      passwordResetResult: result
     }
   }),
   on(updateAccountDetailsSuccess, (state, { account }) => {

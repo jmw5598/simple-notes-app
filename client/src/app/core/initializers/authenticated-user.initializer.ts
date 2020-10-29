@@ -3,8 +3,8 @@ import { take } from 'rxjs/operators';
 import { AuthenticationService } from '../services';
 import { AuthenticatedUser } from '../models';
 import { IAppState } from '../store/state/app.state';
-import { refreshToken, loginUserSuccess, setAuthenticatedUser } from '../store/actions/authentication.actions';
-import { selectAuthenticatedUser } from '../store/selectors/authentication.selector';
+import * as fromAuthenticationActions from '@sn/modules/auth/store/actions';
+import * as fromAuthenticationSelectors from '@sn/modules/auth/store/selectors';
 
 export function authenticatedUserInitializer(
     store: Store<IAppState>, authenticationSerivce: AuthenticationService) {
@@ -13,12 +13,12 @@ export function authenticatedUserInitializer(
 
   return () => new Promise<boolean>(resolve => {
     if (user) {
-      store.dispatch(loginUserSuccess({ user: user }));
-      store.dispatch(refreshToken());
+      store.dispatch(fromAuthenticationActions.loginUserSuccess({ user: user }));
+      store.dispatch(fromAuthenticationActions.refreshToken());
     } else {
-      store.dispatch(setAuthenticatedUser({ user: null }))
+      store.dispatch(fromAuthenticationActions.setAuthenticatedUser({ user: null }))
     }
-    store.select(selectAuthenticatedUser)
+    store.select(fromAuthenticationSelectors.selectAuthenticatedUser)
       .pipe(take(1))
       .subscribe(user => resolve(true))    
   });

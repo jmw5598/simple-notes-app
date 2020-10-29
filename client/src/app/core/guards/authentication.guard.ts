@@ -8,8 +8,8 @@ import { take, map } from 'rxjs/operators';
 import { AuthenticationService } from '@sn/core/services';
 import { AuthenticatedStatus } from '@sn/core/enums';
 import { IAppState } from '../store/state/app.state';
-import { IAuthenticationState } from '../store/state/authentication.state';
-import { selectAuthenticationState } from '../store/selectors/authentication.selector';
+import * as fromAuthenticationState from '@sn/modules/auth/store/state';
+import * as fromAuthenticationSelectors from '@sn/modules/auth/store/selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +25,10 @@ export class AuthenticationGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    return this._store.select(selectAuthenticationState)
+    return this._store.select(fromAuthenticationSelectors.selectAuthenticationState)
       .pipe(
         take(1), 
-        map((state: IAuthenticationState) => {
+        map((state: fromAuthenticationState.IAuthenticationState) => {
           if (state.authenticatedStatus === AuthenticatedStatus.AUTHENTICATED) {
             return true;
           }

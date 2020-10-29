@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { IAppState } from '@sn/core/store/state';
-import { logoutUser } from '@sn/core/store/actions';
+import * as fromState from '../../store/state';
+import * as fromActions from '../../store/actions';
+
 import { fadeAnimation } from '@sn/shared/animations';
 import { SpinnerSize } from '@sn/shared/components';
 
@@ -15,9 +16,9 @@ import { SpinnerSize } from '@sn/shared/components';
 export class LogoutComponent implements OnInit {
   public SpinnerSize = SpinnerSize;
 
-  constructor(private _store: Store<IAppState>) { }
+  constructor(private _store: Store<fromState.IAuthenticationState>) { }
 
   ngOnInit(): void {
-    setTimeout(() => this._store.dispatch(logoutUser()), 1000);
+    setTimeout(() => this._store.dispatch(fromActions.logoutUser()), 1000);
   }
 }

@@ -10,11 +10,13 @@ import { buildUserFormGroup, buildProfileFormGroup, buildAccountFormGroup } from
 import { Registration, RegistrationResult } from '@sn/core/dtos';
 import { AccountValidators } from '@sn/core/validators';
 import { Plan } from '@sn/core/models';
-import { registerNewAccount, registerNewAccountResult } from '@sn/core/store/actions';
 import { IAppState } from '@sn/core/store/state';
 import { fadeAnimation } from '@sn/shared/animations';
 import { RegistrationStep } from './registration-step.enum';
-import { selectPlans, selectRegistrationResult } from '@sn/core/store/selectors';
+import { selectPlans } from '@sn/core/store/selectors';
+
+import * as fromActions from '../../store/actions';
+import * as fromSelectors from '../../store/selectors';
 
 @Component({
   selector: 'sn-register',
@@ -57,7 +59,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.reset();
-    this._store.select(selectRegistrationResult)
+    this._store.select(fromSelectors.selectRegistrationResult)
       .pipe(takeUntil(this._subscriptionSubject$))
       .subscribe((result: RegistrationResult) => this._handleNewRegistrationResult(result))
     
@@ -72,7 +74,6 @@ export class RegisterComponent implements OnInit {
   }
 
   public next(): void {
-    console.log("next", this.form.value, this.form.valid);
     this.currentStep += 1;
     this.changeContent();
   }
@@ -112,7 +113,7 @@ export class RegisterComponent implements OnInit {
   }
 
   public onSubmit(registration: Registration): void {
-    this._store.dispatch(registerNewAccount({ registration: registration }))
+    this._store.dispatch(fromActions.registerNewAccount({ registration: registration }))
   }
 
   private _handleNewRegistrationResult(result: RegistrationResult): void {
@@ -121,7 +122,7 @@ export class RegisterComponent implements OnInit {
         this.form.reset();
       this.registrationResult = result
       this.result();
-      this._store.dispatch(registerNewAccountResult({ result: null }));
+      this._store.dispatch(fromActions.registerNewAccountResult({ result: null }));
       setTimeout(() => this._handleRedirectAfterSuccess(), 5000)
     }
   }

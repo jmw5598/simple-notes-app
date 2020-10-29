@@ -1,5 +1,4 @@
 export * from './account.reducer';
-export * from './authentication.reducer';
 export * from './calendar-event.reducer';
 export * from './calendar-integration.reducer';
 export * from './global-meta.reducer';

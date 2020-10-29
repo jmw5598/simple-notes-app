@@ -1,5 +1,4 @@
 export * from './account.actions';
-export * from './authentication.actions';
 export * from './calendar-event.actions';
 export * from './calendar-integration.actions';
 export * from './http-error.actions';

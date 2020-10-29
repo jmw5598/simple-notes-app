@@ -9,8 +9,9 @@ import { PasswordReset, ResponseMessage } from '@sn/core/models';
 import { MatchValidators } from '@sn/core/validators';
 import { IAppState } from '@sn/core/store/state'
 import { fadeAnimation } from '@sn/shared/animations';
-import { passwordReset, passwordResetResult } from '@sn/core/store/actions';
-import { selectPasswordResetResult } from '@sn/core/store/selectors';
+
+import * as fromActions from '../../store/actions';
+import * as fromSelectors from '../../store/selectors';
 
 @Component({
   selector: 'sn-password-reset',
@@ -38,12 +39,12 @@ export class PasswordResetComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.passwordResetResult$ = this._store.select(selectPasswordResetResult).pipe(
+    this.passwordResetResult$ = this._store.select(fromSelectors.selectPasswordResetResult).pipe(
       filter(result => result !== null),
       tap(result => {
         this.form.reset();
         setTimeout(() => {
-          this._store.dispatch(passwordResetResult(null));
+          this._store.dispatch(fromActions.passwordResetResult(null));
           this._router.navigate(['/auth', 'login']);
         }, 5000)
       })   
@@ -55,6 +56,6 @@ export class PasswordResetComponent implements OnInit {
   }
 
   public onSubmit(resetValues: PasswordReset): void {
-    this._store.dispatch(passwordReset({ request: resetValues }));
+    this._store.dispatch(fromActions.passwordReset({ request: resetValues }));
   }
 }

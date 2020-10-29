@@ -8,9 +8,11 @@ import { map } from 'rxjs/operators';
 import { AuthenticationService } from '@sn/core/services';
 import { AuthenticatedStatus } from '@sn/core/enums';
 import { UserCredentials } from '@sn/core/models';
-import { IAppState, IAuthenticationState } from '@sn/core/store/state';
-import { loginUser } from '@sn/core/store/actions';
-import { selectAuthenticationState } from '@sn/core/store/selectors';
+
+import * as fromState from '../../store/state';
+import * as fromActions from '../../store/actions';
+import * as fromSelectors from '../../store/selectors';
+
 import { fadeAnimation } from '@sn/shared/animations';
 
 @Component({
@@ -21,14 +23,14 @@ import { fadeAnimation } from '@sn/shared/animations';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private _authenticationStateSubscription: Subscription;
-  public authenticationState: IAuthenticationState;
+  public authenticationState: fromState.IAuthenticationState;
   public form: FormGroup;
   public queryParamMessage$: Observable<string>;
 
   constructor(
     private _authenticationService: AuthenticationService,
     private _formBuilder: FormBuilder,
-    private _store: Store<IAppState>,
+    private _store: Store<fromState.IAuthenticationState>,
     private _router: Router,
     private _route: ActivatedRoute
   ) {
@@ -40,7 +42,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._authenticationStateSubscription = this._store.select(selectAuthenticationState)
+    this._authenticationStateSubscription = this._store.select(fromSelectors.selectAuthenticationState)
       .subscribe(state => {
         this.authenticationState = state;
         if(state.authenticatedStatus === AuthenticatedStatus.AUTHENTICATED) {
@@ -62,7 +64,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: form.password,
       rememberMe: form.rememberMe
     }) as UserCredentials;
-    this._store.dispatch(loginUser({ credentials: user }));
+    this._store.dispatch(fromActions.loginUser({ credentials: user }));
   }
 
   ngOnDestroy() {

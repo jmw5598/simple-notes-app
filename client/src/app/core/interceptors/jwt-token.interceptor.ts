@@ -7,19 +7,20 @@ import { Store } from '@ngrx/store';
 import { AuthenticatedStatus } from '../enums';
 import { AuthenticatedUser } from '../models';
 import { IAppState } from '../store/state/app.state';
-import { IAuthenticationState } from '../store/state/authentication.state';
-import { selectAuthenticationState, selectAuthenticatedUser } from '../store/selectors/authentication.selector';
-import { refreshToken } from '../store/actions/authentication.actions';
+
+import * as fromAuthenticationState from '@sn/modules/auth/store/state';
+import * as fromAuthenticationSelectors from '@sn/modules/auth/store/selectors';
+import * as fromAuthenticationActions from '@sn/modules/auth/store/actions';
 
 @Injectable()
 export class JwtTokenInterceptor implements HttpInterceptor, OnDestroy {
-  private _authenticatedState: IAuthenticationState;
+  private _authenticatedState: fromAuthenticationState.IAuthenticationState;
   private _authenticatedStateSubscription: Subscription;
   private _isRefreshing = false;
   private _refreshTokenSubject: BehaviorSubject<AuthenticatedUser> = new BehaviorSubject<AuthenticatedUser>(null);
 
   constructor(private _store: Store<IAppState>) {
-    this._authenticatedStateSubscription = this._store.select(selectAuthenticationState)
+    this._authenticatedStateSubscription = this._store.select(fromAuthenticationSelectors.selectAuthenticationState)
       .subscribe(state => this._authenticatedState = state);
   }
 
@@ -52,9 +53,9 @@ export class JwtTokenInterceptor implements HttpInterceptor, OnDestroy {
     if (!this._isRefreshing) {
       this._isRefreshing = true;
       this._refreshTokenSubject.next(null);
-      this._store.dispatch(refreshToken());
+      this._store.dispatch(fromAuthenticationActions.refreshToken());
       
-      return this._store.select(selectAuthenticatedUser).pipe(
+      return this._store.select(fromAuthenticationSelectors.selectAuthenticatedUser).pipe(
         skip(1),
         switchMap((user: AuthenticatedUser) => {
           this._isRefreshing = false;

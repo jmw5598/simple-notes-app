@@ -20,36 +20,6 @@ export const getAccountProfileSuccess = createAction(
   props<{ profile: Profile }>()
 );
 
-export const registerNewAccount = createAction(
-  '[Acount] Register New Account',
-  props<{ registration: Registration }>()
-);
-
-export const registerNewAccountResult = createAction(
-  '[Account] Register New Account Result',
-  props<{ result: RegistrationResult }>()
-);
-
-export const passwordRequestReset = createAction(
-  '[Account] Password Request Reset',
-  props<{ request: PasswordRequestReset }>()
-);
-
-export const passwordRequestResetResult = createAction(
-  '[Account] Password Request Reset Result',
-  props<{ result: ResponseMessage }>()
-);
-
-export const passwordReset = createAction(
-  '[Account] Password Reset',
-  props<{ request: PasswordReset }>()
-);
-
-export const passwordResetResult = createAction(
-  '[Account] Password Reset Result',
-  props<{ result: ResponseMessage }>()
-);
-
 export const updateAccountDetails = createAction(
   '[Account] Update Account Details',
   props<{ account: Account }>()
