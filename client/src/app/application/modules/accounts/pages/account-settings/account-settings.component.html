@@ -19,10 +19,10 @@
       <div class="row mb-4">
         <div class="col-sm-12">
           <!-- Navigation Tabs -->
-          <tabset>
-            <tab heading="General" id="tab1" (selectTab)="navigateTo('general')"></tab>
-            <tab heading="Security" (selectTab)="navigateTo('security')"></tab>
-            <tab heading="Integrations" (selectTab)="navigateTo('integrations')"></tab>
+          <tabset #tabs>
+            <tab heading="General" id="general" (selectTab)="navigateTo('general')"></tab>
+            <tab heading="Security" id="security" (selectTab)="navigateTo('security')"></tab>
+            <tab heading="Integrations" id="integrations" (selectTab)="navigateTo('integrations')"></tab>
           </tabset>
           <div class="card" style="border-top: 0;">
             <div class="card-body">
