@@ -28,6 +28,10 @@ export class DrawerService {
     return this._dataChangeSource.asObservable();
   }
 
+  public setData(data: any): void {
+    this._dataChangeSource.next(data);
+  }
+
   public show(content: Type<any>, data?: any): void {
     this._contentChangeSource.next(content);
     this._dataChangeSource.next(data);

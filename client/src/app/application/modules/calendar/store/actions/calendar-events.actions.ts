@@ -66,3 +66,8 @@ export const setCurrentCalendarDateRanges = createAction(
     endDate: Date 
   }>()
 );
+
+export const setSelectedCalendarEvent = createAction(
+  '[Calendar Events] Set Selected Calendar Event',
+  props<{ event: CalendarEvent }>()
+);

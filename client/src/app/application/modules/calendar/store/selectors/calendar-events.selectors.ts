@@ -31,3 +31,8 @@ export const selectCurrentCalendarDateRanges = createSelector(
   selectCalendarEventState,
   (state: fromCalendarEvents.ICalendarEventsState) => state.currentCalendarDateRanges
 );
+
+export const selectSelectedCalendarEvent = createSelector(
+  selectCalendarEventState,
+  (state: fromCalendarEvents.ICalendarEventsState) => state.selectedCalendarEvent
+);

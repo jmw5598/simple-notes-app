@@ -13,7 +13,7 @@ import {
   getCalendarEventsBetweenDates, 
   setCurrentCalendarEvents,
   setCurrentCalendarDateRanges, updateCalendarEvent } from '../../store/actions';
-import { selectCurrentCalendarEvents } from '../../store/selectors';
+import { selectCurrentCalendarEvents, selectSelectedCalendarEvent } from '../../store/selectors';
 
 @Component({
   selector: 'sn-view-calendar',
@@ -48,6 +48,11 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
           renderableEvents.forEach(e => this.calendar.getApi().addEvent(e))
         }
       });
+    this._store.select(selectSelectedCalendarEvent)
+      .pipe(takeUntil(this._subscriptionSubject))
+      .subscribe((event: CalendarEvent) => {
+        this._drawerService.setData(event);
+      })
   }
 
   public handleCalendarEventsFetch(info, success, error): void {

@@ -6,6 +6,7 @@ export const calendarEventsFeatureKey = 'calendarEvents';
 
 export interface ICalendarEventsState {
   currentCalendarEvents: CalendarEvent[],
+  selectedCalendarEvent: CalendarEvent,
   createCalendarEventResponseMessage: ResponseMessage,
   updateCalendarEventResponseMessage: ResponseMessage,
   deleteCalendarEventResponseMessage: ResponseMessage,
@@ -14,6 +15,7 @@ export interface ICalendarEventsState {
 
 export const initialCalendarEventState: ICalendarEventsState = {
   currentCalendarEvents: null,
+  selectedCalendarEvent: null,
   createCalendarEventResponseMessage: null,
   updateCalendarEventResponseMessage: null,
   deleteCalendarEventResponseMessage: null,
@@ -50,7 +52,8 @@ const _calendarEventReducer = createReducer(
       currentCalendarEvents: [
         ...state.currentCalendarEvents.filter(e => e.id !== event.id),
         event
-      ]
+      ],
+      selectedCalendarEvent: event
     }
   }),
   on(fromActions.setCreateCalendarEventResponseMessage, (state, { message }) => {
