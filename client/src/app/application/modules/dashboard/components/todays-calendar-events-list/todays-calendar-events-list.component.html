@@ -1,0 +1,31 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Date/Time</th>
+        <th>Title</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="!events || events.length === 0">
+      <tr class="bg-white">
+        <td colspan="6">
+          <sn-empty-data 
+              message="No calendar events today!"
+              [extraContent]="createNewButton">
+          </sn-empty-data>
+          <ng-template #createNewButton>
+            <a [routerLink]="['../calendar']" class="btn btn-success text-light">Create an event</a>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="events">
+      <tr *ngFor="let event of events">
+        <td>{{ event.startDateTime }}</td>
+        <td>{{ event.title }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

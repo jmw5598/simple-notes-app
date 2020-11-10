@@ -6,6 +6,11 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardOverviewComponent 
+  },
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full'
   }
 ];
 

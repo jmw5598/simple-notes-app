@@ -1,0 +1,35 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Last Modified</th>
+        <th>Title</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="!topics || topics.length === 0">
+      <tr class="bg-white">
+        <td colspan="6">
+          <sn-empty-data 
+              message="No recent topics to display!"
+              [extraContent]="createNewButton">
+          </sn-empty-data>
+          <ng-template #createNewButton>
+            <a [routerLink]="['../topics']" class="btn btn-success text-light">View topics</a>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="topics">
+      <tr *ngFor="let topics of topics">
+        <td>{{ topic.updatedAt }}</td>
+        <td>{{ topic.title }}</td>
+        <td class="text-right">
+          <a class="btn btn-outline-primary btn-sm btn-border-none" [routerLink]="['/topics', topic.id, 'details']">
+            <i class="fas fa-eye"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -8,10 +8,14 @@ import {
   TopicCreateComponent, 
   TopicSearchComponent, 
   CalendarEventCreateComponent } from '@sn/shared/components';
+import { RecentTopicsListComponent } from './components/recent-topics-list/recent-topics-list.component';
+import { TodaysCalendarEventsListComponent } from './components/todays-calendar-events-list/todays-calendar-events-list.component';
 
 @NgModule({
   declarations: [
-    DashboardOverviewComponent
+    DashboardOverviewComponent,
+    RecentTopicsListComponent,
+    TodaysCalendarEventsListComponent
   ],
   imports: [
     CommonModule,
