@@ -4,6 +4,22 @@
     <li class="nav-item">
       <hr />
       <a class="nav-link text-dark" href="#">
+        <i class="fas fa-chart-bar icon-margin"></i>
+        Dashboard <span class="sr-only">(current)</span>
+      </a>
+      <hr />
+      <ul class="nav nav-submenu flex-column">
+        <li 
+            class="nav-submenu-item" 
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">
+          <a class="text-dark" [routerLink]="['dashboard']">Overview</a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <hr />
+      <a class="nav-link text-dark" href="#">
         <i class="fas fa-book icon-margin"></i>
         Topics <span class="sr-only">(current)</span>
       </a>
@@ -13,19 +29,7 @@
             class="nav-submenu-item" 
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }">
-          <a class="text-dark" [routerLink]="['topics', 'view']">Dashboard</a>
-        </li>
-        <li 
-            class="nav-submenu-item" 
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }">
-          <a class="text-dark" [routerLink]="['topics','create']">Create Topic</a>
-        </li>
-        <li 
-            class="nav-submenu-item" 
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }">
-          <a class="text-dark" [routerLink]="['topics', 'search']">Search Topics</a>
+          <a class="text-dark" [routerLink]="['topics', 'view']">View Topics</a>
         </li>
       </ul>
     </li>
