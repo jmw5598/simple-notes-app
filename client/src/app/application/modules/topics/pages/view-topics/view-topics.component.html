@@ -1,6 +1,9 @@
 <div class="container-navbar-adjust container" [@fadeAnimation]>
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <!-- Page Header -->
+      <sn-page-header heading="Current Topics"></sn-page-header>
+
       <!-- Topics list -->
       <div *ngIf="(searchTopicsResult$ | async) || []" class="card">
         <!-- <div class="card-header">Current Topics</div> -->
