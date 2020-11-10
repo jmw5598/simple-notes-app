@@ -21,8 +21,8 @@
       </tr>
     </tbody>
     <tbody *ngIf="topics">
-      <tr *ngFor="let topics of topics">
-        <td>{{ topic.updatedAt }}</td>
+      <tr *ngFor="let topic of topics">
+        <td>{{ topic.updatedAt | date:'shortDate' }}</td>
         <td>{{ topic.title }}</td>
         <td class="text-right">
           <a class="btn btn-outline-primary btn-sm btn-border-none" [routerLink]="['/topics', topic.id, 'details']">

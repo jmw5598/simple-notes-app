@@ -22,7 +22,7 @@
     </tbody>
     <tbody *ngIf="events">
       <tr *ngFor="let event of events">
-        <td>{{ event.startDateTime }}</td>
+        <td>{{ event.startDateTime | date:'shortTime' }}</td>
         <td>{{ event.title }}</td>
         <td></td>
       </tr>
