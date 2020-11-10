@@ -15,6 +15,10 @@ import { applicationReducer, applicationFeatureKey } from './store';
 import { AccountsEffects } from './modules/accounts/store/effects';
 import { CalendarEventsEffects } from './modules/calendar/store/effects';
 import { CalendarIntegrationsEffects } from './modules/accounts/modules/account-settings-integrations/store/effects';
+import { DashboardEffects } from './modules/dashboard/store/effects/dashboard.effects';
+import { DocumentsEffects } from './modules/documents/store/effects/documents.effects';
+import { SectionsEffects } from './modules/topics/store/effects/sections.effects';
+import { TopicsEffects } from './modules/topics/store/effects/topics.effects';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,11 @@ import { CalendarIntegrationsEffects } from './modules/accounts/modules/account-
     EffectsModule.forFeature([
       AccountsEffects,
       CalendarEventsEffects,
-      CalendarIntegrationsEffects
+      CalendarIntegrationsEffects,
+      DashboardEffects,
+      DocumentsEffects,
+      SectionsEffects,
+      TopicsEffects
     ])
   ]
 })
