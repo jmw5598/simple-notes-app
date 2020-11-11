@@ -19,14 +19,12 @@ export const initialDashboardState: IDashboardState = {
 const _dashboardReducer = createReducer(
   initialDashboardState,
   on(fromActions.getRecentTopicsSuccess, (state, { topics }) => {
-    console.log(topics);
     return {
       ...state,
       recentTopics: topics
     }
   }),
   on(fromActions.getTodaysCalendarEventsSuccess, (state, { events }) => {
-    console.log(events);
     return {
       ...state,
       todaysEvents: events

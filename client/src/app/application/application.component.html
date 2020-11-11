@@ -1,9 +1,13 @@
-<div class="dashboard-container">
-  <div class="dashboard-navigation-container">
-    <sn-navigation></sn-navigation>
+<sn-layout [defaultState]="LayoutSidePanelState.COLLAPSE">
+  <div container="sidePanel">
+    <sn-navbar-side></sn-navbar-side>
   </div>
-  <div class="dashboard-toolbar-container">
+  <div container="navigationBar">
+    <sn-navigation></sn-navigation>
     <sn-toolbar></sn-toolbar>
   </div>
-  <router-outlet></router-outlet>
-</div>
+  <div container="mainContent">
+    <router-outlet></router-outlet>
+  </div>
+</sn-layout>
+

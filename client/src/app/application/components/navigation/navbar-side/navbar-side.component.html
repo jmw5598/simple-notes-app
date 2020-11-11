@@ -1,54 +1,25 @@
-<nav class="navbar-side bg-light" [ngClass]="{ 'navbar-side-show' : 5 === 5 }">
-  <h3 class="font-weight-bold text-right mb-3">Navigation</h3>
-  <ul class="nav nav-pills flex-column">
-    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-      <hr />
-      <a class="nav-link text-dark" [routerLink]="['dashboard']">
-        <i class="fas fa-chart-bar icon-margin"></i>
-        Dashboard <span class="sr-only">(current)</span>
+<div class="navbar-side-container">
+  <div class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <!-- Navbar Brand -->
+      <a [routerLink]="['/']" class="navbar-brand mx-auto">
+        <img src="assets/images/simple-notes-logo.svg" width="30" height="30" alt="">
+        <span *ngIf="(currentPanelState$ | async) === LayoutSidePanelState.OPEN" class="brand-text">Simple Notes</span>
       </a>
-      <hr />
-    </li>
-    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-      <a class="nav-link text-dark" [routerLink]="['topics', 'view']">
-        <i class="fas fa-book icon-margin"></i>
-        Topics <span class="sr-only">(current)</span>
-      </a>
-      <hr />
-    </li>
-    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-      <a class="nav-link text-dark" [routerLink]="['documents', 'builder']">
-        <i class="far fa-file-alt icon-margin"></i>
-        Documents
-      </a>
-      <hr />
-    </li>
-    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-      <a class="nav-link text-dark" [routerLink]="['calendar']">
-        <i class="far fa-calendar-alt icon-margin"></i>
-        Calendar
-      </a>
-      <hr />
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-dark" href="#">
-        <i class="far fa-user-circle icon-margin"></i>
-        Account
-      </a>
-      <ul class="nav nav-submenu flex-column">
-        <li
-            class="ml-4 nav-submenu-item"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }">
-          <a class="text-dark" [routerLink]="['accounts', 'settings']">Account Settings</a>
-        </li>
-        <li 
-            class="ml-4 nav-submenu-item"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }">
-          <a class="text-dark" [routerLink]="['/auth', 'logout']">Logout</a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+    </div>
+  </div>
+
+  <div class="navbar-side-menu">
+    <ul class="list-group navbar-side-menu-list text-dark">
+      <li 
+          *ngFor="let link of links"
+          class="list-group-item p-0 navbar-side-menu-item" 
+          routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">
+        <a [routerLink]="link.routerLink" class="px-4 py-3 d-block">
+          <i [ngClass]="link.iconClasses"></i>
+          <span *ngIf="(currentPanelState$ | async) === LayoutSidePanelState.OPEN">{{ link.label }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

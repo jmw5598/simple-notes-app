@@ -1,5 +1,12 @@
 <div *ngIf="(topic$ | async)" [@fadeAnimation] class="container-navbar-adjust container">
   <div class="row">
+    <div class="col-sm-12">
+      <sn-page-header
+          [heading]="'Topic Details'">
+      </sn-page-header>
+    </div>
+  </div>
+  <div class="row">
 
     <!-- Topic Details List -->
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 mb-4">

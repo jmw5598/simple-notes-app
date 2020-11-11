@@ -15,7 +15,9 @@ import {
 export class ToolbarComponent implements OnInit {
   public DrawerLocation = DrawerLocation;
 
-  constructor(private _drawerService: DrawerService) { }
+  constructor(
+    private _drawerService: DrawerService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -26,6 +28,14 @@ export class ToolbarComponent implements OnInit {
 
   public onCreateNewCalendarEvent(): void {
     this._drawerService.show(CalendarEventCreateComponent, { date: new Date() });
+  }
+
+  public onPreviousRoute(): void {
+    window.history.back();
+  }
+
+  public onNextRoute(): void {
+    window.history.forward();
   }
 
   public onSearchTopics(): void {

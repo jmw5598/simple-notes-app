@@ -21,6 +21,7 @@ import { DebounceDirective } from './directives/debounce.directive';
 
 import { ColorTwitterModule } from 'ngx-color/twitter';
 import { PageHeaderComponent } from './components/page-header/page-header.component'; // <color-twitter></color-twitter>
+import { LayoutComponent } from './components/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
     CalendarEventFormComponent,
     CalendarEventCreateComponent,
     DebounceDirective,
-    PageHeaderComponent
+    PageHeaderComponent,
+    LayoutComponent
   ],
   imports: [
     CommonModule,
@@ -64,7 +66,8 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
     CalendarEventFormComponent,
     CalendarEventCreateComponent,
     DebounceDirective,
-    PageHeaderComponent
+    PageHeaderComponent,
+    LayoutComponent
   ],
   providers: [
     DrawerService
