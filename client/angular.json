@@ -30,13 +30,15 @@
             "styles": [
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/assets/scss/bootstrap.scss",
+              "node_modules/bootstrap-markdown/css/bootstrap-markdown.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css",
               "src/assets/css/github-markdown.css",
               "src/styles.scss"
             ],
             "scripts": [
               "src/assets/js/jquery-3.3.1.min.js",
-              "src/assets/js/bootstrap.min.js"
+              "src/assets/js/bootstrap.min.js",
+              "node_modules/bootstrap-markdown/js/bootstrap-markdown.js"
             ]
           },
           "configurations": {
