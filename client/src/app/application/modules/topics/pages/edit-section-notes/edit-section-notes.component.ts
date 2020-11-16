@@ -92,6 +92,10 @@ export class EditSectionNotesComponent implements OnInit, OnDestroy {
     }, 3000);
   }
 
+  public hidePreview(): void {
+    console.log('hiding preview');
+  }
+
   ngOnDestroy(): void {
     this._store.dispatch(setSelectedSection({ section: null }));
     this._subscriptionSubject$.next();

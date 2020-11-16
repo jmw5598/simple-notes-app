@@ -1,30 +1,28 @@
-.sn-editor-column {
-  height: calc(100vh - 88px);
+.editor {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+
+  .editor-left,
+  .editor-right {
+    flex: 1 1 0px;
+    height: 100%;
+    overflow-y: hidden;
+  }
+
+  .editor-right {
+    .editor-markdown-preview {
+      padding: 1rem;
+    }
+
+    &:hover {
+      overflow-y: auto;
+    }
+  }
 }
 
-.sn-editor-column .card {
-  height: calc(100% - 16px);
-}
-
-.sn-editor-column .card .card-body {
-  overflow-x: hidden;
-  position: relative;
-}
-
-.sn-editor-column .card:nth-child(2) .card-body {
-  overflow-y: auto;
-}
-
-.sn-editor-column .card-body .form-group {
-  position: absolute;
-  top: 16px;
-  bottom: 16px;
-  right: 16px;
-  left: 16px;
-}
-
-.sn-editor-column .card-body textarea {
-  height: 100% !important;
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
+@media screen and (max-width: 990px) {
+  .editor {
+    flex-direction: column;
+  }
 }

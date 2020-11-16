@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@sn/shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { MarkdownModule } from 'angular2-markdown';
+import { AngularMarkdownEditorModule } from 'angular-markdown-editor';
+
+import { MarkdownModule } from 'angular2-markdown'; // TODO Remove this??
 import { ViewTopicsComponent } from './pages/view-topics/view-topics.component';
 import { TopicsRoutingModule } from './topics-routing.module';
 import { TopicListComponent } from './components/topic-list/topic-list.component';
@@ -48,7 +50,8 @@ import * as fromTopicsEffects from './store/effects';
     EffectsModule.forFeature([
       fromTopicsEffects.SectionsEffects,
       fromTopicsEffects.TopicsEffects
-    ])
+    ]),
+    AngularMarkdownEditorModule.forRoot({ iconlibrary: 'fa' })
   ],
   entryComponents: [
     TopicExportComponent,

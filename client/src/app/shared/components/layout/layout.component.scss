@@ -3,6 +3,10 @@
     position: sticky;
 }
 
+:host ::ng-deep div[container=mainContent] {
+  height: 100%;
+}
+
 .layout-container {
   display: flex;
   flex-direction: row;
@@ -45,6 +49,11 @@
       @include sticky();
       top: 0;
       z-index: 100;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      height: 100%;
     }
   }
 }
