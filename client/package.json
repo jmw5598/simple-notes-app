@@ -30,7 +30,6 @@
     "@ngrx/store-devtools": "^10.0.1",
     "angular-confirmation-popover": "^6.0.0",
     "angular-markdown-editor": "^2.0.2",
-    "angular2-markdown": "^2.2.3",
     "file-saver": "^2.0.2",
     "ngx-bootstrap": "^6.1.0",
     "ngx-color": "^6.0.4",
