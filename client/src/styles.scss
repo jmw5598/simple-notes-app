@@ -24,3 +24,29 @@
 bs-datepicker-container { 
   z-index: 9999 !important;
 }
+
+
+// TODO Refactor into editor component????
+.md-editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-top: 0;
+  border-left: 0;
+  border-bottom: 0;
+
+  textarea {
+    flex-grow: 1;
+    padding: 0.5rem;  
+    background: #FFFFFF;
+  }
+
+  &.active {
+    outline: none;
+    box-shadow:none !important;
+    border-color: rgba(0, 0, 0, 0.125) !important;
+    border-top: 0;
+    border-left: 0;
+    border-bottom: 0;
+  }
+}
