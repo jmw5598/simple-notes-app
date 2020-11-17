@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { debounceTime, takeUntil, take, tap, distinctUntilChanged } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-
+import { EditorOption } from 'angular-markdown-editor';
 import { ISectionsState } from '../../store/reducers';
 import { EditorMessage } from './editor-message.enum';
 import { Section } from '@sn/shared/models';
@@ -20,7 +20,25 @@ import { fadeAnimation } from '@sn/shared/animations';
   animations: [fadeAnimation]
 })
 export class EditSectionNotesComponent implements OnInit, OnDestroy {
-
+  public editorOptions: EditorOption = {
+    hiddenButtons: ['Preview'],
+    iconlibrary: 'fa',
+    additionalButtons: [
+      [{
+        name: 'save',
+        data: [{
+          name: 'cmdSave',
+          toggle: false,
+          title: 'Save',
+          icon: {
+            fa: 'fas fa-save',
+            glyph: 'glyphicon glyphicon-save'
+          },
+          callback: (e) => this.onSaveSectionNotes(this.sectionNotes)
+        }]
+      }]
+    ]
+  };
   public section$: Observable<Section>;
   public sectionNotes: string = '';  
   private _subscriptionSubject$: Subject<void>;
@@ -45,7 +63,7 @@ export class EditSectionNotesComponent implements OnInit, OnDestroy {
         tap((response: ResponseMessage) => {
           if (response) {
             const successMessage: boolean = response.status === ResponseStatus.SUCCESS;
-            this.saveMessage = successMessage ? EditorMessage.SAVED : EditorMessage.ERROR;
+            this.editorOptions.footer = successMessage ? EditorMessage.SAVED : EditorMessage.ERROR;
             this._resetEditorMessage();
           }
         })
@@ -72,7 +90,7 @@ export class EditSectionNotesComponent implements OnInit, OnDestroy {
   }
 
   public onSaveSectionNotes(notes: string): void {
-    this.saveMessage = EditorMessage.SAVING;
+    this.editorOptions.footer = EditorMessage.SAVING;
     this._store.dispatch(updateSectionNotes({
       topicId: this._topicId,
       sectionId: this._sectionId,
@@ -87,7 +105,7 @@ export class EditSectionNotesComponent implements OnInit, OnDestroy {
   private _resetEditorMessage(): void {
     setTimeout(() => {
       if (this.saveMessage !== EditorMessage.SAVING) {
-        this.saveMessage = null;
+        this.editorOptions.footer = '';
       }
     }, 3000);
   }

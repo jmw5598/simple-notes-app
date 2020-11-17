@@ -2,7 +2,8 @@
   <div class="editor-left">
     <angular-markdown-editor
         textareaId="section-editor-area" 
-        name="markdownText" 
+        name="markdownText"
+        [options]="editorOptions"
         [(ngModel)]="sectionNotes"
         (onFullscreenExit)="hidePreview()"
         (onChange)="onSectionNotesChangeKeyUp($event)">
