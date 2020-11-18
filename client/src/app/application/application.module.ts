@@ -5,7 +5,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { SharedModule } from '@sn/shared/shared.module';
 import { ApplicationRoutingModule } from './application-routing.module';
 import { ApplicationComponent } from './application.component';
-
+import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { NavbarComponent } from './components/navigation/navbar/navbar.component';
 import { NavbarSideComponent } from './components/navigation/navbar-side/navbar-side.component';
@@ -41,7 +41,8 @@ import { TopicsEffects } from './modules/topics/store/effects/topics.effects';
       DocumentsEffects,
       SectionsEffects,
       TopicsEffects
-    ])
+    ]),
+    KeyboardShortcutsModule.forRoot()
   ]
 })
 export class ApplicationModule { }
