@@ -1,14 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { State, Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+
+import { IToolbarState } from '../../store/reducers';
+import { selectKeyboardShortcuts } from '../../store/selectors';
 import { DrawerService, DrawerLocation } from '@sn/shared/components';
-import { ShortcutInput, ShortcutEventOutput, AllowIn } from 'ng-keyboard-shortcuts';
+import { ShortcutInput, AllowIn } from 'ng-keyboard-shortcuts';
+
 
 import { 
   TopicCreateComponent, 
   TopicSearchComponent,
   CalendarEventCreateComponent } from '@sn/shared/components';
-import { Topic } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-toolbar',
@@ -22,7 +26,10 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   public DrawerLocation = DrawerLocation;
   private _isDrawerVisible: boolean;
 
-  constructor(private _drawerService: DrawerService) {
+  constructor(
+    private _store: Store<IToolbarState>,
+    private _drawerService: DrawerService
+  ) {
     this._subscriptionSubject = new Subject<void>();
   }
 
@@ -31,9 +38,15 @@ export class ToolbarComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._subscriptionSubject))
       .subscribe(isDrawerVisible => this._isDrawerVisible = isDrawerVisible);
 
+    this._store.select(selectKeyboardShortcuts)
+      .pipe(takeUntil(this._subscriptionSubject))
+      .subscribe(shortcuts => console.log(shortcuts));
+
     this.shortcuts.push(  
       {  
         key: "alt + c",
+        label: 'Create Calendar Event',
+        description: 'Opens drawer with create calendar event form.',
         preventDefault: true,
         allowIn: [AllowIn.Textarea, AllowIn.Input, AllowIn.Select],
         command: e => this.onCreateNewCalendarEvent()
@@ -41,12 +54,16 @@ export class ToolbarComponent implements OnInit, OnDestroy {
       {  
         key: "alt + t",
         preventDefault: true,
+        label: 'Create Topic',
+        description: 'Opens drawer with create topic form.',
         allowIn: [AllowIn.Textarea, AllowIn.Input, AllowIn.Select],
         command: e => this.onCreateNewTopic()
       },
       {  
         key: "alt + s",
         preventDefault: true,
+        label: 'Search Topics',
+        description: 'Opens drawer with search topics form.',
         allowIn: [AllowIn.Textarea, AllowIn.Input, AllowIn.Select],
         command: e => this.onSearchTopics()
       }

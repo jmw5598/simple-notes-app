@@ -7,6 +7,7 @@ import * as fromCalendarIntegrations from '../modules/accounts/modules/account-s
 import * as fromDashboard from '../modules/dashboard/store/reducers';
 import * as fromDocuments from '../modules/documents/store/reducers';
 import * as fromTopics from '../modules/topics/store/reducers';
+import * as fromToolbar from './reducers';
 
 
 export const applicationFeatureKey: string = 'application';
@@ -18,7 +19,8 @@ export interface IApplicationState {
   [fromDashboard.dashboardFeatureKey]: fromDashboard.IDashboardState,
   [fromDocuments.documentsFeatureKey]: fromDocuments.IDocumentsState,
   [fromTopics.topicsFeatureKey]: fromTopics.ITopicsState,
-  [fromTopics.sectionsFeatureKey]: fromTopics.ISectionsState
+  [fromTopics.sectionsFeatureKey]: fromTopics.ISectionsState,
+  [fromToolbar.toolbarFeatureKey]: fromToolbar.IToolbarState
 }
 
 export const applicationReducer = new InjectionToken<ActionReducerMap<IApplicationState>>(applicationFeatureKey, {
@@ -29,7 +31,8 @@ export const applicationReducer = new InjectionToken<ActionReducerMap<IApplicati
     [fromDashboard.dashboardFeatureKey]: fromDashboard.dashboardReducer,
     [fromDocuments.documentsFeatureKey]: fromDocuments.documentReducer,
     [fromTopics.topicsFeatureKey]: fromTopics.topicReducer,
-    [fromTopics.sectionsFeatureKey]: fromTopics.sectionReducer
+    [fromTopics.sectionsFeatureKey]: fromTopics.sectionReducer,
+    [fromToolbar.toolbarFeatureKey]: fromToolbar.toolbarReducer
   })
 });
 

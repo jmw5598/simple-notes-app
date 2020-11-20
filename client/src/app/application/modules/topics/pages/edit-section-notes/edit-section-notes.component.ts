@@ -12,6 +12,7 @@ import { setSelectedSection, updateSectionNotes } from '../../store/actions';
 import { ResponseMessage } from '@sn/core/models';
 import { ResponseStatus } from '@sn/core/enums';
 import { fadeAnimation } from '@sn/shared/animations';
+import { DEFAULT_EDITOR_OPTIONS } from './editor-options.defaults';
 
 @Component({
   selector: 'sn-edit-section-notes',
@@ -20,25 +21,7 @@ import { fadeAnimation } from '@sn/shared/animations';
   animations: [fadeAnimation]
 })
 export class EditSectionNotesComponent implements OnInit, OnDestroy {
-  public editorOptions: EditorOption = {
-    hiddenButtons: ['Preview'],
-    iconlibrary: 'fa',
-    additionalButtons: [
-      [{
-        name: 'save',
-        data: [{
-          name: 'cmdSave',
-          toggle: false,
-          title: 'Save',
-          icon: {
-            fa: 'fas fa-save',
-            glyph: 'glyphicon glyphicon-save'
-          },
-          callback: (e) => this.onSaveSectionNotes(this.sectionNotes)
-        }]
-      }]
-    ]
-  };
+  public editorOptions: EditorOption;
   public section$: Observable<Section>;
   public sectionNotes: string = '';  
   private _subscriptionSubject$: Subject<void>;
@@ -53,6 +36,22 @@ export class EditSectionNotesComponent implements OnInit, OnDestroy {
   ) {
     this._subscriptionSubject$ = new Subject<void>();
     this._sectionNoteChangeSubject$ = new Subject<string>();
+    this.editorOptions = {...DEFAULT_EDITOR_OPTIONS};
+    this.editorOptions.additionalButtons[0].push(
+      {
+        name: 'groupMod',
+        data: [{
+          name: 'cmdSave',
+          toggle: false,
+          title: 'Save',
+          icon: {
+            fa: 'fas fa-save',
+            glyph: 'glyphicon glyphicon-save'
+          },
+          callback: (e) => this.onSaveSectionNotes(this.sectionNotes)
+        }]
+      }
+    );
   }
 
   ngOnInit() {

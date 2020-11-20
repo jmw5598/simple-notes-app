@@ -18,6 +18,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/account-settings-security/account-settings-security.module').then(m => m.AccountSettingsSecurityModule)
       },
       {
+        path: 'toolbar',
+        loadChildren: () => import('./modules/account-settings-toolbar/account-settings-toolbar.module').then(m => m.AccountSettingsToolbarModule)
+      },
+      {
         path: 'integrations',
         loadChildren: () => import('./modules/account-settings-integrations/account-settings-integrations.module').then(m => m.AccountSettingsIntegrationsModule)
       },
