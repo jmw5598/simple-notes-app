@@ -8,6 +8,7 @@ import { Topic } from '../../topics/entities/topic.entity';
 import { Document } from '../../documents/entities/document.entity';
 import { CalendarEvent } from '../../calendar/entities/calendar-event.entity';
 import { CalendarIntegration } from '../../calendar/entities/calendar-integration.entity';
+import { KeyboardShortcut } from './keyboard-shortcut.entity';
 
 @Entity()
 export class Account extends BaseEntity {
@@ -39,6 +40,9 @@ export class Account extends BaseEntity {
 
   @OneToMany(type => CalendarEvent, event => event.account)
   public calendarEvents: CalendarEvent[];
+
+  @OneToMany(type => KeyboardShortcut, shortcut => shortcut.account)
+  public keyboardShortcuts: KeyboardShortcut[];
 
   @OneToMany(type => CalendarIntegration, integration => integration.account)
   public calendarIntegrations: CalendarIntegration[];
