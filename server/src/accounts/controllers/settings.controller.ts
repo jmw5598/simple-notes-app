@@ -4,7 +4,7 @@ import { SnLoggerService } from '../../logger/sn-logger.service';
 import { SettingsService } from '../services/settings.service';
 
 @Controller('accounts/settings')
-// @UseGuards(JwtAuthenticationGuard)
+@UseGuards(JwtAuthenticationGuard)
 export class SettingsController {
   constructor(
     private readonly _logger: SnLoggerService,
@@ -16,7 +16,8 @@ export class SettingsController {
   @Get('shortcuts')
   public async getKeyboardShortcuts(@Request() request): Promise<any> {
     try {
-      return [];
+      const accountId: number = +request.user.accountId;
+      return this._settingsService.getKeyboardShortcuts(accountId);
     } catch (error) {
       this._logger.error(`Error getting keyboard shortcuts`, error);
       throw error;
