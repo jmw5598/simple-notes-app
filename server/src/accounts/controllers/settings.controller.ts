@@ -2,6 +2,7 @@ import { Controller, Request, Get, UseGuards } from '@nestjs/common';
 import { JwtAuthenticationGuard } from 'src/authentication/guards/jwt-authentication.guard';
 import { SnLoggerService } from '../../logger/sn-logger.service';
 import { SettingsService } from '../services/settings.service';
+import { KeyboardShortcutActionDto } from '../dtos/keyboard-shortcut-action.dto';
 
 @Controller('accounts/settings')
 @UseGuards(JwtAuthenticationGuard)
@@ -14,7 +15,7 @@ export class SettingsController {
   }
 
   @Get('shortcuts')
-  public async getKeyboardShortcuts(@Request() request): Promise<any> {
+  public async getKeyboardShortcuts(@Request() request): Promise<KeyboardShortcutActionDto[]> {
     try {
       const accountId: number = +request.user.accountId;
       return this._settingsService.getKeyboardShortcuts(accountId);
