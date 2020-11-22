@@ -1,0 +1,42 @@
+<!-- <pre>
+  {{ (shortcut$ | async) | json }}
+</pre> -->
+
+<div class="row">
+  <div class="col-sm-12 px-4">
+    <div *ngIf="(shortcut$ | async)">
+      <h3 class="font-weight-bold text-right mb-3">Keyboard Shortcut Details</h3>
+      <hr />
+      <h4 class="font-weight-bold mb-2">{{ shortcut?.action }} Binding</h4>
+      <ul class="list-unstyled mb-4 list-style-none">
+        <li class="card card-body mb-3 p-3">
+          <p class="text-dark m-0 p-0">{{ shortcut?.description }}</p>
+        </li>
+      </ul>
+      <div class="keyboard-shortcut-form">
+        TODO: Keyboard Shortcut Form Here
+      </div>
+      <div class="text-right">
+        <button 
+            role="button" 
+            type="button" 
+            class="btn btn-primary mr-3">
+          Save
+        </button>
+        <button 
+            mwlConfirmationPopover
+            placement="left"
+            (confirm)="resetShortcut()"
+            role="button" 
+            type="button" 
+            class="btn btn-secondary">
+          Reset
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <pre>
+  {{ (shortcut$ | async) | json }}
+</pre> -->

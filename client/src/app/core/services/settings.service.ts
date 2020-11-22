@@ -17,4 +17,10 @@ export class SettingsService {
       `${environment.api.baseUrl}/accounts/settings/shortcuts`
     );
   }
+
+  public deleteKeyboardShortcut(shortcutId: number): Observable<KeyboardShortcutAction> {
+    return this._http.delete<KeyboardShortcutAction>(
+      `${environment.api.baseUrl}/accounts/settings/shortcuts/${shortcutId}`
+    );
+  }
 }

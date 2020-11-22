@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
@@ -45,7 +46,12 @@ import { environment } from '@env/environment';
     StoreDevtoolsModule.instrument({
       name: 'Simple Notes App',
       logOnly: environment.production      
-    })
+    }),
+    ConfirmationPopoverModule.forRoot({
+      popoverMessage: 'Are you sure?',
+      cancelButtonType: 'btn-default btn-sm bg-secondary',
+      confirmButtonType: 'btn-primary btn-sm bg-primary text-light'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

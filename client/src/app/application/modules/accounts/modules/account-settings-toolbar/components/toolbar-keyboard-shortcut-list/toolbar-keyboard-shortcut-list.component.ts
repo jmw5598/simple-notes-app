@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { KeyboardShortcutAction } from '@sn/core/models';
 
 @Component({
   selector: 'sn-toolbar-keyboard-shortcut-list',
@@ -6,8 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./toolbar-keyboard-shortcut-list.component.scss']
 })
 export class ToolbarKeyboardShortcutListComponent implements OnInit {
-  constructor() { }
+  @Input()
+  public shortcuts: KeyboardShortcutAction[];
+
+  @Output()
+  public onDeleteShortcut: EventEmitter<number>;
+
+  @Output()
+  public onConfigureShortcut: EventEmitter<KeyboardShortcutAction>;
+
+  constructor() {
+    this.onDeleteShortcut = new EventEmitter<number>();
+    this.onConfigureShortcut = new EventEmitter<KeyboardShortcutAction>();
+  }
 
   ngOnInit(): void {
+  }
+
+  public deleteShortcut(shortcutId: number): void {
+    this.onDeleteShortcut.emit(shortcutId);
+  }
+
+  public configureShortcut(shortcut: KeyboardShortcutAction): void {
+    this.onConfigureShortcut.emit(shortcut); 
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { State, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -38,7 +38,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this._drawerService.onDrawerVibilityChange()
       .pipe(takeUntil(this._subscriptionSubject))
       .subscribe(isDrawerVisible => this._isDrawerVisible = isDrawerVisible);
-
+      
     this._store.select(selectKeyboardShortcuts)
       .pipe(takeUntil(this._subscriptionSubject))
       .subscribe(shortcuts => {

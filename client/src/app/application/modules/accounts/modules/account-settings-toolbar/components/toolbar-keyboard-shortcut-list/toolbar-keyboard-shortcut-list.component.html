@@ -1,1 +1,35 @@
-<p>toolbar-keyboard-shortcut-list works!</p>
+<div class="keyboard-shortcut-list">
+  <ng-container *ngFor="let shortcut of shortcuts">
+    <div class="keyboard-shortcut">
+      <div class="keyboard-shortcut-details">
+        <span class="d-inline-block mr-2">{{shortcut.action}}</span>
+        <ng-container *ngIf="shortcut.shortcutId; else defaultShortcutTemplate">
+          <span class="d-inline-block badge badge-primary">{{ shortcut.shortcut }}</span>
+        </ng-container>
+        <ng-template #defaultShortcutTemplate>
+           <span class="d-inline-block badge badge-secondary">{{ shortcut.defaultShortcut }}</span>
+        </ng-template>
+      </div>
+      <div class="keyboard-shortcut-buttons">
+        <ng-container *ngIf="shortcut.shortcutId">
+          <button 
+              mwlConfirmationPopover
+              placement="left"
+              (confirm)="deleteShortcut(shortcut.shortcutId)"
+              class="btn btn-outline-primary btn-sm btn-border-none"
+              role="button" 
+              type="button">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </ng-container>
+        <button 
+            class="btn btn-outline-primary btn-sm btn-border-none"
+            role="button" 
+            type="button" 
+            (click)="configureShortcut(shortcut)">
+          <i class="fas fa-cog"></i>
+        </button>
+      </div>
+    </div>   
+  </ng-container>
+</div>
