@@ -1,4 +1,3 @@
-import { KeyboardShortcutDto } from '../dtos/keyboard-shortcut.dto';
 import { KeyboardShortcutAction } from '../entities/keyboard-shortcut-action.entity';
 import { KeyboardShortcutActionDto } from '../dtos/keyboard-shortcut-action.dto';
 
@@ -9,7 +8,7 @@ export class KeyboardShortcutActionMapper {
       action: action.action,
       description: action.description,
       defaultShortcut: action.defaultShortcut,
-      shortcut_id: action.keyboardShortcuts.length > 0 ? action.keyboardShortcuts[0].id : null,
+      shortcutId: action.keyboardShortcuts.length > 0 ? action.keyboardShortcuts[0].id : null,
       shortcut: action.keyboardShortcuts.length > 0 ? action.keyboardShortcuts[0].shortcut : null
     } as KeyboardShortcutActionDto;
   }

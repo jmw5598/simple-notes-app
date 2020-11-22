@@ -22,8 +22,6 @@ export class SettingsService {
       .createQueryBuilder('action')
       .leftJoinAndSelect('action.keyboardShortcuts', 'shortcut', `shortcut.account_id = :accountId`, {accountId: accountId})
       .getMany();
-
-    console.log(actions);
     return KeyboardShortcutActionMapper.toKeyboardShortcutActionDtoList(actions);
   }
 }

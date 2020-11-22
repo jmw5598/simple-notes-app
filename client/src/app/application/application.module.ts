@@ -19,6 +19,7 @@ import { DashboardEffects } from './modules/dashboard/store/effects/dashboard.ef
 import { DocumentsEffects } from './modules/documents/store/effects/documents.effects';
 import { SectionsEffects } from './modules/topics/store/effects/sections.effects';
 import { TopicsEffects } from './modules/topics/store/effects/topics.effects';
+import { ToolbarEffects } from './store/effects/toolbar.effects';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { TopicsEffects } from './modules/topics/store/effects/topics.effects';
       DashboardEffects,
       DocumentsEffects,
       SectionsEffects,
-      TopicsEffects
+      TopicsEffects,
+      ToolbarEffects
     ]),
     KeyboardShortcutsModule.forRoot()
   ]

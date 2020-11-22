@@ -5,6 +5,6 @@ export class KeyboardShortcutActionDto {
   public action: KeyboardShortcutActionType;
   public description: string;
   public defaultShortcut: string;
-  public shortcut_id: number;
+  public shortcutId: number;
   public shortcut: string;
 }

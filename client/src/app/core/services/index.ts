@@ -6,4 +6,5 @@ export * from './calendar-integrations.service';
 export * from './profiles.service';
 export * from './plans.service';
 export * from './sections.service';
+export * from './settings.service';
 export * from './topics.service';

@@ -7,8 +7,8 @@ import { IToolbarState } from '../../store/reducers';
 import { selectKeyboardShortcuts } from '../../store/selectors';
 import { DrawerService, DrawerLocation } from '@sn/shared/components';
 import { ShortcutInput, AllowIn } from 'ng-keyboard-shortcuts';
-
-
+import { getKeyboardShortcuts } from '@sn/application/store/actions';
+import { KeyboardShortcutActionType } from '@sn/core/enums';
 import { 
   TopicCreateComponent, 
   TopicSearchComponent,
@@ -34,40 +34,27 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this._store.dispatch(getKeyboardShortcuts());
     this._drawerService.onDrawerVibilityChange()
       .pipe(takeUntil(this._subscriptionSubject))
       .subscribe(isDrawerVisible => this._isDrawerVisible = isDrawerVisible);
 
     this._store.select(selectKeyboardShortcuts)
       .pipe(takeUntil(this._subscriptionSubject))
-      .subscribe(shortcuts => console.log(shortcuts));
-
-    this.shortcuts.push(  
-      {  
-        key: "alt + c",
-        label: 'Create Calendar Event',
-        description: 'Opens drawer with create calendar event form.',
-        preventDefault: true,
-        allowIn: [AllowIn.Textarea, AllowIn.Input, AllowIn.Select],
-        command: e => this.onCreateNewCalendarEvent()
-      },
-      {  
-        key: "alt + t",
-        preventDefault: true,
-        label: 'Create Topic',
-        description: 'Opens drawer with create topic form.',
-        allowIn: [AllowIn.Textarea, AllowIn.Input, AllowIn.Select],
-        command: e => this.onCreateNewTopic()
-      },
-      {  
-        key: "alt + s",
-        preventDefault: true,
-        label: 'Search Topics',
-        description: 'Opens drawer with search topics form.',
-        allowIn: [AllowIn.Textarea, AllowIn.Input, AllowIn.Select],
-        command: e => this.onSearchTopics()
-      }
-    );  
+      .subscribe(shortcuts => {
+        if (!shortcuts) return;
+        this.shortcuts = shortcuts.map(shortcut => {
+          const command: Function = this._determineCommand(shortcut.action);
+          return {
+            key: shortcut.shortcut || shortcut.defaultShortcut,
+            label: shortcut.action,
+            description: shortcut.description,
+            preventDefault: true,
+            allowIn: [AllowIn.Textarea, AllowIn.Input, AllowIn.Select],
+            command: command
+          } as ShortcutInput
+        });
+      });
   }
 
   public onCreateNewTopic(): void {
@@ -105,7 +92,21 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  private _determineCommand(action: KeyboardShortcutActionType): Function {
+    switch (action) {
+      case KeyboardShortcutActionType.CREATE_CALENDAR_EVENT:
+        return (e) => this.onCreateNewCalendarEvent();
+      
+      case KeyboardShortcutActionType.CREATE_TOPIC:
+        return (e) => this.onCreateNewTopic();
 
+      case KeyboardShortcutActionType.SEARCH_TOPICS:
+        return (e) => this.onSearchTopics();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this._subscriptionSubject.next();
+    this._subscriptionSubject.complete();
   }
 }

@@ -9,7 +9,7 @@ export interface IToolbarState {
 }
 
 export const initialToolbarState: IToolbarState = {
-  keyboardShortcuts: DEFAULT_KEYBOARD_SHORTCUTS
+  keyboardShortcuts: null
 }
 
 const _toolbarReducer = createReducer(
