@@ -24,7 +24,27 @@ export class ToolbarEffects {
     )
   ));
 
-  deleteKeyboardSHortcut$ = createEffect(() => this._actions.pipe(
+  createKeyboardShortcut$ = createEffect(() => this._actions.pipe(
+    ofType(fromToolbar.createKeyboardShortcut),
+    exhaustMap(({actionId, shortcut}) => this._settingsService.createKeyboardShortcut(actionId, shortcut)
+      .pipe(
+        map((shortcut: KeyboardShortcutAction) => fromToolbar.createKeyboardShortcutSuccess({shortcut: shortcut})),
+        catchError(error => of(fromHttp.handleHttpError({ error: error })))
+      )
+    )
+  ));
+
+  updateKeyboardShortcut$ = createEffect(() => this._actions.pipe(
+    ofType(fromToolbar.updateKeyboardShortcut),
+    switchMap(({shortcutId, shortcut}) => this._settingsService.updateKeyboardShortcut(shortcutId, shortcut)
+      .pipe(
+        map((shortcut: KeyboardShortcutAction) => fromToolbar.updateKeyboardShortcutSuccess({ action: shortcut })),
+        catchError(error => of(fromHttp.handleHttpError({ error: error })))
+      )
+    )
+  ))
+
+  deleteKeyboardShortcut$ = createEffect(() => this._actions.pipe(
     ofType(fromToolbar.deleteKeyboardShortcut),
     exhaustMap(({shortcutId}) => this._settingsService.deleteKeyboardShortcut(shortcutId)
       .pipe(

@@ -20,6 +20,17 @@ const _toolbarReducer = createReducer(
       keyboardShortcuts: shortcuts
     }
   }),
+  on(fromActions.updateKeyboardShortcutSuccess, (state, { action }) => {
+    const shortcuts: KeyboardShortcutAction[] = state.keyboardShortcuts
+      .map(a => {
+        if (a.id === action.id) a.shortcut = action.shortcut;
+        return a;
+      });
+    return {
+      ...state,
+      keyboardShortcuts: shortcuts
+    }
+  }),
   on(fromActions.deleteKeyboardShortcutSuccess, (state, { action }) => {
     const shortcuts: KeyboardShortcutAction[] = state.keyboardShortcuts
       .map(a => a.id === action.id ? action : a);

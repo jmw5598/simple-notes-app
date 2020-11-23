@@ -12,7 +12,7 @@ export const setKeyboareShortcuts = createAction(
 
 export const createKeyboardShortcut = createAction(
   '[Toolbar] Create Keyboard Shortcut',
-  props<{ actiondId: number, shortcut: string }>()
+  props<{ actionId: number, shortcut: string }>()
 );
 
 export const createKeyboardShortcutSuccess = createAction(
@@ -20,7 +20,15 @@ export const createKeyboardShortcutSuccess = createAction(
   props<{ shortcut: KeyboardShortcutAction }>()
 );
 
-// TODO Update keyboard shortcut
+export const updateKeyboardShortcut = createAction(
+  '[Toolbar] Update Keyboard Shortcut',
+  props<{ shortcutId: number, shortcut: KeyboardShortcutAction }>()
+);
+
+export const updateKeyboardShortcutSuccess = createAction(
+  '[Toolbar] Update Keyboard Shortcut Success',
+  props<{ action: KeyboardShortcutAction }>()
+);
 
 export const deleteKeyboardShortcut = createAction(
   '[Toolbar] Delete Keyboard Shortcut',

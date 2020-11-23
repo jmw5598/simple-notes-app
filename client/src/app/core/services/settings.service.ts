@@ -18,6 +18,20 @@ export class SettingsService {
     );
   }
 
+  public createKeyboardShortcut(actionId: number, shortcut: string): Observable<KeyboardShortcutAction> {
+    return this._http.post<KeyboardShortcutAction>(
+      `${environment.api.baseUrl}/accounts/settings/shortcuts`,
+      shortcut
+    );
+  }
+
+  public updateKeyboardShortcut(shortcutId: number, shortcut: KeyboardShortcutAction): Observable<KeyboardShortcutAction> {
+    return this._http.put<KeyboardShortcutAction>(
+      `${environment.api.baseUrl}/accounts/settings/shortcuts/${shortcutId}`,
+      shortcut
+    )
+  }
+
   public deleteKeyboardShortcut(shortcutId: number): Observable<KeyboardShortcutAction> {
     return this._http.delete<KeyboardShortcutAction>(
       `${environment.api.baseUrl}/accounts/settings/shortcuts/${shortcutId}`

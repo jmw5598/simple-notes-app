@@ -2,13 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { KeyboardShortcut } from '../entities/keyboard-shortcut.entity';
-import { KeyboardShortcutDto } from '../dtos/keyboard-shortcut.dto';
 import { KeyboardShortcutActionDto } from '../dtos/keyboard-shortcut-action.dto';
 import { KeyboardShortcutAction } from '../entities/keyboard-shortcut-action.entity';
-import { KeyboardShortcutMapper } from '../mappers/keyboard-shortcut.mapper';
 import { KeyboardShortcutActionMapper } from '../mappers/keyboard-shortcut-action.mapper';
 import { CreateKeyboardShortcutDto } from '../dtos/create-keyboard-shortcut.dto';
 import { KeyboardShortcutNotFoundException } from '../exceptions/keyboard-shortcut-not-found.exception';
+import { UpdateKeyboardShortcutDto } from '../dtos/update-keyboard-shortcut.dto';
 
 @Injectable()
 export class SettingsService {
@@ -41,7 +40,28 @@ export class SettingsService {
     );
   }
 
-  public async deleteKeyboardShortcut(accountId: number, shortcutId: number): Promise<KeyboardShortcutActionDto> {
+  public async updateKeyboardShortcut(
+      accountId: number, shortcutId: number, updateKeyboardShortcutDto: UpdateKeyboardShortcutDto): Promise<KeyboardShortcutActionDto> {
+    const shortcut: KeyboardShortcut = await this._keyboardShortcutRepository.findOne({
+      relations: ['keyboardShortcutAction'],
+      where: {
+        id: shortcutId,
+        account: { id: accountId },
+        keyboardShortcutAction: { id: updateKeyboardShortcutDto.actionId }
+      }
+    });
+
+    if (!shortcut) throw new KeyboardShortcutNotFoundException
+    shortcut.shortcut = updateKeyboardShortcutDto.shortcut;
+    await this._keyboardShortcutRepository.save(shortcut);
+
+    return KeyboardShortcutActionMapper.toKeyboardShortcutActionDto(
+      await this._getKeyboardShortcutActionById(accountId, updateKeyboardShortcutDto.actionId)
+    );
+  }
+
+  public async deleteKeyboardShortcut(
+      accountId: number, shortcutId: number): Promise<KeyboardShortcutActionDto> {
     const shortcut: KeyboardShortcut = await this._keyboardShortcutRepository.findOne({
       relations: ['keyboardShortcutAction'],
       where: {
