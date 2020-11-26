@@ -6,6 +6,35 @@ export enum KeyboardShortcutActionType {
   SEARCH_TOPICS = "Search Topics"
 }
 
+export class KeyboardShortcutModifier {
+  public name: string;
+  public value: string;
+  public isSet: boolean;
+}
+
+export const DEFAULT_MODIFIER_OPTIONS: KeyboardShortcutModifier[] = [
+  {
+    name: 'Control',
+    value: 'ctrl',
+    isSet: false
+  },
+  {
+    name: 'Alt',
+    value: 'alt',
+    isSet: false
+  },
+  {
+    name: 'Shift',
+    value: 'shift',
+    isSet: false
+  },
+  {
+    name: 'Command',
+    value: 'cmd',
+    isSet: false
+  }
+];
+
 export const DEFAULT_KEYBOARD_SHORTCUTS: any[] = [
   {  
     key: "alt + c",

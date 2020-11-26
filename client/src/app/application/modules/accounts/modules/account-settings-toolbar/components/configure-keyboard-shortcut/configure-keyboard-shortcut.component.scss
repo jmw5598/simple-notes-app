@@ -1,0 +1,10 @@
+.btn-add-modifier {
+  display: block;
+  width: 100%;
+  border: 1px dashed #CCC;
+  border-radius: 2px;
+
+  &:hover {
+    border: 1px dashed #CCC;
+  }
+}

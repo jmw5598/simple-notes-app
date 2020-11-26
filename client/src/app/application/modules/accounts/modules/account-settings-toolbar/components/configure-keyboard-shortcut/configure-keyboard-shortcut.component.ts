@@ -7,6 +7,8 @@ import { IToolbarState } from '@sn/application/store/reducers';
 import { deleteKeyboardShortcut } from '@sn/application/store/actions';
 import { tap } from 'rxjs/operators';
 
+import { DEFAULT_MODIFIER_OPTIONS, KeyboardShortcutModifier } from '@sn/shared/defaults';
+
 @Component({
   selector: 'sn-configure-keyboard-shortcut',
   templateUrl: './configure-keyboard-shortcut.component.html',
@@ -15,6 +17,7 @@ import { tap } from 'rxjs/operators';
 export class ConfigureKeyboardShortcutComponent implements OnInit {
   public shortcut$: Observable<KeyboardShortcutAction>;
   public shortcut: KeyboardShortcutAction;
+  public modifierOptions: KeyboardShortcutModifier[] = DEFAULT_MODIFIER_OPTIONS;
 
   constructor(
     private _drawerService: DrawerService,
