@@ -15,11 +15,11 @@
       </ul>
       <div class="keyboard-shortcut-form">
         <h5 class="font-weight-bold">Override Keyboard Shortcut</h5>
-        <form>
+        <form [formGroup]="shortcutForm" (ngSubmit)="saveShortcut(shortcutForm.value)" novalidate>
           <!-- Create form array here -->
           <div class="form-group">
             <label for="">Modifiers</label>
-            <select class="form-control">
+            <select class="form-control" formControlName="modifier">
               <option 
                   *ngFor="let modifier of modifierOptions" 
                   [value]="modifier.value" 
@@ -27,32 +27,39 @@
                 {{ modifier.name }}
               </option>
             </select>
-            <button role="button" class="d-block btn btn-outline-secondary text-dark btn-add-modifier py-2 mt-2">
+            <!-- <button 
+                role="button"
+                type="button" 
+                class="d-block btn btn-outline-secondary text-dark btn-add-modifier py-2 mt-2"
+                (click)="addAdditionalModifier()">
               <i class="fas fa-plus icon-margin"></i> Add Additional Modifier
-            </button>
+            </button> -->
           </div>
           <div class="form-group">
             <label for="">Key</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" formControlName="key" />
           </div>
+          <hr />
+          <div class="text-right">
+            <button 
+                role="button" 
+                type="submit"
+                [disabled]="shortcutForm.invalid"
+                class="btn btn-primary mr-3">
+              Save
+            </button>
+            <button 
+                mwlConfirmationPopover
+                placement="left"
+                (confirm)="resetShortcut()"
+                role="button" 
+                type="button" 
+                class="btn btn-secondary">
+              Reset
+            </button>
+          </div>
+
         </form>
-      </div>
-      <div class="text-right">
-        <button 
-            role="button" 
-            type="button" 
-            class="btn btn-primary mr-3">
-          Save
-        </button>
-        <button 
-            mwlConfirmationPopover
-            placement="left"
-            (confirm)="resetShortcut()"
-            role="button" 
-            type="button" 
-            class="btn btn-secondary">
-          Reset
-        </button>
       </div>
     </div>
   </div>

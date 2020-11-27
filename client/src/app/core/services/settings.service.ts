@@ -21,7 +21,7 @@ export class SettingsService {
   public createKeyboardShortcut(actionId: number, shortcut: string): Observable<KeyboardShortcutAction> {
     return this._http.post<KeyboardShortcutAction>(
       `${environment.api.baseUrl}/accounts/settings/shortcuts`,
-      shortcut
+      { actionId, shortcut }
     );
   }
 
