@@ -55,7 +55,7 @@ export class ToolbarEffects {
 
   updateKeyboardShortcut$ = createEffect(() => this._actions.pipe(
     ofType(fromToolbar.updateKeyboardShortcut),
-    switchMap(({shortcutId, shortcut}) => this._settingsService.updateKeyboardShortcut(shortcutId, shortcut)
+    switchMap(({actionId, shortcutId, shortcut}) => this._settingsService.updateKeyboardShortcut(actionId, shortcutId, shortcut)
       .pipe(
         map((shortcut: KeyboardShortcutAction) => fromToolbar.updateKeyboardShortcutSuccess({ action: shortcut })),
         catchError(error => {

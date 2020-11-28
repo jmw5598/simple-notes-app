@@ -27,7 +27,7 @@ export const createKeyboardShortcutResponseMessage = createAction(
 
 export const updateKeyboardShortcut = createAction(
   '[Toolbar] Update Keyboard Shortcut',
-  props<{ shortcutId: number, shortcut: KeyboardShortcutAction }>()
+  props<{ actionId: number, shortcutId: number, shortcut: string }>()
 );
 
 export const updateKeyboardShortcutSuccess = createAction(

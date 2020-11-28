@@ -23,15 +23,12 @@ const _toolbarReducer = createReducer(
     }
   }),
   on(fromActions.createKeyboardShortcutSuccess, (state, { shortcut }) => {
-    console.log("toolbar reducer, created shortcut, now updating shorcuts");
-    console.log(shortcut)
     const shortcuts: KeyboardShortcutAction[] = state.keyboardShortcuts
       .map(a => {
         let existingShortcut: KeyboardShortcutAction = { ...a } as KeyboardShortcutAction;
         if (existingShortcut.id === shortcut.id) existingShortcut = { ...shortcut };
         return existingShortcut;
       });
-    console.log(shortcuts);
     return {
       ...state,
       keyboardShortcuts: shortcuts

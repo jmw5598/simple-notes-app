@@ -16,6 +16,17 @@
       <div class="keyboard-shortcut-form">
         <h5 class="font-weight-bold">Override Keyboard Shortcut</h5>
         <form [formGroup]="shortcutForm" (ngSubmit)="saveShortcut(shortcutForm.value)" novalidate>
+          <!-- Response Message -->
+          <div 
+              class="form-group" 
+              *ngIf="responseMessage$ | async"
+              [@showHide]>
+            <div 
+                class="alert alert-success"
+                [ngClass]="{ 'alert-danger' : (responseMessage$ | async)?.status === ResponseStatus.ERROR }">
+              {{ (responseMessage$ | async)?.message }}
+            </div>
+          </div>
           <!-- Create form array here -->
           <div class="form-group">
             <label for="">Modifiers</label>
@@ -27,6 +38,11 @@
                 {{ modifier.name }}
               </option>
             </select>
+            <small 
+                class="text-danger"
+                *ngIf="shortcutForm.get('modifier').touched && shortcutForm.get('modifier').hasError('required')">
+              Please select a modifier!
+            </small>
             <!-- <button 
                 role="button"
                 type="button" 
@@ -38,6 +54,16 @@
           <div class="form-group">
             <label for="">Key</label>
             <input type="text" class="form-control" formControlName="key" />
+            <small 
+                class="text-danger"
+                *ngIf="shortcutForm.get('key').touched && shortcutForm.get('key').hasError('required')">
+              Please enter a key!
+            </small>
+            <small 
+                class="text-danger"
+                *ngIf="shortcutForm.get('key').touched && shortcutForm.get('key').hasError('maxLength')">
+              Must be a single key!
+            </small>
           </div>
           <hr />
           <div class="text-right">

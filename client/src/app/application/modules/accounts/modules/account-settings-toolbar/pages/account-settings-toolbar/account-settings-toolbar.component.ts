@@ -5,7 +5,7 @@ import { IToolbarState } from '@sn/application/store/reducers/toolbar.reducers';
 import { KeyboardShortcutAction } from '@sn/core/models';
 import { fadeAnimation } from '@sn/shared/animations';
 import { selectKeyboardShortcuts } from '@sn/application/store/selectors';
-import { deleteKeyboardShortcut } from '@sn/application/store/actions';
+import { deleteKeyboardShortcut, setKeyboardShortcutResponseMessage } from '@sn/application/store/actions';
 import { DrawerService, DrawerLocation } from '@sn/shared/components';
 import { ConfigureKeyboardShortcutComponent } from '../../components/configure-keyboard-shortcut/configure-keyboard-shortcut.component';
 
@@ -31,6 +31,7 @@ export class AccountSettingsToolbarComponent implements OnInit {
 
   public onDeleteShortcut(shortcutId: number): void {
     this._store.dispatch(deleteKeyboardShortcut({ shortcutId: shortcutId }));
+    setTimeout(() => this._store.dispatch(setKeyboardShortcutResponseMessage({ message: null })), 500)
   }
 
   public onConfigureShortcut(shortcut: KeyboardShortcutAction): void {
