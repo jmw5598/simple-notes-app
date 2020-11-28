@@ -10,7 +10,15 @@
       <h4 class="font-weight-bold mb-2">{{ shortcut?.action }} Binding</h4>
       <ul class="list-unstyled mb-4 list-style-none">
         <li class="card card-body mb-3 p-3">
-          <p class="text-dark m-0 p-0">{{ shortcut?.description }}</p>
+          <p class="text-dark m-0 p-0 mb-2 font-italic">{{ shortcut?.description }}</p>
+          <div class="mb-2">
+            <span class="float-left text-dark font-weight-bold">Default Shortcut:</span>
+            <span class="badge badge-secondary float-right">{{ shortcut?.defaultShortcut || 'NA' }}</span>
+          </div>
+          <div  *ngIf="shortcut.shortcut">
+            <span class="float-left text-dark font-weight-bold">Overridden Shortcut:</span>
+            <span class="badge badge-primary float-right">{{ shortcut?.shortcut || 'NA' }}</span>
+          </div>
         </li>
       </ul>
       <div class="keyboard-shortcut-form">
@@ -74,23 +82,9 @@
                 class="btn btn-primary mr-3">
               Save
             </button>
-            <button 
-                mwlConfirmationPopover
-                placement="left"
-                (confirm)="resetShortcut()"
-                role="button" 
-                type="button" 
-                class="btn btn-secondary">
-              Reset
-            </button>
           </div>
-
         </form>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <pre>
-  {{ (shortcut$ | async) | json }}
-</pre> -->

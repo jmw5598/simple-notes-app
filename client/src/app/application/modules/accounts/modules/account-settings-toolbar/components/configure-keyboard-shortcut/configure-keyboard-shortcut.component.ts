@@ -52,6 +52,11 @@ export class ConfigureKeyboardShortcutComponent implements OnInit, OnDestroy {
       .pipe(tap(data => {
         if (data && data.shortcut) { 
           this.shortcut = { ...data.shortcut } as KeyboardShortcutAction
+          // if shortcut action has shortcut (shortcutId) patch values through to form.
+          if (data.shortcut.shortcutId) {
+            const [modifier, key] = data.shortcut.shortcut.split(' + ');
+            this.shortcutForm.patchValue({ modifier, key });
+          }
         }
       }));
   }
