@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { KeyboardShortcutAction } from '@sn/core/models';
+import { KeyboardShortcutAction, ResponseMessage } from '@sn/core/models';
 
 export const getKeyboardShortcuts = createAction(
   '[Toolbar] Get Keyboard Shortcuts'
@@ -20,6 +20,11 @@ export const createKeyboardShortcutSuccess = createAction(
   props<{ shortcut: KeyboardShortcutAction }>()
 );
 
+export const createKeyboardShortcutResponseMessage = createAction(
+  '[Toolbar] Create Keyboard Shortcut Response Message',
+  props<{ message: ResponseMessage }>()
+);
+
 export const updateKeyboardShortcut = createAction(
   '[Toolbar] Update Keyboard Shortcut',
   props<{ shortcutId: number, shortcut: KeyboardShortcutAction }>()
@@ -30,6 +35,11 @@ export const updateKeyboardShortcutSuccess = createAction(
   props<{ action: KeyboardShortcutAction }>()
 );
 
+export const updateKeyboardShortcutResponseMessage = createAction(
+  '[Toolbar] Update Keyboard Shortcut Response Message',
+  props<{ message: ResponseMessage }>()
+);
+
 export const deleteKeyboardShortcut = createAction(
   '[Toolbar] Delete Keyboard Shortcut',
   props<{ shortcutId: number }>()
@@ -38,4 +48,14 @@ export const deleteKeyboardShortcut = createAction(
 export const deleteKeyboardShortcutSuccess = createAction(
   '[Toolbar] Delete Keyboard Shortcut Success',
   props<{ action: KeyboardShortcutAction }>()
+);
+
+export const deleteKeyboardShortcutResponseMessage = createAction(
+  '[Toolbar] Delete Keyboard Shortcut Response Message',
+  props<{ message: ResponseMessage }>()
+);
+
+export const setKeyboardShortcutResponseMessage = createAction(
+  '[Toolbar] Set Keyboard Shortcut Response Message',
+  props<{ message: ResponseMessage }>()
 );

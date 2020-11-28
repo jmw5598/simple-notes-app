@@ -11,3 +11,8 @@ export const selectKeyboardShortcuts = createSelector(
   selectToolbarState,
   (state: fromToolbar.IToolbarState) => state.keyboardShortcuts
 );
+
+export const selectKeyboardShortcutResponseMessage = createSelector(
+  selectToolbarState,
+  (state: fromToolbar.IToolbarState) => state.keyboardShortcutResponseMessage
+);
