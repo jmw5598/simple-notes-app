@@ -1,19 +1,24 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 import { ICalendarEventsState } from '../../store/reducers';
 import { CalendarOptions, EventInput, FullCalendarComponent } from '@fullcalendar/angular';
 import { DrawerService, CalendarEventCreateComponent } from '@sn/shared/components';
 import { CalendarEventViewComponent } from '../../components/calendar-event-view/calendar-event-view.component';
 import { fadeAnimation } from '@sn/shared/animations';
 import { CALENDAR_OPTIONS_DEFAULT } from '../../calendar-options.defaults';
-import { CalendarEvent } from '@sn/core/models';
+import { CalendarEvent, ResponseMessage } from '@sn/core/models';
 import { 
   getCalendarEventsBetweenDates, 
   setCurrentCalendarEvents,
-  setCurrentCalendarDateRanges, updateCalendarEvent } from '../../store/actions';
-import { selectCurrentCalendarEvents, selectSelectedCalendarEvent } from '../../store/selectors';
+  setCurrentCalendarDateRanges, 
+  updateCalendarEvent, 
+  setUpdateCalendarEventResponseMessage} from '../../store/actions';
+import { 
+  selectUpdateCalendarEventResponseMessage, 
+  selectCurrentCalendarEvents, 
+  selectSelectedCalendarEvent } from '../../store/selectors';
 
 @Component({
   selector: 'sn-view-calendar',
@@ -53,6 +58,15 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
       .subscribe((event: CalendarEvent) => {
         this._drawerService.setData(event);
       })
+    this._store.select(selectUpdateCalendarEventResponseMessage)
+      .pipe(takeUntil(this._subscriptionSubject))
+      .subscribe((message: ResponseMessage) => {
+          if (message) {
+            // Set response message to null to prevent alert form display if edit is selected from drawer.
+            // Should probably notify with toast message that the evetn has been updated??
+            this._store.dispatch(setUpdateCalendarEventResponseMessage({ message: null }));
+          }
+        });
   }
 
   public handleCalendarEventsFetch(info, success, error): void {
@@ -90,6 +104,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   }
 
   public handleCalendarEventEdit(args): void {
+    console.log("updateing calendar event");
     const oldEvent: CalendarEvent = args.event.extendedProps;
     const newStartDateTime: Date = this._generateDateTimeValue(
       new Date(args.event.start), new Date(oldEvent.startDateTime));
