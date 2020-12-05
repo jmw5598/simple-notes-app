@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Page, PageableSearch, ResponseMessage } from '@sn/core/models';
-import { Document } from '@sn/shared/models';
+import { Document, Topic } from '@sn/shared/models';
 
 export const createDocument = createAction(
   '[Document] Create Document',
@@ -71,4 +71,19 @@ export const searchDocumentsResult = createAction(
 export const setSearchDocumentsSelection = createAction(
   '[Document] Search Documents Selection',
   props<{ document: Document }>()
+);
+
+export const searchTopics = createAction(
+  '[Document] Search Topics',
+  props<{ search: PageableSearch }>()
+);
+
+export const searchTopicsResult = createAction(
+  '[Document] Search Topics Result',
+  props<{ page: Page<Topic> }>()
+);
+
+export const setSearchTopicsSelection = createAction(
+  '[Document] Search Topics Selection',
+  props<{ topic: Topic }>()
 );

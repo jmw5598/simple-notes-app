@@ -31,3 +31,13 @@ export const selectSearchDocumentsSelection = createSelector(
   selectDocumentState,
   (state: fromDocuments.IDocumentsState) => state.searchDocumentsSelection
 );
+
+export const selectSearchTopicsResult = createSelector(
+  selectDocumentState,
+  (state: fromDocuments.IDocumentsState) => state.searchTopicsResult
+);
+
+export const selectSelectedTopic = createSelector(
+  selectDocumentState,
+  (state: fromDocuments.IDocumentsState) => state.selectedTopic
+);

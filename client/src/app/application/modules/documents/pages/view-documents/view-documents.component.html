@@ -1,0 +1,23 @@
+<div class="container-navbar-adjust container" [@fadeAnimation]>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <sn-page-header
+          [heading]="'Current Documents'">
+      </sn-page-header>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <sn-document-list
+          [documents]="(documents$ | async)">
+      </sn-document-list>
+      <sn-paginator
+          [page]="(documents$ | async)"
+          (onNextPage)="onGoToPage($event)"
+          (onPreviousPage)="onGoToPage($event)"
+          (onGoToPage)="onGoToPage($event)">
+      </sn-paginator>
+    </div>
+  </div> 
+</div>  

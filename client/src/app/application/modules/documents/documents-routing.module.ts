@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DocumentBuilderComponent } from './pages/document-builder/document-builder.component';
+import { ViewDocumentsComponent } from './pages/view-documents/view-documents.component';
 
 const routes: Routes = [
   {
-    path: 'builder',
-    component: DocumentBuilderComponent
+    path: '',
+    component: ViewDocumentsComponent 
   },
   {
     path: '**',
-    redirectTo: 'builder',
+    redirectTo: '',
     pathMatch: 'full'
   }
 ];

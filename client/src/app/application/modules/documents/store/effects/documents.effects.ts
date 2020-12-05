@@ -8,12 +8,14 @@ import * as fromActions from '../actions';
 import { DocumentsService } from '@sn/core/services/documents.service';
 import { PageableSearch, ResponseMessage } from '@sn/core/models';
 import { ResponseStatus } from '@sn/core/enums';
+import { TopicsService } from '@sn/core/services';
 
 @Injectable()
 export class DocumentsEffects {
   constructor(
     private _actions: Actions,
-    private _documentsService: DocumentsService
+    private _documentsService: DocumentsService,
+    private _topicsService: TopicsService
   ) {}
 
   // getDocumentById$ = createEffect(() => this._actions.pipe(

@@ -1,0 +1,52 @@
+<div class="table-responsive">
+  <table class="table table-striped mb-0">
+    <thead>
+      <tr>
+        <th>Created</th>
+        <th>Name</th>
+        <th>LastModified</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="!documents || documents.length === 0">
+      <tr class="bg-white">
+        <td colspan="6">
+          <sn-empty-data 
+              message="No documents found!"
+              [extraContent]="createNewButton">
+          </sn-empty-data>
+          <ng-template #createNewButton>
+            <button 
+                (click)="create()" 
+                class="btn btn-success text-light">
+              Create a document
+            </button>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="documents">
+      <tr *ngFor="let document of documents">
+        <td>{{ document.createdAt | date:short}}</td>
+        <td>{{ document.name }}</td>
+        <td>{{ document.updatedAt | date:short }}</td>
+        <td class="text-right">
+          <button 
+              class="btn btn-outline-primary btn-sm btn-border-none"
+              (click)="view(document)">
+            <i class="fas fa-eye"></i>
+          </button>
+          
+          <button 
+              mwlConfirmationPopover
+              placement="left"
+              (confirm)="delete(topic.id)"
+              role="button" 
+              class="btn btn-outline-primary btn-sm btn-border-none">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
