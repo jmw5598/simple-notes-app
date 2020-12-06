@@ -9,15 +9,35 @@
   </div>
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <sn-document-list
-          [documents]="(documents$ | async)">
-      </sn-document-list>
-      <sn-paginator
-          [page]="(documents$ | async)"
-          (onNextPage)="onGoToPage($event)"
-          (onPreviousPage)="onGoToPage($event)"
-          (onGoToPage)="onGoToPage($event)">
-      </sn-paginator>
+
+      <div *ngIf="(searchDocumentsResult$ | async) || []" class="card">
+        <!-- <div class="card-header">Current Topics</div> -->
+        <div class="card-body">
+          <h5 class="m-0 p-0 topic-list-heading">
+            Documents 
+            <!-- Header Buttons -->
+            <span class="float-right">
+              <sn-debounced-search
+                  debounceTime="500"
+                  [isSearching]="isSearching"
+                  (onSearch)="onSearchDocuments($event)">
+              </sn-debounced-search>
+            </span>
+          </h5>
+          <sn-document-list
+              [documents]="(searchDocumentsResult$ | async)?.elements"
+              (onDelete)="onDelete($event)">
+          </sn-document-list>
+          <sn-paginator
+              [page]="(searchDocumentsResult$ | async)"
+              (onNextPage)="onGoToPage($event)"
+              (onPreviousPage)="onGoToPage($event)"
+              (onGoToPage)="onGoToPage($event)">
+          </sn-paginator>
+        </div>
+      </div>
+
+
     </div>
   </div> 
 </div>  

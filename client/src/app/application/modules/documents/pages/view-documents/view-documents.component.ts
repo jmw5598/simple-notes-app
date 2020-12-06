@@ -7,7 +7,9 @@ import { fadeAnimation } from '@sn/shared/animations';
 
 import { IDocumentsState } from '../../store/reducers/documents.reducers'
 import { selectSearchDocumentsResult } from '../../store/selectors';
-import { searchDocuments, searchDocumentsResult } from '../../store/actions';
+import { deleteDocument, searchDocuments, searchDocumentsResult } from '../../store/actions';
+import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/core/defaults';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'sn-view-documents',
@@ -16,14 +18,33 @@ import { searchDocuments, searchDocumentsResult } from '../../store/actions';
   animations: [fadeAnimation]
 })
 export class ViewDocumentsComponent implements OnInit, OnDestroy {
-  public documents$: Observable<Page<Document>>
+  private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_DOCUMENTS_PAGE;
+  public searchDocumentsResult$: Observable<Page<Document>>
+
+  public searchTerm: string = '';
+  public isSearching: boolean = false;
 
   constructor(
     private _store: Store<IDocumentsState>
   ) { }
 
   ngOnInit(): void {
-    this.documents$ = this._store.select(selectSearchDocumentsResult);
+    this.searchDocumentsResult$ = this._store.select(selectSearchDocumentsResult)
+      .pipe(tap(() => this.isSearching = false));
+  }
+
+  public onSearchDocuments(searchTerm: string): void {
+    this.searchTerm = searchTerm;
+    this.isSearching = true;
+    const search: PageableSearch = {
+      searchTerm: searchTerm,
+      pageable: this.DEFAULT_PAGE
+    };
+    this._store.dispatch(searchDocuments({ search: search }));
+  }
+
+  public onDelete(id: number): void {
+    this._store.dispatch(deleteDocument({ id: id }));
   }
 
   public onGoToPage(pageable: IPageable): void {

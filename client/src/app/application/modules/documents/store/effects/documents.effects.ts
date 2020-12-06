@@ -75,27 +75,27 @@ export class DocumentsEffects {
   //   })
   // ));
 
-  // deleteDocument$ = createEffect(() => this._actions.pipe(
-  //   ofType(fromActions.deleteDocument),
-  //   exhaustMap(({id}) => this._documentsService.delete(id)
-  //     .pipe(
-  //       map(document => fromActions.deleteDocumentSuccess({ document: document })),
-  //       catchError(error => of(handleHttpError(error)))
-  //     )
-  //   )
-  // ));
+  deleteDocument$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.deleteDocument),
+    exhaustMap(({id}) => this._documentsService.delete(id)
+      .pipe(
+        map(document => fromActions.deleteDocumentSuccess({ document: document })),
+        catchError(error => of(handleHttpError(error)))
+      )
+    )
+  ));
 
-  // searchDocuments$ = createEffect(() => this._actions.pipe(
-  //   ofType(fromActions.searchDocuments),
-  //   debounceTime(500),
-  //   switchMap(({search}) => {
-  //     const searchs: PageableSearch = search
-  //     return this._documentsService.searchDocuments(searchs.searchTerm, searchs.pageable)
-  //       .pipe(
-  //         map(result => fromActions.searchDocumentsResult({ page: result })),
-  //         catchError(error => of(handleHttpError(error)))
-  //       )
-  //     }
-  //   )
-  // ));
+  searchDocuments$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.searchDocuments),
+    debounceTime(500),
+    switchMap(({search}) => {
+      const searchs: PageableSearch = search
+      return this._documentsService.searchDocuments(searchs.searchTerm, searchs.pageable)
+        .pipe(
+          map(result => fromActions.searchDocumentsResult({ page: result })),
+          catchError(error => of(handleHttpError(error)))
+        )
+      }
+    )
+  ));
 }

@@ -18,7 +18,9 @@ export class DocumentsController {
   constructor(
     private readonly _logger: SnLoggerService,
     private readonly _documentsService: DocumentsService
-  ) {}
+  ) {
+    this._logger.setContext(this.constructor.name);
+  }
 
   @Post()
   public async createDocument(
@@ -45,16 +47,21 @@ export class DocumentsController {
   }
 
   @Get('search')
-  public async serachProductItems(
+  public async serachDocuments(
       @Request() req,
       @Query('page') page: number = 1,
       @Query('size') size: number = 10,
       @Query('sortCol') sortCol: string = 'createdAt',
       @Query('sortDir') sortDir: SortDirection = SortDirection.ASCENDING,
       @Query('searchTerm') searchTerm: string = ''): Promise<Page<DocumentDto>> {
-    const pageable: IPageable = PageRequest.from(page, size, sortCol, sortDir); 
-    const accountId: number = req.user.accountId;
-    return this._documentsService.searchDocuments(accountId, searchTerm, pageable);  
+    try {
+      const pageable: IPageable = PageRequest.from(page, size, sortCol, sortDir); 
+      const accountId: number = req.user.accountId;
+      return this._documentsService.searchDocuments(accountId, searchTerm, pageable); 
+    } catch (error) {
+      this._logger.error('Error searching documents!', error);
+      throw error;
+    }
   }
 
   @Get(':id')

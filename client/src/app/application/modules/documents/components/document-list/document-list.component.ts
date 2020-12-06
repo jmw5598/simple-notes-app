@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Document } from '@sn/shared/models';
 
 @Component({
@@ -9,6 +9,9 @@ import { Document } from '@sn/shared/models';
 export class DocumentListComponent implements OnInit {
   @Input()
   public documents: Document[];
+
+  @Output()
+  public onDelete: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() { }
 
@@ -24,6 +27,6 @@ export class DocumentListComponent implements OnInit {
   }
 
   public delete(documentId: number): void {
-    console.log('deleting document with id: ', documentId);
+    this.onDelete.emit(documentId);
   }
 }

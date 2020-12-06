@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '@sn/shared/shared.module';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { DocumentsRoutingModule } from './documents-routing.module';
 import { DocumentBuilderComponent } from './components/document-builder/document-builder.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -19,7 +20,8 @@ import { DocumentListComponent } from './components/document-list/document-list.
     DragDropModule,
     DocumentsRoutingModule,
     SharedModule,
-    TypeaheadModule.forRoot()
+    TypeaheadModule.forRoot(),
+    ConfirmationPopoverModule
   ]
 })
 export class DocumentsModule { }
