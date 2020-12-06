@@ -1,5 +1,6 @@
 import { Injectable, Type } from '@angular/core';
 import { BehaviorSubject, Subject, Observable } from 'rxjs';
+import { DrawerOptions } from './drawer-options.model';
 
 @Injectable()
 export class DrawerService {
@@ -8,12 +9,14 @@ export class DrawerService {
 
   private _contentChangeSource: Subject<Type<any>>;
   private _dataChangeSource:  BehaviorSubject<any>;
+  private _optionsSource: Subject<DrawerOptions>;
 
   constructor() {
     this._isDrawerVisible = false;
     this._closeDrawerSource = new BehaviorSubject<boolean>(this._isDrawerVisible);
     this._contentChangeSource = new Subject<any>();
     this._dataChangeSource = new BehaviorSubject<any>(null);
+    this._optionsSource = new Subject<DrawerOptions>();
   }
 
   public onDrawerVibilityChange(): Observable<boolean> {
@@ -28,10 +31,24 @@ export class DrawerService {
     return this._dataChangeSource.asObservable();
   }
 
+  public onDrawerOptionsChange(): Observable<DrawerOptions> {
+    return this._optionsSource.asObservable();
+  }
+
   public setData(data: any): void {
     this._dataChangeSource.next(data);
   }
 
+  /*
+    TODO - Update this to datke content and DrawerOptions
+    Will have to update drawer component to receive theses through
+    a behavior subject and set values based on inputs?
+    Else we will hvae to remove inputs and rely on the options set by default?
+    NOT SURE HOW I WANT OT DO THIS
+
+    Could also check if inputs are null before setting options?
+    Drawer options should override input values
+  */
   public show(content: Type<any>, data?: any): void {
     this._contentChangeSource.next(content);
     this._dataChangeSource.next(data);
