@@ -26,7 +26,8 @@
           </h5>
           <sn-document-list
               [documents]="(searchDocumentsResult$ | async)?.elements"
-              (onDelete)="onDelete($event)">
+              (onDelete)="onDelete($event)"
+              (onView)="onView($event)">
           </sn-document-list>
           <sn-paginator
               [page]="(searchDocumentsResult$ | async)"
@@ -37,7 +38,10 @@
         </div>
       </div>
 
-
     </div>
   </div> 
-</div>  
+</div>
+
+<sn-drawer
+    [drawerLocation]="DrawerLocation.RIGHT">
+</sn-drawer>

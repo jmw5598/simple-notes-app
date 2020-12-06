@@ -13,6 +13,9 @@ export class DocumentListComponent implements OnInit {
   @Output()
   public onDelete: EventEmitter<number> = new EventEmitter<number>();
 
+  @Output()
+  public onView: EventEmitter<Document> = new EventEmitter<Document>();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -23,7 +26,7 @@ export class DocumentListComponent implements OnInit {
   }
 
   public view(document: Document): void {
-    console.log('viewing documnet in drawer with id: ', document.id);
+    this.onView.emit(document);
   }
 
   public delete(documentId: number): void {

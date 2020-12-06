@@ -86,8 +86,7 @@ export class DocumentsEffects {
   ));
 
   searchDocuments$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.searchDocuments),
-    debounceTime(500),
+    ofType(fromActions.searchDocuments),    
     switchMap(({search}) => {
       const searchs: PageableSearch = search
       return this._documentsService.searchDocuments(searchs.searchTerm, searchs.pageable)

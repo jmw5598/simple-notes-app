@@ -10,22 +10,26 @@ import { selectSearchDocumentsResult } from '../../store/selectors';
 import { deleteDocument, searchDocuments, searchDocumentsResult } from '../../store/actions';
 import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/core/defaults';
 import { tap } from 'rxjs/operators';
+import { DrawerService, DrawerLocation } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-view-documents',
   templateUrl: './view-documents.component.html',
   styleUrls: ['./view-documents.component.scss'],
+  providers: [DrawerService],
   animations: [fadeAnimation]
 })
 export class ViewDocumentsComponent implements OnInit, OnDestroy {
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_DOCUMENTS_PAGE;
+  public DrawerLocation = DrawerLocation;
   public searchDocumentsResult$: Observable<Page<Document>>
 
   public searchTerm: string = '';
   public isSearching: boolean = false;
 
   constructor(
-    private _store: Store<IDocumentsState>
+    private _store: Store<IDocumentsState>,
+    private _drawerService: DrawerService
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +49,10 @@ export class ViewDocumentsComponent implements OnInit, OnDestroy {
 
   public onDelete(id: number): void {
     this._store.dispatch(deleteDocument({ id: id }));
+  }
+
+  public onView(document: Document): void {
+    this._drawerService.show(null, { data: document });
   }
 
   public onGoToPage(pageable: IPageable): void {
