@@ -91,7 +91,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   public handleCalendarEventClick(args): void {
     this._drawerService.show(
       CalendarEventViewComponent,
-      args.event.extendedProps
+      { data: args.event.extendedProps }
     )
   }
 
@@ -104,7 +104,6 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   }
 
   public handleCalendarEventEdit(args): void {
-    console.log("updateing calendar event");
     const oldEvent: CalendarEvent = args.event.extendedProps;
     const newStartDateTime: Date = this._generateDateTimeValue(
       new Date(args.event.start), new Date(oldEvent.startDateTime));

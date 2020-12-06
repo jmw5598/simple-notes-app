@@ -5,6 +5,9 @@ import { fadeAnimation } from '../../animations';
 import { DrawerOverlayStyle } from './drawer-overlay-style.enum';
 import { DrawerLocation } from './drawer-location.enum';
 import { DrawerService } from './drawer.service';
+import { DrawerOptions } from './drawer-options.model';
+import { DEFAULT_DRAWER_OPTIONS } from './drawer-options.defaults';
+import { DrawerSize } from './drawer-size.enum';
 
 @Component({
   selector: 'sn-drawer',
@@ -25,8 +28,13 @@ export class DrawerComponent implements OnInit, OnDestroy {
   @Input()
   public closeOnEscape: boolean;
 
+  @Input()
+  public drawerSize: DrawerSize;
+
   public isDrawerVisible: boolean;
   public DrawerLocation = DrawerLocation;
+
+  public options: DrawerOptions;
 
   private _drawerServiceSubject$: Subject<void>;
 
@@ -35,12 +43,15 @@ export class DrawerComponent implements OnInit, OnDestroy {
     private _drawerService: DrawerService
   ) {
     this._drawerServiceSubject$ = new Subject<void>();
-    this.overlayStyle = DrawerOverlayStyle.DIM_DARK;
-    this.drawerLocation = DrawerLocation.RIGHT;
+    // this.drawerLocation = DrawerLocation.RIGHT;
     this.closeOnEscape = true;
   }
 
   ngOnInit(): void {
+    this._drawerService.onDrawerOptionsChange()
+      .pipe(takeUntil(this._drawerServiceSubject$))
+      .subscribe((options: DrawerOptions) => this.options = options);
+
     this._drawerService.onDrawerVibilityChange()
       .pipe(takeUntil(this._drawerServiceSubject$))
       .subscribe((visible: boolean) => this.isDrawerVisible = visible);

@@ -35,6 +35,6 @@ export class AccountSettingsToolbarComponent implements OnInit {
   }
 
   public onConfigureShortcut(shortcut: KeyboardShortcutAction): void {
-    this._drawerService.show(ConfigureKeyboardShortcutComponent, { shortcut: shortcut });
+    this._drawerService.show(ConfigureKeyboardShortcutComponent, { data: { shortcut: shortcut } });
   }
 }

@@ -69,9 +69,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   public onCreateNewCalendarEvent(): void {
     if (this._isDrawerVisible) {
       this._drawerService.close();
-      setTimeout(() => this._drawerService.show(CalendarEventCreateComponent, { date: new Date() }), 500)
+      setTimeout(() => this._drawerService.show(CalendarEventCreateComponent, { data: { date: new Date() } }), 500)
     } else {
-      this._drawerService.show(CalendarEventCreateComponent, { date: new Date() });
+      this._drawerService.show(CalendarEventCreateComponent, { data: { date: new Date() } });
     }
   }
 

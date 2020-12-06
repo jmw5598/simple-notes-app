@@ -10,7 +10,7 @@ import { selectSearchDocumentsResult } from '../../store/selectors';
 import { deleteDocument, searchDocuments, searchDocumentsResult } from '../../store/actions';
 import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/core/defaults';
 import { tap } from 'rxjs/operators';
-import { DrawerService, DrawerLocation } from '@sn/shared/components';
+import { DrawerService, DrawerLocation, DrawerSize } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-view-documents',
@@ -52,7 +52,10 @@ export class ViewDocumentsComponent implements OnInit, OnDestroy {
   }
 
   public onView(document: Document): void {
-    this._drawerService.show(null, { data: document });
+    this._drawerService.show(null, {
+      size: DrawerSize.MEDIUM,
+      data: document 
+    });
   }
 
   public onGoToPage(pageable: IPageable): void {

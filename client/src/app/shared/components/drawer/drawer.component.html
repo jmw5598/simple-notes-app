@@ -1,14 +1,11 @@
 <div 
     class="overlay-side-panel" 
     [class.collapsed]="!isDrawerVisible">
-  <div class="overlay" [ngClass]="overlayStyle" 
+  <div class="overlay" [ngClass]="overlayStyle || options?.overlayStyle" 
       *ngIf="isDrawerVisible" [@fadeAnimation] (click)="close()">
   </div>
   <div class="side-panel shadow"
-    [ngClass]="{ 
-      'side-panel-right' : drawerLocation === DrawerLocation.RIGHT, 
-      'side-panel-left' : drawerLocation === DrawerLocation.LEFT
-    }">
+    [ngClass]="(drawerLocation || options?.location) + ' ' + (drawerSize || options?.size)">
     <div class="close text-dark p-4" (click)="close()">
       <i class="fas fa-times"></i>
     </div>

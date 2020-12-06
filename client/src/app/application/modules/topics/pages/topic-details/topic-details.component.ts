@@ -78,28 +78,28 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
   public onOpenExportTopic(): void {
     this._drawerService.show(
       TopicExportComponent, 
-      this._topic
+      { data: this._topic }
     );
   }
 
   public onUpdateTopic(): void {
     this._drawerService.show(
       TopicUpdateComponent,
-      this._topic
+      { data: this._topic }
     );
   }
 
   public onCreateSection(): void {
     this._drawerService.show(
       SectionCreateComponent,
-      { topic: this._topic }
+      { data: { topic: this._topic } }
     );
   }
 
   public onEditSectionDetails(section: Section): void {
     this._drawerService.show(
       SectionUpdateComponent,
-      { topic: this._topic, section: section }
+      { data: { topic: this._topic, section: section } }
     );
   }
 
