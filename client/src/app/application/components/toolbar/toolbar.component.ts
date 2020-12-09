@@ -75,6 +75,10 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     }
   }
 
+  public onCreateNewDocumentEvent(): void {
+    console.log('Creating new document in drawer!');
+  }
+
   public onPreviousRoute(): void {
     window.history.back();
   }
@@ -102,6 +106,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
       case KeyboardShortcutActionType.SEARCH_TOPICS:
         return (e) => this.onSearchTopics();
+
+      case KeyboardShortcutActionType.CREATE_DOCUMENT:
+        return (e) => this.onCreateNewDocumentEvent();
     }
   }
 
