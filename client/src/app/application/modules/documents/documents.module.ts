@@ -22,6 +22,9 @@ import { DocumentListComponent } from './components/document-list/document-list.
     SharedModule,
     TypeaheadModule.forRoot(),
     ConfirmationPopoverModule
+  ],
+  entryComponents: [
+    DocumentBuilderComponent
   ]
 })
 export class DocumentsModule { }

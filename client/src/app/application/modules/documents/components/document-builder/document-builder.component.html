@@ -13,7 +13,8 @@
 
           <div class="form-group">
             <input [(ngModel)]="selected"
-                [typeahead]="topics"
+                [typeahead]="topics$"
+                [typeaheadAsync]="true"
                 [typeaheadItemTemplate]="customItemTemplate"
                 class="form-control mb-3">
             <pre class="card card-block card-header mb-3">Model: {{selected | json}}</pre>

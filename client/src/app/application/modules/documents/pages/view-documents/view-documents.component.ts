@@ -11,6 +11,7 @@ import { deleteDocument, searchDocuments, searchDocumentsResult } from '../../st
 import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/core/defaults';
 import { tap } from 'rxjs/operators';
 import { DrawerService, DrawerLocation, DrawerSize } from '@sn/shared/components';
+import { DocumentBuilderComponent } from '../../components/document-builder/document-builder.component';
 
 @Component({
   selector: 'sn-view-documents',
@@ -52,8 +53,8 @@ export class ViewDocumentsComponent implements OnInit, OnDestroy {
   }
 
   public onView(document: Document): void {
-    this._drawerService.show(null, {
-      size: DrawerSize.MEDIUM,
+    this._drawerService.show(DocumentBuilderComponent, {
+      size: DrawerSize.LARGE,
       data: document 
     });
   }
