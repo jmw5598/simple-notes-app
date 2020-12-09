@@ -21,7 +21,7 @@ export class TopicsService extends AbstractCrudService<Topic, number> {
   }
 
   public searchTopics(searchTerm: string, page?: IPageable): Observable<Page<Topic>> {
-    const params: {[key: string]: any} = !page ? {} : {
+    const params: {[key: string]: any} = !page ? { searchTerm: searchTerm } : {
       searchTerm: searchTerm,
       page: page.page,
       size: page.size,
