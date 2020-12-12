@@ -124,16 +124,28 @@
   }
 }
 
-
-// THIS MIGHT NOW WORK SINCE MARGIN IS USED TO SLIE PANEL IN AND OUT????
-.size-default {
-  width: 450px;
-}
-
 @media screen and (max-width: 450px) {
   .overlay-side-panel {
     .side-panel {
-      width: 100%;
+      &.size-default,
+      &.size-small,
+      &.size-medium,
+      &.size-large,
+      &.size-full {
+        width: 100%;
+      }
+    }
+
+    &.collapsed {
+      .side-panel-right {
+        &.size-default,
+        &.size-small,
+        &.size-medium,
+        &.size-large,
+        &.size-full {
+          margin-right: calc(100vw * -1);
+        }
+      }
     }
   }
 }
