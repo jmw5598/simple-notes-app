@@ -1,11 +1,17 @@
 <div class="navbar-side-container">
-  <div class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="navbar navbar-expand-lg navbar-dark bg-primary side-panel-nav">
     <div class="container">
       <!-- Navbar Brand -->
       <a [routerLink]="['/']" class="navbar-brand mx-auto">
         <img src="assets/images/simple-notes-logo.svg" width="30" height="30" alt="">
         <span *ngIf="(currentPanelState$ | async) === LayoutSidePanelState.OPEN" class="brand-text">Simple Notes</span>
       </a>
+      <div 
+          *ngIf="(currentPanelState$ | async) === LayoutSidePanelState.OPEN" 
+          class="close text-light p-4 d-block d-sm-block d-md-none" 
+          (click)="close()">
+        <i class="fas fa-times"></i>
+      </div>
     </div>
   </div>
 

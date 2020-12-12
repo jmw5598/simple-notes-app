@@ -60,4 +60,11 @@
 
 @media screen and (max-width: 767px) {
   // TODO make left column fixed and overlay content on small screens
+  .layout-container {
+    .left-column {
+      &.opened {
+        flex: 0 0 100%;
+      }
+    }
+  }
 }

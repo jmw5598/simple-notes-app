@@ -4,6 +4,10 @@
 }
 
 .navbar-side-container {
+  .side-panel-nav {
+    position: relative;
+  }
+
   .navbar {
     border-right: 0;
     min-height: 72px;
@@ -43,3 +47,9 @@
     }// End .navbar-side-menu-list
   } // End .navbar-side-mentu
 } // End .navbar-side-container
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
