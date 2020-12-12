@@ -5,6 +5,9 @@ import { Observer, Observable, of, noop } from 'rxjs';
 import { tap, map, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Topic } from '@sn/shared/models';
 import { mockTopics } from './topics-data.mock';
+import { Page } from '@sn/core/models';
+import { TopicsService } from '@sn/core/services';
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
 @Component({
   selector: 'sn-document-builder',
@@ -12,25 +15,7 @@ import { mockTopics } from './topics-data.mock';
   styleUrls: ['./document-builder.component.scss']
 })
 export class DocumentBuilderComponent implements OnInit {
-  public todos = [
-    {
-      name: 'Angular',
-      category: 'Web Development'
-    },
-    {
-      name: 'Flexbox',
-      category: 'Web Development'
-    },
-    {
-      name: 'iOS',
-      category: 'App Development'
-    },
-    {
-      name: 'Java',
-      category: 'Software development'
-    }
-  ];
-
+  
   public completed = [
     {
       name: 'Android',
@@ -50,12 +35,16 @@ export class DocumentBuilderComponent implements OnInit {
     }
   ];
 
-  selected: string;
+  public selected: string;
+  public selectedTopic: Topic;
   topics: Topic[] = mockTopics;
 
   topics$: Observable<any>;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private _http: HttpClient,
+    private _topicsService: TopicsService
+  ) { }
 
   ngOnInit(): void {
     this.topics$ = new Observable((observer: Observer<string>) => {
@@ -63,24 +52,26 @@ export class DocumentBuilderComponent implements OnInit {
     }).pipe(
       debounceTime(500),
       distinctUntilChanged(),
+      // tap((search: string ) => console.log(search))
       switchMap((query: string) => {
         if (query) {
-          // using github public api to get users by name
-          return this.http.get<any>(
-            'https://api.github.com/search/users', {
-            params: { q: query }
-          }).pipe(
-            map((data: any) => data && data.items || []),
-            tap(() => noop, err => {
-              // in case of http error
-              console.log('error');
-            })
-          );
+          // TODO CREATE DEFAULT PAGE
+          return this._topicsService.searchTopics(query)
+            .pipe(map((page: Page<Topic>) => page.elements));
         }
  
         return of([]);
       })
     );
+  }
+
+  public onSelectTopic(match: TypeaheadMatch): void {
+    console.log("selected topic", match.item);
+    // dispatch action to get sections by topics id
+    // TODO create this state on documents state.
+    // Need to create actions, state, reducer, effects, and selectors
+    // need to sub to selected topic sections and use that to display the list of sections???
+    this.selectedTopic = match.item;
   }
 
   public onDrop(event: CdkDragDrop<string[]>) {

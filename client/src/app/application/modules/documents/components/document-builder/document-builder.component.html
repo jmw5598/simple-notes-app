@@ -16,10 +16,11 @@
                 [typeahead]="topics$"
                 [typeaheadAsync]="true"
                 [typeaheadItemTemplate]="customItemTemplate"
+                (typeaheadOnSelect)="onSelectTopic($event)"
                 class="form-control mb-3">
             <pre class="card card-block card-header mb-3">Model: {{selected | json}}</pre>
             <ng-template #customItemTemplate let-model="item" let-index="index">
-              <h5>This is: {{model | json}} Index: {{ index }}</h5>
+              <h5>{{ model.title }}</h5>
             </ng-template>
           </div>
           
@@ -27,13 +28,18 @@
               class="list-group"
               cdkDropList
               #todoList="cdkDropList"
-              [cdkDropListData]="todos"
+              [cdkDropListData]="completed"
               [cdkDropListConnectedTo]="[doneList]"
               (cdkDropListDropped)="onDrop($event)">
-            <li class="list-group-item" *ngFor="let todo of todos" cdkDrag>
-              <h4>{{ todo.name }}</h4>
-              <p>{{ todo.category }}</p>
-            </li>
+            
+            <ng-container *ngIf="selectedTopic && selectedTopic.sections">
+              <h3>test</h3>
+              <li class="list-group-item" *ngFor="let section of selectedTopics?.section" cdkDrag>
+                <h4>{{ section.name}}</h4>
+                <p>{{ section.synopsis }}</p>
+              </li>
+            </ng-container>
+
           </ul>
         </div>
       </div>
