@@ -66,6 +66,7 @@ export class SectionsService {
 
   public async getSectionsByTopicId(accountId: number, topicId: number): Promise<SectionDto[]> {
     const sections: Section[] = await this._sectionsRepository.find({
+      select: ['id', 'title', 'synopsis', 'createdAt', 'updatedAt'],
       where: {
         topic: {
           id: topicId,

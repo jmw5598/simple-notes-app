@@ -3,11 +3,15 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { HttpClient } from '@angular/common/http';
 import { Observer, Observable, of, noop } from 'rxjs';
 import { tap, map, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Topic } from '@sn/shared/models';
+import { Section, Topic } from '@sn/shared/models';
 import { mockTopics } from './topics-data.mock';
 import { Page } from '@sn/core/models';
 import { TopicsService } from '@sn/core/services';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+import { Store } from '@ngrx/store';
+import { IDocumentsState } from '../../store/reducers';
+import { getSectionsByTopicId } from '../../store/actions';
+import { selectSectionsForSelectedTopic, selectSelectedTopic } from '../../store/selectors';
 
 @Component({
   selector: 'sn-document-builder',
@@ -16,62 +20,45 @@ import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 })
 export class DocumentBuilderComponent implements OnInit {
   
-  public completed = [
-    {
-      name: 'Android',
-      category: 'Mobile Development'
-    },
-    {
-      name: 'MongoDB',
-      category: 'Databases'
-    },
-    {
-      name: 'ARKit',
-      category: 'Augmented Reality'
-    },
-    {
-      name: 'React',
-      category: 'Web Development'
-    }
+  public document = [
+    
   ];
 
   public selected: string;
   public selectedTopic: Topic;
-  topics: Topic[] = mockTopics;
+  public selectedTopic$: Observable<Topic>;
+  public sectionsForSelectedTopic$: Observable<Section[]>;
 
+  topics: Topic[] = mockTopics;
   topics$: Observable<any>;
 
   constructor(
-    private _http: HttpClient,
+    private _store: Store<IDocumentsState>,
     private _topicsService: TopicsService
   ) { }
 
   ngOnInit(): void {
+    this.selectedTopic$ = this._store.select(selectSelectedTopic);
+    this.sectionsForSelectedTopic$ = this._store.select(selectSectionsForSelectedTopic);
+    
     this.topics$ = new Observable((observer: Observer<string>) => {
       observer.next(this.selected);
     }).pipe(
       debounceTime(500),
       distinctUntilChanged(),
-      // tap((search: string ) => console.log(search))
       switchMap((query: string) => {
         if (query) {
-          // TODO CREATE DEFAULT PAGE
           return this._topicsService.searchTopics(query)
             .pipe(map((page: Page<Topic>) => page.elements));
         }
- 
         return of([]);
       })
     );
   }
 
   public onSelectTopic(match: TypeaheadMatch): void {
-    console.log("selected topic", match.item);
-    // dispatch action to get sections by topics id
-    // TODO create this state on documents state.
-    // Need to create actions, state, reducer, effects, and selectors
-    // need to sub to selected topic sections and use that to display the list of sections???
-    this.selectedTopic = match.item;
+    this.selectedTopic = match.item as Topic;
+    this._store.dispatch(getSectionsByTopicId({ topicId: this.selectedTopic.id }))
   }
 
   public onDrop(event: CdkDragDrop<string[]>) {

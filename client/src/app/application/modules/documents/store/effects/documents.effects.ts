@@ -3,18 +3,19 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { handleHttpError } from '@sn/application/store/actions/http-error.actions';
 import { of } from 'rxjs';
-import { debounceTime, exhaustMap, switchMap, map, catchError } from 'rxjs/operators';
+import { exhaustMap, switchMap, map, catchError } from 'rxjs/operators';
 import * as fromActions from '../actions';
 import { DocumentsService } from '@sn/core/services/documents.service';
 import { PageableSearch, ResponseMessage } from '@sn/core/models';
 import { ResponseStatus } from '@sn/core/enums';
-import { TopicsService } from '@sn/core/services';
+import { TopicsService, SectionsService } from '@sn/core/services';
 
 @Injectable()
 export class DocumentsEffects {
   constructor(
     private _actions: Actions,
     private _documentsService: DocumentsService,
+    private _sectionsService: SectionsService,
     private _topicsService: TopicsService
   ) {}
 
@@ -95,6 +96,16 @@ export class DocumentsEffects {
           catchError(error => of(handleHttpError(error)))
         )
       }
+    )
+  ));
+
+  getSectionsTopicById$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.getSectionsByTopicId),
+    switchMap(({topicId}) => this._sectionsService.findSectionsByTopicId(topicId)
+      .pipe(
+        map(result => fromActions.getSectionsByTopicIdSuccess({ sections: result })),
+        catchError(error => of(handleHttpError(error)))
+      )
     )
   ));
 }

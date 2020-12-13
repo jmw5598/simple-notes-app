@@ -24,23 +24,22 @@
             </ng-template>
           </div>
           
+          <h4 class="font-weight-bold mb-3">{{ selectedTopic?.title || '' }}</h4>
           <ul 
               class="list-group"
               cdkDropList
               #todoList="cdkDropList"
-              [cdkDropListData]="completed"
+              [cdkDropListData]="(selectedTopic$ | async)?.sections"
               [cdkDropListConnectedTo]="[doneList]"
               (cdkDropListDropped)="onDrop($event)">
-            
-            <ng-container *ngIf="selectedTopic && selectedTopic.sections">
-              <h3>test</h3>
-              <li class="list-group-item" *ngFor="let section of selectedTopics?.section" cdkDrag>
-                <h4>{{ section.name}}</h4>
-                <p>{{ section.synopsis }}</p>
+            <ng-container *ngIf="(sectionsForSelectedTopic$ | async)">
+              <li class="list-group-item" *ngFor="let section of (sectionsForSelectedTopic$ | async)" cdkDrag>
+                <h5>{{ section.title }}</h5>
+                <p class="font-italic mb-0">{{ section.synopsis }}</p>
               </li>
             </ng-container>
-
           </ul>
+
         </div>
       </div>
     </div>
@@ -51,16 +50,25 @@
               class="list-group"
               cdkDropList
               #doneList="cdkDropList"
-              [cdkDropListData]="completed"
+              [cdkDropListData]="document"
               [cdkDropListConnectedTo]="todoList"
               (cdkDropListDropped)="onDrop($event)">
-            <li class="list-group-item" *ngFor="let complete of completed" cdkDrag>
-              <h4>{{ complete.name }}</h4>
-              <p>{{ complete.category }}</p>
-            </li>
+            <ng-container *ngIf="document && document.length > 0; else emptyDocumentTemplate">
+              <li class="list-group-item" *ngFor="let section of document" cdkDrag>
+                <h4>{{ section.title }}</h4>
+                <p>{{ section.synopsis }}</p>
+              </li>
+            </ng-container>
+            <ng-template #emptyDocumentTemplate>
+              <li class="list-group-item">
+                <sn-empty-data message="There are no sections for this document!"></sn-empty-data>
+              </li>
+            </ng-template>
+
           </ul>
         </div>
       </div>
     </div>
   </div>
 </div>
+

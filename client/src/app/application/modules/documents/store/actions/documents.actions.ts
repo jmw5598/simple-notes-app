@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Page, PageableSearch, ResponseMessage } from '@sn/core/models';
-import { Document, Topic } from '@sn/shared/models';
+import { Document, Section, Topic } from '@sn/shared/models';
 
 export const createDocument = createAction(
   '[Document] Create Document',
@@ -37,7 +37,6 @@ export const setUpdateDocumentResponseMessage = createAction(
   props<{ message: ResponseMessage }>()
 );
 
-// delete document
 export const deleteDocument = createAction(
   '[Document] Delete Document',
   props<{ id: number }>()
@@ -86,4 +85,14 @@ export const searchTopicsResult = createAction(
 export const setSearchTopicsSelection = createAction(
   '[Document] Search Topics Selection',
   props<{ topic: Topic }>()
+);
+
+export const getSectionsByTopicId = createAction(
+  '[Document] Get Sections By Topic By Id',
+  props<{ topicId: number }>()
+);
+
+export const getSectionsByTopicIdSuccess = createAction(
+  '[Document] Get Sections By Topic By Id Success',
+  props<{ sections: Section[] }>()
 );

@@ -61,6 +61,12 @@ export class SectionsService {
     );
   }
 
+  public findSectionsByTopicId(topicId: number): Observable<Section[]> {
+    return this._http.get<Section[]>(
+      `${environment.api.baseUrl}/topics/${topicId}/sections`
+    );
+  }
+
   // public update(id: ID, t: T): Observable<T>;
   // public findAll(): Observable<T[]>  
 }

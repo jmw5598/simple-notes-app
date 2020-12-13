@@ -10,6 +10,7 @@ import { Page } from '../../common/models/page.model';
 import { IPageable } from '../../common/models/pageable.interface';
 import { PageRequest } from '../../common/models/page-request.model';
 import { SortDirection } from '../../common/enums/sort-direction.enum';
+import { request } from 'http';
 
 @Controller('topics/:topicId/sections')
 @UseGuards(JwtAuthenticationGuard)
@@ -36,8 +37,16 @@ export class SectionsController {
   }
 
   @Get()
-  public async getSectionsByTopic(@Param('topicId') topicId: number): Promise<any> {
-    return { sections: `These are sections for topic with id ${topicId}` };
+  public async getSectionsByTopic(
+      @Request() request,  
+      @Param('topicId') topicId: number): Promise<SectionDto[]> {
+    try {
+      const accountId: number = +request.user.accountId;
+      return this._sectionsService.getSectionsByTopicId(accountId, topicId);
+    } catch (error) {
+      this._logger.error(`Error getting sections for topic with id ${topicId}!`, error);
+      throw error;
+    }
   }
 
   @Get('search')

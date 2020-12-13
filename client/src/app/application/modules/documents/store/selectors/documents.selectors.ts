@@ -41,3 +41,8 @@ export const selectSelectedTopic = createSelector(
   selectDocumentState,
   (state: fromDocuments.IDocumentsState) => state.selectedTopic
 );
+
+export const selectSectionsForSelectedTopic = createSelector(
+  selectDocumentState,
+  (state: fromDocuments.IDocumentsState) => state.sectionsForSelectedTopic
+);

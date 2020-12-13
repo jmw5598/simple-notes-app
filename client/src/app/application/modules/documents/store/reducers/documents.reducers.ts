@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import * as fromActions from '../actions';
 import { ResponseMessage, Page } from '@sn/core/models';
-import { Topic, Document } from '@sn/shared/models';
+import { Topic, Document, Section } from '@sn/shared/models';
 
 export const documentsFeatureKey = 'documents'
 
@@ -13,6 +13,7 @@ export interface IDocumentsState {
   searchDocumentsSelection: Document,
   searchTopicsResult: Page<Topic>,
   selectedTopic: Topic
+  sectionsForSelectedTopic: Section[]
 }
 
 export const initialDocumentState: IDocumentsState = {
@@ -22,7 +23,8 @@ export const initialDocumentState: IDocumentsState = {
   searchDocumentsResult: null,
   searchDocumentsSelection: null,
   searchTopicsResult: null,
-  selectedTopic: null
+  selectedTopic: null,
+  sectionsForSelectedTopic: null
 };
 
 const _documentReducer = createReducer(
@@ -67,6 +69,12 @@ const _documentReducer = createReducer(
     return {
       ...state,
       selectedTopic: topic
+    }
+  }),
+  on(fromActions.getSectionsByTopicIdSuccess, (state, { sections }) => {
+    return {
+      ...state,
+      sectionsForSelectedTopic: sections
     }
   })
 );
