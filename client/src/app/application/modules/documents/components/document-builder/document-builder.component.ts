@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { HttpClient } from '@angular/common/http';
 import { Observer, Observable, of, noop } from 'rxjs';
-import { tap, map, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { map, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Section, Topic } from '@sn/shared/models';
 import { mockTopics } from './topics-data.mock';
 import { Page } from '@sn/core/models';
@@ -10,7 +9,7 @@ import { TopicsService } from '@sn/core/services';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { Store } from '@ngrx/store';
 import { IDocumentsState } from '../../store/reducers';
-import { getSectionsByTopicId } from '../../store/actions';
+import { getSectionsByTopicId, getSectionsByTopicIdSuccess } from '../../store/actions';
 import { selectSectionsForSelectedTopic, selectSelectedTopic } from '../../store/selectors';
 
 @Component({
@@ -18,7 +17,7 @@ import { selectSectionsForSelectedTopic, selectSelectedTopic } from '../../store
   templateUrl: './document-builder.component.html',
   styleUrls: ['./document-builder.component.scss']
 })
-export class DocumentBuilderComponent implements OnInit {
+export class DocumentBuilderComponent implements OnInit, OnDestroy {
   
   public document = [
     
@@ -71,5 +70,9 @@ export class DocumentBuilderComponent implements OnInit {
         event.container.data,
         event.previousIndex, event.currentIndex);
     }
+  }
+
+  public ngOnDestroy(): void {
+    this._store.dispatch(getSectionsByTopicIdSuccess({ sections: null }));
   }
 }
