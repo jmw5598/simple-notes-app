@@ -12,7 +12,8 @@
         <div class="card-body">
 
           <div class="form-group">
-            <input [(ngModel)]="selected"
+            <input id="search-topics"
+                [(ngModel)]="selected"
                 [typeahead]="topics$"
                 [typeaheadAsync]="true"
                 [typeaheadItemTemplate]="customItemTemplate"

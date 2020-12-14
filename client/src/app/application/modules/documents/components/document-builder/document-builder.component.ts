@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, Renderer2 } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Observer, Observable, of, noop } from 'rxjs';
 import { map, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -17,7 +17,7 @@ import { selectSectionsForSelectedTopic, selectSelectedTopic } from '../../store
   templateUrl: './document-builder.component.html',
   styleUrls: ['./document-builder.component.scss']
 })
-export class DocumentBuilderComponent implements OnInit, OnDestroy {
+export class DocumentBuilderComponent implements OnInit, OnDestroy, AfterViewInit {
   
   public document = [
     
@@ -32,6 +32,7 @@ export class DocumentBuilderComponent implements OnInit, OnDestroy {
   topics$: Observable<any>;
 
   constructor(
+    private _renderer: Renderer2,
     private _store: Store<IDocumentsState>,
     private _topicsService: TopicsService
   ) { }
@@ -55,6 +56,12 @@ export class DocumentBuilderComponent implements OnInit, OnDestroy {
     );
   }
 
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this._setFocusToTitleInput();
+    });
+  }
+
   public onSelectTopic(match: TypeaheadMatch): void {
     this.selectedTopic = match.item as Topic;
     this._store.dispatch(getSectionsByTopicId({ topicId: this.selectedTopic.id }))
@@ -70,6 +77,10 @@ export class DocumentBuilderComponent implements OnInit, OnDestroy {
         event.container.data,
         event.previousIndex, event.currentIndex);
     }
+  }
+
+  private _setFocusToTitleInput(): void {
+    this._renderer.selectRootElement('#search-topics').focus();
   }
 
   public ngOnDestroy(): void {
