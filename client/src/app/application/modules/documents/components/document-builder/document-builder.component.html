@@ -7,11 +7,20 @@
     </div>
   </div>
   <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group p-3">
+        <label for="title">Document Title</label>
+        <input type="text" class="form-control" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-sm-12 col-md-6">
       <div clas="card">
         <div class="card-body">
 
           <div class="form-group">
+            <label for="search-topics">Search Topics</label>
             <input id="search-topics"
                 [(ngModel)]="selected"
                 [typeahead]="topics$"
@@ -29,12 +38,12 @@
           <ul 
               class="list-group"
               cdkDropList
-              #todoList="cdkDropList"
-              [cdkDropListData]="(selectedTopic$ | async)?.sections"
-              [cdkDropListConnectedTo]="[doneList]"
+              #topicSections="cdkDropList"
+              [cdkDropListData]="selectedSections"
+              [cdkDropListConnectedTo]="[documentSections]"
               (cdkDropListDropped)="onDrop($event)">
-            <ng-container *ngIf="(sectionsForSelectedTopic$ | async)">
-              <li class="list-group-item" *ngFor="let section of (sectionsForSelectedTopic$ | async)" cdkDrag>
+            <ng-container *ngIf="selectedSections">
+              <li class="list-group-item" *ngFor="let section of selectedSections" cdkDrag>
                 <h5>{{ section.title }}</h5>
                 <p class="font-italic mb-0">{{ section.synopsis }}</p>
               </li>
@@ -50,9 +59,9 @@
           <ul 
               class="list-group"
               cdkDropList
-              #doneList="cdkDropList"
+              #documentSections="cdkDropList"
               [cdkDropListData]="document"
-              [cdkDropListConnectedTo]="todoList"
+              [cdkDropListConnectedTo]="topicSections"
               (cdkDropListDropped)="onDrop($event)">
             <ng-container *ngIf="document && document.length > 0; else emptyDocumentTemplate">
               <li class="list-group-item" *ngFor="let section of document" cdkDrag>

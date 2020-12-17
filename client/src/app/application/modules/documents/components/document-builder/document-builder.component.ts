@@ -23,6 +23,8 @@ export class DocumentBuilderComponent implements OnInit, OnDestroy, AfterViewIni
     
   ];
 
+  public selectedSections: Section[] = []
+
   public selected: string;
   public selectedTopic: Topic;
   public selectedTopic$: Observable<Topic>;
@@ -39,7 +41,8 @@ export class DocumentBuilderComponent implements OnInit, OnDestroy, AfterViewIni
 
   ngOnInit(): void {
     this.selectedTopic$ = this._store.select(selectSelectedTopic);
-    this.sectionsForSelectedTopic$ = this._store.select(selectSectionsForSelectedTopic);
+    this._store.select(selectSectionsForSelectedTopic)
+      .subscribe(sections => sections ? this.selectedSections = sections.map(s => s) : []);
     
     this.topics$ = new Observable((observer: Observer<string>) => {
       observer.next(this.selected);
