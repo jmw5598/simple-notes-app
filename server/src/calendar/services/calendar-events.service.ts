@@ -85,10 +85,15 @@ export class CalendarEventsService {
 
   public async getCalendarEventsBetweenDates(accountId: number, startDate: Date, endDate: Date): Promise<CalendarEventDto[]> {
     const events: CalendarEvent[] = await this._calendarEventRepository.find({
-      account: { id: accountId },
-      deletedAt: IsNull(),
-      startDateTime: MoreThanOrEqual(startDate.toISOString()),
-      endDateTime: LessThanOrEqual(endDate.toISOString())
+      where: {
+        account: { id: accountId },
+        deletedAt: IsNull(),
+        startDateTime: MoreThanOrEqual(startDate.toISOString()),
+        endDateTime: LessThanOrEqual(endDate.toISOString())
+      },
+      order: {
+        startDateTime: 'ASC'
+      }
     })
     return CalendarEventMapper.toCalendarEventDtoList(events);
   }
