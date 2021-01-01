@@ -9,6 +9,7 @@ export * from './drawer/drawer-options.model';
 export * from './topic-create/topic-create.component';
 export * from './topic-search/topic-search.component';
 export * from './calendar-event-create/calendar-event-create.component';
+export * from './document-create/document-create.component';
 
 export * from './layout/layout.service';
 export * from './layout/layout-side-panel-position.enum';

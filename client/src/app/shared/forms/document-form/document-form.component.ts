@@ -1,24 +1,27 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { FormGroup, ControlContainer } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Observer, Observable, of, noop } from 'rxjs';
-import { map, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Section, Topic } from '@sn/shared/models';
-import { mockTopics } from './topics-data.mock';
-import { Page } from '@sn/core/models';
-import { TopicsService } from '@sn/core/services';
-import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { Store } from '@ngrx/store';
-import { IDocumentsState } from '../../store/reducers';
-import { getSectionsByTopicId, getSectionsByTopicIdSuccess } from '../../store/actions';
-import { selectSectionsForSelectedTopic, selectSelectedTopic } from '../../store/selectors';
+import { Observable, Observer, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
+import { TopicsService } from '@sn/core/services';
+import { IDocumentsState } from '@sn/application/modules/documents/store/reducers';
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+
+import { getSectionsByTopicId, getSectionsByTopicIdSuccess } from '@sn/application/modules/documents/store/actions';
+import { selectSectionsForSelectedTopic, selectSelectedTopic } from '@sn/application/modules/documents/store/selectors';
+import { Page } from '@sn/core/models';
+import { Section, Topic } from '@sn/shared/models';
+
 
 @Component({
-  selector: 'sn-document-builder',
-  templateUrl: './document-builder.component.html',
-  styleUrls: ['./document-builder.component.scss']
+  selector: 'sn-document-form',
+  templateUrl: './document-form.component.html',
+  styleUrls: ['./document-form.component.scss']
 })
-export class DocumentBuilderComponent implements OnInit, OnDestroy, AfterViewInit {
-  
+export class DocumentFormComponent implements OnInit {
+  public form: FormGroup;
+
   public document = [
     
   ];
@@ -35,11 +38,14 @@ export class DocumentBuilderComponent implements OnInit, OnDestroy, AfterViewIni
 
   constructor(
     private _renderer: Renderer2,
+    private _parentControl: ControlContainer,
     private _store: Store<IDocumentsState>,
     private _topicsService: TopicsService
   ) { }
 
   ngOnInit(): void {
+    this.form = this._parentControl.control as FormGroup;
+
     this.selectedTopic$ = this._store.select(selectSelectedTopic);
     this._store.select(selectSectionsForSelectedTopic)
       .subscribe(sections => sections ? this.selectedSections = sections.map(s => s) : []);
@@ -71,6 +77,7 @@ export class DocumentBuilderComponent implements OnInit, OnDestroy, AfterViewIni
   }
 
   public onDrop(event: CdkDragDrop<string[]>) {
+    // console.log(event.previousContainer.data[event.previousIndex]); // Gets the item dropped
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data,
         event.previousIndex,
@@ -89,4 +96,5 @@ export class DocumentBuilderComponent implements OnInit, OnDestroy, AfterViewIni
   public ngOnDestroy(): void {
     this._store.dispatch(getSectionsByTopicIdSuccess({ sections: null }));
   }
+
 }

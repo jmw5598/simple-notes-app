@@ -29,26 +29,26 @@ export class DocumentsEffects {
   //   )
   // ));
 
-  // createDocument$ = createEffect(() => this._actions.pipe(
-  //   ofType(fromActions.createDocument),
-  //   exhaustMap(({ document }) => this._documentsService.save(document)
-  //     .pipe(
-  //       map(document => fromActions.createDocumentSuccess({ document: document })),
-  //       catchError(error => of(handleHttpError({ error: error })))
-  //     )
-  //   )
-  // ));
+  createDocument$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.createDocument),
+    exhaustMap(({ document }) => this._documentsService.save(document)
+      .pipe(
+        map(document => fromActions.createDocumentSuccess({ document: document })),
+        catchError(error => of(handleHttpError({ error: error })))
+      )
+    )
+  ));
 
-  // createDocumnetSuccess$ = createEffect(() => this._actions.pipe(
-  //   ofType(fromActions.createDocumentSuccess),
-  //   switchMap(({ document }) => {
-  //     const message: ResponseMessage = {
-  //       status: ResponseStatus.SUCCESS,
-  //       message: `Successfully created document!`
-  //     } as ResponseMessage;
-  //     return of(fromActions.setCreateDocumentResponseMessage({ message: message }))
-  //   })
-  // ));
+  createDocumnetSuccess$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.createDocumentSuccess),
+    switchMap(({ document }) => {
+      const message: ResponseMessage = {
+        status: ResponseStatus.SUCCESS,
+        message: `Successfully created document!`
+      } as ResponseMessage;
+      return of(fromActions.setCreateDocumentResponseMessage({ message: message }))
+    })
+  ));
 
   // updateDocument$ = createEffect(() => this._actions.pipe(
   //   ofType(fromActions.updateDocument),

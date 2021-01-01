@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <sn-page-header
+          [heading]="'Document Builder (WIP)'">
+      </sn-page-header>
+    </div>
+  </div>
+  <div [formGroup]="form" class="row">
+    <div class="col-sm-12">
+      <div class="form-group p-3">
+        <label for="name">Document Title</label>
+        <input formControlName="name" type="text" class="form-control" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <div clas="card">
+        <div class="card-body">
+
+          <div class="form-group">
+            <label for="search-topics">Search Topics</label>
+            <input id="search-topics"
+                [(ngModel)]="selected"
+                [typeahead]="topics$"
+                [typeaheadAsync]="true"
+                [typeaheadItemTemplate]="customItemTemplate"
+                (typeaheadOnSelect)="onSelectTopic($event)"
+                class="form-control mb-3">
+            <pre class="card card-block card-header mb-3">Model: {{selected | json}}</pre>
+            <ng-template #customItemTemplate let-model="item" let-index="index">
+              <h5>{{ model.title }}</h5>
+            </ng-template>
+          </div>
+          
+          <h4 class="font-weight-bold mb-3">{{ selectedTopic?.title || '' }}</h4>
+          <ul 
+              class="list-group"
+              cdkDropList
+              #topicSections="cdkDropList"
+              [cdkDropListData]="selectedSections"
+              [cdkDropListConnectedTo]="[documentSections]"
+              (cdkDropListDropped)="onDrop($event)">
+            <ng-container *ngIf="selectedSections">
+              <li class="list-group-item" *ngFor="let section of selectedSections" cdkDrag>
+                <h5>{{ section.title }}</h5>
+                <p class="font-italic mb-0">{{ section.synopsis }}</p>
+              </li>
+            </ng-container>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <div clas="card">
+        <div class="card-body">
+          <ul 
+              class="list-group"
+              cdkDropList
+              #documentSections="cdkDropList"
+              [cdkDropListData]="document"
+              [cdkDropListConnectedTo]="topicSections"
+              (cdkDropListDropped)="onDrop($event)">
+            <ng-container *ngIf="document && document.length > 0; else emptyDocumentTemplate">
+              <li class="list-group-item" *ngFor="let section of document" cdkDrag>
+                <h4>{{ section.title }}</h4>
+                <p>{{ section.synopsis }}</p>
+              </li>
+            </ng-container>
+            <ng-template #emptyDocumentTemplate>
+              <li class="list-group-item">
+                <sn-empty-data message="There are no sections for this document!"></sn-empty-data>
+              </li>
+            </ng-template>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

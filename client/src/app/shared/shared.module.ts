@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { TagInputComponent } from './components/tag-input/tag-input.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
@@ -22,6 +24,8 @@ import { DebounceDirective } from './directives/debounce.directive';
 import { ColorTwitterModule } from 'ngx-color/twitter';
 import { PageHeaderComponent } from './components/page-header/page-header.component'; // <color-twitter></color-twitter>
 import { LayoutComponent } from './components/layout/layout.component';
+import { DocumentFormComponent } from './forms/document-form/document-form.component';
+import { DocumentCreateComponent } from './components/document-create/document-create.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,9 @@ import { LayoutComponent } from './components/layout/layout.component';
     CalendarEventCreateComponent,
     DebounceDirective,
     PageHeaderComponent,
-    LayoutComponent
+    LayoutComponent,
+    DocumentFormComponent,
+    DocumentCreateComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +54,9 @@ import { LayoutComponent } from './components/layout/layout.component';
     TimepickerModule,
     BsDatepickerModule.forRoot(),
     RouterModule,
-    ColorTwitterModule
+    ColorTwitterModule,
+    DragDropModule,
+    TypeaheadModule
   ],
   exports: [
     FormsModule,
@@ -67,7 +75,9 @@ import { LayoutComponent } from './components/layout/layout.component';
     CalendarEventCreateComponent,
     DebounceDirective,
     PageHeaderComponent,
-    LayoutComponent
+    LayoutComponent,
+    DocumentFormComponent,
+    DocumentCreateComponent
   ],
   providers: [
     DrawerService

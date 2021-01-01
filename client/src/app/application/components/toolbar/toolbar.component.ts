@@ -5,14 +5,15 @@ import { takeUntil } from 'rxjs/operators';
 
 import { IToolbarState } from '../../store/reducers';
 import { selectKeyboardShortcuts } from '../../store/selectors';
-import { DrawerService, DrawerLocation } from '@sn/shared/components';
+import { DrawerService, DrawerLocation, DrawerSize } from '@sn/shared/components';
 import { ShortcutInput, AllowIn } from 'ng-keyboard-shortcuts';
 import { getKeyboardShortcuts } from '@sn/application/store/actions';
 import { KeyboardShortcutActionType } from '@sn/core/enums';
 import { 
   TopicCreateComponent, 
   TopicSearchComponent,
-  CalendarEventCreateComponent } from '@sn/shared/components';
+  CalendarEventCreateComponent,
+  DocumentCreateComponent } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-toolbar',
@@ -75,8 +76,14 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     }
   }
 
-  public onCreateNewDocumentEvent(): void {
+  public onCreateNewDocument(): void {
     console.log('Creating new document in drawer!');
+    if (this._isDrawerVisible) {
+      this._drawerService.close();
+      setTimeout(() => this._drawerService.show(DocumentCreateComponent, { size: DrawerSize.LARGE }));
+    } else {
+      this._drawerService.show(DocumentCreateComponent, { size: DrawerSize.LARGE });
+    }
   }
 
   public onPreviousRoute(): void {
@@ -108,7 +115,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         return (e) => this.onSearchTopics();
 
       case KeyboardShortcutActionType.CREATE_DOCUMENT:
-        return (e) => this.onCreateNewDocumentEvent();
+        return (e) => this.onCreateNewDocument();
     }
   }
 
