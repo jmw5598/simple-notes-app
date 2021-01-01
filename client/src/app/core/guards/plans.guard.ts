@@ -5,7 +5,7 @@ import { tap, filter, take, switchMap, catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { Plan } from '@sn/core/models';
-import { IApplicationState } from '@sn/application/store/index';
+import { IAppState } from '@sn/store/reducers';
 import { getPlans } from '../store/actions/plans.actions';
 import { selectPlans } from '../store/selectors/plans.selectors';
 
@@ -13,7 +13,7 @@ import { selectPlans } from '../store/selectors/plans.selectors';
   providedIn: 'root'
 })
 export class PlansGuard implements CanActivate {
-  constructor(private _store: Store<IApplicationState>) {}
+  constructor(private _store: Store<IAppState>) {}
   
   canActivate(
     next: ActivatedRouteSnapshot,

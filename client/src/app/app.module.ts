@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { ROOT_REDUCERS, metaReducers } from '@sn/store/reducers';
 import { AuthenticationEffects } from './auth/store/effects';
+import { PlansEffects } from './core/store/effects';
 
 import { environment } from '@env/environment';
 
@@ -42,7 +43,10 @@ import { environment } from '@env/environment';
       //   strictActionTypeUniqueness: true,
       // },
     }),
-    EffectsModule.forRoot([AuthenticationEffects]),
+    EffectsModule.forRoot([
+      AuthenticationEffects,
+      PlansEffects
+    ]),
     StoreDevtoolsModule.instrument({
       name: 'Simple Notes App',
       logOnly: environment.production      
