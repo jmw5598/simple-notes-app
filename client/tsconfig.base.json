@@ -15,6 +15,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@sn/*": [
+        "src/app/*"
+      ],
+      "@env/*": [
+        "src/environments/*"
+      ]
+    }
   }
 }
