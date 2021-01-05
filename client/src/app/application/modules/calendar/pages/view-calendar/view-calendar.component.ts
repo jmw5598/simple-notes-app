@@ -32,7 +32,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   public calendar : FullCalendarComponent;
 
   private _subscriptionSubject: Subject<void>; 
-  public calendarOptions: CalendarOptions = CALENDAR_OPTIONS_DEFAULT;
+  public calendarOptions: CalendarOptions | any = CALENDAR_OPTIONS_DEFAULT;
   public areCalendarEventsLoading: boolean = false;
 
   constructor(
@@ -84,7 +84,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   public handleCalendarDateClick(args): void {
     this._drawerService.show(
       CalendarEventCreateComponent,
-      { date: new Date(args.date) }
+      { data: { date: new Date(args.date) } }
     )
   }
 

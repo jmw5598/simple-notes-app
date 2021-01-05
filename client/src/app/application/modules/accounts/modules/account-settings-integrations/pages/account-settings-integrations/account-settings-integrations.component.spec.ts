@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AccountSettingsIntegrationsComponent } from './account-settings-integrations.component';
 
@@ -8,7 +9,8 @@ describe('AccountSettingsIntegrationsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccountSettingsIntegrationsComponent ]
+      imports: [NoopAnimationsModule],
+      declarations: [AccountSettingsIntegrationsComponent]
     })
     .compileComponents();
   }));

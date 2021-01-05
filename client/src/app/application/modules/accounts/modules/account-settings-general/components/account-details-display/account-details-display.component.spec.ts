@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AccountDetailsDisplayComponent } from './account-details-display.component';
 
@@ -8,7 +9,8 @@ describe('AccountDetailsDisplayComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccountDetailsDisplayComponent ]
+      imports: [NoopAnimationsModule], 
+      declarations: [AccountDetailsDisplayComponent]
     })
     .compileComponents();
   }));
