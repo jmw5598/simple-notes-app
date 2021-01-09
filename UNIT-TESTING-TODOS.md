@@ -82,7 +82,7 @@
 [_] shared
   [_] components
     [_] calendar-event-create
-    [_] debounced-search
+    [X] debounced-search
     [_] drawer
     [X] empty-data
     [_] layout
