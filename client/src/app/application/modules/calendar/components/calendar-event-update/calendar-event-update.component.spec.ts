@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ControlContainer, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarEventUpdateComponent } from './calendar-event-update.component';
 
 describe('CalendarEventUpdateComponent', () => {
@@ -8,7 +8,14 @@ describe('CalendarEventUpdateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CalendarEventUpdateComponent ]
+      imports: [
+        
+        ReactiveFormsModule
+      ],
+      declarations: [
+        CalendarEventUpdateComponent
+      ],
+      providers: []
     })
     .compileComponents();
   }));

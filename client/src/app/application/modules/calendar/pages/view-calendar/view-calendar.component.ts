@@ -49,7 +49,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
       .subscribe((events: CalendarEvent[]) => {
         if (events) {
           const renderableEvents = this._mapCalendarEvents(events)
-          this.calendar.getApi().removeAllEvents();
+          this.calendar.getApi()?.removeAllEvents();
           renderableEvents.forEach(e => this.calendar.getApi().addEvent(e))
         }
       });
@@ -148,7 +148,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   }
 
   private _mapCalendarEvents(events: CalendarEvent[]): EventInput[] {
-    return events.map((event: CalendarEvent) => {
+    return events?.map((event: CalendarEvent) => {
       return {
         id: event.id.toString(),
         title: event.title,
