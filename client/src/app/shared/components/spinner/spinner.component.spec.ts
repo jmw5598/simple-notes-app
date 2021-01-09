@@ -22,4 +22,15 @@ describe('SpinnerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display message in spinner-text element', () => {
+    const message: string = 'Loading...';
+    component.message = message;
+    fixture.detectChanges();
+
+    const spinnerElement: HTMLElement = fixture.nativeElement;
+    const spinnerTextElement = spinnerElement.querySelector('.spinner-text');
+    
+    expect(spinnerTextElement.textContent).toBe(message);
+  });
 });
