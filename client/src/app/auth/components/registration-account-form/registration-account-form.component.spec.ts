@@ -1,11 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ControlContainer, FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { RegistrationAccountFormComponent } from './registration-account-form.component';
 
 describe('RegistrationAccountFormComponent', () => {
   let component: RegistrationAccountFormComponent;
   let fixture: ComponentFixture<RegistrationAccountFormComponent>;
+
+  let testFormGroupDirective: FormGroupDirective = new FormGroupDirective([], []);;
+  let testFormGroup: FormGroup = new FormGroup({
+    account: new FormGroup({
+      plan: new FormControl('', [Validators.required])
+    })
+  });
+  testFormGroupDirective.form = testFormGroup;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -15,6 +23,12 @@ describe('RegistrationAccountFormComponent', () => {
       ],
       declarations: [
         RegistrationAccountFormComponent
+      ],
+      providers: [
+        {
+          provide: ControlContainer, 
+          useValue: testFormGroupDirective
+        }
       ]
     })
     .compileComponents();

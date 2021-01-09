@@ -10,7 +10,7 @@ describe('TopicUpdateComponent', () => {
   let component: TopicUpdateComponent;
   let fixture: ComponentFixture<TopicUpdateComponent>;
   const testStore = {
-    select: () => of(),
+    select: () => of({}),
     dispatch: () => {}
   }
 

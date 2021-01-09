@@ -6,7 +6,7 @@
         class="form-control"
         type="text" name="title"
         formControlName="title"
-        [ngClass]="{'is-invalid':!form.controls['title'].valid && form.controls['title'].touched  }" />
+        [ngClass]="{'is-invalid':!form.controls['title']?.valid && form.controls['title']?.touched  }" />
   </div>
 
   <!-- Synopsis Field Input -->
@@ -16,7 +16,7 @@
         class="form-control"
         name="synopsis"
         formControlName="synopsis"
-        [ngClass]="{'is-invalid':!form.controls['synopsis'].valid && form.controls['synopsis'].touched  }">
+        [ngClass]="{'is-invalid':!form.controls['synopsis']?.valid && form.controls['synopsis']?.touched  }">
     </textarea>
   </div>
 </fieldset>

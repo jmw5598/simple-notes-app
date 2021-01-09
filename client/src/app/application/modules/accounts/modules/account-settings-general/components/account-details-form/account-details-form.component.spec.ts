@@ -27,9 +27,9 @@ describe('AccountDetailsFormComponent', () => {
       })
     })
   });
+  testFormGroupDirective.form = testFormGroup;
   
   beforeEach(async(() => {
-    testFormGroupDirective.form = testFormGroup;
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
