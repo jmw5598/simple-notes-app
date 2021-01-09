@@ -1,14 +1,32 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Store } from '@ngrx/store';
+import { of } from 'rxjs';
 
 import { DashboardOverviewComponent } from './dashboard-overview.component';
 
 describe('DashboardOverviewComponent', () => {
   let component: DashboardOverviewComponent;
   let fixture: ComponentFixture<DashboardOverviewComponent>;
+  const testStore = {
+    select: () => of(),
+    dispatch: () => {}
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardOverviewComponent ]
+      imports: [
+        NoopAnimationsModule
+      ],
+      declarations: [
+        DashboardOverviewComponent
+      ],
+      providers: [
+        {
+          provide: Store,
+          useValue: testStore
+        }
+      ]
     })
     .compileComponents();
   }));
