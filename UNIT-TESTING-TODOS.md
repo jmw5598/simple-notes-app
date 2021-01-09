@@ -84,10 +84,10 @@
     [_] calendar-event-create
     [_] debounced-search
     [_] drawer
-    [_] empty-data
+    [X] empty-data
     [_] layout
-    [_] loading-spinner
-    [_] page-header
+    [X] loading-spinner
+    [X] page-header
     [_] paginator
     [X] spinner
     [_] tag-input

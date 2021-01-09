@@ -22,4 +22,15 @@ describe('EmptyDataComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display message in empty-data-message class element', () => {
+    const message: string = 'Message...';
+    component.message = message;
+    fixture.detectChanges();
+
+    const emptyDataElement: HTMLElement = fixture.nativeElement;
+    const emptyDataTextElement = emptyDataElement.querySelector('.empty-data-message');
+
+    expect(emptyDataTextElement.textContent).toBe(message);
+  });
 });

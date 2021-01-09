@@ -22,4 +22,15 @@ describe('PageHeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display heading in page-header-text class element', () => {
+    const heading: string = 'Heading...';
+    component.heading = heading;
+    fixture.detectChanges();
+
+    const headerElement: HTMLElement = fixture.nativeElement;
+    const headerTextElement = headerElement.querySelector('.page-header-text');
+    
+    expect(headerTextElement.textContent).toBe(heading);
+  });
 });

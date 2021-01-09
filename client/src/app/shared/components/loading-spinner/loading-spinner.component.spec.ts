@@ -22,4 +22,15 @@ describe('LoadingSpinnerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display spinner text in spinner-text class element', () => {
+    const text: string = 'Heading...';
+    component.text = text;
+    fixture.detectChanges();
+
+    const spinnerElement: HTMLElement = fixture.nativeElement;
+    const spinnerTextElement = spinnerElement.querySelector('.spinner-text');
+    
+    expect(spinnerTextElement.textContent).toBe(text);
+  });
 });
