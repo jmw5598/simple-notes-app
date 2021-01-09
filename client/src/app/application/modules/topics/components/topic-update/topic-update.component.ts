@@ -42,6 +42,7 @@ export class TopicUpdateComponent implements OnInit, OnDestroy {
         }
       })
     );
+    // Data is null here per test????
     this._drawerService.onDataChange()
       .pipe(takeUntil(this._subscriptionSubject))
       .subscribe(data => this.form.patchValue(data));

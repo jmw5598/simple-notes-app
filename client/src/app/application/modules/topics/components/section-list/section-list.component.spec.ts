@@ -8,7 +8,7 @@ describe('SectionListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SectionListComponent ]
+      declarations: [SectionListComponent]
     })
     .compileComponents();
   }));

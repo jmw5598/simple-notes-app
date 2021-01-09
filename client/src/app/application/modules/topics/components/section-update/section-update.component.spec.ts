@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { SharedModule } from '@sn/shared/shared.module';
 import { SectionUpdateComponent } from './section-update.component';
 
 describe('SectionUpdateComponent', () => {
@@ -8,7 +8,12 @@ describe('SectionUpdateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SectionUpdateComponent ]
+      imports: [
+        SharedModule
+      ],
+      declarations: [
+        SectionUpdateComponent
+      ]
     })
     .compileComponents();
   }));
