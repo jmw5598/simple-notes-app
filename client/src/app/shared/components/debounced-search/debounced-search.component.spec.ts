@@ -8,7 +8,7 @@ describe('DebouncedSearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DebouncedSearchComponent ]
+      declarations: [DebouncedSearchComponent]
     })
     .compileComponents();
   }));

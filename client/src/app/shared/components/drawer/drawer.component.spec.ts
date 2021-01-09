@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { DrawerService } from './drawer.service';
 import { DrawerComponent } from './drawer.component';
 
 describe('DrawerComponent', () => {
@@ -8,7 +9,12 @@ describe('DrawerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DrawerComponent ]
+      declarations: [
+        DrawerComponent
+      ],
+      providers: [
+        DrawerService
+      ]
     })
     .compileComponents();
   }));

@@ -8,7 +8,7 @@ describe('EmptyDataComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EmptyDataComponent ]
+      declarations: [EmptyDataComponent]
     })
     .compileComponents();
   }));

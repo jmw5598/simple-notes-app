@@ -8,7 +8,7 @@ describe('PageHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PageHeaderComponent ]
+      declarations: [PageHeaderComponent]
     })
     .compileComponents();
   }));
