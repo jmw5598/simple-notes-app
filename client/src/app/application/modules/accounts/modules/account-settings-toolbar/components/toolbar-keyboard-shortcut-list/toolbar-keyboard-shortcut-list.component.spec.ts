@@ -8,7 +8,7 @@ describe('ToolbarKeyboardShortcutListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ToolbarKeyboardShortcutListComponent ]
+      declarations: [ToolbarKeyboardShortcutListComponent]
     })
     .compileComponents();
   }));

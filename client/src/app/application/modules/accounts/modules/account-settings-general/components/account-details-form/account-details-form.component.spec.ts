@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AccountDetailsFormComponent } from './account-details-form.component';
 
@@ -12,6 +12,7 @@ describe('AccountDetailsFormComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
+        FormsModule,
         ReactiveFormsModule
       ],
       declarations: [
