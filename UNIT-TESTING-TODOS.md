@@ -96,8 +96,8 @@
   [_] forms
     [_] calendar-event-form
     [_] topic-form
-  [_] directives
-    [_] debounce
+  [X] directives
+    [X] debounce
 
 
 `server/src/`
