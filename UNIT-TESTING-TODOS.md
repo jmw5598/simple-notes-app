@@ -80,7 +80,7 @@
   [_] 
 
 [_] shared
-  [_] components
+  [X] components
     [X] calendar-event-create
     [X] debounced-search
     [X] drawer
@@ -88,9 +88,9 @@
     [X] layout
     [X] loading-spinner
     [X] page-header
-    [_] paginator
+    [X] paginator
     [X] spinner
-    [X] tag-input
+    [-] tag-input (THIS IS GOING TO BE REBUILT)
     [X] topic-create
     [X] topic-search
   [_] forms
