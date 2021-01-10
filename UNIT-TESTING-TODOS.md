@@ -83,7 +83,7 @@
   [_] components
     [_] calendar-event-create
     [X] debounced-search
-    [_] drawer
+    [X] drawer
     [X] empty-data
     [_] layout
     [X] loading-spinner
