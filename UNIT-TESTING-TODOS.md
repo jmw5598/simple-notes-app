@@ -81,7 +81,7 @@
 
 [_] shared
   [_] components
-    [_] calendar-event-create
+    [X] calendar-event-create
     [X] debounced-search
     [X] drawer
     [X] empty-data
