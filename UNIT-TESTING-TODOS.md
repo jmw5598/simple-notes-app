@@ -85,7 +85,7 @@
     [X] debounced-search
     [X] drawer
     [X] empty-data
-    [_] layout
+    [X] layout
     [X] loading-spinner
     [X] page-header
     [_] paginator
