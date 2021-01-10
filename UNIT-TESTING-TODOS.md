@@ -91,7 +91,7 @@
     [_] paginator
     [X] spinner
     [_] tag-input
-    [_] topic-create
+    [X] topic-create
     [_] topic-search
   [_] forms
     [_] calendar-event-form
