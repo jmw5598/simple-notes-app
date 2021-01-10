@@ -92,7 +92,7 @@
     [X] spinner
     [_] tag-input
     [X] topic-create
-    [_] topic-search
+    [X] topic-search
   [_] forms
     [_] calendar-event-form
     [_] topic-form
