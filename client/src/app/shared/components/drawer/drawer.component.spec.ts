@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DrawerService } from './drawer.service';
 import { DrawerComponent } from './drawer.component';
 
-fdescribe('DrawerComponent', () => {
+describe('DrawerComponent', () => {
   let component: DrawerComponent;
   let fixture: ComponentFixture<DrawerComponent>;
   let drawerService: DrawerService;
