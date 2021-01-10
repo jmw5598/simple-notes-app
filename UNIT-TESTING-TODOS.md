@@ -90,7 +90,7 @@
     [X] page-header
     [_] paginator
     [X] spinner
-    [_] tag-input
+    [X] tag-input
     [X] topic-create
     [X] topic-search
   [_] forms
