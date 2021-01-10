@@ -11,7 +11,7 @@ import { TopicFormComponent } from '../../forms/topic-form/topic-form.component'
 import { TopicCreateComponent } from './topic-create.component';
 import { TagInputComponent } from '../tag-input/tag-input.component';
 
-fdescribe('TopicCreateComponent', () => {
+describe('TopicCreateComponent', () => {
   let component: TopicCreateComponent;
   let fixture: ComponentFixture<TopicCreateComponent>;
   const testStore = {
