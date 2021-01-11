@@ -47,8 +47,6 @@ export class CalendarEventFormComponent implements OnInit, AfterViewInit {
 
   public handleColorSwatchChange(color: any): void {
     color.$event.preventDefault();
-    
-    console.log(color);
   }
 
   public handleColorSwatchChangeComplete(color: any): void {

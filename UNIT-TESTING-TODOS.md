@@ -94,7 +94,7 @@
     [X] topic-create
     [X] topic-search
   [_] forms
-    [_] calendar-event-form
+    [X] calendar-event-form
     [_] topic-form
   [X] directives
     [X] debounce
