@@ -1,7 +1,7 @@
 `client/src/app`
 [_] application
   [_] components
-    [_] navigation
+    [X] navigation
     [_] toolbar
   [_] modules
     [_] accounts

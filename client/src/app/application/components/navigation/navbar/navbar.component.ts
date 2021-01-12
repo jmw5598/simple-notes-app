@@ -26,10 +26,6 @@ export class NavbarComponent implements OnInit {
       .pipe(tap(state => this.currentLayoutSidePanelState = state));
   }
 
-  logout() {
-    this._router.navigate(['login']);
-  }
-
   toggleSideNav() {
     if (this.currentLayoutSidePanelState === LayoutSidePanelState.OPEN) {
       this._shouldBeClosed() 
@@ -42,7 +38,7 @@ export class NavbarComponent implements OnInit {
   
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this._currentScreenWidth = window.innerWidth;
+    this._currentScreenWidth = event?.target?.innerWidth;
   }
 
   private _shouldBeClosed(): boolean {
