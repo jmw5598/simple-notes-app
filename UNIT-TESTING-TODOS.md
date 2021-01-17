@@ -5,8 +5,8 @@
     [_] toolbar
   [_] modules
     [_] accounts
-      [_] components
-        [_] account-user-card
+      [X] components
+        [X] account-user-card
       [X] guards
         [X] account-details
         [X] account-profile
