@@ -15,8 +15,8 @@
         [_] account-settings-integrations (TODO)
         [_] account-settings-security (TODO)
         [_] account-settings-toolbar (TODO)
-      [_] pages
-        [_] account-settings
+      [X] pages
+        [X] account-settings
       [_] store (?)
     [_] calendar
       [_] components
