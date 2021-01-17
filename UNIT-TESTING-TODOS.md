@@ -9,7 +9,7 @@
         [_] account-user-card
       [_] guards
         [_] account-details
-        [_] account-profile
+        [X] account-profile
       [_] modules
         [_] account-settings-general (TODO)
         [_] account-settings-integrations (TODO)
