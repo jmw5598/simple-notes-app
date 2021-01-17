@@ -7,8 +7,8 @@
     [_] accounts
       [_] components
         [_] account-user-card
-      [_] guards
-        [_] account-details
+      [X] guards
+        [X] account-details
         [X] account-profile
       [_] modules
         [_] account-settings-general (TODO)

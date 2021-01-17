@@ -20,7 +20,7 @@ export class AccountDetailsGuard implements CanActivate {
   
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> {
     return this._getAccountDetailsFromStoreOrApi().pipe(
       switchMap(() => of(true)),
       catchError(() => of(false))
