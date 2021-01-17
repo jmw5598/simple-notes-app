@@ -5,16 +5,35 @@
     [_] toolbar
   [_] modules
     [_] accounts
-      [_] components
-        [_] account-user-card
+      [X] components
+        [X] account-user-card
       [X] guards
         [X] account-details
         [X] account-profile
       [_] modules
-        [_] account-settings-general (TODO)
-        [_] account-settings-integrations (TODO)
-        [_] account-settings-security (TODO)
-        [_] account-settings-toolbar (TODO)
+        [_] account-settings-general
+          [_] components
+            [_] account-details-display
+            [_] account details-form
+          [_] pages
+            [_] account-settings-general        
+        [_] account-settings-integrations
+          [_] components
+            [_] calendar-integration
+          [_] guards
+            [_] calendar-integration-grouped-by-type
+          [_] pages
+            [_] account-settings-integrations
+          [_] store (?)
+        [_] account-settings-security
+          [_] pages
+            [_] account-settings-security
+        [_] account-settings-toolbar
+          [_] components
+            [_] configure-keyboard-shortcut
+            [_] toolbary-keyboard-shortcut-list
+          [_] pages
+            [_] account-settings-toolbar
       [X] pages
         [X] account-settings
       [_] store (?)
