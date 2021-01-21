@@ -3,7 +3,7 @@
     <span *ngIf="isEditingProfile">Editing</span> Profile
     <span
         *ngIf="!isEditingProfile" 
-        (click)="editProfile(true)"
+        (click)="onEditingProfile(true)"
         class="btn btn-sm btn-outline-primary btn-border-none float-right">
       <i class="fas fa-edit icon-margin"></i>
       Edit
@@ -12,7 +12,7 @@
   <hr />
   <form [formGroup]="form" (ngSubmit)="onUpdateProfile(form.value)" novalidate>
     <ng-container *ngIf="isEditingProfile; else displayProfile">
-      <div>
+      <div id="edit-profile-form">
         <sn-account-details-form
             (onEditingComplete)="onEditingComplete($event)">
         </sn-account-details-form>

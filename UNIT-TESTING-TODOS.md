@@ -11,12 +11,12 @@
         [X] account-details
         [X] account-profile
       [_] modules
-        [_] account-settings-general
-          [_] components
-            [_] account-details-display
-            [_] account details-form
-          [_] pages
-            [_] account-settings-general        
+        [X] account-settings-general
+          [X] components
+            [X] account-details-display
+            [X] account details-form
+          [X] pages
+            [X] account-settings-general        
         [_] account-settings-integrations
           [_] components
             [_] calendar-integration

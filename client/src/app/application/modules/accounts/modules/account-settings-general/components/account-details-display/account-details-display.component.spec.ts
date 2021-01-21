@@ -21,6 +21,10 @@ describe('AccountDetailsDisplayComponent', () => {
     fixture.detectChanges();
   });
 
+  beforeEach(() => {
+    component.ngOnInit();
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
