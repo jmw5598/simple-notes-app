@@ -45,10 +45,6 @@ export class AccountSettingsGeneralComponent implements OnInit {
     });
   }
 
-  public editProfile(isEditingProfile: boolean): void {
-    this.isEditingProfile = isEditingProfile;
-  }
-
   public onEditingProfile(isEditingProfile: boolean): void {
     this.isEditingProfile = isEditingProfile;
   }
@@ -56,9 +52,5 @@ export class AccountSettingsGeneralComponent implements OnInit {
   public onUpdateProfile(formValue: { profile: Profile }): void {
     this._store.dispatch(updateAccountProfile({ profile: formValue.profile }));
     this.onEditingProfile(false);
-  }
-
-  public updateProfile(formValue: { profile: Profile }): void {
-    this.isEditingProfile = false;
   }
 }
