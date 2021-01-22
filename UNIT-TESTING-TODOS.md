@@ -25,9 +25,9 @@
           [X] pages
             [X] account-settings-integrations
           [_] store (?)
-        [_] account-settings-security
-          [_] pages
-            [_] account-settings-security
+        [X] account-settings-security
+          [X] pages
+            [X] account-settings-security
         [_] account-settings-toolbar
           [_] components
             [_] configure-keyboard-shortcut
