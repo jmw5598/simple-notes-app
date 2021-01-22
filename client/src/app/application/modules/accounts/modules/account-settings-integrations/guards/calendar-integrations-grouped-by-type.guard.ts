@@ -17,7 +17,7 @@ export class CalendarIntegrationsGroupedByTypeGuard implements CanActivate {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): Observable<boolean> {
     return this._getCalendarIntegrationTypesWithIntegrationsFromStoreOrApi().pipe(
       switchMap(() => of(true)),
       catchError(() => of(false))
