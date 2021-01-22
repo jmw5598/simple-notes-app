@@ -17,13 +17,13 @@
             [X] account details-form
           [X] pages
             [X] account-settings-general        
-        [_] account-settings-integrations
-          [_] components
-            [_] calendar-integration
-          [_] guards
-            [_] calendar-integration-grouped-by-type
-          [_] pages
-            [_] account-settings-integrations
+        [X] account-settings-integrations
+          [X] components
+            [X] calendar-integration
+          [X] guards
+            [X] calendar-integration-grouped-by-type
+          [X] pages
+            [X] account-settings-integrations
           [_] store (?)
         [_] account-settings-security
           [_] pages
