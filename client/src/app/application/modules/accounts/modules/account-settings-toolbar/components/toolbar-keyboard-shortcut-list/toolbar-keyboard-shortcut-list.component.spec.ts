@@ -4,7 +4,7 @@ import { KeyboardShortcutAction } from '@sn/core/models';
 
 import { ToolbarKeyboardShortcutListComponent } from './toolbar-keyboard-shortcut-list.component';
 
-fdescribe('ToolbarKeyboardShortcutListComponent', () => {
+describe('ToolbarKeyboardShortcutListComponent', () => {
   let component: ToolbarKeyboardShortcutListComponent;
   let fixture: ComponentFixture<ToolbarKeyboardShortcutListComponent>;
 
