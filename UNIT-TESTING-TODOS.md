@@ -29,9 +29,9 @@
           [X] pages
             [X] account-settings-security
         [_] account-settings-toolbar
-          [_] components
+          [X] components
             [X] configure-keyboard-shortcut
-            [_] toolbary-keyboard-shortcut-list
+            [X] toolbary-keyboard-shortcut-list
           [_] pages
             [_] account-settings-toolbar
       [X] pages
