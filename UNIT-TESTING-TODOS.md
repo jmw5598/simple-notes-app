@@ -38,10 +38,10 @@
         [X] account-settings
       [_] store (?)
     [_] calendar
-      [_] components
+      [X] components
         [X] calendar-event-details
         [X] calendar-event-update
-        [_] calendar-event-view
+        [X] calendar-event-view
       [_] pages
         [_] view-calendar
       [_] store (?)

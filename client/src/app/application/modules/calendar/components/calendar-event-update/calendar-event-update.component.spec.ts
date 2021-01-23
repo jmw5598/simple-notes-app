@@ -3,7 +3,7 @@ import { ControlContainer, FormControl, FormGroup, FormGroupDirective, FormsModu
 import { CalendarEvent } from '@sn/core/models';
 import { CalendarEventUpdateComponent } from './calendar-event-update.component';
 
-fdescribe('CalendarEventUpdateComponent', () => {
+describe('CalendarEventUpdateComponent', () => {
   let component: CalendarEventUpdateComponent;
   let fixture: ComponentFixture<CalendarEventUpdateComponent>;
 
@@ -77,7 +77,7 @@ fdescribe('CalendarEventUpdateComponent', () => {
     component.event = mockCalendarEvent;
     component.ngOnInit();
     component.ngAfterViewInit();
-    fixture.detectChanges();
+    // fixture.detectChanges();
     jasmine.clock().tick(1);
     expect(component.form.valid).toBeTrue();
   });
