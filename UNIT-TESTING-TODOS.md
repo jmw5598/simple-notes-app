@@ -30,7 +30,7 @@
             [X] account-settings-security
         [_] account-settings-toolbar
           [_] components
-            [_] configure-keyboard-shortcut
+            [X] configure-keyboard-shortcut
             [_] toolbary-keyboard-shortcut-list
           [_] pages
             [_] account-settings-toolbar
