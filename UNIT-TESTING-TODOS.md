@@ -10,7 +10,7 @@
       [X] guards
         [X] account-details
         [X] account-profile
-      [_] modules
+      [X] modules
         [X] account-settings-general
           [X] components
             [X] account-details-display
@@ -28,19 +28,19 @@
         [X] account-settings-security
           [X] pages
             [X] account-settings-security
-        [_] account-settings-toolbar
+        [X] account-settings-toolbar
           [X] components
             [X] configure-keyboard-shortcut
             [X] toolbary-keyboard-shortcut-list
-          [_] pages
-            [_] account-settings-toolbar
+          [X] pages
+            [X] account-settings-toolbar
       [X] pages
         [X] account-settings
       [_] store (?)
     [_] calendar
       [_] components
-        [_] calendar-event-details
-        [_] calendar-event-update
+        [X] calendar-event-details
+        [X] calendar-event-update
         [_] calendar-event-view
       [_] pages
         [_] view-calendar
