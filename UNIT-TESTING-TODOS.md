@@ -66,9 +66,9 @@
         [X] topic-list
         [X] topic-update
       [_] guards
-        [_] section-by-id
+        [X] section-by-id
         [_] sections-search
-        [_] topic-by-id
+        [X] topic-by-id
         [_] topics-search
       [_] pages
         [_] edit-section-notes
