@@ -36,7 +36,6 @@ export class TopicUpdateComponent implements OnInit, OnDestroy {
     this.form = buildTopicFormGroup(this._formBuilder);
     this.responseMessage$ = this._store.select(selectUpdateTopicResponseMessage).pipe(
       tap((message: ResponseMessage) => {
-        console.log("updat emessage?", message);
         if (message) {
           setTimeout(() => this._store.dispatch(setUpdateTopicResponseMessage({ message: null })), 3000);
         }
