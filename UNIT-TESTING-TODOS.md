@@ -58,9 +58,9 @@
       [_] store (?)
     [_] topics
       [_] components
-        [_] section-create
-        [_] section-form
-        [_] section-list
+        [X] section-create
+        [X] section-form
+        [X] section-list
         [_] section-update
         [_] topic-export
         [_] topic-list
