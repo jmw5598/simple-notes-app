@@ -45,12 +45,12 @@
       [_] pages
         [TODO] view-calendar
       [_] store (?)
-    [_] dashbaord
-      [_] components
-        [_] recent-topics-list
-        [_] todays-calendar-events-list
-      [_] pages
-        [_] dashboard-overview
+    [X] dashboard
+      [X] components
+        [X] recent-topics-list
+        [X] todays-calendar-events-list
+      [X] pages
+        [X] dashboard-overview
       [_] store (?)
     [_] documents
       [_] pages

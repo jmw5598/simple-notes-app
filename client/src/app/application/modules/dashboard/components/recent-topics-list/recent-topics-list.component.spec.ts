@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
+import { SharedModule } from '@sn/shared/shared.module';
 import { RecentTopicsListComponent } from './recent-topics-list.component';
 
 describe('RecentTopicsListComponent', () => {
@@ -8,7 +10,13 @@ describe('RecentTopicsListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecentTopicsListComponent ]
+      imports: [
+        RouterTestingModule,
+        SharedModule
+      ],
+      declarations: [
+        RecentTopicsListComponent
+      ]
     })
     .compileComponents();
   }));
@@ -17,6 +25,10 @@ describe('RecentTopicsListComponent', () => {
     fixture = TestBed.createComponent(RecentTopicsListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  beforeEach(() => {
+    component.ngOnInit();
   });
 
   it('should create', () => {

@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
+import { SharedModule } from '@sn/shared/shared.module';
 import { TodaysCalendarEventsListComponent } from './todays-calendar-events-list.component';
 
 describe('TodaysCalendarEventsListComponent', () => {
@@ -8,7 +10,13 @@ describe('TodaysCalendarEventsListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TodaysCalendarEventsListComponent ]
+      imports: [
+        RouterTestingModule,
+        SharedModule
+      ],
+      declarations: [
+        TodaysCalendarEventsListComponent
+      ]
     })
     .compileComponents();
   }));
@@ -17,6 +25,10 @@ describe('TodaysCalendarEventsListComponent', () => {
     fixture = TestBed.createComponent(TodaysCalendarEventsListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  beforeEach(() => {
+    component.ngOnInit();
   });
 
   it('should create', () => {
