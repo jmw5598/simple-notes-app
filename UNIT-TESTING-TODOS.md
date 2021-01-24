@@ -61,8 +61,8 @@
         [X] section-create
         [X] section-form
         [X] section-list
-        [_] section-update
-        [_] topic-export
+        [X] section-update
+        [X] topic-export
         [_] topic-list
         [_] topic-update
       [_] guards
