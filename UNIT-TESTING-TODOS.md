@@ -57,14 +57,14 @@
         [_] document-builder
       [_] store (?)
     [_] topics
-      [_] components
+      [X] components
         [X] section-create
         [X] section-form
         [X] section-list
         [X] section-update
         [X] topic-export
-        [_] topic-list
-        [_] topic-update
+        [X] topic-list
+        [X] topic-update
       [_] guards
         [_] section-by-id
         [_] sections-search
