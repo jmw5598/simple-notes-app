@@ -65,11 +65,11 @@
         [X] topic-export
         [X] topic-list
         [X] topic-update
-      [_] guards
+      [X] guards
         [X] section-by-id
-        [_] sections-search
+        [X] sections-search
         [X] topic-by-id
-        [_] topics-search
+        [X] topics-search
       [_] pages
         [_] edit-section-notes
         [_] topic-details

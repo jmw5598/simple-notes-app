@@ -17,9 +17,7 @@ import { ITopicsState } from '../store/reducers';
 export class SectionsSearchResultGuard implements CanActivate {
   constructor(private _store: Store<ITopicsState>) {}
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
     const topicId: number = +next.paramMap.get('topicId');
     const pageable: IPageable = DEFAULT_SEARCH_SECTIONS_PAGE;
     const search: PageableSearch = {
