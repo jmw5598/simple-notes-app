@@ -61,8 +61,13 @@
         [X] section-create
         [X] section-form
         [X] section-list
+<<<<<<< HEAD
         [_] section-update
         [_] topic-export
+=======
+        [X] section-update
+        [X] topic-export
+>>>>>>> feat/unit-test-coverage
         [_] topic-list
         [_] topic-update
       [_] guards

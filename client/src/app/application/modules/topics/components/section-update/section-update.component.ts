@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, Observable } from 'rxjs';
@@ -18,7 +18,7 @@ import { showHide } from '@sn/shared/animations';
   styleUrls: ['./section-update.component.scss'],
   animations: [showHide]
 })
-export class SectionUpdateComponent implements OnInit {
+export class SectionUpdateComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<void>;
   public form: FormGroup;
   public responseMessage$: Observable<ResponseMessage>;
@@ -53,5 +53,10 @@ export class SectionUpdateComponent implements OnInit {
       sectionId: section.id,
       section: section 
     }));
+  }
+
+  ngOnDestroy(): void {
+    this._subscriptionSubject.next();
+    this._subscriptionSubject.complete();
   }
 }
