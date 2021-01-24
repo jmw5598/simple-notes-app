@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 import { updateTopic } from '../../store/actions';
 import { TopicUpdateComponent } from './topic-update.component';
 
-fdescribe('TopicUpdateComponent', () => {
+describe('TopicUpdateComponent', () => {
   let component: TopicUpdateComponent;
   let fixture: ComponentFixture<TopicUpdateComponent>;
 
