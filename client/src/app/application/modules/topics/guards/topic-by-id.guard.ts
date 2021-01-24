@@ -15,9 +15,7 @@ import { selectSelectedTopic } from '../store/selectors';
 export class TopicByIdGuard implements CanActivate {
   constructor(private _store: Store<ITopicsState>) {}
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
     const topicId: number = +next.paramMap.get('topicId');
     return this._setSelectedTopicIfExistElseRedirect(topicId).pipe(
       switchMap(() => of(true)),

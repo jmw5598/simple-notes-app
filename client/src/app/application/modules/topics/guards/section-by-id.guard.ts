@@ -15,9 +15,7 @@ import { ITopicsState } from '../store/reducers';
 export class SectionByIdGuard implements CanActivate {
   constructor(private _store: Store<ITopicsState>) {}
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
     const topicId: number = +next.paramMap.get('topicId');
     const sectionId: number = +next.paramMap.get('sectionId');
     return this._setSelectedSectionIfExistElseRedirect(topicId, sectionId).pipe(
@@ -28,8 +26,8 @@ export class SectionByIdGuard implements CanActivate {
 
   private _setSelectedSectionIfExistElseRedirect(topicId: number, sectionId: number): Observable<Section> {
     return this._store.select(selectSelectedSection).pipe(
-      tap((topic: Section) => {
-        if (!topic || topic.id !== topicId) {
+      tap((section: Section) => {
+        if (!section || section.id !== sectionId) {
           this._store.dispatch(getSectionById({ 
             topicId: topicId,
             sectionId: sectionId
