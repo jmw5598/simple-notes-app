@@ -43,7 +43,7 @@
         [X] calendar-event-update
         [X] calendar-event-view
       [_] pages
-        [_] view-calendar
+        [TODO] view-calendar
       [_] store (?)
     [_] dashbaord
       [_] components
