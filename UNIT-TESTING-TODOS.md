@@ -71,7 +71,7 @@
         [X] topic-by-id
         [X] topics-search
       [_] pages
-        [_] edit-section-notes
+        [X] edit-section-notes
         [_] topic-details
         [_] view-topics
       [_] store (?)
