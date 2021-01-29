@@ -73,7 +73,7 @@
       [_] pages
         [X] edit-section-notes
         [_] topic-details
-        [_] view-topics
+        [X] view-topics
       [_] store (?)
   [_] store (?)
 
