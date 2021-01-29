@@ -56,7 +56,7 @@
       [_] pages
         [_] document-builder
       [_] store (?)
-    [_] topics
+    [X] topics
       [X] components
         [X] section-create
         [X] section-form
@@ -70,14 +70,29 @@
         [X] sections-search
         [X] topic-by-id
         [X] topics-search
-      [_] pages
+      [X] pages
         [X] edit-section-notes
-        [_] topic-details
+        [X] topic-details
         [X] view-topics
-      [_] store (?)
-  [_] store (?)
+      [?] store (?)
+  [?] store (?)
 
 [_] auth
+  [_] components
+    [X] auth-marketing
+    [_] registration-account-form
+    [_] registration-address-form
+    [_] registration-profile-form
+    [X] registration-result
+    [_] registration-user-form
+  [_] guards
+    [_] authentication
+  [_] pages
+    [_] login
+    [_] logout
+    [_] password-request
+    [_] password-reset
+    [_] register
 
 [_] core
   [_] guards
