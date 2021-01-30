@@ -7,8 +7,8 @@
     <a (click)="create($event)" class="btn btn-success text-light">Create a section</a>
   </ng-template>
 </div>
-<ul *ngIf="sections" class="list-group">
-  <li *ngFor="let section of sections" class="list-group-item">
+<div *ngIf="sections" class="">
+  <div *ngFor="let section of sections" class="border-bottom-1 p-3">
     <div class="section-details">
       <div class="section-details-title">
         <h5 class="font-weight-bold p-0 m-0">{{ section.title }}</h5>
@@ -38,5 +38,5 @@
       <!-- <hr /> -->
       <p class="font-italic p-0 m-0">{{ section.synopsis }}</p>
     </div>
-  </li>
-</ul>
+  </div>
+</div>
