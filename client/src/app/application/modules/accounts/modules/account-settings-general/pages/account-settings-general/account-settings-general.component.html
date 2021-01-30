@@ -1,4 +1,4 @@
-<div class="account-settings-general" [@fadeAnimation]>
+<div class="account-settings-general p-3" [@fadeAnimation]>
   <h4 class="font-weight-bold mb-3">
     <span *ngIf="isEditingProfile">Editing</span> Profile
     <span
@@ -10,22 +10,26 @@
     </span>
   </h4>
   <hr />
-  <form [formGroup]="form" (ngSubmit)="onUpdateProfile(form.value)" novalidate>
-    <ng-container *ngIf="isEditingProfile; else displayProfile">
-      <div id="edit-profile-form">
-        <sn-account-details-form
-            (onEditingComplete)="onEditingComplete($event)">
-        </sn-account-details-form>
-        <div class="form-group mt-2">
-          <button class="btn btn-primary mr-2" type="submit">Save</button>
-          <button class="btn btn-secondary" type="button" (click)="onEditingProfile(false)">Cancel</button>
-        </div>
-      </div>
-    </ng-container>
-    <ng-template #displayProfile>
-      <sn-account-details-display
-          [profile]="(accountProfile$ | async)">
-      </sn-account-details-display>
-    </ng-template>
-  </form>
+  <div class="card calendar-integration-container">
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onUpdateProfile(form.value)" novalidate>
+        <ng-container *ngIf="isEditingProfile; else displayProfile">
+          <div id="edit-profile-form">
+            <sn-account-details-form
+                (onEditingComplete)="onEditingComplete($event)">
+            </sn-account-details-form>
+            <div class="form-group mt-2">
+              <button class="btn btn-primary mr-2" type="submit">Save</button>
+              <button class="btn btn-secondary" type="button" (click)="onEditingProfile(false)">Cancel</button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #displayProfile>
+          <sn-account-details-display
+              [profile]="(accountProfile$ | async)">
+          </sn-account-details-display>
+        </ng-template>
+      </form>
+    </div>
+  </div>
 </div>
