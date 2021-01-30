@@ -1,24 +1,15 @@
-<div class="container" [@fadeAnimation]>
-  <div class="row">
-    <div class="col-sm-12">
-      <sn-page-header
-          [heading]="'Current Calendar Events'">
-      </sn-page-header>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 calendar-container">
-      <full-calendar
-          snCalendarLoading
-          #calendar 
-          [options]="calendarOptions">
-      </full-calendar>
-      <div 
-          class="calendar-events-loading" 
-          *ngIf="areCalendarEventsLoading"
-          [@fadeAnimation]>
-        <sn-spinner [message]="'Loading calendar events...'"></sn-spinner>
-      </div>
+<div class="container-fluid p-0 m-0" [@fadeAnimation]>
+  <div class="calendar-container">
+    <full-calendar
+        snCalendarLoading
+        #calendar 
+        [options]="calendarOptions">
+    </full-calendar>
+    <div 
+        class="calendar-events-loading" 
+        *ngIf="areCalendarEventsLoading"
+        [@fadeAnimation]>
+      <sn-spinner [message]="'Loading calendar events...'"></sn-spinner>
     </div>
   </div>
 </div>
