@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+$border-1: 1px solid rgba(0, 0, 0, 0.125);
+
 .vh {
   height: 100vh !important;
 }
@@ -59,11 +61,45 @@ bs-datepicker-container {
 .fc-toolbar {
   padding: 1rem;
   margin-bottom: 0 !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  border-bottom: $border-1;
 }
 
 .fc-scrollgrid {
   &.table-bordered {
     border: 0 !important;
+  }
+}
+
+.border-top-1 {
+  border-top: $border-1;
+}
+
+.border-right-1 {
+  border-right: $border-1;
+}
+
+.border-bottom-1 {
+  border-bottom: $border-1;
+}
+
+.border-left-1 {
+  border-left: $border-1;
+}
+
+.height-full {
+  height: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .height-full {
+    height: unset;
+  }
+
+  .border-bottom-md-1 {
+    border-bottom: $border-1
+  }
+
+  .border-right-md-0 {
+    border-right: 0;
   }
 }

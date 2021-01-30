@@ -1,32 +1,18 @@
-<div class="table-responsive">
-  <table class="table table-striped mb-0">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Synopsis</th>
-        <th>Modified</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody *ngIf="!sections || sections.length === 0">
-      <tr class="bg-white">
-        <td colspan="6">
-          <sn-empty-data 
-              message="No sections found!"
-              [extraContent]="createNewButton">
-          </sn-empty-data>
-          <ng-template #createNewButton>
-            <a (click)="create($event)" class="btn btn-success text-light">Create a section</a>
-          </ng-template>
-        </td>
-      </tr>
-    </tbody>
-    <tbody *ngIf="sections">
-      <tr *ngFor="let section of sections">
-        <td>{{ section.title }}</td>
-        <td>{{ section.synopsis }}</td>
-        <td>{{ section.updatedAt | date:short }}</td>
-        <td class="text-right">
+<div *ngIf="!sections || sections.length === 0" class="sections-no-data">
+  <sn-empty-data 
+      message="No sections found!"
+      [extraContent]="createNewButton">
+  </sn-empty-data>
+  <ng-template #createNewButton>
+    <a (click)="create($event)" class="btn btn-success text-light">Create a section</a>
+  </ng-template>
+</div>
+<ul *ngIf="sections" class="list-group">
+  <li *ngFor="let section of sections" class="list-group-item">
+    <div class="section-details">
+      <div class="section-details-title">
+        <h5 class="font-weight-bold p-0 m-0">{{ section.title }}</h5>
+        <div class="action-buttons">
           <button 
               role="button" 
               class="btn btn-outline-primary btn-sm btn-border-none" 
@@ -47,8 +33,10 @@
               class="btn btn-outline-primary btn-sm btn-border-none">
             <i class="far fa-trash-alt"></i>
           </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+        </div>
+      </div>
+      <!-- <hr /> -->
+      <p class="font-italic p-0 m-0">{{ section.synopsis }}</p>
+    </div>
+  </li>
+</ul>

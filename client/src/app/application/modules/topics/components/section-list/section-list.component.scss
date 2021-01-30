@@ -1,0 +1,12 @@
+.section-details {
+  .section-details-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  hr {
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+  }
+}
