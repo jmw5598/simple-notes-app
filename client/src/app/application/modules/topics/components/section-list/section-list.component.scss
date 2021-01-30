@@ -1,4 +1,13 @@
+@import '../../../../../../assets/scss/bootswatch/simple-notes/variables';
+
 .section-details {
+  border-left: 2px dotted $gray-300;
+  padding-left: 1rem;
+  transition: border-left 0.3s;
+  &:hover {
+    border-left: 2px solid $gray-400;
+  }
+
   .section-details-title {
     display: flex;
     flex-direction: row;
