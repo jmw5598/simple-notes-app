@@ -269,6 +269,13 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400
 
 .nav-tabs {
   border-bottom: $card-border-width solid $card-border-color;
+
+  .nav-item:first-child {
+    .nav-link {
+      margin-left: 1rem;
+    }
+  }
+
   .nav-link {
     color: $body-color;
     background: $gray-100;
