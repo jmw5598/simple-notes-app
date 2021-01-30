@@ -1,3 +1,5 @@
+@import './assets/scss/bootswatch/simple-notes/variables';
+
 /* You can add global styles to this file, and also import other style files */
 $border-1: 1px solid rgba(0, 0, 0, 0.125);
 
@@ -60,8 +62,16 @@ bs-datepicker-container {
 // Full Calendar Overriders 
 .fc-toolbar {
   padding: 1rem;
+  max-height: 57px;
   margin-bottom: 0 !important;
   border-bottom: $border-1;
+
+  .fc-toolbar-chunk {
+    .fc-toolbar-title {
+      font-weight: bold;
+      color: $primary;
+    }
+  }
 }
 
 .fc-scrollgrid {
@@ -69,6 +79,14 @@ bs-datepicker-container {
     border: 0 !important;
   }
 }
+
+.fc-col-header {
+  height: 52px;
+  line-height: 52px;
+  vertical-align: middle;
+} 
+
+// General Purpose Utilities
 
 .border-top-1 {
   border-top: $border-1;
