@@ -71,7 +71,7 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
   public onDeleteSection(sectionId: number): void {
     this._store.dispatch(deleteSection({
       sectionId: sectionId,
-      topicId: this._topic.id
+      topicId: this._topic?.id
     }))
   }
 

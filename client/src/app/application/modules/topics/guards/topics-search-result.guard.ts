@@ -19,7 +19,7 @@ export class TopicsSearchResultGuard implements CanActivate {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): Observable<boolean> {
     const pageable: IPageable = DEFAULT_SEARCH_TOPICS_PAGE;
     const search: PageableSearch = {
       searchTerm: '',

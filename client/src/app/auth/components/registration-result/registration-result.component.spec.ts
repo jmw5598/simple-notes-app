@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegistrationResult } from '@sn/core/dtos';
 
 import { RegistrationResultComponent } from './registration-result.component';
 
@@ -28,5 +29,25 @@ describe('RegistrationResultComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should return true when registration result is successful', () => {
+    const registrationResult: RegistrationResult = {
+      status: 'success',
+      message: 'Registration was successfull'
+    } as RegistrationResult;
+    component.result = registrationResult;
+    const isSuccess: boolean = component.isSuccess();
+    expect(isSuccess).toBeTrue();
+  });
+
+  it('should return false when registration result is not successful', () => {
+    const registrationResult: RegistrationResult = {
+      status: 'failed',
+      message: 'Registration failed'
+    } as RegistrationResult;
+    component.result = registrationResult;
+    const isSuccess: boolean = component.isSuccess();
+    expect(isSuccess).toBeFalse();
   });
 });
