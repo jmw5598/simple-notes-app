@@ -60,6 +60,7 @@ bs-datepicker-container {
 // Full Calendar Overriders 
 .fc-toolbar {
   padding: 1rem;
+  max-height: 57px;
   margin-bottom: 0 !important;
   border-bottom: $border-1;
 }
@@ -69,6 +70,14 @@ bs-datepicker-container {
     border: 0 !important;
   }
 }
+
+.fc-col-header {
+  height: 52px;
+  line-height: 52px;
+  vertical-align: middle;
+} 
+
+// General Purpose Utilities
 
 .border-top-1 {
   border-top: $border-1;
