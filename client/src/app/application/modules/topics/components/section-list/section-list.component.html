@@ -11,7 +11,9 @@
   <div *ngFor="let section of sections" class="border-bottom-1 p-3">
     <div class="section-details">
       <div class="section-details-title">
-        <h5 class="text-primary p-0 m-0">{{ section.title }}</h5>
+        <h5 class="text-primary p-0 m-0">
+          <a [routerLink]="['../sections', section.id, 'editor']">{{ section.title }}</a>
+        </h5>
         <div class="action-buttons">
           <button 
               role="button" 
