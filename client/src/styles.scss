@@ -1,3 +1,5 @@
+@import './assets/scss/bootswatch/simple-notes/variables';
+
 /* You can add global styles to this file, and also import other style files */
 $border-1: 1px solid rgba(0, 0, 0, 0.125);
 
@@ -63,6 +65,13 @@ bs-datepicker-container {
   max-height: 57px;
   margin-bottom: 0 !important;
   border-bottom: $border-1;
+
+  .fc-toolbar-chunk {
+    .fc-toolbar-title {
+      font-weight: bold;
+      color: $primary;
+    }
+  }
 }
 
 .fc-scrollgrid {
