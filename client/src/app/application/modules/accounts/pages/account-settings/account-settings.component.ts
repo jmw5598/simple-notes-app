@@ -35,7 +35,7 @@ export class AccountSettingsComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     setTimeout(() => {
       const currentTab: UrlSegment = this._route.firstChild.snapshot.url[0];
-      const tab = this.tabs.tabs.find(e => e.id === currentTab.path.toLowerCase());
+      const tab = this.tabs?.tabs?.find(e => e.id === currentTab.path.toLowerCase());
       if (tab) {
         tab.active = true;
       }
