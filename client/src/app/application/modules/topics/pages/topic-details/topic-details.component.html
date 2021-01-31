@@ -2,11 +2,10 @@
   <div class="row p-0 m-0 height-full">
     <!-- Topic Details List -->
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 m-0 p-0 border-right-1 border-bottom-md-1 border-right-md-0 height-full">
-      <div class="p-3 pb-0 topic-details-heading">
-        <legend class="text-primary font-weight-bold mb-0">{{ (topic$ | async).title }}</legend>
-        <hr style="margin-top: 0.3rem; margin-bottom: 1rem;" />
+      <div class="p-3 topic-details-heading">
+        <h4 class="text-primary font-weight-bold mb-0 pb-3 mb-3 border-bottom-1">{{ (topic$ | async).title }}</h4>
         <p class="m-0 p-3 bg-secondary font-italic text-dark">{{ (topic$ | async).synopsis }}</p>
-        <button (click)="onUpdateTopic()" role="button" class="topic-details-edit-button btn btn-sm btn-secondary btn-border-none">
+        <button (click)="onUpdateTopic()" role="button" class="topic-details-edit-button btn btn-sm btn-border-none">
           <i class="fas fa-info-circle icon-margin"></i>
         </button>
       </div>
@@ -21,7 +20,7 @@
     <!-- Sections List -->
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8 m-0 p-0">
       <h4 class="p-3 m-0 border-bottom-1">
-        Sections
+        <span class="font-weight-bold text-primary">Sections</span>
         <!-- Header Buttons -->
         <span class="float-right">
           <button (click)="onCreateSection()" role="button" class="btn btn-sm btn-outline-dark btn-border-none">
