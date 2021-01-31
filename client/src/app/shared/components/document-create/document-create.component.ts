@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { DrawerService } from '@sn/shared/components';
+import { DrawerService } from '../drawer/drawer.service';
 import { showHide } from '@sn/shared/animations';
 import { Store } from '@ngrx/store';
 import { IDocumentsState } from '@sn/application/modules/documents/store/reducers';
