@@ -13,12 +13,11 @@
     display: flex;
     flex-direction: row;
     font-weight: bold;
-    margin-bottom: 2rem;
     justify-content: center;
   
     .logo-text {
-      font-size: 64px;
-      line-height: 90px;
+      font-size: 48px;
+      line-height: 72px;
       vertical-align: middle;
       vertical-align: bottom;
     }
@@ -28,16 +27,17 @@
       flex-direction: column;
       justify-content: center;
       margin-right: 1rem;
+
       img {
         display: block;
-        width: 90px;
-        height: 90px;
+        width: 72px;
+        height: 72px;
       }
     }
   }
   
   .logout-spinner {
-    margin-bottom: 72px;
+    margin-bottom: 48px;
     text-align: center;
   }
 }
