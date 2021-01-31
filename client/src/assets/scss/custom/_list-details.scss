@@ -1,0 +1,21 @@
+@import '../bootswatch/simple-notes/variables';
+
+.list-details {
+  border-left: 2px dotted $gray-300;
+  padding-left: 1rem;
+  transition: border-left 0.3s;
+  
+  &:hover {
+    border-left: 2px solid $gray-400;
+  }
+
+  .list-details-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .list-details-description {
+
+  }
+}
