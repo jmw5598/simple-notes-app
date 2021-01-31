@@ -1,31 +1,24 @@
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Date/Time</th>
-        <th>Title</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody *ngIf="!events || events.length === 0">
-      <tr class="bg-white">
-        <td colspan="6">
-          <sn-empty-data 
-              message="No calendar events today!"
-              [extraContent]="createNewButton">
-          </sn-empty-data>
-          <ng-template #createNewButton>
-            <a [routerLink]="['../calendar']" class="btn btn-success text-light">Create an event</a>
-          </ng-template>
-        </td>
-      </tr>
-    </tbody>
-    <tbody *ngIf="events">
-      <tr *ngFor="let event of events">
-        <td>{{ event.startDateTime | date:'shortTime' }}</td>
-        <td>{{ event.title }}</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+<div *ngIf="!events || events.length === 0" class="events-no-data p-3 border-bottom-1">
+  <sn-empty-data 
+      message="No calendar events today!"
+      [extraContent]="createNewButton">
+  </sn-empty-data>
+  <ng-template #createNewButton>
+    <a [routerLink]="['../calendar']" class="btn btn-success text-light">Create an event</a>
+  </ng-template>
 </div>
+<ng-container *ngIf="events">
+  <div *ngFor="let event of events" class="border-bottom-1 p-3">
+    <div class="list-details">
+      <div class="list-details-title">
+        <h5 class="text-primary p-0 m-0">
+          {{ event.title }}
+        </h5>
+      </div>
+      <div class="list-details-description">
+        <p class="text-dark p-0 m-0">{{ event.startDateTime | date:'shortTime' }}</p>
+        <p class="text-dark font-italic p-0 m-0">{{ event.description}}</p>
+      </div>
+    </div>
+  </div>
+</ng-container>

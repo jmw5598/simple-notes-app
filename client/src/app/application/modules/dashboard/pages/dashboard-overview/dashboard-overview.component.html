@@ -1,35 +1,18 @@
-<div class="container-navbar-adjust container" [@fadeAnimation]>
-  <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <!-- Page Header -->
-      <sn-page-header heading="Dashboard Overview"></sn-page-header>
-
-      <div class="row">
-        <!-- Todays Events Card -->
-        <div class="col-sm-12 col-md-12 col-lg-6 mb-3">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="font-weight-bold">Todays Events</h4>
-              <sn-todays-calendar-events-list
-                  [events]="todaysEvents$ | async">
-              </sn-todays-calendar-events-list>
-            </div>
-          </div>          
-        </div>
-        
-        <!-- Recent Topics -->
-        <div class="col-sm-12 col-md-12 col-lg-6 mb-3">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="font-weight-bold">Recent Topics</h4>
-              <sn-recent-topics-list
-                  [topics]="recentTopics$ | async">
-              </sn-recent-topics-list>
-            </div>
-          </div>
-        </div>
-        
-      </div>
+<div class="container-navbar-adjust container-fluid p-0 m-0 height-full" [@fadeAnimation]>
+  <div class="row m-0 p-0 height-full">
+    <!-- Todays Events Card -->
+    <div class="col-sm-12 col-md-12 col-lg-5 m-0 p-0 border-right-1">
+      <h4 class="font-weight-bold text-primary border-bottom-1 p-3">Todays Events</h4>
+      <sn-todays-calendar-events-list
+          [events]="todaysEvents$ | async">
+      </sn-todays-calendar-events-list>
+    </div>
+    <!-- Recent Topics -->
+    <div class="col-sm-12 col-md-12 col-lg-7 m-0 p-0">
+      <h4 class="font-weight-bold text-primary border-bottom-1 p-3">Recent Updated Topics</h4>
+      <sn-recent-topics-list
+          [topics]="recentTopics$ | async">
+      </sn-recent-topics-list>
     </div>
   </div>
 </div>

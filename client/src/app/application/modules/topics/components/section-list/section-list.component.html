@@ -7,10 +7,10 @@
     <a (click)="create($event)" class="btn btn-success text-light">Create a section</a>
   </ng-template>
 </div>
-<div *ngIf="sections" class="">
+<ng-container *ngIf="sections">
   <div *ngFor="let section of sections" class="border-bottom-1 p-3">
-    <div class="section-details">
-      <div class="section-details-title">
+    <div class="list-details">
+      <div class="list-details-title">
         <h5 class="text-primary p-0 m-0">
           <a [routerLink]="['../sections', section.id, 'editor']">{{ section.title }}</a>
         </h5>
@@ -37,8 +37,7 @@
           </button>
         </div>
       </div>
-      <!-- <hr /> -->
-      <p class="text-dark font-italic p-0 m-0">{{ section.synopsis }}</p>
+      <p class="list-details-description text-dark font-italic p-0 m-0">{{ section.synopsis }}</p>
     </div>
   </div>
-</div>
+</ng-container>
