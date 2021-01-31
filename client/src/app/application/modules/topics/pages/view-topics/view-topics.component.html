@@ -1,39 +1,32 @@
-<div class="container-navbar-adjust container" [@fadeAnimation]>
-
-  <div class="row">
-    <div class="col-sm-12">
-      <sn-page-header
-          [heading]="'Current Topics'">
-      </sn-page-header>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div class="container-navbar-adjust container-fluid m-0 p-0 height-full" [@fadeAnimation]>
+  <div class="row m-0 p-0 height-full">
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8 col-xl-7 p-0 m-0 border-right-1">
       <!-- Topics list -->
-      <div *ngIf="(searchTopicsResult$ | async) || []" class="card">
-        <!-- <div class="card-header">Current Topics</div> -->
-        <div class="card-body">
-          <h5 class="m-0 p-0 topic-list-heading">
-            Topics
-            <!-- Header Buttons -->
-            <span class="float-right">
-              <sn-debounced-search
-                  debounceTime="500"
-                  [isSearching]="isSearching"
-                  (onSearch)="onSearchTopics($event)">
-              </sn-debounced-search>
-            </span>
-          </h5>
+      <div *ngIf="(searchTopicsResult$ | async) || []">
+        <h4 class="m-0 p-3 border-bottom-1">
+          <span class="font-weight-bold text-primary">Topics</span>
+          <!-- Header Buttons -->
+          <span class="float-right" style="margin-top: -3px;">
+            <sn-debounced-search
+                debounceTime="500"
+                [isSearching]="isSearching"
+                (onSearch)="onSearchTopics($event)">
+            </sn-debounced-search>
+          </span>
+        </h4>
+        <div>
           <sn-topic-list
               [topics]="(searchTopicsResult$ | async)?.elements"
               (onDelete)="onDelete($event)">
           </sn-topic-list>
-          <sn-paginator
-              [page]="(searchTopicsResult$ | async)"
-              (onNextPage)="onGoToPage($event)"
-              (onPreviousPage)="onGoToPage($event)"
-              (onGoToPage)="onGoToPage($event)">
-          </sn-paginator>
+          <div class="p-3">
+            <sn-paginator
+                [page]="(searchTopicsResult$ | async)"
+                (onNextPage)="onGoToPage($event)"
+                (onPreviousPage)="onGoToPage($event)"
+                (onGoToPage)="onGoToPage($event)">
+            </sn-paginator>
+          </div>
         </div>
       </div>
     </div>
