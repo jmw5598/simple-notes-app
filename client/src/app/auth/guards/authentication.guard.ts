@@ -23,7 +23,7 @@ export class AuthenticationGuard implements CanActivate {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): Observable<boolean> {
 
     return this._store.select(fromAuthenticationSelectors.selectAuthenticationState)
       .pipe(

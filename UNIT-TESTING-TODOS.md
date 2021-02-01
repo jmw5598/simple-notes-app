@@ -80,13 +80,13 @@
 [_] auth
   [_] components
     [X] auth-marketing
-    [_] registration-account-form
-    [_] registration-address-form
-    [_] registration-profile-form
+    [X] registration-account-form
+    [X] registration-address-form
+    [X] registration-profile-form
     [X] registration-result
-    [_] registration-user-form
-  [_] guards
-    [_] authentication
+    [X] registration-user-form
+  [X] guards
+    [X] authentication
   [_] pages
     [_] login
     [_] logout

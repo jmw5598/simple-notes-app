@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ControlContainer, FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
+import { RegistrationAddressFormComponent } from '../registration-address-form/registration-address-form.component';
 import { RegistrationProfileFormComponent } from './registration-profile-form.component';
 
 describe('RegistrationProfileFormComponent', () => {
@@ -31,7 +32,8 @@ describe('RegistrationProfileFormComponent', () => {
         ReactiveFormsModule
       ], 
       declarations: [
-        RegistrationProfileFormComponent
+        RegistrationProfileFormComponent,
+        RegistrationAddressFormComponent
       ],
       providers: [
         {
