@@ -77,7 +77,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   }
 
   public onCreateNewDocument(): void {
-    console.log('Creating new document in drawer!');
     if (this._isDrawerVisible) {
       this._drawerService.close();
       setTimeout(() => this._drawerService.show(DocumentCreateComponent, { size: DrawerSize.LARGE }));

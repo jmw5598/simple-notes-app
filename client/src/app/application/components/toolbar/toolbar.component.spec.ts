@@ -1,12 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
+import { EMPTY, of } from 'rxjs';
 
 import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
 import { SharedModule } from '@sn/shared/shared.module';
 import { ToolbarComponent } from './toolbar.component';
 import { DrawerService } from '@sn/shared/components';
-import { Type } from '@angular/core';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
@@ -17,15 +19,14 @@ describe('ToolbarComponent', () => {
     dispatch: () => {}
   };
 
-  const testDrawerService = {
-    show(component: Type<any>) {}
-  } as Partial<DrawerService>;
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        NoopAnimationsModule,
         KeyboardShortcutsModule,
-        SharedModule
+        HttpClientTestingModule,
+        SharedModule,
+        TimepickerModule.forRoot()
       ],
       declarations: [
         ToolbarComponent
@@ -34,69 +35,59 @@ describe('ToolbarComponent', () => {
         {
           provide: Store,
           useValue: testStore
-        },
-        {
-          provide: DrawerService,
-          useValue: testDrawerService
         }
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ToolbarComponent);
     component = fixture.componentInstance;
+    drawerService = fixture.debugElement.injector.get(DrawerService) as any;
     fixture.detectChanges();
   });
 
   beforeEach(() => {
     component.ngOnInit();
+    jasmine.clock().install();
   });
 
   afterEach(() => {
     component.ngOnDestroy();
+    jasmine.clock().uninstall();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  // TODO Figure out hwy the spyOn's dont work for these tests!
-  
-  it('should call DrawerService.show when onCreateNewTopic is called and the drawer is closed', () => {
-    spyOn(testDrawerService, 'show');
-    component.onCreateNewTopic();
-    expect(testDrawerService.show).toHaveBeenCalled();
+  it('should open drawer, then close drawer, then reopen drawer when onCreateNewTopic is called', () => {
+    spyOn(drawerService, 'close');
+    component.onCreateNewTopic(); // opens drawer
+    spyOn(drawerService, 'show'); // spy on show after the drawer is open
+    component.onCreateNewTopic(); // closes drawer
+    jasmine.clock().tick(500);
+    expect(drawerService.close).toHaveBeenCalledTimes(1);
+    expect(drawerService.show).toHaveBeenCalledTimes(1);
   });
 
-  // it('should close drawer before calling DrawerService.show when onCreateNewTopic is called and the drawer is closed', () => {
-  //   // spyOn(drawerService, 'show');
-    
-  //   // fail();
-  // });
+  it('should open drawer, then close drawer, then reopen drawer when onCreateNewCalendarEvent is called', () => {
+    spyOn(drawerService, 'close');
+    component.onCreateNewCalendarEvent(); // opens drawer
+    spyOn(drawerService, 'show');         // spy on show after the drawer is open
+    component.onCreateNewCalendarEvent(); // closes drawer
+    jasmine.clock().tick(500);
+    expect(drawerService.close).toHaveBeenCalledTimes(1);
+    expect(drawerService.show).toHaveBeenCalledTimes(1);
+  });
 
-  // it('should call DrawerService.show when onCreateNewCalendarEvent is called and the drawer is closed', () => {
-  //   spyOn(drawerService, 'show');
-  //   component.onCreateNewCalendarEvent();
-  //   expect(drawerService.show).toHaveBeenCalledTimes(1);
-  // });
-
-  // it('should close drawer before calling DrawerService.show when onCreateNewCalendarEvent is called and the drawer is closed', () => {
-  //   // spyOn(drawerService, 'show');
-    
-  //   // fail();
-  // });
-
-  // it('should call DrawerService.show when onSearchTopics is called and the drawer is closed', () => {
-  //   spyOn(drawerService, 'show');
-  //   component.onSearchTopics();
-  //   expect(drawerService.show).toHaveBeenCalledTimes(1);
-  // });
-
-  // it('should close drawer before calling DrawerService.show when onSearchTopics is called and the drawer is closed', () => {
-  //   // spyOn(drawerService, 'show');
-    
-  //   // fail();
-  // });
+  it('should open drawer, then close drawer, then reopen drawer when onCreateNewDocument is called', () => {
+    spyOn(drawerService, 'close');
+    component.onCreateNewDocument(); // opens drawer
+    spyOn(drawerService, 'show');    // spy on show after the drawer is open
+    component.onCreateNewDocument(); // closes drawer
+    jasmine.clock().tick(500);
+    expect(drawerService.close).toHaveBeenCalledTimes(1);
+    expect(drawerService.show).toHaveBeenCalledTimes(1);
+  });
 });

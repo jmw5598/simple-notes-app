@@ -1,8 +1,8 @@
 `client/src/app`
 [_] application
-  [_] components
+  [X] components
     [X] navigation
-    [_] toolbar
+    [X] toolbar
   [_] modules
     [_] accounts
       [X] components
@@ -77,7 +77,7 @@
       [?] store (?)
   [?] store (?)
 
-[_] auth
+[X] auth
   [X] components
     [X] auth-marketing
     [X] registration-account-form
