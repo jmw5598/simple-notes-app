@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -20,6 +21,7 @@ describe('PasswordRequestComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
+        RouterTestingModule,
         FormsModule,
         ReactiveFormsModule
       ],

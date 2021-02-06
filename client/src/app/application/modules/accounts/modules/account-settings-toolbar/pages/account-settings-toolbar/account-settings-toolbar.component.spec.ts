@@ -5,6 +5,8 @@ import { deleteKeyboardShortcut, setKeyboardShortcutResponseMessage } from '@sn/
 import { KeyboardShortcutActionType } from '@sn/core/enums';
 import { KeyboardShortcutAction } from '@sn/core/models';
 import { DrawerService } from '@sn/shared/components';
+import { SharedModule } from '@sn/shared/shared.module';
+import { ToolbarKeyboardShortcutListComponent } from '../../components/toolbar-keyboard-shortcut-list/toolbar-keyboard-shortcut-list.component';
 
 import { AccountSettingsToolbarComponent } from './account-settings-toolbar.component';
 
@@ -29,8 +31,14 @@ describe('AccountSettingsToolbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule],
-      declarations: [AccountSettingsToolbarComponent],
+      imports: [
+        NoopAnimationsModule,
+        SharedModule
+      ],
+      declarations: [
+        AccountSettingsToolbarComponent,
+        ToolbarKeyboardShortcutListComponent
+      ],
       providers: [
         DrawerService,
         {

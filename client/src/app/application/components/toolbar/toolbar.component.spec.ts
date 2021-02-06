@@ -23,7 +23,7 @@ describe('ToolbarComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        KeyboardShortcutsModule,
+        KeyboardShortcutsModule.forRoot(),
         HttpClientTestingModule,
         SharedModule,
         TimepickerModule.forRoot()

@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
+import { SharedModule } from '@sn/shared/shared.module';
 import { TopicSearchComponent } from './topic-search.component';
 import { DrawerService } from '../drawer/drawer.service';
 import { PageableSearch } from '@sn/core/models';
@@ -23,13 +24,13 @@ describe('TopicSearchComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        SharedModule
       ],
       declarations: [
         TopicSearchComponent
       ],
       providers: [
-        DrawerService,
         {
           provide: Store,
           useValue: testStore

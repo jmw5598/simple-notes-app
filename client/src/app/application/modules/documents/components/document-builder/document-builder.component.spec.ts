@@ -14,7 +14,7 @@ describe('DocumentBuilderComponent', () => {
   const testStore = {
     _data: new BehaviorSubject<any>(null),
     select: function(selector: any) { return this._data.asObservable(); },
-    dispatch: function(action: any) { this._data.next(action) }
+    dispatch: function(action: any) {  }
   };
 
   beforeEach(async(() => {

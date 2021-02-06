@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Section } from '@sn/shared/models';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { SharedModule } from '@sn/shared/shared.module';
 import { SectionListComponent } from './section-list.component';
@@ -16,7 +17,10 @@ describe('SectionListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SharedModule],
+      imports: [
+        RouterTestingModule,
+        SharedModule
+      ],
       declarations: [SectionListComponent]
     })
     .compileComponents();

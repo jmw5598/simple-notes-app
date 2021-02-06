@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { SharedModule } from '@sn/shared/shared.module';
 import { DocumentListComponent } from './document-list.component';
 
 describe('DocumentListComponent', () => {
@@ -8,7 +9,13 @@ describe('DocumentListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DocumentListComponent ]
+      imports: [
+        SharedModule,
+        RouterTestingModule
+      ],
+      declarations: [
+        DocumentListComponent
+      ]
     })
     .compileComponents();
   }));

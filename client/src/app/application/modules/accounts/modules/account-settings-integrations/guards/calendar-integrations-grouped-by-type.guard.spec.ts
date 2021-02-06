@@ -39,8 +39,9 @@ describe('CalendarIntegrationsGroupedByTypeGuard', () => {
     guard.canActivate(null, null)
       .pipe(take(1))
       .subscribe(canActivate => {
-        expect(testStore.dispatch).toHaveBeenCalledTimes(1);
         expect(canActivate).toBeFalse();
       });
+    expect(testStore.dispatch).toHaveBeenCalledTimes(1);
+    testStore.dispatch({});
   });
 });

@@ -7,6 +7,7 @@ import { BehaviorSubject, of } from 'rxjs';
 import { SharedModule } from '@sn/shared/shared.module';
 import { TopicDetailsComponent } from './topic-details.component';
 import { DrawerService } from '@sn/shared/components';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('TopicDetailsComponent', () => {
   let component: TopicDetailsComponent;
@@ -33,6 +34,7 @@ describe('TopicDetailsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
+        RouterTestingModule,
         SharedModule
       ], declarations: [
         TopicDetailsComponent

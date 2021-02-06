@@ -1,11 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ControlContainer, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { ControlContainer, FormControl, FormGroup, FormGroupDirective, Validators, FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DocumentFormComponent } from './document-form.component';
 import { TopicsService } from '@sn/core/services';
+import { SharedModule } from '@sn/shared/shared.module';
 
 describe('DocumentFormComponent', () => {
   let component: DocumentFormComponent;
@@ -26,7 +27,9 @@ describe('DocumentFormComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        DragDropModule
+        DragDropModule,
+        FormsModule,
+        SharedModule
       ],
       declarations: [
         DocumentFormComponent

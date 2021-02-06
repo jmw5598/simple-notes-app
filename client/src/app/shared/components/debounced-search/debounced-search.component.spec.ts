@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { DebouncedSearchComponent } from './debounced-search.component';
 
@@ -8,6 +9,7 @@ describe('DebouncedSearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [FormsModule],
       declarations: [DebouncedSearchComponent]
     })
     .compileComponents();

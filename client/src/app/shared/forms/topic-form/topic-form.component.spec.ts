@@ -3,6 +3,7 @@ import { ControlContainer, FormArray, FormControl, FormGroup, FormGroupDirective
 import { Permission } from '@sn/shared/models';
 
 import { TopicFormComponent } from './topic-form.component';
+import { TagInputComponent } from '../../components/tag-input/tag-input.component';
 
 describe('TopicFormComponent', () => {
   let component: TopicFormComponent;
@@ -25,7 +26,8 @@ describe('TopicFormComponent', () => {
         ReactiveFormsModule 
       ],
       declarations: [
-        TopicFormComponent
+        TopicFormComponent,
+        TagInputComponent
       ],
       providers: [
         {

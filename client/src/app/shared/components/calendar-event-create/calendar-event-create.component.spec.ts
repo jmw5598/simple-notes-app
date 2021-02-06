@@ -7,9 +7,7 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { SharedModule } from '@sn/shared/shared.module';
 import { CalendarEventCreateComponent } from './calendar-event-create.component';
 import { DrawerService } from '../drawer/drawer.service';
-import { CalendarEvent } from '@sn/core/models';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { CalendarEventFormComponent } from '../../forms';
 
 describe('CalendarEventCreateComponent', () => {
   let component: CalendarEventCreateComponent;
@@ -41,7 +39,8 @@ describe('CalendarEventCreateComponent', () => {
         TimepickerModule.forRoot()
       ],
       declarations: [
-        CalendarEventCreateComponent
+        CalendarEventCreateComponent,
+        CalendarEventFormComponent
       ],
       providers: [
         {

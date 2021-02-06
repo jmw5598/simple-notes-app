@@ -48,7 +48,7 @@ export class DocumentFormComponent implements OnInit {
 
     this.selectedTopic$ = this._store.select(selectSelectedTopic);
     this._store.select(selectSectionsForSelectedTopic)
-      .subscribe(sections => this.selectedSections = sections ? sections.map(s => s) : []);
+      .subscribe(sections => this.selectedSections = sections ? sections?.map(s => s) : []);
     
     this.topics$ = new Observable((observer: Observer<string>) => {
       observer.next(this.selected);

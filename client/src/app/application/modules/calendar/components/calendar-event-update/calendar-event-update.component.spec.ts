@@ -1,7 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ControlContainer, FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+
+import { SharedModule } from '@sn/shared/shared.module';
 import { CalendarEvent } from '@sn/core/models';
 import { CalendarEventUpdateComponent } from './calendar-event-update.component';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 describe('CalendarEventUpdateComponent', () => {
   let component: CalendarEventUpdateComponent;
@@ -42,8 +46,10 @@ describe('CalendarEventUpdateComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TimepickerModule.forRoot(),
+        BsDatepickerModule.forRoot(),
+        SharedModule
       ],
       declarations: [
         CalendarEventUpdateComponent

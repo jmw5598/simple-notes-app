@@ -73,13 +73,8 @@ export class EditSectionNotesComponent implements OnInit, OnDestroy {
         takeUntil(this._subscriptionSubject$),
         debounceTime(2000),
         distinctUntilChanged(),
-        tap(notes => {
-          console.log('tap, calling onSaveSectionNotes with', notes);
-          this.onSaveSectionNotes(notes)
-        })
-      ).subscribe(notes => {
-        console.log("inside subscribe");
-      });
+        tap(notes => this.onSaveSectionNotes(notes))
+      ).subscribe();
 
     this.section$ = this._store.select(selectSelectedSection).pipe(
       tap((section: Section) => this.sectionNotes = section.notes)
@@ -94,7 +89,6 @@ export class EditSectionNotesComponent implements OnInit, OnDestroy {
   }
 
   public onSaveSectionNotes(notes: string): void {
-    console.log("on save called with ", notes);
     this.editorOptions.footer = EditorMessage.SAVING;
     this._store.dispatch(updateSectionNotes({
       topicId: this._topicId,

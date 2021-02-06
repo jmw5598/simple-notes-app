@@ -139,9 +139,9 @@ describe('ViewCalendarComponent', () => {
   });
 
   //TODO handleEventDataTransform
-  it('', () => {
+  // it('', () => {
     
-  });
+  // });
 
   it('should dispatch setCurrentCalendarEvents action when ngOnDestroy is called', () => {
     spyOn(testStore, 'dispatch');

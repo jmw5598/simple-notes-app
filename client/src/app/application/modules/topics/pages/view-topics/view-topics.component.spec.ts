@@ -9,6 +9,7 @@ import { deleteTopic, searchTopics } from '../../store/actions';
 import { SharedModule } from '@sn/shared/shared.module';
 import { TopicListComponent } from '../../components/topic-list/topic-list.component';
 import { ViewTopicsComponent } from './view-topics.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ViewTopicsComponent', () => {
   let component: ViewTopicsComponent;
@@ -22,6 +23,7 @@ describe('ViewTopicsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
+        RouterTestingModule,
         SharedModule
       ],
       declarations: [
