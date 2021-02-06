@@ -11,6 +11,7 @@ import { DrawerService } from '@sn/shared/components';
 describe('TopicDetailsComponent', () => {
   let component: TopicDetailsComponent;
   let fixture: ComponentFixture<TopicDetailsComponent>;
+  let drawerService: DrawerService;
 
   const mockSection = {
     id: 2 ,
@@ -28,11 +29,6 @@ describe('TopicDetailsComponent', () => {
     dispatch: function(action: any) { this._data.next(action); }
   }
 
-  const testDrawerService = {
-    show(component: any) {},
-    close() {}
-  }
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -45,10 +41,6 @@ describe('TopicDetailsComponent', () => {
         {
           provide: Store,
           useValue: testStore
-        },
-        {
-          provide: DrawerService,
-          useValue: testDrawerService
         }
       ]
     })
@@ -58,6 +50,7 @@ describe('TopicDetailsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TopicDetailsComponent);
     component = fixture.componentInstance;
+    drawerService = fixture.debugElement.injector.get(DrawerService) as any;
     fixture.detectChanges();
   });
 
@@ -74,6 +67,7 @@ describe('TopicDetailsComponent', () => {
   it('should dispatch searchSections action when onSearchSections is called', () => {
     spyOn(testStore, 'dispatch');
     const searchTerm: string = 'testing';
+    component._topic = { id: mockTopic.id } as Topic;
     component.onSearchSections(searchTerm);
     expect(testStore.dispatch).toHaveBeenCalledTimes(1);
   });
@@ -81,8 +75,8 @@ describe('TopicDetailsComponent', () => {
   // TODO figure out the component level providers causing this to fail.
   // it('should show drawer when onDeleteSection is called with sectionId', () => {
   //   const sectionId: number = 1;
-  //   spyOn(testDrawerService, 'show');
+  //   spyOn(drawerService, 'show');
   //   component.onDeleteSection(sectionId);
-  //   expect(testDrawerService.show).toHaveBeenCalled();
+  //   expect(drawerService.show).toHaveBeenCalled();
   // });
 });

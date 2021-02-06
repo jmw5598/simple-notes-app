@@ -4,6 +4,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DocumentBuilderComponent } from './document-builder.component';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
+import { SharedModule } from '@sn/shared/shared.module';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 describe('DocumentBuilderComponent', () => {
   let component: DocumentBuilderComponent;
@@ -19,7 +21,9 @@ describe('DocumentBuilderComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         DragDropModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        SharedModule,
+        TypeaheadModule.forRoot()
       ],
       declarations: [DocumentBuilderComponent],
       providers: [

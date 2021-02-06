@@ -42,7 +42,7 @@ export class DocumentBuilderComponent implements OnInit, OnDestroy, AfterViewIni
   ngOnInit(): void {
     this.selectedTopic$ = this._store.select(selectSelectedTopic);
     this._store.select(selectSectionsForSelectedTopic)
-      .subscribe(sections => sections ? this.selectedSections = sections.map(s => s) : []);
+      .subscribe(sections => sections ? this.selectedSections = sections?.map(s => s) : []);
     
     this.topics$ = new Observable((observer: Observer<string>) => {
       observer.next(this.selected);

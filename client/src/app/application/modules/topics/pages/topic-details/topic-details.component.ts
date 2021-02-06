@@ -32,7 +32,7 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
   public topic$: Observable<Topic>;
   public exportTopicResponseMessage$: Observable<ResponseMessage>;
   public exportTopicFile$: Observable<FileResponse>;
-  private _topic: Topic;
+  public _topic: Topic;
   public searchSectionsResult$: Observable<Page<Section>>;
   public searchTerm: string = '';
   public isSearching: boolean = false;

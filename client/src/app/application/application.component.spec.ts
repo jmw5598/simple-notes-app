@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ApplicationComponent } from './application.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { NavbarSideComponent } from './components/navigation/navbar-side/navbar-side.component'; 
 
 describe('ApplicationComponent', () => {
   let component: ApplicationComponent;
@@ -8,7 +10,11 @@ describe('ApplicationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ApplicationComponent]
+      declarations: [
+        ApplicationComponent,
+        NavigationComponent,
+        NavbarSideComponent
+      ]
     })
     .compileComponents();
   }));

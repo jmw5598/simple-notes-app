@@ -68,7 +68,7 @@ describe('DrawerService', () => {
         expect(data).toEqual(expectedData);
         done();
       });
-    service.show(null, expectedData);
+    service.show(null, { data: expectedData });
   });
 
   it('should emit content when show is called', (done) => {
