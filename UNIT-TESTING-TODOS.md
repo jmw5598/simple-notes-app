@@ -37,13 +37,13 @@
       [X] pages
         [X] account-settings
       [_] store (?)
-    [_] calendar
+    [X] calendar
       [X] components
         [X] calendar-event-details
         [X] calendar-event-update
         [X] calendar-event-view
-      [_] pages
-        [TODO] view-calendar
+      [X] pages
+        [X] view-calendar
       [_] store (?)
     [X] dashboard
       [X] components

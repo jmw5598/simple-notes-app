@@ -19,25 +19,16 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   bootstrapPlugin
 ]);
 
-describe('ViewCalendarComponent', () => {
+fdescribe('ViewCalendarComponent', () => {
   let component: ViewCalendarComponent;
   let fixture: ComponentFixture<ViewCalendarComponent>;
+  let drawerService: DrawerService;
 
   const testStore = {
     _data: new BehaviorSubject<any>(null),
-    select: function(selector: any) {
-      return this._data.asObservable()
-    },
-    dispatch: function(action: any) {
-      this._data.next(action);
-    }
+    select: function(selector: any) { return of(null) },
+    dispatch: function(action: any) {}
   };
-
-  const testDrawerService = {
-    show(type: any, args: any) { return of([])},
-    onDrawerVibilityChange() {},
-    setData(data: any) {}
-  }
 
   const mockCalendarEvent: CalendarEvent = {
     id: 1,
@@ -63,34 +54,29 @@ describe('ViewCalendarComponent', () => {
         ],
         declarations: [ViewCalendarComponent],
         providers: [
-          { provide: DrawerService, useValue: testDrawerService },
-          { provide: Store, useValue: testStore },
+          { 
+            provide: Store, 
+            useValue: testStore 
+          },
         ]
       }).compileComponents();
-
-      // TODO Figure out how component providers should get their 
-      // providers.  It gets differenct instance from the module providers
-      // and spys are not working.
-      // TestBed.overrideComponent(ViewCalendarComponent, {
-      //   set: {
-      //     providers: [{ provide: DrawerService, useValue: testDrawerService }]
-      //   }
-      // })
-      
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ViewCalendarComponent);
     component = fixture.componentInstance;
+    drawerService = fixture.debugElement.injector.get(DrawerService) as any;
     fixture.detectChanges();
   });
 
   beforeEach(() => {
     component.ngOnInit();
+    jasmine.clock().install();
   });
 
   afterEach(() => {
     component.ngOnDestroy();
+    jasmine.clock().uninstall();
   });
 
   it('should create', () => {
@@ -118,11 +104,48 @@ describe('ViewCalendarComponent', () => {
     expect(testStore.dispatch).toHaveBeenCalledTimes(3);
   });
 
-  // TODO Implements this once the above todo is resolved.
-  // it('should call DrawerService.show to show new calendar event form for selected day', () => {
-    // spyOn(testDrawerService, 'show');
-    // const clickEventArgs = { args: new Date() };
-    // component.handleCalendarDateClick(clickEventArgs);
-    // expect(testDrawerService.show).toHaveBeenCalled();    
-  // });
+  it('should call DrawerService.show to show new calendar event form for selected day', () => {
+    spyOn(drawerService, 'show');
+    const clickEventArgs = { args: new Date() };
+    component.handleCalendarDateClick(clickEventArgs);
+    expect(drawerService.show).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call DrawerSerice.show when handleCalendarEventClick is called', () => {
+    spyOn(drawerService, 'show');
+    const clickEventArgs = { event: { extendedProps: mockCalendarEvent } };
+    component.handleCalendarEventClick(clickEventArgs);
+    expect(drawerService.show).toHaveBeenCalledTimes(1);
+  });
+
+  it('should set areCalendarEventsLoading to false when handleCalendarEventSourceLoading is called without args', () => {
+    component.handleCalendarEventSourceLoading(null);
+    jasmine.clock().tick(1);
+    expect(component.areCalendarEventsLoading).toBeFalse();
+  });
+
+  it('should set areCalendarEventsLoading to true when handleCalendarEventSourceLoading is called with args', () => {
+    component.handleCalendarEventSourceLoading({});
+    jasmine.clock().tick(1);
+    expect(component.areCalendarEventsLoading).toBeTrue();
+  });
+
+  //TODO handleCalendarEventEdit
+  it('should dispatch updateCalendarEvent action when handleCalendarEventEdit is called', () => {
+    spyOn(testStore, 'dispatch');
+    const args = { event: { extendedProps: mockCalendarEvent } };
+    component.handleCalendarEventEdit(args);
+    expect(testStore.dispatch).toHaveBeenCalledTimes(1);
+  });
+
+  //TODO handleEventDataTransform
+  it('', () => {
+    
+  });
+
+  it('should dispatch setCurrentCalendarEvents action when ngOnDestroy is called', () => {
+    spyOn(testStore, 'dispatch');
+    component.ngOnDestroy();
+    expect(testStore.dispatch).toHaveBeenCalledWith(setCurrentCalendarEvents({ events: null }));
+  });
 });
