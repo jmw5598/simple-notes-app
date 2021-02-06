@@ -4,7 +4,7 @@
     [X] navigation
     [X] toolbar
   [_] modules
-    [_] accounts
+    [X] accounts
       [X] components
         [X] account-user-card
       [X] guards

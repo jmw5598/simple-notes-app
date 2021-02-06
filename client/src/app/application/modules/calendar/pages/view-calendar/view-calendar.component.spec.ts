@@ -19,7 +19,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   bootstrapPlugin
 ]);
 
-fdescribe('ViewCalendarComponent', () => {
+describe('ViewCalendarComponent', () => {
   let component: ViewCalendarComponent;
   let fixture: ComponentFixture<ViewCalendarComponent>;
   let drawerService: DrawerService;
