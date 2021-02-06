@@ -5,13 +5,15 @@ import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
 import { PasswordRequestComponent } from './password-request.component';
+import { PasswordRequestReset } from '@sn/core/models';
+import { passwordRequestReset, passwordRequestResetResult } from '@sn/auth/store/actions';
 
 describe('PasswordRequestComponent', () => {
   let component: PasswordRequestComponent;
   let fixture: ComponentFixture<PasswordRequestComponent>;
   const testStore = {
-    select: () => of(),
-    dispatch: () => {}
+    select: (selector: any) => of(),
+    dispatch: (action: any) => {}
   };
 
   beforeEach(async(() => {
@@ -42,5 +44,20 @@ describe('PasswordRequestComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should dispatch passwordRequestReset action when onSubmit is called', () => {
+    const request: PasswordRequestReset = {
+      email: 'email@email.com'
+    };
+    spyOn(testStore, 'dispatch');
+    component.onSubmit(request);
+    expect(testStore.dispatch).toHaveBeenCalledWith(passwordRequestReset({ request: request }));
+  });
+
+  it('should dispatch passwordRequestResetResult action when ngonDestroy is called', () => {
+    spyOn(testStore, 'dispatch');
+    component.ngOnDestroy();
+    expect(testStore.dispatch).toHaveBeenCalledWith(passwordRequestResetResult({ result: null }));
   });
 });

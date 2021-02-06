@@ -78,7 +78,7 @@
   [?] store (?)
 
 [_] auth
-  [_] components
+  [X] components
     [X] auth-marketing
     [X] registration-account-form
     [X] registration-address-form
@@ -87,12 +87,12 @@
     [X] registration-user-form
   [X] guards
     [X] authentication
-  [_] pages
-    [_] login
-    [_] logout
-    [_] password-request
-    [_] password-reset
-    [_] register
+  [X] pages
+    [X] login
+    [X] logout
+    [X] password-request
+    [X] password-reset
+    [X] register
 
 [_] core
   [_] guards

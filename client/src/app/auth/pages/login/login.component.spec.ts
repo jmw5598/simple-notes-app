@@ -7,14 +7,22 @@ import { LoginComponent } from './login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { UserCredentials } from '@sn/core/models';
+import { loginUser } from '@sn/auth/store/actions';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   const testStore = {
-    select: () => of(),
-    dispatch: () => {}
+    select: (selector: any) => of(),
+    dispatch: (action: any) => {}
   }
+
+  const loginFormValue: UserCredentials = {
+    username: 'username',
+    password: 'password',
+    rememberMe: false
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -46,5 +54,13 @@ describe('LoginComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should dispatch loginUser action when submitForm is called', () => {
+    spyOn(testStore, 'dispatch');
+    component.submitForm(loginFormValue);
+    expect(testStore.dispatch).toHaveBeenCalledWith(
+      loginUser({ credentials: loginFormValue})
+    );
   });
 });
