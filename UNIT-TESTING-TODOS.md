@@ -96,12 +96,12 @@
     - [x] register
 
 - [ ] core
-  - [ ] guards
-    - [ ] plans
+  - [x] guards
+    - [x] plans
   - [ ] interceptor
     - [ ] jwt-token
   - [ ] services
-    - [ ] accounts
+    - [x] accounts
     - [ ] authenticaiton
     - [ ] calendar-events
     - [ ] calendar-integrations

@@ -17,7 +17,7 @@ export class PlansGuard implements CanActivate {
   
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): Observable<boolean> {
     return this._getPlansFromStoreOrApi().pipe(
       switchMap(() => of(true)),
       catchError(() => of(false))
