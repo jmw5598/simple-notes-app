@@ -26,6 +26,7 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { LayoutComponent } from './components/layout/layout.component';
 import { DocumentFormComponent } from './forms/document-form/document-form.component';
 import { DocumentCreateComponent } from './components/document-create/document-create.component';
+import { OverlayLoaderComponent } from './components/overlay-loader/overlay-loader.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { DocumentCreateComponent } from './components/document-create/document-c
     PageHeaderComponent,
     LayoutComponent,
     DocumentFormComponent,
-    DocumentCreateComponent
+    DocumentCreateComponent,
+    OverlayLoaderComponent
   ],
   imports: [
     CommonModule,
@@ -77,7 +79,8 @@ import { DocumentCreateComponent } from './components/document-create/document-c
     PageHeaderComponent,
     LayoutComponent,
     DocumentFormComponent,
-    DocumentCreateComponent
+    DocumentCreateComponent,
+    OverlayLoaderComponent
   ],
   providers: [
     DrawerService

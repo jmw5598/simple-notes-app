@@ -14,3 +14,7 @@ export * from './document-create/document-create.component';
 export * from './layout/layout.service';
 export * from './layout/layout-side-panel-position.enum';
 export * from './layout/layout-side-panel-state.enum';
+
+export * from './overlay-loader/overlay-loader-style.enum';
+export * from './overlay-loader/overlay-spinner-size.enum';
+export * from './overlay-loader/overlay-loader.service';

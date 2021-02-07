@@ -1,0 +1,79 @@
+@import '../../../../assets/scss/bootswatch/simple-notes/variables';
+
+@mixin generate-spinner-by-size($size, $borderWidth) {
+  border-width: $borderWidth;
+  width: $size;
+  height: $size;
+}
+
+@mixin generate-overlay-style($color, $spinner, $track) {
+  background: $color;
+  .spinner {
+    .spinner-inner{
+      border-color: $track;
+      border-top-color: $spinner;
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.overlay-loader {
+  position: relative;
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0; 
+    right: 0;
+    z-index: 100;
+
+    .spinner {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -80%);
+      
+      .spinner-inner {
+        border-radius: 50%;
+        border-style: solid;
+        
+        animation: spin 0.75s linear infinite;
+      
+        &.spinner-size-sm {
+          @include generate-spinner-by-size(72px, 9px);
+        }
+
+        &.spinner-size-md {
+          @include generate-spinner-by-size(96px, 12px);
+        }
+
+        &.spinner-size-lg {
+          @include generate-spinner-by-size(128px, 16px);
+        }
+      }
+    }
+
+    &.overlay-loader-style-transparent {
+      background: transparent;
+      .spinner {
+        .spinner-inner{
+          border-color: #FFF;
+          border-top-color: #2b3e50;
+        }
+      }
+    }
+    &.overlay-loader-style-dim-dark {
+      @include generate-overlay-style(
+        rgba(#000, 0.3), $primary, $gray-600);
+    }
+    &.overlay-loader-style-dim-light {
+      @include generate-overlay-style(
+        rgba(#FFF, 0.5), $primary, $gray-400);
+    }
+  }
+}
