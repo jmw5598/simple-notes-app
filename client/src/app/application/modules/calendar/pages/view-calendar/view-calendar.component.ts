@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 import { ICalendarEventsState } from '../../store/reducers';
 import { CalendarOptions, EventInput, FullCalendarComponent } from '@fullcalendar/angular';
-import { DrawerService, CalendarEventCreateComponent } from '@sn/shared/components';
+import { DrawerService, CalendarEventCreateComponent, OverlayLoaderService } from '@sn/shared/components';
 import { CalendarEventViewComponent } from '../../components/calendar-event-view/calendar-event-view.component';
 import { fadeAnimation } from '@sn/shared/animations';
 import { CALENDAR_OPTIONS_DEFAULT } from '../../calendar-options.defaults';
@@ -37,7 +37,8 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
 
   constructor(
     private _store: Store<ICalendarEventsState>,
-    private _drawerService: DrawerService
+    private _drawerService: DrawerService,
+    private _overlayLoaderService: OverlayLoaderService
   ) {
     this._subscriptionSubject = new Subject<void>();
     this._configureCalendarOptions();
@@ -51,6 +52,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
           const renderableEvents = this._mapCalendarEvents(events)
           this.calendar.getApi()?.removeAllEvents();
           renderableEvents.forEach(e => this.calendar.getApi().addEvent(e))
+          this._overlayLoaderService.setLoadingState(false);
         }
       });
     this._store.select(selectSelectedCalendarEvent)
@@ -70,6 +72,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   }
 
   public handleCalendarEventsFetch(info, success, error): void {
+    this._overlayLoaderService.setLoadingState(true);
     const startDate: Date = new Date(info.startStr);
     const endDate: Date = new Date(info.endStr);
     this._store.dispatch(setCurrentCalendarEvents({ events: null }));

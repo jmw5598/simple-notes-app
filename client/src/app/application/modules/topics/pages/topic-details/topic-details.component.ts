@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { tap, takeUntil } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
@@ -9,7 +9,7 @@ import { searchSections, deleteSection, setExportTopicFileResponse, setExportTop
 import { FileResponse, Topic, Section } from '@sn/shared/models';
 import { fadeAnimation } from '@sn/shared/animations';
 import { PageableSearch, Page, IPageable, ResponseMessage } from '@sn/core/models';
-import { DrawerService, DrawerLocation } from '@sn/shared/components';
+import { DrawerService, DrawerLocation, OverlayLoaderService } from '@sn/shared/components';
 import { DEFAULT_SEARCH_SECTIONS_PAGE } from '@sn/core/defaults';
 import { TopicExportComponent } from '../../components/topic-export/topic-export.component';
 import { TopicUpdateComponent } from '../../components/topic-update/topic-update.component';
@@ -24,7 +24,7 @@ import { ResponseStatus } from '@sn/core/enums';
   providers: [DrawerService],
   animations: [fadeAnimation]
 })
-export class TopicDetailsComponent implements OnInit, OnDestroy {
+export class TopicDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
   public DrawerLocation = DrawerLocation;
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_SECTIONS_PAGE;
   private _subscriptionSubject: Subject<void>;
@@ -39,7 +39,8 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private _store: Store<ISectionsState>,
-    private _drawerService: DrawerService
+    private _drawerService: DrawerService,
+    private _overlayLoaderService: OverlayLoaderService
   ) {
     this._subscriptionSubject = new Subject<void>();
   }
@@ -66,6 +67,10 @@ export class TopicDetailsComponent implements OnInit, OnDestroy {
           this.onSearchSections("");
         }
       }));
+  }
+
+  ngAfterViewInit(): void {
+    this._overlayLoaderService.setLoadingState(false);
   }
 
   public onDeleteSection(sectionId: number): void {

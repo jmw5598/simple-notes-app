@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { AfterViewInit, Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { tap, filter, take, switchMap, catchError } from 'rxjs/operators';
@@ -10,14 +10,19 @@ import { Page, PageRequest, PageableSearch, IPageable } from '@sn/core/models';
 import { searchSections } from '../store/actions';
 import { selectSearchSectionsResult } from '../store/selectors';
 import { ITopicsState } from '../store/reducers';
+import { OverlayLoaderService } from '@sn/shared/components';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SectionsSearchResultGuard implements CanActivate {
-  constructor(private _store: Store<ITopicsState>) {}
+  constructor(
+    private _store: Store<ITopicsState>,
+    private _overlayLoaderService: OverlayLoaderService
+  ) {}
 
   canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
+    this._overlayLoaderService.setLoadingState(true);
     const topicId: number = +next.paramMap.get('topicId');
     const pageable: IPageable = DEFAULT_SEARCH_SECTIONS_PAGE;
     const search: PageableSearch = {

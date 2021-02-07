@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject, of } from 'rxjs';
 import { debounceTime, takeUntil, take, tap, distinctUntilChanged } from 'rxjs/operators';
@@ -13,6 +13,7 @@ import { ResponseMessage } from '@sn/core/models';
 import { ResponseStatus } from '@sn/core/enums';
 import { fadeAnimation } from '@sn/shared/animations';
 import { DEFAULT_EDITOR_OPTIONS } from './editor-options.defaults';
+import { OverlayLoaderService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-edit-section-notes',
@@ -20,7 +21,7 @@ import { DEFAULT_EDITOR_OPTIONS } from './editor-options.defaults';
   styleUrls: ['./edit-section-notes.component.scss'],
   animations: [fadeAnimation]
 })
-export class EditSectionNotesComponent implements OnInit, OnDestroy {
+export class EditSectionNotesComponent implements OnInit, OnDestroy, AfterViewInit {
   public editorOptions: EditorOption;
   public section$: Observable<Section>;
   public sectionNotes: string = '';  
@@ -32,7 +33,8 @@ export class EditSectionNotesComponent implements OnInit, OnDestroy {
 
   constructor(
     private _route: ActivatedRoute,
-    private _store: Store<ISectionsState> 
+    private _store: Store<ISectionsState>,
+    private _overlayLoaderService: OverlayLoaderService
   ) {
     this._subscriptionSubject$ = new Subject<void>();
     this._sectionNoteChangeSubject$ = new Subject<string>();
@@ -86,6 +88,10 @@ export class EditSectionNotesComponent implements OnInit, OnDestroy {
           this._sectionId = +params.get('sectionId');
         }
       );
+  }
+
+  ngAfterViewInit(): void {
+    this._overlayLoaderService.setLoadingState(false);
   }
 
   public onSaveSectionNotes(notes: string): void {

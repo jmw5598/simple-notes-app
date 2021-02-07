@@ -8,14 +8,19 @@ import { Section } from '@sn/shared/models';
 import { getSectionById } from '../store/actions';
 import { selectSelectedSection } from '../store/selectors';
 import { ITopicsState } from '../store/reducers';
+import { OverlayLoaderService } from '@sn/shared/components';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SectionByIdGuard implements CanActivate {
-  constructor(private _store: Store<ITopicsState>) {}
+  constructor(
+    private _overlayLoaderService: OverlayLoaderService,
+    private _store: Store<ITopicsState>
+  ) {}
 
   canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
+    this._overlayLoaderService.setLoadingState(true);
     const topicId: number = +next.paramMap.get('topicId');
     const sectionId: number = +next.paramMap.get('sectionId');
     return this._setSelectedSectionIfExistElseRedirect(topicId, sectionId).pipe(

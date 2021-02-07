@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
@@ -12,6 +12,7 @@ import { deleteTopic, searchTopics, searchTopicsResult } from '../../store/actio
 import { Page, IPageable } from '@sn/core/models';
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/core/defaults';
 import { ResponseStatus } from '@sn/core/enums';
+import { OverlayLoaderService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-view-topics',
@@ -19,7 +20,7 @@ import { ResponseStatus } from '@sn/core/enums';
   styleUrls: ['./view-topics.component.scss'],
   animations: [fadeAnimation]
 })
-export class ViewTopicsComponent implements OnInit, OnDestroy {
+export class ViewTopicsComponent implements OnInit, OnDestroy, AfterViewInit {
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_TOPICS_PAGE;
   private _subscriptionSubject: Subject<void>;
   public topics$: Observable<Topic[]>;
@@ -29,7 +30,8 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
   public isSearching: boolean = false;
 
   constructor(
-    private _store: Store<ITopicsState>
+    private _store: Store<ITopicsState>,
+    private _overlayLoaderService: OverlayLoaderService
   ) {
     this._subscriptionSubject = new Subject<void>();
   }
@@ -45,6 +47,10 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
       });
     this.searchTopicsResult$ = this._store.select(selectSearchTopicsResult)
       .pipe(tap(() => this.isSearching = false));
+  }
+
+  ngAfterViewInit(): void {
+    this._overlayLoaderService.setLoadingState(false);
   }
   
   public onSearchTopics(searchTerm: string): void {

@@ -10,12 +10,16 @@ import { Page, PageRequest, PageableSearch, IPageable } from '@sn/core/models';
 import { IApplicationState } from '../../../store/index';
 import { searchTopics } from '../store/actions';
 import { selectSearchTopicsResult } from '../store/selectors';
+import { OverlayLoaderService } from '@sn/shared/components';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TopicsSearchResultGuard implements CanActivate {
-  constructor(private _store: Store<IApplicationState>) {}
+  constructor(
+    private _overlayLoaderService: OverlayLoaderService,
+    private _store: Store<IApplicationState>
+  ) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -25,7 +29,8 @@ export class TopicsSearchResultGuard implements CanActivate {
       searchTerm: '',
       pageable: pageable
     };
-
+    // Maybe check if loading first? Will need to add getter to service.
+    this._overlayLoaderService.setLoadingState(true);
     return this._setSearchTopicsResultFromStoreOrApi(search).pipe(
       switchMap(() => of(true)),
       catchError(() => of(false))
