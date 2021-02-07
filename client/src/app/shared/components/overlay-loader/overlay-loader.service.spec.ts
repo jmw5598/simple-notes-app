@@ -3,7 +3,7 @@ import { skip, take } from 'rxjs/operators';
 
 import { OverlayLoaderService } from './overlay-loader.service';
 
-fdescribe('OverlayLoaderService', () => {
+describe('OverlayLoaderService', () => {
   let service: OverlayLoaderService;
 
   beforeEach(() => {
