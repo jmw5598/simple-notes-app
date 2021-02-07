@@ -5,7 +5,7 @@ import { take } from 'rxjs/operators';
 
 import { TodaysEventsGuard } from './todays-events.guard';
 
-fdescribe('TodaysEventsGuard', () => {
+describe('TodaysEventsGuard', () => {
   let guard: TodaysEventsGuard;
 
   const testStore = {
