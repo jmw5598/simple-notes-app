@@ -1,4 +1,4 @@
-<div class="container-navbar-adjust container-fluid p-0 m-0 height-full" [@fadeAnimation]>
+<div *ngIf="!(isPageLoading$ | async) && (recentTopics$ | async) && (todaysEvents$ | async)" class="container-navbar-adjust container-fluid p-0 m-0 height-full" [@fadeAnimation]>
   <div class="row m-0 p-0 height-full">
     <!-- Todays Events Card -->
     <div class="col-sm-12 col-md-12 col-lg-5 m-0 p-0 border-right-1">
