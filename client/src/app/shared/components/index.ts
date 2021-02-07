@@ -18,3 +18,4 @@ export * from './layout/layout-side-panel-state.enum';
 export * from './overlay-loader/overlay-loader-style.enum';
 export * from './overlay-loader/overlay-spinner-size.enum';
 export * from './overlay-loader/overlay-loader.service';
+export * from './overlay-loader/abstract-page-overlay-loader.component';

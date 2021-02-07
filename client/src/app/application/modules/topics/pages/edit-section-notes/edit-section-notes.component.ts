@@ -13,7 +13,7 @@ import { ResponseMessage } from '@sn/core/models';
 import { ResponseStatus } from '@sn/core/enums';
 import { fadeAnimation } from '@sn/shared/animations';
 import { DEFAULT_EDITOR_OPTIONS } from './editor-options.defaults';
-import { OverlayLoaderService } from '@sn/shared/components';
+import { AbstractPageOverlayLoader ,OverlayLoaderService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-edit-section-notes',
@@ -21,7 +21,7 @@ import { OverlayLoaderService } from '@sn/shared/components';
   styleUrls: ['./edit-section-notes.component.scss'],
   animations: [fadeAnimation]
 })
-export class EditSectionNotesComponent implements OnInit, OnDestroy, AfterViewInit {
+export class EditSectionNotesComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {
   public editorOptions: EditorOption;
   public section$: Observable<Section>;
   public sectionNotes: string = '';  
@@ -34,8 +34,9 @@ export class EditSectionNotesComponent implements OnInit, OnDestroy, AfterViewIn
   constructor(
     private _route: ActivatedRoute,
     private _store: Store<ISectionsState>,
-    private _overlayLoaderService: OverlayLoaderService
+    protected _overlayLoaderService: OverlayLoaderService
   ) {
+    super(_overlayLoaderService);
     this._subscriptionSubject$ = new Subject<void>();
     this._sectionNoteChangeSubject$ = new Subject<string>();
     this.editorOptions = {...DEFAULT_EDITOR_OPTIONS};
@@ -88,10 +89,6 @@ export class EditSectionNotesComponent implements OnInit, OnDestroy, AfterViewIn
           this._sectionId = +params.get('sectionId');
         }
       );
-  }
-
-  ngAfterViewInit(): void {
-    this._overlayLoaderService.setLoadingState(false);
   }
 
   public onSaveSectionNotes(notes: string): void {

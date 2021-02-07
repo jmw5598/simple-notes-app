@@ -1,4 +1,4 @@
-<div *ngIf="(section$ | async)" [@fadeAnimation] class="editor container-navbar-adjust">
+<div *ngIf="!(isPageLoading$ | async) && (section$ | async)" [@fadeAnimation] class="editor container-navbar-adjust">
   <div class="editor-left">
     <angular-markdown-editor
         textareaId="section-editor-area" 
@@ -11,7 +11,7 @@
   </div>
   <div class="editor-right">
     <div class="editor-markdown-preview">
-      <markdown [data]="sectionNotes"></markdown>
+      <markdown class="markdown-body" [data]="sectionNotes"></markdown>
     </div>
   </div>
 </div>

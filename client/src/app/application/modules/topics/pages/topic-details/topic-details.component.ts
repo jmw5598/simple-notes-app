@@ -9,7 +9,7 @@ import { searchSections, deleteSection, setExportTopicFileResponse, setExportTop
 import { FileResponse, Topic, Section } from '@sn/shared/models';
 import { fadeAnimation } from '@sn/shared/animations';
 import { PageableSearch, Page, IPageable, ResponseMessage } from '@sn/core/models';
-import { DrawerService, DrawerLocation, OverlayLoaderService } from '@sn/shared/components';
+import { AbstractPageOverlayLoader, DrawerService, DrawerLocation, OverlayLoaderService } from '@sn/shared/components';
 import { DEFAULT_SEARCH_SECTIONS_PAGE } from '@sn/core/defaults';
 import { TopicExportComponent } from '../../components/topic-export/topic-export.component';
 import { TopicUpdateComponent } from '../../components/topic-update/topic-update.component';
@@ -24,7 +24,7 @@ import { ResponseStatus } from '@sn/core/enums';
   providers: [DrawerService],
   animations: [fadeAnimation]
 })
-export class TopicDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
+export class TopicDetailsComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {
   public DrawerLocation = DrawerLocation;
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_SECTIONS_PAGE;
   private _subscriptionSubject: Subject<void>;
@@ -40,8 +40,9 @@ export class TopicDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private _store: Store<ISectionsState>,
     private _drawerService: DrawerService,
-    private _overlayLoaderService: OverlayLoaderService
+    protected _overlayLoaderService: OverlayLoaderService
   ) {
+    super(_overlayLoaderService);
     this._subscriptionSubject = new Subject<void>();
   }
 
@@ -67,10 +68,6 @@ export class TopicDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
           this.onSearchSections("");
         }
       }));
-  }
-
-  ngAfterViewInit(): void {
-    this._overlayLoaderService.setLoadingState(false);
   }
 
   public onDeleteSection(sectionId: number): void {
