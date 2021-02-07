@@ -10,7 +10,7 @@ import { selectSearchDocumentsResult } from '../../store/selectors';
 import { deleteDocument, searchDocuments, searchDocumentsResult } from '../../store/actions';
 import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/core/defaults';
 import { tap } from 'rxjs/operators';
-import { DrawerService, DrawerLocation, DrawerSize } from '@sn/shared/components';
+import { DrawerService, DrawerLocation, DrawerSize, OverlayLoaderService, AbstractPageOverlayLoader } from '@sn/shared/components';
 import { DocumentBuilderComponent } from '../../components/document-builder/document-builder.component';
 
 @Component({
@@ -20,7 +20,7 @@ import { DocumentBuilderComponent } from '../../components/document-builder/docu
   providers: [DrawerService],
   animations: [fadeAnimation]
 })
-export class ViewDocumentsComponent implements OnInit, OnDestroy {
+export class ViewDocumentsComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_DOCUMENTS_PAGE;
   public DrawerLocation = DrawerLocation;
   public searchDocumentsResult$: Observable<Page<Document>>
@@ -30,8 +30,11 @@ export class ViewDocumentsComponent implements OnInit, OnDestroy {
 
   constructor(
     private _store: Store<IDocumentsState>,
-    private _drawerService: DrawerService
-  ) { }
+    private _drawerService: DrawerService,
+    protected _overlayLoaderService: OverlayLoaderService
+  ) {
+    super(_overlayLoaderService);
+  }
 
   ngOnInit(): void {
     this.searchDocumentsResult$ = this._store.select(selectSearchDocumentsResult)

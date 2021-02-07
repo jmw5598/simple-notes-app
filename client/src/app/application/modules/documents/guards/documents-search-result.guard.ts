@@ -9,16 +9,20 @@ import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/core/defaults';
 import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 import { selectSearchDocumentsResult } from '../store/selectors';
 import { searchDocuments } from '../store/actions';
+import { OverlayLoaderService } from '@sn/shared/components';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DocumentsSearchResultGuard implements CanActivate {
-  constructor(private _store: Store<IDocumentsState>) {}
+  constructor(
+    private _overlayLoaderService: OverlayLoaderService,
+    private _store: Store<IDocumentsState>
+  ) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): Observable<boolean> {
     const pageable: IPageable = DEFAULT_SEARCH_DOCUMENTS_PAGE;
     const search: PageableSearch = {
       searchTerm: '',
@@ -35,9 +39,8 @@ export class DocumentsSearchResultGuard implements CanActivate {
     return this._store.select(selectSearchDocumentsResult).pipe(
       tap((page: Page<Document>) => {
         if (!page) {
-          this._store.dispatch(searchDocuments({
-            search: search
-          }))
+          this._overlayLoaderService.setLoadingState(true);
+          this._store.dispatch(searchDocuments({ search: search }))
         }
       }),
       filter((page: Page<Document>) => !!page),
