@@ -1,138 +1,139 @@
-`client/src/app`
-[_] application
-  [X] components
-    [X] navigation
-    [X] toolbar
-  [_] modules
-    [X] accounts
-      [X] components
-        [X] account-user-card
-      [X] guards
-        [X] account-details
-        [X] account-profile
-      [X] modules
-        [X] account-settings-general
-          [X] components
-            [X] account-details-display
-            [X] account details-form
-          [X] pages
-            [X] account-settings-general        
-        [X] account-settings-integrations
-          [X] components
-            [X] calendar-integration
-          [X] guards
-            [X] calendar-integration-grouped-by-type
-          [X] pages
-            [X] account-settings-integrations
-          [_] store (?)
-        [X] account-settings-security
-          [X] pages
-            [X] account-settings-security
-        [X] account-settings-toolbar
-          [X] components
-            [X] configure-keyboard-shortcut
-            [X] toolbary-keyboard-shortcut-list
-          [X] pages
-            [X] account-settings-toolbar
-      [X] pages
-        [X] account-settings
-      [_] store (?)
-    [X] calendar
-      [X] components
-        [X] calendar-event-details
-        [X] calendar-event-update
-        [X] calendar-event-view
-      [X] pages
-        [X] view-calendar
-      [_] store (?)
-    [X] dashboard
-      [X] components
-        [X] recent-topics-list
-        [X] todays-calendar-events-list
-      [X] pages
-        [X] dashboard-overview
-      [_] store (?)
-    [_] documents
-      [_] pages
-        [_] document-builder
-      [_] store (?)
-    [X] topics
-      [X] components
-        [X] section-create
-        [X] section-form
-        [X] section-list
-        [X] section-update
-        [X] topic-export
-        [X] topic-list
-        [X] topic-update
-      [X] guards
-        [X] section-by-id
-        [X] sections-search
-        [X] topic-by-id
-        [X] topics-search
-      [X] pages
-        [X] edit-section-notes
-        [X] topic-details
-        [X] view-topics
-      [?] store (?)
-  [?] store (?)
+## `client/src/app`
 
-[X] auth
-  [X] components
-    [X] auth-marketing
-    [X] registration-account-form
-    [X] registration-address-form
-    [X] registration-profile-form
-    [X] registration-result
-    [X] registration-user-form
-  [X] guards
-    [X] authentication
-  [X] pages
-    [X] login
-    [X] logout
-    [X] password-request
-    [X] password-reset
-    [X] register
+- [ ] application
+  - [x] components
+    - [x] navigation
+    - [x] toolbar
+  - [ ] modules
+    - [x] accounts
+      - [x] components
+        - [x] account-user-card
+      - [x] guards
+        - [x] account-details
+        - [x] account-profile
+      - [x] modules
+        - [x] account-settings-general
+          - [x] components
+            - [x] account-details-display
+            - [x] account details-form
+          - [x] pages
+            - [x] account-settings-general        
+        - [x] account-settings-integrations
+          - [x] components
+            - [x] calendar-integration
+          - [x] guards
+            - [x] calendar-integration-grouped-by-type
+          - [x] pages
+            - [x] account-settings-integrations
+          - [ ] store (?)
+        - [x] account-settings-security
+          - [x] pages
+            - [x] account-settings-security
+        - [x] account-settings-toolbar
+          - [x] components
+            - [x] configure-keyboard-shortcut
+            - [x] toolbary-keyboard-shortcut-list
+          - [x] pages
+            - [x] account-settings-toolbar
+      - [x] pages
+        - [x] account-settings
+      - [ ] store (?)
+    - [x] calendar
+      - [x] components
+        - [x] calendar-event-details
+        - [x] calendar-event-update
+        - [x] calendar-event-view
+      - [x] pages
+        - [x] view-calendar
+      - [ ] store (?)
+    - [x] dashboard
+      - [x] components
+        - [x] recent-topics-list
+        - [x] todays-calendar-events-list
+      - [x] pages
+        - [x] dashboard-overview
+      - [ ] store (?)
+    - [ ] documents
+      - [ ] pages
+        - [ ] document-builder
+      - [ ] store (?)
+    - [x] topics
+      - [x] components
+        - [x] section-create
+        - [x] section-form
+        - [x] section-list
+        - [x] section-update
+        - [x] topic-export
+        - [x] topic-list
+        - [x] topic-update
+      - [x] guards
+        - [x] section-by-id
+        - [x] sections-search
+        - [x] topic-by-id
+        - [x] topics-search
+      - [x] pages
+        - [x] edit-section-notes
+        - [x] topic-details
+        - [x] view-topics
+      - [?] store (?)
+  - [?] store (?)
 
-[_] core
-  [_] guards
-    [_] plans
-  [_] interceptor
-    [_] jwt-token
-  [_] services
-    [_] accounts
-    [_] authenticaiton
-    [_] calendar-events
-    [_] calendar-integrations
-    [_] documents
-    [_] plans
-    [_] profiles
-    [_] sections
-    [_] settings
-    [_] topics
-  [_] store (?)
-  [_] 
+- [x] auth
+  - [x] components
+    - [x] auth-marketing
+    - [x] registration-account-form
+    - [x] registration-address-form
+    - [x] registration-profile-form
+    - [x] registration-result
+    - [x] registration-user-form
+  - [x] guards
+    - [x] authentication
+  - [x] pages
+    - [x] login
+    - [x] logout
+    - [x] password-request
+    - [x] password-reset
+    - [x] register
 
-[_] shared
-  [X] components
-    [X] calendar-event-create
-    [X] debounced-search
-    [X] drawer
-    [X] empty-data
-    [X] layout
-    [X] loading-spinner
-    [X] page-header
-    [X] paginator
-    [X] spinner
-    [-] tag-input (THIS IS GOING TO BE REBUILT)
-    [X] topic-create
-    [X] topic-search
-  [_] forms
-    [X] calendar-event-form
-    [_] topic-form
-  [X] directives
-    [X] debounce
+- [ ] core
+  - [ ] guards
+    - [ ] plans
+  - [ ] interceptor
+    - [ ] jwt-token
+  - [ ] services
+    - [ ] accounts
+    - [ ] authenticaiton
+    - [ ] calendar-events
+    - [ ] calendar-integrations
+    - [ ] documents
+    - [ ] plans
+    - [ ] profiles
+    - [ ] sections
+    - [ ] settings
+    - [ ] topics
+  - [ ] store (?)
+  - [ ] 
+
+- [ ] shared
+  - [x] components
+    - [x] calendar-event-create
+    - [x] debounced-search
+    - [x] drawer
+    - [x] empty-data
+    - [x] layout
+    - [x] loading-spinner
+    - [x] page-header
+    - [x] paginator
+    - [x] spinner
+    - [-] tag-input (THIS IS GOING TO BE REBUILT)
+    - [x] topic-create
+    - [x] topic-search
+  - [ ] forms
+    - [x] calendar-event-form
+    - [ ] topic-form
+  - [x] directives
+    - [x] debounce
 
 
 `server/src/`
-[_] TODO
+- [ ] TODO
