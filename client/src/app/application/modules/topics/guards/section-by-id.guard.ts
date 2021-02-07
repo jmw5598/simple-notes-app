@@ -20,7 +20,6 @@ export class SectionByIdGuard implements CanActivate {
   ) {}
 
   canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
-    this._overlayLoaderService.setLoadingState(true);
     const topicId: number = +next.paramMap.get('topicId');
     const sectionId: number = +next.paramMap.get('sectionId');
     return this._setSelectedSectionIfExistElseRedirect(topicId, sectionId).pipe(
@@ -33,6 +32,7 @@ export class SectionByIdGuard implements CanActivate {
     return this._store.select(selectSelectedSection).pipe(
       tap((section: Section) => {
         if (!section || section.id !== sectionId) {
+          this._overlayLoaderService.setLoadingState(true);
           this._store.dispatch(getSectionById({ 
             topicId: topicId,
             sectionId: sectionId

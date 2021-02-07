@@ -22,7 +22,6 @@ export class SectionsSearchResultGuard implements CanActivate {
   ) {}
 
   canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
-    this._overlayLoaderService.setLoadingState(true);
     const topicId: number = +next.paramMap.get('topicId');
     const pageable: IPageable = DEFAULT_SEARCH_SECTIONS_PAGE;
     const search: PageableSearch = {
@@ -40,6 +39,7 @@ export class SectionsSearchResultGuard implements CanActivate {
     return this._store.select(selectSearchSectionsResult).pipe(
       tap((page: Page<Section>) => {
         if (!page) {
+          this._overlayLoaderService.setLoadingState(true);
           this._store.dispatch(searchSections({
             topicId: topicId,
             search: search

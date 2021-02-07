@@ -29,8 +29,6 @@ export class TopicsSearchResultGuard implements CanActivate {
       searchTerm: '',
       pageable: pageable
     };
-    // Maybe check if loading first? Will need to add getter to service.
-    this._overlayLoaderService.setLoadingState(true);
     return this._setSearchTopicsResultFromStoreOrApi(search).pipe(
       switchMap(() => of(true)),
       catchError(() => of(false))
@@ -41,6 +39,7 @@ export class TopicsSearchResultGuard implements CanActivate {
     return this._store.select(selectSearchTopicsResult).pipe(
       tap((page: Page<Topic>) => {
         if (!page) {
+          this._overlayLoaderService.setLoadingState(true);
           this._store.dispatch(searchTopics({
             search: search
           }))

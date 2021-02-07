@@ -39,12 +39,15 @@ describe('OverlayLoaderComponent', () => {
     overloadLoaderService.setLoadingState(true);
   });
 
-  it('should set isLoading to false when OverlayLoaderService.setLoadingState is called with false', () => {
+  it('should set isLoading to false when OverlayLoaderService.setLoadingState is called with false', (done) => {
     component.isLoading$
       .pipe(
         skip(1),
         take(1)
-      ).subscribe(isLoading => expect(isLoading).toBeFalse());
+      ).subscribe(isLoading => {
+        expect(isLoading).toBeFalse()
+        done();
+      });
     overloadLoaderService.setLoadingState(false);
   });
 });
