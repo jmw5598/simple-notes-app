@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OverlayLoaderService {
+  private readonly DELAY: number = 500;
   private _isLoading: boolean = false;
   private _isLoadingSource: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this._isLoading);
 
@@ -16,6 +17,10 @@ export class OverlayLoaderService {
 
   public setLoadingState(isLoading: boolean): void {
     this._isLoading = isLoading;
-    this._isLoadingSource.next(this._isLoading);
+    if (isLoading) {
+      this._isLoadingSource.next(this._isLoading);
+    } else {
+      setTimeout(() => this._isLoadingSource.next(this._isLoading), this.DELAY);
+    }
   }
 }
