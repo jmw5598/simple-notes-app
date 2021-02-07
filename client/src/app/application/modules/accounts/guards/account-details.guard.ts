@@ -9,13 +9,15 @@ import { Account } from '@sn/core/models';
 import { IAccountsState } from '../store/reducers';
 import { getAccountDetails } from '../store/actions';
 import { selectAccountDetails } from '../store/selectors';
+import { OverlayLoaderService } from '@sn/shared/components';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountDetailsGuard implements CanActivate {
   constructor(
-    private _store: Store<IAccountsState>
+    private _store: Store<IAccountsState>,
+    private _overlayLoaderSerivce: OverlayLoaderService
   ) {}
   
   canActivate(
@@ -31,6 +33,7 @@ export class AccountDetailsGuard implements CanActivate {
     return this._store.select(selectAccountDetails).pipe(
       tap((details: Account) => {
         if (!details) {
+          this._overlayLoaderSerivce.setLoadingState(true);
           this._store.dispatch(getAccountDetails());
         }
       }),

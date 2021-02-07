@@ -1,4 +1,4 @@
-<div [@fadeAnimation] class="container-navbar-adjust container-fluid p-0 height-full">
+<div *ngIf="!(isPageLoading$ | async) && (accountProfile$ | async) && (accountDetails$ | async)" [@fadeAnimation] class="container-navbar-adjust container-fluid p-0 height-full">
   <div class="row p-0 m-0 height-full">
     <!-- Column Left -->
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-5 p-0 m-0 border-right-1">

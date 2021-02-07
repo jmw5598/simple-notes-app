@@ -7,6 +7,7 @@ import { IAccountsState } from '../../store/reducers';
 import { Account, Profile } from '@sn/core/models';
 import { selectAccountDetails, selectAccountProfile } from '../../store/selectors';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
+import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-account-settings',
@@ -14,7 +15,7 @@ import { TabsetComponent } from 'ngx-bootstrap/tabs';
   styleUrls: ['./account-settings.component.scss'],
   animations: [fadeAnimation]
 })
-export class AccountSettingsComponent implements OnInit, AfterViewInit {
+export class AccountSettingsComponent extends AbstractPageOverlayLoader implements OnInit, AfterViewInit {
   @ViewChild('tabs', { static: false })
   public tabs: TabsetComponent;
 
@@ -24,8 +25,11 @@ export class AccountSettingsComponent implements OnInit, AfterViewInit {
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
-    private _store: Store<IAccountsState>
-  ) { }
+    private _store: Store<IAccountsState>,
+    protected _overlayLoaderService: OverlayLoaderService
+  ) {
+    super(_overlayLoaderService);
+  }
 
   ngOnInit(): void {
     this.accountProfile$ = this._store.select(selectAccountProfile);
@@ -33,6 +37,7 @@ export class AccountSettingsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    super.ngAfterViewInit();
     setTimeout(() => {
       const currentTab: UrlSegment = this._route.firstChild.snapshot.url[0];
       const tab = this.tabs?.tabs?.find(e => e.id === currentTab.path.toLowerCase());
