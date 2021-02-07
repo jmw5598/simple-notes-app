@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SpinnerSize } from './spinner-size.enum';
+import { SpinnerStyle } from './spinner-style.enum';
 
 @Component({
   selector: 'sn-loading-spinner',
@@ -8,7 +8,7 @@ import { SpinnerSize } from './spinner-size.enum';
 })
 export class LoadingSpinnerComponent implements OnInit {
   @Input()
-  public size: SpinnerSize;
+  public style: SpinnerStyle = SpinnerStyle.DARK;
 
   @Input()
   public text: string;

@@ -1,4 +1,4 @@
-export * from './loading-spinner/spinner-size.enum';
+export * from './loading-spinner/spinner-style.enum';
 
 export * from './drawer/drawer.service';
 export * from './drawer/drawer-overlay-style.enum';

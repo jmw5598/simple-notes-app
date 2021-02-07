@@ -5,7 +5,7 @@ import * as fromAuth from '../../store/reducers';
 import * as fromActions from '../../store/actions';
 
 import { fadeAnimation } from '@sn/shared/animations';
-import { SpinnerSize } from '@sn/shared/components';
+import { SpinnerStyle } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-logout',
@@ -14,7 +14,7 @@ import { SpinnerSize } from '@sn/shared/components';
   animations: [fadeAnimation]
 })
 export class LogoutComponent implements OnInit {
-  public SpinnerSize = SpinnerSize;
+  public SpinnerStyle = SpinnerStyle;
 
   constructor(private _store: Store<fromAuth.IAuthenticationState>) { }
 
