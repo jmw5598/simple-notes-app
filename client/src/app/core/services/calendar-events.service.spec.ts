@@ -5,7 +5,7 @@ import { take } from 'rxjs/operators';
 import { CalendarEventsService } from './calendar-events.service';
 import { CalendarEvent } from '../models';
 
-fdescribe('CalendarEventsService', () => {
+describe('CalendarEventsService', () => {
   let service: CalendarEventsService;
   let httpMock: HttpTestingController;
 
@@ -76,6 +76,17 @@ fdescribe('CalendarEventsService', () => {
   it('should make a GET request to find all accounts when findAll is called', () => {
     const requestUrl: string = `${environment.api.baseUrl}/calendar/events`;
     service.findAll()
+      .pipe(take(1))
+      .subscribe();
+    const httpRequest = httpMock.expectOne(requestUrl);
+    expect(httpRequest.request.method).toEqual('GET');
+  });
+
+  it('should make GET request to get calendar events between two date when findBetweenDates is called', () => {
+    const startDate = new Date();
+    const endDate = new Date();
+    const requestUrl: string = `${environment.api.baseUrl}/calendar/events/between?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`;
+    service.findBetweenDates(startDate, endDate)
       .pipe(take(1))
       .subscribe();
     const httpRequest = httpMock.expectOne(requestUrl);
