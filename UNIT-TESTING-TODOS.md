@@ -107,7 +107,7 @@
     - [ ] calendar-integrations
     - [ ] documents
     - [x] plans
-    - [ ] profiles
+    - [x] profiles
     - [ ] sections
     - [ ] settings
     - [ ] topics
