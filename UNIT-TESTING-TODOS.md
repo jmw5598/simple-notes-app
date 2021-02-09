@@ -102,8 +102,8 @@
     - [ ] jwt-token
   - [ ] services
     - [x] accounts
-    - [ ] authenticaiton
-    - [ ] calendar-events
+    - [x] authenticaiton
+    - [x] calendar-events
     - [ ] calendar-integrations
     - [ ] documents
     - [ ] plans
