@@ -106,7 +106,7 @@
     - [x] calendar-events
     - [ ] calendar-integrations
     - [ ] documents
-    - [ ] plans
+    - [x] plans
     - [ ] profiles
     - [ ] sections
     - [ ] settings
