@@ -105,7 +105,7 @@
     - [x] authenticaiton
     - [x] calendar-events
     - [ ] calendar-integrations
-    - [ ] documents
+    - [x] documents
     - [x] plans
     - [x] profiles
     - [ ] sections
