@@ -108,7 +108,7 @@
     - [x] documents
     - [x] plans
     - [x] profiles
-    - [ ] sections
+    - [x] sections
     - [ ] settings
     - [x] topics
   - [ ] store (?)
