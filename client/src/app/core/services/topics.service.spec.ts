@@ -2,13 +2,13 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { environment } from '@env/environment';
 
-import { Topic } from '@sn/shared/models';
+import { ExportConfig, ExportFormat, FileResponse, Topic } from '@sn/shared/models';
 import { take } from 'rxjs/operators';
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '../defaults';
 import { IPageable } from '../models';
 import { TopicsService } from './topics.service';
 
-fdescribe('TopicsService', () => {
+describe('TopicsService', () => {
   let service: TopicsService;
   let httpMock: HttpTestingController;
 
@@ -17,6 +17,16 @@ fdescribe('TopicsService', () => {
     title: 'Testing',
     synopsis: 'Testing Synopsis'
   } as Topic;
+
+  const exportConfigMock: ExportConfig = {
+    format: ExportFormat.PDF,
+    includeSectionSynopsis: true,
+    includeSectionTitle: true,
+    includeTopicSynopsis: true,
+    includeTopicTitle: true
+  } as ExportConfig;
+
+  const fileMock = new Blob(['TESTING EXPORT'], { type: 'application/octet-stream' });
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -91,8 +101,23 @@ fdescribe('TopicsService', () => {
     expect(httpRequest.request.method).toEqual('GET');
   });
 
-  // TODO
-  it('should export topic', () => {
-    fail()
+  it('should make POST request to download file with supplied export config when exportTopic is called', () => {
+    const requestUrl: string = `${environment.api.baseUrl}/topics/${topicMock.id}/download`;
+    service.exportTopic(topicMock.id, exportConfigMock)
+      .pipe(take(1))
+      .subscribe(fileResponse => {
+        expect(fileResponse).toBeTruthy();
+        expect(fileResponse).toBeInstanceOf(FileResponse);
+      });
+
+    const httpRequest = httpMock.expectOne(requestUrl);
+    expect(httpRequest.request.method).toEqual('POST');
+    expect(httpRequest.request.body).toEqual(exportConfigMock);
+
+    httpRequest.flush(fileMock, {
+      headers: { 'Content-Disposition': 'attachment; filename="testfilename.pdf"' },
+      status: 200,
+      statusText: 'OK'
+    });
   });
 });

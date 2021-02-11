@@ -110,7 +110,7 @@
     - [x] profiles
     - [ ] sections
     - [ ] settings
-    - [ ] topics
+    - [x] topics
   - [ ] store (?)
   - [ ] 
 
