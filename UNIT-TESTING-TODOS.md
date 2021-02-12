@@ -109,7 +109,7 @@
     - [x] plans
     - [x] profiles
     - [x] sections
-    - [ ] settings
+    - [x] settings
     - [x] topics
   - [ ] store (?)
   - [ ] 
