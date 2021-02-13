@@ -65,13 +65,6 @@ bs-datepicker-container {
   max-height: 57px;
   margin-bottom: 0 !important;
   border-bottom: $border-1;
-
-  .fc-toolbar-chunk {
-    .fc-toolbar-title {
-      font-weight: bold;
-      color: $primary;
-    }
-  }
 }
 
 .fc-scrollgrid {
@@ -84,7 +77,7 @@ bs-datepicker-container {
   height: 52px;
   line-height: 52px;
   vertical-align: middle;
-} 
+}
 
 // General Purpose Utilities
 
