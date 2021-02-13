@@ -21,3 +21,8 @@ export const selectAccountProfile = createSelector(
   selectAccountState,
   (state: fromAccounts.IAccountsState) => state.profile
 );
+
+export const selectThemes = createSelector(
+  selectAccountState,
+  (state: fromAccounts.IAccountsState) => state.themes
+);

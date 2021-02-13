@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { AccountStatus } from '@sn/core/enums';
-import { Account, Profile } from '@sn/core/models';
+import { Account, Profile, Theme } from '@sn/core/models';
+import { from } from 'rxjs';
 import * as fromActions from '../actions/accounts.actions';
 
 export const accountFeatureKey = 'accounts';
@@ -8,13 +9,15 @@ export const accountFeatureKey = 'accounts';
 export interface IAccountsState {
   details: Account,
   status: AccountStatus,
-  profile: Profile
+  profile: Profile,
+  themes: Theme[]
 }
 
 export const initialAccountState: IAccountsState = {
   details: null,
   status: AccountStatus.INACTIVE,
-  profile: null
+  profile: null,
+  themes: null
 }
 
 const _accountReducer = createReducer(
@@ -41,6 +44,12 @@ const _accountReducer = createReducer(
     return {
       ...state,
       profile: profile
+    }
+  }),
+  on(fromActions.getThemesSuccess, (state, { themes }) => {
+    return {
+      ...state,
+      themes: themes
     }
   })
 );

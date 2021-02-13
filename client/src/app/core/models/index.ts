@@ -25,3 +25,5 @@ export * from './calendar-integration.model';
 export * from './calendar-integration-type.model';
 export * from './integrations/integration-status.enum';
 export * from './integrations/calendar-integration-state.model';
+
+export * from './theme.model';

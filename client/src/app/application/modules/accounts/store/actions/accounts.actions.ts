@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Account, Profile } from '@sn/core/models';
+import { Account, Profile, Theme } from '@sn/core/models';
 
 export const getAccountDetails = createAction(
   '[Account] Get Account Details'
@@ -37,4 +37,13 @@ export const updateAccountProfile = createAction(
 export const updateAccountProfileSuccess = createAction(
   '[Account] Update Account Profile Success',
   props<{ profile: Profile}>()
+);
+
+export const getThemes = createAction(
+  '[Themes] Get Themes'
+);
+
+export const getThemesSuccess = createAction(
+  '[Themes] Get Themes Success',
+  props<{ themes: Theme[] }>()
 );

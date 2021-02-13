@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccountDetailsGuard, AccountProfileGuard } from './guards';
+import { AccountDetailsGuard, AccountProfileGuard, ThemesGuard } from './guards';
 import { AccountSettingsComponent } from './pages/account-settings/account-settings.component';
 
 const routes: Routes = [
   {
     path: 'settings',
-    canActivate: [AccountDetailsGuard, AccountProfileGuard],
+    canActivate: [
+      AccountDetailsGuard, 
+      AccountProfileGuard,
+      ThemesGuard
+    ],
     component: AccountSettingsComponent,
     children: [
       {

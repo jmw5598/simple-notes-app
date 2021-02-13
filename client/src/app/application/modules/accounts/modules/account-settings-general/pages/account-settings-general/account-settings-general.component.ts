@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Account, Profile } from '@sn/core/models';
+import { Account, Profile, Theme } from '@sn/core/models';
 import { Store } from '@ngrx/store';
 import { IAccountsState } from '../../../../store/reducers';
-import { selectAccountDetails, selectAccountProfile } from '../../../../store/selectors';
+import { selectAccountDetails, selectAccountProfile, selectThemes } from '../../../../store/selectors';
 import { fadeAnimation } from '@sn/shared/animations';
 import { AccountValidators } from '@sn/core/validators';
 import { buildProfileFormGroup } from '@sn/shared/forms';
@@ -22,6 +22,7 @@ export class AccountSettingsGeneralComponent implements OnInit {
   public isEditingProfile: boolean;
   public accountDetails$: Observable<Account>;
   public accountProfile$: Observable<Profile>;
+  public themes$: Observable<Theme[]>;
 
   constructor(
     private _store: Store<IAccountsState>,
@@ -32,6 +33,7 @@ export class AccountSettingsGeneralComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.themes$ = this._store.select(selectThemes);
     this.accountDetails$ = this._store.select(selectAccountDetails);
     this.accountProfile$ = this._store.select(selectAccountProfile).pipe(
       tap((profile: Profile) => {

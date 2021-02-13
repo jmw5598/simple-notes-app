@@ -9,4 +9,4 @@ export * from './sections.service';
 export * from './settings.service';
 export * from './topics.service';
 export * from './dynamic-theme.service';
-
+export * from './themes.service';

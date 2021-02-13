@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { AccountsService } from '@sn/core/services';
+import { AccountsService, ThemesService } from '@sn/core/services';
 import { of } from 'rxjs';
 import { tap, map, mergeMap, catchError } from 'rxjs/operators';
 
@@ -12,7 +12,8 @@ import * as fromCore from '@sn/core/store/actions';
 export class AccountsEffects {
   constructor(
     private _actions: Actions,
-    private _accountsService: AccountsService
+    private _accountsService: AccountsService,
+    private _themesService: ThemesService
   ) {}
 
   getAccountDetails$ = createEffect(() => this._actions.pipe(
@@ -68,6 +69,16 @@ export class AccountsEffects {
       this._openNewNotificationSuccess(`We successfully updated your account profile!`);
     })
   ), { dispatch: false });
+
+  getThemes$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.getThemes),
+    mergeMap(() => this._themesService.findAll()
+      .pipe(
+        map((themes) => fromActions.getThemesSuccess({ themes: themes })),
+        catchError(error => of(fromCore.handleHttpError({ error: error })))
+      )
+    )
+  ));
 
   private _openNewNotificationSuccess(message: string): void {
     console.log("Error: ", message);
