@@ -9,6 +9,7 @@ import { Document } from '../../documents/entities/document.entity';
 import { CalendarEvent } from '../../calendar/entities/calendar-event.entity';
 import { CalendarIntegration } from '../../calendar/entities/calendar-integration.entity';
 import { KeyboardShortcut } from './keyboard-shortcut.entity';
+import { Theme } from './theme.entity';
 
 @Entity()
 export class Account extends BaseEntity {
@@ -46,4 +47,8 @@ export class Account extends BaseEntity {
 
   @OneToMany(type => CalendarIntegration, integration => integration.account)
   public calendarIntegrations: CalendarIntegration[];
+
+  @ManyToOne(type => Theme, theme => theme.accounts, { nullable: true })
+  @JoinColumn({ name: 'theme_id' })
+  public theme: Theme;
 }
