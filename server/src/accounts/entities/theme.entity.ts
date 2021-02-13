@@ -1,11 +1,10 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Account } from './account.entity';
 
-@Entity()
-export class Theme {
-  @PrimaryGeneratedColumn()
-  public id: number;
+import { BaseEntity } from '../../database/entities/base.entity';
 
+@Entity()
+export class Theme extends BaseEntity {
   @Column({ nullable: false })
   public name: string;
 
