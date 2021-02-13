@@ -12,7 +12,7 @@ export class UsersService {
   
   public async findByUsername(username: string): Promise<User | undefined> {
     return (await this.usersRepository.find({
-      relations: ['roles', 'account'],
+      relations: ['roles', 'account', 'account.theme'],
       where: { username: username },
       take: 1
     }))[0];

@@ -9,6 +9,9 @@ import * as bcrypt from 'bcrypt';
 import { UserDetails } from './models/user-details.model';
 import { InvalidUsernamePasswordException } from './exceptions/invalid-username-password.exception';
 import { UnconfirmedAccountException } from './exceptions/unconfirmed-account.exception';
+import { UserSettings } from './models/user-settings.model';
+import { Account } from 'src/accounts/entities/account.entity';
+import { ThemeMapper } from 'src/themes/mappers/theme.mapper';
 
 @Injectable()
 export class AuthenticationService {
@@ -84,7 +87,10 @@ export class AuthenticationService {
     return {
       id: user.id,
       username: user.username,
-      roles: roles
+      roles: roles,
+      settings: { 
+        theme: ThemeMapper.toThemeDto(user?.account?.theme)
+      } as UserSettings
     } as UserDetails
   }
 }
