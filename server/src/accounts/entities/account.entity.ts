@@ -9,7 +9,7 @@ import { Document } from '../../documents/entities/document.entity';
 import { CalendarEvent } from '../../calendar/entities/calendar-event.entity';
 import { CalendarIntegration } from '../../calendar/entities/calendar-integration.entity';
 import { KeyboardShortcut } from './keyboard-shortcut.entity';
-import { Theme } from './theme.entity';
+import { Theme } from '../../themes/entities/theme.entity';
 
 @Entity()
 export class Account extends BaseEntity {

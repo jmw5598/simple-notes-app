@@ -8,7 +8,6 @@ import { Address } from './entities/address.entity';
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { EmailerModule } from '../common/services/emailer/emailer.module';
 import { LoggerModule } from '../logger/logger.module';
-import { Plan } from '../plans/entities/plan.entity';
 import { Profile } from './entities/profile.entity';
 import { Role } from '../users/entities/role.entity';
 import { KeyboardShortcutAction } from './entities/keyboard-shortcut-action.entity';
