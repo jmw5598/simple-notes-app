@@ -5,13 +5,18 @@ import { SettingsService } from '../services/settings.service';
 import { KeyboardShortcutActionDto } from '../dtos/keyboard-shortcut-action.dto';
 import { CreateKeyboardShortcutDto } from '../dtos/create-keyboard-shortcut.dto';
 import { UpdateKeyboardShortcutDto } from '../dtos/update-keyboard-shortcut.dto';
+import { request } from 'http';
+import { Theme } from 'src/themes/entities/theme.entity';
+import { ThemeDto } from 'src/themes/dtos/theme.dto';
+import { ThemesService } from 'src/themes/services/themes.service';
 
 @Controller('accounts/settings')
 @UseGuards(JwtAuthenticationGuard)
 export class SettingsController {
   constructor(
     private readonly _logger: SnLoggerService,
-    private readonly _settingsService: SettingsService
+    private readonly _settingsService: SettingsService,
+    private readonly _themeService: ThemesService
   ) {
     this._logger.setContext(this.constructor.name);
   }
@@ -63,6 +68,19 @@ export class SettingsController {
        return this._settingsService.deleteKeyboardShortcut(accountId, shortcutId);
     } catch (error) {
       this._logger.error(`Error deleting keyboard shortcut!`, error);
+      throw error;
+    }
+  }
+
+  @Put('themes/:themeId')
+  public async changeAccountTheme(
+      @Request() request,
+      @Param('themeId') themeId: number): Promise<ThemeDto> {
+    try {
+      const accountId: number = +request.user.accountId;
+      return this._settingsService.changeAccountTheme(accountId, themeId);
+    } catch (error) {
+      this._logger.error(`Error changing account theme`, error);
       throw error;
     }
   }

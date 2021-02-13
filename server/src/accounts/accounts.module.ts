@@ -16,6 +16,8 @@ import { StripeCustomer } from './entities/stripe-customers.entity';
 import { User } from '../users/entities/user.entity';
 import { SettingsController } from './controllers/settings.controller';
 import { SettingsService } from './services/settings.service';
+import { ThemesService } from '../themes/services/themes.service';
+import { Theme } from '../themes/entities/theme.entity';
 
 @Module({
   controllers: [
@@ -34,12 +36,14 @@ import { SettingsService } from './services/settings.service';
       StripeCustomer,
       User,
       KeyboardShortcut,
-      KeyboardShortcutAction
+      KeyboardShortcutAction,
+      Theme
     ])
   ],
   providers: [
     AccountsService,
-    SettingsService
+    SettingsService,
+    ThemesService
   ]
 })
 export class AccountsModule {}

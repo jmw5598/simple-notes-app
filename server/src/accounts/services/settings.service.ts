@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { KeyboardShortcut } from '../entities/keyboard-shortcut.entity';
@@ -8,14 +8,24 @@ import { KeyboardShortcutActionMapper } from '../mappers/keyboard-shortcut-actio
 import { CreateKeyboardShortcutDto } from '../dtos/create-keyboard-shortcut.dto';
 import { KeyboardShortcutNotFoundException } from '../exceptions/keyboard-shortcut-not-found.exception';
 import { UpdateKeyboardShortcutDto } from '../dtos/update-keyboard-shortcut.dto';
+import { Theme } from 'src/themes/entities/theme.entity';
+import { ThemeDto } from 'src/themes/dtos/theme.dto';
+import { ThemeNotFoundException } from 'src/themes/exceptions/theme-not-found.exception';
+import { Account } from '../entities/account.entity';
+import { AccountNotFoundException } from '../exceptions/account-not-found.exception';
+import { ThemeMapper } from 'src/themes/mappers/theme.mapper';
 
 @Injectable()
 export class SettingsService {
   constructor(
+    @InjectRepository(Account)
+    private readonly _accountRepository: Repository<Account>,
     @InjectRepository(KeyboardShortcut)
     private readonly _keyboardShortcutRepository: Repository<KeyboardShortcut>,
     @InjectRepository(KeyboardShortcutAction)
-    private readonly _keyboardShortcutActionRepository: Repository<KeyboardShortcutAction>
+    private readonly _keyboardShortcutActionRepository: Repository<KeyboardShortcutAction>,
+    @InjectRepository(Theme)
+    private readonly _themeRepository: Repository<Theme>
   ) {}
 
   public async getKeyboardShortcuts(accountId: number): Promise<KeyboardShortcutActionDto[]> {
@@ -77,6 +87,20 @@ export class SettingsService {
       await this._getKeyboardShortcutActionById(accountId, shortcut.keyboardShortcutAction.id)
     )
   }
+
+  public async changeAccountTheme(accountId: number, themeId: number): Promise<ThemeDto> {
+    const account: Account = await this._accountRepository.findOne(accountId);
+    if (!account) throw new AccountNotFoundException();
+
+    const theme: Theme = await this._themeRepository.findOne(themeId);
+    if (!theme) throw new ThemeNotFoundException();
+    
+    account.theme = theme;
+    this._accountRepository.save(account);
+
+    return ThemeMapper.toThemeDto(theme);
+  }
+
 
   private async _getKeyboardShortcutActionById(accountId: number, actionId: number): Promise<KeyboardShortcutAction> {
     return this._keyboardShortcutActionRepository
