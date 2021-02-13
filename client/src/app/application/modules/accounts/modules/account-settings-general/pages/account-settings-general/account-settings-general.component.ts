@@ -10,6 +10,7 @@ import { fadeAnimation } from '@sn/shared/animations';
 import { AccountValidators } from '@sn/core/validators';
 import { buildProfileFormGroup } from '@sn/shared/forms';
 import { updateAccountProfile } from '../../../../store/actions';
+import { DynamicThemeService } from '@sn/core/services';
 
 @Component({
   selector: 'sn-account-settings-general',
@@ -24,16 +25,19 @@ export class AccountSettingsGeneralComponent implements OnInit {
   public accountProfile$: Observable<Profile>;
   public themes$: Observable<Theme[]>;
 
+  public activeTheme: Theme;
+
   constructor(
     private _store: Store<IAccountsState>,
     private _formBuilder: FormBuilder,
-    private _accountValidators: AccountValidators
+    private _accountValidators: AccountValidators,
+    private _themeService: DynamicThemeService
   ) {
     this.isEditingProfile = false;
   }
 
   ngOnInit(): void {
-    this.themes$ = this._store.select(selectThemes);
+    this.themes$ = this._store.select(selectThemes).pipe(tap(themes => this.activeTheme = themes[0]));
     this.accountDetails$ = this._store.select(selectAccountDetails);
     this.accountProfile$ = this._store.select(selectAccountProfile).pipe(
       tap((profile: Profile) => {
@@ -54,5 +58,11 @@ export class AccountSettingsGeneralComponent implements OnInit {
   public onUpdateProfile(formValue: { profile: Profile }): void {
     this._store.dispatch(updateAccountProfile({ profile: formValue.profile }));
     this.onEditingProfile(false);
+  }
+
+  public onChangeTheme(theme: Theme): void {
+    console.log("Changing to theme");
+    this._themeService.loadStyle(theme.filename);
+    this.activeTheme = theme;
   }
 }
