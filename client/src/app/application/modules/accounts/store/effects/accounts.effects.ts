@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { AccountsService, ThemesService } from '@sn/core/services';
+import { AccountsService, SettingsService, ThemesService } from '@sn/core/services';
 import { of } from 'rxjs';
-import { tap, map, mergeMap, catchError } from 'rxjs/operators';
+import { tap, map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 
 import * as fromActions from '../actions';
 import * as fromCore from '@sn/core/store/actions';
+import { Theme } from '@sn/core/models';
 
 @Injectable()
 export class AccountsEffects {
   constructor(
     private _actions: Actions,
     private _accountsService: AccountsService,
-    private _themesService: ThemesService
+    private _themesService: ThemesService,
+    private _settingsService: SettingsService
   ) {}
 
   getAccountDetails$ = createEffect(() => this._actions.pipe(
@@ -75,6 +77,16 @@ export class AccountsEffects {
     mergeMap(() => this._themesService.findAll()
       .pipe(
         map((themes) => fromActions.getThemesSuccess({ themes: themes })),
+        catchError(error => of(fromCore.handleHttpError({ error: error })))
+      )
+    )
+  ));
+
+  changeAccountTheme$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.changeAccountTheme),
+    switchMap(({theme}) => this._settingsService.changeAccountTheme(theme)
+      .pipe(
+        map((theme: Theme) => fromActions.changeAccountThemeSuccess({ theme: theme })),
         catchError(error => of(fromCore.handleHttpError({ error: error })))
       )
     )

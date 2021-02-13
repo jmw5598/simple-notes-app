@@ -51,6 +51,12 @@ const _accountReducer = createReducer(
       ...state,
       themes: themes
     }
+  }),
+  on(fromActions.changeAccountThemeSuccess, (state, { theme }) => {
+    // TODO What to handle here???
+    return {
+      ...state
+    };
   })
 );
 

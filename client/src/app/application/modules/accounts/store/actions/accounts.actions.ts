@@ -47,3 +47,13 @@ export const getThemesSuccess = createAction(
   '[Themes] Get Themes Success',
   props<{ themes: Theme[] }>()
 );
+
+export const changeAccountTheme = createAction(
+  '[Themes] Change Account Theme',
+  props<{ theme: Theme }>()
+);
+
+export const changeAccountThemeSuccess = createAction(
+  '[Themes] Change Account Theme Success',
+  props<{ theme: Theme }>()
+);

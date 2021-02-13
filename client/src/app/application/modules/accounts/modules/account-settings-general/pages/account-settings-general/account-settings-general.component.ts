@@ -9,7 +9,7 @@ import { selectAccountDetails, selectAccountProfile, selectThemes } from '../../
 import { fadeAnimation } from '@sn/shared/animations';
 import { AccountValidators } from '@sn/core/validators';
 import { buildProfileFormGroup } from '@sn/shared/forms';
-import { updateAccountProfile } from '../../../../store/actions';
+import { changeAccountTheme, updateAccountProfile } from '../../../../store/actions';
 import { DynamicThemeService } from '@sn/core/services';
 
 @Component({
@@ -61,9 +61,8 @@ export class AccountSettingsGeneralComponent implements OnInit {
   }
 
   public onChangeTheme(theme: Theme): void {
-    console.log("Changing to theme");
-    this._themeService.loadStyle(theme.filename);
     this.activeTheme = theme;
-    // this._store.dispatch(saveThemeChange({ theme: theme }));
+    this._themeService.loadStyle(theme.filename);
+    this._store.dispatch(changeAccountTheme({ theme: theme }));
   }
 }
