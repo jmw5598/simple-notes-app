@@ -6,7 +6,8 @@ export class ThemeMapper {
     return {
       id: theme.id,
       name: theme.name,
-      filename: theme.filename
+      filename: theme.filename,
+      cssClassName: theme.cssClassName
     } as ThemeDto;
   }
 
