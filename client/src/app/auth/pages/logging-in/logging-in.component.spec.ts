@@ -1,36 +1,32 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppLoadingComponent } from '@sn/auth/components/app-loading/app-loading.component';
-import { logoutUser } from '@sn/auth/store/actions';
 import { SharedModule } from '@sn/shared/shared.module';
-import { of } from 'rxjs';
 
-import { LogoutComponent } from './logout.component';
+import { LoggingInComponent } from './logging-in.component';
 
-describe('LogoutComponent', () => {
-  let component: LogoutComponent;
-  let fixture: ComponentFixture<LogoutComponent>;
-
-  const testStore = {
-    select: (selector: any) => of(),
-    dispatch: (action:any ) => {}
-  };
+describe('LoggingInComponent', () => {
+  let component: LoggingInComponent;
+  let fixture: ComponentFixture<LoggingInComponent>;
+  let routerMock = jasmine.createSpyObj('Router', ['navigate']);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        RouterTestingModule,
         NoopAnimationsModule,
         SharedModule
-      ],
+      ], 
       declarations: [
-        LogoutComponent,
+        LoggingInComponent,
         AppLoadingComponent
       ],
       providers: [
         {
-          provide: Store,
-          useValue: testStore
+          provide: Router,
+          useValue: routerMock
         }
       ]
     })
@@ -38,9 +34,13 @@ describe('LogoutComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LogoutComponent);
+    fixture = TestBed.createComponent(LoggingInComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   beforeEach(() => {
@@ -56,9 +56,8 @@ describe('LogoutComponent', () => {
   });
 
   it('should dispatch logoutUser action after timeout in ngOnInit', () => {
-    spyOn(testStore, 'dispatch');
     component.ngOnInit();
-    jasmine.clock().tick(1000);
-    expect(testStore.dispatch).toHaveBeenCalledWith(logoutUser());
+    jasmine.clock().tick(500);
+    expect(routerMock.navigate).toHaveBeenCalledTimes(1);
   });
 });

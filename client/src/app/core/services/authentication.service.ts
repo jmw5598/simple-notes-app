@@ -7,6 +7,7 @@ import { AuthenticatedUser } from '../models/authenticated-user.model';
 import { UserCredentials } from '../models/user-credentials.model';
 
 import { environment } from '@env/environment';
+import { UserSettings } from '../models/user-settings.model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,14 @@ export class AuthenticationService {
   public getStoredRememberMe(): UserCredentials {
     const credentialsJson: string = localStorage.getItem(this.REMEMBER_ME_KEY);
     return credentialsJson ? JSON.parse(credentialsJson) : null;
+  }
+
+  public setUserSettings(settings: UserSettings): void {
+    const authenticatedUser: AuthenticatedUser = this.getStoredAuthenticatedUser();
+    if (authenticatedUser && authenticatedUser?.userDetails?.settings) {
+      authenticatedUser.userDetails.settings = settings;
+      localStorage.setItem(this.AUTH_USER_KEY, JSON.stringify(authenticatedUser));
+    }
   }
 
   private _handleRememberMe(credentials: UserCredentials): void {

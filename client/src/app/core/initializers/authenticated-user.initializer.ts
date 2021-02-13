@@ -1,7 +1,7 @@
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { AuthenticationService, DynamicThemeService } from '../services';
-import { AuthenticatedUser } from '../models';
+import { AuthenticatedUser, Theme } from '../models';
 import { IApplicationState } from '@sn/application/store/index';
 import * as fromAuthenticationActions from '@sn/auth/store/actions';
 import * as fromAuthenticationSelectors from '@sn/auth/store/selectors';
@@ -12,8 +12,8 @@ export function authenticatedUserInitializer(
     authenticationSerivce: AuthenticationService,
     themeService: DynamicThemeService) {
   
-  themeService.loadStyle(DEFAULT_THEME_FILE);
   const user: AuthenticatedUser = authenticationSerivce.getStoredAuthenticatedUser();
+  themeService.loadStyle(DEFAULT_THEME_FILE);
 
   return () => new Promise<boolean>(resolve => {
     if (user) {

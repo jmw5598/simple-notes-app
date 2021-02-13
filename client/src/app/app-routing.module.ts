@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthenticationGuard } from '@sn/auth/guards';
+import { ThemeLoaderGuard } from '@sn/core/guards';
 
 const routes: Routes = [
   {
@@ -10,7 +11,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    canActivate: [AuthenticationGuard],
+    canActivate: [AuthenticationGuard, ThemeLoaderGuard],
+    canDeactivate: [ThemeLoaderGuard],
     loadChildren: () => import('./application/application.module').then(m => m.ApplicationModule),
     data: { breadcrumb: 'Dashboard' }
   },

@@ -8,6 +8,11 @@ export const selectAuthenticatedUser = createSelector(
   (state: fromAuth.IAuthenticationState) => state.authenticatedUser
 );
 
+export const selectAuthenticatedUserSettings = createSelector(
+  selectAuthenticationState,
+  (state: fromAuth.IAuthenticationState) => state?.authenticatedUser?.userDetails?.settings
+);
+
 export const selectAuthenticatedStatus = createSelector(
   selectAuthenticationState,
   (state: fromAuth.IAuthenticationState) => state.authenticatedStatus

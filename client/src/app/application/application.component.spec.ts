@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
 import { SharedModule } from '@sn/shared/shared.module';
 import { ApplicationComponent } from './application.component';
@@ -24,7 +25,8 @@ describe('ApplicationComponent', () => {
       imports: [
         RouterTestingModule,
         KeyboardShortcutsModule,
-        SharedModule
+        SharedModule,
+        NoopAnimationsModule
       ],
       declarations: [
         ApplicationComponent,

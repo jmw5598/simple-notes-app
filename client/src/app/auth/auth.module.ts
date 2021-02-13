@@ -15,6 +15,8 @@ import { LogoutComponent } from './pages/logout/logout.component';
 import { SharedModule } from '@sn/shared/shared.module';
 import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
 import { PasswordRequestComponent } from './pages/password-request/password-request.component';
+import { LoggingInComponent } from './pages/logging-in/logging-in.component';
+import { AppLoadingComponent } from './components/app-loading/app-loading.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { PasswordRequestComponent } from './pages/password-request/password-requ
     LogoutComponent,
     PasswordResetComponent,
     PasswordRequestComponent,
+    LoggingInComponent,
+    AppLoadingComponent,
   ],
   imports: [
     AuthRoutingModule,

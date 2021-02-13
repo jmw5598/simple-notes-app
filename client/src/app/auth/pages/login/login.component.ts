@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(state => {
         this.authenticationState = state;
         if(state.authenticatedStatus === AuthenticatedStatus.AUTHENTICATED) {
-          this._router.navigate(['dashboard', 'home']);
+          this._router.navigate(['/auth', 'logging-in']);
         }
       });
       

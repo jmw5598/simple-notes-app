@@ -5,7 +5,7 @@ import { take } from 'rxjs/operators';
 
 import { ThemesGuard } from './themes.guard';
 
-fdescribe('ThemesGuard', () => {
+describe('ThemesGuard', () => {
   let guard: ThemesGuard;
 
   const testStore = {
