@@ -8,3 +8,5 @@ export * from './plans.service';
 export * from './sections.service';
 export * from './settings.service';
 export * from './topics.service';
+export * from './dynamic-theme.service';
+

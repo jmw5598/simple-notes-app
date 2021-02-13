@@ -27,13 +27,59 @@
               "src/favicon.ico",
               "src/assets"
             ],
+            "extractCss": true,
             "styles": [
-              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "src/assets/scss/bootstrap.scss",
-              "node_modules/bootstrap-markdown/css/bootstrap-markdown.min.css",
-              "node_modules/@fortawesome/fontawesome-free/css/all.css",
-              "src/assets/css/github-markdown.css",
-              "src/styles.scss"
+              {
+                "input": "src/assets/scss/themes/blue/theme.scss",
+                "bundleName": "theme-blue",
+                "inject": false
+              },
+              {
+                "input": "src/assets/scss/themes/cyan/theme.scss",
+                "bundleName": "theme-cyan",
+                "inject": false
+              },
+              {
+                "input": "src/assets/scss/themes/green/theme.scss",
+                "bundleName": "theme-green",
+                "inject": false
+              },
+              {
+                "input": "src/assets/scss/themes/indigo/theme.scss",
+                "bundleName": "theme-indigo",
+                "inject": false
+              },
+              {
+                "input": "src/assets/scss/themes/orange/theme.scss",
+                "bundleName": "theme-orange",
+                "inject": false
+              },
+              {
+                "input": "src/assets/scss/themes/pink/theme.scss",
+                "bundleName": "theme-pink",
+                "inject": false
+              },
+              {
+                "input": "src/assets/scss/themes/purple/theme.scss",
+                "bundleName": "theme-purple",
+                "inject": false
+              },
+              {
+                "input": "src/assets/scss/themes/red/theme.scss",
+                "bundleName": "theme-red",
+                "inject": false
+              },
+              {
+                "input": "src/assets/scss/themes/teal/theme.scss",
+                "bundleName": "theme-teal",
+                "inject": false
+              },
+              {
+                "input": "src/assets/scss/themes/yellow/theme.scss",
+                "bundleName": "theme-yellow",
+                "inject": false
+              },
+              "src/assets/scss/styles.scss"
             ],
             "scripts": [
               "src/assets/js/jquery-3.3.1.min.js",

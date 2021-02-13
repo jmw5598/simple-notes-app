@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { authenticatedUserInitializer } from './initializers/authenticated-user.initializer';
 import { JwtTokenInterceptor } from './interceptors/jwt-token.interceptor';
-import { AuthenticationService } from './services';
+import { AuthenticationService, DynamicThemeService } from './services';
 
 const jwtTokenInterceptor = {
   provide: HTTP_INTERCEPTORS,
@@ -17,7 +17,7 @@ const authenticationAppInitializer = {
   provide: APP_INITIALIZER, 
   useFactory: authenticatedUserInitializer, 
   multi: true,
-  deps: [Store, AuthenticationService]
+  deps: [Store, AuthenticationService, DynamicThemeService]
 };
 
 @NgModule({
