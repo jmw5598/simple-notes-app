@@ -64,5 +64,6 @@ export class AccountSettingsGeneralComponent implements OnInit {
     console.log("Changing to theme");
     this._themeService.loadStyle(theme.filename);
     this.activeTheme = theme;
+    // this._store.dispatch(saveThemeChange({ theme: theme }));
   }
 }
