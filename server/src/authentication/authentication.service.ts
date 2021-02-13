@@ -89,7 +89,7 @@ export class AuthenticationService {
       username: user.username,
       roles: roles,
       settings: { 
-        theme: ThemeMapper.toThemeDto(user?.account?.theme)
+        theme: user?.account?.theme ? ThemeMapper.toThemeDto(user?.account?.theme) : undefined
       } as UserSettings
     } as UserDetails
   }
