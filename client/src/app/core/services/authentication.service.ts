@@ -50,7 +50,7 @@ export class AuthenticationService {
     return credentialsJson ? JSON.parse(credentialsJson) : null;
   }
 
-  public setUserSettings(settings: UserSettings): void {
+  public setStoredUserSettings(settings: UserSettings): void {
     const authenticatedUser: AuthenticatedUser = this.getStoredAuthenticatedUser();
     if (authenticatedUser && authenticatedUser?.userDetails?.settings) {
       authenticatedUser.userDetails.settings = settings;

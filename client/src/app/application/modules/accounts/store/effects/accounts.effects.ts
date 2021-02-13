@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { AccountsService, SettingsService, ThemesService } from '@sn/core/services';
+import { AccountsService, AuthenticationService, SettingsService, ThemesService } from '@sn/core/services';
 import { of } from 'rxjs';
 import { tap, map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 
 import * as fromActions from '../actions';
 import * as fromCore from '@sn/core/store/actions';
 import { Theme } from '@sn/core/models';
+import { UserSettings } from '@sn/core/models/user-settings.model';
+import { updateUserSettingsSuccess } from '@sn/auth/store/actions';
 
 @Injectable()
 export class AccountsEffects {
   constructor(
     private _actions: Actions,
+    private _authenticationService: AuthenticationService,
     private _accountsService: AccountsService,
     private _themesService: ThemesService,
     private _settingsService: SettingsService
@@ -88,6 +91,18 @@ export class AccountsEffects {
       .pipe(
         map((theme: Theme) => fromActions.changeAccountThemeSuccess({ theme: theme })),
         catchError(error => of(fromCore.handleHttpError({ error: error })))
+      )
+    )
+  ));
+
+  changeAccountThemeSuccess$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.changeAccountThemeSuccess),
+    switchMap(({theme}) => this._settingsService.changeAccountTheme(theme)
+      .pipe(
+        map((theme: Theme) => {
+          this._authenticationService.setStoredUserSettings({ theme: theme } as UserSettings);
+          return updateUserSettingsSuccess({ settings: { theme: theme }});
+        })
       )
     )
   ));

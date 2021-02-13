@@ -39,8 +39,8 @@
     <label>Select a color theme:</label>
     <div class="themes-container">
       <ng-container *ngFor="let theme of themes$ | async">
-        <div class="theme-swatch" [ngClass]="theme.cssClassName" [class.selected]="activeTheme.id === theme.id" (click)="onChangeTheme(theme)">
-          <ng-container *ngIf="activeTheme.id == theme.id">
+        <div class="theme-swatch" [ngClass]="theme.cssClassName" [class.selected]="(userSettings$ | async)?.theme?.id === theme.id" (click)="onChangeTheme(theme)">
+          <ng-container *ngIf="(userSettings$ | async)?.theme?.id == theme.id">
             <i class="fas fa-check" [@fadeAnimation]></i>
           </ng-container>
         </div>

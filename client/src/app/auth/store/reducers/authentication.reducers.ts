@@ -84,6 +84,14 @@ const _authenticationReducer = createReducer(
       passwordResetResult: result
     }
   }),
+  on(fromActions.updateUserSettingsSuccess, (state, { settings }) => {
+    const newState: IAuthenticationState = JSON.parse(JSON.stringify(state));
+    newState.authenticatedUser.userDetails.settings = { 
+      ...newState.authenticatedUser.userDetails.settings,
+      ...settings
+    };
+    return newState;
+  })
 );
 
 export function authenticationReducer(state, action) {

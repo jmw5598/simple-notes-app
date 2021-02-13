@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { AuthenticatedUser, UserCredentials, PasswordReset, PasswordRequestReset, ResponseMessage } from '@sn/core/models';
 import { RegistrationResult, Registration } from '@sn/core/dtos';
 import { HttpErrorResponse } from '@angular/common/http';
+import { UserSettings } from '@sn/core/models/user-settings.model';
 
 export const loginUser = createAction(
   '[Authentication] Login User',
@@ -68,4 +69,9 @@ export const passwordReset = createAction(
 export const passwordResetResult = createAction(
   '[Authentication] Password Reset Result',
   props<{ result: ResponseMessage }>()
+);
+
+export const updateUserSettingsSuccess = createAction(
+  '[Authentication] Update User Settings',
+  props<{ settings: UserSettings }>()
 );

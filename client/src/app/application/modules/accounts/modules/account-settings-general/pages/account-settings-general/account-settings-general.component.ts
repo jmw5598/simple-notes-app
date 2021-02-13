@@ -11,6 +11,8 @@ import { AccountValidators } from '@sn/core/validators';
 import { buildProfileFormGroup } from '@sn/shared/forms';
 import { changeAccountTheme, updateAccountProfile } from '../../../../store/actions';
 import { DynamicThemeService } from '@sn/core/services';
+import { UserSettings } from '@sn/core/models/user-settings.model';
+import { selectAuthenticatedUserSettings } from '@sn/auth/store/selectors';
 
 @Component({
   selector: 'sn-account-settings-general',
@@ -24,6 +26,7 @@ export class AccountSettingsGeneralComponent implements OnInit {
   public accountDetails$: Observable<Account>;
   public accountProfile$: Observable<Profile>;
   public themes$: Observable<Theme[]>;
+  public userSettings$: Observable<UserSettings>;
 
   public activeTheme: Theme;
 
@@ -37,6 +40,7 @@ export class AccountSettingsGeneralComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userSettings$ = this._store.select(selectAuthenticatedUserSettings);
     this.themes$ = this._store.select(selectThemes).pipe(tap(themes => this.activeTheme = themes[0]));
     this.accountDetails$ = this._store.select(selectAccountDetails);
     this.accountProfile$ = this._store.select(selectAccountProfile).pipe(
