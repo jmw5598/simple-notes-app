@@ -12,15 +12,17 @@ import { deleteTopic, searchTopics, searchTopicsResult } from '../../store/actio
 import { Page, IPageable } from '@sn/core/models';
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/core/defaults';
 import { ResponseStatus } from '@sn/core/enums';
-import { AbstractPageOverlayLoader ,OverlayLoaderService } from '@sn/shared/components';
+import { AbstractPageOverlayLoader ,DrawerLocation,DrawerService,OverlayLoaderService, TopicCreateComponent } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-view-topics',
   templateUrl: './view-topics.component.html',
   styleUrls: ['./view-topics.component.scss'],
+  providers: [DrawerService],
   animations: [fadeAnimation]
 })
 export class ViewTopicsComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {
+  public DrawerLocation = DrawerLocation;
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_TOPICS_PAGE;
   private _subscriptionSubject: Subject<void>;
   public topics$: Observable<Topic[]>;
@@ -31,6 +33,7 @@ export class ViewTopicsComponent extends AbstractPageOverlayLoader implements On
 
   constructor(
     private _store: Store<ITopicsState>,
+    private _drawerService: DrawerService,
     protected _overlayLoaderService: OverlayLoaderService
   ) {
     super(_overlayLoaderService);
@@ -62,6 +65,11 @@ export class ViewTopicsComponent extends AbstractPageOverlayLoader implements On
 
   public onDelete(id: number): void {
     this._store.dispatch(deleteTopic({ id: id }));
+  }
+
+  public onCreate(): void {
+    console.log("should open drawer now!");
+    this._drawerService.show(TopicCreateComponent, {});
   }
 
   public onGoToPage(pageable: IPageable): void {

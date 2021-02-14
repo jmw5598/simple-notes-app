@@ -13,15 +13,21 @@ export class TopicListComponent implements OnInit {
   topics: Topic[];
 
   @Output()
-  onDelete: EventEmitter<number> = new EventEmitter<number>();
+  public onDelete: EventEmitter<number> = new EventEmitter<number>();
+
+  @Output()
+  public onCreate: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  delete(id: number) {
+  public delete(id: number) {
     this.onDelete.emit(id);
   }
 
+  public create(): void {
+    this.onCreate.emit();
+  }
 }

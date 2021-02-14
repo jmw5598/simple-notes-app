@@ -37,4 +37,10 @@ describe('TopicListComponent', () => {
     component.delete(mockTopic.id);
     expect(component.onDelete.emit).toHaveBeenCalledWith(mockTopic.id);
   });
+
+  it('should emit event from onCreate when create is called', () => {
+    spyOn(component.onCreate, 'emit');
+    component.create();
+    expect(component.onCreate.emit).toHaveBeenCalledTimes(1);
+  });
 });

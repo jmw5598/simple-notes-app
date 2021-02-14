@@ -11,14 +11,22 @@ import { Readable } from 'stream';
 export class DocumentsService {
   public async exportTopic(topicDto: TopicDto, config: ExportConfig): Promise<Readable> {
     try {
+      console.log("exporting topic: ", topicDto);
       const tempfile: string = uuidv4();
-      const markdown: string = await this._topicDtoToString(topicDto, config);  
+      const markdown: string = "Testing"; // await this._topicDtoToString(topicDto, config);  
       const args: string[] = ['-f','markdown','-t',`${config.format}`,'-o',`./${tempfile}`];
+      console.log("tempfile", tempfile);
+      console.log('markdown', markdown);
+      console.log('args', args);
       await pandoc(markdown, args);
+
+      console.log("should hvae created files")
+
       const file = await fs.createReadStream(tempfile);
       fs.unlink(tempfile, function() {});
       return file;
     } catch (error) {
+      console.log("error!!!!", error);
       throw error;
     }
   }

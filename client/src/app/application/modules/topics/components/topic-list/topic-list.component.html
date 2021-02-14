@@ -4,7 +4,7 @@
       [extraContent]="createNewButton">
   </sn-empty-data>
   <ng-template #createNewButton>
-    <a [routerLink]="['../create']" class="btn btn-success text-light">Create a topic</a>
+    <a (click)="create($event)" class="btn btn-success text-light">Create a topic</a>
   </ng-template>
 </div>
 <ng-container *ngIf="topics">
