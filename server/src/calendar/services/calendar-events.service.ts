@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { MoreThanOrEqual, LessThanOrEqual, IsNull, Repository } from 'typeorm';
+import { MoreThanOrEqual, LessThanOrEqual, IsNull, Repository, Between } from 'typeorm';
 import { CalendarEventMapper } from '../mappers/calendar-event.mapper';
 import { CalendarEventDto } from '../dtos/calendar-event.dto';
 import { CalendarEvent } from '../entities/calendar-event.entity';
@@ -85,12 +85,25 @@ export class CalendarEventsService {
 
   public async getCalendarEventsBetweenDates(accountId: number, startDate: Date, endDate: Date): Promise<CalendarEventDto[]> {
     const events: CalendarEvent[] = await this._calendarEventRepository.find({
-      where: {
-        account: { id: accountId },
-        deletedAt: IsNull(),
-        startDateTime: MoreThanOrEqual(startDate.toISOString()),
-        endDateTime: LessThanOrEqual(endDate.toISOString())
-      },
+      where: [
+        // If start date 
+        {
+          account: { id: accountId },
+          deletedAt: IsNull(),
+          startDateTime: Between(startDate.toISOString(), endDate.toISOString())
+        },
+        {
+          account: { id: accountId },
+          deletedAt: IsNull(),
+          endDateTime: Between(startDate.toISOString(), endDate.toISOString())
+        },
+        {
+          account: { id: accountId },
+          deletedAt: IsNull(),
+          startDateTime: LessThanOrEqual(startDate.toISOString()),
+          endDateTime: MoreThanOrEqual(endDate.toISOString())
+        }
+      ],
       order: {
         startDateTime: 'ASC'
       }
