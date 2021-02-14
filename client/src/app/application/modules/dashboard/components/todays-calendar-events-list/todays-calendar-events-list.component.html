@@ -12,13 +12,16 @@
     <div class="list-details">
       <div class="list-details-title">
         <h5 class="text-primary p-0 m-0">
-          {{ event.title }}
+          <span class="color-swatch mr-1" style="background-color: rgb(232, 62, 140);"></span>{{ event.title }}
         </h5>
       </div>
-      <div class="list-details-description">
-        <p class="text-dark p-0 m-0">{{ event.startDateTime | date:'shortTime' }}</p>
-        <p class="text-dark font-italic p-0 m-0">{{ event.description}}</p>
-      </div>
+      <p class="list-details-timestamp text-dark p-0 m-0">
+        <i class="far fa-clock"></i>&nbsp;&nbsp; {{ event.startDateTime | date:'shortTime' }}
+      </p>
+      <p class="list-details-timestamp text-dark p-0 m-0">
+        <i class="far fa-calendar"></i>&nbsp;&nbsp; {{ event.startDateTime | date:'shortDate' }}
+      </p>
+      <p class="list-details-description text-dark font-italic p-0 m-0">{{ event.description }}</p>
     </div>
   </div>
 </ng-container>
