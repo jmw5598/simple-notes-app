@@ -40,6 +40,7 @@ export class CalendarEventViewComponent implements OnInit {
     this.responseMessage$ = this._store.select(selectUpdateCalendarEventResponseMessage)
       .pipe(
         tap((message: ResponseMessage) => {
+          console.log('get update event response message', message);
           if (message) {
             setTimeout(() => this._store.dispatch(
               setUpdateCalendarEventResponseMessage({ message: null })), 3000);

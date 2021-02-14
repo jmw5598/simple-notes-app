@@ -59,8 +59,11 @@ export class DrawerComponent implements OnInit, OnDestroy {
     this._drawerService.onContentChange()
       .pipe(takeUntil(this._drawerServiceSubject$))
       .subscribe((component: Type<any>) => {
-        if (component) 
+        if (component) {
           this._setDrawerContent(component)
+        } else {
+          this._removeDrawerContent();
+        }
       });
   }
 
@@ -72,6 +75,10 @@ export class DrawerComponent implements OnInit, OnDestroy {
     const componentFactory: ComponentFactory<any> = this._componentFactoryResolver.resolveComponentFactory(component);
     this.drawerContentRef.clear();
     this.drawerContentRef.createComponent(componentFactory);
+  }
+
+  private _removeDrawerContent(): void {
+    this.drawerContentRef.clear();
   }
 
   @HostListener('document:keydown.escape', ['$event']) 

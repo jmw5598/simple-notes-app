@@ -13,7 +13,7 @@ import {
   getCalendarEventsBetweenDates, 
   setCurrentCalendarEvents,
   setCurrentCalendarDateRanges, 
-  updateCalendarEvent } from '../../store/actions';
+  updateCalendarEvent, setUpdateCalendarEventResponseMessage } from '../../store/actions';
 import {  
   selectCurrentCalendarEvents, 
   selectSelectedCalendarEvent, 
@@ -128,6 +128,12 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
       id: newEvent.id, 
       event: newEvent
     }));
+
+    // This is needed to reset the response message from the update so the alert doesn't show int the drawer
+    // TODO: Need to look into a better way to do this.
+    setTimeout(() => {
+      this._store.dispatch(setUpdateCalendarEventResponseMessage({ message: null }));
+    }, 200);
   }
 
   public handleEventDataTransform(event: any) {
