@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IDashboardState } from '../../store/reducers';
@@ -7,7 +7,7 @@ import { selectRecentTopics, selectTodaysEvents } from '../../store/selectors';
 import { CalendarEvent } from '@sn/core/models';
 import { Topic } from '@sn/shared/models';
 import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
-import { getRecentTopics, getTodaysCalendarEvents } from '../../store/actions';
+import { getRecentTopics, getRecentTopicsSuccess, getTodaysCalendarEvents, getTodaysCalendarEventsSuccess } from '../../store/actions';
 
 @Component({
   selector: 'sn-dashboard-overview',
@@ -15,7 +15,7 @@ import { getRecentTopics, getTodaysCalendarEvents } from '../../store/actions';
   styleUrls: ['./dashboard-overview.component.scss'],
   animations: [fadeAnimation]
 })
-export class DashboardOverviewComponent extends AbstractPageOverlayLoader implements OnInit {
+export class DashboardOverviewComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {
   public todaysEvents$: Observable<CalendarEvent[]>;
   public recentTopics$: Observable<Topic[]>;
 
@@ -29,5 +29,10 @@ export class DashboardOverviewComponent extends AbstractPageOverlayLoader implem
   ngOnInit(): void {
     this.todaysEvents$ = this._store.select(selectTodaysEvents);
     this.recentTopics$ = this._store.select(selectRecentTopics);
+  }
+
+  ngOnDestroy(): void {
+    this._store.dispatch(getTodaysCalendarEventsSuccess({ events: null }));
+    this._store.dispatch(getRecentTopicsSuccess({ topics: null }));
   }
 }
