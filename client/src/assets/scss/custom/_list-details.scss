@@ -13,6 +13,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    min-height: 26px;
   }
 
   .list-details-description {
@@ -21,5 +22,9 @@
 
   .list-details-timestamp {
     font-size: 0.7rem;
+  }
+
+  hr {
+    border-style: dotted;
   }
 }
