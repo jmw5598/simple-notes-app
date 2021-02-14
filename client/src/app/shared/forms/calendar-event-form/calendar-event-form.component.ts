@@ -39,6 +39,7 @@ export class CalendarEventFormComponent implements OnInit, AfterViewInit {
 
   public reset(): void {
     this.form.reset();
+    this.form.get('color').patchValue(HEX_COLOR_STRING_ARRAY[0]);
   }
 
   public showColorSwatchPicker(): void {

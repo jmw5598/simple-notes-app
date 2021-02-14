@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subject } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
+import { forkJoin, merge, range, Subject } from 'rxjs';
+import { map, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 import { ICalendarEventsState } from '../../store/reducers';
 import { CalendarOptions, EventInput, FullCalendarComponent } from '@fullcalendar/angular';
 import { DrawerService, CalendarEventCreateComponent, OverlayLoaderService } from '@sn/shared/components';
@@ -14,11 +14,11 @@ import {
   setCurrentCalendarEvents,
   setCurrentCalendarDateRanges, 
   updateCalendarEvent, 
-  setUpdateCalendarEventResponseMessage} from '../../store/actions';
+  setUpdateCalendarEventResponseMessage, setCreateCalendarEventResponseMessage} from '../../store/actions';
 import { 
   selectUpdateCalendarEventResponseMessage, 
   selectCurrentCalendarEvents, 
-  selectSelectedCalendarEvent } from '../../store/selectors';
+  selectSelectedCalendarEvent, selectCurrentCalendarDateRanges, selectCreateCalendarEventResponseMessage } from '../../store/selectors';
 
 @Component({
   selector: 'sn-view-calendar',
@@ -63,12 +63,25 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
     this._store.select(selectUpdateCalendarEventResponseMessage)
       .pipe(takeUntil(this._subscriptionSubject))
       .subscribe((message: ResponseMessage) => {
-          if (message) {
-            // Set response message to null to prevent alert form display if edit is selected from drawer.
-            // Should probably notify with toast message that the evetn has been updated??
-            this._store.dispatch(setUpdateCalendarEventResponseMessage({ message: null }));
-          }
-        });
+        if (message) {
+          // Set response message to null to prevent alert form display if edit is selected from drawer.
+          // Should probably notify with toast message that the evetn has been updated??
+          this._store.dispatch(setUpdateCalendarEventResponseMessage({ message: null }));
+        }
+      });
+    this._store.select(selectCreateCalendarEventResponseMessage)
+      .pipe(
+        withLatestFrom(this._store.select(selectCurrentCalendarDateRanges)),
+        takeUntil(this._subscriptionSubject)   
+      )
+      .subscribe(([message, ranges]) => {
+        if (message && ranges) {
+          this._store.dispatch(getCalendarEventsBetweenDates({ 
+            startDate: ranges.startDate,
+            endDate: ranges.endDate
+          }));
+        }
+      });
   }
 
   public handleCalendarEventsFetch(info, success, error): void {
