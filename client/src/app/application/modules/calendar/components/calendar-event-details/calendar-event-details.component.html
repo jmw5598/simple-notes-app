@@ -4,7 +4,7 @@
       <h3 class="font-weight-bold text-primary text-right mb-3">Calendar Event Details</h3>
       <hr />
       <h4 class="font-weight-bold text-dark mb-2">
-        <span class="color-swatch mr-1" [style.background-color]="event?.color"></span>
+        <span class="dot-color-swatch mr-1" [style.background-color]="event?.color"></span>
         {{ event?.title }}
         <span *ngIf="event?.isAllDay" class="badge badge-pill badge-success float-right">All Day</span>
       </h4>
