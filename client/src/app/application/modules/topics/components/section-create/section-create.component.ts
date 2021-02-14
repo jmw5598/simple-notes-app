@@ -9,7 +9,7 @@ import { buildSectionFormGroup } from '../section-form/section-form.builder';
 import { Section, Topic } from '@sn/shared/models';
 import { ResponseMessage } from '@sn/core/models';
 import { selectCreateSectionResponseMessage } from '../../store/selectors';
-import { createSection } from '../../store/actions';
+import { createSection, setCreateSectionResponseMessage } from '../../store/actions';
 import { showHide } from '@sn/shared/animations';
 
 @Component({
@@ -34,7 +34,11 @@ export class SectionCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = buildSectionFormGroup(this._formBuilder);
-    this.responseMessage$ = this._store.select(selectCreateSectionResponseMessage);
+    this.responseMessage$ = this._store.select(selectCreateSectionResponseMessage)
+      .pipe(tap((response: ResponseMessage) => {
+        this.form.reset();
+        setTimeout(() => this._store.dispatch(setCreateSectionResponseMessage({ message: null })), 3000);
+      }));
     this._drawerServie.onDataChange()
       .pipe(takeUntil(this._subscriptionSubject))
       .subscribe(data => {
