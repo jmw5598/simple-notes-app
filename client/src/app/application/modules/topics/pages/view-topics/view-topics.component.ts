@@ -68,7 +68,6 @@ export class ViewTopicsComponent extends AbstractPageOverlayLoader implements On
   }
 
   public onCreate(): void {
-    console.log("should open drawer now!");
     this._drawerService.show(TopicCreateComponent, {});
   }
 

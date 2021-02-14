@@ -74,11 +74,10 @@ describe('TopicDetailsComponent', () => {
     expect(testStore.dispatch).toHaveBeenCalledTimes(1);
   });
 
-  // TODO figure out the component level providers causing this to fail.
-  // it('should show drawer when onDeleteSection is called with sectionId', () => {
-  //   const sectionId: number = 1;
-  //   spyOn(drawerService, 'show');
-  //   component.onDeleteSection(sectionId);
-  //   expect(drawerService.show).toHaveBeenCalled();
-  // });
+  it('should show drawer when onDeleteSection is called with sectionId', () => {
+    const sectionId: number = 1;
+    spyOn(testStore, 'dispatch');
+    component.onDeleteSection(sectionId);
+    expect(testStore.dispatch).toHaveBeenCalledTimes(1);
+  });
 });
