@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, getRepository, Repository } from "typeorm";
+import { MigrationInterface, QueryRunner } from "typeorm";
 import { KeyboardShortcutAction } from '../../accounts/entities/keyboard-shortcut-action.entity';
 import { KeyboardShortcutActionType } from '../../accounts/enums/keyboard-shortcut-action.enum';
 
@@ -22,11 +22,12 @@ const actions: Partial<KeyboardShortcutAction>[] = [
 
 export class SeedKeyboardShortcutActionTable1605913895364 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
-        const repository: Repository<KeyboardShortcutAction> = getRepository(KeyboardShortcutAction);
         actions.forEach((a) => {
-            const action: KeyboardShortcutAction = repository.create({...a});
-            repository.save(action);
-        });
+            queryRunner.query(`
+                INSERT INTO keyboard_shortcut_action (created_at, updated_at, action, description, default_shortcut) 
+                VALUES (NOW(), NOW(), '${a.action}', '${a.description}', '${a.defaultShortcut}')
+            `);
+        });   
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
