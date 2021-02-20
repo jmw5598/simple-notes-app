@@ -1,14 +1,11 @@
 import { Controller, Request, Get, UseGuards, Post, Body, Delete, Param, Put } from '@nestjs/common';
-import { JwtAuthenticationGuard } from 'src/authentication/guards/jwt-authentication.guard';
+import { JwtAuthenticationGuard } from '../../authentication/guards/jwt-authentication.guard';
 import { SnLoggerService } from '../../logger/sn-logger.service';
 import { SettingsService } from '../services/settings.service';
 import { KeyboardShortcutActionDto } from '../dtos/keyboard-shortcut-action.dto';
 import { CreateKeyboardShortcutDto } from '../dtos/create-keyboard-shortcut.dto';
 import { UpdateKeyboardShortcutDto } from '../dtos/update-keyboard-shortcut.dto';
-import { request } from 'http';
-import { Theme } from 'src/themes/entities/theme.entity';
-import { ThemeDto } from 'src/themes/dtos/theme.dto';
-import { ThemesService } from 'src/themes/services/themes.service';
+import { ThemeDto } from '../../themes/dtos/theme.dto';
 
 @Controller('accounts/settings')
 @UseGuards(JwtAuthenticationGuard)
@@ -16,7 +13,6 @@ export class SettingsController {
   constructor(
     private readonly _logger: SnLoggerService,
     private readonly _settingsService: SettingsService,
-    private readonly _themeService: ThemesService
   ) {
     this._logger.setContext(this.constructor.name);
   }

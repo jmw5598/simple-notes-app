@@ -1,16 +1,14 @@
 import { Controller, Request, Body, Query, Delete, Get, Post, Put, Param, UseGuards } from '@nestjs/common';
 import { SnLoggerService } from '../../logger/sn-logger.service';
-import { Document } from '../entities/document.entity';
 import { DocumentDto } from '../dtos/document.dto';
 import { CreateDocumentDto } from '../dtos/create-document.dto';
 import { UpdateDocumentDto } from '../dtos/update-document.dto';
 import { DocumentsService } from '../services/documents.service';
-import { JwtAuthenticationGuard } from 'src/authentication/guards/jwt-authentication.guard';
+import { JwtAuthenticationGuard } from '../../authentication/guards/jwt-authentication.guard';
 import { IPageable } from '../../common/models/pageable.interface';
 import { Page } from '../../common/models/page.model';
 import { PageRequest } from '../../common/models/page-request.model';
 import { SortDirection } from '../../common/enums/sort-direction.enum';
-import { request } from 'express';
 
 @Controller('documents')
 @UseGuards(JwtAuthenticationGuard)

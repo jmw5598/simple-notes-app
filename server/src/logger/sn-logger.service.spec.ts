@@ -1,15 +1,22 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { SnLoggerService } from './sn-logger.service';
+import{ ConfigService } from '@nestjs/config';
 
-describe('InvLoggerService', () => {
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+describe('SnLoggerService', () => {
   let service: SnLoggerService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [SnLoggerService],
+      providers: [
+        SnLoggerService,
+        ConfigService
+      ],
     }).compile();
 
-    service = module.get<SnLoggerService>(SnLoggerService);
+    service = await module.resolve<SnLoggerService>(SnLoggerService);
   });
 
   it('should be defined', () => {

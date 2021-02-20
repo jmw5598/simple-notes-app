@@ -1,4 +1,4 @@
-import { Account } from 'src/accounts/entities/account.entity';
+import { Account } from '../../accounts/entities/account.entity';
 import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { BaseEntity } from '../../database/entities/base.entity';
 import { CalendarIntegrationType } from './calendar-integration-type.entity';

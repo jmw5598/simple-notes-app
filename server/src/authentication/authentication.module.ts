@@ -12,8 +12,8 @@ import { AuthenticationController } from './authentication.controller';
 import { RefreshTokensService } from './services/refresh-tokens.service';
 import { RefreshToken } from './entities/refresh-token.entity';
 
-const passportModuleOptions: IAuthModuleOptions = { defaultStrategy: 'jwt' };
-const jwtModuleOptions: JwtModuleOptions = {
+export const passportModuleOptions: IAuthModuleOptions = { defaultStrategy: 'jwt' };
+export const jwtModuleOptions: JwtModuleOptions = {
   secret: jwtConstants.secret,
   signOptions: { expiresIn: '1h' }
 }

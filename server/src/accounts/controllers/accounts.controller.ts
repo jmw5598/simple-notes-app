@@ -5,7 +5,6 @@ import { RegistrationResult } from '../dtos/registration-result.dto';
 import { PasswordResetDto } from '../dtos/password-reset.dto';
 import { PasswordRequestResetDto } from '../dtos/password-request-reset.dto';
 import { ResponseMessage } from '../../common/models/response-message.model';
-import { ResponseStatus } from '../../common/enums/response-status.enum';
 import { ConfigService } from '@nestjs/config';
 import { UpdateAccountDto } from '../dtos/update-account.dto';
 import { UpdateProfileDto } from '../dtos/update-profile.dto';

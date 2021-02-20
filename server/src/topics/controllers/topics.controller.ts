@@ -15,7 +15,6 @@ import { IPageable } from '../../common/models/pageable.interface';
 import { Page } from '../../common/models/page.model';
 import { PageRequest } from '../../common/models/page-request.model';
 import { SortDirection } from '../../common/enums/sort-direction.enum';
-import { Topic } from '../entities/topic.entity';
 
 @Controller('topics')
 @UseGuards(JwtAuthenticationGuard)

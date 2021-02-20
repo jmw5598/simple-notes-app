@@ -10,8 +10,7 @@ import { UserDetails } from './models/user-details.model';
 import { InvalidUsernamePasswordException } from './exceptions/invalid-username-password.exception';
 import { UnconfirmedAccountException } from './exceptions/unconfirmed-account.exception';
 import { UserSettings } from './models/user-settings.model';
-import { Account } from 'src/accounts/entities/account.entity';
-import { ThemeMapper } from 'src/themes/mappers/theme.mapper';
+import { ThemeMapper } from '../themes/mappers/theme.mapper';
 
 @Injectable()
 export class AuthenticationService {

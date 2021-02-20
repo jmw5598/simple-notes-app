@@ -1,8 +1,8 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { ThemesService } from '../services/themes.service';
 import { ThemeDto } from '../dtos/theme.dto';
-import { SnLoggerService } from 'src/logger/sn-logger.service';
-import { JwtAuthenticationGuard } from 'src/authentication/guards/jwt-authentication.guard';
+import { SnLoggerService } from '../../logger/sn-logger.service';
+import { JwtAuthenticationGuard } from '../../authentication/guards/jwt-authentication.guard';
 
 @Controller('themes')
 @UseGuards(JwtAuthenticationGuard)

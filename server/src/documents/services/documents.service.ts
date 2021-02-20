@@ -6,8 +6,8 @@ import { DocumentMapper } from '../mappers/document.mapper';
 import { DocumentDto } from '../dtos/document.dto'
 import { Document } from '../entities/document.entity';
 import { DocumentNotFoundException } from '../exceptions/document-not-found.exception';
-import { IPageable } from 'src/common/models/pageable.interface';
-import { Page } from 'src/common/models/page.model';
+import { IPageable } from '../../common/models/pageable.interface';
+import { Page } from '../../common/models/page.model';
 import { UpdateDocumentDto } from '../dtos/update-document.dto';
 
 @Injectable()

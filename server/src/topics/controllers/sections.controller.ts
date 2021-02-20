@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Param, Request, Body, UseGuards, Put, Delete, Query } from '@nestjs/common';
-import { SnLoggerService } from 'src/logger/sn-logger.service';
+import { SnLoggerService } from '../../logger/sn-logger.service';
 import { SectionDto } from '../dtos/section.dto';
 import { CreateSectionDto } from '../dtos/create-section.dto';
 import { SectionsService } from '../services/sections.service';
@@ -10,7 +10,6 @@ import { Page } from '../../common/models/page.model';
 import { IPageable } from '../../common/models/pageable.interface';
 import { PageRequest } from '../../common/models/page-request.model';
 import { SortDirection } from '../../common/enums/sort-direction.enum';
-import { request } from 'http';
 
 @Controller('topics/:topicId/sections')
 @UseGuards(JwtAuthenticationGuard)

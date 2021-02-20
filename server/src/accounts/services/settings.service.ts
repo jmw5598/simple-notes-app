@@ -8,12 +8,12 @@ import { KeyboardShortcutActionMapper } from '../mappers/keyboard-shortcut-actio
 import { CreateKeyboardShortcutDto } from '../dtos/create-keyboard-shortcut.dto';
 import { KeyboardShortcutNotFoundException } from '../exceptions/keyboard-shortcut-not-found.exception';
 import { UpdateKeyboardShortcutDto } from '../dtos/update-keyboard-shortcut.dto';
-import { Theme } from 'src/themes/entities/theme.entity';
-import { ThemeDto } from 'src/themes/dtos/theme.dto';
-import { ThemeNotFoundException } from 'src/themes/exceptions/theme-not-found.exception';
+import { Theme } from '../../themes/entities/theme.entity';
+import { ThemeDto } from '../../themes/dtos/theme.dto';
+import { ThemeNotFoundException } from '../../themes/exceptions/theme-not-found.exception';
 import { Account } from '../entities/account.entity';
 import { AccountNotFoundException } from '../exceptions/account-not-found.exception';
-import { ThemeMapper } from 'src/themes/mappers/theme.mapper';
+import { ThemeMapper } from '../../themes/mappers/theme.mapper';
 
 @Injectable()
 export class SettingsService {
