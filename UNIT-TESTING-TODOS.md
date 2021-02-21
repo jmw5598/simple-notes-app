@@ -136,4 +136,21 @@
 
 
 ## `server/src/`
-- [ ] TODO
+- [ ] accounts
+  - [ ] controllers
+    - [ ] accounts
+    - [ ] settings
+  - [ ] mappers
+    - [ ] keyboard-shortcut-action
+    - [ ] keybaord-shortcut
+- [ ] authentication
+  - [ ] TODO
+- [ ] calendar
+- [ ] common 
+- [ ] database
+- [ ] documents
+- [ ] logger
+- [ ] plans
+- [ ] themes
+- [ ] topics
+- [ ] users
