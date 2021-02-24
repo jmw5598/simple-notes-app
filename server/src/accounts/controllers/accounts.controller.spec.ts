@@ -1,11 +1,11 @@
 import { ConfigService } from '@nestjs/config';
-import { UnprocessableEntityException } from '@nestjs/common'
+import { NotFoundException, UnprocessableEntityException } from '@nestjs/common'
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { EmailerService } from '../../common/services/emailer/emailer.service';
 import { Role } from '../../users/entities/role.entity';
 import { User } from '../../users/entities/user.entity';
-import { repositoryMockFactory, emailerServiceMock, snLoggerServiceMock } from '../../mocks';
+import { repositoryMockFactory, emailerServiceMock, snLoggerServiceMock, responseMock } from '../../mocks';
 import { Account } from '../entities/account.entity';
 import { Address } from '../entities/address.entity';
 import { Profile } from '../entities/profile.entity';
@@ -24,6 +24,8 @@ import { RegistrationResult } from '../dtos/registration-result.dto';
 import { ProfileNotFoundException } from '../exceptions/profile-not-found.exception';
 import { ResponseMessage } from '../../common/models/response-message.model';
 import { ResponseStatus } from '../../common/enums/response-status.enum';
+import { PasswordResetDto } from '../dtos/password-reset.dto';
+import { PasswordRequestResetDto } from '../dtos/password-request-reset.dto';
 
 
 describe('Accounts Controller', () => {
@@ -244,5 +246,108 @@ describe('Accounts Controller', () => {
       expect(logger.error).toHaveBeenCalledTimes(1);
       expect(error).toBeInstanceOf(UnprocessableEntityException);
     }
+  });
+
+  it('should called AccountsService.passwordReqeustReset when passwordResetRequest is called with a valid email', async () => {
+    const passwordResetRequestDtoMock: PasswordRequestResetDto = {
+      email: 'email@email.com'
+    } as PasswordRequestResetDto; 
+    const responseMessageMock: ResponseMessage = {
+      message: `Email sent`,
+      status: ResponseStatus.SUCCESS
+    } as ResponseMessage;
+    spyOn(accountsService, 'passwordRequestReset').and.returnValue(responseMessageMock);
+    const result: ResponseMessage = await controller.passwordResetRequest(passwordResetRequestDtoMock);
+    expect(accountsService.passwordRequestReset).toHaveBeenCalledWith(passwordResetRequestDtoMock.email);
+    expect(result).toEqual(responseMessageMock);
+  });
+
+  it('should catch and log error when passwordResetRequest is called and throws and error', async () => {
+    const passwordResetRequestDtoMock: PasswordRequestResetDto = {
+      email: 'email@email.com'
+    } as PasswordRequestResetDto;
+    spyOn(accountsService, 'passwordRequestReset').and.callFake(() => { throw new UnprocessableEntityException(); });
+    spyOn(logger, 'error');
+    try {
+      await controller.passwordResetRequest(passwordResetRequestDtoMock);
+    } catch (error) {
+      expect(logger.error).toHaveBeenCalledTimes(1);
+      expect(error).toBeInstanceOf(UnprocessableEntityException);
+    }
+  });
+
+  it('should call AccountsService.passwordResetFromResetToken when passwordReset is called with a valid token', async () => {
+    const responseMessageMock: ResponseMessage = {
+      message: 'Password reset successful',
+      status: ResponseStatus.SUCCESS
+    } as ResponseMessage;
+    spyOn(accountsService, 'passwordResetFromResetToken').and.returnValue(responseMessageMock);
+    const passwordResetDtoMock: PasswordResetDto = {
+      code: 'reset-token',
+      password: 'password',
+      passwordConfirm: 'password'
+    } as PasswordResetDto;
+    const result: ResponseMessage = await controller.passwordReset(passwordResetDtoMock);
+    expect(accountsService.passwordResetFromResetToken).toHaveBeenCalledWith(passwordResetDtoMock.password, passwordResetDtoMock.code);
+    expect(result).toEqual(responseMessageMock);
+  });
+
+  it('should throw error when password and passwordConfirm of PasswordResetDto are not equal', async () => {
+    spyOn(logger, 'error');
+    const passwordResetDtoMock: PasswordResetDto = {
+      code: 'reset-token',
+      password: 'password',
+      passwordConfirm: 'passwordAgain'
+    } as PasswordResetDto;
+    try {
+      await controller.passwordReset(passwordResetDtoMock);
+    } catch (error) {
+      expect(logger.error).toHaveBeenCalledTimes(1);
+      expect(error).toBeInstanceOf(UnprocessableEntityException);
+    }
+  });
+
+  it('should throw, catch and handle NotFoundException when AccountsService.doesEmailExist return false', async () => {
+    const email: string = `email@email.com`;
+    spyOn(accountsService, 'doesEmailExist').and.returnValue(false);
+    spyOn(logger, 'error');
+    try {
+      await controller.validateEmail(requestMock, responseMock, email);
+    } catch (error) {
+      expect(logger.error).toHaveBeenCalledTimes(1);
+      expect(error).toBeInstanceOf(NotFoundException);
+    }
+  });
+
+  it('should call response status with 204 and send when AccountsService.doesEmailExist return true', async () => {
+    const email: string = `email@email.com`;
+    spyOn(accountsService, 'doesEmailExist').and.returnValue(true);
+    spyOn(responseMock, 'send');
+    spyOn(responseMock, 'status').and.callThrough();;
+    await controller.validateEmail(requestMock, responseMock, email);
+    expect(responseMock.status).toHaveBeenLastCalledWith(204);
+    expect(responseMock.send).toHaveBeenCalledTimes(1);
+  });
+
+  it('should throw, catch, and handle NotFoundException when AccountService.doesUsernameExist return false', async () => {
+    const username: string = `usernameToSearchFor`;
+    spyOn(accountsService, 'doesUsernameExist').and.returnValue(false);
+    spyOn(logger, 'error');
+    try {
+      await controller.validateUsername(requestMock, responseMock, username);
+    } catch (error) {
+      expect(logger.error).toHaveBeenCalledTimes(1);
+      expect(error).toBeInstanceOf(NotFoundException);
+    }
+  });
+
+  it('should call respsonse status with 204 adn send when AccountService.doesUsernameExist return true', async () => {
+    const username: string = 'usernameToSearchFor';
+    spyOn(accountsService, 'doesUsernameExist').and.returnValue(true);
+    spyOn(responseMock, 'send');
+    spyOn(responseMock, 'status').and.callThrough();
+    await controller.validateUsername(requestMock, responseMock, username);
+    expect(responseMock.status).toHaveBeenCalledWith(204);
+    expect(responseMock.send).toHaveBeenCalledTimes(1);
   });
 });

@@ -1,4 +1,5 @@
 import { JwtService, JwtSignOptions } from '@nestjs/jwt';
+import { Response } from 'express';
 import  { Repository } from 'typeorm';
 import { EmailerService } from './common/services/emailer/emailer.service';
 import { SnLoggerService } from './logger/sn-logger.service';
@@ -31,3 +32,8 @@ export const jwtServiceMock: JwtService = {
   sign(payload: any, options: JwtSignOptions): string { return ''; },
   decode(token: string, options: any) {}
 } as JwtService;
+
+export const responseMock = {
+  send: (value: any) => { return responseMock; },
+  status: (statue: number) => { return responseMock; }
+};
