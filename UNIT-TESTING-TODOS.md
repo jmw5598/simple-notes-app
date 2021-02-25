@@ -137,9 +137,9 @@
 
 ## `server/src/`
 - [ ] accounts
-  - [ ] controllers
+  - [x] controllers
     - [x] accounts
-    - [ ] settings
+    - [x] settings
   - [ ] mappers
     - [ ] keyboard-shortcut-action
     - [ ] keybaord-shortcut

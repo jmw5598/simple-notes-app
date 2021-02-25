@@ -37,3 +37,9 @@ export const responseMock = {
   send: (value: any) => { return responseMock; },
   status: (statue: number) => { return responseMock; }
 };
+
+export const requestMock = { 
+  user: { 
+    accountId: '1' 
+  }
+};

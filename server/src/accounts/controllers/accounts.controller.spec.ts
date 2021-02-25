@@ -5,7 +5,6 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { EmailerService } from '../../common/services/emailer/emailer.service';
 import { Role } from '../../users/entities/role.entity';
 import { User } from '../../users/entities/user.entity';
-import { repositoryMockFactory, emailerServiceMock, snLoggerServiceMock, responseMock } from '../../mocks';
 import { Account } from '../entities/account.entity';
 import { Address } from '../entities/address.entity';
 import { Profile } from '../entities/profile.entity';
@@ -27,13 +26,18 @@ import { ResponseStatus } from '../../common/enums/response-status.enum';
 import { PasswordResetDto } from '../dtos/password-reset.dto';
 import { PasswordRequestResetDto } from '../dtos/password-request-reset.dto';
 
+import { 
+  repositoryMockFactory, 
+  emailerServiceMock, 
+  snLoggerServiceMock, 
+  responseMock,
+  requestMock } from '../../mocks';
+
 
 describe('Accounts Controller', () => {
   let controller: AccountsController;
   let logger: SnLoggerService;
   let accountsService: AccountsService;
-
-  const requestMock = { user: { accountId: '1' } };
 
   const accountDetailsMock: Partial<Account> = {
     createdAt: new Date('2020-09-28T23:24:40.640Z'),
