@@ -140,9 +140,12 @@
   - [x] controllers
     - [x] accounts
     - [x] settings
-  - [ ] mappers
-    - [ ] keyboard-shortcut-action
-    - [ ] keybaord-shortcut
+  - [x] mappers
+    - [x] keyboard-shortcut-action
+    - [x] keybaord-shortcut
+  - [ ] services
+    - [ ] accounts
+    - [ ] settings
 - [ ] authentication
   - [ ] TODO
 - [ ] calendar
