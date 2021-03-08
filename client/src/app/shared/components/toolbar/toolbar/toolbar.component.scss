@@ -1,0 +1,21 @@
+@import '../toolbar.theme.scss';
+
+:host ::ng-deep .toolbar {
+  color: $toolbar-font-color;
+  display: flex;
+  flex-direction: row;
+  height: $toolbar-height;
+  width: 100%;
+  overflow-x: hidden;
+  background: #FFF;
+  border-bottom: $toolbar-border;
+
+  &:hover {
+    overflow-x: auto;
+  }
+
+  sn-toolbar-button-group {
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+}

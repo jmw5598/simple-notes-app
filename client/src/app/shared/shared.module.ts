@@ -27,6 +27,10 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { DocumentFormComponent } from './forms/document-form/document-form.component';
 import { DocumentCreateComponent } from './components/document-create/document-create.component';
 import { OverlayLoaderComponent } from './components/overlay-loader/overlay-loader.component';
+import { ToolbarComponent } from './components/toolbar/toolbar/toolbar.component';
+import { ToolbarButtonComponent } from './components/toolbar/toolbar-button/toolbar-button.component';
+import { ToolbarButtonGroupComponent } from './components/toolbar/toolbar-button-group/toolbar-button-group.component';
+import { ToolbarDockComponent } from './components/toolbar/toolbar-dock/toolbar-dock.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,11 @@ import { OverlayLoaderComponent } from './components/overlay-loader/overlay-load
     LayoutComponent,
     DocumentFormComponent,
     DocumentCreateComponent,
-    OverlayLoaderComponent
+    OverlayLoaderComponent,
+    ToolbarComponent,
+    ToolbarButtonComponent,
+    ToolbarButtonGroupComponent,
+    ToolbarDockComponent
   ],
   imports: [
     CommonModule,
@@ -80,7 +88,11 @@ import { OverlayLoaderComponent } from './components/overlay-loader/overlay-load
     LayoutComponent,
     DocumentFormComponent,
     DocumentCreateComponent,
-    OverlayLoaderComponent
+    OverlayLoaderComponent,
+    ToolbarComponent,
+    ToolbarButtonComponent,
+    ToolbarButtonGroupComponent,
+    ToolbarDockComponent
   ],
   providers: [
     DrawerService

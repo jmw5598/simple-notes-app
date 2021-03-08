@@ -1,0 +1,11 @@
+@import '../toolbar.theme.scss';
+
+:host ::ng-deep {
+  margin: 8px;
+  border: $toolbar-border;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  border-radius: $toolbar-button-group-radius;
+}

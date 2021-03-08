@@ -1,0 +1,19 @@
+@import '../toolbar.theme.scss';
+
+:host {
+  padding: 0.5rem 1rem;
+  border-right: $toolbar-border;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &:last-child {
+    border-right: 0;
+  }
+
+  &:hover {
+    color: darken($toolbar-font-color, 7%);
+  }
+}
