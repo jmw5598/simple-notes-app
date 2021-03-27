@@ -4,6 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:dev": "ng serve",
+    "start:docker": "ng serve --host 0.0.0.0",
     "build": "ng build --prod",
     "test": "ng test",
     "test:coverage": "ng test --no-watch --code-coverage",

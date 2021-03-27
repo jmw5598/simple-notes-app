@@ -1,0 +1,9 @@
+# Development 
+FROM node:12.8.1 AS development
+RUN mkdir -p /opt/app
+WORKDIR /opt/app
+COPY package*.json /opt/app/
+RUN npm install
+COPY . /opt/app/
+EXPOSE 4200
+CMD ["npm", "run", "start:docker"]
