@@ -1,41 +1,27 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light border-0 toolbar py-3">
-  <div class="container-fluid navbar-nav d-flex flex-row" id="navbarSupportedContent">
-    <ul class="navbar-nav d-flex flex-row navigation-arrows">
-      <li class="nav-item" (click)='onPreviousRoute()'>
-        <a class="nav-link my-0 py-0 px-2" >
-          <i class="fas fa-arrow-left"></i>
-        </a>
-      </li>
-      <li class="nav-item" (click)='onNextRoute()'>
-        <a class="nav-link my-0 py-0 px-2" >
-          <i class="fas fa-arrow-right"></i>
-        </a>
-      </li>
-    </ul>
-    <ul class="navbar-nav mr-auto d-flex flex-row">
-      <li class="nav-item" (click)='onCreateNewTopic()'>
-        <a class="nav-link my-0 py-0 px-2" >
-          <i class="fas fa-book-medical"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link my-0 py-0 px-2" (click)="onCreateNewCalendarEvent()">
-          <i class="far fa-calendar-plus"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link my-0 py-0 px-2" (click)="onCreateNewDocument()">
-          <i class="fas fa-file-medical"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link my-0 py-0 px-2" (click)="onSearchTopics()">
-          <i class="fas fa-search"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<sn-toolbar>
+  <sn-toolbar-button-group>
+    <span snToolbarButton (click)="onPreviousRoute()">
+      <i class="fas fa-arrow-left"></i>
+    </span>
+    <span snToolbarButton (click)="onNextRoute()">
+      <i class="fas fa-arrow-right"></i>
+    </span>
+  </sn-toolbar-button-group>
+  <sn-toolbar-button-group>
+    <span snToolbarButton (click)="onCreateNewTopic()">
+      <i class="fas fa-book-medical"></i>
+    </span>
+    <span snToolbarButton (click)="onCreateNewCalendarEvent()">
+      <i class="far fa-calendar-plus"></i>
+    </span>
+    <span snToolbarButton (click)="onCreateNewDocument()">
+      <i class="fas fa-file-medical"></i>
+    </span>
+    <span snToolbarButton (click)="onSearchTopics()">
+      <i class="fas fa-search"></i>
+    </span>
+  </sn-toolbar-button-group>
+</sn-toolbar>
 
 <sn-drawer
     [drawerLocation]="DrawerLocation.RIGHT">

@@ -4,7 +4,7 @@
   </div>
   <div container="navigationBar">
     <sn-navigation></sn-navigation>
-    <sn-toolbar></sn-toolbar>
+    <sn-global-toolbar></sn-global-toolbar>
   </div>
   <div container="mainContent">
     <router-outlet></router-outlet>
@@ -15,3 +15,34 @@
     [overlayStyle]="OverlayLoaderStyle.DIM_LIGHT"
     [spinnerSize]="OverlaySpinnerSize.SMALL">
 </sn-overlay-loader>
+
+<sn-toolbar-dock 
+    dockLocation="bottom" 
+    togglerLocation="center"
+    isHidden="false">
+  <sn-toolbar>
+    <sn-toolbar-button-group>
+      <span snToolbarButton>
+        <i class="fas fa-arrow-left"></i>
+      </span>
+      <span snToolbarButton>
+        <i class="fas fa-arrow-right"></i>
+      </span>
+    </sn-toolbar-button-group>
+    <sn-toolbar-button-group>
+      <span snToolbarButton>
+        <i class="fas fa-book-medical"></i>
+      </span>
+      <span snToolbarButton>
+        <i class="far fa-calendar-plus"></i>
+      </span>
+      <span snToolbarButton>
+        <i class="fas fa-file-medical"></i>
+      </span>
+      <span snToolbarButton>
+        <i class="fas fa-search"></i>
+      </span>
+    </sn-toolbar-button-group>
+  </sn-toolbar>
+  
+</sn-toolbar-dock>

@@ -16,7 +16,7 @@ import {
   DocumentCreateComponent } from '@sn/shared/components';
 
 @Component({
-  selector: 'sn-toolbar',
+  selector: 'sn-global-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
   providers: [DrawerService]
