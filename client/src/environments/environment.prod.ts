@@ -1,9 +1,9 @@
 export const environment = {
   production: true,
   auth: {
-    baseUrl: 'https://snapi.jasonwhite.xyz/auth'
+    baseUrl: 'https://hapless-crack-development.up.railway.app/auth'
   },
   api: {
-    baseUrl: 'https://snapi.jasonwhite.xyz'
+    baseUrl: 'https://hapless-crack-development.up.railway.app'
   }
 };

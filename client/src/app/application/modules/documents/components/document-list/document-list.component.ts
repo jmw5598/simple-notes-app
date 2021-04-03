@@ -16,13 +16,16 @@ export class DocumentListComponent implements OnInit {
   @Output()
   public onView: EventEmitter<Document> = new EventEmitter<Document>();
 
+  @Output()
+  public onCreate: EventEmitter<void> = new EventEmitter<void>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   public create(): void {
-    console.log("opening drawer to create new document");
+    this.onCreate.emit();
   }
 
   public view(document: Document): void {
