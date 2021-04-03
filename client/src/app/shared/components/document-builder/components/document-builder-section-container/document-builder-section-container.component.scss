@@ -1,0 +1,21 @@
+.document-builder-section-container {
+  .document-builder-section-container-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .document-builder-section-container-actions {
+      display: flex;
+      flex-direction: row;
+
+      span {
+        margin-right: 0.5rem;
+        cursor: pointer;
+        
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

@@ -13,7 +13,7 @@ import { DocumentListComponent } from './components/document-list/document-list.
   declarations: [
     DocumentBuilderComponent,
     ViewDocumentsComponent,
-    DocumentListComponent
+    DocumentListComponent,
   ],
   imports: [
     CommonModule,

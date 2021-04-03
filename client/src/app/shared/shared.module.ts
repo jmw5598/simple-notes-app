@@ -32,6 +32,9 @@ import { ToolbarButtonComponent } from './components/toolbar/toolbar-button/tool
 import { ToolbarButtonGroupComponent } from './components/toolbar/toolbar-button-group/toolbar-button-group.component';
 import { ToolbarDockComponent } from './components/toolbar/toolbar-dock/toolbar-dock.component';
 
+import { DocumentBuilderSectionContainerComponent } from './components/document-builder/components/document-builder-section-container/document-builder-section-container.component';
+import { DocumentBuilderTopicContainerComponent } from './components/document-builder/components/document-builder-topic-container/document-builder-topic-container.component';
+
 @NgModule({
   declarations: [
     SpinnerComponent,
@@ -55,7 +58,9 @@ import { ToolbarDockComponent } from './components/toolbar/toolbar-dock/toolbar-
     ToolbarComponent,
     ToolbarButtonComponent,
     ToolbarButtonGroupComponent,
-    ToolbarDockComponent
+    ToolbarDockComponent,
+    DocumentBuilderSectionContainerComponent,
+    DocumentBuilderTopicContainerComponent,
   ],
   imports: [
     CommonModule,
@@ -92,7 +97,9 @@ import { ToolbarDockComponent } from './components/toolbar/toolbar-dock/toolbar-
     ToolbarComponent,
     ToolbarButtonComponent,
     ToolbarButtonGroupComponent,
-    ToolbarDockComponent
+    ToolbarDockComponent,
+    DocumentBuilderSectionContainerComponent,
+    DocumentBuilderTopicContainerComponent,
   ],
   providers: [
     DrawerService
