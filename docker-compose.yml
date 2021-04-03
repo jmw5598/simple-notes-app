@@ -1,18 +1,16 @@
-version: '3'
+version: '3.7'
 services:
   sn-client:
     build:
       context: client
       dockerfile: Dockerfile
-      target: development
     ports:
-      - "4200:4200"
+      - "4200:80"
     container_name: 'sn-client-dev'
   sn-api:
     build:
       context: server
       dockerfile: Dockerfile
-      target: development
     ports:
       - "3000:3000"
     container_name: 'sn-api-dev'
