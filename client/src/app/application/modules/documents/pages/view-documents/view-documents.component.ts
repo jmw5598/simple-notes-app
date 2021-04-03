@@ -10,7 +10,7 @@ import { selectSearchDocumentsResult } from '../../store/selectors';
 import { deleteDocument, searchDocuments, searchDocumentsResult } from '../../store/actions';
 import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/core/defaults';
 import { tap } from 'rxjs/operators';
-import { DrawerService, DrawerLocation, DrawerSize, OverlayLoaderService, AbstractPageOverlayLoader } from '@sn/shared/components';
+import { DrawerService, DrawerLocation, DrawerSize, OverlayLoaderService, AbstractPageOverlayLoader, DocumentCreateComponent } from '@sn/shared/components';
 import { DocumentBuilderComponent } from '../../components/document-builder/document-builder.component';
 
 @Component({
@@ -59,6 +59,12 @@ export class ViewDocumentsComponent extends AbstractPageOverlayLoader implements
     this._drawerService.show(DocumentBuilderComponent, {
       size: DrawerSize.LARGE,
       data: document 
+    });
+  }
+
+  public onCreate(): void {
+    this._drawerService.show(DocumentCreateComponent, {
+      size: DrawerSize.LARGE
     });
   }
 
