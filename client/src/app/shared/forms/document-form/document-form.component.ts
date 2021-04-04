@@ -1,6 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormGroup, ControlContainer } from '@angular/forms';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
 import { Observable, Observer, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
@@ -12,7 +11,8 @@ import { getSectionsByTopicId, getSectionsByTopicIdSuccess } from '@sn/applicati
 import { selectSectionsForSelectedTopic, selectSelectedTopic } from '@sn/application/modules/documents/store/selectors';
 import { Page } from '@sn/core/models';
 import { Section, Topic } from '@sn/shared/models';
-
+import { DocumentBuilderService } from '@sn/shared/components/document-builder/services/document-builder.service';
+import { DropAction } from '../../components/document-builder/models/drop-action.enum';
 
 @Component({
   selector: 'sn-document-form',
@@ -20,6 +20,10 @@ import { Section, Topic } from '@sn/shared/models';
   styleUrls: ['./document-form.component.scss']
 })
 export class DocumentFormComponent implements OnInit {
+  public readonly TOPIC_DRAGGABLE_ROOT_ELEMENT: string = '.document-builder-topic-container';
+  public DropAction = DropAction
+  public drogDataAction = DropAction.CLONE_CONTAINER_ONLY;
+
   public form: FormGroup;
 
   public document = [
@@ -32,23 +36,32 @@ export class DocumentFormComponent implements OnInit {
   public selectedTopic: Topic;
   public selectedTopic$: Observable<Topic>;
   public sectionsForSelectedTopic$: Observable<Section[]>;
+  public documentId$: Observable<string>;
 
-  // topics: Topic[] = mockTopics;
   topics$: Observable<any>;
 
   constructor(
     private _renderer: Renderer2,
     private _parentControl: ControlContainer,
     private _store: Store<IDocumentsState>,
-    private _topicsService: TopicsService
+    private _topicsService: TopicsService,
+    private _documentBuilderService: DocumentBuilderService
   ) { }
 
   ngOnInit(): void {
     this.form = this._parentControl.control as FormGroup;
+    this.documentId$ = this._documentBuilderService.onDocumentIdChanges();
 
     this.selectedTopic$ = this._store.select(selectSelectedTopic);
     this._store.select(selectSectionsForSelectedTopic)
-      .subscribe(sections => this.selectedSections = sections ? sections?.map(s => s) : []);
+      .subscribe(sections => {
+        console.log('got section' , sections);
+        if (this.selectedTopic) {
+          this.selectedTopic.sections = sections 
+            ? sections?.map(s => s) 
+            : []
+        }
+      });
     
     this.topics$ = new Observable((observer: Observer<string>) => {
       observer.next(this.selected);
@@ -74,19 +87,6 @@ export class DocumentFormComponent implements OnInit {
   public onSelectTopic(match: TypeaheadMatch): void {
     this.selectedTopic = match.item as Topic;
     this._store.dispatch(getSectionsByTopicId({ topicId: this.selectedTopic.id }))
-  }
-
-  public onDrop(event: CdkDragDrop<string[]>) {
-    // console.log(event.previousContainer.data[event.previousIndex]); // Gets the item dropped
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data,
-        event.previousIndex,
-        event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex, event.currentIndex);
-    }
   }
 
   private _setFocusToTitleInput(): void {

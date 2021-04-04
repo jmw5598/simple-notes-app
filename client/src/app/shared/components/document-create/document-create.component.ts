@@ -10,6 +10,7 @@ import { ResponseMessage } from '@sn/core/models';
 import { Document } from '@sn/shared/models';
 import { createDocument, setCreateDocumentResponseMessage } from '@sn/application/modules/documents/store/actions';
 import { selectCreateDocumentResponseMessage } from '@sn/application/modules/documents/store/selectors';
+import { DocumentBuilderService } from '../document-builder/services/document-builder.service';
 
 @Component({
   selector: 'sn-document-create',
@@ -20,14 +21,20 @@ import { selectCreateDocumentResponseMessage } from '@sn/application/modules/doc
 export class DocumentCreateComponent implements OnInit {
   public form: FormGroup;
   public responseMessage$: Observable<ResponseMessage>;
+  public document: Document = {
+    id: 123,
+    topics: []
+  } as Document;
 
   constructor(
     private _formBuilder: FormBuilder,
     private _store: Store<IDocumentsState>,
-    private _drawerService: DrawerService
+    private _drawerService: DrawerService,
+    private _documentBuilderService: DocumentBuilderService
   ) { }
 
   ngOnInit(): void {
+    // this._documentBuilderService.setDocumentContainer(this.document);
     this.form = this._formBuilder.group({
       name: ['', [Validators.required]]
     });
@@ -49,6 +56,7 @@ export class DocumentCreateComponent implements OnInit {
 
   public onSubmit(document: Document): void {
     console.log(document);
-    this._store.dispatch(createDocument({ document: document }));
+    alert("I dont work yet!");
+    // this._store.dispatch(createDocument({ document: document }));
   }
 }

@@ -62,12 +62,12 @@
               [cdkDropListData]="document"
               [cdkDropListConnectedTo]="topicSections"
               (cdkDropListDropped)="onDrop($event)">
-            <ng-container *ngIf="document && document.length > 0; else emptyDocumentTemplate">
+            <!-- <ng-container *ngIf="document && document?.length > 0; else emptyDocumentTemplate">
               <li class="list-group-item" *ngFor="let section of document" cdkDrag>
                 <h4>{{ section.title }}</h4>
                 <p>{{ section.synopsis }}</p>
               </li>
-            </ng-container>
+            </ng-container> -->
             <ng-template #emptyDocumentTemplate>
               <li class="list-group-item">
                 <sn-empty-data message="There are no sections for this document!"></sn-empty-data>

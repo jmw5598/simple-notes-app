@@ -2,8 +2,7 @@ import { Component, OnInit, OnDestroy, AfterViewInit, Renderer2 } from '@angular
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Observer, Observable, of, noop } from 'rxjs';
 import { map, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Section, Topic } from '@sn/shared/models';
-import { mockTopics } from './topics-data.mock';
+import { Section, Topic, Document } from '@sn/shared/models';
 import { Page } from '@sn/core/models';
 import { TopicsService } from '@sn/core/services';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
@@ -11,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { IDocumentsState } from '../../store/reducers';
 import { getSectionsByTopicId, getSectionsByTopicIdSuccess } from '../../store/actions';
 import { selectSectionsForSelectedTopic, selectSelectedTopic } from '../../store/selectors';
+import { DocumentBuilderService } from '@sn/shared/components/document-builder/services/document-builder.service';
 
 @Component({
   selector: 'sn-document-builder',
@@ -19,9 +19,9 @@ import { selectSectionsForSelectedTopic, selectSelectedTopic } from '../../store
 })
 export class DocumentBuilderComponent implements OnInit, OnDestroy, AfterViewInit {
   
-  public document = [
-    
-  ];
+  public document: Document = {
+    id: -1123
+  } as Document;
 
   public selectedSections: Section[] = []
 
@@ -30,16 +30,17 @@ export class DocumentBuilderComponent implements OnInit, OnDestroy, AfterViewIni
   public selectedTopic$: Observable<Topic>;
   public sectionsForSelectedTopic$: Observable<Section[]>;
 
-  // topics: Topic[] = mockTopics;
-  topics$: Observable<any>;
+  public topics$: Observable<any>;
 
   constructor(
     private _renderer: Renderer2,
     private _store: Store<IDocumentsState>,
-    private _topicsService: TopicsService
+    private _topicsService: TopicsService,
+    private _documentBuilderService: DocumentBuilderService
   ) { }
 
   ngOnInit(): void {
+    this._documentBuilderService.setDocumentContainer(this.document);
     this.selectedTopic$ = this._store.select(selectSelectedTopic);
     this._store.select(selectSectionsForSelectedTopic)
       .subscribe(sections => sections ? this.selectedSections = sections?.map(s => s) : []);

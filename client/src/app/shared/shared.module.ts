@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover'
+
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { TagInputComponent } from './components/tag-input/tag-input.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
@@ -34,6 +36,7 @@ import { ToolbarDockComponent } from './components/toolbar/toolbar-dock/toolbar-
 
 import { DocumentBuilderSectionContainerComponent } from './components/document-builder/components/document-builder-section-container/document-builder-section-container.component';
 import { DocumentBuilderTopicContainerComponent } from './components/document-builder/components/document-builder-topic-container/document-builder-topic-container.component';
+import { DocumentBuilderDocumentContainerComponent } from './components/document-builder/components/document-builder-document-container/document-builder-document-container.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,7 @@ import { DocumentBuilderTopicContainerComponent } from './components/document-bu
     ToolbarDockComponent,
     DocumentBuilderSectionContainerComponent,
     DocumentBuilderTopicContainerComponent,
+    DocumentBuilderDocumentContainerComponent,
   ],
   imports: [
     CommonModule,
@@ -71,7 +75,8 @@ import { DocumentBuilderTopicContainerComponent } from './components/document-bu
     RouterModule,
     ColorTwitterModule,
     DragDropModule,
-    TypeaheadModule
+    TypeaheadModule,
+    ConfirmationPopoverModule
   ],
   exports: [
     FormsModule,
@@ -100,6 +105,7 @@ import { DocumentBuilderTopicContainerComponent } from './components/document-bu
     ToolbarDockComponent,
     DocumentBuilderSectionContainerComponent,
     DocumentBuilderTopicContainerComponent,
+    DocumentBuilderDocumentContainerComponent,
   ],
   providers: [
     DrawerService

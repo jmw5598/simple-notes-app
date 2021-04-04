@@ -1,8 +1,13 @@
-.document-builder-topic-container {
-  .document-builder-topic-container-title {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+:host ::ng-deep {
+  .document-builder-topic-container {
+    position: relative;
+    z-index: 1005;
+
+    .document-builder-topic-container-title {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
 
     .document-builder-topic-container-actions {
       display: flex;
@@ -11,7 +16,7 @@
       span {
         margin-right: 0.5rem;
         cursor: pointer;
-        
+
         &:last-child {
           margin-right: 0;
         }

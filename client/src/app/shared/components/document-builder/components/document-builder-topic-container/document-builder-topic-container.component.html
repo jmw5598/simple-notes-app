@@ -2,20 +2,17 @@
   <div class="card card-body document-builder-topic-container">
     <div class="document-builder-topic-container-title">
       <h4 class="font-weight-bold text-primary">{{ topic?.title || '' }}</h4>
-      <div class="document-builder-topic-container-actions">
-        <span class="text-dark">
-          <i class="far fa-clone"></i>
-        </span>
-        <span class="text-dark">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </span>
-      </div>
+      <!-- <div class="document-builder-topic-container-actions"> -->
+        <ng-container 
+            *ngTemplateOutlet="currentActionButtonsTemplate">
+        </ng-container>
+      <!-- </div> -->
     </div>
     <p class="text-dark font-italic">{{ topic?.synopsis || '' }}</p>
     <ng-container *ngIf="topic?.sections?.length; else noSectionsTemplate">
       <ul class="list-group">
         <li class="list-group-item"
-            *ngFor="let section of topic.sections">
+            *ngFor="let section of topic?.sections">
           <sn-document-builder-section-container [section]="section"></sn-document-builder-section-container>
         </li>
       </ul>
