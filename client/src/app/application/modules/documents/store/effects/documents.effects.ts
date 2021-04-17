@@ -8,26 +8,25 @@ import * as fromActions from '../actions';
 import { DocumentsService } from '@sn/core/services/documents.service';
 import { PageableSearch, ResponseMessage } from '@sn/core/models';
 import { ResponseStatus } from '@sn/core/enums';
-import { TopicsService, SectionsService } from '@sn/core/services';
+import { SectionsService } from '@sn/core/services';
 
 @Injectable()
 export class DocumentsEffects {
   constructor(
     private _actions: Actions,
     private _documentsService: DocumentsService,
-    private _sectionsService: SectionsService,
-    private _topicsService: TopicsService
+    private _sectionsService: SectionsService
   ) {}
 
-  // getDocumentById$ = createEffect(() => this._actions.pipe(
-  //   ofType(fromActions.getDocumentById),
-  //   switchMap(({ documentId }) => this._documentsService.findOne(documentId)
-  //     .pipe(
-  //       map(document => fromActions.setSelectedDocument({ document: document })),
-  //       catchError(error => of(fromActions.handleHttpError({ error: error })))
-  //     )
-  //   )
-  // ));
+  getDocumentById$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.getDocumentById),
+    switchMap(({ documentId }) => this._documentsService.findOne(documentId)
+      .pipe(
+        map(document => fromActions.setBuilderDocument({ document: document })),
+        catchError(error => of(handleHttpError({ error: error })))
+      )
+    )
+  ));
 
   createDocument$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.createDocument),
@@ -50,31 +49,31 @@ export class DocumentsEffects {
     })
   ));
 
-  // updateDocument$ = createEffect(() => this._actions.pipe(
-  //   ofType(fromActions.updateDocument),
-  //   exhaustMap(({ id, document }) => this._documentsService.update(id, document)
-  //     .pipe(
-  //       map(document => fromActions.updateDocumentSuccess({ document: document })),
-  //       catchError(error => {
-  //         const message: ResponseMessage = {
-  //           status: ResponseStatus.ERROR,
-  //           message: `We encountered an error updating your document, please try again!`
-  //         } as ResponseMessage;
-  //         return of(fromActions.setUpdateDocumentResponseMessage({ message: message }));
-  //       })
-  //     ))
-  // ));
+  updateDocument$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.updateDocument),
+    exhaustMap(({ id, document }) => this._documentsService.update(id, document)
+      .pipe(
+        map(document => fromActions.updateDocumentSuccess({ document: document })),
+        catchError(error => {
+          const message: ResponseMessage = {
+            status: ResponseStatus.ERROR,
+            message: `We encountered an error updating your document, please try again!`
+          } as ResponseMessage;
+          return of(fromActions.setUpdateDocumentResponseMessage({ message: message }));
+        })
+      ))
+  ));
 
-  // updateDocumentSuccess$ = createEffect(() => this._actions.pipe(
-  //   ofType(fromActions.updateDocumentSuccess),
-  //   switchMap(({document}) => {
-  //     const message: ResponseMessage = {
-  //       status: ResponseStatus.SUCCESS,
-  //       message: `Successfully updated topic!`
-  //     } as ResponseMessage
-  //     return of(fromActions.setUpdateDocumentResponseMessage({ message: message }))
-  //   })
-  // ));
+  updateDocumentSuccess$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.updateDocumentSuccess),
+    switchMap(({document}) => {
+      const message: ResponseMessage = {
+        status: ResponseStatus.SUCCESS,
+        message: `Successfully updated document!`
+      } as ResponseMessage
+      return of(fromActions.setUpdateDocumentResponseMessage({ message: message }))
+    })
+  ));
 
   deleteDocument$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.deleteDocument),

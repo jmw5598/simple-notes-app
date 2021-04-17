@@ -1,0 +1,54 @@
+<ng-container *ngIf="documentTopic; else noTopicTemplate">
+  <div class="card card-body document-builder-topic-container">
+    <div class="document-builder-topic-container-title">
+      <h4 class="font-weight-bold text-primary">{{ documentTopic?.topic?.title || '' }}</h4>
+      <div 
+          class="document-builder-topic-container-actions"
+          cdkDrag
+          [cdkDragRootElement]="TOPIC_DRAGGABLE_ROOT_ELEMENT"
+          [cdkDragData]="drogDataAction">
+        <span 
+            class="text-dark"
+            cdkDragHandle
+            (mousedown)="drogDataAction = DropAction.CLONE_WHOLE">
+          <i class="far fa-clone"></i>
+        </span>
+        <span 
+            class="text-dark" 
+            cdkDragHandle
+            (mousedown)="drogDataAction = DropAction.CLONE_CONTAINER_ONLY">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </span>
+      </div>
+    </div>
+    <p class="text-dark font-italic">{{ documentTopic?.topic?.synopsis || '' }}</p>
+    <ul 
+        class="list-group"
+        cdkDropList
+        [id]="'topic_' + documentTopic?.topic.id"
+        [cdkDropListData]="documentTopic?.documentTopicSections"
+        [cdkDropListConnectedTo]="topicIds$ | async"
+        (cdkDropListDropped)="dropSection($event)">
+      <ng-container *ngIf="documentTopic?.documentTopicSections?.length; else noSectionsTemplate">
+        <li cdkDrag
+            class="list-group-item"
+            *ngFor="let documentTopicSection of documentTopic?.documentTopicSections">
+          <sn-document-builder-section-container 
+              [documentTopicSection]="documentTopicSection">
+          </sn-document-builder-section-container>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</ng-container>
+
+
+<ng-template #noSectionsTemplate>
+  <sn-empty-data message="No sections to displays"></sn-empty-data>
+</ng-template>
+
+<ng-template #noTopicTemplate>
+  <sn-empty-data 
+      message="No topic to display.  Please search and select one!">
+  </sn-empty-data>
+</ng-template>

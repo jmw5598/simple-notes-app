@@ -26,7 +26,7 @@ import { DebounceDirective } from './directives/debounce.directive';
 import { ColorTwitterModule } from 'ngx-color/twitter';
 import { PageHeaderComponent } from './components/page-header/page-header.component'; // <color-twitter></color-twitter>
 import { LayoutComponent } from './components/layout/layout.component';
-import { DocumentFormComponent } from './forms/document-form/document-form.component';
+import { DocumentBuilderFormComponent } from './components/document-builder/components/document-builder-form/document-builder-form.component';
 import { DocumentCreateComponent } from './components/document-create/document-create.component';
 import { OverlayLoaderComponent } from './components/overlay-loader/overlay-loader.component';
 import { ToolbarComponent } from './components/toolbar/toolbar/toolbar.component';
@@ -34,9 +34,11 @@ import { ToolbarButtonComponent } from './components/toolbar/toolbar-button/tool
 import { ToolbarButtonGroupComponent } from './components/toolbar/toolbar-button-group/toolbar-button-group.component';
 import { ToolbarDockComponent } from './components/toolbar/toolbar-dock/toolbar-dock.component';
 
-import { DocumentBuilderSectionContainerComponent } from './components/document-builder/components/document-builder-section-container/document-builder-section-container.component';
-import { DocumentBuilderTopicContainerComponent } from './components/document-builder/components/document-builder-topic-container/document-builder-topic-container.component';
+import { DocumentBuilderSectionContainerComponent } from './components/document-builder/components/document-builder-form/components/document-builder-section-container/document-builder-section-container.component';
+import { DocumentBuilderTopicContainerComponent } from './components/document-builder/components/document-builder-form/components/document-builder-topic-container/document-builder-topic-container.component';
 import { DocumentBuilderDocumentContainerComponent } from './components/document-builder/components/document-builder-document-container/document-builder-document-container.component';
+import { DocumentBuilderDocumentTopicComponent } from './components/document-builder/components/document-builder-document-container/components/document-builder-document-topic/document-builder-document-topic.component';
+import { DocumentBuilderDocumentSectionComponent } from './components/document-builder/components/document-builder-document-container/components/document-builder-document-section/document-builder-document-section.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,7 @@ import { DocumentBuilderDocumentContainerComponent } from './components/document
     DebounceDirective,
     PageHeaderComponent,
     LayoutComponent,
-    DocumentFormComponent,
+    DocumentBuilderFormComponent,
     DocumentCreateComponent,
     OverlayLoaderComponent,
     ToolbarComponent,
@@ -65,6 +67,8 @@ import { DocumentBuilderDocumentContainerComponent } from './components/document
     DocumentBuilderSectionContainerComponent,
     DocumentBuilderTopicContainerComponent,
     DocumentBuilderDocumentContainerComponent,
+    DocumentBuilderDocumentTopicComponent,
+    DocumentBuilderDocumentSectionComponent,
   ],
   imports: [
     CommonModule,
@@ -96,7 +100,7 @@ import { DocumentBuilderDocumentContainerComponent } from './components/document
     DebounceDirective,
     PageHeaderComponent,
     LayoutComponent,
-    DocumentFormComponent,
+    DocumentBuilderFormComponent,
     DocumentCreateComponent,
     OverlayLoaderComponent,
     ToolbarComponent,

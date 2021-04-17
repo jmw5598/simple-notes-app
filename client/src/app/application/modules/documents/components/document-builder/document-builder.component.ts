@@ -9,7 +9,7 @@ import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { Store } from '@ngrx/store';
 import { IDocumentsState } from '../../store/reducers';
 import { getSectionsByTopicId, getSectionsByTopicIdSuccess } from '../../store/actions';
-import { selectSectionsForSelectedTopic, selectSelectedTopic } from '../../store/selectors';
+import { selectSectionsForSelectedTopic } from '../../store/selectors';
 import { DocumentBuilderService } from '@sn/shared/components/document-builder/services/document-builder.service';
 
 @Component({
@@ -40,8 +40,8 @@ export class DocumentBuilderComponent implements OnInit, OnDestroy, AfterViewIni
   ) { }
 
   ngOnInit(): void {
-    this._documentBuilderService.setDocumentContainer(this.document);
-    this.selectedTopic$ = this._store.select(selectSelectedTopic);
+    
+    // this.selectedTopic$ = this._store.select(selectSelectedTopic);
     this._store.select(selectSectionsForSelectedTopic)
       .subscribe(sections => sections ? this.selectedSections = sections?.map(s => s) : []);
     

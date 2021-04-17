@@ -1,0 +1,24 @@
+.document-builder-topic-container {
+  position: relative;
+  z-index: 1006;
+
+  .document-builder-topic-container-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .document-builder-topic-container-actions {
+    display: flex;
+    flex-direction: row;
+    
+    span {
+      margin-right: 0.5rem;
+      cursor: pointer;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

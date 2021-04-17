@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import * as fromActions from '../actions';
 import { ResponseMessage, Page } from '@sn/core/models';
 import { Topic, Document, Section } from '@sn/shared/models';
+import { DocumentTopic } from '@sn/shared/models/document-topic.model';
 
 export const documentsFeatureKey = 'documents'
 
@@ -12,8 +13,18 @@ export interface IDocumentsState {
   searchDocumentsResult: Page<Document>,
   searchDocumentsSelection: Document,
   searchTopicsResult: Page<Topic>,
-  selectedTopic: Topic
-  sectionsForSelectedTopic: Section[]
+  selectedDocumentTopic: DocumentTopic,
+  sectionsForSelectedTopic: Section[],
+  documentBuilder: Document
+}
+
+export const initialDocumentBuilderState: Document = {
+  id: -1,
+  name: '',
+  createdAt: null,
+  updatedAt: null,
+  deletedAt: null,
+  documentTopics: []
 }
 
 export const initialDocumentState: IDocumentsState = {
@@ -23,60 +34,124 @@ export const initialDocumentState: IDocumentsState = {
   searchDocumentsResult: null,
   searchDocumentsSelection: null,
   searchTopicsResult: null,
-  selectedTopic: null,
-  sectionsForSelectedTopic: null
+  selectedDocumentTopic: null,
+  sectionsForSelectedTopic: null,
+  documentBuilder: initialDocumentBuilderState
 };
+
+const onSetCreateDocumentResponseMessage = (state, { message} ) => ({
+  ...state,
+  createDocumentResponseMessage: message
+});
+
+const onSetUpdateDocumentResponseMessage = (state, { message }) => {
+  console.log('update doc response message settign', message)
+  return {
+  ...state,
+  updateDocumentResponseMessage: message
+}};
+
+const onSearchDocumentsResult = (state, { page }) => ({
+  ...state,
+  searchDocumentsResult: page
+});
+
+const onSetSearchDocumentSelection = (state, { document }) => ({
+  ...state,
+  searchDocumentsSelection: document
+});
+
+const onSearchTopicsResult = (state, { page }) => ({
+  ...state,
+  searchTopicsResult: page
+});
+
+const onSetBuilderSearchTopicSelection = (state, { documentTopic }) => ({
+  ...state,
+  selectedDocumentTopic: documentTopic
+});
+
+const onGetSectionsByTopicIdSuccess = (state, { sections }) => ({
+  ...state,
+  sectionsForSelectedTopic: sections
+});
+
+const onSetBuilderDocument = (state, { document }) => ({
+  ...state,
+  documentBuilder: document 
+});
+
+const onRemoveBuilderTopic = (state, { topicId }) => ({
+  ...state,
+  documentBuilder: {
+    ...state.documentBuilder,
+    documentTopics: state?.documentBuilder?.documentTopics
+      ?.filter(documentTopic => documentTopic?.topic?.id !== topicId) || [],
+  }
+} as IDocumentsState);
+
+const onRemoveBuilderSection = (state, { sectionId, topicId}) => ({
+  ...state,
+  documentBuilder: {
+    ...state.documentBuilder,
+    documentTopics: state.documentBuilder.documentTopics
+      .map(documentTopic => {
+        if (documentTopic?.topic?.id === topicId) {
+          return {
+            ...documentTopic,
+            documentTopicSections: documentTopic?.documentTopicSections
+              .filter(documentTopicSectin => documentTopicSectin?.section?.id !== sectionId)
+          }
+        } 
+        return documentTopic
+      })
+  }
+} as IDocumentsState);
+
+const onSetBuilderTopics = (state, { documentTopics }) => ({
+  ...state,
+  documentBuilder: {
+    ...state.documentBuilder,
+    documentTopics: documentTopics
+  }
+});
+
+const onSetBuilderTopicSections = (state, { topicId, documentTopicSections }) => ({
+  ...state,
+  documentBuilder: {
+    ...state.documentBuilder,
+    documentTopics: state.documentBuilder.documentTopics.map(documentTopic => {
+      if (documentTopic?.topic?.id === topicId) {
+        return {
+          ...documentTopic,
+          documentTopicSections: documentTopicSections
+        }
+      }
+      return documentTopic;
+    })
+  }
+});
+
+const onGetDocumentByIdSuccess = (state, { document }) => ({
+  ...state,
+  documentBuilder: document
+});
 
 const _documentReducer = createReducer(
   initialDocumentState,
-  on(fromActions.setSelectedDocument, (state, { document }) => {
-    return {
-      ...state,
-      selectedDocument: document
-    }
-  }),
-  on(fromActions.setCreateDocumentResponseMessage, (state, { message} ) => {
-    return {
-      ...state,
-      createDocumentResponseMessage: message
-    }
-  }),
-  on(fromActions.setUpdateDocumentResponseMessage, (state, { message }) => {
-    return {
-      ...state,
-      updateDocumentResponseMessage: message
-    }
-  }),
-  on(fromActions.searchDocumentsResult, (state, { page }) => {
-    return {
-      ...state,
-      searchDocumentsResult: page
-    }
-  }),
-  on(fromActions.setSearchDocumentsSelection, (state, { document }) => {
-    return {
-      ...state,
-      searchDocumentsSelection: document
-    }
-  }),
-  on(fromActions.searchTopicsResult, (state, { page }) => {
-    return {
-      ...state,
-      searchTopicsResult: page
-    }
-  }),
-  on(fromActions.setSearchTopicsSelection, (state, { topic }) => {
-    return {
-      ...state,
-      selectedTopic: topic
-    }
-  }),
-  on(fromActions.getSectionsByTopicIdSuccess, (state, { sections }) => {
-    return {
-      ...state,
-      sectionsForSelectedTopic: sections
-    }
-  })
+  on(fromActions.setCreateDocumentResponseMessage, onSetCreateDocumentResponseMessage),
+  on(fromActions.setUpdateDocumentResponseMessage, onSetUpdateDocumentResponseMessage),
+  on(fromActions.searchDocumentsResult, onSearchDocumentsResult),
+  on(fromActions.setSearchDocumentsSelection, onSetSearchDocumentSelection),
+  on(fromActions.searchTopicsResult, onSearchTopicsResult),
+  on(fromActions.setBuilderSearchTopicSelection, onSetBuilderSearchTopicSelection),
+  on(fromActions.getSectionsByTopicIdSuccess, onGetSectionsByTopicIdSuccess),
+  on(fromActions.removeBuilderTopic, onRemoveBuilderTopic),
+  on(fromActions.removeBuilderSection, onRemoveBuilderSection),
+  on(fromActions.setBuilderDocument, onSetBuilderDocument),
+  on(fromActions.setBuilderTopics, onSetBuilderTopics),
+  on(fromActions.setBuilderTopicSections, onSetBuilderTopicSections),
+  on(fromActions.getDocumentByIdSuccess, onGetDocumentByIdSuccess),
 );
 
 export function documentReducer(state, action) {

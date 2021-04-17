@@ -8,3 +8,5 @@ export * from './topic-resource.model';
 export * from './topic.model';
 export * from './file-response.model';
 export * from './document.model';
+export * from './document-topic.model';
+export * from './document-topic-section.model';

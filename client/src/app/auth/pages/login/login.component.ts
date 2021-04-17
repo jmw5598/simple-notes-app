@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private _route: ActivatedRoute
   ) {
     this.form = this._formBuilder.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      username: ['demo', [Validators.required]],
+      password: ['demo', [Validators.required]],
       rememberMe: [false, [Validators.required]]
     });
   }

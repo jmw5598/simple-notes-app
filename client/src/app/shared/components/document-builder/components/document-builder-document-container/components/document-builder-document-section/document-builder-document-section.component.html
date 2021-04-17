@@ -1,0 +1,18 @@
+<div class="document-builder-section-container">
+  <div class="document-builder-section-container-title">
+    <h5 class="text-dark">{{ documentTopicSection?.section?.title || '' }}</h5>
+    <div class="document-builder-section-container-actions">
+      <span class="text-dark" cdkDragHandle>
+        <i class="fas fa-expand-arrows-alt"></i>
+      </span>
+      <span 
+          class="text-dark mr-0"
+          mwlConfirmationPopover
+          placement="left"
+          (confirm)="removeSection(documentTopicSection)">
+        <i class="fas fa-trash-alt"></i>
+      </span>
+    </div>
+  </div>
+  <p class="m-0 text-dark font-italic text-small">{{ documentTopicSection?.section?.synopsis || '' }}</p>
+</div>

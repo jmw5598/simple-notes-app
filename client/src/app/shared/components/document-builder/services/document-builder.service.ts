@@ -1,48 +1,43 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Document, Topic } from '@sn/shared/models';
-import { map } from 'rxjs/operators';
 import { CdkDragDrop, copyArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
 import { DropAction } from '../models/drop-action.enum';
+import { Store } from '@ngrx/store';
+import { IAppState } from '@sn/store/reducers';
+
+import * as documentActions from '@sn/application/modules/documents/store/actions';
+import { DocumentTopic, DocumentTopicSection } from '@sn/shared/models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DocumentBuilderService {
-  private document: Document = { id: -1, topics: [] } as Document;
-  private documentSource: BehaviorSubject<Document>;
+  constructor(
+    private _store: Store<IAppState>
+  ) {}
 
-  constructor() {
-    this.documentSource = new BehaviorSubject<Document>(this.document)
+  public removeTopic(documentTopic: DocumentTopic): void {
+    this._store.dispatch(documentActions.removeBuilderTopic({
+      topicId: documentTopic?.topic?.id
+    }));
   }
 
-  public onDocumnetChanges(): Observable<Document> {
-    return this.documentSource.asObservable();
+  public removeSection(topicId: number, documentTopicSection: DocumentTopicSection): void {
+    this._store.dispatch(documentActions.removeBuilderSection({
+      topicId: topicId,
+      sectionId: documentTopicSection?.section?.id
+    }));
   }
 
-  public onDocumentIdChanges(): Observable<string> {
-    return this.documentSource.asObservable()
-      .pipe(map(document => ''+document?.id))
-  }
-
-  public setDocumentContainer(document: Document) { 
-    this.document = { ...document };
-    this.documentSource.next(this.document);
-  }
-
-  public removeTopic(topic: Topic): void {
-    this.document = {
-      ...this.document,
-      topics: this.document.topics.filter(e => e.id !== topic.id)
-    } as Document
-    this.documentSource.next(this.document);
-  }
-
-  public dropTopic(event: CdkDragDrop<Topic[]>): void {
+  public dropTopic(event: CdkDragDrop<DocumentTopic[]>): void {
     if (event.previousContainer === event.container) {
-      this.move(event);
+      this.moveTopic(event);
       return;
     }
+
+    const existingTopic: DocumentTopic = event.container.data
+      .find(e => e?.topic?.id === event.previousContainer.data[event.previousIndex]?.topic?.id);
+
+    if (existingTopic) return;
 
     if (event.item.data === DropAction.CLONE_CONTAINER_ONLY) {
       this.copyTopicOnly(event);
@@ -55,38 +50,88 @@ export class DocumentBuilderService {
     }
   }
 
-  private copyTopicWithSections(event: CdkDragDrop<Topic[]>): void {
-    const topics: Topic[] = JSON.parse(JSON.stringify(event.previousContainer.data));
-    copyArrayItem(
-      topics,
-      event.container.data,
-      event.previousIndex, event.currentIndex
-    );
-  }
-  
-  private copyTopicOnly(event: CdkDragDrop<Topic[]>): void {
-    const topics: Topic[] = JSON.parse(JSON.stringify(event.previousContainer.data));
-    topics.forEach(e => e.sections = []);
-    copyArrayItem(
-      topics,
-      event.container.data,
-      event.previousIndex, event.currentIndex
-    );
+  public dropSection(documentTopic: DocumentTopic, event: CdkDragDrop<DocumentTopicSection[]>): void {
+    if (event.container === event.previousContainer) {
+      this.moveSection(documentTopic, event);
+      return;
+    }
+    this.copySection(documentTopic, event);
   }
 
-  private move(event: CdkDragDrop<Topic[]>): void {
+  private copySection(documentTopic: DocumentTopic, event: CdkDragDrop<DocumentTopicSection[]>): void {
+    const previousContainerSections = event.previousContainer.data.map(s => ({ ...s }));
+    const containerSections = event.container.data.map(s => ({ ...s }));
+    
+    const existingSection: DocumentTopicSection = event.container.data.find(documentTopicSection => {
+      return documentTopicSection?.section?.id === event.previousContainer.data[event.previousIndex]?.section?.id; 
+    });
+
+    if (existingSection) return;
+
+    copyArrayItem(
+      previousContainerSections,
+      containerSections,
+      event.previousIndex, 
+      event.currentIndex
+    );
+    this.updateDocumentTopicSections(documentTopic, containerSections);
+  }
+
+  private moveSection(documentTopic: DocumentTopic, event: CdkDragDrop<DocumentTopicSection[]>): void {
+    const containerSections = event.container.data.map(s => ({ ...s }));
     moveItemInArray(
-      event.container.data,
+      containerSections,
       event.previousIndex,
       event.currentIndex
     );
+    this.updateDocumentTopicSections(documentTopic, containerSections);
   }
 
-  private copy(event: CdkDragDrop<Topic[]>): void {
-    copyArrayItem(
-      event.previousContainer.data,
-      event.container.data,
-      event.previousIndex, event.currentIndex
+  private moveTopic(event: CdkDragDrop<DocumentTopic[]>): void {
+    const containerTopics = event.container.data.map(t => ({ ...t }));
+    moveItemInArray(
+      containerTopics,
+      event.previousIndex,
+      event.currentIndex
     );
+    this.updateDocumentTopics(containerTopics);
+  }
+
+  private copyTopicOnly(event: CdkDragDrop<DocumentTopic[]>): void {
+    const previousContainerTopics = event.previousContainer.data.map(t => ({ ...t }));
+    const containerTopics = event.container.data.map(t => ({ ...t }));
+    previousContainerTopics.forEach(e => e.documentTopicSections = []);
+    copyArrayItem(
+      previousContainerTopics,
+      containerTopics,
+      event.previousIndex, 
+      event.currentIndex
+    );
+    this.updateDocumentTopics(containerTopics);
+  }
+
+  private copyTopicWithSections(event: CdkDragDrop<DocumentTopic[]>): void {
+    const previousContainerTopics = event.previousContainer.data.map(t => ({ ...t }));
+    const containerTopics = event.container.data.map(t => ({ ...t }));
+    copyArrayItem(
+      previousContainerTopics,
+      containerTopics,
+      event.previousIndex, 
+      event.currentIndex
+    );
+    this.updateDocumentTopics(containerTopics);
+  }
+
+  private updateDocumentTopics(documentTopics: DocumentTopic[]): void {
+    this._store.dispatch(documentActions.setBuilderTopics({
+      documentTopics: documentTopics
+    }));
+  }
+
+  private updateDocumentTopicSections(documentTopic: DocumentTopic, documentTopicSections: DocumentTopicSection[]): void {
+    this._store.dispatch(documentActions.setBuilderTopicSections({
+      topicId: documentTopic?.topic?.id || -1,
+      documentTopicSections: documentTopicSections 
+    }));
   }
 }

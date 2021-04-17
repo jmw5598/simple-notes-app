@@ -1,6 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 import { Page, PageableSearch, ResponseMessage } from '@sn/core/models';
 import { Document, Section, Topic } from '@sn/shared/models';
+import { DocumentTopicSection } from '@sn/shared/models/document-topic-section.model';
+import { DocumentTopic } from '@sn/shared/models/document-topic.model';
 
 export const createDocument = createAction(
   '[Document] Create Document',
@@ -24,11 +26,6 @@ export const updateDocument = createAction(
 
 export const updateDocumentSuccess = createAction(
   '[Document] Update Document Success',
-  props<{ document: Document }>()
-);
-
-export const setSelectedDocument = createAction(
-  '[Document] Selected Document',
   props<{ document: Document }>()
 );
 
@@ -82,11 +79,6 @@ export const searchTopicsResult = createAction(
   props<{ page: Page<Topic> }>()
 );
 
-export const setSearchTopicsSelection = createAction(
-  '[Document] Search Topics Selection',
-  props<{ topic: Topic }>()
-);
-
 export const getSectionsByTopicId = createAction(
   '[Document] Get Sections By Topic By Id',
   props<{ topicId: number }>()
@@ -95,4 +87,38 @@ export const getSectionsByTopicId = createAction(
 export const getSectionsByTopicIdSuccess = createAction(
   '[Document] Get Sections By Topic By Id Success',
   props<{ sections: Section[] }>()
+);
+
+export const createNewBuilderDocument = createAction(
+  '[Document] Create New Builder Document'
+);
+
+export const setBuilderDocument = createAction(
+  '[Document] Set Builder Document',
+  props<{ document: Document }>()
+);
+
+export const removeBuilderTopic = createAction(
+  '[Document] Remove Builder Topic',
+  props<{ topicId: number }>()  
+);
+
+export const removeBuilderSection = createAction(
+  '[Document] Remove Builder Section',
+  props<{ topicId: number, sectionId: number }>()
+);
+
+export const setBuilderTopics = createAction(
+  '[Document] Set Builder Topics',
+  props<{ documentTopics: DocumentTopic[] }>()
+);
+
+export const setBuilderTopicSections = createAction(
+  '[Document] Set Builder Topic Sections',
+  props<{ topicId: number, documentTopicSections: DocumentTopicSection[] }>()
+);
+
+export const setBuilderSearchTopicSelection = createAction(
+  '[Document] Set Builder Search Topic Selection',
+  props<{ documentTopic: DocumentTopic }>()
 );

@@ -1,6 +1,7 @@
 import { createSelector } from '@ngrx/store';
 import * as fromDocuments from '../reducers/documents.reducers';
 import * as fromApplication from '../../../../store/index';
+import { Document } from '@sn/shared/models';
 
 export const selectDocumentState = createSelector(
   fromApplication.selectApplicationState,
@@ -37,12 +38,22 @@ export const selectSearchTopicsResult = createSelector(
   (state: fromDocuments.IDocumentsState) => state.searchTopicsResult
 );
 
-export const selectSelectedTopic = createSelector(
-  selectDocumentState,
-  (state: fromDocuments.IDocumentsState) => state.selectedTopic
-);
-
 export const selectSectionsForSelectedTopic = createSelector(
   selectDocumentState,
   (state: fromDocuments.IDocumentsState) => state.sectionsForSelectedTopic
+);
+
+export const selectDocumentBuilderDocument = createSelector(
+  selectDocumentState,
+  (state: fromDocuments.IDocumentsState) => ({
+    ...state.documentBuilder,
+    documentTopics: state.documentBuilder?.documentTopics.map(documentTopic => ({
+      ...documentTopic
+    }))
+  } as Document)
+);
+
+export const selectDocumentBuilderSearchSelectedTopic = createSelector(
+  selectDocumentState,
+  (state: fromDocuments.IDocumentsState) => state.selectedDocumentTopic
 );

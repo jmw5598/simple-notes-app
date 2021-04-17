@@ -16,7 +16,7 @@
             <label for="search-topics">Search Topics</label>
             <input id="search-topics"
                 [(ngModel)]="selected"
-                [typeahead]="topics$"
+                [typeahead]="topicsTypeAhead$"
                 [typeaheadAsync]="true"
                 [typeaheadItemTemplate]="customItemTemplate"
                 (typeaheadOnSelect)="onSelectTopic($event)"
@@ -27,33 +27,10 @@
             </ng-template>
           </div>
           <div cdkDropList
-              [cdkDropListData]="[selectedTopic]"
-              [cdkDropListConnectedTo]="[documentId$ | async]">
+              [cdkDropListData]="[(selectedDocumentTopic$ | async)]"
+              [cdkDropListConnectedTo]="documentId$ | async">
             <div>
-              <sn-document-builder-topic-container 
-                  [topic]="selectedTopic"
-                  [actionButtonsTemplate]="documentBuilderTopicContainerTemplate">
-              </sn-document-builder-topic-container>
-              <ng-template #documentBuilderTopicContainerTemplate>
-                <div 
-                    class="document-builder-topic-container-actions"
-                    cdkDrag
-                    [cdkDragRootElement]="TOPIC_DRAGGABLE_ROOT_ELEMENT"
-                    [cdkDragData]="drogDataAction">
-                  <span 
-                      class="text-dark"
-                      cdkDragHandle
-                      (mousedown)="drogDataAction = DropAction.CLONE_WHOLE">
-                    <i class="far fa-clone"></i>
-                  </span>
-                  <span 
-                      class="text-dark" 
-                      cdkDragHandle
-                      (mousedown)="drogDataAction = DropAction.CLONE_CONTAINER_ONLY">
-                    <i class="fas fa-expand-arrows-alt"></i>
-                  </span>
-                </div>
-              </ng-template>
+              <sn-document-builder-topic-container [documentTopic]="selectedDocumentTopic$ | async"></sn-document-builder-topic-container>
             </div>
           </div>
         </div>
@@ -64,5 +41,3 @@
     </div>
   </div>
 </div>
-
-

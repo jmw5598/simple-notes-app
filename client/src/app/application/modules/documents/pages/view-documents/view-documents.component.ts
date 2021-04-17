@@ -11,8 +11,10 @@ import { deleteDocument, searchDocuments, searchDocumentsResult } from '../../st
 import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/core/defaults';
 import { tap } from 'rxjs/operators';
 import { DrawerService, DrawerLocation, DrawerSize, OverlayLoaderService, AbstractPageOverlayLoader, DocumentCreateComponent } from '@sn/shared/components';
-import { DocumentBuilderComponent } from '../../components/document-builder/document-builder.component';
+import { DocumentUpdateComponent } from '../../components/document-update/document-update.component';
 
+import * as documentActions from '../../store/actions';
+import * as documentSelectors from '../../store/selectors';
 @Component({
   selector: 'sn-view-documents',
   templateUrl: './view-documents.component.html',
@@ -37,7 +39,7 @@ export class ViewDocumentsComponent extends AbstractPageOverlayLoader implements
   }
 
   ngOnInit(): void {
-    this.searchDocumentsResult$ = this._store.select(selectSearchDocumentsResult)
+    this.searchDocumentsResult$ = this._store.select(documentSelectors.selectSearchDocumentsResult)
       .pipe(tap(() => this.isSearching = false));
   }
 
@@ -48,18 +50,23 @@ export class ViewDocumentsComponent extends AbstractPageOverlayLoader implements
       searchTerm: searchTerm,
       pageable: this.DEFAULT_PAGE
     };
-    this._store.dispatch(searchDocuments({ search: search }));
+    this._store.dispatch(documentActions.searchDocuments({ search: search }));
   }
 
   public onDelete(id: number): void {
-    this._store.dispatch(deleteDocument({ id: id }));
+    this._store.dispatch(documentActions.deleteDocument({ id: id }));
   }
 
   public onView(document: Document): void {
-    this._drawerService.show(DocumentBuilderComponent, {
+    this._store.dispatch(documentActions.getDocumentById({ documentId: document.id }));
+    this._drawerService.show(DocumentUpdateComponent, {
       size: DrawerSize.LARGE,
       data: document 
     });
+    // this._drawerService.show(DocumentBuilderComponent, {
+    //   size: DrawerSize.LARGE,
+    //   data: document 
+    // });
   }
 
   public onCreate(): void {

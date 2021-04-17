@@ -8,12 +8,14 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { ViewDocumentsComponent } from './pages/view-documents/view-documents.component';
 import { DocumentListComponent } from './components/document-list/document-list.component';
+import { DocumentUpdateComponent } from './components/document-update/document-update.component';
 
 @NgModule({
   declarations: [
     DocumentBuilderComponent,
     ViewDocumentsComponent,
     DocumentListComponent,
+    DocumentUpdateComponent,
   ],
   imports: [
     CommonModule,

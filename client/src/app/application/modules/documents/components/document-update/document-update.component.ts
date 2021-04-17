@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
-import { DrawerService } from '../drawer/drawer.service';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { DrawerService } from '@sn/shared/components';
 import { showHide } from '@sn/shared/animations';
 import { Store } from '@ngrx/store';
 import { IDocumentsState } from '@sn/application/modules/documents/store/reducers';
@@ -13,13 +13,12 @@ import * as documentSelectors from '@sn/application/modules/documents/store/sele
 import * as documentActions from '@sn/application/modules/documents/store/actions';
 
 @Component({
-  selector: 'sn-document-create',
-  templateUrl: './document-create.component.html',
-  styleUrls: ['./document-create.component.scss'],
+  selector: 'sn-document-update',
+  templateUrl: './document-update.component.html',
+  styleUrls: ['./document-update.component.scss'],
   animations: [showHide]
 })
-export class DocumentCreateComponent implements OnInit, OnDestroy {
-  private _subscriptionSubject: Subject<any> = new Subject<any>();
+export class DocumentUpdateComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public responseMessage$: Observable<ResponseMessage>;
   public document: Document = {
@@ -36,12 +35,32 @@ export class DocumentCreateComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    // this._documentBuilderService.setDocumentContainer(this.document);
+    this._initializeDocumentForm();
+    this._selectState();
+    this._syncBuilderDocumentWithForm();
+  }
+
+  public onClose(): void {
+    this._drawerService.close();
+  }
+
+  public onSubmit(document: Document): void {
+    this._store.dispatch(documentActions.updateDocument({ 
+      id: document.id,
+      document: document 
+    }));
+  }
+
+  private _initializeDocumentForm(): void {
     this.form = this._formBuilder.group({
+      id: ['', Validators.required],
       name: ['', [Validators.required]]
     });
+  }
 
-    this.responseMessage$ = this._store.select(documentSelectors.selectCreateDocumentResponseMessage)
+  private _selectState(): void {
+    this.document$ = this._store.select(documentSelectors.selectDocumentBuilderDocument);   
+    this.responseMessage$ = this._store.select(documentSelectors.selectUpdateDocumentResponseMessage)
       .pipe(
         tap((message: ResponseMessage) => {
           if (message) {
@@ -50,34 +69,18 @@ export class DocumentCreateComponent implements OnInit, OnDestroy {
           }
         })
       );
-
-    this.document$ = this._store.select(documentSelectors.selectDocumentBuilderDocument);
-
-    this.syncBuilderDocumentWithForm();
   }
 
-  public onClose(): void {
-    this._drawerService.close();
-  }
-
-  public onSubmit(document: Document): void {
-    console.log(document);
-    alert("I dont work yet!");
-    this._store.dispatch(documentActions.createDocument({ document: document }));
-  }
-
-  private syncBuilderDocumentWithForm(): void {
-    this.document$
-      .pipe(takeUntil(this._subscriptionSubject))
-      .subscribe(document => {
-        this.form.patchValue({
-          ...document
-        });
+  private _syncBuilderDocumentWithForm(): void {
+    this.document$.subscribe(document => {
+      this.form.patchValue({
+        ...document
       });
+    })
   }
 
   ngOnDestroy(): void {
-    this._subscriptionSubject.next();
-    this._subscriptionSubject.complete();
+    // dispatch action to set null to selected document
+    /// and document builder
   }
 }

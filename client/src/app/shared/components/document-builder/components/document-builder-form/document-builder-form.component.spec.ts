@@ -4,13 +4,13 @@ import { Store } from '@ngrx/store';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { DocumentFormComponent } from './document-form.component';
+import { DocumentBuilderFormComponent } from './document-builder-form.component';
 import { TopicsService } from '@sn/core/services';
 import { SharedModule } from '@sn/shared/shared.module';
 
 describe('DocumentFormComponent', () => {
-  let component: DocumentFormComponent;
-  let fixture: ComponentFixture<DocumentFormComponent>;
+  let component: DocumentBuilderFormComponent;
+  let fixture: ComponentFixture<DocumentBuilderFormComponent>;
 
   let testFormGroupDirective: FormGroupDirective = new FormGroupDirective([], []);
   let testFormGroup: FormGroup = new FormGroup({
@@ -32,7 +32,7 @@ describe('DocumentFormComponent', () => {
         SharedModule
       ],
       declarations: [
-        DocumentFormComponent
+        DocumentBuilderFormComponent
       ],
       providers: [
         TopicsService,
@@ -50,7 +50,7 @@ describe('DocumentFormComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DocumentFormComponent);
+    fixture = TestBed.createComponent(DocumentBuilderFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

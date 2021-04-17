@@ -1,38 +1,14 @@
 <div class="document-builder-document-container">
   <div
-      class="card card-body document-builder-document-container-topics"
+      class="document-builder-document-container-topics"
       cdkDropList
-      [id]="documentId$ | async"
-      [cdkDropListData]="(document$ | async)?.topics"
-      [cdkDropListConnectedTo]="[documentId$ | async]"
+      [id]="''+(document$ | async)?.id"
+      [cdkDropListData]="(document$ | async)?.documentTopics"
+      [cdkDropListConnectedTo]="(documentId$ | async)"
       (cdkDropListDropped)="dropTopic($event)">
-    <ng-container *ngIf="(document$ | async)?.topics?.length; else noTopicsInDocumentTemplate">
-      <div *ngFor="let topic of (document$ | async)?.topics" class="mb-3">
-        <sn-document-builder-topic-container 
-            [topic]="topic"
-            [actionButtonsTemplate]="documentBuilderTopicContainerTemplate">
-        </sn-document-builder-topic-container>
-        <ng-template #documentBuilderTopicContainerTemplate>
-          <div 
-              class="document-builder-topic-container-actions"
-              cdkDrag
-              [cdkDragRootElement]="TOPIC_DRAGGABLE_ROOT_ELEMENT"
-              [cdkDragData]="drogDataAction">
-            <span 
-                class="text-dark" 
-                cdkDragHandle
-                (mousedown)="drogDataAction = DropAction.CLONE_CONTAINER_ONLY">
-              <i class="fas fa-expand-arrows-alt"></i>
-            </span>
-            <span 
-                class="text-dark"
-                mwlConfirmationPopover
-                placement="left"
-                (confirm)="removeTopic(topic)">
-              <i class="fas fa-trash-alt"></i>
-            </span>
-          </div>
-        </ng-template>
+    <ng-container *ngIf="(document$ | async)?.documentTopics?.length; else noTopicsInDocumentTemplate">
+      <div *ngFor="let documentTopic of (document$ | async)?.documentTopics" class="mb-3">
+        <sn-document-builder-document-topic [documentTopic]="documentTopic"></sn-document-builder-document-topic>
       </div>
     </ng-container>
   </div>
