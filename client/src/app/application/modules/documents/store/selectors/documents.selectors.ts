@@ -57,3 +57,8 @@ export const selectDocumentBuilderSearchSelectedTopic = createSelector(
   selectDocumentState,
   (state: fromDocuments.IDocumentsState) => state.selectedDocumentTopic
 );
+
+export const selectDocumentMarkdownPreview = createSelector(
+  selectDocumentState,
+  (state: fromDocuments.IDocumentsState) => state.documentMarkdownPreview
+);

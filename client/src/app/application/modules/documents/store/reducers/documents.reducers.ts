@@ -80,7 +80,7 @@ const onGetSectionsByTopicIdSuccess = (state, { sections }) => ({
 
 const onSetBuilderDocument = (state, { document }) => ({
   ...state,
-  documentBuilder: document 
+  documentBuilder: document ? document : initialDocumentBuilderState
 });
 
 const onRemoveBuilderTopic = (state, { topicId }) => ({
@@ -141,7 +141,7 @@ const onGetDocumentByIdSuccess = (state, { document }) => ({
 
 const onSetDocumentMarkdownPreview = (state, { documentMarkdown }) => ({
   ...state,
-  documentMarkdownPreview: DocumentMarkdown
+  documentMarkdownPreview: documentMarkdown
 });
 
 const _documentReducer = createReducer(

@@ -85,8 +85,9 @@ export class DocumentUpdateComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // dispatch action to set null to selected document
-    /// and document builder
+    // TODO rethink this, causes issue with create document not drag and droppign???? maybe need to set to initial value???
+    // Need to create action that resets Builder Document and sets as initial value???
+    this._store.dispatch(documentActions.setBuilderDocument({ document: null }));
     this._subscriptionSubject.next();
     this._subscriptionSubject.complete();
   }

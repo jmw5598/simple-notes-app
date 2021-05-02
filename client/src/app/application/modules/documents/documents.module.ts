@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MarkdownModule } from 'ngx-markdown'
 import { SharedModule } from '@sn/shared/shared.module';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { DocumentsRoutingModule } from './documents-routing.module';
@@ -25,7 +26,8 @@ import { DocumentViewComponent } from './components/document-view/document-view.
     DocumentsRoutingModule,
     SharedModule,
     TypeaheadModule.forRoot(),
-    ConfirmationPopoverModule
+    ConfirmationPopoverModule,
+    MarkdownModule.forRoot()
   ],
   entryComponents: [
     DocumentBuilderComponent,

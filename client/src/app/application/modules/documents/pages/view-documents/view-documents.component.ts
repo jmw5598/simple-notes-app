@@ -6,8 +6,8 @@ import { Document } from '@sn/shared/models';
 import { fadeAnimation } from '@sn/shared/animations';
 
 import { IDocumentsState } from '../../store/reducers/documents.reducers'
-import { selectSearchDocumentsResult } from '../../store/selectors';
-import { deleteDocument, searchDocuments, searchDocumentsResult } from '../../store/actions';
+import { selectDocumentBuilderDocument, selectSearchDocumentsResult } from '../../store/selectors';
+import { deleteDocument, searchDocuments, searchDocumentsResult, setBuilderDocument, setDocumentMarkdownPreview } from '../../store/actions';
 import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/core/defaults';
 import { tap } from 'rxjs/operators';
 import { DrawerService, DrawerLocation, DrawerSize, OverlayLoaderService, AbstractPageOverlayLoader, DocumentCreateComponent } from '@sn/shared/components';
