@@ -9,10 +9,12 @@ import { DocumentNotFoundException } from '../exceptions/document-not-found.exce
 import { IPageable } from 'src/common/models/pageable.interface';
 import { Page } from 'src/common/models/page.model';
 import { UpdateDocumentDto } from '../dtos/update-document.dto';
-import { doc } from 'prettier';
 import { DocumentTopic } from '../entities/document-topic.entity';
 import { DocumentTopicSection } from '../entities/document-topic-section.entity';
 import { DocumentMarkdownDto } from '../dtos/document-markdown.dto';
+import { Topic } from 'src/topics/entities/topic.entity';
+
+import { DocumentBuilderUtility } from '../../common/utilities/document-builder.utility';
 
 @Injectable()
 export class DocumentsService {
@@ -74,6 +76,7 @@ export class DocumentsService {
   }
 
   public async getDocumentById(accountId: number, documentId: number): Promise<DocumentDto> {
+    // TODO Check if sections are returned with notes, we need to exclude notes for this...
     const document: Document = await this._documentsRepository.createQueryBuilder('doc')
       .innerJoin('doc.account', 'account')
       .innerJoinAndSelect('doc.documentTopics', 'dt')
@@ -93,8 +96,34 @@ export class DocumentsService {
   }
 
   public async getDocumentMarkdownById(accountId: number, documentId: number): Promise<DocumentMarkdownDto> {
-    // TODO Implement this....
-    return { markdown: '# Test' } as DocumentMarkdownDto;
+    const document: Document = await this._documentsRepository.createQueryBuilder('doc')
+      .innerJoin('doc.account', 'account')
+      .innerJoinAndSelect('doc.documentTopics', 'dt')
+      .innerJoinAndSelect('dt.topic', 'topic')
+      .innerJoinAndSelect('dt.documentTopicSections', 'dts')
+      .innerJoinAndSelect('dts.section', 's')
+      .where('account.id = :accountId', { accountId: accountId })
+      .andWhere('doc.id = :documentId', { documentId: documentId })
+      .orderBy({ 
+        'dt.orderIndex': 'ASC',
+        'dts.orderIndex': 'ASC'
+      }).getOne();
+
+    if (!document) throw new DocumentNotFoundException();
+
+    const topicsToGenerateMarkdownFor = document.documentTopics.map(documentTopic => ({
+      ...documentTopic.topic,
+      sections: documentTopic.documentTopicSections
+        .map(documentTopicSection => documentTopicSection.section)
+    } as Topic));
+
+    const markdownTopicString = topicsToGenerateMarkdownFor
+      .map(topic => DocumentBuilderUtility.topicToMarkdown(topic)).join('\n\n');
+
+    return {
+      document: await this.getDocumentById(accountId, documentId),
+      markdown: markdownTopicString || '' 
+    } as DocumentMarkdownDto;
   }
 
   public async updateDocument(accountId: number, documentId: number, updateDocumentDto: UpdateDocumentDto): Promise<DocumentDto> {
