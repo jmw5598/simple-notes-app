@@ -17,6 +17,9 @@ export class DocumentListComponent implements OnInit {
   public onView: EventEmitter<Document> = new EventEmitter<Document>();
 
   @Output()
+  public onEdit: EventEmitter<Document> = new EventEmitter<Document>();
+
+  @Output()
   public onCreate: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }
@@ -30,6 +33,10 @@ export class DocumentListComponent implements OnInit {
 
   public view(document: Document): void {
     this.onView.emit(document);
+  }
+
+  public edit(document: Document): void {
+    this.onEdit.emit(document);
   }
 
   public delete(documentId: number): void {

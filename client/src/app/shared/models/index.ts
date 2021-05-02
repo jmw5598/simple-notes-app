@@ -10,3 +10,4 @@ export * from './file-response.model';
 export * from './document.model';
 export * from './document-topic.model';
 export * from './document-topic-section.model';
+export * from './document-markdown.model';

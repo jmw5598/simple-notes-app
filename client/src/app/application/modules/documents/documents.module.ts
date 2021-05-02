@@ -9,6 +9,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { ViewDocumentsComponent } from './pages/view-documents/view-documents.component';
 import { DocumentListComponent } from './components/document-list/document-list.component';
 import { DocumentUpdateComponent } from './components/document-update/document-update.component';
+import { DocumentViewComponent } from './components/document-view/document-view.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DocumentUpdateComponent } from './components/document-update/document-u
     ViewDocumentsComponent,
     DocumentListComponent,
     DocumentUpdateComponent,
+    DocumentViewComponent,
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { DocumentUpdateComponent } from './components/document-update/document-u
     ConfirmationPopoverModule
   ],
   entryComponents: [
-    DocumentBuilderComponent
+    DocumentBuilderComponent,
+    DocumentViewComponent
   ]
 })
 export class DocumentsModule { }

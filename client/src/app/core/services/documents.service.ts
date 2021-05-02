@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { AbstractCrudService } from './abstract-crud.service';
-import { Document } from '@sn/shared/models';
+import { Document, DocumentMarkdown } from '@sn/shared/models';
 import { IPageable, Page } from '@sn/core/models';
 import { environment } from '@env/environment';
 
@@ -24,5 +24,9 @@ export class DocumentsService extends AbstractCrudService<Document, number> {
       sortDir: page.sort.direction
     };
     return this._http.get<Page<Document>>(`${this._base}/search`, { params: params });
+  }
+
+  public getDocumentMarkdownPreviewById(documentId: number): Observable<DocumentMarkdown> {
+    return this._http.get<DocumentMarkdown>(`${this._base}/${documentId}/markdown`);
   }
 }

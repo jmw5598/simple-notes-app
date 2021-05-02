@@ -28,6 +28,17 @@ export class DocumentsEffects {
     )
   ));
 
+  
+  getDocumentMarkdownPreviewById = createEffect(() => this._actions.pipe(
+    ofType(fromActions.getDocumentMarkdownPreviewById),
+    switchMap(({ documentId }) => this._documentsService.getDocumentMarkdownPreviewById(documentId)
+      .pipe(
+        map(documentMarkdown => fromActions.setDocumentMarkdownPreview({ documentMarkdown: documentMarkdown })),
+        catchError(error => of(handleHttpError({ error: error })))
+      )
+    )
+  ));
+
   createDocument$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.createDocument),
     exhaustMap(({ document }) => this._documentsService.save(document)

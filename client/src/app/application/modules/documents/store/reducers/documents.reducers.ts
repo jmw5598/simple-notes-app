@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import * as fromActions from '../actions';
 import { ResponseMessage, Page } from '@sn/core/models';
-import { Topic, Document, Section } from '@sn/shared/models';
+import { Topic, Document, Section, DocumentMarkdown } from '@sn/shared/models';
 import { DocumentTopic } from '@sn/shared/models/document-topic.model';
 
 export const documentsFeatureKey = 'documents'
@@ -15,7 +15,8 @@ export interface IDocumentsState {
   searchTopicsResult: Page<Topic>,
   selectedDocumentTopic: DocumentTopic,
   sectionsForSelectedTopic: Section[],
-  documentBuilder: Document
+  documentBuilder: Document,
+  documentMarkdownPreview: DocumentMarkdown
 }
 
 export const initialDocumentBuilderState: Document = {
@@ -36,7 +37,8 @@ export const initialDocumentState: IDocumentsState = {
   searchTopicsResult: null,
   selectedDocumentTopic: null,
   sectionsForSelectedTopic: null,
-  documentBuilder: initialDocumentBuilderState
+  documentBuilder: initialDocumentBuilderState,
+  documentMarkdownPreview: null,
 };
 
 const onSetCreateDocumentResponseMessage = (state, { message} ) => ({
@@ -137,6 +139,11 @@ const onGetDocumentByIdSuccess = (state, { document }) => ({
   documentBuilder: document
 });
 
+const onSetDocumentMarkdownPreview = (state, { documentMarkdown }) => ({
+  ...state,
+  documentMarkdownPreview: DocumentMarkdown
+});
+
 const _documentReducer = createReducer(
   initialDocumentState,
   on(fromActions.setCreateDocumentResponseMessage, onSetCreateDocumentResponseMessage),
@@ -152,6 +159,7 @@ const _documentReducer = createReducer(
   on(fromActions.setBuilderTopics, onSetBuilderTopics),
   on(fromActions.setBuilderTopicSections, onSetBuilderTopicSections),
   on(fromActions.getDocumentByIdSuccess, onGetDocumentByIdSuccess),
+  on(fromActions.setDocumentMarkdownPreview, onSetDocumentMarkdownPreview),
 );
 
 export function documentReducer(state, action) {

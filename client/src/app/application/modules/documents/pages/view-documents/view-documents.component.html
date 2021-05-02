@@ -26,6 +26,7 @@
               [documents]="(searchDocumentsResult$ | async)?.elements"
               (onDelete)="onDelete($event)"
               (onView)="onView($event)"
+              (onEdit)="onEdit($event)"
               (onCreate)="onCreate()">
           </sn-document-list>
           <div class="p-3">

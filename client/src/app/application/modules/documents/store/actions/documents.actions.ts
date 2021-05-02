@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Page, PageableSearch, ResponseMessage } from '@sn/core/models';
-import { Document, Section, Topic } from '@sn/shared/models';
+import { Document, DocumentMarkdown, Section, Topic } from '@sn/shared/models';
 import { DocumentTopicSection } from '@sn/shared/models/document-topic-section.model';
 import { DocumentTopic } from '@sn/shared/models/document-topic.model';
 
@@ -121,4 +121,14 @@ export const setBuilderTopicSections = createAction(
 export const setBuilderSearchTopicSelection = createAction(
   '[Document] Set Builder Search Topic Selection',
   props<{ documentTopic: DocumentTopic }>()
+);
+
+export const getDocumentMarkdownPreviewById = createAction(
+  '[Document] Set Document Markdown Preview By Id',
+  props<{ documentId: number }>()
+);
+
+export const setDocumentMarkdownPreview = createAction(
+  '[Document] Set Document Markdown Preview',
+  props<{ documentMarkdown: DocumentMarkdown }>()
 );

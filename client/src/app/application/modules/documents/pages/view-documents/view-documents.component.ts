@@ -15,6 +15,7 @@ import { DocumentUpdateComponent } from '../../components/document-update/docume
 
 import * as documentActions from '../../store/actions';
 import * as documentSelectors from '../../store/selectors';
+import { DocumentViewComponent } from '../../components/document-view/document-view.component';
 @Component({
   selector: 'sn-view-documents',
   templateUrl: './view-documents.component.html',
@@ -57,16 +58,20 @@ export class ViewDocumentsComponent extends AbstractPageOverlayLoader implements
     this._store.dispatch(documentActions.deleteDocument({ id: id }));
   }
 
-  public onView(document: Document): void {
+  public onEdit(document: Document): void {
     this._store.dispatch(documentActions.getDocumentById({ documentId: document.id }));
     this._drawerService.show(DocumentUpdateComponent, {
       size: DrawerSize.LARGE,
       data: document 
     });
-    // this._drawerService.show(DocumentBuilderComponent, {
-    //   size: DrawerSize.LARGE,
-    //   data: document 
-    // });
+  }
+
+  public onView(document: Document): void {
+    this._store.dispatch(documentActions.getDocumentMarkdownPreviewById({ documentId: document.id }));
+    this._drawerService.show(DocumentViewComponent, {
+      size: DrawerSize.MEDIUM,
+      data: document 
+    });
   }
 
   public onCreate(): void {
