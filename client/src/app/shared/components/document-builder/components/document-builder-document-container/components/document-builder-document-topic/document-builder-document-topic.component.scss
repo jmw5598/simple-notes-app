@@ -1,6 +1,6 @@
 .document-builder-topic-container {
   position: relative;
-  z-index: 1006;
+  z-index: 20000;
 
   .document-builder-topic-container-title {
     display: flex;
@@ -21,4 +21,8 @@
       }
     }
   }
+}
+
+.cdk-drag-preview {
+  z-index: 10001 !important;
 }

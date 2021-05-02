@@ -17,8 +17,4 @@ export class Section extends BaseEntity {
   @ManyToOne(type => Topic)
   @JoinColumn({ name: 'topic_id' })
   public topic: Topic;
-
-  @ManyToMany(type => Document, document => document.sections)
-  @JoinTable({ name: 'document_section' })
-  public documents: Document[];
 }

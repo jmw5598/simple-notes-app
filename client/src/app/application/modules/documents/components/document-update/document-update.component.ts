@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil, tap } from 'rxjs/operators';
 import { DrawerService } from '@sn/shared/components';
 import { showHide } from '@sn/shared/animations';
 import { Store } from '@ngrx/store';
@@ -19,14 +19,13 @@ import * as documentActions from '@sn/application/modules/documents/store/action
   animations: [showHide]
 })
 export class DocumentUpdateComponent implements OnInit, OnDestroy {
+  private _subscriptionSubject: Subject<void> = new Subject<void>();
+
   public form: FormGroup;
   public responseMessage$: Observable<ResponseMessage>;
-  public document: Document = {
-    id: 123,
-    documentTopics: []
-  } as Document;
 
   public document$: Observable<Document>;
+  public document: Document;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -45,9 +44,14 @@ export class DocumentUpdateComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit(document: Document): void {
+    console.log("document is ", document);
+    console.log("this documetn is ", this.document);
     this._store.dispatch(documentActions.updateDocument({ 
       id: document.id,
-      document: document 
+      document: {
+        ...document,
+        documentTopics: this.document.documentTopics
+      }
     }));
   }
 
@@ -65,22 +69,25 @@ export class DocumentUpdateComponent implements OnInit, OnDestroy {
         tap((message: ResponseMessage) => {
           if (message) {
             this.form.reset();
-            setTimeout(() => this._store.dispatch(documentActions.setCreateDocumentResponseMessage({ message: null })), 3000);
+            setTimeout(() => this._store.dispatch(documentActions.setUpdateDocumentResponseMessage({ message: null })), 3000);
           }
         })
       );
   }
 
   private _syncBuilderDocumentWithForm(): void {
-    this.document$.subscribe(document => {
-      this.form.patchValue({
-        ...document
-      });
+    this.document$
+      .pipe(takeUntil(this._subscriptionSubject))
+      .subscribe(document => {
+        this.document = document;
+        this.form.patchValue({ ...document });
     })
   }
 
   ngOnDestroy(): void {
     // dispatch action to set null to selected document
     /// and document builder
+    this._subscriptionSubject.next();
+    this._subscriptionSubject.complete();
   }
 }

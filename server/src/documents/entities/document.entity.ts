@@ -1,7 +1,7 @@
-import { Column, Entity, ManyToMany, JoinTable, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { BaseEntity } from '../../database/entities/base.entity';
 import { Account } from '../../accounts/entities/account.entity';
-import { Section } from '../../topics/entities/section.entity';
+import { DocumentTopic } from './document-topic.entity';
 
 @Entity()
 export class Document extends BaseEntity {
@@ -12,7 +12,10 @@ export class Document extends BaseEntity {
   @JoinColumn({ name: 'account_id' })
   public account: Account;
 
-  @ManyToMany(type => Section, section => section.documents)
-  @JoinTable({ name: 'document_section' })
-  public sections: Section[];
+  @OneToMany(
+    type => DocumentTopic, 
+    documentTopic => documentTopic.document, 
+    { cascade: true, onDelete: 'CASCADE' }
+  )
+  public documentTopics: DocumentTopic[];
 }

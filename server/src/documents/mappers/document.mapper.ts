@@ -1,7 +1,6 @@
-import { DocumentsController } from '../controllers/documents.controller';
 import { DocumentDto } from '../dtos/document.dto';
 import { Document } from '../entities/document.entity';
-import { SectionMapper } from '../../topics/mappers/section.mapper';
+import { DocumentTopicMapper } from './document-topic.mapper';
 
 export class DocumentMapper {
   public static toDocumentDto(document: Document): DocumentDto {
@@ -10,7 +9,7 @@ export class DocumentMapper {
       createdAt: document.createdAt,
       updatedAt: document.updatedAt,
       name: document.name,
-      sections: document.sections ? SectionMapper.toSectionDtoList(document.sections) : []
+      documentTopics: DocumentTopicMapper.toDocumentTopicDtoList(document.documentTopics)
     } as DocumentDto
   }
 

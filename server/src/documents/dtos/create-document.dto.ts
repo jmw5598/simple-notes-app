@@ -1,9 +1,9 @@
 import { IsNotEmpty } from 'class-validator';
-import { SectionDto } from '../../topics/dtos/section.dto';
+import { DocumentTopicDto } from './document-topic.dto';
 
 export class CreateDocumentDto {
   @IsNotEmpty()
   public name: string;
 
-  public sections: SectionDto[];
+  public documentTopics: DocumentTopicDto[];
 }

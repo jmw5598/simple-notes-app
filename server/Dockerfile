@@ -3,7 +3,7 @@ FROM node:12.8.1 AS builder
 RUN mkdir -p /opt/app
 WORKDIR /opt/app
 COPY package*.json ./
-COPY .env ./.env
+COPY .env.prod ./.env
 RUN npm install
 COPY . .
 RUN npm run build

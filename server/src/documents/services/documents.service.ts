@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IsNull, Repository, Raw } from 'typeorm';
 import { CreateDocumentDto } from '../dtos/create-document.dto';
@@ -9,12 +9,19 @@ import { DocumentNotFoundException } from '../exceptions/document-not-found.exce
 import { IPageable } from 'src/common/models/pageable.interface';
 import { Page } from 'src/common/models/page.model';
 import { UpdateDocumentDto } from '../dtos/update-document.dto';
+import { doc } from 'prettier';
+import { DocumentTopic } from '../entities/document-topic.entity';
+import { DocumentTopicSection } from '../entities/document-topic-section.entity';
 
 @Injectable()
 export class DocumentsService {
   constructor(
     @InjectRepository(Document)
-    private readonly _documentsRepository: Repository<Document>
+    private readonly _documentsRepository: Repository<Document>,
+    @InjectRepository(DocumentTopic)
+    private readonly _documentTopicRepository: Repository<DocumentTopic>,
+    @InjectRepository(DocumentTopicSection)
+    private readonly _documentTopicSectionRepository: Repository<DocumentTopicSection>
   ) { }
 
   public async getAllDocuments(accountId: number): Promise<DocumentDto[]> {
@@ -32,7 +39,7 @@ export class DocumentsService {
     const sort: {[key: string]: string} = pageable.getSort().asKeyValue();
     const where = await this._generateSearchWhereClause(accountId, searchTerm);
     const result = await this._documentsRepository.findAndCount({
-      relations: ['sections'],
+      relations: ['documentTopics'],
       where: where,
       order: sort,
       skip: ((pageable.getPageNumber() - 1) * pageable.getPageSize()),
@@ -44,23 +51,43 @@ export class DocumentsService {
   }
 
   public async createDocument(accountId: number, createDocumentDto: CreateDocumentDto): Promise<DocumentDto> {
-    const document: Document = this._documentsRepository.create({
-      name: createDocumentDto.name,
-      account: { id: accountId },
-      sections: createDocumentDto.sections || []
-    });
-
-    // TODO how are sections persisted??
-
+    const document: Document = await this._documentsRepository.save(
+      this._documentsRepository.create({
+        name: createDocumentDto.name,
+        account: { id: accountId },
+        documentTopics: createDocumentDto.documentTopics.map((documentTopic, dtOrderIndex) => {
+          return this._documentTopicRepository.create({
+            ...documentTopic,
+            orderIndex: dtOrderIndex,
+            documentTopicSections: documentTopic.documentTopicSections.map((documentTopicSection, dtsOrderIndex) => {
+              return {
+                ...documentTopicSection,
+                orderIndex: dtsOrderIndex
+              }
+            })
+          })
+        })
+      })
+    );
     return DocumentMapper.toDocumentDto(await this._documentsRepository.save(document))
   }
 
   public async getDocumentById(accountId: number, documentId: number): Promise<DocumentDto> {
-    const document: Document = await this._documentsRepository.findOne({
-      id: documentId,
-      account: { id: accountId }
-    });
+    const document: Document = await this._documentsRepository.createQueryBuilder('doc')
+      .innerJoin('doc.account', 'account')
+      .innerJoinAndSelect('doc.documentTopics', 'dt')
+      .innerJoinAndSelect('dt.topic', 'topic')
+      .innerJoinAndSelect('dt.documentTopicSections', 'dts')
+      .innerJoinAndSelect('dts.section', 's')
+      .where('account.id = :accountId', { accountId: accountId })
+      .andWhere('doc.id = :documentId', { documentId: documentId })
+      .orderBy({ 
+        'dt.orderIndex': 'ASC',
+        'dts.orderIndex': 'ASC'
+      }).getOne();
+
     if (!document) throw new DocumentNotFoundException();
+
     return DocumentMapper.toDocumentDto(document);
   }
 
@@ -69,21 +96,51 @@ export class DocumentsService {
       id: documentId,
       account: { id: accountId }
     });
+
     if (!document) throw new DocumentNotFoundException();
-    document.name = updateDocumentDto.name;
     
-    // TODO Update the sections associated wit this document
+    // TODO Determine if this handles the deletion of moved topics and sections???
+    document.documentTopics = updateDocumentDto.documentTopics.map((documentTopic, dtOrderIndex) => {
+      return this._documentTopicRepository.create({
+        ...documentTopic,
+        orderIndex: dtOrderIndex,
+        documentTopicSections: documentTopic.documentTopicSections.map((documentTopicSection, dtsOrderIndex) => {
+          return this._documentTopicSectionRepository.create({
+            ...documentTopicSection,
+            orderIndex: dtsOrderIndex
+          })
+        })
+      })
+    });
 
     return DocumentMapper.toDocumentDto(await this._documentsRepository.save(document)); 
   }
 
   public async deleteDocument(accountId: number, documentId: number): Promise<DocumentDto> {
-    const document: Document = await this._documentsRepository.findOne({
-      id: documentId,
-      account: { id: accountId }
+    let document: Document = await this._documentsRepository.findOne({
+      relations: [
+        'documentTopics', 
+        'documentTopics.topic', 
+        'documentTopics.documentTopicSections', 
+        'documentTopics.documentTopicSections.section'
+      ],
+      where: {
+        id: documentId,
+        account: { id: accountId }
+      }
     });
+    
     if (!document) throw new DocumentNotFoundException();
-    document.deletedAt = new Date();
+
+    const now: Date = new Date();
+
+    document.documentTopics.forEach(documentTopic => {
+      documentTopic.deletedAt = now; 
+      documentTopic.documentTopicSections
+        .forEach(documentTopicSection =>  documentTopicSection.deletedAt = now)
+    });
+    document.deletedAt = now;
+
     return DocumentMapper.toDocumentDto(await this._documentsRepository.save(document));
   }
 

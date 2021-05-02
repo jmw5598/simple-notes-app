@@ -22,11 +22,8 @@ export class DocumentCreateComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<any> = new Subject<any>();
   public form: FormGroup;
   public responseMessage$: Observable<ResponseMessage>;
-  public document: Document = {
-    id: 123,
-    documentTopics: []
-  } as Document;
 
+  public document: Document;
   public document$: Observable<Document>;
 
   constructor(
@@ -61,15 +58,19 @@ export class DocumentCreateComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit(document: Document): void {
-    console.log(document);
-    alert("I dont work yet!");
-    this._store.dispatch(documentActions.createDocument({ document: document }));
+    // TODO Fix this, this is wonky, form changes should update documentbuilder doc state with name???
+    const newDocument: Document = {
+      ...document,
+      documentTopics: this.document.documentTopics
+    }
+    this._store.dispatch(documentActions.createDocument({ document: newDocument }));
   }
 
   private syncBuilderDocumentWithForm(): void {
     this.document$
       .pipe(takeUntil(this._subscriptionSubject))
       .subscribe(document => {
+        this.document = document;
         this.form.patchValue({
           ...document
         });
