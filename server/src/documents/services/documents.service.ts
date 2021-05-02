@@ -12,6 +12,7 @@ import { UpdateDocumentDto } from '../dtos/update-document.dto';
 import { doc } from 'prettier';
 import { DocumentTopic } from '../entities/document-topic.entity';
 import { DocumentTopicSection } from '../entities/document-topic-section.entity';
+import { DocumentMarkdownDto } from '../dtos/document-markdown.dto';
 
 @Injectable()
 export class DocumentsService {
@@ -89,6 +90,11 @@ export class DocumentsService {
     if (!document) throw new DocumentNotFoundException();
 
     return DocumentMapper.toDocumentDto(document);
+  }
+
+  public async getDocumentMarkdownById(accountId: number, documentId: number): Promise<DocumentMarkdownDto> {
+    // TODO Implement this....
+    return { markdown: '# Test' } as DocumentMarkdownDto;
   }
 
   public async updateDocument(accountId: number, documentId: number, updateDocumentDto: UpdateDocumentDto): Promise<DocumentDto> {

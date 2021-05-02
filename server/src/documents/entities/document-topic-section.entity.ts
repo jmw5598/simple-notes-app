@@ -5,7 +5,7 @@ import { DocumentTopic } from './document-topic.entity';
 
 @Entity({ name: 'document_topic_section' })
 export class DocumentTopicSection extends BaseEntity {
-  @ManyToOne(type => DocumentTopic, { nullable: false })
+  @ManyToOne(type => DocumentTopic, { nullable: false, orphanedRowAction: 'delete' })
   @JoinColumn({ name: 'document_topic_id'})
   public documentTopic: DocumentTopic;
 

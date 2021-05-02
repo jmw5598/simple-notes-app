@@ -1,4 +1,4 @@
-import { Controller, Request, Body, Query, Delete, Get, Post, Put, Param, UseGuards } from '@nestjs/common';
+import { Controller, Request, Body, Query, Delete, Get, Post, Put, Param, UseGuards, Req, RequestMethod } from '@nestjs/common';
 import { SnLoggerService } from '../../logger/sn-logger.service';
 import { Document } from '../entities/document.entity';
 import { DocumentDto } from '../dtos/document.dto';
@@ -10,7 +10,7 @@ import { IPageable } from '../../common/models/pageable.interface';
 import { Page } from '../../common/models/page.model';
 import { PageRequest } from '../../common/models/page-request.model';
 import { SortDirection } from '../../common/enums/sort-direction.enum';
-import { request } from 'express';
+import { DocumentMarkdownDto } from '../dtos/document-markdown.dto';
 
 @Controller('documents')
 @UseGuards(JwtAuthenticationGuard)
@@ -100,6 +100,19 @@ export class DocumentsController {
       return this._documentsService.deleteDocument(accountId, documentId);
     } catch (error) {
       this._logger.error('Error deleting document by id!', error);
+      throw error;
+    }
+  }
+
+  @Get(':id/markdown')
+  public async getDocumentMarkdownPreviewById(
+      @Request() request,
+      @Param('id') documentId: number): Promise<DocumentMarkdownDto> {
+    try {
+      const accountId: number = +request.user.accountId;
+      return this._documentsService.getDocumentMarkdownById(accountId, documentId);
+    } catch (error) {
+      this._logger.error('Error getting document markdown by id!', error);
       throw error;
     }
   }

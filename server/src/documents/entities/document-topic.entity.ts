@@ -6,7 +6,11 @@ import { DocumentTopicSection } from './document-topic-section.entity';
 
 @Entity({ name: 'document_topic' })
 export class DocumentTopic extends BaseEntity {
-  @ManyToOne(type => Document, document => document.documentTopics, { nullable: false })
+  @ManyToOne(
+    type => Document, 
+    document => document.documentTopics, 
+    { nullable: true, orphanedRowAction: 'delete' }
+  )
   @JoinColumn({ name: 'document_id' })
   public document: Document;
 
@@ -15,9 +19,9 @@ export class DocumentTopic extends BaseEntity {
   public topic: Topic;
 
   @OneToMany(
-     type => DocumentTopicSection, 
-     topicSection => topicSection.documentTopic, 
-     { cascade: true, onDelete: 'CASCADE' }
+    type => DocumentTopicSection, 
+    topicSection => topicSection.documentTopic,
+    { cascade: true }  
   )
   public documentTopicSections: DocumentTopicSection[];
 

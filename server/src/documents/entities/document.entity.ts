@@ -14,8 +14,8 @@ export class Document extends BaseEntity {
 
   @OneToMany(
     type => DocumentTopic, 
-    documentTopic => documentTopic.document, 
-    { cascade: true, onDelete: 'CASCADE' }
+    documentTopic => documentTopic.document,
+    { cascade: true }
   )
   public documentTopics: DocumentTopic[];
 }
