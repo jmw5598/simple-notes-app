@@ -78,6 +78,8 @@ export class DocumentCreateComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this._store.dispatch(documentActions.setBuilderDocument({ document: null }));
+    this._store.dispatch(documentActions.setBuilderSearchTopicSelection({ documentTopic: null }));
     this._subscriptionSubject.next();
     this._subscriptionSubject.complete();
   }
