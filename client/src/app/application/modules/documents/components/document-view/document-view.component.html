@@ -3,7 +3,33 @@
     <h3 class="font-weight-bold text-primary text-right mb-3">
       {{ (documentMarkdown$ | async)?.document?.name || 'Document Preview' }}
     </h3>
-    <hr />
-    <markdown class="markdown-body" [data]="(documentMarkdown$ | async)?.markdown"></markdown>
+    <hr style="margin-bottom: 0;" />
+    <sn-toolbar>
+      <sn-toolbar-button-group style="margin-left: auto;">
+        <span snToolbarButton>
+          <i class="fab fa-markdown"></i>
+        </span>
+        <span snToolbarButton>
+          <i class="fas fa-file-pdf"></i>
+        </span>
+        <span snToolbarButton>
+          <i class="fas fa-sync"></i>
+        </span>
+      </sn-toolbar-button-group>
+    </sn-toolbar>
+    <br />
+    <ng-container *ngIf="(documentMarkdown$ | async)?.markdown">
+      <markdown 
+          [@fadeAnimation]
+          class="markdown-body" 
+          [data]="(documentMarkdown$ | async)?.markdown">
+      </markdown>
+    </ng-container>
   </div>
 </div>
+
+<ng-template #loadingTemplate>
+  <div class="loading-document-preview">
+    <sn-loading-spinner [text]="'Loading preview....'"></sn-loading-spinner>
+  </div>
+</ng-template>
