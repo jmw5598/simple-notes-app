@@ -20,12 +20,19 @@ export class DocumentViewComponent implements OnInit, OnDestroy {
   public SpinnerStyle = SpinnerStyle;
   public documentMarkdown$: Observable<DocumentMarkdown>;
 
+  public isLoading: boolean = true;
+
   constructor(
     private _store: Store<IDocumentsState>
   ) { }
 
   ngOnInit(): void {
-    this.documentMarkdown$ = this._store.select(fromSelectors.selectDocumentMarkdownPreview); 
+    this.documentMarkdown$ = this._store.select(fromSelectors.selectDocumentMarkdownPreview)
+      .pipe(tap(document => {
+        if (document) {
+          setTimeout(() => this.isLoading = false, 500);
+        }
+      })); 
   }
 
   ngOnDestroy(): void {

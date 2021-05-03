@@ -18,7 +18,7 @@
       </sn-toolbar-button-group>
     </sn-toolbar>
     <br />
-    <ng-container *ngIf="(documentMarkdown$ | async)?.markdown">
+    <ng-container *ngIf="!isLoading && (documentMarkdown$ | async)?.markdown; else loadingTemplate">
       <markdown 
           [@fadeAnimation]
           class="markdown-body" 
@@ -30,6 +30,6 @@
 
 <ng-template #loadingTemplate>
   <div class="loading-document-preview">
-    <sn-loading-spinner [text]="'Loading preview....'"></sn-loading-spinner>
+    <sn-loading-spinner></sn-loading-spinner>
   </div>
 </ng-template>
