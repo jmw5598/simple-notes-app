@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Page, PageableSearch, ResponseMessage } from '@sn/core/models';
-import { Document, DocumentMarkdown, Section, Topic } from '@sn/shared/models';
+import { Document, DocumentMarkdown, ExportConfig, FileResponse, Section, Topic } from '@sn/shared/models';
 import { DocumentTopicSection } from '@sn/shared/models/document-topic-section.model';
 import { DocumentTopic } from '@sn/shared/models/document-topic.model';
 
@@ -131,4 +131,24 @@ export const getDocumentMarkdownPreviewById = createAction(
 export const setDocumentMarkdownPreview = createAction(
   '[Document] Set Document Markdown Preview',
   props<{ documentMarkdown: DocumentMarkdown }>()
+);
+
+export const exportDocument = createAction(
+  '[Document] Export Document By Id',
+  props<{ documentId: number, config: ExportConfig }>()
+);
+
+export const exportDocumentSuccess = createAction(
+  '[Document] Export Document Success',
+  props<{ file: FileResponse }>()
+);
+
+export const setExportDocumentResponseMessage = createAction(
+  '[Document] Export Document Response Message',
+  props<{ message: ResponseMessage }>()
+);
+
+export const setExportDocumentFileResponse = createAction(
+  '[Document] Export Document File Response',
+  props<{ file: FileResponse }>()
 );

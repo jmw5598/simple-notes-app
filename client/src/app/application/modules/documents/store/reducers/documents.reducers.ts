@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import * as fromActions from '../actions';
 import { ResponseMessage, Page } from '@sn/core/models';
-import { Topic, Document, Section, DocumentMarkdown } from '@sn/shared/models';
+import { Topic, Document, Section, DocumentMarkdown, FileResponse } from '@sn/shared/models';
 import { DocumentTopic } from '@sn/shared/models/document-topic.model';
 
 export const documentsFeatureKey = 'documents'
@@ -17,6 +17,8 @@ export interface IDocumentsState {
   sectionsForSelectedTopic: Section[],
   documentBuilder: Document,
   documentMarkdownPreview: DocumentMarkdown
+  exportDocumentFileResponse: FileResponse,
+  exportDocumentResponseMessage: ResponseMessage
 }
 
 export const initialDocumentBuilderState: Document = {
@@ -39,6 +41,8 @@ export const initialDocumentState: IDocumentsState = {
   sectionsForSelectedTopic: null,
   documentBuilder: initialDocumentBuilderState,
   documentMarkdownPreview: null,
+  exportDocumentFileResponse: null,
+  exportDocumentResponseMessage: null
 };
 
 const onSetCreateDocumentResponseMessage = (state, { message} ) => ({
@@ -144,6 +148,16 @@ const onSetDocumentMarkdownPreview = (state, { documentMarkdown }) => ({
   documentMarkdownPreview: documentMarkdown
 });
 
+const onSetExportDocumentFileResponse = (state, { file }: any) => ({
+  ...state,
+  exportDocumentFileResponse: file
+});
+
+const onSetExportDocumentResponseMessage = (state, { message }: any) => ({
+  ...state,
+  exportDocumentResponseMessage: message
+})
+
 const _documentReducer = createReducer(
   initialDocumentState,
   on(fromActions.setCreateDocumentResponseMessage, onSetCreateDocumentResponseMessage),
@@ -160,6 +174,12 @@ const _documentReducer = createReducer(
   on(fromActions.setBuilderTopicSections, onSetBuilderTopicSections),
   on(fromActions.getDocumentByIdSuccess, onGetDocumentByIdSuccess),
   on(fromActions.setDocumentMarkdownPreview, onSetDocumentMarkdownPreview),
+  on(fromActions.setExportDocumentFileResponse, onSetExportDocumentFileResponse),
+  on(
+    fromActions.setExportDocumentResponseMessage,
+    fromActions.exportDocumentSuccess, 
+    onSetExportDocumentResponseMessage
+  ),
 );
 
 export function documentReducer(state, action) {

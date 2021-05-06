@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { AbstractCrudService } from './abstract-crud.service';
-import { Document, DocumentMarkdown } from '@sn/shared/models';
+import { Document, DocumentMarkdown, ExportConfig, FileResponse } from '@sn/shared/models';
 import { IPageable, Page } from '@sn/core/models';
 import { environment } from '@env/environment';
 
@@ -28,5 +28,10 @@ export class DocumentsService extends AbstractCrudService<Document, number> {
 
   public getDocumentMarkdownPreviewById(documentId: number): Observable<DocumentMarkdown> {
     return this._http.get<DocumentMarkdown>(`${this._base}/${documentId}/markdown`);
+  }
+
+  public exportDocument(documentId: number, config: ExportConfig): Observable<FileResponse> {
+    // TODO IMplement this....
+    return of({} as FileResponse);
   }
 }

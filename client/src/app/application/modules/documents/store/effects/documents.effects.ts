@@ -118,4 +118,31 @@ export class DocumentsEffects {
       )
     )
   ));
+
+  exportDocument$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.exportDocument),
+    exhaustMap(({documentId, config}) => this._documentsService.exportDocument(documentId, config)
+      .pipe(
+        map(result => fromActions.exportDocumentSuccess({ file: result })),
+        catchError(error => {
+          const errorMessage: ResponseMessage = {
+            status: ResponseStatus.ERROR,
+            message: `We encountered an error exporting your document!`
+          } as ResponseMessage
+          return of(fromActions.setExportDocumentResponseMessage({ message: errorMessage }))
+        })
+      )
+    )
+  ));
+
+  exportDocumentSuccess$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.exportDocumentSuccess),
+    switchMap(({file}) => {
+      const message: ResponseMessage = {
+        status: ResponseStatus.SUCCESS,
+        message: `We successfully export your document!`
+      } as ResponseMessage
+      return of(fromActions.setExportDocumentResponseMessage({ message: message }))
+    })
+  ));
 }
