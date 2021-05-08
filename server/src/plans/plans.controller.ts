@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { CacheTTL, Controller, Get, UseInterceptors } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -12,6 +12,7 @@ export class PlansController {
   ) {}
 
   @Get()
+  @CacheTTL(86400)
   public async getPlans(): Promise<any> {
     return this.planRepository.find();
   }

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module,  CacheModule, CacheInterceptor } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -12,6 +12,7 @@ import { DocumentsModule } from './documents/documents.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { ThemesModule } from './themes/themes.module';
 import { DocumentBuilderModule } from './common/services/document-builder/document-builder.module';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -26,9 +27,15 @@ import { DocumentBuilderModule } from './common/services/document-builder/docume
     DocumentsModule,
     CalendarModule,
     ThemesModule,
-    DocumentBuilderModule
+    DocumentBuilderModule,
+    CacheModule.register()
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: CacheInterceptor,
+    }
+  ],
 })
 export class AppModule {}

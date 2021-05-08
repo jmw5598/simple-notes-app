@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { CacheTTL, Controller, Get, UseGuards } from '@nestjs/common';
 import { ThemesService } from '../services/themes.service';
 import { ThemeDto } from '../dtos/theme.dto';
 import { SnLoggerService } from 'src/logger/sn-logger.service';
@@ -15,6 +15,7 @@ export class ThemesController {
   }
 
   @Get()
+  @CacheTTL(86400)
   public async getAllThemes(): Promise<ThemeDto[]> {
     try {
       return this._themesService.findAll();
