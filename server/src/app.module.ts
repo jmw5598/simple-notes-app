@@ -1,6 +1,7 @@
 import { Module,  CacheModule, CacheInterceptor } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import * as redisStore from 'cache-manager-redis-store';
 
 import { AccountsModule } from './accounts/accounts.module';
 import { AuthenticationModule } from './authentication/authentication.module';
@@ -28,7 +29,13 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
     CalendarModule,
     ThemesModule,
     DocumentBuilderModule,
-    CacheModule.register()
+    CacheModule.register({
+      store: redisStore,
+      host: `${process.env.REDIS_HOST}`,
+      port: `${process.env.REDIS_PORT}`,
+      user: `${process.env.REDIS_USER}`,
+      password: `${process.env.REDIS_PASSWORD}`
+    })
   ],
   controllers: [],
   providers: [
