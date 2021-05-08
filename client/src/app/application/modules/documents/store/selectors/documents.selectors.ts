@@ -23,6 +23,11 @@ export const selectUpdateDocumentResponseMessage = createSelector(
   (state: fromDocuments.IDocumentsState) => state.updateDocumentResponseMessage
 );
 
+export const selectDeleteDocumentResponseMessage = createSelector(
+  selectDocumentState,
+  (state: fromDocuments.IDocumentsState) => state.deleteDocumentResponseMessage
+);
+
 export const selectSearchDocumentsResult = createSelector(
   selectDocumentState,
   (state: fromDocuments.IDocumentsState) => state.searchDocumentsResult
@@ -61,4 +66,14 @@ export const selectDocumentBuilderSearchSelectedTopic = createSelector(
 export const selectDocumentMarkdownPreview = createSelector(
   selectDocumentState,
   (state: fromDocuments.IDocumentsState) => state.documentMarkdownPreview
+);
+
+export const selectExportDocumentFileResponse = createSelector(
+  selectDocumentState,
+  (state: fromDocuments.IDocumentsState) => state.exportDocumentFileResponse
+);
+
+export const selectExportDocumentResponseMessage = createSelector(
+  selectDocumentState,
+  (state: fromDocuments.IDocumentsState) => state.exportDocumentResponseMessage
 );

@@ -86,6 +86,17 @@ export class DocumentsEffects {
     })
   ));
 
+  deleteDocumentSuccess$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.deleteDocumentSuccess),
+    switchMap(({document}) => {
+      const message: ResponseMessage = {
+        status: ResponseStatus.SUCCESS,
+        message: `Successfully deleted document!`
+      } as ResponseMessage
+      return of(fromActions.setDeleteDocumentResponseMessage({ message: message }))
+    })
+  ));
+
   deleteDocument$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.deleteDocument),
     exhaustMap(({id}) => this._documentsService.delete(id)

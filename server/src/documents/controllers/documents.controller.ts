@@ -1,4 +1,4 @@
-import { Controller, Request, Body, Query, Delete, Get, Post, Put, Param, UseGuards, Req, RequestMethod } from '@nestjs/common';
+import { Controller, Request, Body, Query, Delete, Get, Post, Put, Param, UseGuards, Req, RequestMethod, HttpCode, Header, Res } from '@nestjs/common';
 import { SnLoggerService } from '../../logger/sn-logger.service';
 import { Document } from '../entities/document.entity';
 import { DocumentDto } from '../dtos/document.dto';
@@ -11,6 +11,8 @@ import { Page } from '../../common/models/page.model';
 import { PageRequest } from '../../common/models/page-request.model';
 import { SortDirection } from '../../common/enums/sort-direction.enum';
 import { DocumentMarkdownDto } from '../dtos/document-markdown.dto';
+import { Readable } from 'typeorm/platform/PlatformTools';
+import { ExportConfig } from 'src/common/services/document-builder/models/export-config.model';
 
 @Controller('documents')
 @UseGuards(JwtAuthenticationGuard)
@@ -115,5 +117,35 @@ export class DocumentsController {
       this._logger.error('Error getting document markdown by id!', error);
       throw error;
     }
+  }
+
+  @Post(':documentId/download')
+  @HttpCode(201)
+  @Header('Content-Type', 'application/octet-stream')
+  @Header('Access-Control-Expose-Headers', 'Content-Disposition')
+  public async exportTopicById(
+      @Request() request,
+      @Res() response,
+      @Param('documentId') documentId: number,
+      @Body() config: ExportConfig): Promise<Readable> {
+    try {
+      const accountId: number = +request.user.accountId;
+      const fileStream: Readable = await this._documentsService.exportDocument(accountId, documentId, config);
+      // TODO Changes the filename to document name instead of temp;
+      const filename = await this._documentsService.generateFilename('temp', config);
+
+      response.set({
+        'Content-Disposition': `attachment; filename=${filename}`,
+      });
+
+      fileStream.pipe(response);
+      return;
+      
+    } catch (error) {
+      console.log("eRROR: ", error);
+      this._logger.error('Error exporting topic!', error);
+      throw error;
+    }
+      
   }
 }

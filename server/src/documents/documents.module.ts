@@ -6,6 +6,7 @@ import { DocumentsService } from './services/documents.service';
 import { Document } from './entities/document.entity';
 import { DocumentTopic } from './entities/document-topic.entity';
 import { DocumentTopicSection } from './entities/document-topic-section.entity';
+import { DocumentBuilderModule } from 'src/common/services/document-builder/document-builder.module';
 
 @Module({
   controllers: [
@@ -13,10 +14,11 @@ import { DocumentTopicSection } from './entities/document-topic-section.entity';
   ],
   imports: [
     LoggerModule,
+    DocumentBuilderModule,
     TypeOrmModule.forFeature([
       Document,
       DocumentTopic,
-      DocumentTopicSection
+      DocumentTopicSection,
     ])
   ],
   providers: [

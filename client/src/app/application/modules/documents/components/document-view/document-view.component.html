@@ -4,15 +4,20 @@
       {{ (documentMarkdown$ | async)?.document?.name || 'Document Preview' }}
     </h3>
     <hr style="margin-bottom: 0;" />
-    <sn-toolbar>
+    <sn-toolbar *ngIf="documentMarkdown$ | async as documentMarkdown">
+      <sn-toolbar-button-group *ngIf="(responseMessage$ | async)" [@showHide]>
+        <span snToolbarButton>
+          {{ (responseMessage$ | async)?.message }}
+        </span>
+      </sn-toolbar-button-group>
       <sn-toolbar-button-group style="margin-left: auto;">
         <span snToolbarButton>
-          <i class="fab fa-markdown"></i>
+          <i class="fab fa-markdown" (click)="exportToMarkdown(documentMarkdown?.document)"></i>
         </span>
         <span snToolbarButton>
-          <i class="fas fa-file-pdf"></i>
+          <i class="fas fa-file-pdf" (click)="exportToPdf(documentMarkdown?.document)"></i>
         </span>
-        <span snToolbarButton>
+        <span snToolbarButton (click)="refreshDocument(documentMarkdown?.document)">
           <i class="fas fa-sync"></i>
         </span>
       </sn-toolbar-button-group>

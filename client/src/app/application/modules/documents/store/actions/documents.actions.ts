@@ -44,6 +44,11 @@ export const deleteDocumentSuccess = createAction(
   props<{ document: Document }>()
 );
 
+export const setDeleteDocumentResponseMessage = createAction(
+  '[Document] Delete Document Response Message',
+  props<{ message: ResponseMessage }>()
+);
+
 export const getDocumentById = createAction(
   '[Document] Get Document By Id',
   props<{ documentId: number }>()

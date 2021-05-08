@@ -10,6 +10,7 @@ export interface IDocumentsState {
   selectedDocument: Document,
   createDocumentResponseMessage: ResponseMessage,
   updateDocumentResponseMessage: ResponseMessage,
+  deleteDocumentResponseMessage: ResponseMessage,
   searchDocumentsResult: Page<Document>,
   searchDocumentsSelection: Document,
   searchTopicsResult: Page<Topic>,
@@ -34,6 +35,7 @@ export const initialDocumentState: IDocumentsState = {
   selectedDocument: null,
   createDocumentResponseMessage: null,
   updateDocumentResponseMessage: null,
+  deleteDocumentResponseMessage: null,
   searchDocumentsResult: null,
   searchDocumentsSelection: null,
   searchTopicsResult: null,
@@ -156,7 +158,12 @@ const onSetExportDocumentFileResponse = (state, { file }: any) => ({
 const onSetExportDocumentResponseMessage = (state, { message }: any) => ({
   ...state,
   exportDocumentResponseMessage: message
-})
+});
+
+const onSetDeleteDocumentResponseMessage = (state, { message }: any) => ({
+  ...state,
+  deleteDocumentResponseMessage: message
+});
 
 const _documentReducer = createReducer(
   initialDocumentState,
@@ -174,12 +181,9 @@ const _documentReducer = createReducer(
   on(fromActions.setBuilderTopicSections, onSetBuilderTopicSections),
   on(fromActions.getDocumentByIdSuccess, onGetDocumentByIdSuccess),
   on(fromActions.setDocumentMarkdownPreview, onSetDocumentMarkdownPreview),
-  on(fromActions.setExportDocumentFileResponse, onSetExportDocumentFileResponse),
-  on(
-    fromActions.setExportDocumentResponseMessage,
-    fromActions.exportDocumentSuccess, 
-    onSetExportDocumentResponseMessage
-  ),
+  on(fromActions.exportDocumentSuccess, onSetExportDocumentFileResponse),
+  on(fromActions.setExportDocumentResponseMessage, onSetExportDocumentResponseMessage),
+  on(fromActions.setDeleteDocumentResponseMessage, onSetDeleteDocumentResponseMessage),
 );
 
 export function documentReducer(state, action) {

@@ -12,9 +12,9 @@ import { UpdateDocumentDto } from '../dtos/update-document.dto';
 import { DocumentTopic } from '../entities/document-topic.entity';
 import { DocumentTopicSection } from '../entities/document-topic-section.entity';
 import { DocumentMarkdownDto } from '../dtos/document-markdown.dto';
-import { Topic } from 'src/topics/entities/topic.entity';
-
-import { DocumentBuilderUtility } from '../../common/utilities/document-builder.utility';
+import { DocumentBuilderService } from '../../common/services/document-builder/services/document-builder.service';
+import { ExportConfig } from 'src/common/services/document-builder/models/export-config.model';
+import { Readable } from 'typeorm/platform/PlatformTools';
 
 @Injectable()
 export class DocumentsService {
@@ -24,7 +24,8 @@ export class DocumentsService {
     @InjectRepository(DocumentTopic)
     private readonly _documentTopicRepository: Repository<DocumentTopic>,
     @InjectRepository(DocumentTopicSection)
-    private readonly _documentTopicSectionRepository: Repository<DocumentTopicSection>
+    private readonly _documentTopicSectionRepository: Repository<DocumentTopicSection>,
+    private readonly _documentBuilderService: DocumentBuilderService
   ) { }
 
   public async getAllDocuments(accountId: number): Promise<DocumentDto[]> {
@@ -111,14 +112,7 @@ export class DocumentsService {
 
     if (!document) throw new DocumentNotFoundException();
 
-    const topicsToGenerateMarkdownFor = document.documentTopics.map(documentTopic => ({
-      ...documentTopic.topic,
-      sections: documentTopic.documentTopicSections
-        .map(documentTopicSection => documentTopicSection.section)
-    } as Topic));
-
-    const markdownTopicString = topicsToGenerateMarkdownFor
-      .map(topic => DocumentBuilderUtility.topicToMarkdown(topic)).join('\n\n');
+    const markdownTopicString: string = this._documentBuilderService.documentToMarkdown(document);
 
     return {
       document: await this.getDocumentById(accountId, documentId),
@@ -134,7 +128,6 @@ export class DocumentsService {
 
     if (!document) throw new DocumentNotFoundException();
     
-    // TODO Determine if this handles the deletion of moved topics and sections???
     document.documentTopics = updateDocumentDto.documentTopics.map((documentTopic, dtOrderIndex) => {
       return this._documentTopicRepository.create({
         ...documentTopic,
@@ -147,6 +140,8 @@ export class DocumentsService {
         })
       })
     });
+
+    document.updatedAt = new Date();
 
     return DocumentMapper.toDocumentDto(await this._documentsRepository.save(document)); 
   }
@@ -177,6 +172,29 @@ export class DocumentsService {
     document.deletedAt = now;
 
     return DocumentMapper.toDocumentDto(await this._documentsRepository.save(document));
+  }
+
+  public async generateFilename(title: string, exportConfig: ExportConfig): Promise<string> {
+    return this._documentBuilderService.getFilename(title, exportConfig);
+  }
+
+  public async exportDocument(accountId: number, documentId: number, exportConfig: ExportConfig): Promise<Readable> {
+    const document: Document = await this._documentsRepository.createQueryBuilder('doc')
+      .innerJoin('doc.account', 'account')
+      .innerJoinAndSelect('doc.documentTopics', 'dt')
+      .innerJoinAndSelect('dt.topic', 'topic')
+      .innerJoinAndSelect('dt.documentTopicSections', 'dts')
+      .innerJoinAndSelect('dts.section', 's')
+      .where('account.id = :accountId', { accountId: accountId })
+      .andWhere('doc.id = :documentId', { documentId: documentId })
+      .orderBy({ 
+        'dt.orderIndex': 'ASC',
+        'dts.orderIndex': 'ASC'
+      }).getOne();
+
+    if (!document) throw new DocumentNotFoundException();
+
+    return this._documentBuilderService.exportDocument(document, exportConfig);
   }
 
   private async _generateSearchWhereClause(accountId: number, searchTerm: string): Promise<any> {

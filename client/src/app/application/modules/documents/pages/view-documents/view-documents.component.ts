@@ -1,21 +1,20 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject, combineLatest } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IPageable, Page, PageableSearch } from '@sn/core/models';
 import { Document } from '@sn/shared/models';
 import { fadeAnimation } from '@sn/shared/animations';
 
 import { IDocumentsState } from '../../store/reducers/documents.reducers'
-import { selectDocumentBuilderDocument, selectSearchDocumentsResult } from '../../store/selectors';
-import { deleteDocument, searchDocuments, searchDocumentsResult, setBuilderDocument, setDocumentMarkdownPreview } from '../../store/actions';
 import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/core/defaults';
-import { tap } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 import { DrawerService, DrawerLocation, DrawerSize, OverlayLoaderService, AbstractPageOverlayLoader, DocumentCreateComponent } from '@sn/shared/components';
 import { DocumentUpdateComponent } from '../../components/document-update/document-update.component';
 
 import * as documentActions from '../../store/actions';
 import * as documentSelectors from '../../store/selectors';
 import { DocumentViewComponent } from '../../components/document-view/document-view.component';
+
 @Component({
   selector: 'sn-view-documents',
   templateUrl: './view-documents.component.html',
@@ -24,6 +23,7 @@ import { DocumentViewComponent } from '../../components/document-view/document-v
   animations: [fadeAnimation]
 })
 export class ViewDocumentsComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {
+  private _subscriptionSubject: Subject<void> = new Subject<void>();
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_DOCUMENTS_PAGE;
   public DrawerLocation = DrawerLocation;
   public searchDocumentsResult$: Observable<Page<Document>>
@@ -40,8 +40,7 @@ export class ViewDocumentsComponent extends AbstractPageOverlayLoader implements
   }
 
   ngOnInit(): void {
-    this.searchDocumentsResult$ = this._store.select(documentSelectors.selectSearchDocumentsResult)
-      .pipe(tap(() => this.isSearching = false));
+    this.selectState();
   }
 
   public onSearchDocuments(searchTerm: string): void {
@@ -85,10 +84,34 @@ export class ViewDocumentsComponent extends AbstractPageOverlayLoader implements
       searchTerm: '', //this.searchTerm || '',
       pageable: pageable
     };
-    this._store.dispatch(searchDocuments({ search: documentSearch }));
+    this._store.dispatch(documentActions.searchDocuments({ search: documentSearch }));
+  }
+
+  private selectState(): void {
+    this.searchDocumentsResult$ = this._store.select(documentSelectors.selectSearchDocumentsResult)
+      .pipe(tap(() => this.isSearching = false));
+    
+    combineLatest([
+      this._store.select(documentSelectors.selectCreateDocumentResponseMessage),
+      this._store.select(documentSelectors.selectUpdateDocumentResponseMessage),
+      this._store.select(documentSelectors.selectDeleteDocumentResponseMessage)
+    ])
+      .pipe(takeUntil(this._subscriptionSubject))
+      .subscribe(([createMessage, updateMessage, deleteMessage]) => {
+        if (createMessage || updateMessage || deleteMessage) {
+          this.onSearchDocuments(this.searchTerm || '');
+          this.clearResponseMessages();
+        }
+      });
+  }
+
+  private clearResponseMessages(): void {
+    this._store.dispatch(documentActions.setDeleteDocumentResponseMessage({ message: null }));
   }
   
   ngOnDestroy(): void {
-    this._store.dispatch(searchDocumentsResult({ page: null }));
+    this._store.dispatch(documentActions.searchDocumentsResult({ page: null }));
+    this._subscriptionSubject.next();
+    this._subscriptionSubject.complete();
   }
 }

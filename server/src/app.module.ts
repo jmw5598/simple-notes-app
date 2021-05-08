@@ -11,6 +11,7 @@ import { UsersModule } from './users/users.module';
 import { DocumentsModule } from './documents/documents.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { ThemesModule } from './themes/themes.module';
+import { DocumentBuilderModule } from './common/services/document-builder/document-builder.module';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { ThemesModule } from './themes/themes.module';
     UsersModule,
     DocumentsModule,
     CalendarModule,
-    ThemesModule
+    ThemesModule,
+    DocumentBuilderModule
   ],
   controllers: [],
   providers: [],
