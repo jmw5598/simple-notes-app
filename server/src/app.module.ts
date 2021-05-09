@@ -14,6 +14,7 @@ import { CalendarModule } from './calendar/calendar.module';
 import { ThemesModule } from './themes/themes.module';
 import { DocumentBuilderModule } from './common/services/document-builder/document-builder.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { FlashcardsModule } from './flashcards/flashcards.module';
 
 @Module({
   imports: [
@@ -35,7 +36,8 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
       port: `${process.env.REDIS_PORT}`,
       user: `${process.env.REDIS_USER}`,
       password: `${process.env.REDIS_PASSWORD}`
-    })
+    }),
+    FlashcardsModule
   ],
   controllers: [],
   providers: [

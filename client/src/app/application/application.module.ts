@@ -20,6 +20,7 @@ import { DocumentsEffects } from './modules/documents/store/effects/documents.ef
 import { SectionsEffects } from './modules/topics/store/effects/sections.effects';
 import { TopicsEffects } from './modules/topics/store/effects/topics.effects';
 import { ToolbarEffects } from './store/effects/toolbar.effects';
+import { FlashcardsEffects } from './modules/flashcards/store/effects/flashcards.effects';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ToolbarEffects } from './store/effects/toolbar.effects';
       DocumentsEffects,
       SectionsEffects,
       TopicsEffects,
-      ToolbarEffects
+      ToolbarEffects,
+      FlashcardsEffects,
     ]),
     KeyboardShortcutsModule.forRoot()
   ]

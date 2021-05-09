@@ -28,6 +28,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
+        path: 'flashcards',
+        loadChildren: () => import('./modules/flashcards/flashcards.module').then(m => m.FlashcardsModule)
+      },
+      {
         path: '**',
         redirectTo: 'dashboard',
         pathMatch: 'full'

@@ -11,3 +11,5 @@ export * from './document.model';
 export * from './document-topic.model';
 export * from './document-topic-section.model';
 export * from './document-markdown.model';
+export * from './flashcard-set.model';
+export * from './flashcard.model';
