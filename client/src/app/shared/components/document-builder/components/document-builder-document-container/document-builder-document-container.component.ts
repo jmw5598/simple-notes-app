@@ -12,10 +12,7 @@ import { DocumentBuilderService } from '../../services/document-builder.service'
 @Component({
   selector: 'sn-document-builder-document-container',
   templateUrl: './document-builder-document-container.component.html',
-  styleUrls: [
-    './document-builder-document-container.component.scss',
-    '../../document-builder.styles.scss'
-  ]
+  styleUrls: ['./document-builder-document-container.component.scss']
 })
 export class DocumentBuilderDocumentContainerComponent implements OnInit {
   public document$: Observable<Document>;

@@ -62,9 +62,14 @@ export class DocumentBuilderFormComponent implements OnInit {
       topic: topic,
       documentTopicSections: []
     } as DocumentTopic;   
-
+    this.selected = topic?.title
     this._store.dispatch(setBuilderSearchTopicSelection({ documentTopic }))
     this._store.dispatch(getSectionsByTopicId({ topicId: topic.id }))
+  }
+
+  public formatSelection(item: any): string {
+    console.log("item is ", item);
+    return 'testing';
   }
 
   private _setFocusToTitleInput(): void {

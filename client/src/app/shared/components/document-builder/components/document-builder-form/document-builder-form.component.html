@@ -1,7 +1,7 @@
 <div>
   <div [formGroup]="form" class="row">
     <div class="col-sm-12">
-      <div class="form-group p-3">
+      <div class="form-group">
         <label for="name">Document Title</label>
         <input formControlName="name" type="text" class="form-control" />
       </div>
@@ -15,13 +15,13 @@
           <div class="form-group">
             <label for="search-topics">Search Topics</label>
             <input id="search-topics"
+                autocomplete="off"
                 [(ngModel)]="selected"
                 [typeahead]="topicsTypeAhead$"
                 [typeaheadAsync]="true"
                 [typeaheadItemTemplate]="customItemTemplate"
                 (typeaheadOnSelect)="onSelectTopic($event)"
                 class="form-control mb-3">
-            <pre class="card card-block card-header mb-3">Model: {{selected | json}}</pre>
             <ng-template #customItemTemplate let-model="item" let-index="index">
               <h5>{{ model.title }}</h5>
             </ng-template>
