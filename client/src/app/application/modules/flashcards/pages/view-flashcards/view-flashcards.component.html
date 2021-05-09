@@ -23,19 +23,19 @@
         </h4>
         <div>
           <sn-flashcard-list
-              [flashcardSets]="(searchFlashcardSetsResult$ | async)"
+              [flashcardSets]="(searchFlashcardSetsResult$ | async)?.elements"
               (onDelete)="onDelete($event)"
               (onView)="onView($event)"
               (onEdit)="onEdit($event)"
               (onCreate)="onCreate()">
           </sn-flashcard-list>
           <div class="p-3">
-            <!-- <sn-paginator
-                [page]="(searchDocumentsResult$ | async)"
+            <sn-paginator
+                [page]="(searchFlashcardSetsResult$ | async)"
                 (onNextPage)="onGoToPage($event)"
                 (onPreviousPage)="onGoToPage($event)"
                 (onGoToPage)="onGoToPage($event)">
-            </sn-paginator> -->
+            </sn-paginator>
           </div>
         </div>
       </div>

@@ -21,6 +21,11 @@ export const NAVIGATION_ROUTES: NavigationRouteLink[] = [
     routerLink: ['documents']
   },
   {
+    label: 'Flashcards',
+    iconClasses: 'far fa-sticky-note',
+    routerLink: ['flashcards']
+  },
+  {
     label: 'Calendar',
     iconClasses: 'far fa-calendar-alt',
     routerLink: ['calendar']

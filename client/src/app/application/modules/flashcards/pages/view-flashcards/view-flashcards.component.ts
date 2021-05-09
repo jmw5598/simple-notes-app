@@ -52,7 +52,7 @@ export class ViewFlashcardsComponent extends AbstractPageOverlayLoader implement
 
   }
 
-  public goToPage(pageable: IPageable): void {
+  public onGoToPage(pageable: IPageable): void {
 
   }
 
