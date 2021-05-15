@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Query, Request, UseGuards } from '@nestjs/common';
 import { request } from 'http';
 import { JwtAuthenticationGuard } from 'src/authentication/guards/jwt-authentication.guard';
 import { SortDirection } from 'src/common/enums/sort-direction.enum';
@@ -57,9 +57,23 @@ export class FlashcardsController {
       @Param('id') flashcardSetId: number): Promise<FlashcardSetDto> {
     try {
       const accountId: number = +request.user.accountId;
-      return this._flashcardsService.getFlashcardSetById(accountId, flashcardSetId);
+      return this._flashcardsService.getFlashcardSetById(accountId, +flashcardSetId);
     } catch (error) {
       this._logger.error(`Error getting flashcard set by id!`, error);
+      throw error;
+    }
+  }
+
+  @Delete(':id')
+  public async deleteFlashcardSetById(
+      @Request() request,
+      @Param('id') flashcardSetId: number): Promise<FlashcardSetDto> {
+    try {
+      console.log("INSIDE FLASCHARS CONTROLLLER READY TO DELETE!!!!\n\n\n")
+      const accountId: number = +request.user.accountId;
+      return this._flashcardsService.deleteFlashcardSetById(accountId, flashcardSetId);
+    } catch (error) {
+      this._logger.error(`Error deleteing flashcard set by id!`, error);
       throw error;
     }
   }

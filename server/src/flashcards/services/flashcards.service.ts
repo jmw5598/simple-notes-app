@@ -38,12 +38,14 @@ export class FlashcardsService {
   public async getFlashcardSetById(accountId: number, flashcardSetId: number): Promise<FlashcardSetDto> {
     const flashcardSet:  FlashcardSet = await this._flashcardSetRepository.createQueryBuilder('fcs')
       .innerJoin('fcs.account', 'account')
-      .innerJoinAndSelect('fcs.flashcards', 'fc')
+      .leftJoinAndSelect('fcs.flashcards', 'fc')
       .where('account.id = :accountId', { accountId: accountId })
       .andWhere('fcs.id = :flashcardSetId', { flashcardSetId: flashcardSetId })
       .orderBy({
         'fc.orderIndex': 'ASC'
       }).getOne()
+
+    console.log("\n\n FLASHCARD SET IS \n\n", flashcardSet)
 
     if (!flashcardSet) throw new FlashcardSetNotFoundException();
 
@@ -64,6 +66,26 @@ export class FlashcardsService {
       })
     );
     return FlashcardSetMapper.toFlashcardSetDto(flashcardSet);
+  }
+
+  public async deleteFlashcardSetById(accountId: number, flashcardSetId: number): Promise<FlashcardSetDto> {
+    const flashcardSet: FlashcardSet = await this._flashcardSetRepository.findOne({
+      relations: ['flashcards'],
+      where: {
+        id: flashcardSetId,
+        account: { id: accountId }
+      }
+    });
+
+    if (!flashcardSet) throw new FlashcardSetNotFoundException();
+
+    const now: Date = new Date();
+    flashcardSet.deletedAt = now;
+    flashcardSet.flashcards.forEach((flashcard: Flashcard) => flashcard.deletedAt = now);
+    
+    return FlashcardSetMapper.toFlashcardSetDto(
+      await this._flashcardSetRepository.save(flashcardSet)
+    );
   }
 
   private async _generateSearchWhereClause(accountId: number, searchTerm: string): Promise<any> {
