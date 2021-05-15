@@ -1,7 +1,7 @@
 import { Component, ComponentFactory, ComponentFactoryResolver, HostListener, Input, OnDestroy, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { fadeAnimation } from '@sn/shared/animations';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { skip, takeUntil } from 'rxjs/operators';
 
 import { OverlayContentOptions } from './overlay-content-options.model';
 import { OverlayContentService } from './overlay-content.service';
@@ -56,20 +56,19 @@ export class OverlayContentComponent implements OnInit, OnDestroy {
   }
 
   public forceClose(): void {
-    console.log("force close");
-    this._overlayContentService.close();
+    this._overlayContentService?.close();
   }
 
   private _setOverlayContent(component: Type<any>) {
     setTimeout(() => {
       const componentFactory: ComponentFactory<any> = this._componentFactoryResolver.resolveComponentFactory(component);
-      this.overlayContentRef.clear();
-      this.overlayContentRef.createComponent(componentFactory);
+      this.overlayContentRef?.clear();
+      this.overlayContentRef?.createComponent(componentFactory);
     });
   }
 
   private _removeOverlayContent(): void {
-      this.overlayContentRef.clear();
+      this.overlayContentRef?.clear();
   }
 
   @HostListener('document:keydown.escape', ['$event']) 
