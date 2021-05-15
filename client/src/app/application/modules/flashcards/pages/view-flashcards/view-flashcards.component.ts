@@ -3,18 +3,22 @@ import { Store } from '@ngrx/store';
 import { DEFAULT_SEARCH_FLASHCARDS_PAGE } from '@sn/core/defaults';
 import { IPageable, Page } from '@sn/core/models';
 import { fadeAnimation } from '@sn/shared/animations';
-import { AbstractPageOverlayLoader, DrawerLocation, OverlayLoaderService } from '@sn/shared/components';
+import { AbstractPageOverlayLoader, DrawerLocation, DrawerService, DrawerSize, FlashcardSetCreateComponent, OverlayLoaderService } from '@sn/shared/components';
 import { FlashcardSet } from '@sn/shared/models';
 import { Observable, of, Subject } from 'rxjs';
 
 import { IFlashcardsState } from '../../store/reducers';
 import * as flashcardsActions from '../../store/actions';
 import * as flashcardsSelectors from '../../store/selectors';
+import { FlashcardSetViewComponent } from '../../components/flashcard-set-view/flashcard-set-view.component';
+import { FlashcardSetUpdateComponent } from '../../components/flashcard-set-update/flashcard-set-update.component';
+import { OverlayContentService } from '@sn/shared/components/overlay-content/overlay-content.service';
 
 @Component({
   selector: 'sn-view-flashcards',
   templateUrl: './view-flashcards.component.html',
   styleUrls: ['./view-flashcards.component.scss'],
+  providers: [OverlayContentService],
   animations: [fadeAnimation]
 })
 export class ViewFlashcardsComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {
@@ -27,7 +31,9 @@ export class ViewFlashcardsComponent extends AbstractPageOverlayLoader implement
 
   constructor(
     private _store: Store<IFlashcardsState>,
-    protected _overlayLoaderService: OverlayLoaderService
+    private _drawerService: DrawerService,
+    protected _overlayLoaderService: OverlayLoaderService,
+    private _overlayContentService: OverlayContentService
   ) {
     super(_overlayLoaderService);
   }
@@ -37,23 +43,34 @@ export class ViewFlashcardsComponent extends AbstractPageOverlayLoader implement
   }
 
   public onCreate(): void {
-
+    this._drawerService.show(FlashcardSetCreateComponent, {
+      size: DrawerSize.LARGE
+    });
   }
 
-  public onDelete(): void {
-
+  public onDelete(flashcardSetId: number): void {
+    //TODO handle delete repsone message and rerun search
+    this._store.dispatch(flashcardsActions.deleteFlashcardSet({ flashcardSetId: flashcardSetId }));
   }
 
-  public onView(): void {
-
+  public onView(flashcardSet: FlashcardSet): void {
+    this._store.dispatch(flashcardsActions.getFlashcardSetById({ flashcardSetId: flashcardSet.id }));
+    this._overlayContentService.show(FlashcardSetViewComponent, {
+      closeOnOverlayClick: false,
+      data: flashcardSet
+    });
   }
 
-  public onEdit(): void {
-
+  public onEdit(flashcardSet: FlashcardSet): void {
+    this._store.dispatch(flashcardsActions.getFlashcardSetById({ flashcardSetId: flashcardSet.id }));
+    this._drawerService.show(FlashcardSetUpdateComponent, {
+      size: DrawerSize.LARGE,
+      data: document 
+    });
   }
 
   public onGoToPage(pageable: IPageable): void {
-
+  
   }
 
   public onSearchFlashcards(): void {

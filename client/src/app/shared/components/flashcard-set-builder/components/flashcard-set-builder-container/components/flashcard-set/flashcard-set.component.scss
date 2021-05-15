@@ -1,0 +1,27 @@
+.flashcard-set {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.flashcard-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  span {
+    margin-left: 0.5rem;
+  }
+  .flashcard-handle {
+    cursor: grab;
+  }
+}
+
+.cdk-drag-preview {
+  z-index: 10001 !important;
+}
+
+.cdk-drag-placeholder {
+  background: transparent;
+  opacity: 0;
+}

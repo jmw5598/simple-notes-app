@@ -13,7 +13,7 @@ import { DebouncedSearchComponent } from './components/debounced-search/debounce
 import { EmptyDataComponent } from './components/empty-data/empty-data.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { DrawerComponent } from './components/drawer/drawer.component';
-import { DrawerService } from './components';
+import { DrawerService, FlashcardSetCreateComponent } from './components';
 import { TopicFormComponent } from './forms/topic-form/topic-form.component';
 import { TopicCreateComponent } from './components/topic-create/topic-create.component';
 import { TopicSearchComponent } from './components/topic-search/topic-search.component';
@@ -39,6 +39,18 @@ import { DocumentBuilderTopicContainerComponent } from './components/document-bu
 import { DocumentBuilderDocumentContainerComponent } from './components/document-builder/components/document-builder-document-container/document-builder-document-container.component';
 import { DocumentBuilderDocumentTopicComponent } from './components/document-builder/components/document-builder-document-container/components/document-builder-document-topic/document-builder-document-topic.component';
 import { DocumentBuilderDocumentSectionComponent } from './components/document-builder/components/document-builder-document-container/components/document-builder-document-section/document-builder-document-section.component';
+import { FlashcardComponent } from './components/cards/flashcard/flashcard.component';
+import { FlipcardComponent } from './components/cards/flipcard/flipcard.component';
+import { FlipcardFrontComponent } from './components/cards/flipcard/flipcard-front.component';
+import { FlipcardBackComponent } from './components/cards/flipcard/flipcard-back.component';
+import { AngularMarkdownEditorModule } from 'angular-markdown-editor';
+import { MarkdownModule } from 'ngx-markdown';
+import { FlashcardSetBuilderFormComponent } from './components/flashcard-set-builder/components/flashcard-set-builder-form/flashcard-set-builder-form.component';
+import { FlashcardSetComponent } from './components/flashcard-set-builder/components/flashcard-set-builder-container/components/flashcard-set/flashcard-set.component';
+import { FlashcardSetBuilderContainerComponent } from './components/flashcard-set-builder/components/flashcard-set-builder-container/flashcard-set-builder-container.component';
+import { FlashcardCreateFormComponent } from './components/flashcard-set-builder/components/flashcard-set-builder-form/components/flashcard-create-form/flashcard-create-form.component';
+import { OverlayContentComponent } from './components/overlay-content/overlay-content.component';
+import { OverlayContentService } from './components/overlay-content/overlay-content.service';
 
 @NgModule({
   declarations: [
@@ -69,6 +81,16 @@ import { DocumentBuilderDocumentSectionComponent } from './components/document-b
     DocumentBuilderDocumentContainerComponent,
     DocumentBuilderDocumentTopicComponent,
     DocumentBuilderDocumentSectionComponent,
+    FlashcardSetCreateComponent,
+    FlashcardComponent,
+    FlipcardComponent,
+    FlipcardFrontComponent,
+    FlipcardBackComponent,
+    FlashcardSetBuilderFormComponent,
+    FlashcardSetComponent,
+    FlashcardSetBuilderContainerComponent,
+    FlashcardCreateFormComponent,
+    OverlayContentComponent
   ],
   imports: [
     CommonModule,
@@ -80,7 +102,9 @@ import { DocumentBuilderDocumentSectionComponent } from './components/document-b
     ColorTwitterModule,
     DragDropModule,
     TypeaheadModule,
-    ConfirmationPopoverModule
+    ConfirmationPopoverModule,
+    AngularMarkdownEditorModule.forRoot({ iconlibrary: 'fa' }),
+    MarkdownModule.forRoot()
   ],
   exports: [
     FormsModule,
@@ -110,9 +134,16 @@ import { DocumentBuilderDocumentSectionComponent } from './components/document-b
     DocumentBuilderSectionContainerComponent,
     DocumentBuilderTopicContainerComponent,
     DocumentBuilderDocumentContainerComponent,
+    FlashcardSetCreateComponent,
+    FlashcardComponent,
+    FlipcardComponent,
+    FlipcardFrontComponent,
+    FlipcardBackComponent,
+    OverlayContentComponent
   ],
   providers: [
-    DrawerService
+    DrawerService,
+    OverlayContentService
   ]
 })
 export class SharedModule { }

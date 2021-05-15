@@ -2,19 +2,29 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '@sn/shared/shared.module';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { FlashcardsRoutingModule } from './flashcards-routing.module';
 import { ViewFlashcardsComponent } from './pages/view-flashcards/view-flashcards.component';
 import { FlashcardListComponent } from './components/flashcard-list/flashcard-list.component';
+import { FlashcardSetViewComponent } from './components/flashcard-set-view/flashcard-set-view.component';
+import { FlashcardSetUpdateComponent } from './components/flashcard-set-update/flashcard-set-update.component';
 
 @NgModule({
   declarations: [
     ViewFlashcardsComponent,
-    FlashcardListComponent
+    FlashcardListComponent,
+    FlashcardSetViewComponent,
+    FlashcardSetUpdateComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    FlashcardsRoutingModule
+    FlashcardsRoutingModule,
+    ConfirmationPopoverModule
+  ],
+  entryComponents: [
+    FlashcardSetViewComponent,
+    FlashcardSetUpdateComponent
   ]
 })
 export class FlashcardsModule { }

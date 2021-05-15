@@ -12,7 +12,7 @@ import { setSelectedSection, updateSectionNotes } from '../../store/actions';
 import { ResponseMessage } from '@sn/core/models';
 import { ResponseStatus } from '@sn/core/enums';
 import { fadeAnimation } from '@sn/shared/animations';
-import { DEFAULT_EDITOR_OPTIONS } from './editor-options.defaults';
+import { DEFAULT_EDITOR_OPTIONS } from '@sn/core/defaults';
 import { AbstractPageOverlayLoader ,OverlayLoaderService } from '@sn/shared/components';
 
 @Component({

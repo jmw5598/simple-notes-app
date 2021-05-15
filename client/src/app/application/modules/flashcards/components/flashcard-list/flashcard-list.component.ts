@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FlashcardSet } from '@sn/shared/models';
 
 @Component({
@@ -10,24 +10,36 @@ export class FlashcardListComponent implements OnInit {
   @Input()
   public flashcardSets: FlashcardSet[];
 
+  @Output()
+  public onCreate: EventEmitter<any> = new EventEmitter<any>();
+
+  @Output()
+  public onView: EventEmitter<any> = new EventEmitter<any>();
+
+  @Output()
+  public onEdit: EventEmitter<any> = new EventEmitter<any>();
+
+  @Output()
+  public onDelete: EventEmitter<any> = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   public create(): void {
-
+    this.onCreate.emit();
   }
 
-  public view(): void {
-
+  public view(flashcardSet: FlashcardSet): void {
+    this.onView.emit(flashcardSet);
   }
 
-  public edit(): void {
-    
+  public edit(flashcardSet: FlashcardSet): void {
+    this.onEdit.emit(flashcardSet);
   }
 
-  public delete(): void {
-    
+  public delete(flashcardSetId: number): void {
+    this.onDelete.emit(flashcardSetId);
   }
 }

@@ -38,6 +38,7 @@ export class FlashcardsSearchResultGuard implements CanActivate {
   private _setSearchFlashcardSetsResultFromStoreOrApi(search: PageableSearch): Observable<Page<FlashcardSet>> {
     return this._store.select(selectSearchFlashcardSetsResult).pipe(
       tap((page: Page<FlashcardSet>) => {
+        console.log("in guard, page is", page)
         if (!page) {
           console.log("serach result is null dispatchign action");
           this._overlayLoaderService.setLoadingState(true);

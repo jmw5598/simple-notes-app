@@ -1,0 +1,31 @@
+<div class="container-fluid" [formGroup]="form">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input class="form-control" type="text" name="title" formControlName="title" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <sn-flashcard-create-form></sn-flashcard-create-form>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <sn-flashcard-set-builder-container></sn-flashcard-set-builder-container>
+    </div>
+  </div>
+</div>
+
+<!-- <sn-flipcard>
+  <sn-flipcard-front>
+    <sn-flashcard>
+      <h1>Front</h1>
+    </sn-flashcard>
+  </sn-flipcard-front>
+  <sn-flipcard-back>
+    <sn-flashcard>
+      <h1>Back</h1>
+    </sn-flashcard>
+  </sn-flipcard-back>
+</sn-flipcard> -->

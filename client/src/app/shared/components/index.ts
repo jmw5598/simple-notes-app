@@ -21,3 +21,6 @@ export * from './overlay-loader/overlay-loader.service';
 export * from './overlay-loader/abstract-page-overlay-loader.component';
 
 export * from './toolbar';
+export * from './flashcard-set-create/flashcard-set-create.component';
+export * from './overlay-content/overlay-content-options.model';
+export * from './overlay-content/overlay-content-options.defaults';
