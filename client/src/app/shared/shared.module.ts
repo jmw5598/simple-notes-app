@@ -56,6 +56,8 @@ import { FlashcardSetViewerComponent } from './components/flashcard-set-viewer/f
 import { FlashcardSetViewerControlsComponent } from './components/flashcard-set-viewer/components/flashcard-set-viewer-controls/flashcard-set-viewer-controls.component';
 import { FlashcardSetViewerControlsService } from './components/flashcard-set-viewer/services/flashcard-set-viewer-controls.service';
 
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+
 @NgModule({
   declarations: [
     SpinnerComponent,
@@ -111,7 +113,8 @@ import { FlashcardSetViewerControlsService } from './components/flashcard-set-vi
     TypeaheadModule,
     ConfirmationPopoverModule,
     AngularMarkdownEditorModule.forRoot({ iconlibrary: 'fa' }),
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    TooltipModule.forRoot()
   ],
   exports: [
     FormsModule,

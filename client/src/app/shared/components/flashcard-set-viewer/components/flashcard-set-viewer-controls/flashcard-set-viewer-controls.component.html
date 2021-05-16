@@ -1,20 +1,50 @@
 <div class="flashcard-set-viewer-controls">
-  <span class="control" (click)="first()">
+  <span 
+      class="control" 
+      (click)="first()"
+      tooltip="First"
+      [placement]="tooltipPlacement"
+      [delay]="tooltipDelay">
     <i class="fas fa-angle-double-left"></i>
   </span>
-  <span class="control" (click)="previous()">
+  <span 
+      class="control" 
+      (click)="previous()"
+      tooltip="Previous"
+      [placement]="tooltipPlacement"
+      [delay]="tooltipDelay">
     <i class="fas fa-chevron-left"></i>
   </span>
-  <span class="control" (click)="random()">
+  <span 
+      class="control" 
+      (click)="random()"
+      tooltip="Random"
+      [placement]="tooltipPlacement"
+      [delay]="tooltipDelay">
     <i class="fas fa-random"></i>
   </span>
-  <span class="control" (click)="flip()">
+  <span 
+      class="control" 
+      (click)="flip()"
+      tooltip="Flip"
+      [placement]="tooltipPlacement"
+      [delay]="tooltipDelay">
     <i class="fas fa-sync-alt"></i>
   </span>
-  <span class="control" (click)="next()">
+  <span 
+      class="control" 
+      (click)="next()"
+      tooltip="Next"
+      [placement]="tooltipPlacement"
+      [delay]="tooltipDelay">
     <i class="fas fa-chevron-right"></i>
   </span>
-  <span class="control" (click)="last()">
+  <span 
+      class="control" 
+      (click)="last()"
+      tooltip="Last"
+      [placement]="tooltipPlacement"
+      [delay]="tooltipDelay">
     <i class="fas fa-angle-double-right"></i>
   </span>
 </div>

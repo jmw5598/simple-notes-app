@@ -7,6 +7,9 @@ import { FlashcardSetViewerControlsService } from '../../services/flashcard-set-
   styleUrls: ['./flashcard-set-viewer-controls.component.scss']
 })
 export class FlashcardSetViewerControlsComponent implements OnInit {
+  public readonly tooltipPlacement: string = 'bottom';
+  public readonly tooltipDelay: number = 500;
+
   constructor(
     private _controlsService: FlashcardSetViewerControlsService
   ) { }
@@ -23,12 +26,10 @@ export class FlashcardSetViewerControlsComponent implements OnInit {
   }
 
   public random(): void {
-    console.log("random");
     this._controlsService.random();
   }
 
   public flip(): void {
-    console.log("flip in controls component");
     this._controlsService.flip();
   }
 

@@ -14,14 +14,18 @@ import { FlashcardSetViewerControlsService } from '@sn/shared/components/flashca
   styleUrls: ['./flashcard-set-view.component.scss'],
   providers: [FlashcardSetViewerControlsService]
 })
-export class FlashcardSetViewComponent implements OnInit {
+export class FlashcardSetViewComponent implements OnInit, OnDestroy {
   public selectedFlashcardSet$: Observable<FlashcardSet>;
-  
+
   constructor(
     private _store: Store<IFlashcardsState>,
   ) { }
 
   ngOnInit(): void {
     this.selectedFlashcardSet$ = this._store.select(flashcardSelectors.selectSelectedFlashcardSet);
+  }
+
+  ngOnDestroy(): void {
+    this._store.dispatch(flashcardActions.setSelectedFlashcardSet({ flashcardSet: null }));
   }
 }
