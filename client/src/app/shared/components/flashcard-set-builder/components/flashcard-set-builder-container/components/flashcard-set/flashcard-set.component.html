@@ -10,23 +10,45 @@
   <!-- -->
   <ng-container *ngIf="(flashcardSetBuilder$ | async)?.flashcards?.length; else noFlashcardsInSetTemplate">    
     <div *ngFor="let flashcard of (flashcardSetBuilder$ | async)?.flashcards">
-      <div class="falshcard-wrapper mb-2" cdkDrag>
+      <div class="falshcard-wrapper mb-4" cdkDrag>
         <sn-flashcard>
-          <div class="flashcard-actions">
-            <span class="flashcard-handle text-dark" cdkDragHandle>
-              <i class="fas fa-expand-arrows-alt"></i>
-            </span>
-            <span 
-                class="text-dark mr-0"
-                mwlConfirmationPopover
-                placement="left"
-                (confirm)="removeFlashcard(flashcard)">
-              <i class="fas fa-trash-alt"></i>
-            </span>
-          </div>
-          <markdown class="markdown-body" [data]="flashcard.frontContent"></markdown>
+          <sn-flipcard>
+            <sn-flipcard-front>
+              <div class="flashcard-content p-4">
+                <div class="flashcard-actions">
+                  <span class="flashcard-handle text-dark" cdkDragHandle>
+                    <i class="fas fa-expand-arrows-alt"></i>
+                  </span>
+                  <span 
+                      class="text-dark mr-0"
+                      mwlConfirmationPopover
+                      placement="left"
+                      (confirm)="removeFlashcard(flashcard)">
+                    <i class="fas fa-trash-alt"></i>
+                  </span>
+                </div>
+                <markdown class="markdown-body" [data]="flashcard.frontContent"></markdown>
+              </div>
+            </sn-flipcard-front>
+            <sn-flipcard-back>
+              <div class="flashcard-content p-4">
+                <div class="flashcard-actions">
+                  <span class="flashcard-handle text-dark" cdkDragHandle>
+                    <i class="fas fa-expand-arrows-alt"></i>
+                  </span>
+                  <span 
+                      class="text-dark mr-0"
+                      mwlConfirmationPopover
+                      placement="left"
+                      (confirm)="removeFlashcard(flashcard)">
+                    <i class="fas fa-trash-alt"></i>
+                  </span>
+                </div>
+                <markdown class="markdown-body" [data]="flashcard.backContent"></markdown>
+              </div>
+            </sn-flipcard-back>
+          </sn-flipcard>
         </sn-flashcard>
-        
       </div>
     </div>
   </ng-container>
