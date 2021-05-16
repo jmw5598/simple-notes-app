@@ -43,13 +43,23 @@ export class FlashcardSetCreateComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit(formValue: any): void {
-    console.log('creating flashcard set ', this.form.value, formValue);
+    const flashcardSet: FlashcardSet = {
+      ...formValue,
+      flashcards: formValue.flashcards.map(flashcard => ({
+        ...flashcard,
+        id: flashcard.id > 0 ? flashcard.id : null
+      }))
+    } as FlashcardSet;
+    this._store.dispatch(flashcardActions.createFlashcardSet({
+      flashcardSet: flashcardSet
+    }));
   }
 
   private initializeFlashcardSetBuilderForm(): void {
     this.form = this._formBuilder.group({
       title: ['', [Validators.required]],
-      flashcards: this._formBuilder.array([], [Validators.required])
+      synopsis: ['', [Validators.required]],
+      flashcards: this._formBuilder.array([])
     });
   }
 
@@ -72,13 +82,17 @@ export class FlashcardSetCreateComponent implements OnInit, OnDestroy {
         takeUntil(this._subscriptionSubject),
         debounceTime(500),
         withLatestFrom(this.flashcardSetBuilder$),
-        filter(([values, flashcardSetBuilder]) => flashcardSetBuilder.title !== values.title)
+        filter(([values, flashcardSetBuilder]) => {
+          return flashcardSetBuilder.title !== values.title
+            || flashcardSetBuilder.synopsis !== values.synopsis
+        })
       )
       .subscribe(([values, flashcardBuilderSet]) => {
         this._store.dispatch(flashcardActions.setFlashcardSetBuilder({
           flashcardSetBuilder: {
             ...flashcardBuilderSet,
-            title: values.title
+            title: values.title,
+            synopsis: values.synopsis
           }
         }));
       })
@@ -88,15 +102,27 @@ export class FlashcardSetCreateComponent implements OnInit, OnDestroy {
     this._store.select(flashcardSelectors.selectFlashcardSetBuilder)
       .pipe(takeUntil(this._subscriptionSubject))
       .subscribe(flashcardSet => {
-        const flashcardsArray = this.form.get('flashcards') as FormArray;
-        flashcardsArray.clear();
-        flashcardsArray.patchValue(flashcardSet.flashcards.map(flashcard => this._formBuilder.group({...flashcard})))
-        this.form.patchValue({
-          ...flashcardSet,
-          flashcards: flashcardsArray
-        })
-        console.log('flashcardsetbuilder changed in store, updating form');
+        this.patchInputFieldValuesToForm(flashcardSet);
+        this.patchFlashcardsToForm(flashcardSet);
       });
+  }
+
+  private patchInputFieldValuesToForm(flashcardSet: FlashcardSet): void {
+    this.form.patchValue({ ...flashcardSet });
+  }
+
+  private patchFlashcardsToForm(flashcardSet: FlashcardSet): void {
+    const flashcardsArray = this._formBuilder.array([]);
+    flashcardSet.flashcards
+      .forEach(flashcard => {
+        const control = this._formBuilder.group({
+        id: [flashcard.id, [Validators.required]],
+        frontContent: [flashcard.frontContent, [Validators.required]],
+        backContent: [flashcard.backContent, [Validators.required]]
+      })
+      flashcardsArray.push(control);
+    });
+    this.form.setControl('flashcards', flashcardsArray);
   }
 
   ngOnDestroy(): void {
