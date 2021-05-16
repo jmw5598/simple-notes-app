@@ -55,9 +55,7 @@ export class FlashcardSetViewerControlsService {
   public random(): void {
     if (this._flashcardSet?.flashcards?.length) {
       this._resetCurrentFlashcardFlipped();
-      const rangeStart: number = 0;
-      const rangeEnd: number = this._flashcardSet.flashcards.length - 1;
-      this._currentFlashcardIndex = Math.floor(Math.random() * (rangeEnd - rangeStart + 1)) + rangeStart;
+      this._currentFlashcardIndex = this._generateNextRandomFlashcardIndex();
       this._currentFlashcard = this._flashcardSet.flashcards[this._currentFlashcardIndex];
       this._currentFlashcardSource.next(this._currentFlashcard);
     }
@@ -92,5 +90,18 @@ export class FlashcardSetViewerControlsService {
   private _resetCurrentFlashcardFlipped(): void {
     this._currentFlashcardFlipped = false;
     this._currentFlashcardFlippedSource.next(this._currentFlashcardFlipped);
+  }
+
+  private _generateNextRandomFlashcardIndex(): number {
+    const rangeStart: number = 0;
+    const rangeEnd: number = this._flashcardSet.flashcards.length - 1;
+    let nextFlashcardIndex: number = this._currentFlashcardIndex;
+    while (
+      nextFlashcardIndex === this._currentFlashcardIndex 
+      && this._flashcardSet?.flashcards?.length > 1
+    ) {
+      nextFlashcardIndex = Math.floor(Math.random() * (rangeEnd - rangeStart + 1)) + rangeStart;
+    }
+    return nextFlashcardIndex;
   }
 }
