@@ -5,7 +5,6 @@ import { Store } from '@ngrx/store';
 
 import { Flashcard, FlashcardSet } from '@sn/shared/models';
 import { FlashcardSetBuilderService } from '../../../../services/flashcard-set-builder.service';
-import * as flashcardActions from '@sn/application/modules/flashcards/store/actions';
 import * as flashcardSelectors from '@sn/application/modules/flashcards/store/selectors';
 import { IFlashcardsState } from '@sn/application/modules/flashcards/store/reducers';
 
@@ -32,5 +31,9 @@ export class FlashcardSetComponent implements OnInit {
 
   public removeFlashcard(flashcard: Flashcard): void {
     this._flashcardBuilderService.removeFlashcard(flashcard);
+  }
+
+  public editFlashcard(flashcard: Flashcard): void {
+    this._flashcardBuilderService.setFlashcardBeingEdited(flashcard);
   }
 }

@@ -8,6 +8,7 @@ import { ViewFlashcardsComponent } from './pages/view-flashcards/view-flashcards
 import { FlashcardListComponent } from './components/flashcard-list/flashcard-list.component';
 import { FlashcardSetViewComponent } from './components/flashcard-set-view/flashcard-set-view.component';
 import { FlashcardSetUpdateComponent } from './components/flashcard-set-update/flashcard-set-update.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FlashcardSetUpdateComponent } from './components/flashcard-set-update/f
     CommonModule,
     SharedModule,
     FlashcardsRoutingModule,
-    ConfirmationPopoverModule
+    ConfirmationPopoverModule,
+    MarkdownModule.forRoot()
   ],
   entryComponents: [
     FlashcardSetViewComponent,

@@ -40,6 +40,7 @@ export class ViewFlashcardsComponent extends AbstractPageOverlayLoader implement
 
   ngOnInit(): void {
     this.searchFlashcardSetsResult$ = this._store.select(flashcardsSelectors.selectSearchFlashcardSetsResult);
+    
   }
 
   public onCreate(): void {

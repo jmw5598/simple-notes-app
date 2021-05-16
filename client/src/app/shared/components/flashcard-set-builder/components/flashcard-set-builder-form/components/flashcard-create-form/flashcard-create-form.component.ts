@@ -40,5 +40,14 @@ export class FlashcardCreateFormComponent implements OnInit {
       id: -this.idGenerator.next().value
     } as Flashcard;
     this._flashcardSetBuilderService.addFlashcard(flashcard);
+    this.onReset();
+  }
+
+  public onReset(): void {
+    console.log("resetting form");
+    this.form.patchValue({
+      frontContent: '',
+      backContetn: ''
+    });
   }
 }

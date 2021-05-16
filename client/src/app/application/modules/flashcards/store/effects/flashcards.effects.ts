@@ -20,10 +20,15 @@ export class FlashcardsEffects {
     ofType(fromActions.getFlashcardSetById),
     switchMap(({ flashcardSetId }) => this._flashcardsService.findOne(flashcardSetId)
       .pipe(
-        map(flashcardSet => fromActions.setFlashcardSetBuilder({ flashcardSetBuilder: flashcardSet })),
+        map(flashcardSet => fromActions.setSelectedFlashcardSet({ flashcardSet: flashcardSet })),
         catchError(error => of(handleHttpError({ error: error })))
       )
     )
+  ));
+
+  getFlashcardSetForBuilderSuccess$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.setSelectedFlashcardSet),
+    switchMap(({ flashcardSet }) => of(fromActions.setFlashcardSetBuilder({ flashcardSetBuilder: flashcardSet })))
   ));
 
   createFlashcardSet$ = createEffect(() => this._actions.pipe(

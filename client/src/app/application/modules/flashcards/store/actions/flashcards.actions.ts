@@ -90,3 +90,18 @@ export const setFlashcardsForFlashcardSetBuilder = createAction(
   '[Flashcards] Set Flashcards for Flashcard Set Builder',
   props<{ flashcards: Flashcard[] }>()
 );
+
+export const updateFlashcardInFlashcardSet = createAction(
+  '[Flashcards] Update Flashcard In Flashcard Set',
+  props<{ flashcard: Flashcard }>()
+);
+
+export const setFlashcardBeingEdited = createAction(
+  '[Flashcards] Set Flashcard Being Edited',
+  props<{ flashcard: Flashcard }>()
+);
+
+export const setSelectedFlashcardSet = createAction(
+  '[Flashcards] Set Selected Flashcard Set',
+  props<{ flashcardSet: FlashcardSet }>()
+);

@@ -51,6 +51,10 @@ import { FlashcardSetBuilderContainerComponent } from './components/flashcard-se
 import { FlashcardCreateFormComponent } from './components/flashcard-set-builder/components/flashcard-set-builder-form/components/flashcard-create-form/flashcard-create-form.component';
 import { OverlayContentComponent } from './components/overlay-content/overlay-content.component';
 import { OverlayContentService } from './components/overlay-content/overlay-content.service';
+import { FlashcardEditFormComponent } from './components/flashcard-set-builder/components/flashcard-set-builder-form/components/flashcard-edit-form/flashcard-edit-form.component';
+import { FlashcardSetViewerComponent } from './components/flashcard-set-viewer/flashcard-set-viewer.component';
+import { FlashcardSetViewerControlsComponent } from './components/flashcard-set-viewer/components/flashcard-set-viewer-controls/flashcard-set-viewer-controls.component';
+import { FlashcardSetViewerControlsService } from './components/flashcard-set-viewer/services/flashcard-set-viewer-controls.service';
 
 @NgModule({
   declarations: [
@@ -90,7 +94,10 @@ import { OverlayContentService } from './components/overlay-content/overlay-cont
     FlashcardSetComponent,
     FlashcardSetBuilderContainerComponent,
     FlashcardCreateFormComponent,
-    OverlayContentComponent
+    OverlayContentComponent,
+    FlashcardEditFormComponent,
+    FlashcardSetViewerComponent,
+    FlashcardSetViewerControlsComponent
   ],
   imports: [
     CommonModule,
@@ -139,11 +146,13 @@ import { OverlayContentService } from './components/overlay-content/overlay-cont
     FlipcardComponent,
     FlipcardFrontComponent,
     FlipcardBackComponent,
-    OverlayContentComponent
+    OverlayContentComponent,
+    FlashcardSetViewerComponent
   ],
   providers: [
     DrawerService,
-    OverlayContentService
+    OverlayContentService,
+    FlashcardSetViewerControlsService
   ]
 })
 export class SharedModule { }

@@ -1,4 +1,4 @@
-import { createAction, createSelector } from '@ngrx/store';
+import { createSelector } from '@ngrx/store';
 import * as fromFlashcards from '../reducers/flashcards.reducer';
 import * as fromApplication from '../../../../store/index';
 
@@ -30,4 +30,14 @@ export const selectUpdateFlashcardSetResponseMessage = createSelector(
 export const selectDeleteFlashcardSetResponseMessage = createSelector(
   selectFlashcardsState,
   (state: fromFlashcards.IFlashcardsState) => state.deleteFlashcardSetResponseMessage
+);
+
+export const selectFlashcardBeingEdited = createSelector(
+  selectFlashcardsState,
+  (state: fromFlashcards.IFlashcardsState) => state.flashcardBeingEdited
+);
+
+export const selectSelectedFlashcardSet = createSelector(
+  selectFlashcardsState,
+  (state: fromFlashcards.IFlashcardsState) => state.selectedFlashcardSet
 );

@@ -1,11 +1,11 @@
-<h5 class="text-dark font-weight-bold mt-2">Add Flashcards</h5>
+<h5 class="text-dark font-weight-bold mt-2">Edit Flashcards</h5>
 <hr class="mb-2 mt-2" />
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" novalidate id="test">
   <div class="form-group">
     <label>Front Content</label>
     <div class="border">
       <angular-markdown-editor
-          textareaId="create-front-card" 
+          textareaId="edit-front-card" 
           name="front-card"
           [options]="editorOptions"
           formControlName="frontContent">
@@ -16,7 +16,7 @@
     <label>Back Content</label>
     <div class="border">
       <angular-markdown-editor
-          textareaId="create-back-card" 
+          textareaId="edit-back-card" 
           name="back-card"
           [options]="editorOptions"
           formControlName="backContent">
@@ -29,14 +29,14 @@
         class="btn btn-primary mr-2" 
         role="button" 
         type="submit">
-      Add
+      Update
     </button>
     <button 
         class="btn btn-secondary" 
         role="button" 
         type="button"
-        (click)="onReset()">
-      Reset
+        (click)="onCancel()">
+      Cancel
     </button>
   </div>
 </form>

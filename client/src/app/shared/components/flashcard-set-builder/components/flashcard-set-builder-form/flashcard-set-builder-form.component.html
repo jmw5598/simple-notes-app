@@ -15,7 +15,12 @@
   </div>
   <div class="row">
     <div class="col-sm-12 col-md-6">
-      <sn-flashcard-create-form></sn-flashcard-create-form>
+      <ng-container *ngIf="!(flashcardBeingEdited$ | async); else editFlashcardTemplate">
+        <sn-flashcard-create-form></sn-flashcard-create-form>
+      </ng-container>
+      <ng-template #editFlashcardTemplate>
+        <sn-flashcard-edit-form></sn-flashcard-edit-form>
+      </ng-template>
     </div>
     <div class="col-sm-12 col-md-6">
       <sn-flashcard-set-builder-container></sn-flashcard-set-builder-container>

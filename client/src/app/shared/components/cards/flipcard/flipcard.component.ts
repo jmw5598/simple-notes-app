@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 export enum FlipAxis {
   X = 'flip-axis-x',
@@ -14,7 +14,11 @@ export class FlipcardComponent implements OnInit {
   @Input()
   public flipAxis: FlipAxis;
   
+  @Input()
   public isFlipped: boolean;
+
+  @Output()
+  public isFlippedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() {
     this.isFlipped = false;
@@ -26,5 +30,6 @@ export class FlipcardComponent implements OnInit {
 
   public flipCard(): void {
     this.isFlipped = !this.isFlipped;
+    this.isFlippedChange.emit(this.isFlipped);
   }
 }

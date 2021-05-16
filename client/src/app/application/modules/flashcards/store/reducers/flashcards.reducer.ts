@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import * as fromActions from '../actions';
 import { ResponseMessage, Page } from '@sn/core/models';
-import { FlashcardSet } from '@sn/shared/models';
+import { Flashcard, FlashcardSet } from '@sn/shared/models';
 
 export const flashcardsFeatureKey = 'flashcards';
 
@@ -11,28 +11,14 @@ export interface IFlashcardsState {
   deleteFlashcardSetResponseMessage: ResponseMessage,
   searchFlashcardSetsResult: Page<FlashcardSet>;
   flashcardSetBuilder: FlashcardSet;
+  flashcardBeingEdited: Flashcard;
+  selectedFlashcardSet: FlashcardSet;
 }
 
 export const initialFlashcardSetBuilderState: FlashcardSet = {
   title: '',
   synopsis: '',
-  flashcards: [
-    // {
-    //   id: 1,
-    //   backContent: 'Tsting',
-    //   frontContent: '## testing'
-    // },
-    // {
-    //   id: 2,
-    //   backContent: 'Tsting2',
-    //   frontContent: '## testing2'
-    // },
-    // {
-    //   id: 3,
-    //   backContent: 'Tsting3',
-    //   frontContent: '## testing3'
-    // },
-  ]
+  flashcards: []
 } as FlashcardSet;
 
 export const initialFlashcardsState: IFlashcardsState = {
@@ -40,7 +26,9 @@ export const initialFlashcardsState: IFlashcardsState = {
   updateFlashcardSetResponseMessage: null,
   deleteFlashcardSetResponseMessage: null,
   searchFlashcardSetsResult: null,
-  flashcardSetBuilder: initialFlashcardSetBuilderState
+  flashcardSetBuilder: initialFlashcardSetBuilderState,
+  flashcardBeingEdited: null,
+  selectedFlashcardSet: null
 }
 
 const onSetCreateFlashcardSetResponseMessage = (state, { message }: any) => ({
@@ -92,7 +80,7 @@ const onSetFlashcardsForFlashcardSetBuilder = (state, { flashcards }) => ({
 const onSetFlashcardSetBuilder = (state, { flashcardSetBuilder }) => ({
   ...state,
   flashcardSetBuilder: {
-    ...flashcardSetBuilder
+    ...(flashcardSetBuilder || initialFlashcardSetBuilderState)
   }
 });
 
@@ -101,6 +89,30 @@ const onResetFlashcardSetBuilder = (state) => ({
   flashcardSetBuilder: {
     ...initialFlashcardSetBuilderState
   }
+});
+
+const onSetFlashcardBeingEdited = (state, { flashcard }) => ({
+  ...state,
+  flashcardBeingEdited: flashcard
+});
+
+const onUpdateFlashcardInFlashcardSet = (state, { flashcard }) => ({
+  ...state,
+  flashcardSetBuilder: {
+    ...state.flashcardSetBuilder,
+    flashcards: state.flashcardSetBuilder.flashcards
+      .map(fc => {
+        if (fc.id === flashcard.id) {
+          return flashcard
+        }
+        return fc;
+      })
+  }
+} as IFlashcardsState);
+
+const onSetSelectedFlashcardSet = (state, { flashcardSet }) => ({
+  ...state,
+  selectedFlashcardSet: flashcardSet
 });
 
 const _flashcardsReducer = createReducer(
@@ -113,6 +125,9 @@ const _flashcardsReducer = createReducer(
   on(fromActions.setFlashcardsForFlashcardSetBuilder, onSetFlashcardsForFlashcardSetBuilder),
   on(fromActions.setFlashcardSetBuilder, onSetFlashcardSetBuilder),
   on(fromActions.resetFlashcardSetBuilder, onResetFlashcardSetBuilder),
+  on(fromActions.setFlashcardBeingEdited, onSetFlashcardBeingEdited),
+  on(fromActions.updateFlashcardInFlashcardSet, onUpdateFlashcardInFlashcardSet),
+  on(fromActions.setSelectedFlashcardSet, onSetSelectedFlashcardSet),
 );
 
 export function flashcardsReducer(state, action) {

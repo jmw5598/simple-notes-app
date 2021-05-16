@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlContainer, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DEFAULT_EDITOR_OPTIONS } from '@sn/core/defaults';
-import { EditorOption } from 'angular-markdown-editor';
+import { ControlContainer, FormGroup } from '@angular/forms';
+import { Flashcard } from '@sn/shared/models';
+import { Observable, Subject } from 'rxjs';
+import { FlashcardSetBuilderService } from '../../services/flashcard-set-builder.service';
 
 @Component({
   selector: 'sn-flashcard-set-builder-form',
@@ -10,17 +11,16 @@ import { EditorOption } from 'angular-markdown-editor';
 })
 export class FlashcardSetBuilderFormComponent implements OnInit {
   public form: FormGroup;
-  
+
+  public flashcardBeingEdited$: Observable<Flashcard>;
 
   constructor(
-    private _parentControl: ControlContainer
+    private _parentControl: ControlContainer,
+    private _flashcardSetBuilderService: FlashcardSetBuilderService
   ) { }
 
   ngOnInit(): void {
     this.form = this._parentControl.control as FormGroup;
-  }
-
-  public onSubmit(formValue: any): void {
-    console.log('submittings form', formValue);
+    this.flashcardBeingEdited$ = this._flashcardSetBuilderService.onFlashcardBeingEditedChanges();
   }
 }

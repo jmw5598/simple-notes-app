@@ -1,4 +1,18 @@
-.flashcard {
-  width: 500px;
-  height: 300px;
+:host ::ng-deep {
+  .flashcard {
+    width: 500px;
+    height: 300px;
+
+    sn-flipcard {
+      .flip-card {
+        .flip-card-inner {
+          .flip-card-front,
+          .flip-card-back {
+            width: 500px;
+            height: 300px;
+          }
+        }
+      }
+    } /* End sn-flipcard */
+  }
 }
