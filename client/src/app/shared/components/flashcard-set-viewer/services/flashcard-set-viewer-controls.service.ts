@@ -86,6 +86,15 @@ export class FlashcardSetViewerControlsService {
       this._currentFlashcardSource.next(this._currentFlashcard);
     }
   }
+
+  public shuffle(): void {
+    const shuffledFlashcards: Flashcard[] = this._shuffleFlashcards(this._flashcardSet.flashcards);
+    this._flashcardSet = {
+      ...this._flashcardSet,
+      flashcards: shuffledFlashcards
+    } as FlashcardSet;
+    this.random();
+  }
   
   private _resetCurrentFlashcardFlipped(): void {
     this._currentFlashcardFlipped = false;
@@ -104,4 +113,24 @@ export class FlashcardSetViewerControlsService {
     }
     return nextFlashcardIndex;
   }
+
+  private _shuffleFlashcards(flashcards: Flashcard[]): Flashcard[] {
+    let originalFlashcards = flashcards.map(f => ({...f}));
+    let shuffledFlashcards = []
+    let remainingCount = originalFlashcards.length
+    let randomIndex;
+
+    while (remainingCount) {
+      randomIndex = Math.floor(Math.random() * originalFlashcards.length);
+
+      if (randomIndex in originalFlashcards) {
+        shuffledFlashcards.push(originalFlashcards[randomIndex]);
+        flashcards = originalFlashcards.splice(randomIndex, 1);
+        remainingCount--;
+      }
+    }
+
+    return shuffledFlashcards;
+  }
+
 }

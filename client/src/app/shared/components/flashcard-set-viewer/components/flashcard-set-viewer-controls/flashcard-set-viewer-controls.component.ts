@@ -29,6 +29,10 @@ export class FlashcardSetViewerControlsComponent implements OnInit {
     this._controlsService.random();
   }
 
+  public shuffle(): void {
+    this._controlsService.shuffle();
+  }
+
   public flip(): void {
     this._controlsService.flip();
   }
