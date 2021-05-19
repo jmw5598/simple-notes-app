@@ -36,6 +36,11 @@ const onSetCreateFlashcardSetResponseMessage = (state, { message }: any) => ({
   createFlashcardSetResponseMessage: message
 });
 
+const onSetUpdateFlashcardSetResponseMessage = (state, { message }: any) => ({
+  ...state,
+  updateFlashcardSetResponseMessage: message
+});
+
 const onSetDeleteFlashcardSetResponseMessage = (state, { message }: any) => ({
   ...state,
   deleteFlashcardSetResponseMessage: message
@@ -118,6 +123,7 @@ const onSetSelectedFlashcardSet = (state, { flashcardSet }) => ({
 const _flashcardsReducer = createReducer(
   initialFlashcardsState,
   on(fromActions.setCreateFlashcardSettResponseMessage, onSetCreateFlashcardSetResponseMessage),
+  on(fromActions.setUpdateFlashcardSetResponseMessage, onSetUpdateFlashcardSetResponseMessage),
   on(fromActions.setDeleteFlashcardSetResponseMessage, onSetDeleteFlashcardSetResponseMessage),
   on(fromActions.searchFlashcardSetsResult, onSearchFlashcardSetsResult),
   on(fromActions.addFlashcardToFlashcardSetBuilder, onAddFlashcardToFlashcardSetBuilder),

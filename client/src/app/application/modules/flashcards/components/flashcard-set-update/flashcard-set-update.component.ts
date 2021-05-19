@@ -68,12 +68,13 @@ export class FlashcardSetUpdateComponent implements OnInit, OnDestroy {
 
   private selectState(): void {
     this.flashcardSetBuilder$ = this._store.select(flashcardSelectors.selectFlashcardSetBuilder);
-    this.responseMessage$ = this._store.select(flashcardSelectors.selectCreateFlashcardSetResponseMessage)
+    this.responseMessage$ = this._store.select(flashcardSelectors.selectUpdateFlashcardSetResponseMessage)
       .pipe(
         tap((message: ResponseMessage) => {
+          console.log("got new response message");
           if (message) {
             this.form.reset();
-            setTimeout(() => this._store.dispatch(flashcardActions.setCreateFlashcardSettResponseMessage({ message: null })), 3000);
+            setTimeout(() => this._store.dispatch(flashcardActions.setUpdateFlashcardSetResponseMessage({ message: null })), 3000);
           }
         })
       );
