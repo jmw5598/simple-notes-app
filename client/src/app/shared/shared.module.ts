@@ -57,6 +57,8 @@ import { FlashcardSetViewerControlsComponent } from './components/flashcard-set-
 import { FlashcardSetViewerControlsService } from './components/flashcard-set-viewer/services/flashcard-set-viewer-controls.service';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { FlashcardSetViewerHeaderComponent } from './components/flashcard-set-viewer/components/flashcard-set-viewer-header/flashcard-set-viewer-header.component';
+import { FlashcardSetViewerFlipperComponent } from './components/flashcard-set-viewer/components/flashcard-set-viewer-flipper/flashcard-set-viewer-flipper.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +101,9 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     OverlayContentComponent,
     FlashcardEditFormComponent,
     FlashcardSetViewerComponent,
-    FlashcardSetViewerControlsComponent
+    FlashcardSetViewerControlsComponent,
+    FlashcardSetViewerHeaderComponent,
+    FlashcardSetViewerFlipperComponent
   ],
   imports: [
     CommonModule,
@@ -150,7 +154,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     FlipcardFrontComponent,
     FlipcardBackComponent,
     OverlayContentComponent,
-    FlashcardSetViewerComponent
+    FlashcardSetViewerComponent,
+    FlashcardSetBuilderFormComponent
   ],
   providers: [
     DrawerService,

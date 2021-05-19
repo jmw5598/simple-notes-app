@@ -2,45 +2,30 @@
   <div class="flashcard-set-viewer-card">
     <div class="flashcard-set-view">
       <div class="flashcard-set-details">
-        Title and stuff {{ isCurrentFlashcardFlipped }}
+        <sn-flashcard-set-viewer-header 
+            [flashcardSet]="flashcardSet"
+            [flashcard]="(currentFlashcard$ | async)">
+        </sn-flashcard-set-viewer-header>
       </div>
       <ng-container *ngIf="flashcardSet?.flashcards?.length; else noFlashcardToDisplay">
         <div class="flashcard-set-flipper mb-3">
-          <sn-flashcard>
-            <sn-flipcard [(isFlipped)]="isCurrentFlashcardFlipped">
-              <sn-flipcard-front>
-                <div class="flashcard-content p-4">
-                  <markdown 
-                      class="markdown-body" 
-                      [data]="(currentFlashcard$ | async)?.frontContent">
-                  </markdown>
-                </div>
-              </sn-flipcard-front>
-              <sn-flipcard-back>
-                <div class="flashcard-content p-4">
-                  <markdown 
-                      class="markdown-body" 
-                      [data]="(currentFlashcard$ | async)?.backContent">
-                  </markdown>
-                </div>
-              </sn-flipcard-back>
-            </sn-flipcard>
-          </sn-flashcard>
+          <sn-flashcard-set-viewer-flipper
+              [isFlipped]="isCurrentFlashcardFlipped"
+              [flashcard]="(currentFlashcard$ | async)">
+          </sn-flashcard-set-viewer-flipper>
         </div>
-        
+        <div class="flashcard-set-viewer-controls">
+          <sn-flashcard-set-viewer-controls></sn-flashcard-set-viewer-controls>
+        </div>
       </ng-container>
-
-    </div>
-
-    <ng-template #noFlashcardToDisplay>
-      <sn-empty-data [message]="'No flashcard(s) to display!'"></sn-empty-data>
-    </ng-template>
-    <!-- <sn-flashcard>
-      <pre>{{ (currentFlashcard$ | async) | json}}</pre>
-
-    </sn-flashcard> -->
-  </div>
-  <div class="flashcard-set-viewer-controls">
-    <sn-flashcard-set-viewer-controls></sn-flashcard-set-viewer-controls>
+    </div>    
   </div>
 </div>
+
+<ng-template #noFlashcardToDisplay>
+  <sn-flashcard>
+    <sn-empty-data 
+        [message]="'No flashcard(s) to display!'">
+    </sn-empty-data>
+  </sn-flashcard>
+</ng-template>

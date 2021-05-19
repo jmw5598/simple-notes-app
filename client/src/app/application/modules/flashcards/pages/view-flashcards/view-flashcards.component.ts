@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { DEFAULT_SEARCH_FLASHCARDS_PAGE } from '@sn/core/defaults';
-import { IPageable, Page } from '@sn/core/models';
+import { IPageable, Page, PageableSearch } from '@sn/core/models';
 import { fadeAnimation } from '@sn/shared/animations';
 import { AbstractPageOverlayLoader, DrawerLocation, DrawerService, DrawerSize, FlashcardSetCreateComponent, OverlayLoaderService } from '@sn/shared/components';
 import { FlashcardSet } from '@sn/shared/models';
@@ -13,6 +13,7 @@ import * as flashcardsSelectors from '../../store/selectors';
 import { FlashcardSetViewComponent } from '../../components/flashcard-set-view/flashcard-set-view.component';
 import { FlashcardSetUpdateComponent } from '../../components/flashcard-set-update/flashcard-set-update.component';
 import { OverlayContentService } from '@sn/shared/components/overlay-content/overlay-content.service';
+import { takeUntil, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'sn-view-flashcards',
@@ -28,6 +29,7 @@ export class ViewFlashcardsComponent extends AbstractPageOverlayLoader implement
   public isSearching: boolean = false;
 
   public searchFlashcardSetsResult$: Observable<Page<FlashcardSet>>;
+  public searchTerm: string = '';
 
   constructor(
     private _store: Store<IFlashcardsState>,
@@ -39,7 +41,9 @@ export class ViewFlashcardsComponent extends AbstractPageOverlayLoader implement
   }
 
   ngOnInit(): void {
-    this.searchFlashcardSetsResult$ = this._store.select(flashcardsSelectors.selectSearchFlashcardSetsResult);
+    this.searchFlashcardSetsResult$ = this._store.select(flashcardsSelectors.selectSearchFlashcardSetsResult)
+      .pipe(tap(() => this.isSearching = false));
+    this.listenForDeleteFlashcardSetResponseMessage();
   }
 
   public onCreate(): void {
@@ -49,7 +53,6 @@ export class ViewFlashcardsComponent extends AbstractPageOverlayLoader implement
   }
 
   public onDelete(flashcardSetId: number): void {
-    //TODO handle delete repsone message and rerun search
     this._store.dispatch(flashcardsActions.deleteFlashcardSet({ flashcardSetId: flashcardSetId }));
   }
 
@@ -70,11 +73,29 @@ export class ViewFlashcardsComponent extends AbstractPageOverlayLoader implement
   }
 
   public onGoToPage(pageable: IPageable): void {
-  
+    const documentSearch: PageableSearch = {
+      searchTerm: '', //this.searchTerm || '',
+      pageable: pageable
+    };
+    this._store.dispatch(flashcardsActions.searchFlashcardSets({ search: documentSearch }));
   }
 
-  public onSearchFlashcards(): void {
+  public onSearchFlashcards(searchTerm: string): void {
+    this.searchTerm = searchTerm;
+    this.isSearching = true;
+    const search: PageableSearch = {
+      searchTerm: searchTerm,
+      pageable: this.DEFAULT_PAGE
+    };
+    this._store.dispatch(flashcardsActions.searchFlashcardSets({ search: search }));
+  }
 
+  public listenForDeleteFlashcardSetResponseMessage(): void {
+    this._store.select(flashcardsSelectors.selectDeleteFlashcardSetResponseMessage)
+      .pipe(takeUntil(this._subscriptionSubject))
+      .subscribe(message => {
+        this.onSearchFlashcards(this.searchTerm);
+      })
   }
 
   ngOnDestroy(): void {

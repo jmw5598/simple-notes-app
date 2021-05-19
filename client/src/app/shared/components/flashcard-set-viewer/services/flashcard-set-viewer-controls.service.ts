@@ -1,3 +1,4 @@
+import { ClassMethod } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Flashcard, FlashcardSet } from '@sn/shared/models';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -115,22 +116,18 @@ export class FlashcardSetViewerControlsService {
   }
 
   private _shuffleFlashcards(flashcards: Flashcard[]): Flashcard[] {
+    if (flashcards.length === 0) return flashcards;
     let originalFlashcards = flashcards.map(f => ({...f}));
-    let shuffledFlashcards = []
-    let remainingCount = originalFlashcards.length
-    let randomIndex;
-
-    while (remainingCount) {
-      randomIndex = Math.floor(Math.random() * originalFlashcards.length);
-
-      if (randomIndex in originalFlashcards) {
-        shuffledFlashcards.push(originalFlashcards[randomIndex]);
-        flashcards = originalFlashcards.splice(randomIndex, 1);
-        remainingCount--;
+    let randomIndex = 0;
+    let tempItem: Flashcard;
+    for (let i = 0, randomIndex = i; i < originalFlashcards.length; i++, randomIndex = i) {
+      while (randomIndex === i) {
+        randomIndex = Math.floor(Math.random() * originalFlashcards.length);
       }
+      tempItem = originalFlashcards[i];
+      originalFlashcards[i] = originalFlashcards[randomIndex];
+      originalFlashcards[randomIndex] = tempItem;
     }
-
-    return shuffledFlashcards;
+    return originalFlashcards;
   }
-
 }

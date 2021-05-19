@@ -81,7 +81,7 @@ export class ViewDocumentsComponent extends AbstractPageOverlayLoader implements
 
   public onGoToPage(pageable: IPageable): void {
     const documentSearch: PageableSearch = {
-      searchTerm: '', //this.searchTerm || '',
+      searchTerm: this.searchTerm || '',
       pageable: pageable
     };
     this._store.dispatch(documentActions.searchDocuments({ search: documentSearch }));

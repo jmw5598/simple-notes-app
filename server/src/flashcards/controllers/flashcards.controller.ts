@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Query, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, Request, UseGuards } from '@nestjs/common';
 import { request } from 'http';
 import { JwtAuthenticationGuard } from 'src/authentication/guards/jwt-authentication.guard';
 import { SortDirection } from 'src/common/enums/sort-direction.enum';
@@ -8,6 +8,7 @@ import { IPageable } from 'src/common/models/pageable.interface';
 import { SnLoggerService } from 'src/logger/sn-logger.service';
 import { CreateFlashcardSetDto } from '../dtos/create-flashcard-set.dto';
 import { FlashcardSetDto } from '../dtos/flashcard-set.dto';
+import { UpdateFlashcardSetDto } from '../dtos/update-flashcard-set.dto';
 import { FlashcardsService } from '../services/flashcards.service';
 
 @Controller('flashcards')
@@ -69,7 +70,6 @@ export class FlashcardsController {
       @Request() request,
       @Param('id') flashcardSetId: number): Promise<FlashcardSetDto> {
     try {
-      console.log("INSIDE FLASCHARS CONTROLLLER READY TO DELETE!!!!\n\n\n")
       const accountId: number = +request.user.accountId;
       return this._flashcardsService.deleteFlashcardSetById(accountId, flashcardSetId);
     } catch (error) {
@@ -77,4 +77,19 @@ export class FlashcardsController {
       throw error;
     }
   }
+
+  @Put(':id')
+  public async updateFlashcardSetById(
+    @Request() request,
+    @Param('id') flashcardSetId: number,
+    @Body() updateFlashcardSetDto: UpdateFlashcardSetDto): Promise<FlashcardSetDto> {
+      try {
+        const accountId: number = +request.user.accountId;
+        return this._flashcardsService.updateFlashcardSetById(accountId, flashcardSetId, updateFlashcardSetDto);
+      } catch (error) {
+        this._logger.error(`Error updating flashcard set by id!`, error);
+        throw error;
+      }
+      return null;
+    }
 }

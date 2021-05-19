@@ -6,6 +6,7 @@ import { IsNull, Raw, Repository } from 'typeorm';
 import { CreateFlashcardSetDto } from '../dtos/create-flashcard-set.dto';
 import { CreateFlashcardDto } from '../dtos/create-flashcard.dto';
 import { FlashcardSetDto } from '../dtos/flashcard-set.dto';
+import { UpdateFlashcardSetDto } from '../dtos/update-flashcard-set.dto';
 import { FlashcardSet } from '../entities/flashcard-set.entity';
 import { Flashcard } from '../entities/flashcard.entity';
 import { FlashcardSetNotFoundException } from '../exceptions/flashcard-set-not-found.exception';
@@ -44,12 +45,8 @@ export class FlashcardsService {
       .orderBy({
         'fc.orderIndex': 'ASC'
       }).getOne()
-
-    console.log("\n\n FLASHCARD SET IS \n\n", flashcardSet)
-
     if (!flashcardSet) throw new FlashcardSetNotFoundException();
-
-    return FlashcardSetMapper.toFlashcardSetDto(flashcardSet);
+    return FlashcardSetMapper.toFlashcardSetDto(flashcardSet, true);
   }
   
   public async createFlashcardSet(accountId: number, createFlashcardSetDto: CreateFlashcardSetDto): Promise<FlashcardSetDto> {
@@ -83,6 +80,33 @@ export class FlashcardsService {
     flashcardSet.deletedAt = now;
     flashcardSet.flashcards.forEach((flashcard: Flashcard) => flashcard.deletedAt = now);
     
+    return FlashcardSetMapper.toFlashcardSetDto(
+      await this._flashcardSetRepository.save(flashcardSet)
+    );
+  }
+
+  public async updateFlashcardSetById(accountId: number, flashcardSetId: number, updateFlashcardSetDto: UpdateFlashcardSetDto): Promise<FlashcardSetDto> {
+    const flashcardSet: FlashcardSet = await this._flashcardSetRepository.findOne({
+      relations: ['flashcards'],
+      where: {
+        id: flashcardSetId,
+        account: { id: accountId }
+      }
+    });
+
+    if (!flashcardSet) throw new FlashcardSetNotFoundException();
+
+    flashcardSet.title = updateFlashcardSetDto.title;
+    flashcardSet.synopsis = updateFlashcardSetDto.synopsis;
+    flashcardSet.updatedAt = new Date();
+
+    flashcardSet.flashcards = updateFlashcardSetDto.flashcards.map((flashcard, fcOrderIndex) => {
+      return this._flashcardRepository.create({
+        ...flashcard,
+        orderIndex: fcOrderIndex
+      })
+    });
+
     return FlashcardSetMapper.toFlashcardSetDto(
       await this._flashcardSetRepository.save(flashcardSet)
     );
