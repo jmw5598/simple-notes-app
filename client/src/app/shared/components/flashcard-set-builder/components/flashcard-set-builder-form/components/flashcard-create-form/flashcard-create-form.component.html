@@ -26,17 +26,18 @@
   
   <div class="form-group text-right">
     <button 
-        class="btn btn-primary mr-2" 
+        class="btn btn-sm btn-outline-primary btn-border-none" 
         role="button" 
-        type="submit">
-      Add
+        type="submit"
+        [disabled]="form.invalid">
+      <i class="fas fa-plus-circle"></i> Add
     </button>
     <button 
-        class="btn btn-secondary" 
+        class="btn btn-sm btn-outline-dark btn-border-none" 
         role="button" 
         type="button"
         (click)="onReset()">
-      Reset
+      <i class="fas fa-undo"></i> Reset
     </button>
   </div>
 </form>

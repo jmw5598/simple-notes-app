@@ -74,7 +74,10 @@ export class FlashcardSetUpdateComponent implements OnInit, OnDestroy {
           console.log("got new response message");
           if (message) {
             this.form.reset();
-            setTimeout(() => this._store.dispatch(flashcardActions.setUpdateFlashcardSetResponseMessage({ message: null })), 3000);
+            setTimeout(() => 
+              this._store.dispatch(
+                flashcardActions.setUpdateFlashcardSetResponseMessage({ message: null })
+              ), 3000);
           }
         })
       );

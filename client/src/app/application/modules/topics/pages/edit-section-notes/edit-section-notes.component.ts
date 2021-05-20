@@ -91,6 +91,10 @@ export class EditSectionNotesComponent extends AbstractPageOverlayLoader impleme
       );
   }
 
+  public hidePreview(): void {
+    
+  }
+
   public onSaveSectionNotes(notes: string): void {
     this.editorOptions.footer = EditorMessage.SAVING;
     this._store.dispatch(updateSectionNotes({

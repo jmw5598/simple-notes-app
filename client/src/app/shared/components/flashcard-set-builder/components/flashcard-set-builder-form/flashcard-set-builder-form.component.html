@@ -1,28 +1,32 @@
 <div class="container-fluid" [formGroup]="form">
   <div class="row">
-    <div class="col-sm-12 col-md-6">
-      <div class="form-group">
-        <label for="title">Title</label>
-        <input class="form-control" type="text" name="title" formControlName="title" />
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input class="form-control" type="text" name="title" formControlName="title" />
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="form-group">
+            <label for="title">Synopsis</label>
+            <input class="form-control" type="text" name="title" formControlName="synopsis" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <ng-container *ngIf="!(flashcardBeingEdited$ | async); else editFlashcardTemplate">
+            <sn-flashcard-create-form></sn-flashcard-create-form>
+          </ng-container>
+          <ng-template #editFlashcardTemplate>
+            <sn-flashcard-edit-form></sn-flashcard-edit-form>
+          </ng-template>
+        </div>
       </div>
     </div>
-    <div class="col-sm-12 col-md-6">
-      <div class="form-group">
-        <label for="title">Synopsis</label>
-        <input class="form-control" type="text" name="title" formControlName="synopsis" />
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 col-md-6">
-      <ng-container *ngIf="!(flashcardBeingEdited$ | async); else editFlashcardTemplate">
-        <sn-flashcard-create-form></sn-flashcard-create-form>
-      </ng-container>
-      <ng-template #editFlashcardTemplate>
-        <sn-flashcard-edit-form></sn-flashcard-edit-form>
-      </ng-template>
-    </div>
-    <div class="col-sm-12 col-md-6">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
       <sn-flashcard-set-builder-container></sn-flashcard-set-builder-container>
     </div>
   </div>
