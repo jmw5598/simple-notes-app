@@ -126,6 +126,7 @@ export class FlashcardSetCreateComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this._store.dispatch(flashcardActions.setFlashcardSetBuilder({ flashcardSetBuilder: null }));
     this._subscriptionSubject.next();
     this._subscriptionSubject.complete();
   }
