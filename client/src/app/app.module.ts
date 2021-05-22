@@ -19,6 +19,7 @@ import { AuthenticationEffects } from './auth/store/effects';
 import { PlansEffects } from './core/store/effects';
 
 import { environment } from '@env/environment';
+import { HttpErrorEffects } from './application/store/effects/http-error.effects';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { environment } from '@env/environment';
     }),
     EffectsModule.forRoot([
       AuthenticationEffects,
-      PlansEffects
+      PlansEffects,
+      HttpErrorEffects
     ]),
     StoreDevtoolsModule.instrument({
       name: 'Simple Notes App',

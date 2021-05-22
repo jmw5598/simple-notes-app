@@ -4,7 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 
 import { authenticatedUserInitializer } from './initializers/authenticated-user.initializer';
-import { JwtTokenInterceptor } from './interceptors/jwt-token.interceptor';
+import { JwtTokenInterceptor, GlobalHttpErrorInterceptor } from './interceptors';
 import { AuthenticationService, DynamicThemeService } from './services';
 
 const jwtTokenInterceptor = {
@@ -20,6 +20,12 @@ const authenticationAppInitializer = {
   deps: [Store, AuthenticationService, DynamicThemeService]
 };
 
+const globalHttpErrorInterceptor = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: GlobalHttpErrorInterceptor,
+  multi: true
+}
+
 @NgModule({
   declarations: [],
   imports: [
@@ -29,6 +35,7 @@ const authenticationAppInitializer = {
   providers: [
     jwtTokenInterceptor,
     authenticationAppInitializer,
+    globalHttpErrorInterceptor
   ]
 })
 export class CoreModule { }
