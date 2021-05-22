@@ -24,3 +24,5 @@ export * from './toolbar';
 export * from './flashcard-set-create/flashcard-set-create.component';
 export * from './overlay-content/overlay-content-options.model';
 export * from './overlay-content/overlay-content-options.defaults';
+
+export * from './toaster/toaster.component';
