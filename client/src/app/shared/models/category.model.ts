@@ -8,7 +8,7 @@ export class Category {
     description: string
   ) {
     this.id = id;
-    this.name = name;
+    this.name = description;
   }
 
 }
