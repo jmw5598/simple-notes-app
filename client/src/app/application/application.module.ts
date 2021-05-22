@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SharedModule } from '@sn/shared/shared.module';
 import { ApplicationRoutingModule } from './application-routing.module';
 import { ApplicationComponent } from './application.component';
@@ -46,7 +47,8 @@ import { FlashcardsEffects } from './modules/flashcards/store/effects/flashcards
       ToolbarEffects,
       FlashcardsEffects,
     ]),
-    KeyboardShortcutsModule.forRoot()
+    KeyboardShortcutsModule.forRoot(),
+    TooltipModule.forRoot()
   ]
 })
 export class ApplicationModule { }

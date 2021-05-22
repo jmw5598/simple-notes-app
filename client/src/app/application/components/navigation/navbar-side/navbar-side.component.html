@@ -22,7 +22,13 @@
           class="list-group-item p-0 navbar-side-menu-item" 
           routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">
         <a [routerLink]="link.routerLink" class="px-4 py-3 d-block">
-          <i [ngClass]="link.iconClasses"></i>
+          <i 
+            [tooltip]="link.tooltip" 
+            placement="right" 
+            container="body"
+            [delay]="tooltipDelay"
+            [ngClass]="link.iconClasses">
+          </i>
           <span *ngIf="(currentPanelState$ | async) === LayoutSidePanelState.OPEN">{{ link.label }}</span>
         </a>
       </li>

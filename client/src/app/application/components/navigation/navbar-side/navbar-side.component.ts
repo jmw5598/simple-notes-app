@@ -11,6 +11,7 @@ import { tap } from 'rxjs/operators';
 })
 export class NavbarSideComponent implements OnInit {
   public LayoutSidePanelState = LayoutSidePanelState
+  public tooltipDelay: number = 500;
   
   public links: NavigationRouteLink[] = NAVIGATION_ROUTES;
 

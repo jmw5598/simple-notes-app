@@ -2,42 +2,50 @@ export interface NavigationRouteLink {
   label: string;
   iconClasses: string | string[];
   routerLink: string | string[];
+  tooltip: string;
 }
 
 export const NAVIGATION_ROUTES: NavigationRouteLink[] = [
   {
     label: 'Dashboard',
     iconClasses: 'fas fa-chart-bar',
-    routerLink: ['dashboard']
+    routerLink: ['dashboard'],
+    tooltip: 'Dashboard'
   },
   {
     label: 'Topics',
     iconClasses: 'fas fa-book',
-    routerLink: ['topics']
+    routerLink: ['topics'],
+    tooltip: 'Dashboard'
   },
   {
     label: 'Documents',
     iconClasses: 'far fa-file-alt',
-    routerLink: ['documents']
+    routerLink: ['documents'],
+    tooltip: 'Documents'
   },
   {
     label: 'Flashcards',
     iconClasses: 'far fa-sticky-note',
-    routerLink: ['flashcards']
+    routerLink: ['flashcards'],
+    tooltip: 'Flashcards'
   },
   {
     label: 'Calendar',
     iconClasses: 'far fa-calendar-alt',
-    routerLink: ['calendar']
+    routerLink: ['calendar'],
+    tooltip: 'Calendar'
   },
   {
     label: 'Settings',
     iconClasses: 'far fa-user-circle',
-    routerLink: ['accounts']
+    routerLink: ['accounts'],
+    tooltip: 'Settings'
   },
   {
     label: 'Logout',
     iconClasses: 'fas fa-lock',
-    routerLink: ['auth', 'logout']
+    routerLink: ['auth', 'logout'],
+    tooltip: 'Logout'
   }
 ]
