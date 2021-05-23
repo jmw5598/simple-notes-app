@@ -15,6 +15,7 @@ import { ThemesModule } from './themes/themes.module';
 import { DocumentBuilderModule } from './common/services/document-builder/document-builder.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { FlashcardsModule } from './flashcards/flashcards.module';
+import { TodosModule } from './todos/todos.module';
 
 @Module({
   imports: [
@@ -30,15 +31,16 @@ import { FlashcardsModule } from './flashcards/flashcards.module';
     CalendarModule,
     ThemesModule,
     DocumentBuilderModule,
-    CacheModule.register(),
-    FlashcardsModule
+    // CacheModule.register(),
+    FlashcardsModule,
+    TodosModule
   ],
   controllers: [],
   providers: [
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: CacheInterceptor,
-    }
+    // {
+    //   provide: APP_INTERCEPTOR,
+    //   useClass: CacheInterceptor,
+    // }
   ],
 })
 export class AppModule {}
