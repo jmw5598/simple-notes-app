@@ -24,8 +24,6 @@ export class TodosService {
 
   public async createTodo(accountId: number, createTodoDto: CreateTodoDto): Promise<TodoDto> {
     const newTodo: Todo = this._todosRepository.create({
-      startedBy: createTodoDto.startedBy,
-      completedBy: createTodoDto.completedBy,
       description: createTodoDto.description,
       isComplete: false
     });
@@ -56,8 +54,6 @@ export class TodosService {
     if (!todo) throw new TodoNotFoundException();
     
     todo.updatedAt = new Date();
-    todo.startedBy = updateTodoDto.startedBy;
-    todo.completedBy = updateTodoDto.completedBy;
     todo.description = updateTodoDto.description;
     todo.isComplete = updateTodoDto.isComplete;
 

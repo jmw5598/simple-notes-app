@@ -7,8 +7,7 @@ export class TodosMapper {
       id: todo.id,
       createdAt: todo.createdAt,
       updatedAt: todo.updatedAt,
-      startedBy: todo.startedBy,
-      completedBy: todo.completedBy,
+      completedAt: todo.completedAt,
       description: todo.description,
       isComplete: todo.isComplete
     } as TodoDto;
