@@ -1,14 +1,11 @@
-import { Account } from "src/accounts/entities/account.entity";
 import { BaseEntity } from "src/database/entities/base.entity";
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
+import { TodoList } from "./todo-list.entity";
 
 @Entity()
 export class Todo extends BaseEntity {
-  @Column({ name: 'started_by', nullable: false, type: 'timestamp with time zone' })
-  public startedBy: Date;
-
-  @Column({ name: 'completed_by', nullable: false, type: 'timestamp with time zone' })
-  public completedBy: Date;
+  @Column({ name: 'completed_at', nullable: true, type: 'timestamp with time zone' })
+  public completedAt: Date;
 
   @Column({ nullable: false })
   public description: string;
@@ -16,7 +13,10 @@ export class Todo extends BaseEntity {
   @Column({ name: 'is_complete', nullable: false })
   public isComplete: boolean = false;
 
-  @ManyToOne(type => Account)
-  @JoinColumn({ name: 'account_id' })
-  public account: Account;
+  @Column({ type: 'int', name: 'order_index', nullable: false })
+  public orderIndex: number;
+
+  @ManyToOne(type => TodoList)
+  @JoinColumn({ name: 'todo_list_id' })
+  public todoList: TodoList;
 }
