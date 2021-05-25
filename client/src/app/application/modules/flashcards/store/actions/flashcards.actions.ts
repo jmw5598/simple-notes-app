@@ -63,7 +63,7 @@ export const searchFlashcardSets = createAction(
 );
 
 export const searchFlashcardSetsResult = createAction(
-  '[Flashcards] Search Flashcard Sets',
+  '[Flashcards] Search Flashcard Sets Result',
   props<{ page: Page<FlashcardSet> }>()
 );
 

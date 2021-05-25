@@ -11,3 +11,4 @@ export * from './topics.service';
 export * from './dynamic-theme.service';
 export * from './themes.service';
 export * from './flashcards.service';
+export * from './todo-lists.service';

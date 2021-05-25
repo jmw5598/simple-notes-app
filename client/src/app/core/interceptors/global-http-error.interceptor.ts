@@ -20,17 +20,17 @@ export class GlobalHttpErrorInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log("inside global http interceptor");
     return next
       .handle(request)
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          console.log("caught error in interceptor");
-          this._store.dispatch(
-            httpActions.handleHttpError({
-              error: error
-            })
-          );
+          if (error.status !== 401) {
+            this._store.dispatch(
+              httpActions.handleHttpError({
+                error: error
+              })
+            );
+          }
           return throwError(error);
         })
       );

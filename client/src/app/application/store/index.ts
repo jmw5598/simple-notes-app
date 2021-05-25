@@ -9,6 +9,7 @@ import * as fromDocuments from '../modules/documents/store/reducers';
 import * as fromTopics from '../modules/topics/store/reducers';
 import * as fromToolbar from './reducers';
 import * as fromFlashcards from '../modules/flashcards/store/reducers';
+import * as fromTodos from '../modules/todos/store/reducers';
 
 export const applicationFeatureKey: string = 'application';
 
@@ -21,7 +22,8 @@ export interface IApplicationState {
   [fromTopics.topicsFeatureKey]: fromTopics.ITopicsState,
   [fromTopics.sectionsFeatureKey]: fromTopics.ISectionsState,
   [fromToolbar.toolbarFeatureKey]: fromToolbar.IToolbarState,
-  [fromFlashcards.flashcardsFeatureKey]: fromFlashcards.IFlashcardsState
+  [fromFlashcards.flashcardsFeatureKey]: fromFlashcards.IFlashcardsState,
+  [fromTodos.todosFeatureKey]: fromTodos.ITodosState
 }
 
 export const applicationReducer = new InjectionToken<ActionReducerMap<IApplicationState>>(applicationFeatureKey, {
@@ -34,7 +36,8 @@ export const applicationReducer = new InjectionToken<ActionReducerMap<IApplicati
     [fromTopics.topicsFeatureKey]: fromTopics.topicReducer,
     [fromTopics.sectionsFeatureKey]: fromTopics.sectionReducer,
     [fromToolbar.toolbarFeatureKey]: fromToolbar.toolbarReducer,
-    [fromFlashcards.flashcardsFeatureKey]: fromFlashcards.flashcardsReducer
+    [fromFlashcards.flashcardsFeatureKey]: fromFlashcards.flashcardsReducer,
+    [fromTodos.todosFeatureKey]: fromTodos.todosReducer
   })
 });
 

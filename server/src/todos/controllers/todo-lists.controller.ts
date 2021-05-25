@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, Request, UseGuards } from '@nestjs/common';
 import { request } from 'http';
 import { JwtAuthenticationGuard } from 'src/authentication/guards/jwt-authentication.guard';
 import { SortDirection } from 'src/common/enums/sort-direction.enum';
@@ -8,6 +8,7 @@ import { IPageable } from 'src/common/models/pageable.interface';
 import { SnLoggerService } from 'src/logger/sn-logger.service';
 import { CreateTodoListDto } from '../dtos/create-todo-list.dto';
 import { TodoListDto } from '../dtos/todo-list.dto';
+import { UpdateTodoDto } from '../dtos/update-todo.dto';
 import { TodoListsService } from '../services/todo-lists.service';
 
 @Controller('todo-lists')
@@ -45,6 +46,33 @@ export class TodoListsController {
       return this._todoListsService.createTodoList(accountId, createTodoListDto); 
     } catch (error) {
       this._logger.error(`Error create new todo list!`, error);
+      throw error;
+    }
+  }
+
+  @Delete(':id')
+  public async deleteTodoList(
+      @Request() request,
+      @Param('id') todoListId: number): Promise<TodoListDto> {
+    try {
+      const accountId: number = +request.user.accountId;
+      return this._todoListsService.deleteTodoListById(accountId, todoListId);
+    } catch (error) {
+      this._logger.error(`Error deleting todo list wit given Id`, error);
+      throw error;
+    }
+  }
+
+  @Put(':id')
+  public async udpateTodoList(
+      @Request() request,
+      @Param('id') todoListId: number,
+      @Body() updateTodoListDto: UpdateTodoDto): Promise<TodoListDto> {
+    try {
+      const accountId: number = +request.user.accountId;
+      return this._todoListsService.updateTodoListById(accountId, todoListId, updateTodoListDto);
+    } catch (error) {
+      this._logger.error(`Error updating todo list width given Id`, error);
       throw error;
     }
   }

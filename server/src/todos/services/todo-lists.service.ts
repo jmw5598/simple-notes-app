@@ -6,8 +6,11 @@ import { IsNull, Raw, Repository } from 'typeorm';
 import { CreateTodoListDto } from '../dtos/create-todo-list.dto';
 import { CreateTodoDto } from '../dtos/create-todo.dto';
 import { TodoListDto } from '../dtos/todo-list.dto';
+import { UpdateTodoListDto } from '../dtos/update-todo-list.dto';
+import { UpdateTodoDto } from '../dtos/update-todo.dto';
 import { TodoList } from '../entities/todo-list.entity';
 import { Todo } from '../entities/todo.entity';
+import { TodoListNotFoundException } from '../exceptions/todo-list-not-found.exception';
 import { TodoListsMapper } from '../mappers/todo-lists.mapper';
 
 @Injectable()
@@ -51,6 +54,54 @@ export class TodoListsService {
       })
     );
     return TodoListsMapper.toTodoListDto(todoList);
+  }
+
+  public async deleteTodoListById(accountId: number, todoListId: number): Promise<TodoListDto> {
+    const todoList: TodoList = await this._todoListsRepository.findOne({
+      relations: ['todos'],
+      where: {
+        account: { id: accountId },
+        id: todoListId
+      }
+    });
+
+    if (!todoList) throw new TodoListNotFoundException();
+
+    const now: Date = new Date();
+
+    todoList.deletedAt = now;
+    todoList.todos.forEach(todo => todo.deletedAt = now);
+
+    return TodoListsMapper.toTodoListDto(
+      await this._todoListsRepository.save(todoList)
+    );
+  }
+
+  public async updateTodoListById(accountId: number, todoListId: number, updateTodoListDto: UpdateTodoListDto): Promise<TodoListDto> {
+    const todoList: TodoList = await this._todoListsRepository.findOne({
+      relations: ['todos'],
+      where: {
+        account: { id: accountId },
+        id: todoListId
+      }
+    });
+
+    if (!todoList) throw new TodoListNotFoundException();
+
+    todoList.title = updateTodoListDto.title;
+    todoList.startedBy = updateTodoListDto.startedBy;
+    todoList.completedBy = updateTodoListDto.completedBy;
+    
+    todoList.todos = updateTodoListDto.todos.map((updateTodo: UpdateTodoDto, orderIndex: number) => {
+      return this._todosRepository.create({
+        ...updateTodo,
+        orderIndex: orderIndex
+      });
+    });
+    
+    return TodoListsMapper.toTodoListDto(
+      await this._todoListsRepository.save(todoList)
+    );
   }
 
   private async _generateSearchWhereClause(accountId: number, searchTerm: string): Promise<any> {

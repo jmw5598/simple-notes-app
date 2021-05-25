@@ -31,6 +31,12 @@ export const NAVIGATION_ROUTES: NavigationRouteLink[] = [
     tooltip: 'Flashcards'
   },
   {
+    label: 'Todo Lists',
+    iconClasses: 'fas fa-clipboard-check',
+    routerLink: ['todos'],
+    tooltip: 'Todo Lists'
+  },
+  {
     label: 'Calendar',
     iconClasses: 'far fa-calendar-alt',
     routerLink: ['calendar'],

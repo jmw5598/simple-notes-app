@@ -1,0 +1,9 @@
+.todo-list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+  .btn-remove {
+    cursor: pointer;
+  }
+}

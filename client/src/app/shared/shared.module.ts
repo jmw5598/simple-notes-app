@@ -60,6 +60,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { FlashcardSetViewerHeaderComponent } from './components/flashcard-set-viewer/components/flashcard-set-viewer-header/flashcard-set-viewer-header.component';
 import { FlashcardSetViewerFlipperComponent } from './components/flashcard-set-viewer/components/flashcard-set-viewer-flipper/flashcard-set-viewer-flipper.component';
 import { ToasterComponent } from './components/toaster/toaster.component';
+import { TodoListCreateComponent } from './components/todo-list-create/todo-list-create.component';
+import { TodoListFormComponent } from './forms/todo-list-form/todo-list-form.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +107,9 @@ import { ToasterComponent } from './components/toaster/toaster.component';
     FlashcardSetViewerControlsComponent,
     FlashcardSetViewerHeaderComponent,
     FlashcardSetViewerFlipperComponent,
-    ToasterComponent
+    ToasterComponent,
+    TodoListCreateComponent,
+    TodoListFormComponent
   ],
   imports: [
     CommonModule,
@@ -158,7 +162,8 @@ import { ToasterComponent } from './components/toaster/toaster.component';
     OverlayContentComponent,
     FlashcardSetViewerComponent,
     FlashcardSetBuilderFormComponent,
-    ToasterComponent
+    ToasterComponent,
+    TodoListCreateComponent
   ],
   providers: [
     DrawerService,

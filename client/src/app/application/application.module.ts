@@ -22,6 +22,7 @@ import { SectionsEffects } from './modules/topics/store/effects/sections.effects
 import { TopicsEffects } from './modules/topics/store/effects/topics.effects';
 import { ToolbarEffects } from './store/effects/toolbar.effects';
 import { FlashcardsEffects } from './modules/flashcards/store/effects/flashcards.effects';
+import { TodoListsEffects } from './modules/todos/store/effects/todos.effects';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { FlashcardsEffects } from './modules/flashcards/store/effects/flashcards
       TopicsEffects,
       ToolbarEffects,
       FlashcardsEffects,
+      TodoListsEffects
     ]),
     KeyboardShortcutsModule.forRoot(),
     TooltipModule.forRoot()

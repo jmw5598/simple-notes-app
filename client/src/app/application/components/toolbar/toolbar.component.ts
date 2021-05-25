@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { IToolbarState } from '../../store/reducers';
 import { selectKeyboardShortcuts } from '../../store/selectors';
-import { DrawerService, DrawerLocation, DrawerSize } from '@sn/shared/components';
+import { DrawerService, DrawerLocation, DrawerSize, FlashcardSetCreateComponent } from '@sn/shared/components';
 import { ShortcutInput, AllowIn } from 'ng-keyboard-shortcuts';
 import { getKeyboardShortcuts } from '@sn/application/store/actions';
 import { KeyboardShortcutActionType } from '@sn/core/enums';
@@ -14,6 +14,7 @@ import {
   TopicSearchComponent,
   CalendarEventCreateComponent,
   DocumentCreateComponent } from '@sn/shared/components';
+import { TodoListCreateComponent } from '@sn/shared/components/todo-list-create/todo-list-create.component';
 
 @Component({
   selector: 'sn-global-toolbar',
@@ -23,6 +24,8 @@ import {
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<void>;
+  public tooltipDelay: number = 500;
+  public drawerCloseTimeoutBeforeOpen: number = 500;
   public shortcuts: ShortcutInput[] = [];
   public DrawerLocation = DrawerLocation;
   private _isDrawerVisible: boolean;
@@ -61,7 +64,10 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   public onCreateNewTopic(): void {
     if (this._isDrawerVisible) {
       this._drawerService.close();
-      setTimeout(() => this._drawerService.show(TopicCreateComponent), 500)
+      setTimeout(() => 
+        this._drawerService.show(TopicCreateComponent),
+        this.drawerCloseTimeoutBeforeOpen
+      )
     } else {
     this._drawerService.show(TopicCreateComponent);
     }
@@ -70,7 +76,10 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   public onCreateNewCalendarEvent(): void {
     if (this._isDrawerVisible) {
       this._drawerService.close();
-      setTimeout(() => this._drawerService.show(CalendarEventCreateComponent, { data: { date: new Date() } }), 500)
+      setTimeout(() => 
+        this._drawerService.show(CalendarEventCreateComponent, { data: { date: new Date() } }),
+        this.drawerCloseTimeoutBeforeOpen  
+      )
     } else {
       this._drawerService.show(CalendarEventCreateComponent, { data: { date: new Date() } });
     }
@@ -79,7 +88,10 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   public onCreateNewDocument(): void {
     if (this._isDrawerVisible) {
       this._drawerService.close();
-      setTimeout(() => this._drawerService.show(DocumentCreateComponent, { size: DrawerSize.LARGE }));
+      setTimeout(() => 
+        this._drawerService.show(DocumentCreateComponent, { size: DrawerSize.LARGE }),
+        this.drawerCloseTimeoutBeforeOpen
+      );
     } else {
       this._drawerService.show(DocumentCreateComponent, { size: DrawerSize.LARGE });
     }
@@ -96,9 +108,36 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   public onSearchTopics(): void {
     if (this._isDrawerVisible) {
       this._drawerService.close();
-      setTimeout(() => this._drawerService.show(TopicSearchComponent), 500);
+      setTimeout(() => 
+        this._drawerService.show(TopicSearchComponent),
+        this.drawerCloseTimeoutBeforeOpen
+      );
     } else {
       this._drawerService.show(TopicSearchComponent);
+    }
+  }
+
+  public onCreateFlashcardSet(): void {
+    if (this._isDrawerVisible) {
+      this._drawerService.close();
+      setTimeout(() => 
+        this._drawerService.show(FlashcardSetCreateComponent, { size: DrawerSize.LARGE }),
+        this.drawerCloseTimeoutBeforeOpen  
+      );
+    } else {
+      this._drawerService.show(FlashcardSetCreateComponent, { size: DrawerSize.LARGE });
+    }
+  }
+
+  public onCreateTodoList(): void {
+    if (this._isDrawerVisible) {
+      this._drawerService.close();
+      setTimeout(() => 
+        this._drawerService.show(TodoListCreateComponent),
+        this.drawerCloseTimeoutBeforeOpen  
+      );
+    } else {
+      this._drawerService.show(TodoListCreateComponent);
     }
   }
 

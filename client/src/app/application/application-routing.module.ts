@@ -32,6 +32,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/flashcards/flashcards.module').then(m => m.FlashcardsModule)
       },
       {
+        path: 'todos',
+        loadChildren: () => import('./modules/todos/todos.module').then(m => m.TodosModule)
+      },
+      {
         path: '**',
         redirectTo: 'dashboard',
         pathMatch: 'full'

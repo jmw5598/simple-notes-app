@@ -5,12 +5,6 @@ export class UpdateTodoDto {
   public id: number;
 
   @IsNotEmpty()
-  public startedBy: Date;
-
-  @IsNotEmpty()
-  public completedBy: Date;
-
-  @IsNotEmpty()
   public description: string;
 
   @IsNotEmpty()

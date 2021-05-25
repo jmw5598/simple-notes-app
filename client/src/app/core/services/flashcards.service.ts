@@ -17,7 +17,6 @@ export class FlashcardsService extends AbstractCrudService<FlashcardSet, number>
   }
 
   public searchFlashcardSets(searchTerm: string, page?: IPageable): Observable<Page<FlashcardSet>> {
-    console.log('searching flashcard service method')
     const params: {[key: string]: any} = !page ? {} : {
       searchTerm: searchTerm,
       page: page.page,

@@ -4,3 +4,4 @@ export * from './search-topics.defaults';
 export * from './theme.defaults';
 export * from './search-flashcards.defaults';
 export * from './markdown-editor-config.defaults';
+export * from './search-todos.defaults';

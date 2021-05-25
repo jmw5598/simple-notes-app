@@ -13,3 +13,5 @@ export * from './document-topic-section.model';
 export * from './document-markdown.model';
 export * from './flashcard-set.model';
 export * from './flashcard.model';
+export * from './todo-list.model';
+export * from './todo.model';
