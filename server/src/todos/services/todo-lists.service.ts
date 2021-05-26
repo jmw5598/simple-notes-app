@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Page } from 'src/common/models/page.model';
 import { IPageable } from 'src/common/models/pageable.interface';
-import { IsNull, Raw, Repository } from 'typeorm';
+import { Between, IsNull, LessThan, LessThanOrEqual, MoreThanOrEqual, Raw, Repository } from 'typeorm';
 import { CreateTodoListDto } from '../dtos/create-todo-list.dto';
 import { CreateTodoDto } from '../dtos/create-todo.dto';
 import { TodoListDto } from '../dtos/todo-list.dto';
@@ -88,20 +88,85 @@ export class TodoListsService {
 
     if (!todoList) throw new TodoListNotFoundException();
 
+    const today: Date = new Date();
+
     todoList.title = updateTodoListDto.title;
     todoList.startedBy = updateTodoListDto.startedBy;
     todoList.completedBy = updateTodoListDto.completedBy;
+    todoList.updatedAt = new Date();
     
     todoList.todos = updateTodoListDto.todos.map((updateTodo: UpdateTodoDto, orderIndex: number) => {
       return this._todosRepository.create({
         ...updateTodo,
-        orderIndex: orderIndex
+        orderIndex: orderIndex,
+        updatedAt: today,
+        completedAt: updateTodo.isComplete ? today : null
       });
     });
     
     return TodoListsMapper.toTodoListDto(
       await this._todoListsRepository.save(todoList)
     );
+  }
+
+  public async getTodoListById(accountId: number, todoListId: number): Promise<TodoListDto> {
+    const todoList: TodoList = await this._todoListsRepository.findOne({
+      relations: ['todos'],
+      where: { account: { id: accountId }, id: todoListId }
+    });
+    if (!todoList) throw new TodoListNotFoundException();
+    return TodoListsMapper.toTodoListDto(todoList);
+  }
+
+  public async getTodoListsBetweenDates(accountId: number, startDate: Date, endDate: Date): Promise<TodoListDto[]> {
+    const todoLists: TodoList[] = await this._todoListsRepository.find({
+      relations: ['todos'],
+      where: [
+        {
+          account: { id: accountId },
+          deletedAt: IsNull(),
+          startedBy: Between(startDate.toISOString(), endDate.toISOString())
+        },
+        {
+          account: { id: accountId },
+          deletedAt: IsNull(),
+          completedBy: Between(startDate.toISOString(), endDate.toISOString())
+        },
+        {
+          account: { id: accountId },
+          deletedAt: IsNull(),
+          startedBy: LessThanOrEqual(startDate.toISOString()),
+          completedBy: MoreThanOrEqual(endDate.toISOString())
+        }
+      ],
+      order: {
+        startedBy: 'ASC'
+      }
+    })
+    return TodoListsMapper.toTodoListDtoList(todoLists);
+  }
+
+  public async getTodoListsPastDueFromDate(accountId: number, pastDueDate: Date): Promise<TodoListDto[]> {
+    // Need to switch to query builder and join on todos count todos that are
+    // incomplete.  Filter where incdomplet todo count > 0
+    
+    // const todoLists: TodoList[] = await this._todoListsRepository.createQueryBuilder('tl')
+    //   .innerJoin('tl.account', 'acc')
+    //   .innerJoinAndSelect('tl.todos', 't')
+    //   // subsuselect id where count todos not complete > 0
+    
+    const todoListsOld: TodoList[] = await this._todoListsRepository.find({
+      relations: ['todos'],
+      where: {
+        account: { id: accountId },
+        deletedAt: IsNull(),
+        completedBy: LessThan(pastDueDate.toISOString())
+      },
+      order: {
+        startedBy: 'ASC'
+      }
+    });
+    return TodoListsMapper.toTodoListDtoList(todoListsOld);
   }
 
   private async _generateSearchWhereClause(accountId: number, searchTerm: string): Promise<any> {
