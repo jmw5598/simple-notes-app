@@ -45,13 +45,39 @@ export class TodoListsEffects {
     switchMap(({ todoList }) => {
       const message: ResponseMessage = {
         status: ResponseStatus.SUCCESS,
-        message: `Successfully created flashcard set!`
+        message: `Successfully created todo list!`
       } as ResponseMessage;
       return of(fromActions.setCreateTodoListResponseMessage({ message: message }))
     })
   ));
 
-  deleteFlashcardSet$ = createEffect(() => this._actions.pipe(
+  updateTodoList$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.updateTodoList),
+    exhaustMap(({ todoListId, todoList }) => this._todoListsService.update(todoListId, todoList)
+      .pipe(
+        map(todoList => fromActions.updateTodoListSuccess({ todoList: todoList })),
+        catchError(error => {
+          const message: ResponseMessage = {
+            status: ResponseStatus.ERROR,
+            message: `We encountered an error updating your todo list, please try again!`
+          } as ResponseMessage;
+          return of(fromActions.setUpdateTodoListResponseMessage({ message: message }));
+        })
+      ))
+  ));
+
+  updateTodoListSuccess$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.updateTodoListSuccess),
+    switchMap(({ todoList }) => {
+      const message: ResponseMessage = {
+        status: ResponseStatus.SUCCESS,
+        message: `Successfully updated todo list!`
+      } as ResponseMessage
+      return of(fromActions.setUpdateTodoListResponseMessage({ message: message }))
+    })
+  ));
+
+  deleteTodoList$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.deleteTodoList),
     exhaustMap(({todoListId}) => this._todoListsService.delete(todoListId)
       .pipe(
@@ -61,14 +87,24 @@ export class TodoListsEffects {
     )
   ));
 
-  deleteFlashcardSetSuccess$ = createEffect(() => this._actions.pipe(
+  deleteTodoListSuccess$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.deleteTodoListSuccess),
     switchMap(({todoList}) => {
       const message: ResponseMessage = {
         status: ResponseStatus.SUCCESS,
-        message: `Successfully deleted toto list!`
+        message: `Successfully deleted todo list!`
       } as ResponseMessage
       return of(fromActions.setDeleteTodoListResponseMessage({ message: message }))
     })
+  ));
+
+  getFlashcardSetById$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.getTodoListById),
+    switchMap(({ todoListId }) => this._todoListsService.findOne(todoListId)
+      .pipe(
+        map(todoList => fromActions.setSelectedTodoList({ todoList: todoList })),
+        catchError(error => of(handleHttpError({ error: error })))
+      )
+    )
   ));
 }

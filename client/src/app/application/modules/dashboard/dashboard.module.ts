@@ -10,12 +10,20 @@ import {
   CalendarEventCreateComponent } from '@sn/shared/components';
 import { RecentTopicsListComponent } from './components/recent-topics-list/recent-topics-list.component';
 import { TodaysCalendarEventsListComponent } from './components/todays-calendar-events-list/todays-calendar-events-list.component';
+import { TodaysTodoListsListComponent } from './components/todays-todo-lists-list/todays-todo-lists-list.component';
+import { PastDueTodoListsListComponent } from './components/past-due-todo-lists-list/past-due-todo-lists-list.component';
+import { TodoListTodosFormComponent } from './components/todo-list-todos-form/todo-list-todos-form.component';
+import { TodosFormComponent } from './components/todo-list-todos-form/components/todos-form/todos-form.component';
 
 @NgModule({
   declarations: [
     DashboardOverviewComponent,
     RecentTopicsListComponent,
-    TodaysCalendarEventsListComponent
+    TodaysCalendarEventsListComponent,
+    TodaysTodoListsListComponent,
+    PastDueTodoListsListComponent,
+    TodoListTodosFormComponent,
+    TodosFormComponent
   ],
   imports: [
     CommonModule,

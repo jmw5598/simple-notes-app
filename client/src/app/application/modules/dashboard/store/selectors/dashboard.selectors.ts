@@ -16,3 +16,13 @@ export const selectRecentTopics = createSelector(
   selectDashboardState,
   (state: fromDashboard.IDashboardState) => state.recentTopics
 );
+
+export const selectPastDueTodoLists = createSelector(
+  selectDashboardState,
+  (state: fromDashboard.IDashboardState) => state.pastDueTodoLists
+);
+
+export const selectTodaysTodoLists = createSelector(
+  selectDashboardState,
+  (state: fromDashboard.IDashboardState) => state.todaysTodoLists
+);

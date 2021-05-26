@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AbstractCrudService } from './abstract-crud.service';
-import { Topic, ExportConfig, FileResponse } from '@sn/shared/models';
+import { Topic, ExportConfig, FileResponse, TodoList } from '@sn/shared/models';
 import { Page, IPageable } from '@sn/core/models';
 import { environment } from '@env/environment'
 
@@ -29,6 +29,14 @@ export class TopicsService extends AbstractCrudService<Topic, number> {
       sortDir: page.sort.direction
     };
     return this._http.get<Page<Topic>>(`${this._base}/search`, { params: params });
+  }
+
+  public getTodaysTodoLists(): Observable<TodoList[]> {
+    return this._http.get<TodoList[]>(`${this._base}/today}`);
+  }
+
+  public getPastDueTodoLists(): Observable<TodoList[]> {
+    return this._http.get<TodoList[]>(`${this._base}/past-due}`);
   }
 
   private _extractFile(res: Response | any) {

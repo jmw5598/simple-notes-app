@@ -6,17 +6,19 @@ import { TodoList } from '@sn/shared/models';
 export const todosFeatureKey = 'todos';
 
 export interface ITodosState {
-  createTodoListResponseMessage: ResponseMessage,
+  createTodoListResponseMessage: ResponseMessage;
   updateTodoListResponseMessage: ResponseMessage;
-  deleteTodoListResponseMessage: ResponseMessage,
+  deleteTodoListResponseMessage: ResponseMessage;
   searchTodoListsResult: Page<TodoList>;
+  selectedTodoList: TodoList;
 }
 
 export const initialTodosState: ITodosState = {
   createTodoListResponseMessage: null,
   updateTodoListResponseMessage: null,
   deleteTodoListResponseMessage: null,
-  searchTodoListsResult: null
+  searchTodoListsResult: null,
+  selectedTodoList: null,
 }
 
 const onSetCreateTodoListResponse = (state, { message }: any) => ({
@@ -39,12 +41,18 @@ const onSearchTodoListsResult = (state, { page }: any) => ({
   searchTodoListsResult: page
 } as ITodosState);
 
+const onSetSelectedTodoList = (state, { todoList }: any) => ({
+  ...state,
+  selectedTodoList: todoList
+});
+
 const _todosReducer = createReducer(
   initialTodosState,
   on(fromActions.setCreateTodoListResponseMessage, onSetCreateTodoListResponse),
   on(fromActions.setUpdateTodoListResponseMessage, onSetUpdateTodoListResponse),
   on(fromActions.setDeleteTodoListResponseMessage, onSetDeleteTodoListResponse),
   on(fromActions.searchTodoListsResult, onSearchTodoListsResult),
+  on(fromActions.setSelectedTodoList, onSetSelectedTodoList),
 );
 
 export function todosReducer(state, action) {

@@ -9,9 +9,7 @@
           <strong>{{ (responseMessage$ | async).status | uppercase }}</strong>: {{ (responseMessage$ | async).message }}
         </span>
       </div>
-
       <sn-todo-list-form></sn-todo-list-form>
-
       <div class="form-group text-right">
         <button class="btn btn-primary btn-submit mr-3" type="submit" [disabled]="form.invalid">Create</button>
         <button class="btn btn-secondary btn-close" type="button" (click)="onClose()">Cancel</button>

@@ -57,11 +57,8 @@ export class ViewTodosComponent extends AbstractPageOverlayLoader implements OnI
   }
 
   public onEdit(todoList: TodoList): void {
-    // this._store.dispatch(todosActions.getTodoListSetById({ flashcardSetId: flashcardSet.id }));
-    this._drawerService.show(TodoListUpdateComponent, {
-      size: DrawerSize.LARGE,
-      data: todoList 
-    });
+    this._store.dispatch(todosActions.getTodoListById({ todoListId: todoList.id }));
+    this._drawerService.show(TodoListUpdateComponent);
   }
 
   public onGoToPage(pageable: IPageable): void {

@@ -3,9 +3,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IDashboardState } from '../../store/reducers';
 import { fadeAnimation } from '@sn/shared/animations';
-import { selectRecentTopics, selectTodaysEvents } from '../../store/selectors';
+import { selectPastDueTodoLists, selectRecentTopics, selectTodaysEvents, selectTodaysTodoLists } from '../../store/selectors';
 import { CalendarEvent } from '@sn/core/models';
-import { Topic } from '@sn/shared/models';
+import { TodoList, Topic } from '@sn/shared/models';
 import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
 import { getRecentTopics, getRecentTopicsSuccess, getTodaysCalendarEvents, getTodaysCalendarEventsSuccess } from '../../store/actions';
 
@@ -18,6 +18,8 @@ import { getRecentTopics, getRecentTopicsSuccess, getTodaysCalendarEvents, getTo
 export class DashboardOverviewComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {
   public todaysEvents$: Observable<CalendarEvent[]>;
   public recentTopics$: Observable<Topic[]>;
+  public todaysTodoLists$: Observable<TodoList[]>;
+  public pastDueTodoLists$: Observable<TodoList[]>;
 
   constructor(
     protected _overlayLoaderService: OverlayLoaderService,
@@ -29,6 +31,8 @@ export class DashboardOverviewComponent extends AbstractPageOverlayLoader implem
   ngOnInit(): void {
     this.todaysEvents$ = this._store.select(selectTodaysEvents);
     this.recentTopics$ = this._store.select(selectRecentTopics);
+    this.todaysTodoLists$ = this._store.select(selectTodaysTodoLists);
+    this.pastDueTodoLists$ = this._store.select(selectPastDueTodoLists);
   }
 
   ngOnDestroy(): void {

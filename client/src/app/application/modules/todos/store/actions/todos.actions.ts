@@ -56,3 +56,18 @@ export const searchTodoListsResult = createAction(
   '[Todo Lists] Search Todo Lists Result',
   props<{ page: Page<TodoList> }>()
 );
+
+export const getTodoListById = createAction(
+  '[Todo List] Get Todo List By Id',
+  props<{ todoListId: number }>()
+);
+
+export const getTodoListByIdSuccess = createAction(
+  '[Todo Lists] Get Todo List By Id',
+  props<{ todoList: TodoList }>()
+);
+
+export const setSelectedTodoList = createAction(
+  '[Todo Lists] Set Selected Todo List',
+  props<{ todoList: TodoList }>()
+);

@@ -25,4 +25,22 @@ export class TodoListsService extends AbstractCrudService<TodoList, number> {
     };
     return this._http.get<Page<TodoList>>(`${this._base}/search`, { params: params });
   }
+
+  public findBetweenDates(from: Date, to: Date): Observable<TodoList[]> {
+    const queryParams: {[key: string]: any} = {
+      startDate: from.toISOString(),
+      endDate: to.toISOString()
+    };
+    return this._http.get<TodoList[]>(
+      `${this._base}/between`, 
+      { params: queryParams }
+    );
+  }
+
+  public getPastDueTodoLists(pastDueDate: Date): Observable<TodoList[]> {
+    const params: {[key: string]: any} = {
+      pastDueDate: pastDueDate.toISOString()
+    };
+    return this._http.get<TodoList[]>(`${this._base}/pastdue`, { params: params });
+  }
 }

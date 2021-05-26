@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { CalendarEvent } from '@sn/core/models';
-import { Topic } from '@sn/shared/models';
+import { TodoList, Topic } from '@sn/shared/models';
 
 import * as fromActions from '../actions';
 
@@ -9,11 +9,15 @@ export const dashboardFeatureKey = 'dashboard';
 export interface IDashboardState {
   todaysEvents: CalendarEvent[];
   recentTopics: Topic[];
+  todaysTodoLists: TodoList[];
+  pastDueTodoLists: TodoList[];
 }
 
 export const initialDashboardState: IDashboardState = {
   todaysEvents: null,
-  recentTopics: null
+  recentTopics: null,
+  todaysTodoLists: null,
+  pastDueTodoLists: null
 }
 
 const _dashboardReducer = createReducer(
@@ -28,6 +32,18 @@ const _dashboardReducer = createReducer(
     return {
       ...state,
       todaysEvents: events
+    }
+  }),
+  on(fromActions.getTodaysTodoListsSuccess, (state, { todoLists }) => {
+    return {
+      ...state,
+      todaysTodoLists: todoLists
+    }
+  }),
+  on(fromActions.getPastDueTodoListsSuccess, (state, { todoLists }) => {
+    return {
+      ...state,
+      pastDueTodoLists: todoLists
     }
   })
 );

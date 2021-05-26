@@ -26,3 +26,8 @@ export const selectDeleteTodoListResponseMessage = createSelector(
   selectTodosState,
   (state: fromTodos.ITodosState) => state.deleteTodoListResponseMessage
 );
+
+export const selectSelectedTodoList = createSelector(
+  selectTodosState,
+  (state: fromTodos.ITodosState) => state.selectedTodoList
+);

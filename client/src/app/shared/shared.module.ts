@@ -62,6 +62,7 @@ import { FlashcardSetViewerFlipperComponent } from './components/flashcard-set-v
 import { ToasterComponent } from './components/toaster/toaster.component';
 import { TodoListCreateComponent } from './components/todo-list-create/todo-list-create.component';
 import { TodoListFormComponent } from './forms/todo-list-form/todo-list-form.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { TodoListFormComponent } from './forms/todo-list-form/todo-list-form.com
     FlashcardSetViewerFlipperComponent,
     ToasterComponent,
     TodoListCreateComponent,
-    TodoListFormComponent
+    TodoListFormComponent,
+    CheckboxComponent
   ],
   imports: [
     CommonModule,
@@ -163,7 +165,9 @@ import { TodoListFormComponent } from './forms/todo-list-form/todo-list-form.com
     FlashcardSetViewerComponent,
     FlashcardSetBuilderFormComponent,
     ToasterComponent,
-    TodoListCreateComponent
+    TodoListCreateComponent,
+    TodoListFormComponent,
+    CheckboxComponent
   ],
   providers: [
     DrawerService,

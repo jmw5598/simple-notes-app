@@ -53,7 +53,7 @@ export class TodoListFormComponent implements OnInit, AfterViewInit {
 
   private _createTodo(description: string): FormGroup {
     return new FormGroup({
-      id: new FormControl(idGenerator.next().value),
+      id: new FormControl(-idGenerator.next().value),
       description: new FormControl(description)
     })
   }

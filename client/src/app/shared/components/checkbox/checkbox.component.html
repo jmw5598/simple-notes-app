@@ -1,0 +1,8 @@
+<div class="checkbox-container" [ngClass]="classes">
+  <div class="checkbox" 
+      [ngClass]="{ 'checked' : isChecked }" 
+      (click)="toggleChecked()">
+    <div class="checkmark">&#10006;</div>
+  </div>
+  <label (click)="toggleChecked()" class="checkbox-label">{{ label || '' }}</label>
+</div>
