@@ -2,7 +2,9 @@
   <div class="checkbox" 
       [ngClass]="{ 'checked' : isChecked }" 
       (click)="toggleChecked()">
-    <div class="checkmark">&#10006;</div>
+    <div class="checkmark">
+      <i class="fas fa-times"></i>
+    </div>
   </div>
   <label (click)="toggleChecked()" class="checkbox-label">{{ label || '' }}</label>
 </div>
