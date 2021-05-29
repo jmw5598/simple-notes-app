@@ -49,25 +49,9 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._listenForCurrentCalendarEventsChanges();
     this._listenForCurrentCalendarTodoListsChanges();
-
-    this._store.select(calendarSelectors.selectSelectedCalendarEvent)
-      .pipe(takeUntil(this._subscriptionSubject))
-      .subscribe((event: CalendarEvent) => {
-        this._drawerService.setData(event);
-      })
-    this._store.select(calendarSelectors.selectCreateCalendarEventResponseMessage)
-      .pipe(
-        withLatestFrom(this._store.select(calendarSelectors.selectCurrentCalendarDateRanges)),
-        takeUntil(this._subscriptionSubject)   
-      )
-      .subscribe(([message, ranges]) => {
-        if (message && ranges) {
-          this._store.dispatch(calendarActions.getCalendarEventsBetweenDates({ 
-            startDate: ranges.startDate,
-            endDate: ranges.endDate
-          }));
-        }
-      });
+    this._listenForSelectedCalendarEventChanges();
+    this._listenForSelectedCalendarTodoListChanges();
+    
   }
 
   public handleCalendarEvevntDidMount(args): void {
@@ -117,7 +101,6 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   }
 
   public handleCalendarDateClick(args): void {
-    // on date click show popup with options to add calendar event or todo list, click each will open approiate drawer
     this._drawerService.show(
       CalendarEventCreateMenuComponent,
       { data: { date: new Date(args.date) } }
@@ -145,6 +128,21 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   }
 
   public handleCalendarEventEdit(args): void {
+    const sourceType: CalendarEventType = args?.event?.source?.id || CalendarEventType.EVENT;
+    switch (sourceType) {
+      case CalendarEventType.EVENT:
+        this._handleCalendarEventEdit(args);
+        break;
+      case CalendarEventType.TODO_LIST:
+        console.log("todo list dropped");
+        this._handleCalendarTodoListEdit(args);
+        break;
+    }
+    return;
+    
+  }
+
+  private _handleCalendarEventEdit(args: any): void {
     const oldEvent: CalendarEvent = args.event.extendedProps;
     const newStartDateTime: Date = this._generateDateTimeValue(
       new Date(args.event.start), new Date(oldEvent.startDateTime));
@@ -167,6 +165,31 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
     // TODO: Need to look into a better way to do this.
     setTimeout(() => {
       this._store.dispatch(calendarActions.setUpdateCalendarEventResponseMessage({ message: null }));
+    }, 200);
+  }
+
+  private _handleCalendarTodoListEdit(args: any): void {
+    const oldTodoList: TodoList = args.event.extendedProps;
+    const newStartedBy: Date = new Date(args.event.start);
+    const newCompletedBy: Date = new Date(args.event.end);
+
+    const newTodoList: TodoList = {
+      ...oldTodoList,
+      startedBy: newStartedBy,
+      completedBy: newCompletedBy
+    } as TodoList;
+
+    this._store.dispatch(calendarActions.updateCalendarTodoList({ 
+      id: newTodoList.id,
+      todoList: newTodoList
+    }));
+
+    // This is needed to reset the response message from the update so the alert doesn't show int the drawer
+    // TODO: Need to look into a better way to do this.
+    setTimeout(() => {
+      this._store.dispatch(
+        calendarActions.setUpdateCalendarTodoListResponseMessage({ message: null })
+      );
     }, 200);
   }
 
@@ -207,6 +230,30 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
             id: CalendarEventType.EVENT
           })
           this._overlayLoaderService.setLoadingState(false);
+        }
+      });
+  }
+
+  private _listenForSelectedCalendarEventChanges(): void {
+    this._store.select(calendarSelectors.selectSelectedCalendarEvent)
+      .pipe(takeUntil(this._subscriptionSubject))
+      .subscribe((event: CalendarEvent) => {
+        this._drawerService.setData(event);
+      })
+  }
+
+  private _listenForSelectedCalendarTodoListChanges(): void {
+    this._store.select(calendarSelectors.selectCreateCalendarEventResponseMessage)
+      .pipe(
+        withLatestFrom(this._store.select(calendarSelectors.selectCurrentCalendarDateRanges)),
+        takeUntil(this._subscriptionSubject)   
+      )
+      .subscribe(([message, ranges]) => {
+        if (message && ranges) {
+          this._store.dispatch(calendarActions.getCalendarEventsBetweenDates({ 
+            startDate: ranges.startDate,
+            endDate: ranges.endDate
+          }));
         }
       });
   }
