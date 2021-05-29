@@ -154,6 +154,12 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
       case KeyboardShortcutActionType.CREATE_DOCUMENT:
         return (e) => this.onCreateNewDocument();
+      
+      case KeyboardShortcutActionType.CREATE_FLASHCARD_SET:
+        return (e) => this.onCreateFlashcardSet();
+
+      case KeyboardShortcutActionType.CREATE_TODO_LIST:
+        return (e) => this.onCreateTodoList();
     }
   }
 

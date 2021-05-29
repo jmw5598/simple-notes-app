@@ -1,13 +1,13 @@
 <div *ngIf="!todoLists || todoLists.length === 0" class="documents-no-data p-3 border-bottom-1">
   <sn-empty-data 
-      message="No flashcard sets found!"
+      message="No todo lists found!"
       [extraContent]="createNewButton">
   </sn-empty-data>
   <ng-template #createNewButton>
     <button 
         (click)="create()" 
         class="btn btn-success text-light">
-      Create a flashcard set
+      Create a todo list
     </button>
   </ng-template>
 </div>
