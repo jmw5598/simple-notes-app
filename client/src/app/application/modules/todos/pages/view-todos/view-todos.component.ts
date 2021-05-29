@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { DEFAULT_SEARCH_TODOS_PAGE } from '@sn/core/defaults';
 import { IPageable, Page, PageableSearch } from '@sn/core/models';
-import { AbstractPageOverlayLoader, DrawerLocation, DrawerService, DrawerSize, OverlayLoaderService } from '@sn/shared/components';
+import { AbstractPageOverlayLoader, DrawerLocation, DrawerService, OverlayLoaderService } from '@sn/shared/components';
 import { TodoList } from '@sn/shared/models';
 import { Observable, Subject } from 'rxjs';
 import { ITodosState } from '../../store/reducers';
@@ -10,9 +10,10 @@ import { ITodosState } from '../../store/reducers';
 import * as todosSelectors from '../../store/selectors';
 import * as todosActions from '../../store/actions';
 import { takeUntil, tap } from 'rxjs/operators';
-import { TodoListUpdateComponent } from '../../components/todo-list-update/todo-list-update.component';
 import { fadeAnimation } from '@sn/shared/animations';
 import { TodoListCreateComponent } from '@sn/shared/components/todo-list-create/todo-list-create.component';
+import { TodoListViewComponent } from '../../components/todo-list-view/todo-list-view.component';
+import { TodoListEditComponent } from '../../components/todo-list-edit/todo-list-edit.component';
 
 @Component({
   selector: 'sn-view-todos',
@@ -41,6 +42,7 @@ export class ViewTodosComponent extends AbstractPageOverlayLoader implements OnI
     this.searchTodoListsResult$ = this._store.select(todosSelectors.selectSearchTodoListsResult)
       .pipe(tap(() => this.isSearching = false));
     this.listenForDeleteTodoListResponseMessage();
+    this.listenForSelectedTodoListChanges();
   }
 
   public onCreate(): void {
@@ -52,13 +54,13 @@ export class ViewTodosComponent extends AbstractPageOverlayLoader implements OnI
   }
 
   public onView(todoList: TodoList): void {
-    // this._store.dispatch(todosActions.getTodoListSetById({ flashcardSetId: flashcardSet.id }));
-    console.log("viewing todo list");
+    this._store.dispatch(todosActions.getTodoListById({ todoListId: todoList.id }));
+    this._drawerService.show(TodoListViewComponent)
   }
 
   public onEdit(todoList: TodoList): void {
     this._store.dispatch(todosActions.getTodoListById({ todoListId: todoList.id }));
-    this._drawerService.show(TodoListUpdateComponent);
+    this._drawerService.show(TodoListEditComponent);
   }
 
   public onGoToPage(pageable: IPageable): void {
@@ -77,6 +79,12 @@ export class ViewTodosComponent extends AbstractPageOverlayLoader implements OnI
       pageable: this.DEFAULT_PAGE
     };
     this._store.dispatch(todosActions.searchTodoLists({ search: search }));
+  }
+
+  public listenForSelectedTodoListChanges(): void {
+    this._store.select(todosSelectors.selectSelectedTodoList)
+      .pipe(takeUntil(this._subscriptionSubject))
+      .subscribe((todoList: TodoList) => this._drawerService.setData(todoList))
   }
 
   public listenForDeleteTodoListResponseMessage(): void {

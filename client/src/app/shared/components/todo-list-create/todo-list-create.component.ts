@@ -53,12 +53,11 @@ export class TodoListCreateComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.data$.pipe(take(1))
         .subscribe(data => {
-          // TODO - Do I need this??
-          // if (data && data.date) {
-          //   const selectedDate: Date = new Date(data.date);
-          //   this.form.get('startDate').patchValue(selectedDate);
-          //   this.form.get('endDate').patchValue(selectedDate);
-          // }
+          if (data && data.date) {
+            const selectedDate: Date = new Date(data.date);
+            this.form.get('startedBy').patchValue(selectedDate);
+            this.form.get('completedBy').patchValue(selectedDate);
+          }
         })
     })
   }
@@ -76,12 +75,5 @@ export class TodoListCreateComponent implements OnInit, AfterViewInit {
 
   public onClose(): void {
     this._drawerService.close();
-  }
-
-  private _generateDateTimeValue(date: Date, time: Date): Date {
-    date.setHours(time.getHours());
-    date.setMinutes(time.getMinutes());
-    date.setSeconds(time.getSeconds());
-    return date;
   }
 }

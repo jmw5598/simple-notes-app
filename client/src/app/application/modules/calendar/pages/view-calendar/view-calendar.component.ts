@@ -3,22 +3,23 @@ import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil, withLatestFrom } from 'rxjs/operators';
 import { ICalendarEventsState } from '../../store/reducers';
-import { CalendarOptions, EventInput, FullCalendarComponent } from '@fullcalendar/angular';
+import { CalendarOptions, EventInput, EventSourceInput, FullCalendarComponent } from '@fullcalendar/angular';
 import { DrawerService, CalendarEventCreateComponent, OverlayLoaderService } from '@sn/shared/components';
 import { CalendarEventViewComponent } from '../../components/calendar-event-view/calendar-event-view.component';
 import { fadeAnimation } from '@sn/shared/animations';
 import { CALENDAR_OPTIONS_DEFAULT } from '../../calendar-options.defaults';
 import { CalendarEvent } from '@sn/core/models';
-import { 
-  getCalendarEventsBetweenDates, 
-  setCurrentCalendarEvents,
-  setCurrentCalendarDateRanges, 
-  updateCalendarEvent, setUpdateCalendarEventResponseMessage } from '../../store/actions';
-import {  
-  selectCurrentCalendarEvents, 
-  selectSelectedCalendarEvent, 
-  selectCurrentCalendarDateRanges, 
-  selectCreateCalendarEventResponseMessage } from '../../store/selectors';
+
+import * as calendarSelectors from '../../store/selectors';
+import * as calendarActions from '../../store/actions';
+import { TodoList } from '@sn/shared/models';
+import { CalendarTodoListViewComponent } from '../../components/calendar-todo-list-view/calendar-todo-list-view.component';
+import { CalendarEventCreateMenuComponent } from '../../components/calendar-event-create-menu/calendar-event-create-menu.component';
+
+enum CalendarEventType {
+  EVENT = 'calendarEvent',
+  TODO_LIST = 'calendarTodoList'
+}
 
 @Component({
   selector: 'sn-view-calendar',
@@ -44,30 +45,24 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
     this._configureCalendarOptions();
   }
 
+  // TODO Clean this up.
   ngOnInit(): void {
-    this._store.select(selectCurrentCalendarEvents)
-      .pipe(takeUntil(this._subscriptionSubject))
-      .subscribe((events: CalendarEvent[]) => {
-        if (events) {
-          const renderableEvents = this._mapCalendarEvents(events)
-          this.calendar.getApi()?.removeAllEvents();
-          renderableEvents.forEach(e => this.calendar.getApi().addEvent(e))
-          this._overlayLoaderService.setLoadingState(false);
-        }
-      });
-    this._store.select(selectSelectedCalendarEvent)
+    this._listenForCurrentCalendarEventsChanges();
+    this._listenForCurrentCalendarTodoListsChanges();
+
+    this._store.select(calendarSelectors.selectSelectedCalendarEvent)
       .pipe(takeUntil(this._subscriptionSubject))
       .subscribe((event: CalendarEvent) => {
         this._drawerService.setData(event);
       })
-    this._store.select(selectCreateCalendarEventResponseMessage)
+    this._store.select(calendarSelectors.selectCreateCalendarEventResponseMessage)
       .pipe(
-        withLatestFrom(this._store.select(selectCurrentCalendarDateRanges)),
+        withLatestFrom(this._store.select(calendarSelectors.selectCurrentCalendarDateRanges)),
         takeUntil(this._subscriptionSubject)   
       )
       .subscribe(([message, ranges]) => {
         if (message && ranges) {
-          this._store.dispatch(getCalendarEventsBetweenDates({ 
+          this._store.dispatch(calendarActions.getCalendarEventsBetweenDates({ 
             startDate: ranges.startDate,
             endDate: ranges.endDate
           }));
@@ -75,13 +70,46 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
       });
   }
 
+  public handleCalendarEvevntDidMount(args): void {
+    const eventIcon = document.createElement('i');
+    const sourceType: CalendarEventType = args?.event?.source?.id || CalendarEventType.EVENT;
+    switch (sourceType) {
+      case CalendarEventType.EVENT:
+        eventIcon.classList.add('far');
+        eventIcon.classList.add('fa-calendar-alt');
+        eventIcon.classList.add('icon-margin');
+        break;
+      case CalendarEventType.TODO_LIST:
+        eventIcon.classList.add('fas');
+        eventIcon.classList.add('fa-clipboard-check');
+        eventIcon.classList.add('icon-margin');
+        break;
+    }
+    args.el
+      .querySelector('.fc-event-title')
+      .prepend(eventIcon);
+  } 
+
   public handleCalendarEventsFetch(info, success, error): void {
     this._overlayLoaderService.setLoadingState(true);
     const startDate: Date = new Date(info.startStr);
     const endDate: Date = new Date(info.endStr);
-    this._store.dispatch(setCurrentCalendarEvents({ events: null }));
-    this._store.dispatch(setCurrentCalendarDateRanges({ startDate, endDate }));
-    this._store.dispatch(getCalendarEventsBetweenDates({
+    this._store.dispatch(calendarActions.setCurrentCalendarEvents({ events: null }));
+    this._store.dispatch(calendarActions.setCurrentCalendarDateRanges({ startDate, endDate }));
+    this._store.dispatch(calendarActions.getCalendarEventsBetweenDates({
+      startDate: startDate,
+      endDate: endDate
+    }));
+    success([]);
+  }
+
+  public handleCalendarTodoListsFetch(info, success, error): void {
+    this._overlayLoaderService.setLoadingState(true);
+    const startDate: Date = new Date(info.startStr);
+    const endDate: Date = new Date(info.endStr);
+    this._store.dispatch(calendarActions.setCurrentCalendarTodoLists({ todoLists: null }));
+    this._store.dispatch(calendarActions.setCurrentCalendarDateRanges({ startDate, endDate }));
+    this._store.dispatch(calendarActions.getCalendarTodoListsBetweenDates({
       startDate: startDate,
       endDate: endDate
     }));
@@ -89,17 +117,23 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   }
 
   public handleCalendarDateClick(args): void {
+    // on date click show popup with options to add calendar event or todo list, click each will open approiate drawer
     this._drawerService.show(
-      CalendarEventCreateComponent,
+      CalendarEventCreateMenuComponent,
       { data: { date: new Date(args.date) } }
     )
   }
 
   public handleCalendarEventClick(args): void {
-    this._drawerService.show(
-      CalendarEventViewComponent,
-      { data: args.event.extendedProps }
-    )
+    const sourceType: CalendarEventType = args?.event?.source?.id || CalendarEventType.EVENT;
+    switch (sourceType) {
+      case CalendarEventType.EVENT:
+        this._handleCalendarEventClick(args);
+        break;
+      case CalendarEventType.TODO_LIST:
+        this._handleCalendarTodoListCLick(args);
+        break;
+    }
   }
 
   public handleCalendarEventSourceLoading(args): void {
@@ -124,7 +158,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
       endDateTime: newEndDateTime
     } as CalendarEvent;
 
-    this._store.dispatch(updateCalendarEvent({ 
+    this._store.dispatch(calendarActions.updateCalendarEvent({ 
       id: newEvent.id, 
       event: newEvent
     }));
@@ -132,7 +166,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
     // This is needed to reset the response message from the update so the alert doesn't show int the drawer
     // TODO: Need to look into a better way to do this.
     setTimeout(() => {
-      this._store.dispatch(setUpdateCalendarEventResponseMessage({ message: null }));
+      this._store.dispatch(calendarActions.setUpdateCalendarEventResponseMessage({ message: null }));
     }, 200);
   }
 
@@ -152,11 +186,60 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
     this.calendarOptions.eventClick = this.handleCalendarEventClick.bind(this);
     this.calendarOptions.loading = this.handleCalendarEventSourceLoading.bind(this);
     this.calendarOptions.eventDrop = this.handleCalendarEventEdit.bind(this);
-    this.calendarOptions.eventResize = this.handleCalendarEventEdit.bind(this)
+    this.calendarOptions.eventResize = this.handleCalendarEventEdit.bind(this);
+    this.calendarOptions.eventDidMount = this.handleCalendarEvevntDidMount.bind(this);
     this.calendarOptions.eventSources = [
-      { id: 'calendarEventSource', events: this.handleCalendarEventsFetch.bind(this) }
+      { id: CalendarEventType.EVENT, events: this.handleCalendarEventsFetch.bind(this) },
+      { id: CalendarEventType.TODO_LIST, events: this.handleCalendarTodoListsFetch.bind(this) }
     ];
     this.calendarOptions.eventDataTransform = this.handleEventDataTransform.bind(this);
+  }
+
+  private _listenForCurrentCalendarEventsChanges(): void {
+    this._store.select(calendarSelectors.selectCurrentCalendarEvents)
+      .pipe(takeUntil(this._subscriptionSubject))
+      .subscribe((events: CalendarEvent[]) => {
+        if (events) {
+          const renderableEvents = this._mapCalendarEvents(events)
+          this.calendar?.getApi()?.getEventSourceById(CalendarEventType.EVENT)?.remove();
+          this.calendar?.getApi().addEventSource({
+            events: renderableEvents,
+            id: CalendarEventType.EVENT
+          })
+          this._overlayLoaderService.setLoadingState(false);
+        }
+      });
+  }
+
+  private _listenForCurrentCalendarTodoListsChanges(): void {
+    this._store.select(calendarSelectors.selectCurrentCalendarTodoLists)
+      .pipe(takeUntil(this._subscriptionSubject))
+      .subscribe((todoLists: TodoList[]) => {
+        if (todoLists) {
+          // TODO check if event source exists first then clean and update events???
+          const renderableEvents = this._mapCalendarTodoLists(todoLists)
+          this.calendar?.getApi()?.getEventSourceById(CalendarEventType.TODO_LIST)?.remove();
+          this.calendar?.getApi()?.addEventSource({
+            events: renderableEvents,
+            id: CalendarEventType.TODO_LIST
+          } as EventSourceInput)
+          this._overlayLoaderService.setLoadingState(false);
+        }
+      });
+  }
+
+  private _handleCalendarEventClick(args): void {
+    this._drawerService.show(
+      CalendarEventViewComponent,
+      { data: args.event.extendedProps }
+    );
+  }
+
+  private _handleCalendarTodoListCLick(args): void {
+    this._drawerService.show(
+      CalendarTodoListViewComponent,
+      { data: args.event.extendedProps }
+    );
   }
 
   private _mapCalendarEvents(events: CalendarEvent[]): EventInput[] {
@@ -169,6 +252,20 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
         allDay: event.isAllDay,
         extendedProps: event,
         color: event.color,
+        sourceId: CalendarEventType.EVENT
+      } as EventInput
+    }) as EventInput[];
+  } 
+
+  private _mapCalendarTodoLists(todoLists: TodoList[]): EventInput[] {
+    return todoLists?.map((todoList: TodoList) => {
+      return {
+        id: todoList.id.toString(),
+        title: todoList.title,
+        start: todoList.startedBy,
+        end: todoList.completedBy,
+        allDay: true,
+        extendedProps: todoList
       } as EventInput
     }) as EventInput[];
   } 
@@ -181,7 +278,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._store.dispatch(setCurrentCalendarEvents({ events: null }));
+    this._store.dispatch(calendarActions.setCurrentCalendarEvents({ events: null }));
     this._subscriptionSubject.next();
     this._subscriptionSubject.complete();
   }

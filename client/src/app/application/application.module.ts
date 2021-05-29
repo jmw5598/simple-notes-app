@@ -14,7 +14,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 import { applicationReducer, applicationFeatureKey } from './store';
 import { AccountsEffects } from './modules/accounts/store/effects';
-import { CalendarEventsEffects } from './modules/calendar/store/effects';
+import { CalendarEventsEffects, CalendarTodoListsEffects } from './modules/calendar/store/effects';
 import { CalendarIntegrationsEffects } from './modules/accounts/modules/account-settings-integrations/store/effects';
 import { DashboardEffects } from './modules/dashboard/store/effects/dashboard.effects';
 import { DocumentsEffects } from './modules/documents/store/effects/documents.effects';
@@ -41,6 +41,7 @@ import { TodoListsEffects } from './modules/todos/store/effects/todos.effects';
       AccountsEffects,
       CalendarEventsEffects,
       CalendarIntegrationsEffects,
+      CalendarTodoListsEffects,
       DashboardEffects,
       DocumentsEffects,
       SectionsEffects,

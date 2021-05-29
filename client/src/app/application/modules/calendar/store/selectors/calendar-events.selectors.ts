@@ -2,7 +2,7 @@ import { createSelector } from '@ngrx/store';
 import * as fromCalendarEvents from '../reducers/calendar-events.reducers';
 import * as fromApplication from '../../../../store/index';
 
-export const selectCalendarEventState = createSelector(
+const selectCalendarEventState = createSelector(
   fromApplication.selectApplicationState,
   (state: fromApplication.IApplicationState) => state.calendarEvents
 );

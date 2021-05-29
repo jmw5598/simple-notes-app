@@ -28,15 +28,11 @@ export class TodaysTodoListsGuard implements CanActivate {
   }
 
   private _getTodaysTodoListsFromStoreOrApi(): Observable<TodoList[]> {
-    console.log('getting todays todo lists from store');
     return this._store.select(selectTodaysTodoLists).pipe(
       tap((todoLists: TodoList[]) => {
         if (!todoLists) {
-          console.log("todolists is null");
           this._overlayLoaderService.setLoadingState(true);
           this._store.dispatch(getTodaysTodoLists());
-        } else {
-          console.log("todolist is not null")
         }
       }),
       filter((todoLists: TodoList[]) => !!todoLists),

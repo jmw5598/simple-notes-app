@@ -5,11 +5,12 @@ import { Store } from '@ngrx/store';
 import { ICalendarEventsState } from '../../store/reducers';
 import { DrawerService } from '@sn/shared/components';
 import { tap } from 'rxjs/operators';
-import { deleteCalendarEvent, setUpdateCalendarEventResponseMessage, updateCalendarEvent } from '../../store/actions';
 import { CalendarEvent, ResponseMessage } from '@sn/core/models';
 import { buildCalendarEventFormGroup } from '@sn/shared/forms';
 import { selectUpdateCalendarEventResponseMessage } from '../../store/selectors';
 import { HEX_COLOR_STRING_ARRAY } from '@sn/shared/defaults/colors.defaults';
+
+import * as calendarActions from '../../store/actions';
 
 @Component({
   selector: 'sn-calendar-event-view',
@@ -43,7 +44,7 @@ export class CalendarEventViewComponent implements OnInit {
           console.log('get update event response message', message);
           if (message) {
             setTimeout(() => this._store.dispatch(
-              setUpdateCalendarEventResponseMessage({ message: null })), 3000);
+              calendarActions.setUpdateCalendarEventResponseMessage({ message: null })), 3000);
           }
         })
       );
@@ -58,7 +59,7 @@ export class CalendarEventViewComponent implements OnInit {
   }
 
   public onDelete(): void {
-    this._store.dispatch(deleteCalendarEvent({ id: this.data.id || -1 }))
+    this._store.dispatch(calendarActions.deleteCalendarEvent({ id: this.data.id || -1 }))
     this._drawerService.close();  // TODO Select delete response message and close if successful!
   }
 
@@ -80,7 +81,7 @@ export class CalendarEventViewComponent implements OnInit {
 
     } as CalendarEvent;
 
-    this._store.dispatch(updateCalendarEvent({ id: event.id, event: event }));
+    this._store.dispatch(calendarActions.updateCalendarEvent({ id: event.id, event: event }));
   }
 
   public onCancel(): void {

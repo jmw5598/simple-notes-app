@@ -24,8 +24,7 @@ export class TodoListTodosFormComponent implements OnInit {
   }
 
   public onUpdateTodos(todos: Todo[]): void {
-    this.onUpdate.emit({
-      ...this.todoList, todos: todos
-    });
+    this.todoList = { ...this.todoList, todos: todos } ;
+    this.onUpdate.emit({ ...this.todoList });
   }
 }

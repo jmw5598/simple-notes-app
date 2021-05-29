@@ -6,8 +6,8 @@
   </div>
   <div class="side-panel shadow"
     [ngClass]="(drawerLocation || options?.location) + ' ' + (drawerSize || options?.size)">
-    <div class="close text-dark p-4" (click)="close()">
-      <i class="fas fa-times"></i>
+    <div class="p-4">
+      <i class="fas fa-times close text-dark" (click)="close()"></i>
     </div>
     <div class="content py-0 px-4">
       <ng-container #content></ng-container>

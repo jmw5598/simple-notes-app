@@ -1,1 +1,17 @@
-<p>todo-list-view works!</p>
+<div>
+  <sn-todo-list-details></sn-todo-list-details>
+  <div class="form-group text-right mx-2">
+    <button 
+        class="btn btn-primary mr-2" 
+        type="button" 
+        (click)="onSave()">
+      Save
+    </button>
+    <button 
+          (click)="onCancel()"
+          class="btn btn-secondary" 
+          type="button">
+        Close
+      </button>
+  </div>
+</div>

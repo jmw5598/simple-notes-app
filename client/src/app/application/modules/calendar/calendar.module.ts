@@ -17,6 +17,8 @@ import { CalendarEventDetailsComponent } from './components/calendar-event-detai
 import { CalendarEventUpdateComponent } from './components/calendar-event-update/calendar-event-update.component';
 import { CalendarEventViewComponent } from './components/calendar-event-view/calendar-event-view.component';
 import { CalendarEventCreateComponent } from '@sn/shared/components';
+import { CalendarTodoListViewComponent } from './components/calendar-todo-list-view/calendar-todo-list-view.component';
+import { CalendarEventCreateMenuComponent } from './components/calendar-event-create-menu/calendar-event-create-menu.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -29,7 +31,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ViewCalendarComponent,
     CalendarEventDetailsComponent,
     CalendarEventUpdateComponent,
-    CalendarEventViewComponent
+    CalendarEventViewComponent,
+    CalendarTodoListViewComponent,
+    CalendarEventCreateMenuComponent
   ],
   imports: [
     CommonModule,

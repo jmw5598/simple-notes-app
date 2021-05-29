@@ -1,158 +1,158 @@
-@import '../../../../assets/scss/bootswatch/simple-notes/variables';
+// @import '../../../../assets/scss/bootswatch/simple-notes/variables';
 
-$default: $gray-500;
+// $default: $gray-500;
 
-@mixin create-checkbox-color($color) {
-  .checkbox {
-    &.checked {
-      background: $color;
-      &:hover {
-        background: darken($color, 10%);
-      }
-      &:active {
-        background: darken($color, 15%);
-      }
-    }
-  }
-}
+// @mixin create-checkbox-color($color) {
+//   .checkbox {
+//     &.checked {
+//       background: $color;
+//       &:hover {
+//         background: darken($color, 10%);
+//       }
+//       &:active {
+//         background: darken($color, 15%);
+//       }
+//     }
+//   }
+// }
 
-@mixin generate-checkbox-colors {
-  &.primary {
-    @include create-checkbox-color($primary);
-  }
+// @mixin generate-checkbox-colors {
+//   &.primary {
+//     @include create-checkbox-color($primary);
+//   }
 
-  &.secondary {
-    @include create-checkbox-color($secondary);
-  }
+//   &.secondary {
+//     @include create-checkbox-color($secondary);
+//   }
 
-  &.success {
-    @include create-checkbox-color($success);
-  }
+//   &.success {
+//     @include create-checkbox-color($success);
+//   }
 
-  &.info {
-    @include create-checkbox-color($info);
-  }
+//   &.info {
+//     @include create-checkbox-color($info);
+//   }
 
-  &.warning {
-    @include create-checkbox-color($warning);
-  }
+//   &.warning {
+//     @include create-checkbox-color($warning);
+//   }
 
-  &.danger {
-    @include create-checkbox-color($danger);
-  }
-}
+//   &.danger {
+//     @include create-checkbox-color($danger);
+//   }
+// }
 
-@mixin generate-checkbox-label-positions {
-  &.left {
-    flex-direction: row-reverse;
-    .checkbox-label {
-      margin-right: 0.25rem;
-    }
-  }
+// @mixin generate-checkbox-label-positions {
+//   &.left {
+//     flex-direction: row-reverse;
+//     .checkbox-label {
+//       margin-right: 0.25rem;
+//     }
+//   }
   
-  &.right {
-    flex-direction: row;
-    justify-content: flex-end;
-    .checkbox-label {
-      margin-left: 0.25rem;
-    }
-  }
-}
+//   &.right {
+//     flex-direction: row;
+//     justify-content: flex-end;
+//     .checkbox-label {
+//       margin-left: 0.25rem;
+//     }
+//   }
+// }
 
-@mixin create-checkbox-shape($radius) {
-  .checkbox{
-    border-radius: $radius;
-    .checkmark {
-      border-radius: $radius;
-    }
-  }
-}
+// @mixin create-checkbox-shape($radius) {
+//   .checkbox{
+//     border-radius: $radius;
+//     .checkmark {
+//       border-radius: $radius;
+//     }
+//   }
+// }
 
-@mixin generate-checkbox-shapes {
-  &.square {
-    @include create-checkbox-shape(0);
-  }
+// @mixin generate-checkbox-shapes {
+//   &.square {
+//     @include create-checkbox-shape(0);
+//   }
 
-  &.rounded {
-    @include create-checkbox-shape(4px);
-  }
+//   &.rounded {
+//     @include create-checkbox-shape(4px);
+//   }
 
-  &.circle {
-    @include create-checkbox-shape(3rem);
-  }
-}
+//   &.circle {
+//     @include create-checkbox-shape(3rem);
+//   }
+// }
 
-@mixin create-checkbox-size($checkbox-size, $font-size) {
-  .checkbox {
-    width: $checkbox-size;
-    height:  $checkbox-size;
-    font-size:  $font-size;
-    .checkmark {
-      line-height: $checkbox-size;
-    }
-  }
-  .checkbox-label {
-    font-size: $font-size;
-    line-height: $checkbox-size;
-  }
-}
+// @mixin create-checkbox-size($checkbox-size, $font-size) {
+//   .checkbox {
+//     width: $checkbox-size;
+//     height:  $checkbox-size;
+//     font-size:  $font-size;
+//     .checkmark {
+//       line-height: $checkbox-size;
+//     }
+//   }
+//   .checkbox-label {
+//     font-size: $font-size;
+//     line-height: $checkbox-size;
+//   }
+// }
 
-@mixin generate-checkbox-sizes {
-  &.small {
-    @include create-checkbox-size(22px, 1rem);
-  }
+// @mixin generate-checkbox-sizes {
+//   &.small {
+//     @include create-checkbox-size(22px, 1rem);
+//   }
 
-  &.medium {
-    @include create-checkbox-size(32px, 1.2rem);
-  }
+//   &.medium {
+//     @include create-checkbox-size(32px, 1.2rem);
+//   }
 
-  &.large {
-    @include create-checkbox-size(42px, 1.5rem);
-  }
-  &.xsmall {
-    @include create-checkbox-size(16px, 0.8rem);
-  }
-}
+//   &.large {
+//     @include create-checkbox-size(42px, 1.5rem);
+//   }
+//   &.xsmall {
+//     @include create-checkbox-size(16px, 0.8rem);
+//   }
+// }
 
-.checkbox-container {
-  display: inline-flex;
+// .checkbox-container {
+//   display: inline-flex;
 
-  .checkbox-label,
-  .checkbox {
-    cursor: pointer;
-  }
+//   .checkbox-label,
+//   .checkbox {
+//     cursor: pointer;
+//   }
 
-  .checkbox {
-    box-sizing: border-box;
-    background: lighten($default, 20%);
-    color: $white;
-    transition: background 0.2s, visibility 0.2s;
+//   .checkbox {
+//     box-sizing: border-box;
+//     background: lighten($default, 20%);
+//     color: $white;
+//     transition: background 0.2s, visibility 0.2s;
 
-    .checkmark {
-      visibility: hidden;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      vertical-align: middle;
-    }
+//     .checkmark {
+//       visibility: hidden;
+//       width: 100%;
+//       height: 100%;
+//       text-align: center;
+//       vertical-align: middle;
+//     }
 
-    &:hover {
-      background: lighten($default, 15%);
-    }
+//     &:hover {
+//       background: lighten($default, 15%);
+//     }
 
-    &:active {
-      background: lighten($default,  10%);
-    }
+//     &:active {
+//       background: lighten($default,  10%);
+//     }
 
-    &.checked {
-      .checkmark {
-        visibility: visible;
-      }
-    }
-  }
+//     &.checked {
+//       .checkmark {
+//         visibility: visible;
+//       }
+//     }
+//   }
 
-  @include generate-checkbox-label-positions;
-  @include generate-checkbox-colors;
-  @include generate-checkbox-sizes;
-  @include generate-checkbox-shapes;
-}
+//   @include generate-checkbox-label-positions;
+//   @include generate-checkbox-colors;
+//   @include generate-checkbox-sizes;
+//   @include generate-checkbox-shapes;
+// }

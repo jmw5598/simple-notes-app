@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-12 px-4">
+    <div *ngIf="todoList">
+      <h3 class="font-weight-bold text-primary text-right mb-3">Todo List Details</h3>
+      <hr />
+      <h4 class="font-weight-bold text-dark mb-2">
+        <!-- <span class="dot-color-swatch mr-1" [style.background-color]="todoList?.color"></span> -->
+        {{ todoList?.title }}
+        <!-- <span *ngIf="todoList?.isAllDay" class="badge badge-pill badge-success float-right">All Day</span> -->
+      </h4>
+
+      <ul class="list-unstyled mb-4 list-style-none">
+        <li class="text-dark mb-3">
+          <div>
+            <i style="width: 1rem;" class="far fa-calendar-alt icon-margin"></i>
+            <span class="font-italic"> {{ todoList?.startedBy | date: 'MM/dd/yyyy hh:mm a' }} - {{ todoList?.completedBy | date: 'MM/dd/yyyy hh:mm a' }}</span>
+          </div>
+        </li>        
+      </ul>
+
+      <div>
+        <div *ngFor="let todo of todoList?.todos">
+          <sn-checkbox
+            shape="rounded"
+            color="primary"
+            size="xsmall"
+            [label]="todo.description">
+          </sn-checkbox>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

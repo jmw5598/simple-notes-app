@@ -56,7 +56,6 @@ export class DashboardEffects {
   getPastDueTodoLists$ = createEffect(() => this._actions.pipe(
     ofType(fromDashboard.getPastDueTodoLists),
     switchMap(() => {
-      console.log('got todolist sform store inside effect')
       const pastDueDate: Date = this._generateStartDateToday();
       return this._todoListsService.getPastDueTodoLists(pastDueDate)
         .pipe(

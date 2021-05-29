@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import * as fromActions from '../actions';
 import { CalendarEvent, ResponseMessage } from '@sn/core/models';
+import { TodoList } from '@sn/shared/models';
 
 export const calendarEventsFeatureKey = 'calendarEvents';
 
@@ -10,7 +11,13 @@ export interface ICalendarEventsState {
   createCalendarEventResponseMessage: ResponseMessage,
   updateCalendarEventResponseMessage: ResponseMessage,
   deleteCalendarEventResponseMessage: ResponseMessage,
-  currentCalendarDateRanges: {[key: string]: Date};
+  currentCalendarDateRanges: {[key: string]: Date},
+
+  currentCalendarTodoLists: TodoList[],
+  selectedCalendarTodoList: TodoList,
+  createCalendarTodoListResponseMessage: ResponseMessage,
+  updateCalendarTodoListResponseMessage: ResponseMessage,
+  deleteCalendarTodoListResponseMessage: ResponseMessage,
 }
 
 export const initialCalendarEventState: ICalendarEventsState = {
@@ -19,7 +26,12 @@ export const initialCalendarEventState: ICalendarEventsState = {
   createCalendarEventResponseMessage: null,
   updateCalendarEventResponseMessage: null,
   deleteCalendarEventResponseMessage: null,
-  currentCalendarDateRanges: null
+  currentCalendarDateRanges: null,
+  currentCalendarTodoLists: null,
+  selectedCalendarTodoList: null,
+  createCalendarTodoListResponseMessage: null,
+  updateCalendarTodoListResponseMessage: null,
+  deleteCalendarTodoListResponseMessage: null
 }
 
 const _calendarEventReducer = createReducer(
@@ -82,7 +94,54 @@ const _calendarEventReducer = createReducer(
         endDate: endDate
       }
     }
-  })
+  }),
+  on(fromActions.setCurrentCalendarTodoLists, (state, { todoLists }) => {
+    return {
+      ...state,
+      currentCalendarTodoLists: todoLists
+    }
+  }),
+  on(fromActions.setSelectedCalendarTodoList, (state, { todoList }) => {
+    return {
+      ...state,
+      selectedCalendarTodoList: todoList
+    }
+  }),
+  on(fromActions.setCreateCalendarTodoListResponseMessage, (state, { message }) => {
+    return {
+      ...state,
+      createCalendarTodoListResponseMessage: message
+    }
+  }),
+  on(fromActions.setUpdateCalendarTodoListResponseMessage, (state, { message }) => {
+    return {
+      ...state,
+      updateCalendarTodoListResponseMessage: message
+    }
+  }),
+  on(fromActions.setDeleteCalendarTodoListResponseMessage, (state, { message }) => {
+    return {
+      ...state,
+      deleteCalendarTodoListResponseMessage: message
+    }
+  }),
+  on(fromActions.deleteCalendarTodoListSuccess, (state, { todoList }) => {
+    return {
+      ...state,
+      currentCalendarTodoLists: state.currentCalendarTodoLists
+        .filter(e => e.id !== todoList.id)
+    }
+  }),
+  on(fromActions.updateCalendarTodoListSuccess, (state, { todoList }) => {
+    return {
+      ...state,
+      currentCalendarTodoLists: [
+        ...state.currentCalendarTodoLists.filter(e => e.id !== todoList.id),
+        todoList
+      ],
+      selectedCalendarTodoList: todoList
+    }
+  }),
 );
 
 export function calendarEventReducer(state, action) {

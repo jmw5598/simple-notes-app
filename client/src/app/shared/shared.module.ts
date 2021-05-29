@@ -63,6 +63,8 @@ import { ToasterComponent } from './components/toaster/toaster.component';
 import { TodoListCreateComponent } from './components/todo-list-create/todo-list-create.component';
 import { TodoListFormComponent } from './forms/todo-list-form/todo-list-form.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { TodoListDetailsComponent } from './components/todo-list-details/todo-list-details.component';
+import { TodoListUpdateComponent } from './components/todo-list-update/todo-list-update.component';
 
 @NgModule({
   declarations: [
@@ -111,7 +113,9 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
     ToasterComponent,
     TodoListCreateComponent,
     TodoListFormComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    TodoListDetailsComponent,
+    TodoListUpdateComponent
   ],
   imports: [
     CommonModule,
@@ -167,7 +171,9 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
     ToasterComponent,
     TodoListCreateComponent,
     TodoListFormComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    TodoListDetailsComponent,
+    TodoListUpdateComponent
   ],
   providers: [
     DrawerService,

@@ -28,7 +28,6 @@ export class PastDueTodoListsGuard implements CanActivate {
   }
   
   private _getPastDueTodoListsFromStoreOrApi(): Observable<TodoList[]> {
-    console.log('getting past due todo lists from store');
     return this._store.select(selectPastDueTodoLists).pipe(
       tap((todoLists: TodoList[]) => {
         if (!todoLists) {

@@ -18,10 +18,11 @@ export class TodosFormComponent implements OnInit, OnDestroy, AfterViewInit {
   private _todos: Todo[];
 
   @Input()
-  public set todos(todos: Todo[]) { 
+  public set todos(todos: Todo[]) {
     this._todos = todos;
-    if (this.form)
+    if (this.form && !this._todos) {
       this._patchTodosToForm(todos);
+    }
   }
 
   public get todos(): Todo[] { 
@@ -57,6 +58,7 @@ export class TodosFormComponent implements OnInit, OnDestroy, AfterViewInit {
     })
   }
 
+  // THIS NEEDS TO CHANGE
   private _listenForTodosFormChanges(): void {
     this.form.valueChanges
       .pipe(
