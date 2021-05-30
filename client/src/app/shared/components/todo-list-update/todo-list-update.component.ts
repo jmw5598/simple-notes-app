@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ResponseMessage } from '@sn/core/models';
 
@@ -12,7 +12,7 @@ import { idGenerator } from '@sn/shared/utils/id-generator.util';
   styleUrls: ['./todo-list-update.component.scss'],
   animations: [showHide]
 })
-export class TodoListUpdateComponent implements OnInit {
+export class TodoListUpdateComponent implements OnInit, AfterViewInit {
   @Input()
   public todoList: TodoList;
 

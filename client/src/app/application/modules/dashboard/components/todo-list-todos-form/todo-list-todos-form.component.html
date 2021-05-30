@@ -16,7 +16,14 @@
   </div>
   <!-- <p class="list-details-description text-dark font-italic p-0 m-0">{{ topic.synopsis }}</p> -->
   <hr class="my-1" />
-  <p class="list-details-timestamp text-dark mb-0"><i class="far fa-clock"></i>&nbsp;&nbsp; {{ todoList.updatedAt | date:'medium' }}</p>
+  <p class="list-details-timestamp text-dark mb-0  d-flex flex-row">
+    <span class="mr-4">
+      <i class="far fa-calendar-alt icon-margin"></i>&nbsp; {{ todoList?.startedBy | date: 'MM/dd/yyyy' }} - {{ todoList?.completedBy | date: 'MM/dd/yyyy' }}
+    </span>
+    <span>
+      <i class="far fa-clock"></i>&nbsp;&nbsp; {{ todoList.updatedAt | date:'medium' }}
+    </span>
+  </p>
   <div class="todo-list-progress-container my-2">
     <sn-todo-list-progress [todoList]="todoList"></sn-todo-list-progress>
   </div>

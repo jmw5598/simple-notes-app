@@ -41,8 +41,9 @@ export class ViewTodosComponent extends AbstractPageOverlayLoader implements OnI
   ngOnInit(): void {
     this.searchTodoListsResult$ = this._store.select(todosSelectors.selectSearchTodoListsResult)
       .pipe(tap(() => this.isSearching = false));
-    this.listenForDeleteTodoListResponseMessage();
-    this.listenForSelectedTodoListChanges();
+    this._listenForDeleteTodoListResponseMessage();
+    this._listenForUpdateTodoListResponseMessage();
+    this._listenForCreateTodoListResponseMessage();
   }
 
   public onCreate(): void {
@@ -54,13 +55,15 @@ export class ViewTodosComponent extends AbstractPageOverlayLoader implements OnI
   }
 
   public onView(todoList: TodoList): void {
-    this._store.dispatch(todosActions.getTodoListById({ todoListId: todoList.id }));
-    this._drawerService.show(TodoListViewComponent)
+    this._drawerService.show(TodoListViewComponent, {
+      data: todoList
+    });
   }
 
   public onEdit(todoList: TodoList): void {
-    this._store.dispatch(todosActions.getTodoListById({ todoListId: todoList.id }));
-    this._drawerService.show(TodoListEditComponent);
+    this._drawerService.show(TodoListEditComponent, {
+      data: todoList
+    });
   }
 
   public onGoToPage(pageable: IPageable): void {
@@ -81,14 +84,24 @@ export class ViewTodosComponent extends AbstractPageOverlayLoader implements OnI
     this._store.dispatch(todosActions.searchTodoLists({ search: search }));
   }
 
-  public listenForSelectedTodoListChanges(): void {
-    this._store.select(todosSelectors.selectSelectedTodoList)
+  public _listenForDeleteTodoListResponseMessage(): void {
+    this._store.select(todosSelectors.selectDeleteTodoListResponseMessage)
       .pipe(takeUntil(this._subscriptionSubject))
-      .subscribe((todoList: TodoList) => this._drawerService.setData(todoList))
+      .subscribe(message => {
+        this.onSearchTodoLists(this.searchTerm);
+      })
   }
 
-  public listenForDeleteTodoListResponseMessage(): void {
-    this._store.select(todosSelectors.selectDeleteTodoListResponseMessage)
+  private _listenForUpdateTodoListResponseMessage(): void {
+    this._store.select(todosSelectors.selectUpdateTodoListResponseMessage)
+      .pipe(takeUntil(this._subscriptionSubject))
+      .subscribe(message => {
+        this.onSearchTodoLists(this.searchTerm);
+      })
+  }
+
+  private _listenForCreateTodoListResponseMessage(): void {
+    this._store.select(todosSelectors.selectCreateTodoListResponseMessage)
       .pipe(takeUntil(this._subscriptionSubject))
       .subscribe(message => {
         this.onSearchTodoLists(this.searchTerm);

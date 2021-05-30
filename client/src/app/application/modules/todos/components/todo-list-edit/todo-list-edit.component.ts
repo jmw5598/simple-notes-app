@@ -10,6 +10,7 @@ import { ITodosState } from '../../store/reducers';
 
 import * as todosActions from '../../store/actions';
 import * as todosSelectors from '../../store/selectors';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'sn-todo-list-edit',
