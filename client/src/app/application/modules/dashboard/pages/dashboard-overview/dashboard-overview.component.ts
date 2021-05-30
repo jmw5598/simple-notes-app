@@ -7,7 +7,7 @@ import { selectPastDueTodoLists, selectRecentTopics, selectTodaysEvents, selectT
 import { CalendarEvent } from '@sn/core/models';
 import { TodoList, Topic } from '@sn/shared/models';
 import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
-import { getRecentTopics, getRecentTopicsSuccess, getTodaysCalendarEvents, getTodaysCalendarEventsSuccess } from '../../store/actions';
+import { getPastDueTodoListsSuccess, getRecentTopicsSuccess, getTodaysCalendarEventsSuccess, getTodaysTodoListsSuccess } from '../../store/actions';
 
 @Component({
   selector: 'sn-dashboard-overview',
@@ -38,5 +38,7 @@ export class DashboardOverviewComponent extends AbstractPageOverlayLoader implem
   ngOnDestroy(): void {
     this._store.dispatch(getTodaysCalendarEventsSuccess({ events: null }));
     this._store.dispatch(getRecentTopicsSuccess({ topics: null }));
+    this._store.dispatch(getTodaysTodoListsSuccess({ todoLists: null }));
+    this._store.dispatch(getPastDueTodoListsSuccess({ todoLists: null }));
   }
 }

@@ -52,7 +52,8 @@ export class TodoListUpdateComponent implements OnInit {
   private _generateTodo(todo: Todo): FormGroup {
     return new FormGroup({
       id: new FormControl(todo?.id || idGenerator.next().value),
-      description: new FormControl(todo.description)
+      description: new FormControl(todo.description),
+      isComplete:  new FormControl(todo?.isComplete || false)
     });
   }
 }

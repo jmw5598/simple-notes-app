@@ -66,6 +66,8 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { TodoListDetailsComponent } from './components/todo-list-details/todo-list-details.component';
 import { TodoListUpdateComponent } from './components/todo-list-update/todo-list-update.component';
 
+import { TodoListProgressComponent } from './components/todo-list-progress/todo-list-progress.component';
+
 @NgModule({
   declarations: [
     SpinnerComponent,
@@ -115,7 +117,8 @@ import { TodoListUpdateComponent } from './components/todo-list-update/todo-list
     TodoListFormComponent,
     CheckboxComponent,
     TodoListDetailsComponent,
-    TodoListUpdateComponent
+    TodoListUpdateComponent,
+    TodoListProgressComponent
   ],
   imports: [
     CommonModule,
@@ -173,7 +176,8 @@ import { TodoListUpdateComponent } from './components/todo-list-update/todo-list
     TodoListFormComponent,
     CheckboxComponent,
     TodoListDetailsComponent,
-    TodoListUpdateComponent
+    TodoListUpdateComponent,
+    TodoListProgressComponent
   ],
   providers: [
     DrawerService,

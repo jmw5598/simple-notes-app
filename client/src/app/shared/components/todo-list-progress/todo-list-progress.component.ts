@@ -16,16 +16,16 @@ export class TodoListProgressComponent implements OnInit {
   }
 
   public get completedPercent(): number {
-    return (this.todoList?.todos?.filter(t => t.isComplete).length / this.todoList?.todos?.length * 100) || 0;
+    return Math.round(this.todoList?.todos?.filter(t => t.isComplete).length / this.todoList?.todos?.length * 100) || 0;
   }
 
   public get classProgress(): string {
     const progress: number = this.completedPercent;
     return progress === 100 
       ? 'bg-success' 
-      : progress > 66
+      : progress >= 66
         ? 'bg-info' 
-        : progress > 33
+        : progress >= 33
           ? 'bg-warning' 
           : 'bg-danger';
   }

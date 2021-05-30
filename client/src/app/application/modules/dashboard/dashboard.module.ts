@@ -14,7 +14,6 @@ import { TodaysTodoListsListComponent } from './components/todays-todo-lists-lis
 import { PastDueTodoListsListComponent } from './components/past-due-todo-lists-list/past-due-todo-lists-list.component';
 import { TodoListTodosFormComponent } from './components/todo-list-todos-form/todo-list-todos-form.component';
 import { TodosFormComponent } from './components/todo-list-todos-form/components/todos-form/todos-form.component';
-import { TodoListProgressComponent } from './components/todo-list-progress/todo-list-progress.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +23,7 @@ import { TodoListProgressComponent } from './components/todo-list-progress/todo-
     TodaysTodoListsListComponent,
     PastDueTodoListsListComponent,
     TodoListTodosFormComponent,
-    TodosFormComponent,
-    TodoListProgressComponent
+    TodosFormComponent
   ],
   imports: [
     CommonModule,

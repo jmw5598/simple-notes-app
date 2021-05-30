@@ -1,37 +1,39 @@
 <div>
   <ng-container [ngSwitch]="calendarEventView">
     <ng-container *ngSwitchCase="'display'">
-      <sn-todo-list-details
-          [todoList]="data$ | async">
-      </sn-todo-list-details>
-      <div class="form-group text-right mx-2">
-        <button 
-            class="btn btn-primary mr-2" 
-            type="button" 
-            (click)="onSave()">
-          Save
-        </button>
-        <button 
-            class="btn btn-outline-primary mr-2" 
-            type="button" 
-            (click)="onEdit()">
-          Edit
-        </button>
-        <button 
-            mwlConfirmationPopover
-            placement="left"
-            (confirm)="onDelete()"
-            class="btn btn-outline-primary mr-2" 
-            type="button">
-          Delete
-        </button>
-        <button 
-              (click)="onCancel()"
-              class="btn btn-secondary" 
-              type="button">
-            Cancel
+      <form [formGroup]="form" (ngSubmit)="onUpdate(form.value)" novalidate>
+        <sn-todo-list-details
+            [todoList]="data$ | async"
+            [responseMessage]="responseMessage$ | async">
+        </sn-todo-list-details>
+        <div class="form-group text-right mx-2">
+          <button 
+              class="btn btn-primary mr-2" 
+              type="submit">
+            Save
           </button>
-      </div>
+          <button 
+              class="btn btn-outline-primary mr-2" 
+              type="button" 
+              (click)="onEdit()">
+            Edit
+          </button>
+          <button 
+              mwlConfirmationPopover
+              placement="left"
+              (confirm)="onDelete()"
+              class="btn btn-outline-primary mr-2" 
+              type="button">
+            Delete
+          </button>
+          <button 
+                (click)="onCancel()"
+                class="btn btn-secondary" 
+                type="button">
+              Cancel
+            </button>
+        </div>
+      </form>
     </ng-container>
     <ng-container *ngSwitchCase="'edit'">
       <form [formGroup]="form" (ngSubmit)="onUpdate(form.value)" novalidate>

@@ -30,7 +30,7 @@ export class CalendarTodoListViewComponent implements OnInit {
     private _store: Store<ICalendarEventsState>
   ) {
     this.calendarEventView = 'display';
-    // this.form = buildCalendarEventFormGroup(this._formBuilder);
+    this.form = buildTodoListFormGroup(this._formBuilder);
   }
 
   ngOnInit(): void {
@@ -48,11 +48,7 @@ export class CalendarTodoListViewComponent implements OnInit {
           }
         })
       );
-  }
-
-  public onSave(): void {
-    console.log("change changes to todos");
-  }
+  }  
 
   public onEdit(): void {
     if (this.calendarEventView.toLowerCase() === 'display') {

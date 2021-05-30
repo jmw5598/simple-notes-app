@@ -45,29 +45,7 @@ const _dashboardReducer = createReducer(
       ...state,
       pastDueTodoLists: todoLists
     }
-  }),
-  // on(fromActions.updatePastDueTodoListSuccess, (state, { todoList }) => {
-  //   return {
-  //     ...state,
-  //     pastDueTodoLists: state.pastDueTodoLists.map(t => {
-  //       if (todoList.id === t.id) {
-  //         return todoList
-  //       }
-  //       return t;
-  //     })
-  //   }
-  // }),
-  // on(fromActions.updateTodaysTodoListSuccess, (state, { todoList }) => {
-  //   return {
-  //     ...state,
-  //     pastDueTodoLists: state.todaysTodoLists.map(t => {
-  //       if (todoList.id === t.id) {
-  //         return todoList
-  //       }
-  //       return t;
-  //     })
-  //   }
-  // }),
+  })
 );
 
 export function dashboardReducer(state, action) {
