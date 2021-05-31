@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
 import { ControlContainer, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Todo } from '@sn/shared/models';
@@ -65,4 +66,17 @@ export class TodoListFormComponent implements OnInit, AfterViewInit {
   private _setFocusToTitleInput(): void {
     this._renderer.selectRootElement('#title').focus();
   }
+
+  public dropTodo(event: CdkDragDrop<any>): void {
+    const todosArrays: FormArray = this.form.get('todos') as FormArray;
+    const dir = event.currentIndex > event.previousIndex ? 1 : -1;
+    const from = event.previousIndex;
+    const to = event.currentIndex;
+    const temp = todosArrays.at(from);
+    for (let i = from; i * dir < to * dir; i = i + dir) {
+      const current = todosArrays.at(i + dir);
+      todosArrays.setControl(i, current);
+    }
+    todosArrays.setControl(to, temp);
+  }  
 }

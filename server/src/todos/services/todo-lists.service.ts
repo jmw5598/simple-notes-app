@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { start } from 'repl';
 import { Page } from 'src/common/models/page.model';
 import { IPageable } from 'src/common/models/pageable.interface';
-import { Between, IsNull, LessThan, LessThanOrEqual, MoreThanOrEqual, Raw, Repository } from 'typeorm';
+import { Between, Brackets, IsNull, LessThan, LessThanOrEqual, MoreThanOrEqual, Raw, Repository } from 'typeorm';
 import { CreateTodoListDto } from '../dtos/create-todo-list.dto';
 import { CreateTodoDto } from '../dtos/create-todo.dto';
 import { TodoListDto } from '../dtos/todo-list.dto';
@@ -119,54 +120,50 @@ export class TodoListsService {
   }
 
   public async getTodoListsBetweenDates(accountId: number, startDate: Date, endDate: Date): Promise<TodoListDto[]> {
-    const todoLists: TodoList[] = await this._todoListsRepository.find({
-      relations: ['todos'],
-      where: [
-        {
-          account: { id: accountId },
-          deletedAt: IsNull(),
-          startedBy: Between(startDate.toISOString(), endDate.toISOString())
-        },
-        {
-          account: { id: accountId },
-          deletedAt: IsNull(),
-          completedBy: Between(startDate.toISOString(), endDate.toISOString())
-        },
-        {
-          account: { id: accountId },
-          deletedAt: IsNull(),
-          startedBy: LessThanOrEqual(startDate.toISOString()),
-          completedBy: MoreThanOrEqual(endDate.toISOString())
-        }
-      ],
-      order: {
-        startedBy: 'ASC'
-      }
-    })
+    const todoLists: TodoList[] = await this._todoListsRepository
+      .createQueryBuilder('list')
+      .innerJoin('list.account', 'acc')
+      .innerJoinAndSelect('list.todos', 'todo')
+      .where('acc.id = :accountId', { accountId: accountId })
+      .andWhere('list.deletedAt IS NULL')
+      .andWhere(
+        new Brackets((qb) => {
+          qb
+            .where('list.startedBy BETWEEN :startDate AND :endDate', { 
+              startDate: startDate.toISOString(), 
+              endDate: endDate.toISOString()
+            })
+            .orWhere('list.completedBy BETWEEN :startDate AND :endDate', {
+              startDate: startDate.toISOString(), 
+              endDate: endDate.toISOString()
+            })
+            .orWhere('list.startedBy <= :startDate AND list.completedBy >= :endDate', {
+              startDate: startDate.toISOString(), 
+              endDate: endDate.toISOString()
+            })
+          }
+        )
+      )
+      .orderBy({
+        'list.startedBy': 'ASC',
+        'todo.orderIndex': 'ASC'
+      }).getMany();
     return TodoListsMapper.toTodoListDtoList(todoLists);
   }
 
   public async getTodoListsPastDueFromDate(accountId: number, pastDueDate: Date): Promise<TodoListDto[]> {
-    // Need to switch to query builder and join on todos count todos that are
-    // incomplete.  Filter where incdomplet todo count > 0
-    
-    // const todoLists: TodoList[] = await this._todoListsRepository.createQueryBuilder('tl')
-    //   .innerJoin('tl.account', 'acc')
-    //   .innerJoinAndSelect('tl.todos', 't')
-    //   // subsuselect id where count todos not complete > 0
-    
-    const todoListsOld: TodoList[] = await this._todoListsRepository.find({
-      relations: ['todos'],
-      where: {
-        account: { id: accountId },
-        deletedAt: IsNull(),
-        completedBy: LessThan(pastDueDate.toISOString())
-      },
-      order: {
-        startedBy: 'ASC'
-      }
-    });
-    return TodoListsMapper.toTodoListDtoList(todoListsOld);
+    const todoLists: TodoList[] = await this._todoListsRepository
+      .createQueryBuilder('list')
+      .innerJoin('list.account', 'acc')
+      .innerJoinAndSelect('list.todos', 'todo')
+      .where('acc.id = :accountId', { accountId: accountId })
+      .andWhere('list.deletedAt IS NULL')
+      .andWhere('list.completedBy < :completedBy', { completedBy: pastDueDate.toISOString() })
+      .orderBy({
+        'list.startedBy': 'ASC',
+        'todo.orderIndex': 'ASC'
+      }).getMany();
+    return TodoListsMapper.toTodoListDtoList(todoLists);
   }
 
   private async _generateSearchWhereClause(accountId: number, searchTerm: string): Promise<any> {

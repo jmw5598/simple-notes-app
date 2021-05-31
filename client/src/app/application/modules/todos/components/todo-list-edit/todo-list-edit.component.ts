@@ -32,10 +32,14 @@ export class TodoListEditComponent implements OnInit {
   ngOnInit(): void {
     this.form = buildTodoListFormGroup(this._formBuilder);
     this.data$ = this._drawerService.onDataChange();
-    this.responseMessage$ = this._store.select(todosSelectors.selectUpdateTodoListResponseMessage);
+    this.responseMessage$ = this._store.select(todosSelectors.selectUpdateTodoListResponseMessage)
+      .pipe(tap(message => {
+        setTimeout(() => this._store.dispatch(todosActions.setUpdateTodoListResponseMessage({ message: null })), 3000)
+      }));
   }
 
   public onUpdate(formValue: any): void {
+    console.log("form value is ", formValue);
     const todoList: TodoList = { 
       ...formValue,
       todos: formValue.todos.map((todo: Todo) => ({

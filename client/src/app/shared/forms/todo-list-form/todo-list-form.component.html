@@ -55,14 +55,20 @@
     <div class="col-sm-12">
       <label>Todos</label>
       <ng-container *ngIf="form?.value?.todos?.length; else noTodosInList">
-        <ul class="list-group">
+        <ul class="list-group" 
+            cdkDropList 
+            [cdkDropListData]="form.get('todos')['control']"
+            (cdkDropListDropped)="dropTodo($event)">
           <ng-container  
               formArrayName="todos"
               *ngFor="let item of form.get('todos')['controls']; let i = index;">
-            <li class="list-group-item todo-list-item">
+
+            <li class="list-group-item todo-list-item" cdkDrag>
               <span>
-                {{ item.get('description').value }}
+                <span class="text-dark drag-handle mr-2" cdkDragHandle><i class="fas fa-grip-vertical"></i></span>
+                <span>{{ item.get('description').value }}</span>
               </span>
+              
               <span class="btn-remove" (click)="removeTodo(item.value)">
                 <i class="fas fa-times"></i>
               </span>
