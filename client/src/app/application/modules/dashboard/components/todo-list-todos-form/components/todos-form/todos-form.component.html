@@ -7,6 +7,7 @@
             size="xsmall"
             shape="rounded"
             formControlName="isComplete"
+            (ngModelChange)="onTodoCheckboxChange($event)"
             [value]="todoControl?.value?.isComplete"
             [label]="todoControl?.value?.description">
         </sn-checkbox>

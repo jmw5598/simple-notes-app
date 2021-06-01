@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Todo } from '@sn/shared/models';
-import { setTime } from 'ngx-bootstrap/chronos/utils/date-setters';
 import { Subject } from 'rxjs';
 import { debounceTime, skip, takeUntil } from 'rxjs/operators';
 
@@ -13,6 +12,7 @@ import { debounceTime, skip, takeUntil } from 'rxjs/operators';
 export class TodosFormComponent implements OnInit, OnDestroy, AfterViewInit {
   private readonly FORM_DEBOUNCE_TIME: number = 500;
   private _subscriptionSubject: Subject<void> = new Subject<void>();
+  private _todosChangesSubject: Subject<Todo[]> = new Subject<Todo[]>();
   public form: FormGroup;
 
   private _todos: Todo[];
@@ -58,18 +58,18 @@ export class TodosFormComponent implements OnInit, OnDestroy, AfterViewInit {
     })
   }
 
-  // THIS NEEDS TO CHANGE
   private _listenForTodosFormChanges(): void {
-    this.form.valueChanges
+    this._todosChangesSubject
       .pipe(
         skip(1),
         takeUntil(this._subscriptionSubject),
         debounceTime(this.FORM_DEBOUNCE_TIME)
       )
-      .subscribe(formValues => {
-        this.onUpdate.emit((formValues?.todos || []) as Todo[])
-        console.log("updating form values change")
-      });
+      .subscribe(todos => this.onUpdate.emit((todos || []) as Todo[]));
+  }
+
+  public onTodoCheckboxChange(event: any): void {
+    this._todosChangesSubject.next(this.form.value.todos as Todo[] || []);
   }
 
   // TODO This fires update http requests on initial load of component FIX THIS
@@ -81,11 +81,6 @@ export class TodosFormComponent implements OnInit, OnDestroy, AfterViewInit {
         { onlySelf: false, emitEvent: false }
       )
       todos.forEach(todo => todosFormArray.push(this._createTodoFormGroup(todo)));
-      
-
-      // this.form.patchValue({
-      //   todos: todos.map(todo => this._createTodoFormGroup(todo))
-      // }, { onlySelf: true, emitEvent: false })
     }
   }
 
