@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { start } from 'repl';
 import { Page } from 'src/common/models/page.model';
 import { IPageable } from 'src/common/models/pageable.interface';
-import { Between, Brackets, IsNull, LessThan, LessThanOrEqual, MoreThanOrEqual, Raw, Repository } from 'typeorm';
+import { Brackets, IsNull, Raw, Repository } from 'typeorm';
 import { CreateTodoListDto } from '../dtos/create-todo-list.dto';
 import { CreateTodoDto } from '../dtos/create-todo.dto';
 import { TodoListDto } from '../dtos/todo-list.dto';
@@ -129,17 +128,17 @@ export class TodoListsService {
       .andWhere(
         new Brackets((qb) => {
           qb
-            .where('list.startedBy BETWEEN :startDate AND :endDate', { 
-              startDate: startDate.toISOString(), 
-              endDate: endDate.toISOString()
+            .where(`DATE_TRUNC('day', "started_by") BETWEEN :startDate AND :endDate`, { 
+              startDate: startDate.toISOString().split('T')[0], 
+              endDate: endDate.toISOString().split('T')[0]
             })
-            .orWhere('list.completedBy BETWEEN :startDate AND :endDate', {
-              startDate: startDate.toISOString(), 
-              endDate: endDate.toISOString()
+            .orWhere(`DATE_TRUNC('day', "completed_by") BETWEEN :startDate AND :endDate`, {
+              startDate: startDate.toISOString().split('T')[0], 
+              endDate: endDate.toISOString().split('T')[0]
             })
-            .orWhere('list.startedBy <= :startDate AND list.completedBy >= :endDate', {
-              startDate: startDate.toISOString(), 
-              endDate: endDate.toISOString()
+            .orWhere(`DATE_TRUNC('day', "started_by") <= :startDate AND DATE_TRUNC('day', "completed_by") >= :endDate`, {
+              startDate: startDate.toISOString().split('T')[0], 
+              endDate: endDate.toISOString().split('T')[0]
             })
           }
         )
@@ -158,7 +157,7 @@ export class TodoListsService {
       .innerJoinAndSelect('list.todos', 'todo')
       .where('acc.id = :accountId', { accountId: accountId })
       .andWhere('list.deletedAt IS NULL')
-      .andWhere('list.completedBy < :completedBy', { completedBy: pastDueDate.toISOString() })
+      .andWhere(`DATE_TRUNC('day', "completed_by") < :completedBy`, { completedBy: pastDueDate.toISOString().split('T')[0] })
       .orderBy({
         'list.startedBy': 'ASC',
         'todo.orderIndex': 'ASC'
