@@ -39,7 +39,6 @@ export class TodoListEditComponent implements OnInit {
   }
 
   public onUpdate(formValue: any): void {
-    console.log("form value is ", formValue);
     const todoList: TodoList = { 
       ...formValue,
       todos: formValue.todos.map((todo: Todo) => ({

@@ -15,7 +15,7 @@ describe('DocumentsService', () => {
   const documentMock: Document = {
     id: 1,
     name: 'Testing Document',
-    sections: []
+    documentTopics: []
   } as Document;
 
   beforeEach(() => {

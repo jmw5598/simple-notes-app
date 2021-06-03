@@ -39,7 +39,7 @@ export class TodoListComponent implements OnInit {
     this.onEdit.emit(todoList);
   }
 
-  public delete(flashcardSetId: number): void {
-    this.onDelete.emit(flashcardSetId);
+  public delete(todoListId: number): void {
+    this.onDelete.emit(todoListId);
   }
 }
