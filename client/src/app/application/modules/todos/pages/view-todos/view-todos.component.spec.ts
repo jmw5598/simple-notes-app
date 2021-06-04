@@ -11,7 +11,7 @@ import { SharedModule } from '@sn/shared/shared.module';
 import { IPageable, PageableSearch } from '@sn/core/models';
 import { DEFAULT_SEARCH_TODOS_PAGE } from '@sn/core/defaults';
 
-fdescribe('ViewTodosComponent', () => {
+describe('ViewTodosComponent', () => {
   let component: ViewTodosComponent;
   let fixture: ComponentFixture<ViewTodosComponent>;
   let drawerService: DrawerService

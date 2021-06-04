@@ -31,7 +31,7 @@ describe('TodosSearchResultGuard', () => {
     expect(guard).toBeTruthy();
   });
 
-  it('shoulde dispatch action to search todo lists when canActviate is called with empty store value for searchTodoListResults', () => {
+  it('should dispatch action to search todo lists when canActviate is called with empty store value for searchTodoListResults', () => {
     spyOn(testStore, 'dispatch');
     guard.canActivate(null, null)
       .pipe(skip(1), take(1))

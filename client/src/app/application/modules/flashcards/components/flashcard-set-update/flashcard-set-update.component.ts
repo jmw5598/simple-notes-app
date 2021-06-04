@@ -121,7 +121,7 @@ export class FlashcardSetUpdateComponent implements OnInit, OnDestroy {
 
   private patchFlashcardsToForm(flashcardSet: FlashcardSet): void {
     const flashcardsArray = this._formBuilder.array([]);
-    flashcardSet.flashcards
+    flashcardSet?.flashcards
       .forEach(flashcard => {
         const control = this._formBuilder.group({
         id: [flashcard.id, [Validators.required]],

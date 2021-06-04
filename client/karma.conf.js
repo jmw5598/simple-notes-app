@@ -32,6 +32,7 @@ module.exports = function (config) {
       '/assets/': '/base/src/assets/'
     },
     files: [
+      { pattern: './node_modules/jquery/dist/jquery.min.js', watched: false },
       { 
         pattern: './src/assets/**', 
         watched: false, 
