@@ -20,7 +20,8 @@
       <li 
           *ngFor="let link of links"
           class="list-group-item p-0 navbar-side-menu-item" 
-          routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">
+          routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}"
+          (mouseenter)="preloadBundle(link.routerLink)">
         <a [routerLink]="link.routerLink" class="px-4 py-3 d-block">
           <i 
             [tooltip]="link.tooltip" 

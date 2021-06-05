@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { LayoutService, LayoutSidePanelState } from '@sn/shared/components'
 import { NavigationRouteLink, NAVIGATION_ROUTES } from './navigation.routes';
 import { tap } from 'rxjs/operators';
+import { OnDemandPreloadService } from '@sn/core/preloading-strategies';
 
 @Component({
   selector: 'sn-navbar-side',
@@ -19,11 +20,19 @@ export class NavbarSideComponent implements OnInit {
   public currentPanelState$: Observable<LayoutSidePanelState>;
   public currentLayoutSidePanelState: LayoutSidePanelState;
 
-  constructor(private _layoutService: LayoutService) { }
+  constructor(
+    private _layoutService: LayoutService,
+    private _onDemandPreloadService: OnDemandPreloadService
+  ) { }
 
   ngOnInit() {
     this.currentPanelState$ = this._layoutService.onStateChanges()
       .pipe(tap(state => this.currentLayoutSidePanelState = state));
+  }
+
+  public preloadBundle(routePath: string[]): void {
+    console.log("preloading bunder nave-side compoent", routePath.join('/'))
+    this._onDemandPreloadService.startPreload(routePath.join('/'));
   }
 
   public close(): void {

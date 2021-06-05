@@ -9,6 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: 'accounts',
+        data: { preload: true },
         loadChildren: () => import('./modules/accounts/accounts.module').then(m => m.AccountsModule)
       },
       {
@@ -17,22 +18,27 @@ const routes: Routes = [
       },
       {
         path: 'topics',
+        data: { preload: true },
         loadChildren: () => import('./modules/topics/topics.module').then(m => m.TopicsModule)
       },
       {
         path: 'documents',
+        data: { preload: true },
         loadChildren: () => import('./modules/documents/documents.module').then(m => m.DocumentsModule)
       },
       {
         path: 'dashboard',
+        data: { preload: true },
         loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
         path: 'flashcards',
+        data: { preload: true },
         loadChildren: () => import('./modules/flashcards/flashcards.module').then(m => m.FlashcardsModule)
       },
       {
         path: 'todos',
+        data: { preload: true },
         loadChildren: () => import('./modules/todos/todos.module').then(m => m.TodosModule)
       },
       {

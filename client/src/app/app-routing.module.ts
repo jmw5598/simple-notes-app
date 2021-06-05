@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthenticationGuard } from '@sn/auth/guards';
 import { ThemeLoaderGuard } from '@sn/core/guards';
+import { OnDemandPreloadStrategy } from './core/preloading-strategies';
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { preloadingStrategy: OnDemandPreloadStrategy })
   ],
   exports: [
     RouterModule
