@@ -1,5 +1,8 @@
 .document-builder-document-container {
-  .document-builder-document-container-topics {
-    
-  }
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 668px;
+  min-height: 668px;
+  overflow-y: scroll;
 }

@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { FlashcardCreateFormComponent } from './flashcard-create-form.component';
 
-fdescribe('FlashcardCreateFormComponent', () => {
+describe('FlashcardCreateFormComponent', () => {
   let component: FlashcardCreateFormComponent;
   let flashcardSetBuilderService: FlashcardSetBuilderService;
   let fixture: ComponentFixture<FlashcardCreateFormComponent>;

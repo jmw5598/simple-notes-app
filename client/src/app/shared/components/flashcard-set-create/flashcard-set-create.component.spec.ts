@@ -1,14 +1,36 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Store } from '@ngrx/store';
+import { SharedModule } from '@sn/shared/shared.module';
+import { BehaviorSubject } from 'rxjs';
+import { DrawerService } from '../drawer/drawer.service';
 
 import { FlashcardSetCreateComponent } from './flashcard-set-create.component';
 
-describe('FlashcardSetCreateComponent', () => {
+fdescribe('FlashcardSetCreateComponent', () => {
   let component: FlashcardSetCreateComponent;
   let fixture: ComponentFixture<FlashcardSetCreateComponent>;
 
+  const testStore = {
+    _data: new BehaviorSubject<any>(null),
+    select: function(selector: any) { return this._data.asObservable(); },
+    dispatch: function(action: any) { this._data.next(action) }
+  }; 
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FlashcardSetCreateComponent ]
+      imports: [
+        SharedModule
+      ],
+      declarations: [
+        FlashcardSetCreateComponent
+      ],
+      providers: [
+        DrawerService,
+        {
+          provide: Store,
+          useValue: testStore
+        }
+      ]
     })
     .compileComponents();
   }));
