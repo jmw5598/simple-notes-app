@@ -31,7 +31,6 @@ export class NavbarSideComponent implements OnInit {
   }
 
   public preloadBundle(routePath: string[]): void {
-    console.log("preloading bunder nave-side compoent", routePath.join('/'))
     this._onDemandPreloadService.startPreload(routePath.join('/'));
   }
 
