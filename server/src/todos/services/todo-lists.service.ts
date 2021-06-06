@@ -93,7 +93,8 @@ export class TodoListsService {
     todoList.title = updateTodoListDto.title;
     todoList.startedBy = updateTodoListDto.startedBy;
     todoList.completedBy = updateTodoListDto.completedBy;
-    todoList.updatedAt = new Date();
+    todoList.updatedAt = today;
+    todoList.completedAt = updateTodoListDto.todos?.filter(todo => !todo.isComplete)?.length > 0 ? null : today;
     
     todoList.todos = updateTodoListDto.todos.map((updateTodo: UpdateTodoDto, orderIndex: number) => {
       return this._todosRepository.create({
@@ -158,6 +159,7 @@ export class TodoListsService {
       .where('acc.id = :accountId', { accountId: accountId })
       .andWhere('list.deletedAt IS NULL')
       .andWhere(`DATE_TRUNC('day', "completed_by") < :completedBy`, { completedBy: pastDueDate.toISOString().split('T')[0] })
+      .andWhere('list.completedAt IS NULL')
       .orderBy({
         'list.startedBy': 'ASC',
         'todo.orderIndex': 'ASC'

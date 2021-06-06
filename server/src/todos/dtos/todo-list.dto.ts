@@ -6,6 +6,7 @@ export class TodoListDto {
   public updatedAt: Date;
   public startedBy: Date;
   public completedBy: Date;
+  public completedAt: Date;
   public title: string;
   public todos: TodoDto[];
 }

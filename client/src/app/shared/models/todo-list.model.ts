@@ -6,6 +6,7 @@ export class TodoList {
   updatedAt: Date;
   startedBy: Date;
   completedBy: Date;
+  completedAt: Date;
   title: string;
   todos: Todo[];
 }

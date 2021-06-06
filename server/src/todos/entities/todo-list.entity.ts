@@ -12,6 +12,9 @@ export class TodoList extends BaseEntity {
   @Column({ name: 'completed_by', nullable: false, type: 'timestamp with time zone' })
   public completedBy: Date;
 
+  @Column({ name: 'completed_at', nullable: true, type: 'timestamp with time zone' })
+  public completedAt: Date;
+
   @Column({ name: 'title', nullable: false })
   public title: string;
 

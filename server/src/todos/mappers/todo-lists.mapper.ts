@@ -10,6 +10,7 @@ export class TodoListsMapper {
       updatedAt: todoList.updatedAt,
       startedBy: todoList.startedBy,
       completedBy: todoList.completedBy,
+      completedAt: todoList.completedAt,
       title: todoList.title,
       todos: TodosMapper.toTodoDtoList(todoList.todos) || []
     } as TodoListDto;
