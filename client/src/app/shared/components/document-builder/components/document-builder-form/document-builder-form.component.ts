@@ -10,10 +10,11 @@ import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { getSectionsByTopicId, getSectionsByTopicIdSuccess, setBuilderSearchTopicSelection } from '@sn/application/modules/documents/store/actions';
 import { selectSectionsForSelectedTopic } from '@sn/application/modules/documents/store/selectors';
 import { Page } from '@sn/core/models';
-import { Section, Topic } from '@sn/shared/models';
+import { Section, Topic, Document } from '@sn/shared/models';
 import { DropAction } from '../../../../components/document-builder/models/drop-action.enum';
 
 import * as fromSelectors from '@sn/application/modules/documents/store/selectors';
+import * as fromActions from '@sn/application/modules/documents/store/actions';
 import { DocumentTopic } from '@sn/shared/models/document-topic.model';
 import { DocumentTopicSection } from '@sn/shared/models/document-topic-section.model';
 
@@ -36,6 +37,7 @@ export class DocumentBuilderFormComponent implements OnInit {
   public topicsTypeAhead$: Observable<any>;
 
   private _subscriptionSubject: Subject<any> = new Subject<any>();
+  private _documentNameChanges: Subject<string> = new Subject<any>();
   
   constructor(
     private _renderer: Renderer2,
@@ -48,6 +50,7 @@ export class DocumentBuilderFormComponent implements OnInit {
     this._initilizeForm();
     this._selectState();
     this._initializeTopicTypeAhead();
+    this._listenForDocumentNameChanges();
   }
 
   ngAfterViewInit(): void {
@@ -124,6 +127,25 @@ export class DocumentBuilderFormComponent implements OnInit {
           return of([]);
         })
       );
+  }
+
+  public documentNameChange($event): void {
+    this._documentNameChanges.next($event);
+  }
+
+  private _listenForDocumentNameChanges(): void {
+    this._documentNameChanges
+      .pipe(
+        takeUntil(this._subscriptionSubject),
+        debounceTime(500),
+        distinctUntilChanged(),
+        withLatestFrom(this._store.select(fromSelectors.selectDocumentBuilderDocument))
+      )
+      .subscribe(([name, document]) => {
+        this._store.dispatch(fromActions.setBuilderDocument({
+          document: { ...document, name: name || '' } as Document
+        }));
+      });
   }
 
   public ngOnDestroy(): void {

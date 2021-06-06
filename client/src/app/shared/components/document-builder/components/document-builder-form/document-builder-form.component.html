@@ -4,8 +4,12 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="form-group" [formGroup]="form">
-            <label for="name">Document Title</label>
-            <input formControlName="name" type="text" class="form-control" />
+            <label for="name">Document Name</label>
+            <input 
+                formControlName="name" 
+                type="text" 
+                class="form-control" 
+                (ngModelChange)="documentNameChange($event)" />
           </div>
         </div>
       </div>
