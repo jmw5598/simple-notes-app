@@ -34,20 +34,8 @@ export class CalendarEventViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.data$ = this._drawerService.onDataChange()
-      .pipe(tap(data => this.data = data
-      ));
-
-    this.responseMessage$ = this._store.select(selectUpdateCalendarEventResponseMessage)
-      .pipe(
-        tap((message: ResponseMessage) => {
-          console.log('get update event response message', message);
-          if (message) {
-            setTimeout(() => this._store.dispatch(
-              calendarActions.setUpdateCalendarEventResponseMessage({ message: null })), 3000);
-          }
-        })
-      );
+    this._listenForDrawerServiceDataChanges();
+    this._listenForUpdateCalendarEventResponseMessages();
   }
 
   public onEdit(): void {
@@ -93,5 +81,23 @@ export class CalendarEventViewComponent implements OnInit {
     date.setMinutes(time.getMinutes());
     date.setSeconds(time.getSeconds());
     return date;
+  }
+
+  private _listenForDrawerServiceDataChanges(): void {
+    this.data$ = this._drawerService.onDataChange()
+      .pipe(tap(data => this.data = data));
+  }
+
+  private _listenForUpdateCalendarEventResponseMessages(): void {
+    this.responseMessage$ = this._store.select(selectUpdateCalendarEventResponseMessage)
+      .pipe(
+        tap((message: ResponseMessage) => {
+          console.log('get update event response message', message);
+          if (message) {
+            setTimeout(() => this._store.dispatch(
+              calendarActions.setUpdateCalendarEventResponseMessage({ message: null })), 3000);
+          }
+        })
+      );
   }
 }

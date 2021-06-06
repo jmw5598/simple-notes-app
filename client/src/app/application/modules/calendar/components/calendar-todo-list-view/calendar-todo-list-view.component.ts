@@ -34,21 +34,10 @@ export class CalendarTodoListViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form = buildTodoListFormGroup(this._formBuilder);
-    this.data$ = this._drawerService.onDataChange()
-      .pipe(tap(data => this.data = data
-    ));
-
-    this.responseMessage$ = this._store.select(calendarSelectors.selectUpdateCalendarTodoListResponseMessage)
-      .pipe(
-        tap((message: ResponseMessage) => {
-          if (message) {
-            setTimeout(() => this._store.dispatch(
-              calendarActions.setUpdateCalendarTodoListResponseMessage({ message: null })), 3000);
-          }
-        })
-      );
-  }  
+    this._initializeForm();
+    this._listenForDrawerServiceDataChanges();
+    this._listenForUpdateCalendarTodoListResponseMessages();
+  }
 
   public onEdit(): void {
     if (this.calendarEventView.toLowerCase() === 'display') {
@@ -73,5 +62,27 @@ export class CalendarTodoListViewComponent implements OnInit {
 
   public onCancel(): void {
     this._drawerService.close();
+  }
+
+  private _initializeForm(): void {
+    this.form = buildTodoListFormGroup(this._formBuilder);
+  }
+
+  private _listenForDrawerServiceDataChanges(): void {
+    this.data$ = this._drawerService.onDataChange()
+      .pipe(tap(data => this.data = data
+    ));
+  }
+
+  private _listenForUpdateCalendarTodoListResponseMessages(): void {
+    this.responseMessage$ = this._store.select(calendarSelectors.selectUpdateCalendarTodoListResponseMessage)
+      .pipe(
+        tap((message: ResponseMessage) => {
+          if (message) {
+            setTimeout(() => this._store.dispatch(
+              calendarActions.setUpdateCalendarTodoListResponseMessage({ message: null })), 3000);
+          }
+        })
+      );
   }
 }
