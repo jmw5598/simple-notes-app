@@ -4,7 +4,6 @@ import { MarkdownModule } from 'ngx-markdown'
 import { SharedModule } from '@sn/shared/shared.module';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { DocumentsRoutingModule } from './documents-routing.module';
-import { DocumentBuilderComponent } from './components/document-builder/document-builder.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { ViewDocumentsComponent } from './pages/view-documents/view-documents.component';
@@ -14,7 +13,6 @@ import { DocumentViewComponent } from './components/document-view/document-view.
 
 @NgModule({
   declarations: [
-    DocumentBuilderComponent,
     ViewDocumentsComponent,
     DocumentListComponent,
     DocumentUpdateComponent,
@@ -30,7 +28,6 @@ import { DocumentViewComponent } from './components/document-view/document-view.
     MarkdownModule.forRoot()
   ],
   entryComponents: [
-    DocumentBuilderComponent,
     DocumentViewComponent
   ]
 })

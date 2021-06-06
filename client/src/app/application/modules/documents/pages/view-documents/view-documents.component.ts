@@ -40,7 +40,7 @@ export class ViewDocumentsComponent extends AbstractPageOverlayLoader implements
   }
 
   ngOnInit(): void {
-    this.selectState();
+    this._selectState();
   }
 
   public onSearchDocuments(searchTerm: string): void {
@@ -87,7 +87,7 @@ export class ViewDocumentsComponent extends AbstractPageOverlayLoader implements
     this._store.dispatch(documentActions.searchDocuments({ search: documentSearch }));
   }
 
-  private selectState(): void {
+  private _selectState(): void {
     this.searchDocumentsResult$ = this._store.select(documentSelectors.selectSearchDocumentsResult)
       .pipe(tap(() => this.isSearching = false));
     

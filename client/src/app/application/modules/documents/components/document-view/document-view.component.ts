@@ -33,7 +33,7 @@ export class DocumentViewComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.selectState();
+    this._selectState();
   }
 
   public exportToMarkdown(document: Document): void {
@@ -58,7 +58,7 @@ export class DocumentViewComponent implements OnInit, OnDestroy {
     }));
   }
 
-  private selectState(): void {
+  private _selectState(): void {
     this.documentMarkdown$ = this._store.select(fromSelectors.selectDocumentMarkdownPreview)
       .pipe(tap(document => {
         if (document) {
