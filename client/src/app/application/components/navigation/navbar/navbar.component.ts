@@ -17,13 +17,13 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _layoutService: LayoutService
+    private _layoutService: LayoutService,
+    private _window: Window
   ) { }
 
   ngOnInit(): void {
-    window.dispatchEvent(new Event('resize'));
-    this.currentLayoutSidePanelState$ = this._layoutService.onStateChanges()
-      .pipe(tap(state => this.currentLayoutSidePanelState = state));
+    this._triggerResizeEvent()
+    this._selectState();
   }
 
   toggleSideNav() {
@@ -39,6 +39,15 @@ export class NavbarComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this._currentScreenWidth = event?.target?.innerWidth;
+  }
+
+  private _triggerResizeEvent(): void {
+    this._window.dispatchEvent(new Event('resize'));
+  }
+
+  private _selectState(): void {
+    this.currentLayoutSidePanelState$ = this._layoutService.onStateChanges()
+      .pipe(tap(state => this.currentLayoutSidePanelState = state));
   }
 
   private _shouldBeClosed(): boolean {

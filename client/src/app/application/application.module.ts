@@ -52,6 +52,12 @@ import { TodoListsEffects } from './modules/todos/store/effects/todos.effects';
     ]),
     KeyboardShortcutsModule.forRoot(),
     TooltipModule.forRoot()
+  ],
+  providers: [
+    {
+      provide: Window,
+      useValue: window
+    }
   ]
 })
 export class ApplicationModule { }

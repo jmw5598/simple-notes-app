@@ -26,8 +26,7 @@ export class NavbarSideComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.currentPanelState$ = this._layoutService.onStateChanges()
-      .pipe(tap(state => this.currentLayoutSidePanelState = state));
+    this._selectState();
   }
 
   public preloadBundle(routePath: string[]): void {
@@ -47,6 +46,11 @@ export class NavbarSideComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this._currentScreenWidth = window.innerWidth;
+  }
+
+  private _selectState(): void {
+    this.currentPanelState$ = this._layoutService.onStateChanges()
+      .pipe(tap(state => this.currentLayoutSidePanelState = state));
   }
 
   private _shouldBeClosed(): boolean {

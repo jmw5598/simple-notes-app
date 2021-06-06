@@ -38,27 +38,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._store.dispatch(getKeyboardShortcuts());
-    this._drawerService.onDrawerVibilityChange()
-      .pipe(takeUntil(this._subscriptionSubject))
-      .subscribe(isDrawerVisible => this._isDrawerVisible = isDrawerVisible);
-      
-    this._store.select(selectKeyboardShortcuts)
-      .pipe(takeUntil(this._subscriptionSubject))
-      .subscribe(shortcuts => {
-        if (!shortcuts) return;
-        this.shortcuts = shortcuts.map(shortcut => {
-          const command: Function = this._determineCommand(shortcut.action);
-          return {
-            key: shortcut.shortcut || shortcut.defaultShortcut,
-            label: shortcut.action,
-            description: shortcut.description,
-            preventDefault: true,
-            allowIn: [AllowIn.Textarea, AllowIn.Input, AllowIn.Select],
-            command: command
-          } as ShortcutInput
-        });
-      });
+    this._dispatchActions();
+    this._selectState();
   }
 
   public onCreateNewTopic(): void {
@@ -161,6 +142,33 @@ export class ToolbarComponent implements OnInit, OnDestroy {
       case KeyboardShortcutActionType.CREATE_TODO_LIST:
         return (e) => this.onCreateTodoList();
     }
+  }
+
+  private _dispatchActions(): void {
+    this._store.dispatch(getKeyboardShortcuts());
+  }
+
+  private _selectState(): void {
+    this._drawerService.onDrawerVibilityChange()
+      .pipe(takeUntil(this._subscriptionSubject))
+      .subscribe(isDrawerVisible => this._isDrawerVisible = isDrawerVisible);
+      
+    this._store.select(selectKeyboardShortcuts)
+      .pipe(takeUntil(this._subscriptionSubject))
+      .subscribe(shortcuts => {
+        if (!shortcuts) return;
+        this.shortcuts = shortcuts.map(shortcut => {
+          const command: Function = this._determineCommand(shortcut.action);
+          return {
+            key: shortcut.shortcut || shortcut.defaultShortcut,
+            label: shortcut.action,
+            description: shortcut.description,
+            preventDefault: true,
+            allowIn: [AllowIn.Textarea, AllowIn.Input, AllowIn.Select],
+            command: command
+          } as ShortcutInput
+        });
+      });
   }
 
   ngOnDestroy(): void {
