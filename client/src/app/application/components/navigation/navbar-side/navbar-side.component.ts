@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LayoutService, LayoutSidePanelState } from '@sn/shared/components'
 import { NavigationRouteLink, NAVIGATION_ROUTES } from './navigation.routes';
@@ -22,7 +23,8 @@ export class NavbarSideComponent implements OnInit {
 
   constructor(
     private _layoutService: LayoutService,
-    private _onDemandPreloadService: OnDemandPreloadService
+    private _onDemandPreloadService: OnDemandPreloadService,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -41,6 +43,12 @@ export class NavbarSideComponent implements OnInit {
     } else {
       this._layoutService.changeState(LayoutSidePanelState.OPEN);
     }
+  }
+
+  public navigateTo(routerLink: string | string[]): void {
+    if (this.currentLayoutSidePanelState === LayoutSidePanelState.OPEN && this._shouldBeClosed()) {
+      this._layoutService.changeState(LayoutSidePanelState.CLOSE);
+    } 
   }
 
   @HostListener('window:resize', ['$event'])

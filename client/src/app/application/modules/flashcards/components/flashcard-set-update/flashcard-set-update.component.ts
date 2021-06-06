@@ -33,10 +33,10 @@ export class FlashcardSetUpdateComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.initializeFlashcardSetBuilderForm();
-    this.selectState();
-    this.syncFlashcardSetBuilderStateWithForm();
-    this.syncFormChangesWithFlashcardState();
+    this._initializeFlashcardSetBuilderForm();
+    this._selectState();
+    this._syncFlashcardSetBuilderStateWithForm();
+    this._syncFormChangesWithFlashcardState();
   }
 
   public onClose(): void {
@@ -57,7 +57,7 @@ export class FlashcardSetUpdateComponent implements OnInit, OnDestroy {
     }));
   }
 
-  private initializeFlashcardSetBuilderForm(): void {
+  private _initializeFlashcardSetBuilderForm(): void {
     this.form = this._formBuilder.group({
       id: ['', [Validators.required]],
       title: ['', [Validators.required]],
@@ -66,7 +66,7 @@ export class FlashcardSetUpdateComponent implements OnInit, OnDestroy {
     });
   }
 
-  private selectState(): void {
+  private _selectState(): void {
     this.flashcardSetBuilder$ = this._store.select(flashcardSelectors.selectFlashcardSetBuilder);
     this.responseMessage$ = this._store.select(flashcardSelectors.selectUpdateFlashcardSetResponseMessage)
       .pipe(
@@ -83,7 +83,7 @@ export class FlashcardSetUpdateComponent implements OnInit, OnDestroy {
       );
   }
 
-  private syncFormChangesWithFlashcardState(): void {
+  private _syncFormChangesWithFlashcardState(): void {
     this.form.valueChanges
       .pipe(
         takeUntil(this._subscriptionSubject),
@@ -105,21 +105,21 @@ export class FlashcardSetUpdateComponent implements OnInit, OnDestroy {
       })
   }
 
-  private syncFlashcardSetBuilderStateWithForm(): void {
+  private _syncFlashcardSetBuilderStateWithForm(): void {
     this._store.select(flashcardSelectors.selectFlashcardSetBuilder)
       .pipe(takeUntil(this._subscriptionSubject))
       .subscribe(flashcardSet => {
         this.flashcardSetBuilder = flashcardSet;
-        this.patchInputFieldValuesToForm(flashcardSet);
-        this.patchFlashcardsToForm(flashcardSet);
+        this._patchInputFieldValuesToForm(flashcardSet);
+        this._patchFlashcardsToForm(flashcardSet);
       });
   }
 
-  private patchInputFieldValuesToForm(flashcardSet: FlashcardSet): void {
+  private _patchInputFieldValuesToForm(flashcardSet: FlashcardSet): void {
     this.form.patchValue({ ...flashcardSet });
   }
 
-  private patchFlashcardsToForm(flashcardSet: FlashcardSet): void {
+  private _patchFlashcardsToForm(flashcardSet: FlashcardSet): void {
     const flashcardsArray = this._formBuilder.array([]);
     flashcardSet?.flashcards
       .forEach(flashcard => {

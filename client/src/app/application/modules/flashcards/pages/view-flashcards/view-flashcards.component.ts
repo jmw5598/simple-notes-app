@@ -43,7 +43,7 @@ export class ViewFlashcardsComponent extends AbstractPageOverlayLoader implement
   ngOnInit(): void {
     this.searchFlashcardSetsResult$ = this._store.select(flashcardsSelectors.selectSearchFlashcardSetsResult)
       .pipe(tap(() => this.isSearching = false));
-    this.listenForDeleteFlashcardSetResponseMessage();
+    this._listenForDeleteFlashcardSetResponseMessage();
   }
 
   public onCreate(): void {
@@ -90,7 +90,7 @@ export class ViewFlashcardsComponent extends AbstractPageOverlayLoader implement
     this._store.dispatch(flashcardsActions.searchFlashcardSets({ search: search }));
   }
 
-  public listenForDeleteFlashcardSetResponseMessage(): void {
+  public _listenForDeleteFlashcardSetResponseMessage(): void {
     this._store.select(flashcardsSelectors.selectDeleteFlashcardSetResponseMessage)
       .pipe(takeUntil(this._subscriptionSubject))
       .subscribe(message => {
