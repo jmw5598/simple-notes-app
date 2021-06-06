@@ -32,12 +32,24 @@ export class AccountSettingsComponent extends AbstractPageOverlayLoader implemen
   }
 
   ngOnInit(): void {
-    this.accountProfile$ = this._store.select(selectAccountProfile);
-    this.accountDetails$ = this._store.select(selectAccountDetails);
+    this._selectState();
   }
 
   ngAfterViewInit(): void {
     super.ngAfterViewInit();
+    this._handleActiveTabRestore();
+  }
+
+  public navigateTo(route: string): void {
+    this._router.navigateByUrl(`/accounts/settings/${route}`);
+  }
+
+  private _selectState(): void {
+    this.accountProfile$ = this._store.select(selectAccountProfile);
+    this.accountDetails$ = this._store.select(selectAccountDetails);
+  }
+
+  private _handleActiveTabRestore(): void {
     setTimeout(() => {
       const currentTab: UrlSegment = this._route.firstChild.snapshot.url[0];
       const tab = this.tabs?.tabs?.find(e => e.id === currentTab.path.toLowerCase());
@@ -45,9 +57,5 @@ export class AccountSettingsComponent extends AbstractPageOverlayLoader implemen
         tab.active = true;
       }
     });
-  }
-
-  public navigateTo(route: string): void {
-    this._router.navigateByUrl(`/accounts/settings/${route}`);
   }
 }

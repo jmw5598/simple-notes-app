@@ -40,19 +40,8 @@ export class AccountSettingsGeneralComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userSettings$ = this._store.select(selectAuthenticatedUserSettings);
-    this.themes$ = this._store.select(selectThemes).pipe(tap(themes => this.activeTheme = themes[0]));
-    this.accountDetails$ = this._store.select(selectAccountDetails);
-    this.accountProfile$ = this._store.select(selectAccountProfile).pipe(
-      tap((profile: Profile) => {
-        if (profile) {
-          this.form.get('profile').patchValue(profile);
-        }
-      })
-    );
-    this.form = this._formBuilder.group({
-      profile: buildProfileFormGroup(this._formBuilder, this._accountValidators)
-    });
+    this._selectState();
+    this._initializeForm();
   }
 
   public onEditingProfile(isEditingProfile: boolean): void {
@@ -68,5 +57,24 @@ export class AccountSettingsGeneralComponent implements OnInit {
     this.activeTheme = theme;
     this._themeService.loadStyle(theme.filename);
     this._store.dispatch(changeAccountTheme({ theme: theme }));
+  }
+
+  private _selectState(): void {
+    this.userSettings$ = this._store.select(selectAuthenticatedUserSettings);
+    this.themes$ = this._store.select(selectThemes).pipe(tap(themes => this.activeTheme = themes[0]));
+    this.accountDetails$ = this._store.select(selectAccountDetails);
+    this.accountProfile$ = this._store.select(selectAccountProfile).pipe(
+      tap((profile: Profile) => {
+        if (profile) {
+          this.form.get('profile').patchValue(profile);
+        }
+      })
+    );
+  }
+
+  private _initializeForm(): void {
+    this.form = this._formBuilder.group({
+      profile: buildProfileFormGroup(this._formBuilder, this._accountValidators)
+    });
   }
 }

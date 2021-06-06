@@ -34,31 +34,9 @@ export class ConfigureKeyboardShortcutComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.responseMessage$ = this._store.select(selectKeyboardShortcutResponseMessage)
-      .pipe(tap(message => {
-        if (message) {          
-          setTimeout(() => {
-            this._store.dispatch(setKeyboardShortcutResponseMessage({ message: null }))
-          }, 3000)
-        }
-      }));
-
-    this.shortcutForm = this._formBuilder.group({
-      modifier: ['', [Validators.required]],
-      key: ['', [Validators.required, Validators.maxLength(1)]]
-    });
-
-    this.shortcut$ = this._drawerService.onDataChange()
-      .pipe(tap(data => {
-        if (data && data.shortcut) { 
-          this.shortcut = { ...data.shortcut } as KeyboardShortcutAction
-          // if shortcut action has shortcut (shortcutId) patch values through to form.
-          if (data.shortcut.shortcutId) {
-            const [modifier, key] = data.shortcut.shortcut.split(' + ');
-            this.shortcutForm.patchValue({ modifier, key });
-          }
-        }
-      }));
+    this._listenForKeyboardShortcutResponseMessages();
+    this._listenForDrawerServiceDataChanges();
+    this._initializeForm();
   }
 
   public addAdditionalModifier(): void {
@@ -85,6 +63,38 @@ export class ConfigureKeyboardShortcutComponent implements OnInit, OnDestroy {
     this._store.dispatch(deleteKeyboardShortcut({ shortcutId: this.shortcut.shortcutId }));
     this.shortcut.shortcutId = null;
     this.shortcut.shortcut = this.shortcut.defaultShortcut;
+  }
+
+  private _listenForKeyboardShortcutResponseMessages(): void {
+    this.responseMessage$ = this._store.select(selectKeyboardShortcutResponseMessage)
+      .pipe(tap(message => {
+        if (message) {          
+          setTimeout(() => {
+            this._store.dispatch(setKeyboardShortcutResponseMessage({ message: null }))
+          }, 3000)
+        }
+      }));
+  }
+  
+  private _listenForDrawerServiceDataChanges(): void {
+    this.shortcut$ = this._drawerService.onDataChange()
+      .pipe(tap(data => {
+        if (data && data.shortcut) { 
+          this.shortcut = { ...data.shortcut } as KeyboardShortcutAction
+          // if shortcut action has shortcut (shortcutId) patch values through to form.
+          if (data.shortcut.shortcutId) {
+            const [modifier, key] = data.shortcut.shortcut.split(' + ');
+            this.shortcutForm.patchValue({ modifier, key });
+          }
+        }
+      }));
+  }
+
+  private _initializeForm(): void {
+    this.shortcutForm = this._formBuilder.group({
+      modifier: ['', [Validators.required]],
+      key: ['', [Validators.required, Validators.maxLength(1)]]
+    });
   }
 
   ngOnDestroy(): void {
