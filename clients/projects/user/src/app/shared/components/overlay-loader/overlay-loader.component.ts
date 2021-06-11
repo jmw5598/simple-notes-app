@@ -6,7 +6,7 @@ import { OverlayLoaderService } from './overlay-loader.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'sn-overlay-loader',
+  selector: 'sn-user-overlay-loader',
   templateUrl: './overlay-loader.component.html',
   styleUrls: ['./overlay-loader.component.scss'],
   animations: [fadeAnimation]

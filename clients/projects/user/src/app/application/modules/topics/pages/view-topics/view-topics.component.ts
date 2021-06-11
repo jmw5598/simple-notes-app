@@ -15,7 +15,7 @@ import { ResponseStatus } from '@sn/user/core/enums';
 import { AbstractPageOverlayLoader ,DrawerLocation,DrawerService,OverlayLoaderService, TopicCreateComponent } from '@sn/user/shared/components';
 
 @Component({
-  selector: 'sn-view-topics',
+  selector: 'sn-user-view-topics',
   templateUrl: './view-topics.component.html',
   styleUrls: ['./view-topics.component.scss'],
   providers: [DrawerService],

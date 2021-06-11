@@ -33,34 +33,34 @@
           </button>
         </span>
         <span class="float-right" style="margin-top: -3px">
-          <sn-debounced-search
+          <sn-user-debounced-search
               style="display: inline"
               debounceTime="500"
               [isSearching]="isSearching"
               (onSearch)="onSearchSections($event)">
-          </sn-debounced-search>
+          </sn-user-debounced-search>
         </span>
       </h4>
       <div class="">
-        <sn-section-list
+        <sn-user-section-list
             [sections]="(searchSectionsResult$ | async)?.elements"
             (onDelete)="onDeleteSection($event)"
             (onEdit)="onEditSectionDetails($event)"
             (onCreate)="onCreateSection($event)">
-        </sn-section-list>
+        </sn-user-section-list>
         <div class="p-3">
-          <sn-paginator
+          <sn-user-paginator
               [page]="(searchSectionsResult$ | async)"
               (onNextPage)="onGoToPage($event)"
               (onPreviousPage)="onGoToPage($event)"
               (onGoToPage)="onGoToPage($event)">
-          </sn-paginator>
+          </sn-user-paginator>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<sn-drawer
+<sn-user-drawer
     [drawerLocation]="DrawerLocation.RIGHT">
-</sn-drawer>
+</sn-user-drawer>

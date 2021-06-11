@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Section } from '@sn/user/shared/models';
 
 @Component({
-  selector: 'sn-section-list',
+  selector: 'sn-user-section-list',
   templateUrl: './section-list.component.html',
   styleUrls: ['./section-list.component.scss']
 })

@@ -5,7 +5,7 @@ import { LayoutSidePanelState } from './layout-side-panel-state.enum';
 import { LayoutService } from './layout.service';
 
 @Component({
-  selector: 'sn-layout',
+  selector: 'sn-user-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })

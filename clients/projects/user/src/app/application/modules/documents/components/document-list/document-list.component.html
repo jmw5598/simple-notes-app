@@ -1,8 +1,8 @@
 <div *ngIf="!documents || documents.length === 0" class="documents-no-data p-3 border-bottom-1">
-  <sn-empty-data 
+  <sn-user-empty-data 
       message="No documents found!"
       [extraContent]="createNewButton">
-  </sn-empty-data>
+  </sn-user-empty-data>
   <ng-template #createNewButton>
     <button 
         (click)="create()" 

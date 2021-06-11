@@ -4,7 +4,7 @@ export type ToolbarDockLocation = 'top' | 'bottom';
 export type ToolbarDockTogglerLocation = 'start' | 'end' | 'center';
 
 @Component({
-  selector: 'sn-toolbar-dock',
+  selector: 'sn-user-toolbar-dock',
   templateUrl: './toolbar-dock.component.html',
   styleUrls: ['./toolbar-dock.component.scss']
 })

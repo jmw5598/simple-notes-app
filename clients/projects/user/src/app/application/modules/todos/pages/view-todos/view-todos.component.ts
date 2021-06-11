@@ -16,7 +16,7 @@ import { TodoListViewComponent } from '../../components/todo-list-view/todo-list
 import { TodoListEditComponent } from '../../components/todo-list-edit/todo-list-edit.component';
 
 @Component({
-  selector: 'sn-view-todos',
+  selector: 'sn-user-view-todos',
   templateUrl: './view-todos.component.html',
   styleUrls: ['./view-todos.component.scss'],
   animations: [fadeAnimation]

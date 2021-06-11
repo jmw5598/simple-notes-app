@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Account, Profile } from '@sn/user/core/models';
 
 @Component({
-  selector: 'sn-account-user-card',
+  selector: 'sn-user-account-user-card',
   templateUrl: './account-user-card.component.html',
   styleUrls: ['./account-user-card.component.scss']
 })

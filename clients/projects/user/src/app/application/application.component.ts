@@ -4,7 +4,7 @@ import { LayoutSidePanelState } from '@sn/user/shared/components';
 import { OverlayLoaderStyle, OverlaySpinnerSize } from '@sn/user/shared/components';
 
 @Component({
-  selector: 'sn-application',
+  selector: 'sn-user-application',
   templateUrl: './application.component.html',
   styleUrls: ['./application.component.scss'],
   animations: [fadeAnimation]

@@ -25,12 +25,12 @@
     </span>
   </p>
   <div class="todo-list-progress-container my-2">
-    <sn-todo-list-progress [todoList]="todoList"></sn-todo-list-progress>
+    <sn-user-todo-list-progress [todoList]="todoList"></sn-user-todo-list-progress>
   </div>
   <div [@slideUpDownAnimation]="{ value: isTodoListVisible ? 'up' : 'down' }" class="mt-3">
-    <sn-todos-form 
+    <sn-user-todos-form 
         [todos]="todoList?.todos"
         (onUpdate)="onUpdateTodos($event)">
-    </sn-todos-form>
+    </sn-user-todos-form>
   </div>
 </div>

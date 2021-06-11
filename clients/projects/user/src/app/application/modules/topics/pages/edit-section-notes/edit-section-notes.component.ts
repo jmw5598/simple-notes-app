@@ -16,7 +16,7 @@ import { DEFAULT_EDITOR_OPTIONS } from '@sn/user/core/defaults';
 import { AbstractPageOverlayLoader ,OverlayLoaderService } from '@sn/user/shared/components';
 
 @Component({
-  selector: 'sn-edit-section-notes',
+  selector: 'sn-user-edit-section-notes',
   templateUrl: './edit-section-notes.component.html',
   styleUrls: ['./edit-section-notes.component.scss'],
   animations: [fadeAnimation]

@@ -4,7 +4,7 @@ import { FormArray, FormGroup, ControlContainer } from '@angular/forms';
 import { Permission } from '@sn/user/shared/models';
 
 @Component({
-  selector: 'sn-topic-form',
+  selector: 'sn-user-topic-form',
   templateUrl: './topic-form.component.html',
   styleUrls: ['./topic-form.component.scss']
 })

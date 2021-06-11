@@ -6,7 +6,7 @@ export enum FlipAxis {
 }
 
 @Component({
-  selector: 'sn-flipcard',
+  selector: 'sn-user-flipcard',
   templateUrl: './flipcard.component.html',
   styleUrls: ['./flipcard.component.scss']
 })

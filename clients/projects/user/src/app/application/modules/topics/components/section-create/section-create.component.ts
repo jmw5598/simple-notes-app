@@ -13,7 +13,7 @@ import { createSection, setCreateSectionResponseMessage } from '../../store/acti
 import { showHide } from '@sn/user/shared/animations';
 
 @Component({
-  selector: 'sn-section-create',
+  selector: 'sn-user-section-create',
   templateUrl: './section-create.component.html',
   styleUrls: ['./section-create.component.scss'],
   animations: [showHide]

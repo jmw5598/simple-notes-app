@@ -19,7 +19,7 @@ import { DocumentTopic } from '@sn/user/shared/models/document-topic.model';
 import { DocumentTopicSection } from '@sn/user/shared/models/document-topic-section.model';
 
 @Component({
-  selector: 'sn-document-builder-form',
+  selector: 'sn-user-document-builder-form',
   templateUrl: './document-builder-form.component.html',
   styleUrls: ['./document-builder-form.component.scss']
 })

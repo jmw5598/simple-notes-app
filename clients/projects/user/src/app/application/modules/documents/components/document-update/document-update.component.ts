@@ -13,7 +13,7 @@ import * as documentSelectors from '@sn/user/application/modules/documents/store
 import * as documentActions from '@sn/user/application/modules/documents/store/actions';
 
 @Component({
-  selector: 'sn-document-update',
+  selector: 'sn-user-document-update',
   templateUrl: './document-update.component.html',
   styleUrls: ['./document-update.component.scss'],
   animations: [showHide]

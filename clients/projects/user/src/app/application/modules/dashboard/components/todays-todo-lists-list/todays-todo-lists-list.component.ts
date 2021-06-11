@@ -6,7 +6,7 @@ import { IDashboardState } from '../../store/reducers';
 import * as dashboardActions from '../../store/actions';
 
 @Component({
-  selector: 'sn-todays-todo-lists-list',
+  selector: 'sn-user-todays-todo-lists-list',
   templateUrl: './todays-todo-lists-list.component.html',
   styleUrls: ['./todays-todo-lists-list.component.scss']
 })

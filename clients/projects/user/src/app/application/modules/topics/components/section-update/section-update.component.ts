@@ -13,7 +13,7 @@ import { updateSection } from '../../store/actions';
 import { showHide } from '@sn/user/shared/animations';
 
 @Component({
-  selector: 'sn-section-update',
+  selector: 'sn-user-section-update',
   templateUrl: './section-update.component.html',
   styleUrls: ['./section-update.component.scss'],
   animations: [showHide]

@@ -5,7 +5,7 @@
       <ng-container [ngSwitch]="step">
         <div *ngSwitchCase="RegistrationStep.USER">
           <h4 style="font-weight: bold;" class="text- mt-4 mb-3">User Details</h4>
-          <sn-registration-user-form></sn-registration-user-form>
+          <sn-user-registration-user-form></sn-user-registration-user-form>
           <div>
             <div class="steps-action">
               <button class="btn btn-outline-primary" type="button" [disabled]="form.get('user').invalid" (click)="next()" *ngIf="currentStep < 2">
@@ -16,7 +16,7 @@
         </div>
         <div *ngSwitchCase="RegistrationStep.PROFILE">
           <h4 style="font-weight: bold;" class="text- mt-4 mb-3">Profile Details</h4>
-          <sn-registration-profile-form></sn-registration-profile-form>
+          <sn-user-registration-profile-form></sn-user-registration-profile-form>
           <div>
             <div class="steps-action">
               <button class="btn btn-outline-primary" type="button" (click)="pre()" *ngIf="currentStep > 0 && currentStep < 3">
@@ -30,7 +30,7 @@
         </div>
         <div *ngSwitchCase="RegistrationStep.ACCOUNT">
           <h4 style="font-weight: bold;" class="text- mt-4 mb-3">Account Type</h4>
-          <sn-registration-account-form [plans]="plans"></sn-registration-account-form>
+          <sn-user-registration-account-form [plans]="plans"></sn-user-registration-account-form>
           <div>
             <div class="steps-action">
               <button class="btn btn-outline-primary" type="button" (click)="pre()" *ngIf="currentStep > 0 && currentStep < 3">
@@ -43,7 +43,7 @@
           </div>
         </div>
         <div *ngSwitchCase="RegistrationStep.FINISH">
-          <sn-registration-result [result]="registrationResult"></sn-registration-result>
+          <sn-user-registration-result [result]="registrationResult"></sn-user-registration-result>
         </div>
       </ng-container>
     </div>

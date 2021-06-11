@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 type CalendarEventCreateView = 'menu' | 'event' | 'todo-list';
 
 @Component({
-  selector: 'sn-calendar-event-create-menu',
+  selector: 'sn-user-calendar-event-create-menu',
   templateUrl: './calendar-event-create-menu.component.html',
   styleUrls: ['./calendar-event-create-menu.component.scss']
 })

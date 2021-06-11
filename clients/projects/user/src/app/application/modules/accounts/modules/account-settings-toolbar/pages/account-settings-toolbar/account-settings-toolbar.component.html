@@ -4,15 +4,15 @@
   <div class="card calendar-integration-container">
     <div class="card-body">
       <h5 class="font-weight-bold mb-3">Keyboard Shortcuts</h5>
-      <sn-toolbar-keyboard-shortcut-list
+      <sn-user-toolbar-keyboard-shortcut-list
           [shortcuts]="shortcuts$ | async"
           (onDeleteShortcut)="onDeleteShortcut($event)"
           (onConfigureShortcut)="onConfigureShortcut($event)">
-      </sn-toolbar-keyboard-shortcut-list>
+      </sn-user-toolbar-keyboard-shortcut-list>
     </div>
   </div>
 </div>
 
-<sn-drawer
+<sn-user-drawer
     [drawerLocation]="DrawerLocation.RIGHT">
-</sn-drawer>
+</sn-user-drawer>

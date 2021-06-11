@@ -16,7 +16,7 @@ import { OverlayContentService } from '@sn/user/shared/components/overlay-conten
 import { takeUntil, tap } from 'rxjs/operators';
 
 @Component({
-  selector: 'sn-view-flashcards',
+  selector: 'sn-user-view-flashcards',
   templateUrl: './view-flashcards.component.html',
   styleUrls: ['./view-flashcards.component.scss'],
   providers: [OverlayContentService],

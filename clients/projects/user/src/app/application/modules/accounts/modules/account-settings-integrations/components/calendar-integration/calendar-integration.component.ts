@@ -3,7 +3,7 @@ import { CalendarIntegration, CalendarIntegrationState, IntegrationStatus } from
 import { CalendarIntegrationType } from '@sn/user/core/models';
 
 @Component({
-  selector: 'sn-calendar-integration',
+  selector: 'sn-user-calendar-integration',
   templateUrl: './calendar-integration.component.html',
   styleUrls: ['./calendar-integration.component.scss']
 })

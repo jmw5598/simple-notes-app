@@ -9,7 +9,7 @@ import { tap } from 'rxjs/operators';
 import { FlashcardSetViewerControlsService } from '@sn/user/shared/components/flashcard-set-viewer/services/flashcard-set-viewer-controls.service';
 
 @Component({
-  selector: 'sn-flashcard-set-view',
+  selector: 'sn-user-flashcard-set-view',
   templateUrl: './flashcard-set-view.component.html',
   styleUrls: ['./flashcard-set-view.component.scss'],
   providers: [FlashcardSetViewerControlsService]

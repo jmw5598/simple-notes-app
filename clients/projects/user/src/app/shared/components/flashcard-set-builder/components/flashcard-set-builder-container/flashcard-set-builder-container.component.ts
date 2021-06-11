@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'sn-flashcard-set-builder-container',
+  selector: 'sn-user-flashcard-set-builder-container',
   templateUrl: './flashcard-set-builder-container.component.html',
   styleUrls: ['./flashcard-set-builder-container.component.scss']
 })

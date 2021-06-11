@@ -14,7 +14,7 @@ import { showHide } from '@sn/user/shared/animations';
 import { ResponseStatus } from '@sn/user/core/enums';
 
 @Component({
-  selector: 'sn-configure-keyboard-shortcut',
+  selector: 'sn-user-configure-keyboard-shortcut',
   templateUrl: './configure-keyboard-shortcut.component.html',
   styleUrls: ['./configure-keyboard-shortcut.component.scss'],
   animations: [showHide]

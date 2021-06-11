@@ -20,21 +20,21 @@
           </div>
         </li>
         <li>
-          <sn-todo-list-progress [todoList]="form?.value"></sn-todo-list-progress>
+          <sn-user-todo-list-progress [todoList]="form?.value"></sn-user-todo-list-progress>
         </li>     
       </ul>
       <form [formGroup]="form" novalidate>
         <div class="form-group" formArrayName="todos">
           <ng-container *ngFor="let todoControl of form.get('todos')['controls']">
             <div [formGroup]="todoControl">
-              <sn-checkbox
+              <sn-user-checkbox
                 shape="rounded"
                 color="primary"
                 size="xsmall"
                 formControlName="isComplete"
                 [value]="todoControl?.value?.isComplete"
                 [label]="todoControl?.value?.description">
-              </sn-checkbox>
+              </sn-user-checkbox>
             </div>
           </ng-container>
         </div>

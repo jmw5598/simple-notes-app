@@ -10,7 +10,7 @@ import { DEFAULT_DRAWER_OPTIONS } from './drawer-options.defaults';
 import { DrawerSize } from './drawer-size.enum';
 
 @Component({
-  selector: 'sn-drawer',
+  selector: 'sn-user-drawer',
   templateUrl: './drawer.component.html',
   styleUrls: ['./drawer.component.scss'],
   animations: [fadeAnimation]

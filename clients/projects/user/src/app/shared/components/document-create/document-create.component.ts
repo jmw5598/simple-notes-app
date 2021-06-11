@@ -13,7 +13,7 @@ import * as documentSelectors from '@sn/user/application/modules/documents/store
 import * as documentActions from '@sn/user/application/modules/documents/store/actions';
 
 @Component({
-  selector: 'sn-document-create',
+  selector: 'sn-user-document-create',
   templateUrl: './document-create.component.html',
   styleUrls: ['./document-create.component.scss'],
   animations: [showHide]

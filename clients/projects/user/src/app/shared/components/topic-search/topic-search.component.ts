@@ -14,7 +14,7 @@ import { searchTopicsFromDrawer, searchTopicsFromDrawerResult } from '@sn/user/a
 import { DrawerService } from '../drawer/drawer.service';
 
 @Component({
-  selector: 'sn-topic-search',
+  selector: 'sn-user-topic-search',
   templateUrl: './topic-search.component.html',
   styleUrls: ['./topic-search.component.scss'],
   animations: [fadeAnimation]

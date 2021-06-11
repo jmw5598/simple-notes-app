@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators';
 import { OnDemandPreloadService } from '@sn/user/core/preloading-strategies';
 
 @Component({
-  selector: 'sn-navbar-side',
+  selector: 'sn-user-navbar-side',
   templateUrl: './navbar-side.component.html',
   styleUrls: ['./navbar-side.component.scss']
 })

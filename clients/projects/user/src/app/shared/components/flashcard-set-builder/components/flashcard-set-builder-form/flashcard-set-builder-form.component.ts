@@ -5,7 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import { FlashcardSetBuilderService } from '../../services/flashcard-set-builder.service';
 
 @Component({
-  selector: 'sn-flashcard-set-builder-form',
+  selector: 'sn-user-flashcard-set-builder-form',
   templateUrl: './flashcard-set-builder-form.component.html',
   styleUrls: ['./flashcard-set-builder-form.component.scss']
 })

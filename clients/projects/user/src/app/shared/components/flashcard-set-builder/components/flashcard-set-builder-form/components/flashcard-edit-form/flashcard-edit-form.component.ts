@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'sn-flashcard-edit-form',
+  selector: 'sn-user-flashcard-edit-form',
   templateUrl: './flashcard-edit-form.component.html',
   styleUrls: ['./flashcard-edit-form.component.scss']
 })

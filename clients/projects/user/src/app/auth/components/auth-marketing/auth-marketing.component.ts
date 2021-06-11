@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'sn-auth-marketing',
+  selector: 'sn-user-auth-marketing',
   templateUrl: './auth-marketing.component.html',
   styleUrls: ['./auth-marketing.component.scss']
 })

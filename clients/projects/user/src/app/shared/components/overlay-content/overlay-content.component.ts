@@ -7,7 +7,7 @@ import { OverlayContentOptions } from './overlay-content-options.model';
 import { OverlayContentService } from './overlay-content.service';
 
 @Component({
-  selector: 'sn-overlay-content',
+  selector: 'sn-user-overlay-content',
   templateUrl: './overlay-content.component.html',
   styleUrls: ['./overlay-content.component.scss'],
   animations: [fadeAnimation]

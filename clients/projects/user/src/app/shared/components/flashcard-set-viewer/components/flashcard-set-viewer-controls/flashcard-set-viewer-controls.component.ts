@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FlashcardSetViewerControlsService } from '../../services/flashcard-set-viewer-controls.service';
 
 @Component({
-  selector: 'sn-flashcard-set-viewer-controls',
+  selector: 'sn-user-flashcard-set-viewer-controls',
   templateUrl: './flashcard-set-viewer-controls.component.html',
   styleUrls: ['./flashcard-set-viewer-controls.component.scss']
 })

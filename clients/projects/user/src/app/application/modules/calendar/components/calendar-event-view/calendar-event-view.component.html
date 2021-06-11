@@ -1,9 +1,9 @@
 <div>
   <ng-container [ngSwitch]="calendarEventView">
     <ng-container *ngSwitchCase="'display'">
-      <sn-calendar-event-details
+      <sn-user-calendar-event-details
           [event]="data$ | async">
-      </sn-calendar-event-details>
+      </sn-user-calendar-event-details>
       <div class="form-group text-right mx-2">
         <button 
             class="btn btn-primary mr-2" 
@@ -29,10 +29,10 @@
     </ng-container>
     <ng-container *ngSwitchCase="'edit'">
       <form [formGroup]="form" (ngSubmit)="onUpdate(form.value)" novalidate>
-        <sn-calendar-event-update 
+        <sn-user-calendar-event-update 
             [event]="data$ | async"
             [responseMessage]="responseMessage$ | async">
-        </sn-calendar-event-update>
+        </sn-user-calendar-event-update>
         <div class="form-group text-right mx-2">
           <button 
               class="btn btn-primary mr-2" 

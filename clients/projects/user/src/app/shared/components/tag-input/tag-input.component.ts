@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'sn-tag-input',
+  selector: 'sn-user-tag-input',
   templateUrl: './tag-input.component.html',
   styleUrls: ['./tag-input.component.scss']
 })

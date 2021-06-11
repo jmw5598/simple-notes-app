@@ -9,7 +9,7 @@ import * as flashcardSelectors from '@sn/user/application/modules/flashcards/sto
 import { IFlashcardsState } from '@sn/user/application/modules/flashcards/store/reducers';
 
 @Component({
-  selector: 'sn-flashcard-set',
+  selector: 'sn-user-flashcard-set',
   templateUrl: './flashcard-set.component.html',
   styleUrls: ['./flashcard-set.component.scss']
 })

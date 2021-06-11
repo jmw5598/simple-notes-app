@@ -1,17 +1,17 @@
-<sn-layout [@fadeAnimation] [defaultState]="LayoutSidePanelState.COLLAPSE">
+<sn-user-layout [@fadeAnimation] [defaultState]="LayoutSidePanelState.COLLAPSE">
   <div container="sidePanel">
-    <sn-navbar-side></sn-navbar-side>
+    <sn-user-navbar-side></sn-user-navbar-side>
   </div>
   <div container="navigationBar">
-    <sn-navigation></sn-navigation>
-    <sn-global-toolbar></sn-global-toolbar>
+    <sn-user-navigation></sn-user-navigation>
+    <sn-user-global-toolbar></sn-user-global-toolbar>
   </div>
   <div container="mainContent">
     <router-outlet></router-outlet>
   </div>
-</sn-layout>
+</sn-user-layout>
 
-<sn-overlay-loader
+<sn-user-overlay-loader
     [overlayStyle]="OverlayLoaderStyle.DIM_LIGHT"
     [spinnerSize]="OverlaySpinnerSize.SMALL">
-</sn-overlay-loader>
+</sn-user-overlay-loader>

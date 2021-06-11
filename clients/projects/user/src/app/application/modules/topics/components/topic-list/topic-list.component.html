@@ -1,8 +1,8 @@
 <div *ngIf="!topics || topics.length === 0" class="topics-no-data p-3 border-bottom-1">
-  <sn-empty-data 
+  <sn-user-empty-data 
       message="No topics found!"
       [extraContent]="createNewButton">
-  </sn-empty-data>
+  </sn-user-empty-data>
   <ng-template #createNewButton>
     <a (click)="create($event)" class="btn btn-success text-light">Create a topic</a>
   </ng-template>

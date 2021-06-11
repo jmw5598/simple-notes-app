@@ -16,7 +16,7 @@ import { showHide } from '@sn/user/shared/animations';
 
 
 @Component({
-  selector: 'sn-todo-list-create',
+  selector: 'sn-user-todo-list-create',
   templateUrl: './todo-list-create.component.html',
   styleUrls: ['./todo-list-create.component.scss'],
   animations: [showHide]

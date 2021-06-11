@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, ControlContainer } from '@angular/forms';
 
 @Component({
-  selector: 'sn-registration-profile-form',
+  selector: 'sn-user-registration-profile-form',
   templateUrl: './registration-profile-form.component.html',
   styleUrls: ['./registration-profile-form.component.scss']
 })

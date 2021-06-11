@@ -6,7 +6,7 @@ import { IDashboardState } from '../../store/reducers';
 import * as dashboardActions from '../../store/actions';
 
 @Component({
-  selector: 'sn-past-due-todo-lists-list',
+  selector: 'sn-user-past-due-todo-lists-list',
   templateUrl: './past-due-todo-lists-list.component.html',
   styleUrls: ['./past-due-todo-lists-list.component.scss']
 })

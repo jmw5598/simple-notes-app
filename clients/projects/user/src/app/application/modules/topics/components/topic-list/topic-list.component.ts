@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Topic } from '@sn/user/shared/models';
 
 @Component({
-  selector: 'sn-topic-list',
+  selector: 'sn-user-topic-list',
   templateUrl: './topic-list.component.html',
   styleUrls: ['./topic-list.component.scss']
 })

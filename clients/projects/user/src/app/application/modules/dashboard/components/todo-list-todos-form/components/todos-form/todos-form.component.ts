@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, skip, takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'sn-todos-form',
+  selector: 'sn-user-todos-form',
   templateUrl: './todos-form.component.html',
   styleUrls: ['./todos-form.component.scss']
 })

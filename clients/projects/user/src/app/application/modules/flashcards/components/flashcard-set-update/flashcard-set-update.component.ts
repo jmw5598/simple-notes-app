@@ -13,7 +13,7 @@ import * as flashcardSelectors from '@sn/user/application/modules/flashcards/sto
 import { debounceTime, filter, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 
 @Component({
-  selector: 'sn-flashcard-set-update',
+  selector: 'sn-user-flashcard-set-update',
   templateUrl: './flashcard-set-update.component.html',
   styleUrls: ['./flashcard-set-update.component.scss'],
   animations: [showHide]

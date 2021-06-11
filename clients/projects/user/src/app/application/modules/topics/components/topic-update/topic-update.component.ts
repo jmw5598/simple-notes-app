@@ -14,7 +14,7 @@ import { buildTopicFormGroup } from '@sn/user/shared/forms';
 import { DrawerService } from '@sn/user/shared/components';
 
 @Component({
-  selector: 'sn-topic-update',
+  selector: 'sn-user-topic-update',
   templateUrl: './topic-update.component.html',
   styleUrls: ['./topic-update.component.scss'],
   animations: [showHide]

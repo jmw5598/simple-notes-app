@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Flashcard } from '@sn/user/shared/models';
 
 @Component({
-  selector: 'sn-flashcard-set-viewer-flipper',
+  selector: 'sn-user-flashcard-set-viewer-flipper',
   templateUrl: './flashcard-set-viewer-flipper.component.html',
   styleUrls: ['./flashcard-set-viewer-flipper.component.scss']
 })

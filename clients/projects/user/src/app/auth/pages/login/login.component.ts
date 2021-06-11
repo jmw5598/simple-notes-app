@@ -16,7 +16,7 @@ import * as fromSelectors from '../../store/selectors';
 import { fadeAnimation } from '@sn/user/shared/animations';
 
 @Component({
-  selector: 'sn-login',
+  selector: 'sn-user-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   animations: [fadeAnimation]

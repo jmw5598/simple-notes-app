@@ -8,7 +8,7 @@ import { fadeAnimation } from '@sn/user/shared/animations';
 import { selectCalendarIntegrationsGroupedByType } from '../../store/selectors';
 
 @Component({
-  selector: 'sn-account-settings-integrations',
+  selector: 'sn-user-account-settings-integrations',
   templateUrl: './account-settings-integrations.component.html',
   styleUrls: ['./account-settings-integrations.component.scss'],
   animations: [fadeAnimation]

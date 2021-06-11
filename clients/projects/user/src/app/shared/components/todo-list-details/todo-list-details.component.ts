@@ -6,7 +6,7 @@ import { Todo, TodoList } from '@sn/user/shared/models';
 import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
 
 @Component({
-  selector: 'sn-todo-list-details',
+  selector: 'sn-user-todo-list-details',
   templateUrl: './todo-list-details.component.html',
   styleUrls: ['./todo-list-details.component.scss'],
   animations: [showHide]

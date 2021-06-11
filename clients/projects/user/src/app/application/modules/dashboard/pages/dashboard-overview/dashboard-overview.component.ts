@@ -10,7 +10,7 @@ import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/user/shared
 import { getPastDueTodoListsSuccess, getRecentTopicsSuccess, getTodaysCalendarEventsSuccess, getTodaysTodoListsSuccess } from '../../store/actions';
 
 @Component({
-  selector: 'sn-dashboard-overview',
+  selector: 'sn-user-dashboard-overview',
   templateUrl: './dashboard-overview.component.html',
   styleUrls: ['./dashboard-overview.component.scss'],
   animations: [fadeAnimation]

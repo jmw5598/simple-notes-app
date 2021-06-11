@@ -5,7 +5,7 @@ import * as fromAuth from '../../store/reducers';
 import * as fromActions from '../../store/actions';
 
 @Component({
-  selector: 'sn-logout',
+  selector: 'sn-user-logout',
   templateUrl: './logout.component.html',
   styleUrls: ['./logout.component.scss']
 })

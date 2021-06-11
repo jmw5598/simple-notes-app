@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { FlashcardSetViewerControlsService } from './services/flashcard-set-viewer-controls.service';
 
 @Component({
-  selector: 'sn-flashcard-set-viewer',
+  selector: 'sn-user-flashcard-set-viewer',
   templateUrl: './flashcard-set-viewer.component.html',
   styleUrls: ['./flashcard-set-viewer.component.scss']
 })

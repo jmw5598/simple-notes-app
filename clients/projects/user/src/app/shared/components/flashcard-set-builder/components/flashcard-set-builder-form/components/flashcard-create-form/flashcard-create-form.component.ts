@@ -8,7 +8,7 @@ import { EditorOption } from 'angular-markdown-editor';
 import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
 
 @Component({
-  selector: 'sn-flashcard-create-form',
+  selector: 'sn-user-flashcard-create-form',
   templateUrl: './flashcard-create-form.component.html',
   styleUrls: ['./flashcard-create-form.component.scss']
 })

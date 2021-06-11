@@ -16,7 +16,7 @@ import * as documentSelectors from '../../store/selectors';
 import { DocumentViewComponent } from '../../components/document-view/document-view.component';
 
 @Component({
-  selector: 'sn-view-documents',
+  selector: 'sn-user-view-documents',
   templateUrl: './view-documents.component.html',
   styleUrls: ['./view-documents.component.scss'],
   providers: [DrawerService],

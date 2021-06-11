@@ -19,7 +19,7 @@ import * as fromActions from '../../store/actions';
 import * as fromSelectors from '../../store/selectors';
 
 @Component({
-  selector: 'sn-register',
+  selector: 'sn-user-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
   animations: [fadeAnimation]

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { fadeAnimation } from '@sn/user/shared/animations';
 
 @Component({
-  selector: 'sn-account-settings-security',
+  selector: 'sn-user-account-settings-security',
   templateUrl: './account-settings-security.component.html',
   styleUrls: ['./account-settings-security.component.scss'],
   animations: [fadeAnimation]

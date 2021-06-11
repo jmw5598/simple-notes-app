@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <router-outlet></router-outlet>
-    <sn-toaster location="bottomright"></sn-toaster>
+    <sn-user-toaster location="bottomright"></sn-user-toaster>
   `,
   styles: [``]
 })

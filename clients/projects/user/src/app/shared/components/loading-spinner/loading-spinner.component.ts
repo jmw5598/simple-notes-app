@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SpinnerStyle } from './spinner-style.enum';
 
 @Component({
-  selector: 'sn-loading-spinner',
+  selector: 'sn-user-loading-spinner',
   templateUrl: './loading-spinner.component.html',
   styleUrls: ['./loading-spinner.component.scss']
 })

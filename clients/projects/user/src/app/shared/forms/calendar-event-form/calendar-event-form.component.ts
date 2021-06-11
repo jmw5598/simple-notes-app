@@ -4,7 +4,7 @@ import { HEX_COLOR_STRING_ARRAY } from '../../defaults/colors.defaults';
 import { fadeAnimation, showHide } from '../../animations';
 
 @Component({
-  selector: 'sn-calendar-event-form',
+  selector: 'sn-user-calendar-event-form',
   templateUrl: './calendar-event-form.component.html',
   styleUrls: ['./calendar-event-form.component.scss'],
   animations: [fadeAnimation, showHide]

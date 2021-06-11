@@ -5,7 +5,7 @@ import { Todo } from '@sn/user/shared/models';
 import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
 
 @Component({
-  selector: 'sn-todo-list-form',
+  selector: 'sn-user-todo-list-form',
   templateUrl: './todo-list-form.component.html',
   styleUrls: ['./todo-list-form.component.scss']
 })

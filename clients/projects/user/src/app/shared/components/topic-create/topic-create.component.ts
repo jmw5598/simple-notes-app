@@ -13,7 +13,7 @@ import { setCreateTopicResponseMessage } from '@sn/user/application/modules/topi
 import { buildTopicFormGroup } from '../../forms/topic-form/topic-form.builder';
 
 @Component({
-  selector: 'sn-topic-create',
+  selector: 'sn-user-topic-create',
   templateUrl: './topic-create.component.html',
   styleUrls: ['./topic-create.component.scss'],
   animations: [showHide]

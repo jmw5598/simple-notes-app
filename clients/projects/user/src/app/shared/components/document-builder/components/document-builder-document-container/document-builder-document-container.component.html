@@ -16,7 +16,7 @@
           (cdkDropListDropped)="dropTopic($event)">
         <ng-container *ngIf="(document$ | async)?.documentTopics?.length; else noTopicsInDocumentTemplate">
           <div *ngFor="let documentTopic of (document$ | async)?.documentTopics" class="mb-3">
-            <sn-document-builder-document-topic [documentTopic]="documentTopic"></sn-document-builder-document-topic>
+            <sn-user-document-builder-document-topic [documentTopic]="documentTopic"></sn-user-document-builder-document-topic>
           </div>
         </ng-container>
       </div>
@@ -25,7 +25,7 @@
 </div>
 
 <ng-template #noTopicsInDocumentTemplate>
-  <sn-empty-data 
+  <sn-user-empty-data 
       message="There are no topics yet for this document">
-  </sn-empty-data>
+  </sn-user-empty-data>
 </ng-template>

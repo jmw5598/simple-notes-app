@@ -3,7 +3,7 @@ import { Section, Topic } from '@sn/user/shared/models';
 import { DocumentTopicSection } from '@sn/user/shared/models/document-topic-section.model';
 
 @Component({
-  selector: 'sn-document-builder-section-container',
+  selector: 'sn-user-document-builder-section-container',
   templateUrl: './document-builder-section-container.component.html',
   styleUrls: ['./document-builder-section-container.component.scss']
 })

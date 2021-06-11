@@ -13,7 +13,7 @@ import { HEX_COLOR_STRING_ARRAY } from '@sn/user/shared/defaults/colors.defaults
 import * as calendarActions from '../../store/actions';
 
 @Component({
-  selector: 'sn-calendar-event-view',
+  selector: 'sn-user-calendar-event-view',
   templateUrl: './calendar-event-view.component.html',
   styleUrls: ['./calendar-event-view.component.scss']
 })

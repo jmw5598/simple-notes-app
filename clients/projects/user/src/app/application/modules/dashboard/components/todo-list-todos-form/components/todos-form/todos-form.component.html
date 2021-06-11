@@ -2,7 +2,7 @@
   <div class="form-group" formArrayName="todos">
     <ng-container *ngFor="let todoControl of form.get('todos')['controls']">
       <div [formGroup]="todoControl">
-        <sn-checkbox
+        <sn-user-checkbox
             color="primary"
             size="xsmall"
             shape="rounded"
@@ -10,7 +10,7 @@
             (ngModelChange)="onTodoCheckboxChange($event)"
             [value]="todoControl?.value?.isComplete"
             [label]="todoControl?.value?.description">
-        </sn-checkbox>
+        </sn-user-checkbox>
       </div>
     </ng-container>
   </div>

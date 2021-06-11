@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 import { DocumentBuilderService } from '../../services/document-builder.service';
 
 @Component({
-  selector: 'sn-document-builder-document-container',
+  selector: 'sn-user-document-builder-document-container',
   templateUrl: './document-builder-document-container.component.html',
   styleUrls: ['./document-builder-document-container.component.scss']
 })

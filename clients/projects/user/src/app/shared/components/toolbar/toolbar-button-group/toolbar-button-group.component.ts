@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'sn-toolbar-button-group',
+  selector: 'sn-user-toolbar-button-group',
   templateUrl: './toolbar-button-group.component.html',
   styleUrls: ['./toolbar-button-group.component.scss']
 })

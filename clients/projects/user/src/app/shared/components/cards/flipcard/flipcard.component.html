@@ -1,7 +1,7 @@
 <div class="flip-card" [ngClass]="flipAxis" [class.flipped]="isFlipped">
   <div class="flip-card-inner">
     <div class="flip-card-front">
-      <ng-content select="sn-flipcard-front"></ng-content>
+      <ng-content select="sn-user-flipcard-front"></ng-content>
       <div class="flip-button" (click)="flipCard()">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16pt" height="16pt" viewBox="0 0 16 16" version="1.1">
           <g id="surface1">
@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="flip-card-back">
-      <ng-content select="sn-flipcard-back"></ng-content>
+      <ng-content select="sn-user-flipcard-back"></ng-content>
       <div class="flip-button" (click)="flipCard()">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16pt" height="16pt" viewBox="0 0 16 16" version="1.1">
           <g id="surface1">

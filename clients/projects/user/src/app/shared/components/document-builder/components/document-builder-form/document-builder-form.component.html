@@ -37,14 +37,14 @@
               [cdkDropListData]="[(selectedDocumentTopic$ | async)]"
               [cdkDropListConnectedTo]="documentId$ | async">
             <div>
-              <sn-document-builder-topic-container [documentTopic]="selectedDocumentTopic$ | async"></sn-document-builder-topic-container>
+              <sn-user-document-builder-topic-container [documentTopic]="selectedDocumentTopic$ | async"></sn-user-document-builder-topic-container>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="col-sm-12 col-md-6">
-      <sn-document-builder-document-container></sn-document-builder-document-container>
+      <sn-user-document-builder-document-container></sn-user-document-builder-document-container>
     </div>
   </div>
 </div>

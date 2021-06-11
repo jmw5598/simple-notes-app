@@ -15,7 +15,7 @@ import { UserSettings } from '@sn/user/core/models/user-settings.model';
 import { selectAuthenticatedUserSettings } from '@sn/user/auth/store/selectors';
 
 @Component({
-  selector: 'sn-account-settings-general',
+  selector: 'sn-user-account-settings-general',
   templateUrl: './account-settings-general.component.html',
   styleUrls: ['./account-settings-general.component.scss'],
   animations: [fadeAnimation]

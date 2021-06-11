@@ -13,7 +13,7 @@ import { debounce, debounceTime, filter, takeUntil, tap, withLatestFrom } from '
 import { FlashcardSet } from '@sn/user/shared/models';
 
 @Component({
-  selector: 'sn-flashcard-set-create',
+  selector: 'sn-user-flashcard-set-create',
   templateUrl: './flashcard-set-create.component.html',
   styleUrls: ['./flashcard-set-create.component.scss'],
   animations: [showHide]

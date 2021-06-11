@@ -12,7 +12,7 @@ import { PasswordRequestReset, ResponseMessage } from '@sn/user/core/models';
 import { fadeAnimation } from '@sn/user/shared/animations';
 
 @Component({
-  selector: 'sn-password-request',
+  selector: 'sn-user-password-request',
   templateUrl: './password-request.component.html',
   styleUrls: ['./password-request.component.scss'],
   animations: [fadeAnimation]

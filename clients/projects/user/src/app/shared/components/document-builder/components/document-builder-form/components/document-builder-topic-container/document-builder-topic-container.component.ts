@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 import { DocumentTopic } from '@sn/user/shared/models/document-topic.model';
 
 @Component({
-  selector: 'sn-document-builder-topic-container',
+  selector: 'sn-user-document-builder-topic-container',
   templateUrl: './document-builder-topic-container.component.html',
   styleUrls: ['./document-builder-topic-container.component.scss']
 })

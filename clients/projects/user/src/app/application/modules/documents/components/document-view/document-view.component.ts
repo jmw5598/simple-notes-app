@@ -14,7 +14,7 @@ import * as FileSaver from 'file-saver';
 import { ResponseMessage } from '@sn/user/core/models';
 
 @Component({
-  selector: 'sn-document-view',
+  selector: 'sn-user-document-view',
   templateUrl: './document-view.component.html',
   styleUrls: ['./document-view.component.scss'],
   animations: [fadeAnimation, showHide]

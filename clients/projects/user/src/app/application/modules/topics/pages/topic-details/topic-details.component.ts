@@ -18,7 +18,7 @@ import { SectionCreateComponent } from '../../components/section-create/section-
 import { ResponseStatus } from '@sn/user/core/enums';
 
 @Component({
-  selector: 'sn-topic-details',
+  selector: 'sn-user-topic-details',
   templateUrl: './topic-details.component.html',
   styleUrls: ['./topic-details.component.scss'],
   providers: [DrawerService],

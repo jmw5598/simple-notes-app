@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 import { DocumentTopic, DocumentTopicSection } from '@sn/user/shared/models';
 
 @Component({
-  selector: 'sn-document-builder-document-topic',
+  selector: 'sn-user-document-builder-document-topic',
   templateUrl: './document-builder-document-topic.component.html',
   styleUrls: ['./document-builder-document-topic.component.scss']
 })

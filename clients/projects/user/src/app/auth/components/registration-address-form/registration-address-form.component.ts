@@ -3,7 +3,7 @@ import { FormGroup, ControlContainer } from '@angular/forms';
 import { State, STATES } from '@sn/user/shared/data';
 
 @Component({
-  selector: 'sn-registration-address-form',
+  selector: 'sn-user-registration-address-form',
   templateUrl: './registration-address-form.component.html',
   styleUrls: ['./registration-address-form.component.scss']
 })

@@ -17,7 +17,7 @@ import {
 import { TodoListCreateComponent } from '@sn/user/shared/components/todo-list-create/todo-list-create.component';
 
 @Component({
-  selector: 'sn-global-toolbar',
+  selector: 'sn-user-global-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
   providers: [DrawerService]

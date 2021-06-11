@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TodoList } from '@sn/user/shared/models';
 
 @Component({
-  selector: 'sn-todo-list',
+  selector: 'sn-user-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })

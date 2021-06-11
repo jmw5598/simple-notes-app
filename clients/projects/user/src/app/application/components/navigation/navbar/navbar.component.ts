@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { LayoutService, LayoutSidePanelState } from '@sn/user/shared/components';
 
 @Component({
-  selector: 'sn-navbar',
+  selector: 'sn-user-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })

@@ -10,7 +10,7 @@ import { DrawerService, DrawerLocation } from '@sn/user/shared/components';
 import { ConfigureKeyboardShortcutComponent } from '../../components/configure-keyboard-shortcut/configure-keyboard-shortcut.component';
 
 @Component({
-  selector: 'sn-account-settings-toolbar',
+  selector: 'sn-user-account-settings-toolbar',
   templateUrl: './account-settings-toolbar.component.html',
   styleUrls: ['./account-settings-toolbar.component.scss'],
   providers: [DrawerService],

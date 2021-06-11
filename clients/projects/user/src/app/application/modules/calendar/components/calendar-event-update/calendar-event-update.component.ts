@@ -4,7 +4,7 @@ import { CalendarEvent, ResponseMessage } from '@sn/user/core/models';
 import { showHide } from '@sn/user/shared/animations';
 
 @Component({
-  selector: 'sn-calendar-event-update',
+  selector: 'sn-user-calendar-event-update',
   templateUrl: './calendar-event-update.component.html',
   styleUrls: ['./calendar-event-update.component.scss'],
   animations: [showHide]

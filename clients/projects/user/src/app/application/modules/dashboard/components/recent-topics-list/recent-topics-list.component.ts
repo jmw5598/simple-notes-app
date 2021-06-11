@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Topic } from '@sn/user/shared/models';
 
 @Component({
-  selector: 'sn-recent-topics-list',
+  selector: 'sn-user-recent-topics-list',
   templateUrl: './recent-topics-list.component.html',
   styleUrls: ['./recent-topics-list.component.scss']
 })

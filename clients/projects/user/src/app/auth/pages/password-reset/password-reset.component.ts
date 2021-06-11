@@ -14,7 +14,7 @@ import * as fromActions from '../../store/actions';
 import * as fromSelectors from '../../store/selectors';
 
 @Component({
-  selector: 'sn-password-reset',
+  selector: 'sn-user-password-reset',
   templateUrl: './password-reset.component.html',
   styleUrls: ['./password-reset.component.scss'],
   animations: [fadeAnimation]

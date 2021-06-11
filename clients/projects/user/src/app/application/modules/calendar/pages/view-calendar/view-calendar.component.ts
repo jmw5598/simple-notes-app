@@ -22,7 +22,7 @@ enum CalendarEventType {
 }
 
 @Component({
-  selector: 'sn-view-calendar',
+  selector: 'sn-user-view-calendar',
   templateUrl: './view-calendar.component.html',
   styleUrls: ['./view-calendar.component.scss'],
   providers: [DrawerService],

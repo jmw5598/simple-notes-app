@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RegistrationResult } from '@sn/user/core/dtos';
 
 @Component({
-  selector: 'sn-registration-result',
+  selector: 'sn-user-registration-result',
   templateUrl: './registration-result.component.html',
   styleUrls: ['./registration-result.component.scss']
 })

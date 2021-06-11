@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { TodoList } from '@sn/user/shared/models';
 
 @Component({
-  selector: 'sn-todo-list-progress',
+  selector: 'sn-user-todo-list-progress',
   templateUrl: './todo-list-progress.component.html',
   styleUrls: ['./todo-list-progress.component.scss']
 })

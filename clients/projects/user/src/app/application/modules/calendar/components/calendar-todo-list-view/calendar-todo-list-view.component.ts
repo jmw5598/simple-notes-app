@@ -13,7 +13,7 @@ import * as calendarSelectors from '../../store/selectors';
 import { buildTodoListFormGroup } from '@sn/user/shared/forms';
 
 @Component({
-  selector: 'sn-calendar-todo-list-view',
+  selector: 'sn-user-calendar-todo-list-view',
   templateUrl: './calendar-todo-list-view.component.html',
   styleUrls: ['./calendar-todo-list-view.component.scss']
 })

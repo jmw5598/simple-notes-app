@@ -14,7 +14,7 @@ import { exportTopic } from '../../store/actions';
 import * as FileSaver from 'file-saver';
 
 @Component({
-  selector: 'sn-topic-export',
+  selector: 'sn-user-topic-export',
   templateUrl: './topic-export.component.html',
   styleUrls: ['./topic-export.component.scss'],
   animations: [showHide]

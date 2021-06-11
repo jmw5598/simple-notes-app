@@ -3,7 +3,7 @@ import { slideUpDownAnimation } from '@sn/user/shared/animations';
 import { Todo, TodoList } from '@sn/user/shared/models';
 
 @Component({
-  selector: 'sn-todo-list-todos-form',
+  selector: 'sn-user-todo-list-todos-form',
   templateUrl: './todo-list-todos-form.component.html',
   styleUrls: ['./todo-list-todos-form.component.scss'],
   animations: [slideUpDownAnimation]

@@ -3,7 +3,7 @@ import { FormGroup, ControlContainer } from '@angular/forms';
 import { Plan } from '@sn/user/core/models';
 
 @Component({
-  selector: 'sn-registration-account-form',
+  selector: 'sn-user-registration-account-form',
   templateUrl: './registration-account-form.component.html',
   styleUrls: ['./registration-account-form.component.scss']
 })

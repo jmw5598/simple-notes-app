@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Document } from '@sn/user/shared/models';
 
 @Component({
-  selector: 'sn-document-list',
+  selector: 'sn-user-document-list',
   templateUrl: './document-list.component.html',
   styleUrls: ['./document-list.component.scss']
 })

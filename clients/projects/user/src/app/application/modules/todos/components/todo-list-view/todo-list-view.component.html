@@ -1,9 +1,9 @@
 <div>
   <form [formGroup]="form" (ngSubmit)="onSave(form.value)" novalidate>
-    <sn-todo-list-details
+    <sn-user-todo-list-details
         [todoList]="data$ | async"
         [responseMessage]="responseMessage$ | async">
-    </sn-todo-list-details>
+    </sn-user-todo-list-details>
     <div class="form-group text-right mx-2">
       <button 
           class="btn btn-primary mr-2" 

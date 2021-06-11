@@ -60,7 +60,7 @@ describe('AccountSettingsGeneralComponent', () => {
     component.onEditingProfile(isEditingProfile);
     fixture.detectChanges();
     const editProfileFormElement: HTMLElement = accountSettingGeneralElement.querySelector('#edit-profile-form');
-    const profileDetailsComponentElement: HTMLElement = accountSettingGeneralElement.querySelector('sn-account-details-display');
+    const profileDetailsComponentElement: HTMLElement = accountSettingGeneralElement.querySelector('sn-user-account-details-display');
 
     expect(editProfileFormElement).not.toBeNull();
     expect(profileDetailsComponentElement).toBeNull();
@@ -73,7 +73,7 @@ describe('AccountSettingsGeneralComponent', () => {
     component.onEditingProfile(isEditingProfile);
     fixture.detectChanges();
     const editProfileFormElement: HTMLElement = accountSettingGeneralElement.querySelector('#edit-profile-form');
-    const profileDetailsComponentElement: HTMLElement = accountSettingGeneralElement.querySelector('sn-account-details-display');
+    const profileDetailsComponentElement: HTMLElement = accountSettingGeneralElement.querySelector('sn-user-account-details-display');
 
     expect(editProfileFormElement).toBeNull();
     expect(profileDetailsComponentElement).not.toBeNull();
@@ -86,7 +86,7 @@ describe('AccountSettingsGeneralComponent', () => {
     component.onUpdateProfile({ profile: null });
     fixture.detectChanges();
     const editProfileFormElement: HTMLElement = accountSettingGeneralElement.querySelector('#edit-profile-form');
-    const profileDetailsComponentElement: HTMLElement = accountSettingGeneralElement.querySelector('sn-account-details-display');
+    const profileDetailsComponentElement: HTMLElement = accountSettingGeneralElement.querySelector('sn-user-account-details-display');
 
     expect(testStore.dispatch).toHaveBeenCalledTimes(1);
     expect(editProfileFormElement).toBeNull();

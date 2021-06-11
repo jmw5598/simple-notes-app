@@ -11,9 +11,9 @@
   <ng-container *ngIf="(flashcardSetBuilder$ | async)?.flashcards?.length; else noFlashcardsInSetTemplate">    
     <div *ngFor="let flashcard of (flashcardSetBuilder$ | async)?.flashcards">
       <div class="falshcard-wrapper mb-4" cdkDrag>
-        <sn-flashcard>
-          <sn-flipcard>
-            <sn-flipcard-front>
+        <sn-user-flashcard>
+          <sn-user-flipcard>
+            <sn-user-flipcard-front>
               <div class="flashcard-content p-4">
                 <div class="flashcard-actions">
                   <span class="text-dark" (click)="editFlashcard(flashcard)">
@@ -32,8 +32,8 @@
                 </div>
                 <markdown class="markdown-body" [data]="flashcard.frontContent"></markdown>
               </div>
-            </sn-flipcard-front>
-            <sn-flipcard-back>
+            </sn-user-flipcard-front>
+            <sn-user-flipcard-back>
               <div class="flashcard-content p-4">
                 <div class="flashcard-actions">
                   <span class="flashcard-handle text-dark" cdkDragHandle>
@@ -49,16 +49,16 @@
                 </div>
                 <markdown class="markdown-body" [data]="flashcard.backContent"></markdown>
               </div>
-            </sn-flipcard-back>
-          </sn-flipcard>
-        </sn-flashcard>
+            </sn-user-flipcard-back>
+          </sn-user-flipcard>
+        </sn-user-flashcard>
       </div>
     </div>
   </ng-container>
 </div>
 
 <ng-template #noFlashcardsInSetTemplate>
-  <sn-empty-data 
+  <sn-user-empty-data 
       message="There are no flashcard in this set!">
-  </sn-empty-data>
+  </sn-user-empty-data>
 </ng-template>

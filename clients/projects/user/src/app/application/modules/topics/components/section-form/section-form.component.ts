@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ControlContainer, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'sn-section-form',
+  selector: 'sn-user-section-form',
   templateUrl: './section-form.component.html',
   styleUrls: ['./section-form.component.scss']
 })

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'sn-logging-in',
+  selector: 'sn-user-logging-in',
   templateUrl: './logging-in.component.html',
   styleUrls: ['./logging-in.component.scss']
 })

@@ -13,7 +13,7 @@ import * as todosSelectors from '../../store/selectors';
 import * as todosActions from '../../store/actions';
 
 @Component({
-  selector: 'sn-todo-list-view',
+  selector: 'sn-user-todo-list-view',
   templateUrl: './todo-list-view.component.html',
   styleUrls: ['./todo-list-view.component.scss']
 })

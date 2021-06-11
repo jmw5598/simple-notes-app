@@ -7,7 +7,7 @@ import { showHide } from '@sn/user/shared/animations';
 import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
 
 @Component({
-  selector: 'sn-todo-list-update',
+  selector: 'sn-user-todo-list-update',
   templateUrl: './todo-list-update.component.html',
   styleUrls: ['./todo-list-update.component.scss'],
   animations: [showHide]

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CalendarEvent } from '@sn/user/core/models';
 
 @Component({
-  selector: 'sn-calendar-event-details',
+  selector: 'sn-user-calendar-event-details',
   templateUrl: './calendar-event-details.component.html',
   styleUrls: ['./calendar-event-details.component.scss']
 })

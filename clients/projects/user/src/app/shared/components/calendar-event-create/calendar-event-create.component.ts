@@ -14,7 +14,7 @@ import { CalendarEventFormComponent } from '../../forms/calendar-event-form/cale
 import { HEX_COLOR_STRING_ARRAY } from '../../defaults/colors.defaults';
 
 @Component({
-  selector: 'sn-calendar-event-create',
+  selector: 'sn-user-calendar-event-create',
   templateUrl: './calendar-event-create.component.html',
   styleUrls: ['./calendar-event-create.component.scss'],
   animations: [showHide]

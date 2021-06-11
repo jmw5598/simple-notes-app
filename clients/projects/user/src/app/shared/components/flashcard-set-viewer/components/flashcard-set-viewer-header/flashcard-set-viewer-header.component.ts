@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Flashcard, FlashcardSet } from '@sn/user/shared/models';
 
 @Component({
-  selector: 'sn-flashcard-set-viewer-header',
+  selector: 'sn-user-flashcard-set-viewer-header',
   templateUrl: './flashcard-set-viewer-header.component.html',
   styleUrls: ['./flashcard-set-viewer-header.component.scss']
 })

@@ -4,7 +4,7 @@ import { fadeAnimation } from '@sn/user/shared/animations';
 import { STATES } from '@sn/user/shared/data';
 
 @Component({
-  selector: 'sn-account-details-form',
+  selector: 'sn-user-account-details-form',
   templateUrl: './account-details-form.component.html',
   styleUrls: ['./account-details-form.component.scss'],
   animations: [fadeAnimation]

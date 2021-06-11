@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Page, IPageable, PageRequest } from '@sn/user/core/models';
 
 @Component({
-  selector: 'sn-paginator',
+  selector: 'sn-user-paginator',
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss']
 })

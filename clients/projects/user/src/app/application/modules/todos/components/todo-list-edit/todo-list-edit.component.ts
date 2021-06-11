@@ -13,7 +13,7 @@ import * as todosSelectors from '../../store/selectors';
 import { tap } from 'rxjs/operators';
 
 @Component({
-  selector: 'sn-todo-list-edit',
+  selector: 'sn-user-todo-list-edit',
   templateUrl: './todo-list-edit.component.html',
   styleUrls: ['./todo-list-edit.component.scss']
 })

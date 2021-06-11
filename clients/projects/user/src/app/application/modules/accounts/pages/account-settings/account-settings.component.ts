@@ -10,7 +10,7 @@ import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/user/shared/components';
 
 @Component({
-  selector: 'sn-account-settings',
+  selector: 'sn-user-account-settings',
   templateUrl: './account-settings.component.html',
   styleUrls: ['./account-settings.component.scss'],
   animations: [fadeAnimation]
