@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LayoutSidePanelState } from './layout-side-panel-state.enum';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class LayoutService {
   private _panelState: LayoutSidePanelState;
   private _panelStateSource: BehaviorSubject<LayoutSidePanelState>;

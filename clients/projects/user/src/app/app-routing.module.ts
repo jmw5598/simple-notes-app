@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthenticationGuard } from '@sn/user/auth/guards';
 import { ThemeLoaderGuard } from '@sn/user/core/guards';
-import { OnDemandPreloadStrategy } from './core/preloading-strategies';
+import { OnDemandPreloadStrategy } from '@sn/core/framing';
 
 const routes: Routes = [
   {

@@ -21,11 +21,14 @@ import { PlansEffects } from './core/store/effects';
 import { environment } from '@sn/user/env/environment';
 import { HttpErrorEffects } from './application/store/effects/http-error.effects';
 
+import { CoreFramingModule } from '@sn/core/framing';
+
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    CoreFramingModule.forRoot(),
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,

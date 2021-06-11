@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { OnDemandPreloadOptions } from './on-demand-preload.options';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class OnDemandPreloadService {
   private _stateSource: BehaviorSubject<OnDemandPreloadOptions> = new BehaviorSubject<OnDemandPreloadOptions>(null);
 

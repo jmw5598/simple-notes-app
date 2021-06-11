@@ -25,7 +25,6 @@ import { DebounceDirective } from './directives/debounce.directive';
 
 import { ColorTwitterModule } from 'ngx-color/twitter';
 import { PageHeaderComponent } from './components/page-header/page-header.component'; // <color-twitter></color-twitter>
-import { LayoutComponent } from './components/layout/layout.component';
 import { DocumentBuilderFormComponent } from './components/document-builder/components/document-builder-form/document-builder-form.component';
 import { DocumentCreateComponent } from './components/document-create/document-create.component';
 import { OverlayLoaderComponent } from './components/overlay-loader/overlay-loader.component';
@@ -84,7 +83,6 @@ import { TodoListProgressComponent } from './components/todo-list-progress/todo-
     CalendarEventCreateComponent,
     DebounceDirective,
     PageHeaderComponent,
-    LayoutComponent,
     DocumentBuilderFormComponent,
     DocumentCreateComponent,
     OverlayLoaderComponent,
@@ -152,7 +150,6 @@ import { TodoListProgressComponent } from './components/todo-list-progress/todo-
     CalendarEventCreateComponent,
     DebounceDirective,
     PageHeaderComponent,
-    LayoutComponent,
     DocumentBuilderFormComponent,
     DocumentCreateComponent,
     OverlayLoaderComponent,

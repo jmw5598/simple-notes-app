@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OnDemandPreloadService } from '@sn/core/framing';
 
 @Component({
   selector: 'app-root',

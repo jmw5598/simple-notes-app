@@ -1,13 +1,13 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LayoutService, LayoutSidePanelState } from '@sn/user/shared/components'
-import { NavigationRouteLink, NAVIGATION_ROUTES } from './navigation.routes';
+import { LayoutSidePanelState } from '../../layout/layout-side-panel-state.enum';
+import { LayoutService } from '../../layout/layout.service';
+import { NavigationRouteLink } from '../navigation.models';
 import { tap } from 'rxjs/operators';
-import { OnDemandPreloadService } from '@sn/user/core/preloading-strategies';
+import { OnDemandPreloadService } from '../../../preloading-strategies/on-demand-preload.service';
 
 @Component({
-  selector: 'sn-user-navbar-side',
+  selector: 'sn-core-framing-navbar-side',
   templateUrl: './navbar-side.component.html',
   styleUrls: ['./navbar-side.component.scss']
 })
@@ -15,7 +15,8 @@ export class NavbarSideComponent implements OnInit {
   public LayoutSidePanelState = LayoutSidePanelState
   public tooltipDelay: number = 500;
   
-  public links: NavigationRouteLink[] = NAVIGATION_ROUTES;
+  @Input()
+  public links: NavigationRouteLink[] = [];
 
   private _currentScreenWidth: number;
   public currentPanelState$: Observable<LayoutSidePanelState>;
@@ -24,7 +25,6 @@ export class NavbarSideComponent implements OnInit {
   constructor(
     private _layoutService: LayoutService,
     private _onDemandPreloadService: OnDemandPreloadService,
-    private _router: Router
   ) { }
 
   ngOnInit() {

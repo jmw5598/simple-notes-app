@@ -22,25 +22,7 @@
 
     <!-- Navbar Lists -->
     <div class="collapse navbar-collapse">
-      <!-- Nav Buttons Right -->
-      <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="assets/images/default-avatar.svg" class="img-fluid" style="height: 36px" />
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" [routerLink]="['accounts', 'settings']">
-              <i class="fas fa-cog icon-margin"></i>
-              Account Settings
-            </a>
-            <a class="dropdown-item" [routerLink]="['/auth', 'logout']">
-              <i class="fas fa-unlock-alt icon-margin"></i>
-              Logout
-            </a>
-          </div>
-        </li>
-      </ul>
+      <ng-content select="[container=navbarNav]"></ng-content>
     </div>
-    
   </div>
 </div>

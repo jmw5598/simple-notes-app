@@ -7,9 +7,6 @@ import { SharedModule } from '@sn/user/shared/shared.module';
 import { ApplicationRoutingModule } from './application-routing.module';
 import { ApplicationComponent } from './application.component';
 import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
-import { NavigationComponent } from './components/navigation/navigation.component';
-import { NavbarComponent } from './components/navigation/navbar/navbar.component';
-import { NavbarSideComponent } from './components/navigation/navbar-side/navbar-side.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 import { applicationReducer, applicationFeatureKey } from './store';
@@ -24,15 +21,15 @@ import { ToolbarEffects } from './store/effects/toolbar.effects';
 import { FlashcardsEffects } from './modules/flashcards/store/effects/flashcards.effects';
 import { TodoListsEffects } from './modules/todos/store/effects/todos.effects';
 
+import { CoreFramingModule } from '@sn/core/framing';
+
 @NgModule({
   declarations: [
     ApplicationComponent,
-    NavbarComponent,
-    NavbarSideComponent,
-    NavigationComponent,
     ToolbarComponent
   ],
   imports: [
+    CoreFramingModule,
     CommonModule,
     SharedModule,
     ApplicationRoutingModule,

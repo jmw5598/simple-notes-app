@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { fadeAnimation } from '@sn/user/shared/animations';
-import { LayoutSidePanelState } from '@sn/user/shared/components';
+import { LayoutSidePanelState, NavigationRouteLink } from '@sn/core/framing';
 import { OverlayLoaderStyle, OverlaySpinnerSize } from '@sn/user/shared/components';
+
+import { NAVIGATION_ROUTES } from './navigation-routes.config';
 
 @Component({
   selector: 'sn-user-application',
@@ -13,4 +15,5 @@ export class ApplicationComponent {
   public LayoutSidePanelState = LayoutSidePanelState;
   public OverlaySpinnerSize = OverlaySpinnerSize;
   public OverlayLoaderStyle = OverlayLoaderStyle;
+  public links: NavigationRouteLink[] = NAVIGATION_ROUTES;
 }

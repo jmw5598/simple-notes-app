@@ -9,7 +9,8 @@
     "build": "ng build",
     "build:user": "ng build user --prod",
     "build:admin": "ng build admin --prod",
-    "build:lib": "ng build lib --prod",
+    "build:core-framing": "ng build core-framing --prod",
+    "build:libs": "ng build lib --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -55,6 +56,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "ng-packagr": "^12.0.0",
     "typescript": "~4.2.3"
   }
 }

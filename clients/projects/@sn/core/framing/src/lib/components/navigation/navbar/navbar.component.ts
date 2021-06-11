@@ -1,11 +1,11 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { LayoutService, LayoutSidePanelState } from '@sn/user/shared/components';
+import { LayoutService } from '../../layout/layout.service';
+import { LayoutSidePanelState } from '../../layout/layout-side-panel-state.enum';
 
 @Component({
-  selector: 'sn-user-navbar',
+  selector: 'sn-core-framing-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
@@ -15,8 +15,7 @@ export class NavbarComponent implements OnInit {
   public currentLayoutSidePanelState: LayoutSidePanelState;
   public LayoutSidePanelState = LayoutSidePanelState;
 
-  constructor(
-    private _router: Router,
+  constructor(    
     private _layoutService: LayoutService,
     private _window: Window
   ) { }

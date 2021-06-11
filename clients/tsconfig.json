@@ -32,6 +32,10 @@
       ],
       "@sn/admin/env/*": [
         "projects/admin/src/environments/*"
+      ],
+      "@sn/core/framing": [
+        "dist/@sn/core/framing/framing",
+        "dist/@sn/core/framing"
       ]
     }
   },

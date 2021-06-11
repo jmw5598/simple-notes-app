@@ -5,10 +5,7 @@ import { mergeMap } from 'rxjs/operators';
 import { OnDemandPreloadOptions } from './on-demand-preload.options';
 import { OnDemandPreloadService } from './on-demand-preload.service';
 
-@Injectable({
-  providedIn: 'root',
-  deps: [OnDemandPreloadService]
-})
+@Injectable()
 export class OnDemandPreloadStrategy implements PreloadingStrategy {
   private _preloadOnDemand$: Observable<OnDemandPreloadOptions>;
 
