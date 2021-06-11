@@ -1,0 +1,28 @@
+.editor {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+
+  .editor-left,
+  .editor-right {
+    flex: 1 1 0px;
+    height: 100%;
+    overflow-y: hidden;
+  }
+
+  .editor-right {
+    .editor-markdown-preview {
+      padding: 1rem;
+    }
+
+    &:hover {
+      overflow-y: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .editor {
+    flex-direction: column;
+  }
+}

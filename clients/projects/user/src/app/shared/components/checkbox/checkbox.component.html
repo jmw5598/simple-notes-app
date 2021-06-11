@@ -1,0 +1,10 @@
+<div class="checkbox-container" [ngClass]="classes">
+  <div class="checkbox" 
+      [ngClass]="{ 'checked' : isChecked }" 
+      (click)="toggleChecked()">
+    <div class="checkmark">
+      <i class="fas fa-times"></i>
+    </div>
+  </div>
+  <label (click)="toggleChecked()" class="checkbox-label">{{ label || '' }}</label>
+</div>

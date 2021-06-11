@@ -1,0 +1,47 @@
+<div *ngIf="!(isPageLoading$ | async) && (searchDocumentsResult$ | async)" class="container-navbar-adjust container-fluid m-0 p-0 height-full" [@fadeAnimation]>
+  <div class="row m-0 p-0 height-full">
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8 col-xl-7 p-0 m-0 border-right-1">
+      <!-- Documents List -->
+      <div *ngIf="(searchDocumentsResult$ | async) || []">
+        <h4 class="m-0 p-3 border-bottom-1">
+          <span class="font-weight-bold text-primary">Documents</span>
+          <!-- Header Buttons -->
+          <span class="float-right">
+            <button (click)="onCreate()" role="button" class="btn btn-sm btn-outline-dark btn-border-none">
+              <i class="far fa-file-alt icon-margin"></i>
+              New
+            </button>
+          </span>
+          <span class="float-right" style="margin-top: -3px;">
+            <sn-debounced-search
+                debounceTime="500"
+                [isSearching]="isSearching"
+                (onSearch)="onSearchDocuments($event)">
+            </sn-debounced-search>
+          </span>
+        </h4>
+        <div>
+          <sn-document-list
+              [documents]="(searchDocumentsResult$ | async)?.elements"
+              (onDelete)="onDelete($event)"
+              (onView)="onView($event)"
+              (onEdit)="onEdit($event)"
+              (onCreate)="onCreate()">
+          </sn-document-list>
+          <div class="p-3">
+            <sn-paginator
+                [page]="(searchDocumentsResult$ | async)"
+                (onNextPage)="onGoToPage($event)"
+                (onPreviousPage)="onGoToPage($event)"
+                (onGoToPage)="onGoToPage($event)">
+            </sn-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>
+
+<sn-drawer
+    [drawerLocation]="DrawerLocation.RIGHT">
+</sn-drawer>

@@ -1,0 +1,109 @@
+<div [formGroup]="form.get('profile')">
+  <!-- First & Last Name Inputs -->
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input 
+            class="form-control" 
+            formControlName="firstName" 
+            name="firstName" 
+            type="text" 
+            id="firstName" 
+            autocomplete="off"
+            [ngClass]="{ 'is-invalid':!form.get('profile').get('firstName').valid && form.get('profile').get('firstName').touched  }">
+        <small 
+            class="text-danger text-bold" 
+            *ngIf="
+              form.get('profile').get('firstName').touched  
+              && form.get('profile').get('firstName').hasError('required')">
+          First name is required!
+        </small>
+        <small 
+            class="text-danger text-bold" 
+            *ngIf="
+              form.get('profile').get('firstName').touched  
+              && form.get('profile').get('firstName').hasError('minlength')">
+          First name must be 3 characters!
+        </small>
+        <small 
+            class="text-danger text-bold" 
+            *ngIf="
+              form.get('profile').get('firstName').touched  
+              && form.get('profile').get('firstName').hasError('pattern')">
+          First name must be only characters!
+        </small>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input 
+            class="form-control" 
+            formControlName="lastName" 
+            name="lastName" 
+            type="text" 
+            id="lastName" 
+            autocomplete="off"
+            [ngClass]="{ 'is-invalid':!form.get('profile').get('lastName').valid && form.get('profile').get('lastName').touched  }">
+        <small 
+            class="text-danger text-bold" 
+            *ngIf="
+              form.get('profile').get('lastName').touched  
+              && form.get('profile').get('lastName').hasError('required')">
+          Last name is required!
+        </small>
+        <small 
+            class="text-danger text-bold" 
+            *ngIf="
+              form.get('profile').get('lastName').touched  
+              && form.get('profile').get('lastName').hasError('minlength')">
+          Last name must be 3 characters!
+        </small>
+        <small 
+            class="text-danger text-bold" 
+            *ngIf="
+              form.get('profile').get('lastName').touched  
+              && form.get('profile').get('lastName').hasError('pattern')">
+          Last name must be only characters!
+        </small>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Address Form -->
+  <sn-registration-address-form></sn-registration-address-form>
+
+  <!-- Email Input -->
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input 
+        class="form-control" 
+        formControlName="email" 
+        name="email" 
+        type="text" 
+        id="email"
+        [ngClass]="{ 'is-invalid':!form.get('profile').get('email').valid && form.get('profile').get('email').touched  }">
+    <small 
+        class="text-danger text-bold" 
+        *ngIf="
+          form.get('profile').get('email').touched  
+          && form.get('profile').get('email').hasError('required')">
+      Email is required!
+    </small>
+    <small 
+        class="text-danger text-bold" 
+        *ngIf="
+          form.get('profile').get('email').touched  
+          && form.get('profile').get('email').hasError('pattern')">
+      Invalid email format!
+    </small>
+    <small 
+        class="text-danger text-bold" 
+        *ngIf="
+          form.get('profile').get('email').touched  
+          && form.get('profile').get('email').hasError('emailExists')">
+      Email already exists!
+    </small>
+  </div>
+</div>

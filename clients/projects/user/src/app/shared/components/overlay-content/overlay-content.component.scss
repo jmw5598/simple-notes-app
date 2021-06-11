@@ -1,0 +1,48 @@
+.overlay-content-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  z-index: 3000;
+
+  .overlay-content-close {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    z-index: 3003;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3001;
+
+    &.overlay-style-transparent {
+      background: transparent;
+    }
+
+    &.overlay-style-dim-dark {
+      background: rgba(#000, 0.3);
+    }
+
+    &.overlay-style-dim-light {
+      background: rgba(#FFF, 0.5);
+    }
+  }
+  .overlay-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    z-index: 3002;
+  }
+}

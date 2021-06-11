@@ -1,0 +1,48 @@
+.color-swatch {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+
+  .color-swatch-picker {
+    
+
+    color-twitter {
+      position: absolute;
+      top: 16px;
+      right: 0;
+      
+      // Disables the manual color hex input.
+      ::ng-deep {
+        .twitter-body {
+          .twitter-hash,
+          .twitter-input {
+            display: none !important;
+            background: green important;
+            border: 2px solid red !important;
+          }
+        }
+      }
+    }
+  }
+
+  .color-swatch-input-container {
+    position: relative;
+    .color-swatch-selected {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .color-picker-input {
+      border-radius: 4px;
+    }
+  }
+}
+
+.color-swatch-input {
+  border: 0;
+  outline: 0;
+  width: 72px;
+  border-radius: 4px;
+  
+}

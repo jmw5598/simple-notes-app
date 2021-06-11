@@ -1,0 +1,17 @@
+<div class="account-settings-general p-3" [@fadeAnimation]>
+  <h4 class="font-weight-bold mb-3">Integrations</h4>
+  <hr />
+  <div class="card calendar-integration-container">
+    <div class="card-body">
+      <h5 class="font-weight-bold mb-3">Calendar Integrations</h5>
+      <div *ngFor="let integration of calendarIntegrationsGroupedByType$ | async" class="row">
+        <div class="col-sm-12">
+          <sn-calendar-integration 
+              [integration]="integration"
+              (onInactivateIntegration)="onInactivateIntegration($event)"
+              (onRefreshIntegration)="onRefreshIntegration($event)"></sn-calendar-integration>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

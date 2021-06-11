@@ -1,0 +1,70 @@
+@mixin sticky {
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+:host ::ng-deep div[container=mainContent] {
+  height: 100%;
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+
+  &.panel-position-left {
+    flex-direction: row;
+  }
+
+  &.panel-position-right {
+    flex-direction: row-reverse;
+  }
+
+  .left-column {
+    @include sticky();
+    top: 0;
+    transition: flex-basis 0.3s;
+    overflow: hidden;
+
+    &.opened {
+      flex: 0 0 350px;
+    }
+
+    &.closed {
+      flex: 0 0 0px;
+    }
+
+    &.collapsed {
+      flex: 0 0 62px;
+    }
+  }
+
+  .right-column {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto;
+
+    .navigation-bar {
+      @include sticky();
+      top: 0;
+      z-index: 100;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      height: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  // TODO make left column fixed and overlay content on small screens
+  .layout-container {
+    .left-column {
+      &.opened {
+        flex: 0 0 100%;
+      }
+    }
+  }
+}

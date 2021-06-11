@@ -1,0 +1,50 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group" [formGroup]="form">
+            <label for="name">Document Name</label>
+            <input 
+                formControlName="name" 
+                type="text" 
+                class="form-control" 
+                (ngModelChange)="documentNameChange($event)" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div>
+            <h5 class="text-dark font-weight-bold mt-2">Search Topics</h5>
+            <hr class="mb-2 mt-2">
+          </div>
+          <div class="form-group">
+            <label for="search-topics">Keywords</label>
+            <input id="search-topics"
+                autocomplete="off"
+                [(ngModel)]="selected"
+                [typeahead]="topicsTypeAhead$"
+                [typeaheadAsync]="true"
+                [typeaheadItemTemplate]="customItemTemplate"
+                (typeaheadOnSelect)="onSelectTopic($event)"
+                class="form-control mb-3">
+            <ng-template #customItemTemplate let-model="item" let-index="index">
+              <h5>{{ model.title }}</h5>
+            </ng-template>
+          </div>
+          <div cdkDropList
+              [cdkDropListData]="[(selectedDocumentTopic$ | async)]"
+              [cdkDropListConnectedTo]="documentId$ | async">
+            <div>
+              <sn-document-builder-topic-container [documentTopic]="selectedDocumentTopic$ | async"></sn-document-builder-topic-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <sn-document-builder-document-container></sn-document-builder-document-container>
+    </div>
+  </div>
+</div>

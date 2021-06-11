@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-sm-12 px-4">
+    <h3 class="font-weight-bold text-primary text-right mb-3">Search Topics</h3>
+    <hr />
+    <form>
+      <div class="form-group">
+        <label for="searchTerms">Keywords</label>
+        <input 
+            snDebounce
+            (onEvent)="onSearchTopics($event)"
+            type="text" 
+            id="searchTerms" 
+            name="searchTerms" 
+            class="form-control"
+            autocomplete="off" />
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <ul class="list-group">
+            <ng-container *ngIf="!(searchResults$ | async) || (searchResults$ | async)?.elements?.length === 0; else searchResults">
+              <sn-empty-data message="No results to display!"></sn-empty-data>
+            </ng-container>
+
+            <ng-template #searchResults>
+              <li *ngFor="let item of (searchResults$ | async)?.elements" class="list-group-item" [@fadeAnimation]>
+                <div class="topic-item">
+                  <h5 class="font-weight-bold mb-1">
+                    {{ item.title }} 
+                    <span class="text-primary float-right topic-icon">
+                      <a (click)="onGoToTopic(item.id)"><i class="fas fa-eye"></i></a>
+                    </span>
+                  </h5>
+                  <p class="font-italic m-0">{{ item.synopsis }}</p>
+                </div>
+              </li>
+            </ng-template>
+
+          </ul>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

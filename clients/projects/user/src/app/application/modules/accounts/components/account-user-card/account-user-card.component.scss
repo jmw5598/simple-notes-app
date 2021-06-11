@@ -1,0 +1,33 @@
+@import '../../../../../../assets/scss/bootswatch/simple-notes/variables';
+
+.user-details-card {
+  display: flex;
+  flex-direction: row;
+
+  .user-details-avatar {
+    
+    img {
+      display: block;
+      width: 128px;
+      height: 128px;
+    }
+  }
+
+  .user-details-details {
+    width: 100%;
+    justify-self: center;
+    align-self: center;
+  }
+}
+
+@media only screen and (max-width : 992px) {
+  .user-details-card {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .user-details-avatar {
+      border: 0;
+    }
+  }
+}

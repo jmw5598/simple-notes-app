@@ -1,0 +1,90 @@
+<!-- <pre>
+  {{ (shortcut$ | async) | json }}
+</pre> -->
+
+<div class="row">
+  <div class="col-sm-12 px-4">
+    <div *ngIf="(shortcut$ | async)">
+      <h3 class="font-weight-bold text-right mb-3">Keyboard Shortcut Details</h3>
+      <hr />
+      <h4 class="font-weight-bold mb-2">{{ shortcut?.action }} Binding</h4>
+      <ul class="list-unstyled mb-4 list-style-none">
+        <li class="card card-body mb-3 p-3">
+          <p class="text-dark m-0 p-0 mb-2 font-italic">{{ shortcut?.description }}</p>
+          <div class="mb-2">
+            <span class="float-left text-dark font-weight-bold">Default Shortcut:</span>
+            <span class="badge badge-secondary float-right">{{ shortcut?.defaultShortcut || 'NA' }}</span>
+          </div>
+          <div  *ngIf="shortcut.shortcut">
+            <span class="float-left text-dark font-weight-bold">Overridden Shortcut:</span>
+            <span class="badge badge-primary float-right">{{ shortcut?.shortcut || 'NA' }}</span>
+          </div>
+        </li>
+      </ul>
+      <div class="keyboard-shortcut-form">
+        <h5 class="font-weight-bold">Override Keyboard Shortcut</h5>
+        <form [formGroup]="shortcutForm" (ngSubmit)="saveShortcut(shortcutForm.value)" novalidate>
+          <!-- Response Message -->
+          <div 
+              class="form-group" 
+              *ngIf="responseMessage$ | async"
+              [@showHide]>
+            <div 
+                class="alert alert-success"
+                [ngClass]="{ 'alert-danger' : (responseMessage$ | async)?.status === ResponseStatus.ERROR }">
+              {{ (responseMessage$ | async)?.message }}
+            </div>
+          </div>
+          <!-- Create form array here -->
+          <div class="form-group">
+            <label for="">Modifiers</label>
+            <select class="form-control" formControlName="modifier">
+              <option 
+                  *ngFor="let modifier of modifierOptions" 
+                  [value]="modifier.value" 
+                  [disabled]="modifier.isSet">
+                {{ modifier.name }}
+              </option>
+            </select>
+            <small 
+                class="text-danger"
+                *ngIf="shortcutForm.get('modifier').touched && shortcutForm.get('modifier').hasError('required')">
+              Please select a modifier!
+            </small>
+            <!-- <button 
+                role="button"
+                type="button" 
+                class="d-block btn btn-outline-secondary text-dark btn-add-modifier py-2 mt-2"
+                (click)="addAdditionalModifier()">
+              <i class="fas fa-plus icon-margin"></i> Add Additional Modifier
+            </button> -->
+          </div>
+          <div class="form-group">
+            <label for="">Key</label>
+            <input type="text" class="form-control" formControlName="key" />
+            <small 
+                class="text-danger"
+                *ngIf="shortcutForm.get('key').touched && shortcutForm.get('key').hasError('required')">
+              Please enter a key!
+            </small>
+            <small 
+                class="text-danger"
+                *ngIf="shortcutForm.get('key').touched && shortcutForm.get('key').hasError('maxLength')">
+              Must be a single key!
+            </small>
+          </div>
+          <hr />
+          <div class="text-right">
+            <button 
+                role="button" 
+                type="submit"
+                [disabled]="shortcutForm.invalid"
+                class="btn btn-primary mr-3">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

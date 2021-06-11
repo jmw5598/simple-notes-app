@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-sm-12 px-4">
+    <h3 class="font-weight-bold text-primary text-right mb-3">Create Flashcards Set</h3>
+    <hr />
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+      <!-- Response Message -->
+      <div *ngIf="(responseMessage$ | async)" [@showHide] class="alert alert-success">
+        <span>
+          <strong>{{ (responseMessage$ | async).status | uppercase }}</strong>: {{ (responseMessage$ | async).message }}
+        </span>
+      </div>
+      <sn-flashcard-set-builder-form></sn-flashcard-set-builder-form>
+      <div class="form-group text-right">
+        <button class="btn btn-primary mr-3" type="submit" >Create Flashcard Set</button>
+        <button class="btn btn-secondary" type="button" (click)="onClose()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

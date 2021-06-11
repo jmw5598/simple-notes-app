@@ -1,0 +1,87 @@
+<div [formGroup]="form" class="mb-4">
+  <!-- Title Input -->
+  <div class="form-group">
+    <label for="title">Title <small class="text-danger">*</small></label>
+    <input type="text" class="form-control" formControlName="title" id="title" />
+  </div>
+
+  <!-- Start Date & Time Inputs -->
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <div class="form-group">
+        <label for="startedBy">Started By <small class="text-danger">*</small></label>
+        <input type="text"
+            class="form-control"
+            formControlName="startedBy"
+            bsDatepicker
+            [bsConfig]="datepickerConfig">
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <div class="form-group">
+        <label for="completedBy">Completed By <small class="text-danger">*</small></label>
+        <input type="text"
+            class="form-control"
+            formControlName="completedBy"
+            bsDatepicker
+            [bsConfig]="datepickerConfig">
+      </div>
+    </div>
+  </div>
+
+  <h5 class="text-dark font-weight-bold mt-2">Add Todos</h5>
+  <hr class="mb-2 mt-2" />
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group mb-0">
+        <label for="description">Description</label>
+        <input autocomplete="off" id="description" type="text" class="form-control" formControlName="description" />
+        <div class="text-right mt-1">
+          <button 
+              role="button" 
+              type="button"
+              class="btn btn-sm btn-outline-primary btn-border-none"
+              (click)="addTodo(form.get('description').value)"
+              [disabled]="!(form.get('description')?.value?.length > 0)">
+            <i class="fas fa-plus-circle"></i> Add 
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <label>Todos</label>
+      <ng-container *ngIf="form?.value?.todos?.length; else noTodosInList">
+        <ul class="list-group" 
+            cdkDropList 
+            [cdkDropListData]="form.get('todos')['control']"
+            (cdkDropListDropped)="dropTodo($event)">
+          <ng-container  
+              formArrayName="todos"
+              *ngFor="let item of form.get('todos')['controls']; let i = index;">
+
+            <li class="list-group-item todo-list-item" cdkDrag>
+              <span>
+                <span class="text-dark drag-handle mr-2" cdkDragHandle><i class="fas fa-grip-vertical"></i></span>
+                <span>{{ item.get('description').value }}</span>
+              </span>
+              
+              <span class="btn-remove" (click)="removeTodo(item.value)">
+                <i class="fas fa-times"></i>
+              </span>
+          </li>
+          </ng-container>
+        </ul>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #noTodosInList>
+  <sn-empty-data 
+      [message]="'Todo list is currently empty!'">
+  </sn-empty-data>
+</ng-template>

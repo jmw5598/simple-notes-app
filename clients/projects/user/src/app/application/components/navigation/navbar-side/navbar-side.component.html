@@ -1,0 +1,38 @@
+<div class="navbar-side-container">
+  <div class="navbar navbar-expand-lg navbar-dark bg-primary side-panel-nav">
+    <div class="container">
+      <!-- Navbar Brand -->
+      <a [routerLink]="['/']" class="navbar-brand mx-auto">
+        <img src="assets/images/simple-notes-logo.svg" width="30" height="30" alt="">
+        <span *ngIf="(currentPanelState$ | async) === LayoutSidePanelState.OPEN" class="brand-text">Simple Notes</span>
+      </a>
+      <div 
+          *ngIf="(currentPanelState$ | async) === LayoutSidePanelState.OPEN" 
+          class="close text-light p-4 d-block d-sm-block d-md-none" 
+          (click)="close()">
+        <i class="fas fa-times"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="navbar-side-menu">
+    <ul class="list-group navbar-side-menu-list text-dark">
+      <li 
+          *ngFor="let link of links"
+          class="list-group-item p-0 navbar-side-menu-item" 
+          routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}"
+          (mouseenter)="preloadBundle(link.routerLink)">
+        <a [routerLink]="link.routerLink" (click)="navigateTo(link.routerLink)" class="px-4 py-3 d-block">
+          <i 
+            [tooltip]="link.tooltip" 
+            placement="right" 
+            container="body"
+            [delay]="tooltipDelay"
+            [ngClass]="link.iconClasses">
+          </i>
+          <span *ngIf="(currentPanelState$ | async) === LayoutSidePanelState.OPEN">{{ link.label }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.flashcard-set-flipper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .flashcard-flipper-control {
+    font-size: 3rem;
+    cursor: pointer;
+  }
+}

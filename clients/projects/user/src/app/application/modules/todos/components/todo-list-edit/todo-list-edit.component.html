@@ -1,0 +1,21 @@
+<div>
+  <form [formGroup]="form" (ngSubmit)="onUpdate(form.value)" novalidate>
+    <sn-todo-list-update 
+        [todoList]="data$ | async" 
+        [responseMessage]="responseMessage$ | async">
+    </sn-todo-list-update>
+    <div class="form-group text-right mx-2">
+      <button 
+          class="btn btn-primary mr-2" 
+          type="submit">
+        Save
+      </button>
+      <button 
+          (click)="onCancel()"
+          class="btn btn-secondary" 
+          type="button">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

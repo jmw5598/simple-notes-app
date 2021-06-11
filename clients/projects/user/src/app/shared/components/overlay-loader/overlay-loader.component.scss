@@ -1,0 +1,32 @@
+@import '../../../../assets/scss/bootswatch/simple-notes/variables';
+
+.overlay-loader {
+  position: relative;
+  z-index: 1000;
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0; 
+    right: 0;
+    z-index: 1000;
+
+    .spinner {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -80%);
+    }
+
+    &.overlay-loader-style-transparent {
+      background: transparent;
+    }
+    &.overlay-loader-style-dim-dark {
+      background: rgba(#000, 0.3);
+    }
+    &.overlay-loader-style-dim-light {
+      background: rgba(#FFF, 0.5);
+    }
+  }
+}

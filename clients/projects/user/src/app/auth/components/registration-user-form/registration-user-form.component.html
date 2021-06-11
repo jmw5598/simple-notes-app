@@ -1,0 +1,80 @@
+<div [formGroup]="form.get('user')">
+  <!-- Username Input -->
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input 
+        class="form-control" 
+        formControlName="username" 
+        name="username" 
+        type="text" 
+        id="username" 
+        autocomplete="off"
+        [ngClass]="{ 'is-invalid':!form.get('user').get('username').valid && form.get('user').get('username').touched  }">
+    <small 
+        class="text-danger text-bold" 
+        *ngIf="
+          form.get('user').get('username').touched  
+          && form.get('user').get('username').hasError('required')">
+      Username is required!
+    </small>
+    <small 
+        class="text-danger text-bold" 
+        *ngIf="
+          form.get('user').get('username').touched
+          && form.get('user').get('username').hasError('usernameExists')">
+      Username already exists!
+    </small>
+  </div>
+
+  <!-- Password Input -->
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input 
+        class="form-control" 
+        formControlName="password" 
+        name="password" 
+        type="password" 
+        id="password"
+        [ngClass]="{ 'is-invalid':!form.get('user').get('password').valid && form.get('user').get('password').touched  }">
+    <small 
+        class="text-danger text-bold" 
+        *ngIf="
+          form.get('user').get('password').touched  
+          && form.get('user').get('password').hasError('required')">
+      Password is required!
+    </small>
+    <small 
+        class="text-danger text-bold" 
+        *ngIf="
+          form.get('user').get('password').touched  
+          && form.get('user').get('password').hasError('minlength')">
+      Password must be 8 characters!
+    </small>
+  </div>
+
+  <!-- Password Confirm Input -->
+  <div class="form-group">
+    <label for="passwordConfirm">Confirm Password</label>
+    <input 
+        class="form-control" 
+        formControlName="passwordConfirm" 
+        name="passwordConfirm" 
+        type="password" 
+        id="passwordConfirm"
+        [ngClass]="{ 'is-invalid':!form.get('user').get('passwordConfirm').valid && form.get('user').get('passwordConfirm').touched  }">
+    <small 
+        class="text-danger text-bold" 
+        *ngIf="
+          form.get('user').get('passwordConfirm').touched  
+          && form.get('user').get('passwordConfirm').hasError('required')">
+      Password confirmation is required!
+    </small>
+    <small 
+        class="text-danger text-bold" 
+        *ngIf="
+          form.get('user').get('passwordConfirm').touched  
+          && form.get('user').get('passwordConfirm').hasError('mustMatch')">
+      Password & Confirmation must match!
+    </small>
+  </div>
+</div>

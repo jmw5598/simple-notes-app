@@ -1,0 +1,31 @@
+<div class="flashcard-set-viewer">
+  <div class="flashcard-set-viewer-card">
+    <div class="flashcard-set-view">
+      <div class="flashcard-set-details">
+        <sn-flashcard-set-viewer-header 
+            [flashcardSet]="flashcardSet"
+            [flashcard]="(currentFlashcard$ | async)">
+        </sn-flashcard-set-viewer-header>
+      </div>
+      <ng-container *ngIf="flashcardSet?.flashcards?.length; else noFlashcardToDisplay">
+        <div class="flashcard-set-flipper mb-3">
+          <sn-flashcard-set-viewer-flipper
+              [isFlipped]="isCurrentFlashcardFlipped"
+              [flashcard]="(currentFlashcard$ | async)">
+          </sn-flashcard-set-viewer-flipper>
+        </div>
+        <div class="flashcard-set-viewer-controls">
+          <sn-flashcard-set-viewer-controls></sn-flashcard-set-viewer-controls>
+        </div>
+      </ng-container>
+    </div>    
+  </div>
+</div>
+
+<ng-template #noFlashcardToDisplay>
+  <sn-flashcard>
+    <sn-empty-data 
+        [message]="'No flashcard(s) to display!'">
+    </sn-empty-data>
+  </sn-flashcard>
+</ng-template>

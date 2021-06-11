@@ -1,0 +1,87 @@
+<sn-toolbar>
+  <sn-toolbar-button-group>
+    <span 
+        snToolbarButton 
+        (click)="onPreviousRoute()"
+        [tooltip]="'Previous Page'" 
+        placement="auto" 
+        container="body"
+        [delay]="tooltipDelay">
+      <i class="fas fa-arrow-left"></i>
+    </span>
+    <span 
+        snToolbarButton 
+        (click)="onNextRoute()"
+        [tooltip]="'Next Page'" 
+        placement="auto" 
+        container="body"
+        [delay]="tooltipDelay">
+      <i class="fas fa-arrow-right"></i>
+    </span>
+  </sn-toolbar-button-group>
+  <sn-toolbar-button-group>
+    <span 
+        snToolbarButton 
+        (click)="onCreateNewTopic()"
+        [tooltip]="'Create New Topic'" 
+        placement="auto" 
+        container="body"
+        [delay]="tooltipDelay">
+      <i class="fas fa-book-medical"></i>
+    </span>
+    <span 
+        snToolbarButton 
+        (click)="onCreateNewCalendarEvent()"
+        [tooltip]="'Create New Calendar Event'" 
+        placement="auto" 
+        container="body"
+        [delay]="tooltipDelay">
+      <i class="far fa-calendar-plus"></i>
+    </span>
+    <span 
+        snToolbarButton 
+        (click)="onCreateNewDocument()"
+        [tooltip]="'Create New Document'" 
+        placement="auto" 
+        container="body"
+        [delay]="tooltipDelay">
+      <i class="fas fa-file-medical"></i>
+    </span>
+    <span 
+        snToolbarButton 
+        (click)="onSearchTopics()"
+        [tooltip]="'Search Topics'" 
+        placement="auto" 
+        container="body"
+        [delay]="tooltipDelay">
+      <i class="fas fa-search"></i>
+    </span>
+    <span 
+        snToolbarButton 
+        (click)="onCreateFlashcardSet()"
+        [tooltip]="'Create Flashcard Set'" 
+        placement="auto" 
+        container="body"
+        [delay]="tooltipDelay">
+      <i class="far fa-sticky-note"></i>
+    </span>
+    <span 
+        snToolbarButton 
+        (click)="onCreateTodoList()"
+        [tooltip]="'Create New Todo List'" 
+        placement="auto" 
+        container="body"
+        [delay]="tooltipDelay">
+      <i class="fas fa-clipboard-check"></i>
+    </span>
+  </sn-toolbar-button-group>
+</sn-toolbar>
+
+<sn-drawer
+    [drawerLocation]="DrawerLocation.RIGHT">
+</sn-drawer>
+
+<ng-keyboard-shortcuts 
+    [shortcuts]="shortcuts">
+</ng-keyboard-shortcuts>
+

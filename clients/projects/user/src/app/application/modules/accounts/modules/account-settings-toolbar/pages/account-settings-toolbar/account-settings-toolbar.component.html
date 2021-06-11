@@ -1,0 +1,18 @@
+<div class="account-settings-toolbar p-3" [@fadeAnimation]>
+  <h4 class="font-weight-bold mb-3">Toolbar</h4>
+  <hr />
+  <div class="card calendar-integration-container">
+    <div class="card-body">
+      <h5 class="font-weight-bold mb-3">Keyboard Shortcuts</h5>
+      <sn-toolbar-keyboard-shortcut-list
+          [shortcuts]="shortcuts$ | async"
+          (onDeleteShortcut)="onDeleteShortcut($event)"
+          (onConfigureShortcut)="onConfigureShortcut($event)">
+      </sn-toolbar-keyboard-shortcut-list>
+    </div>
+  </div>
+</div>
+
+<sn-drawer
+    [drawerLocation]="DrawerLocation.RIGHT">
+</sn-drawer>

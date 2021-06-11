@@ -1,0 +1,30 @@
+<div *ngIf="!(isPageLoading$ | async) && (recentTopics$ | async) && (todaysEvents$ | async)" class="container-navbar-adjust container-fluid p-0 m-0 height-full" [@fadeAnimation]>
+  <div class="row m-0 p-0 height-full">
+    <!-- Todays Events Card -->
+    <div class="col-sm-12 col-md-12 col-lg-4 m-0 p-0 border-right-1">
+      <h4 class="font-weight-bold text-primary border-bottom-1 p-3">Todays Events</h4>
+      <sn-todays-calendar-events-list
+          [events]="todaysEvents$ | async">
+      </sn-todays-calendar-events-list>
+    </div>
+    <!-- Todo Lists -->
+    <div class="col-sm-12 col-md-12 col-lg-4 m-0 p-0 border-right-1">
+      <h4 class="font-weight-bold text-primary border-bottom-1 p-3">Todays Todo Lists</h4>
+      <sn-todays-todo-lists-list
+          [todoLists]="todaysTodoLists$ | async">
+      </sn-todays-todo-lists-list>
+
+      <h4 class="font-weight-bold text-primary border-bottom-1 p-3">Past Due Todo Lists</h4>
+      <sn-past-due-todo-lists-list
+          [todoLists]="pastDueTodoLists$ | async">
+      </sn-past-due-todo-lists-list>
+    </div>
+    <!-- Recent Topics -->
+    <div class="col-sm-12 col-md-12 col-lg-4 m-0 p-0">
+      <h4 class="font-weight-bold text-primary border-bottom-1 p-3">Recently Updated Topics</h4>
+      <sn-recent-topics-list
+          [topics]="recentTopics$ | async">
+      </sn-recent-topics-list>
+    </div>
+  </div>
+</div>
