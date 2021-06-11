@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { fadeAnimation } from '@sn/shared/animations';
-import { LayoutSidePanelState } from '@sn/shared/components';
-import { OverlayLoaderStyle, OverlaySpinnerSize } from '@sn/shared/components';
+import { fadeAnimation } from '@sn/user/shared/animations';
+import { LayoutSidePanelState } from '@sn/user/shared/components';
+import { OverlayLoaderStyle, OverlaySpinnerSize } from '@sn/user/shared/components';
 
 @Component({
   selector: 'sn-application',

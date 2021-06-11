@@ -5,15 +5,15 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { AuthenticationService } from '@sn/core/services';
-import { AuthenticatedStatus } from '@sn/core/enums';
-import { UserCredentials } from '@sn/core/models';
+import { AuthenticationService } from '@sn/user/core/services';
+import { AuthenticatedStatus } from '@sn/user/core/enums';
+import { UserCredentials } from '@sn/user/core/models';
 
 import * as fromAuth from '../../store/reducers';
 import * as fromActions from '../../store/actions';
 import * as fromSelectors from '../../store/selectors';
 
-import { fadeAnimation } from '@sn/shared/animations';
+import { fadeAnimation } from '@sn/user/shared/animations';
 
 @Component({
   selector: 'sn-login',

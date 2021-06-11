@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { handleHttpError } from '@sn/application/store/actions';
-import { ResponseStatus } from '@sn/core/enums';
-import { PageableSearch, ResponseMessage } from '@sn/core/models';
+import { handleHttpError } from '@sn/user/application/store/actions';
+import { ResponseStatus } from '@sn/user/core/enums';
+import { PageableSearch, ResponseMessage } from '@sn/user/core/models';
 
-import { TodoListsService } from '@sn/core/services/todo-lists.service';
+import { TodoListsService } from '@sn/user/core/services/todo-lists.service';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, map, switchMap } from 'rxjs/operators';
 

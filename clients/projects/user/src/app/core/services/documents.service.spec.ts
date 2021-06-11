@@ -1,8 +1,8 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { environment } from '@env/environment';
+import { environment } from '@sn/user/env/environment';
 
-import { Document } from '@sn/shared/models';
+import { Document } from '@sn/user/shared/models';
 import { take } from 'rxjs/operators';
 import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '../defaults';
 import { IPageable } from '../models';

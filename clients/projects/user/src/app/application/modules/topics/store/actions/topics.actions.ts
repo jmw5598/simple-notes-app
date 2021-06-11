@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { Page, PageableSearch, ResponseMessage } from '@sn/core/models';
-import { Topic, ExportConfig, FileResponse } from '@sn/shared/models';
+import { Page, PageableSearch, ResponseMessage } from '@sn/user/core/models';
+import { Topic, ExportConfig, FileResponse } from '@sn/user/shared/models';
 
 export const getAllTopics = createAction(
   '[Topic] Get All Topics'

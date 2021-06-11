@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '@sn/shared/shared.module';
+import { SharedModule } from '@sn/user/shared/shared.module';
 import { ViewTodosComponent } from './pages/view-todos/view-todos.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoListViewComponent } from './components/todo-list-view/todo-list-view.component';

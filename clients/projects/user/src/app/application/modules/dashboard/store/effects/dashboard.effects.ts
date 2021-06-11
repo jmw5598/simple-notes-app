@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { switchMap, map, catchError, exhaustMap } from 'rxjs/operators';
-import { TopicsService, CalendarEventsService, TodoListsService } from '@sn/core/services';
+import { TopicsService, CalendarEventsService, TodoListsService } from '@sn/user/core/services';
 import * as fromDashboard from '../actions/dashboard.actions';
-import { Page } from '@sn/core/models';
-import { Topic } from '@sn/shared/models';
-import { handleHttpError } from '@sn/core/store/actions';
+import { Page } from '@sn/user/core/models';
+import { Topic } from '@sn/user/shared/models';
+import { handleHttpError } from '@sn/user/core/store/actions';
 
 @Injectable()
 export class DashboardEffects {

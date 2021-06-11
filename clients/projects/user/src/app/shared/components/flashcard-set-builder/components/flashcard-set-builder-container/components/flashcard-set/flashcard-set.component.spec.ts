@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
-import { EmptyDataComponent } from '@sn/shared/components/empty-data/empty-data.component';
-import { FlashcardSetBuilderService } from '@sn/shared/components/flashcard-set-builder/services/flashcard-set-builder.service';
+import { EmptyDataComponent } from '@sn/user/shared/components/empty-data/empty-data.component';
+import { FlashcardSetBuilderService } from '@sn/user/shared/components/flashcard-set-builder/services/flashcard-set-builder.service';
 import { BehaviorSubject } from 'rxjs';
 
 import { FlashcardSetComponent } from './flashcard-set.component';
-import { Flashcard } from '@sn/shared/models';
+import { Flashcard } from '@sn/user/shared/models';
 
 describe('FlashcardSetComponent', () => {
   let component: FlashcardSetComponent;

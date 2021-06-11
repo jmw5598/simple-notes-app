@@ -3,14 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 import { DrawerService } from '../drawer/drawer.service';
-import { showHide } from '@sn/shared/animations';
+import { showHide } from '@sn/user/shared/animations';
 import { Store } from '@ngrx/store';
-import { IDocumentsState } from '@sn/application/modules/documents/store/reducers';
-import { ResponseMessage } from '@sn/core/models';
-import { Document } from '@sn/shared/models';
+import { IDocumentsState } from '@sn/user/application/modules/documents/store/reducers';
+import { ResponseMessage } from '@sn/user/core/models';
+import { Document } from '@sn/user/shared/models';
 
-import * as documentSelectors from '@sn/application/modules/documents/store/selectors';
-import * as documentActions from '@sn/application/modules/documents/store/actions';
+import * as documentSelectors from '@sn/user/application/modules/documents/store/selectors';
+import * as documentActions from '@sn/user/application/modules/documents/store/actions';
 
 @Component({
   selector: 'sn-document-create',

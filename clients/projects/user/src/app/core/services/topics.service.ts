@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AbstractCrudService } from './abstract-crud.service';
-import { Topic, ExportConfig, FileResponse, TodoList } from '@sn/shared/models';
-import { Page, IPageable } from '@sn/core/models';
-import { environment } from '@env/environment'
+import { Topic, ExportConfig, FileResponse, TodoList } from '@sn/user/shared/models';
+import { Page, IPageable } from '@sn/user/core/models';
+import { environment } from '@sn/user/env/environment'
 
 @Injectable({
   providedIn: 'root'

@@ -12,7 +12,7 @@ import { RegistrationProfileFormComponent } from './components/registration-prof
 import { RegistrationResultComponent } from './components/registration-result/registration-result.component';
 import { RegistrationUserFormComponent } from './components/registration-user-form/registration-user-form.component';
 import { LogoutComponent } from './pages/logout/logout.component';
-import { SharedModule } from '@sn/shared/shared.module';
+import { SharedModule } from '@sn/user/shared/shared.module';
 import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
 import { PasswordRequestComponent } from './pages/password-request/password-request.component';
 import { LoggingInComponent } from './pages/logging-in/logging-in.component';

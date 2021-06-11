@@ -1,17 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { DEFAULT_SEARCH_TODOS_PAGE } from '@sn/core/defaults';
-import { IPageable, Page, PageableSearch } from '@sn/core/models';
-import { AbstractPageOverlayLoader, DrawerLocation, DrawerService, OverlayLoaderService } from '@sn/shared/components';
-import { TodoList } from '@sn/shared/models';
+import { DEFAULT_SEARCH_TODOS_PAGE } from '@sn/user/core/defaults';
+import { IPageable, Page, PageableSearch } from '@sn/user/core/models';
+import { AbstractPageOverlayLoader, DrawerLocation, DrawerService, OverlayLoaderService } from '@sn/user/shared/components';
+import { TodoList } from '@sn/user/shared/models';
 import { Observable, Subject } from 'rxjs';
 import { ITodosState } from '../../store/reducers';
 
 import * as todosSelectors from '../../store/selectors';
 import * as todosActions from '../../store/actions';
 import { takeUntil, tap } from 'rxjs/operators';
-import { fadeAnimation } from '@sn/shared/animations';
-import { TodoListCreateComponent } from '@sn/shared/components/todo-list-create/todo-list-create.component';
+import { fadeAnimation } from '@sn/user/shared/animations';
+import { TodoListCreateComponent } from '@sn/user/shared/components/todo-list-create/todo-list-create.component';
 import { TodoListViewComponent } from '../../components/todo-list-view/todo-list-view.component';
 import { TodoListEditComponent } from '../../components/todo-list-edit/todo-list-edit.component';
 

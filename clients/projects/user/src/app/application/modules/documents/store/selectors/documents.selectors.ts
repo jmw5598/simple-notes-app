@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 import * as fromDocuments from '../reducers/documents.reducers';
 import * as fromApplication from '../../../../store/index';
-import { Document } from '@sn/shared/models';
+import { Document } from '@sn/user/shared/models';
 
 export const selectDocumentState = createSelector(
   fromApplication.selectApplicationState,

@@ -4,11 +4,11 @@ import { Observable, of } from 'rxjs';
 import { tap, filter, take, switchMap, catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import { Profile } from '@sn/core/models';
+import { Profile } from '@sn/user/core/models';
 import { getAccountProfile } from '../store/actions';
 import { selectAccountProfile } from '../store/selectors';
 import { IAccountsState } from '../store/reducers';
-import { OverlayLoaderService } from '@sn/shared/components';
+import { OverlayLoaderService } from '@sn/user/shared/components';
 
 @Injectable({
   providedIn: 'root'

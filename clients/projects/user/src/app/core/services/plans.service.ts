@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { AbstractCrudService } from './abstract-crud.service';
 import { Plan } from '../models/plan.model';
 
-import { environment } from '@env/environment';
+import { environment } from '@sn/user/env/environment';
 
 @Injectable({
   providedIn: 'root'

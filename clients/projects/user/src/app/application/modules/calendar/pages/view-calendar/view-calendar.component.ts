@@ -4,15 +4,15 @@ import { Subject } from 'rxjs';
 import { takeUntil, withLatestFrom } from 'rxjs/operators';
 import { ICalendarEventsState } from '../../store/reducers';
 import { CalendarOptions, EventInput, EventSourceInput, FullCalendarComponent } from '@fullcalendar/angular';
-import { DrawerService, CalendarEventCreateComponent, OverlayLoaderService } from '@sn/shared/components';
+import { DrawerService, CalendarEventCreateComponent, OverlayLoaderService } from '@sn/user/shared/components';
 import { CalendarEventViewComponent } from '../../components/calendar-event-view/calendar-event-view.component';
-import { fadeAnimation } from '@sn/shared/animations';
+import { fadeAnimation } from '@sn/user/shared/animations';
 import { CALENDAR_OPTIONS_DEFAULT } from '../../calendar-options.defaults';
-import { CalendarEvent } from '@sn/core/models';
+import { CalendarEvent } from '@sn/user/core/models';
 
 import * as calendarSelectors from '../../store/selectors';
 import * as calendarActions from '../../store/actions';
-import { TodoList } from '@sn/shared/models';
+import { TodoList } from '@sn/user/shared/models';
 import { CalendarTodoListViewComponent } from '../../components/calendar-todo-list-view/calendar-todo-list-view.component';
 import { CalendarEventCreateMenuComponent } from '../../components/calendar-event-create-menu/calendar-event-create-menu.component';
 

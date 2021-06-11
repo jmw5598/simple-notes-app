@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { environment } from '@env/environment';
-import { TodoList } from '@sn/shared/models';
+import { environment } from '@sn/user/env/environment';
+import { TodoList } from '@sn/user/shared/models';
 import { Observable } from 'rxjs';
 import { IPageable, Page } from '../models';
 import { AbstractCrudService } from './abstract-crud.service';

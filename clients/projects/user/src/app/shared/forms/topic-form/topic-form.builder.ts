@@ -1,5 +1,5 @@
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Permission } from '@sn/shared/models';
+import { Permission } from '@sn/user/shared/models';
 
 export const buildTopicFormGroup = (formBuilder: FormBuilder): FormGroup => {
   return formBuilder.group({

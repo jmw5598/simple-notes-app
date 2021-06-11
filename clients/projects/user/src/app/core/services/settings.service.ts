@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { KeyboardShortcutAction, Theme } from '../models';
-import { environment } from '@env/environment';
+import { environment } from '@sn/user/env/environment';
 
 @Injectable({
   providedIn: 'root'

@@ -1,17 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Document, DocumentMarkdown, ExportConfig, ExportFormat, FileResponse } from '@sn/shared/models';
+import { Document, DocumentMarkdown, ExportConfig, ExportFormat, FileResponse } from '@sn/user/shared/models';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 
 import { IDocumentsState } from '../../store/reducers';
 import * as fromSelectors from '../../store/selectors';
 import * as fromActions from '../../store/actions';
-import { SpinnerStyle } from '@sn/shared/components';
-import { fadeAnimation, showHide } from '@sn/shared/animations';
+import { SpinnerStyle } from '@sn/user/shared/components';
+import { fadeAnimation, showHide } from '@sn/user/shared/animations';
 
 import * as FileSaver from 'file-saver';
-import { ResponseMessage } from '@sn/core/models';
+import { ResponseMessage } from '@sn/user/core/models';
 
 @Component({
   selector: 'sn-document-view',

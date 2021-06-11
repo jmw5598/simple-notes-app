@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { CdkDragDrop, copyArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
 import { DropAction } from '../models/drop-action.enum';
 import { Store } from '@ngrx/store';
-import { IAppState } from '@sn/store/reducers';
+import { IAppState } from '@sn/user/store/reducers';
 
-import * as documentActions from '@sn/application/modules/documents/store/actions';
-import { DocumentTopic, DocumentTopicSection } from '@sn/shared/models';
+import * as documentActions from '@sn/user/application/modules/documents/store/actions';
+import { DocumentTopic, DocumentTopicSection } from '@sn/user/shared/models';
 
 @Injectable({
   providedIn: 'root'

@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
-import { Flashcard, FlashcardSet } from '@sn/shared/models';
+import { Flashcard, FlashcardSet } from '@sn/user/shared/models';
 import { BehaviorSubject } from 'rxjs';
 
 import { FlashcardSetBuilderService } from './flashcard-set-builder.service';
 
-import * as flashcardActions from '@sn/application/modules/flashcards/store/actions';
+import * as flashcardActions from '@sn/user/application/modules/flashcards/store/actions';
 
 describe('FlashcardSetBuilderService', () => {
   let service: FlashcardSetBuilderService;

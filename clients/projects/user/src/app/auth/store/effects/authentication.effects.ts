@@ -4,8 +4,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 
-import { AccountsService, AuthenticationService } from '@sn/core/services';
-import { AuthenticatedUser } from '@sn/core/models';
+import { AccountsService, AuthenticationService } from '@sn/user/core/services';
+import { AuthenticatedUser } from '@sn/user/core/models';
 import * as fromActions from '../actions';
 
 @Injectable()

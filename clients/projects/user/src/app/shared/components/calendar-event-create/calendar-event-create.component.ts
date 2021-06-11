@@ -1,13 +1,13 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { DrawerService } from '../drawer/drawer.service';
 import { Store } from '@ngrx/store';
-import { ICalendarEventsState } from '@sn/application/modules/calendar/store/reducers';
+import { ICalendarEventsState } from '@sn/user/application/modules/calendar/store/reducers';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap, take } from 'rxjs/operators';
-import { createCalendarEvent, setCreateCalendarEventResponseMessage } from '@sn/application/modules/calendar/store/actions';
-import { selectCreateCalendarEventResponseMessage } from '@sn/application/modules/calendar/store/selectors';
-import { CalendarEvent, ResponseMessage } from '@sn/core/models';
+import { createCalendarEvent, setCreateCalendarEventResponseMessage } from '@sn/user/application/modules/calendar/store/actions';
+import { selectCreateCalendarEventResponseMessage } from '@sn/user/application/modules/calendar/store/selectors';
+import { CalendarEvent, ResponseMessage } from '@sn/user/core/models';
 import { showHide } from '../../animations';
 import { buildCalendarEventFormGroup } from '../../forms/calendar-event-form/calendar-event-form.builder';
 import { CalendarEventFormComponent } from '../../forms/calendar-event-form/calendar-event-form.component';

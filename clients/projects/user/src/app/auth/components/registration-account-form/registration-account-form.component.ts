@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, ControlContainer } from '@angular/forms';
-import { Plan } from '@sn/core/models';
+import { Plan } from '@sn/user/core/models';
 
 @Component({
   selector: 'sn-registration-account-form',

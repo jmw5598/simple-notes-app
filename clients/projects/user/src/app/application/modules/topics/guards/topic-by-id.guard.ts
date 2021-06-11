@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { tap, filter, take, switchMap, catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import { Topic } from '@sn/shared/models';
+import { Topic } from '@sn/user/shared/models';
 import { ITopicsState } from '../store/reducers';
 import { getTopicById } from '../store/actions';
 import { selectSelectedTopic } from '../store/selectors';

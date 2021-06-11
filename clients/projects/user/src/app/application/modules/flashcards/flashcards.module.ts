@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SharedModule } from '@sn/shared/shared.module';
+import { SharedModule } from '@sn/user/shared/shared.module';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { FlashcardsRoutingModule } from './flashcards-routing.module';
 import { ViewFlashcardsComponent } from './pages/view-flashcards/view-flashcards.component';

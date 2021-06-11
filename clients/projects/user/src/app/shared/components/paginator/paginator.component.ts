@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Page, IPageable, PageRequest } from '@sn/core/models';
+import { Page, IPageable, PageRequest } from '@sn/user/core/models';
 
 @Component({
   selector: 'sn-paginator',

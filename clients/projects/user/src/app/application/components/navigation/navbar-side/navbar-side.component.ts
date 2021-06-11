@@ -1,10 +1,10 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { LayoutService, LayoutSidePanelState } from '@sn/shared/components'
+import { LayoutService, LayoutSidePanelState } from '@sn/user/shared/components'
 import { NavigationRouteLink, NAVIGATION_ROUTES } from './navigation.routes';
 import { tap } from 'rxjs/operators';
-import { OnDemandPreloadService } from '@sn/core/preloading-strategies';
+import { OnDemandPreloadService } from '@sn/user/core/preloading-strategies';
 
 @Component({
   selector: 'sn-navbar-side',

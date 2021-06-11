@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { idGenerator } from '@sn/shared/utils/id-generator.util';
+import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DEFAULT_TOAST_MESSAGE_OPTIONS, ToastMessage, ToastMessageOptions } from './toast-message.model';
 

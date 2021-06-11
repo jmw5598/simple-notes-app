@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { EmptyDataComponent } from '@sn/shared/components/empty-data/empty-data.component';
-import { TodoList } from '@sn/shared/models';
+import { EmptyDataComponent } from '@sn/user/shared/components/empty-data/empty-data.component';
+import { TodoList } from '@sn/user/shared/models';
 
 import { TodoListComponent } from './todo-list.component';
 

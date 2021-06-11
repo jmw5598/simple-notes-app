@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { CalendarEvent, ResponseMessage } from '@sn/core/models';
+import { CalendarEvent, ResponseMessage } from '@sn/user/core/models';
 
 export const createCalendarEvent = createAction(
   '[Calendar Events] Create Calendar Event',

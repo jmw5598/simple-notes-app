@@ -2,8 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { NavbarComponent } from './navbar.component';
-import { SharedModule } from '@sn/shared/shared.module';
-import { LayoutService, LayoutSidePanelState } from '@sn/shared/components';
+import { SharedModule } from '@sn/user/shared/shared.module';
+import { LayoutService, LayoutSidePanelState } from '@sn/user/shared/components';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;

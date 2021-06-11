@@ -1,11 +1,11 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Document, DocumentTopic } from '@sn/shared/models';
-import { IAppState } from '@sn/store/reducers';
+import { Document, DocumentTopic } from '@sn/user/shared/models';
+import { IAppState } from '@sn/user/store/reducers';
 import { Observable } from 'rxjs';
 import { DropAction } from '../../models/drop-action.enum';
-import * as fromSelectors from '@sn/application/modules/documents/store/selectors';
+import * as fromSelectors from '@sn/user/application/modules/documents/store/selectors';
 import { map } from 'rxjs/operators';
 import { DocumentBuilderService } from '../../services/document-builder.service';
 

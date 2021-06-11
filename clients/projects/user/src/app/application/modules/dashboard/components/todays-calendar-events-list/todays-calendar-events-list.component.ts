@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CalendarEvent } from '@sn/core/models';
+import { CalendarEvent } from '@sn/user/core/models';
 
 @Component({
   selector: 'sn-todays-calendar-events-list',

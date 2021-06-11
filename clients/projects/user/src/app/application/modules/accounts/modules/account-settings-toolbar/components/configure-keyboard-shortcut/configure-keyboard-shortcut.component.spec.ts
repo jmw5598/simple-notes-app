@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { createKeyboardShortcut, deleteKeyboardShortcut, updateKeyboardShortcut } from '@sn/application/store/actions';
-import { KeyboardShortcutActionType } from '@sn/core/enums';
-import { KeyboardShortcutAction } from '@sn/core/models';
-import { SharedModule } from '@sn/shared/shared.module';
+import { createKeyboardShortcut, deleteKeyboardShortcut, updateKeyboardShortcut } from '@sn/user/application/store/actions';
+import { KeyboardShortcutActionType } from '@sn/user/core/enums';
+import { KeyboardShortcutAction } from '@sn/user/core/models';
+import { SharedModule } from '@sn/user/shared/shared.module';
 import { of } from 'rxjs';
 
 import { ConfigureKeyboardShortcutComponent } from './configure-keyboard-shortcut.component';

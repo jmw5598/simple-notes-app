@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { Page, PageableSearch, ResponseMessage } from '@sn/core/models';
-import { Section } from '@sn/shared/models';
+import { Page, PageableSearch, ResponseMessage } from '@sn/user/core/models';
+import { Section } from '@sn/user/shared/models';
 
 export const getSectionById = createAction(
   '[Section] Get Section By Id',

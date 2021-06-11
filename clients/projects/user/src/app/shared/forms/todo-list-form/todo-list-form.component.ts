@@ -1,8 +1,8 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
 import { ControlContainer, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Todo } from '@sn/shared/models';
-import { idGenerator } from '@sn/shared/utils/id-generator.util';
+import { Todo } from '@sn/user/shared/models';
+import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
 
 @Component({
   selector: 'sn-todo-list-form',

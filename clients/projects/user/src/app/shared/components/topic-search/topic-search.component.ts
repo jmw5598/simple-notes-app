@@ -2,15 +2,15 @@ import { Component, OnInit, OnDestroy, Renderer2, AfterViewInit } from '@angular
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { ITopicsState } from '@sn/application/modules/topics/store/reducers';
-import { fadeAnimation } from '@sn/shared/animations';
-import { selectSearchTopicsFromDrawerResult } from '@sn/application/modules/topics/store/selectors';
-import { Page } from '@sn/core/models';
-import { Topic } from '@sn/shared/models';
-import { IPageable } from '@sn/core/models';
-import { PageableSearch } from '@sn/core/models'
-import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/core/defaults';
-import { searchTopicsFromDrawer, searchTopicsFromDrawerResult } from '@sn/application/modules/topics/store/actions';
+import { ITopicsState } from '@sn/user/application/modules/topics/store/reducers';
+import { fadeAnimation } from '@sn/user/shared/animations';
+import { selectSearchTopicsFromDrawerResult } from '@sn/user/application/modules/topics/store/selectors';
+import { Page } from '@sn/user/core/models';
+import { Topic } from '@sn/user/shared/models';
+import { IPageable } from '@sn/user/core/models';
+import { PageableSearch } from '@sn/user/core/models'
+import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/user/core/defaults';
+import { searchTopicsFromDrawer, searchTopicsFromDrawerResult } from '@sn/user/application/modules/topics/store/actions';
 import { DrawerService } from '../drawer/drawer.service';
 
 @Component({

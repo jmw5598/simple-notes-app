@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppLoadingComponent } from './app-loading.component';
-import { SharedModule } from '@sn/shared/shared.module';
+import { SharedModule } from '@sn/user/shared/shared.module';
 
 describe('AppLoadingComponent', () => {
   let component: AppLoadingComponent;

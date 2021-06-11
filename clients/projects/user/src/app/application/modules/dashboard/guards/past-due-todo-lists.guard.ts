@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { OverlayLoaderService } from '@sn/shared/components';
-import { TodoList } from '@sn/shared/models';
+import { OverlayLoaderService } from '@sn/user/shared/components';
+import { TodoList } from '@sn/user/shared/models';
 import { Observable, of } from 'rxjs';
 import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 import { ITodosState } from '../../todos/store/reducers';

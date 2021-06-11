@@ -1,8 +1,8 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { environment } from '@env/environment';
+import { environment } from '@sn/user/env/environment';
 
-import { Profile, Address } from '@sn/core/models';
+import { Profile, Address } from '@sn/user/core/models';
 import { take } from 'rxjs/operators';
 import { ProfilesService } from './profiles.service';
 

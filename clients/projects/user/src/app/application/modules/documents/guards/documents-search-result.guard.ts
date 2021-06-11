@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { Document } from '@sn/shared/models';
-import { IPageable, Page, PageableSearch } from '@sn/core/models';
+import { Document } from '@sn/user/shared/models';
+import { IPageable, Page, PageableSearch } from '@sn/user/core/models';
 import { IDocumentsState } from '../store/reducers';
-import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/core/defaults';
+import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/user/core/defaults';
 import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 import { selectSearchDocumentsResult } from '../store/selectors';
 import { searchDocuments } from '../store/actions';
-import { OverlayLoaderService } from '@sn/shared/components';
+import { OverlayLoaderService } from '@sn/user/shared/components';
 
 @Injectable({
   providedIn: 'root'

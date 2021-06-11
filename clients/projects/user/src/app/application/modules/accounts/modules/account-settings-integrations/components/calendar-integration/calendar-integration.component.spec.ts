@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { CalendarIntegration, CalendarIntegrationType } from '@sn/core/models';
+import { CalendarIntegration, CalendarIntegrationType } from '@sn/user/core/models';
 
 import { CalendarIntegrationComponent } from './calendar-integration.component';
 

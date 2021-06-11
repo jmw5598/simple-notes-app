@@ -1,15 +1,15 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { DropAction } from '@sn/shared/components/document-builder/models/drop-action.enum';
-import { Section, Topic } from '@sn/shared/models';
-import { IAppState } from '@sn/store/reducers';
+import { DropAction } from '@sn/user/shared/components/document-builder/models/drop-action.enum';
+import { Section, Topic } from '@sn/user/shared/models';
+import { IAppState } from '@sn/user/store/reducers';
 import { Observable } from 'rxjs';
 import { DocumentBuilderService } from '../../../../services/document-builder.service';
 
-import * as documentSelectors from '@sn/application/modules/documents/store/selectors';
+import * as documentSelectors from '@sn/user/application/modules/documents/store/selectors';
 import { map } from 'rxjs/operators';
-import { DocumentTopic } from '@sn/shared/models/document-topic.model';
+import { DocumentTopic } from '@sn/user/shared/models/document-topic.model';
 
 @Component({
   selector: 'sn-document-builder-topic-container',

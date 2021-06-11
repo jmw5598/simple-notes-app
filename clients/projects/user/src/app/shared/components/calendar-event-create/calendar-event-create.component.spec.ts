@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
-import { SharedModule } from '@sn/shared/shared.module';
+import { SharedModule } from '@sn/user/shared/shared.module';
 import { CalendarEventCreateComponent } from './calendar-event-create.component';
 import { DrawerService } from '../drawer/drawer.service';
 import { CalendarEventFormComponent } from '../../forms';

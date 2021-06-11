@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 import { AuthenticatedUser } from '../models/authenticated-user.model'; 
 import { UserCredentials } from '../models/user-credentials.model';
 
-import { environment } from '@env/environment';
+import { environment } from '@sn/user/env/environment';
 import { UserSettings } from '../models/user-settings.model';
 
 @Injectable({

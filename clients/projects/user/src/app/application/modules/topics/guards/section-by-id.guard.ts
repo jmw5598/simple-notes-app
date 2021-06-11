@@ -4,11 +4,11 @@ import { Observable, of } from 'rxjs';
 import { tap, filter, take, switchMap, catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import { Section } from '@sn/shared/models';
+import { Section } from '@sn/user/shared/models';
 import { getSectionById } from '../store/actions';
 import { selectSelectedSection } from '../store/selectors';
 import { ITopicsState } from '../store/reducers';
-import { OverlayLoaderService } from '@sn/shared/components';
+import { OverlayLoaderService } from '@sn/user/shared/components';
 
 @Injectable({
   providedIn: 'root'

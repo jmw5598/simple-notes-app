@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FlashcardSet } from '@sn/shared/models';
-import { SharedModule } from '@sn/shared/shared.module';
+import { FlashcardSet } from '@sn/user/shared/models';
+import { SharedModule } from '@sn/user/shared/shared.module';
 
 import { FlashcardListComponent } from './flashcard-list.component';
 

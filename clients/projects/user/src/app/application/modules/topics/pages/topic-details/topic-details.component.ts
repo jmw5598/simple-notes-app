@@ -6,16 +6,16 @@ import { Store } from '@ngrx/store';
 import { ISectionsState } from '../../store/reducers';
 import { selectSelectedTopic, selectSearchSectionsResult, selectCreateSectionResponseMessage } from '../../store/selectors';
 import { searchSections, deleteSection, setExportTopicFileResponse, setExportTopicResponseMessage, searchSectionsResult } from '../../store/actions';
-import { FileResponse, Topic, Section } from '@sn/shared/models';
-import { fadeAnimation } from '@sn/shared/animations';
-import { PageableSearch, Page, IPageable, ResponseMessage } from '@sn/core/models';
-import { AbstractPageOverlayLoader, DrawerService, DrawerLocation, OverlayLoaderService } from '@sn/shared/components';
-import { DEFAULT_SEARCH_SECTIONS_PAGE } from '@sn/core/defaults';
+import { FileResponse, Topic, Section } from '@sn/user/shared/models';
+import { fadeAnimation } from '@sn/user/shared/animations';
+import { PageableSearch, Page, IPageable, ResponseMessage } from '@sn/user/core/models';
+import { AbstractPageOverlayLoader, DrawerService, DrawerLocation, OverlayLoaderService } from '@sn/user/shared/components';
+import { DEFAULT_SEARCH_SECTIONS_PAGE } from '@sn/user/core/defaults';
 import { TopicExportComponent } from '../../components/topic-export/topic-export.component';
 import { TopicUpdateComponent } from '../../components/topic-update/topic-update.component';
 import { SectionUpdateComponent } from '../../components/section-update/section-update.component';
 import { SectionCreateComponent } from '../../components/section-create/section-create.component';
-import { ResponseStatus } from '@sn/core/enums';
+import { ResponseStatus } from '@sn/user/core/enums';
 
 @Component({
   selector: 'sn-topic-details',

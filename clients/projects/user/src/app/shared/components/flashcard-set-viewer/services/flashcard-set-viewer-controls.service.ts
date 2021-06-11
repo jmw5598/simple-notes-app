@@ -1,6 +1,6 @@
 import { ClassMethod } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { Flashcard, FlashcardSet } from '@sn/shared/models';
+import { Flashcard, FlashcardSet } from '@sn/user/shared/models';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable()

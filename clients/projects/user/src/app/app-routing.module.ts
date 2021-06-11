@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthenticationGuard } from '@sn/auth/guards';
-import { ThemeLoaderGuard } from '@sn/core/guards';
+import { AuthenticationGuard } from '@sn/user/auth/guards';
+import { ThemeLoaderGuard } from '@sn/user/core/guards';
 import { OnDemandPreloadStrategy } from './core/preloading-strategies';
 
 const routes: Routes = [

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { FormGroup, ControlContainer } from '@angular/forms';
-import { CalendarEvent, ResponseMessage } from '@sn/core/models';
-import { showHide } from '@sn/shared/animations';
+import { CalendarEvent, ResponseMessage } from '@sn/user/core/models';
+import { showHide } from '@sn/user/shared/animations';
 
 @Component({
   selector: 'sn-calendar-event-update',

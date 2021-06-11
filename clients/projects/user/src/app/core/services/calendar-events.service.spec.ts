@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { environment } from '@env/environment';
+import { environment } from '@sn/user/env/environment';
 import { take } from 'rxjs/operators';
 import { CalendarEventsService } from './calendar-events.service';
 import { CalendarEvent } from '../models';

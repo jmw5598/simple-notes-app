@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { LayoutService, LayoutSidePanelState } from '@sn/shared/components';
+import { LayoutService, LayoutSidePanelState } from '@sn/user/shared/components';
 
 @Component({
   selector: 'sn-navbar',

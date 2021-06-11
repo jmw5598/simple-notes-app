@@ -6,11 +6,11 @@ import { Store } from '@ngrx/store';
 
 import { AuthenticatedStatus } from '../enums';
 import { AuthenticatedUser } from '../models';
-import { IAuthenticationState } from '@sn/auth/store/reducers';
+import { IAuthenticationState } from '@sn/user/auth/store/reducers';
 
-import * as fromAuthentication from '@sn/auth/store/reducers';
-import * as fromAuthenticationSelectors from '@sn/auth/store/selectors';
-import * as fromAuthenticationActions from '@sn/auth/store/actions';
+import * as fromAuthentication from '@sn/user/auth/store/reducers';
+import * as fromAuthenticationSelectors from '@sn/user/auth/store/selectors';
+import * as fromAuthenticationActions from '@sn/user/auth/store/actions';
 
 @Injectable()
 export class JwtTokenInterceptor implements HttpInterceptor, OnDestroy {

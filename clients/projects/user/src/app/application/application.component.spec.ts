@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
-import { SharedModule } from '@sn/shared/shared.module';
+import { SharedModule } from '@sn/user/shared/shared.module';
 import { ApplicationComponent } from './application.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { NavbarSideComponent } from './components/navigation/navbar-side/navbar-side.component'; 

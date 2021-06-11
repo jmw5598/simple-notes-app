@@ -7,7 +7,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { AccountSettingsComponent } from './account-settings.component';
 import { AccountUserCardComponent } from '../../components/account-user-card/account-user-card.component';
-import { PageHeaderComponent } from '@sn/shared/components/page-header/page-header.component';
+import { PageHeaderComponent } from '@sn/user/shared/components/page-header/page-header.component';
 
 describe('AccountSettingsComponent', () => {
   let component: AccountSettingsComponent;

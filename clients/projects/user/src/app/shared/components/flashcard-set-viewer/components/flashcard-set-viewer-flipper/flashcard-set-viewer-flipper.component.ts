@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Flashcard } from '@sn/shared/models';
+import { Flashcard } from '@sn/user/shared/models';
 
 @Component({
   selector: 'sn-flashcard-set-viewer-flipper',

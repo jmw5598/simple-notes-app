@@ -1,13 +1,13 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
-import { fadeAnimation } from '@sn/shared/animations'
+import { fadeAnimation } from '@sn/user/shared/animations'
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IAccountsState } from '../../store/reducers';
-import { Account, Profile } from '@sn/core/models';
+import { Account, Profile } from '@sn/user/core/models';
 import { selectAccountDetails, selectAccountProfile } from '../../store/selectors';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
-import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
+import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/user/shared/components';
 
 @Component({
   selector: 'sn-account-settings',

@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { Page, ResponseMessage } from '@sn/core/models';
-import { Topic, FileResponse } from '@sn/shared/models';
+import { Page, ResponseMessage } from '@sn/user/core/models';
+import { Topic, FileResponse } from '@sn/user/shared/models';
 import * as fromActions from '../actions';
 
 export const topicsFeatureKey = 'topics';

@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { DrawerService } from '@sn/shared/components';
-import { TodoList } from '@sn/shared/models';
-import { SharedModule } from '@sn/shared/shared.module';
+import { DrawerService } from '@sn/user/shared/components';
+import { TodoList } from '@sn/user/shared/models';
+import { SharedModule } from '@sn/user/shared/shared.module';
 import { BehaviorSubject, of } from 'rxjs';
 
 import { TodoListEditComponent } from './todo-list-edit.component';

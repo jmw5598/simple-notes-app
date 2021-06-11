@@ -1,8 +1,8 @@
 import { createAction, props } from '@ngrx/store';
-import { Page, PageableSearch, ResponseMessage } from '@sn/core/models';
-import { Document, DocumentMarkdown, ExportConfig, FileResponse, Section, Topic } from '@sn/shared/models';
-import { DocumentTopicSection } from '@sn/shared/models/document-topic-section.model';
-import { DocumentTopic } from '@sn/shared/models/document-topic.model';
+import { Page, PageableSearch, ResponseMessage } from '@sn/user/core/models';
+import { Document, DocumentMarkdown, ExportConfig, FileResponse, Section, Topic } from '@sn/user/shared/models';
+import { DocumentTopicSection } from '@sn/user/shared/models/document-topic-section.model';
+import { DocumentTopic } from '@sn/user/shared/models/document-topic.model';
 
 export const createDocument = createAction(
   '[Document] Create Document',

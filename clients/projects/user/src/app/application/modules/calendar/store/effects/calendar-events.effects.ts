@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { CalendarEventsService } from '@sn/core/services';
-import { handleHttpError } from '@sn/core/store/actions/http-error.actions';
+import { CalendarEventsService } from '@sn/user/core/services';
+import { handleHttpError } from '@sn/user/core/store/actions/http-error.actions';
 import { of } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import * as fromActions from '../actions';
-import { ResponseMessage } from '@sn/core/models';
-import { ResponseStatus } from '@sn/core/enums';
+import { ResponseMessage } from '@sn/user/core/models';
+import { ResponseStatus } from '@sn/user/core/enums';
 
 @Injectable()
 export class CalendarEventsEffects {

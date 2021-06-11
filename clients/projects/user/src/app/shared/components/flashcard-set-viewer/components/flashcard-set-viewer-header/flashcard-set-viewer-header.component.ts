@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Flashcard, FlashcardSet } from '@sn/shared/models';
+import { Flashcard, FlashcardSet } from '@sn/user/shared/models';
 
 @Component({
   selector: 'sn-flashcard-set-viewer-header',

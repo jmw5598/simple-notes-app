@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '@sn/shared/shared.module';
+import { SharedModule } from '@sn/user/shared/shared.module';
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AccountsRoutingModule } from './accounts-routing.module';

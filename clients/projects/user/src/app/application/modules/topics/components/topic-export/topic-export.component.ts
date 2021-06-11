@@ -4,10 +4,10 @@ import { Store } from '@ngrx/store';
 import { Subject, Observable } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 import { ITopicsState } from '../../store/reducers';
-import { ResponseMessage } from '@sn/core/models';
-import { ExportConfig, ExportFormat, FileResponse, Topic } from '@sn/shared/models';
-import { DrawerService } from '@sn/shared/components';
-import { showHide } from '@sn/shared/animations';
+import { ResponseMessage } from '@sn/user/core/models';
+import { ExportConfig, ExportFormat, FileResponse, Topic } from '@sn/user/shared/models';
+import { DrawerService } from '@sn/user/shared/components';
+import { showHide } from '@sn/user/shared/animations';
 import { selectExportTopicResponseMessage, selectExportTopicFile } from '../../store/selectors';
 import { exportTopic } from '../../store/actions';
 

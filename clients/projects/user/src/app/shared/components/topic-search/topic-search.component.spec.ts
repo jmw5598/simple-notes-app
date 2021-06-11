@@ -3,12 +3,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
-import { SharedModule } from '@sn/shared/shared.module';
+import { SharedModule } from '@sn/user/shared/shared.module';
 import { TopicSearchComponent } from './topic-search.component';
 import { DrawerService } from '../drawer/drawer.service';
-import { PageableSearch } from '@sn/core/models';
-import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/core/defaults';
-import { searchTopicsFromDrawer, searchTopicsFromDrawerResult } from '@sn/application/modules/topics/store/actions';
+import { PageableSearch } from '@sn/user/core/models';
+import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/user/core/defaults';
+import { searchTopicsFromDrawer, searchTopicsFromDrawerResult } from '@sn/user/application/modules/topics/store/actions';
 import { Router } from '@angular/router';
 
 describe('TopicSearchComponent', () => {

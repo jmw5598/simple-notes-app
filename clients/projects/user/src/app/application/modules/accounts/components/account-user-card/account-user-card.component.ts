@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Account, Profile } from '@sn/core/models';
+import { Account, Profile } from '@sn/user/core/models';
 
 @Component({
   selector: 'sn-account-user-card',

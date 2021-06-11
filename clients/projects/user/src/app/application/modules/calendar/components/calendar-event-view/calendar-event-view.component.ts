@@ -3,12 +3,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ICalendarEventsState } from '../../store/reducers';
-import { DrawerService } from '@sn/shared/components';
+import { DrawerService } from '@sn/user/shared/components';
 import { tap } from 'rxjs/operators';
-import { CalendarEvent, ResponseMessage } from '@sn/core/models';
-import { buildCalendarEventFormGroup } from '@sn/shared/forms';
+import { CalendarEvent, ResponseMessage } from '@sn/user/core/models';
+import { buildCalendarEventFormGroup } from '@sn/user/shared/forms';
 import { selectUpdateCalendarEventResponseMessage } from '../../store/selectors';
-import { HEX_COLOR_STRING_ARRAY } from '@sn/shared/defaults/colors.defaults';
+import { HEX_COLOR_STRING_ARRAY } from '@sn/user/shared/defaults/colors.defaults';
 
 import * as calendarActions from '../../store/actions';
 

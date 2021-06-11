@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { OverlayLoaderService } from '@sn/shared/components';
-import { Topic } from '@sn/shared/models';
+import { OverlayLoaderService } from '@sn/user/shared/components';
+import { Topic } from '@sn/user/shared/models';
 import { Observable, of } from 'rxjs';
 import { switchMap, catchError, tap, filter, take } from 'rxjs/operators';
 import { getRecentTopics } from '../store/actions';

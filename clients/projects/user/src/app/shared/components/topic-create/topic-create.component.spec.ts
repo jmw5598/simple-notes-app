@@ -2,9 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { ResponseStatus } from '@sn/core/enums';
-import { ResponseMessage } from '@sn/core/models';
-import { Permission } from '@sn/shared/models';
+import { ResponseStatus } from '@sn/user/core/enums';
+import { ResponseMessage } from '@sn/user/core/models';
+import { Permission } from '@sn/user/shared/models';
 import { BehaviorSubject, of } from 'rxjs';
 
 import { TopicFormComponent } from '../../forms/topic-form/topic-form.component';

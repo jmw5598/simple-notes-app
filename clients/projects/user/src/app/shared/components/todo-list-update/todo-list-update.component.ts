@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ResponseMessage } from '@sn/core/models';
+import { ResponseMessage } from '@sn/user/core/models';
 
-import { Todo, TodoList } from '@sn/shared/models';
-import { showHide } from '@sn/shared/animations';
-import { idGenerator } from '@sn/shared/utils/id-generator.util';
+import { Todo, TodoList } from '@sn/user/shared/models';
+import { showHide } from '@sn/user/shared/animations';
+import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
 
 @Component({
   selector: 'sn-todo-list-update',

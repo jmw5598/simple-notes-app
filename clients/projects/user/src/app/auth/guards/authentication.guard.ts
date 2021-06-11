@@ -5,11 +5,11 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 
-import { AuthenticationService } from '@sn/core/services';
-import { AuthenticatedStatus } from '@sn/core/enums';
+import { AuthenticationService } from '@sn/user/core/services';
+import { AuthenticatedStatus } from '@sn/user/core/enums';
 import { IAuthenticationState } from '../store/reducers';
-import * as fromAuthentication from '@sn/auth/store/reducers/authentication.reducers';
-import * as fromAuthenticationSelectors from '@sn/auth/store/selectors';
+import * as fromAuthentication from '@sn/user/auth/store/reducers/authentication.reducers';
+import * as fromAuthenticationSelectors from '@sn/user/auth/store/selectors';
 
 @Injectable({
   providedIn: 'root'

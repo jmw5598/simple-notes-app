@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlContainer, FormGroup } from '@angular/forms';
-import { fadeAnimation } from '@sn/shared/animations';
-import { STATES } from '@sn/shared/data';
+import { fadeAnimation } from '@sn/user/shared/animations';
+import { STATES } from '@sn/user/shared/data';
 
 @Component({
   selector: 'sn-account-details-form',

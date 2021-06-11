@@ -2,16 +2,16 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { DrawerService } from '@sn/shared/components';
-import { KeyboardShortcutAction, ResponseMessage } from '@sn/core/models';
-import { IToolbarState } from '@sn/application/store/reducers';
-import { createKeyboardShortcut, updateKeyboardShortcut, deleteKeyboardShortcut, setKeyboardShortcutResponseMessage, getKeyboardShortcuts } from '@sn/application/store/actions';
-import { selectKeyboardShortcutResponseMessage } from '@sn/application/store/selectors';
+import { DrawerService } from '@sn/user/shared/components';
+import { KeyboardShortcutAction, ResponseMessage } from '@sn/user/core/models';
+import { IToolbarState } from '@sn/user/application/store/reducers';
+import { createKeyboardShortcut, updateKeyboardShortcut, deleteKeyboardShortcut, setKeyboardShortcutResponseMessage, getKeyboardShortcuts } from '@sn/user/application/store/actions';
+import { selectKeyboardShortcutResponseMessage } from '@sn/user/application/store/selectors';
 import { tap } from 'rxjs/operators';
 
-import { DEFAULT_MODIFIER_OPTIONS, KeyboardShortcutModifier } from '@sn/shared/defaults';
-import { showHide } from '@sn/shared/animations';
-import { ResponseStatus } from '@sn/core/enums';
+import { DEFAULT_MODIFIER_OPTIONS, KeyboardShortcutModifier } from '@sn/user/shared/defaults';
+import { showHide } from '@sn/user/shared/animations';
+import { ResponseStatus } from '@sn/user/core/enums';
 
 @Component({
   selector: 'sn-configure-keyboard-shortcut',

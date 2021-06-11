@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, ControlContainer } from '@angular/forms';
-import { State, STATES } from '@sn/shared/data';
+import { State, STATES } from '@sn/user/shared/data';
 
 @Component({
   selector: 'sn-registration-address-form',

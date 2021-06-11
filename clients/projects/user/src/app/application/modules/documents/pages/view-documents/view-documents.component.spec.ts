@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
-import { SharedModule } from '@sn/shared/shared.module';
+import { SharedModule } from '@sn/user/shared/shared.module';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DocumentListComponent } from '../../components/document-list/document-list.component';

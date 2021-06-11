@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import * as fromActions from '../actions';
-import { CalendarEvent, ResponseMessage } from '@sn/core/models';
-import { TodoList } from '@sn/shared/models';
+import { CalendarEvent, ResponseMessage } from '@sn/user/core/models';
+import { TodoList } from '@sn/user/shared/models';
 
 export const calendarEventsFeatureKey = 'calendarEvents';
 

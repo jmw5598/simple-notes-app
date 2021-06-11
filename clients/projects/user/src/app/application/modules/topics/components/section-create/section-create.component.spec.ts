@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { SharedModule } from '@sn/shared/shared.module';
+import { SharedModule } from '@sn/user/shared/shared.module';
 import { SectionCreateComponent } from './section-create.component';
-import { Section, Topic } from '@sn/shared/models';
+import { Section, Topic } from '@sn/user/shared/models';
 import { createSection } from '../../store/actions';
 import { SectionFormComponent } from '../section-form/section-form.component';
 

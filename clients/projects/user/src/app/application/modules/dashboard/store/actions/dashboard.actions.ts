@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { TodoList, Topic } from '@sn/shared/models';
-import { CalendarEvent } from '@sn/core/models';
+import { TodoList, Topic } from '@sn/user/shared/models';
+import { CalendarEvent } from '@sn/user/core/models';
 
 export const getRecentTopics = createAction(
   '[Dashboard] Get Recent Topics'

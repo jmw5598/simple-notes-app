@@ -4,8 +4,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ControlContainer, FormBuilder, FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { AccountDetailsFormComponent } from './account-details-form.component';
-import { buildProfileFormGroup } from '@sn/shared/forms/profile-form.builder';
-import { AccountValidators } from '@sn/core/validators';
+import { buildProfileFormGroup } from '@sn/user/shared/forms/profile-form.builder';
+import { AccountValidators } from '@sn/user/core/validators';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('AccountDetailsFormComponent', () => {

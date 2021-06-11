@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IPageable, Page, PageRequest, SortDirection } from '@sn/core/models';
+import { IPageable, Page, PageRequest, SortDirection } from '@sn/user/core/models';
 
 import { PaginatorComponent } from './paginator.component';
 

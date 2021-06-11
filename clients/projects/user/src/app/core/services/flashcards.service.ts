@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { FlashcardSet } from '@sn/shared/models';
+import { FlashcardSet } from '@sn/user/shared/models';
 import { AbstractCrudService } from './abstract-crud.service';
 
-import { environment } from '@env/environment';
+import { environment } from '@sn/user/env/environment';
 import { IPageable, Page } from '../models';
 import { Observable } from 'rxjs';
 

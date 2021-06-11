@@ -13,7 +13,7 @@ import { RegistrationResult } from '../dtos/registration-result.dto';
 import { ResponseMessage } from '../models/response-message.model';
 import { ValidatorResult } from '../models/validator-result.model';
 
-import { environment } from '@env/environment';
+import { environment } from '@sn/user/env/environment';
 
 @Injectable({
   providedIn: 'root'

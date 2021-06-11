@@ -4,13 +4,13 @@ import { Store } from '@ngrx/store';
 import { Subject, Observable } from 'rxjs';
 import { tap, takeUntil } from 'rxjs/operators';
 import { ISectionsState } from '../../store/reducers';
-import { DrawerService } from '@sn/shared/components';
+import { DrawerService } from '@sn/user/shared/components';
 import { buildSectionFormGroup } from '../section-form/section-form.builder';
-import { Section, Topic } from '@sn/shared/models';
-import { ResponseMessage } from '@sn/core/models';
+import { Section, Topic } from '@sn/user/shared/models';
+import { ResponseMessage } from '@sn/user/core/models';
 import { selectUpdateSectionResponseMessage } from '../../store/selectors';
 import { updateSection } from '../../store/actions';
-import { showHide } from '@sn/shared/animations';
+import { showHide } from '@sn/user/shared/animations';
 
 @Component({
   selector: 'sn-section-update',

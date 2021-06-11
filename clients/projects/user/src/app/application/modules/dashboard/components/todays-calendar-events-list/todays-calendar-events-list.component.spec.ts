@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { SharedModule } from '@sn/shared/shared.module';
+import { SharedModule } from '@sn/user/shared/shared.module';
 import { TodaysCalendarEventsListComponent } from './todays-calendar-events-list.component';
 
 describe('TodaysCalendarEventsListComponent', () => {

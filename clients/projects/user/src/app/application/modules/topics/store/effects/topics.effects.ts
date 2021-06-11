@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { TopicsService, SectionsService } from '@sn/core/services';
-import { handleHttpError } from '@sn/application/store/actions/http-error.actions';
+import { TopicsService, SectionsService } from '@sn/user/core/services';
+import { handleHttpError } from '@sn/user/application/store/actions/http-error.actions';
 import { of } from 'rxjs';
 import { exhaustMap, switchMap, map, catchError, debounceTime } from 'rxjs/operators';
-import { PageableSearch, ResponseMessage } from '@sn/core/models';
-import { ResponseStatus } from '@sn/core/enums';
+import { PageableSearch, ResponseMessage } from '@sn/user/core/models';
+import { ResponseStatus } from '@sn/user/core/enums';
 import * as fromActions from '../actions';
 
 @Injectable()

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { KeyboardShortcutActionType } from '@sn/core/enums';
-import { KeyboardShortcutAction } from '@sn/core/models';
+import { KeyboardShortcutActionType } from '@sn/user/core/enums';
+import { KeyboardShortcutAction } from '@sn/user/core/models';
 
 import { ToolbarKeyboardShortcutListComponent } from './toolbar-keyboard-shortcut-list.component';
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { fadeAnimation } from '@sn/shared/animations';
+import { fadeAnimation } from '@sn/user/shared/animations';
 
 @Component({
   selector: 'sn-account-settings-security',

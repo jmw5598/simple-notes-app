@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Todo } from '@sn/shared/models';
+import { Todo } from '@sn/user/shared/models';
 import { Subject } from 'rxjs';
 import { debounceTime, skip, takeUntil } from 'rxjs/operators';
 

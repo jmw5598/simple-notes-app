@@ -1,5 +1,5 @@
 import { Component, ComponentFactory, ComponentFactoryResolver, HostListener, Input, OnDestroy, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
-import { fadeAnimation } from '@sn/shared/animations';
+import { fadeAnimation } from '@sn/user/shared/animations';
 import { Subject } from 'rxjs';
 import { skip, takeUntil } from 'rxjs/operators';
 

@@ -4,13 +4,13 @@ import { Observable, of } from 'rxjs';
 import { tap, filter, take, switchMap, catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/core//defaults';
-import { Topic } from '@sn/shared/models';
-import { Page, PageRequest, PageableSearch, IPageable } from '@sn/core/models';
+import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/user/core//defaults';
+import { Topic } from '@sn/user/shared/models';
+import { Page, PageRequest, PageableSearch, IPageable } from '@sn/user/core/models';
 import { IApplicationState } from '../../../store/index';
 import { searchTopics } from '../store/actions';
 import { selectSearchTopicsResult } from '../store/selectors';
-import { OverlayLoaderService } from '@sn/shared/components';
+import { OverlayLoaderService } from '@sn/user/shared/components';
 
 @Injectable({
   providedIn: 'root'

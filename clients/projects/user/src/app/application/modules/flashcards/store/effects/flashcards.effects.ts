@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { FlashcardsService } from '@sn/core/services';
-import { PageableSearch, ResponseMessage } from '@sn/core/models';
+import { FlashcardsService } from '@sn/user/core/services';
+import { PageableSearch, ResponseMessage } from '@sn/user/core/models';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 import * as fromActions from '../actions';
 import { handleHttpError } from '../../../../store/actions';
-import { ResponseStatus } from '@sn/core/enums';
+import { ResponseStatus } from '@sn/user/core/enums';
 
 @Injectable()
 export class FlashcardsEffects {

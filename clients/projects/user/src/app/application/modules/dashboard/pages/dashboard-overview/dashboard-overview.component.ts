@@ -2,11 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IDashboardState } from '../../store/reducers';
-import { fadeAnimation } from '@sn/shared/animations';
+import { fadeAnimation } from '@sn/user/shared/animations';
 import { selectPastDueTodoLists, selectRecentTopics, selectTodaysEvents, selectTodaysTodoLists } from '../../store/selectors';
-import { CalendarEvent } from '@sn/core/models';
-import { TodoList, Topic } from '@sn/shared/models';
-import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
+import { CalendarEvent } from '@sn/user/core/models';
+import { TodoList, Topic } from '@sn/user/shared/models';
+import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/user/shared/components';
 import { getPastDueTodoListsSuccess, getRecentTopicsSuccess, getTodaysCalendarEventsSuccess, getTodaysTodoListsSuccess } from '../../store/actions';
 
 @Component({

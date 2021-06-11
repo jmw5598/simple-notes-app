@@ -8,8 +8,8 @@ import * as fromAuth from '../../store/reducers';
 import * as fromActions from '../../store/actions';
 import * as fromSelectors from '../../store/selectors';
 
-import { PasswordRequestReset, ResponseMessage } from '@sn/core/models';
-import { fadeAnimation } from '@sn/shared/animations';
+import { PasswordRequestReset, ResponseMessage } from '@sn/user/core/models';
+import { fadeAnimation } from '@sn/user/shared/animations';
 
 @Component({
   selector: 'sn-password-request',

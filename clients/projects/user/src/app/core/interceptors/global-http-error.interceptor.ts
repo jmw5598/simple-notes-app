@@ -9,7 +9,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { IAppState } from '@sn/store/reducers';
+import { IAppState } from '@sn/user/store/reducers';
 
 import * as httpActions from '../store/actions/http-error.actions';
 

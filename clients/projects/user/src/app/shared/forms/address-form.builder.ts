@@ -1,5 +1,5 @@
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { AccountValidators } from '@sn/core/validators';
+import { AccountValidators } from '@sn/user/core/validators';
 
 export const buildAddressFormGroup = (
     formBuilder: FormBuilder,

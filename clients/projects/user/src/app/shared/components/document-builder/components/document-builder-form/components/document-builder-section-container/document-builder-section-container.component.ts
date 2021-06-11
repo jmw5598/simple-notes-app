@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Section, Topic } from '@sn/shared/models';
-import { DocumentTopicSection } from '@sn/shared/models/document-topic-section.model';
+import { Section, Topic } from '@sn/user/shared/models';
+import { DocumentTopicSection } from '@sn/user/shared/models/document-topic-section.model';
 
 @Component({
   selector: 'sn-document-builder-section-container',

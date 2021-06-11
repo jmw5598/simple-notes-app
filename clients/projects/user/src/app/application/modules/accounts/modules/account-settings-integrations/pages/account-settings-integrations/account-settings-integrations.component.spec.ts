@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
-import { CalendarIntegration } from '@sn/core/models';
+import { CalendarIntegration } from '@sn/user/core/models';
 import { of } from 'rxjs';
 import { inactiveCalendarIntegration, refreshCalendarIntegration } from '../../store/actions';
 

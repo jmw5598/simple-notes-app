@@ -1,9 +1,9 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { environment } from '@env/environment';
+import { environment } from '@sn/user/env/environment';
 import { take } from 'rxjs/operators';
 
-import { Section, Topic } from '@sn/shared/models';
+import { Section, Topic } from '@sn/user/shared/models';
 import { SectionsService } from './sections.service';
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '../defaults';
 import { IPageable } from '../models';

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { IToolbarState } from '@sn/application/store/reducers/toolbar.reducers';
-import { KeyboardShortcutAction } from '@sn/core/models';
-import { fadeAnimation } from '@sn/shared/animations';
-import { selectKeyboardShortcuts } from '@sn/application/store/selectors';
-import { deleteKeyboardShortcut, setKeyboardShortcutResponseMessage } from '@sn/application/store/actions';
-import { DrawerService, DrawerLocation } from '@sn/shared/components';
+import { IToolbarState } from '@sn/user/application/store/reducers/toolbar.reducers';
+import { KeyboardShortcutAction } from '@sn/user/core/models';
+import { fadeAnimation } from '@sn/user/shared/animations';
+import { selectKeyboardShortcuts } from '@sn/user/application/store/selectors';
+import { deleteKeyboardShortcut, setKeyboardShortcutResponseMessage } from '@sn/user/application/store/actions';
+import { DrawerService, DrawerLocation } from '@sn/user/shared/components';
 import { ConfigureKeyboardShortcutComponent } from '../../components/configure-keyboard-shortcut/configure-keyboard-shortcut.component';
 
 @Component({

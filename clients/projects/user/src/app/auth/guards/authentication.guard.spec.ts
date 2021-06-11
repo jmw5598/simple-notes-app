@@ -7,7 +7,7 @@ import { BehaviorSubject, of } from 'rxjs';
 import { AuthenticationGuard } from './authentication.guard';
 import { Router } from '@angular/router';
 import { IAuthenticationState } from '../store/reducers';
-import { AuthenticatedStatus } from '@sn/core/enums';
+import { AuthenticatedStatus } from '@sn/user/core/enums';
 import { take } from 'rxjs/operators';
 
 describe('AuthenticationGuard', () => {

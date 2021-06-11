@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
-import { DrawerService } from '@sn/shared/components';
-import { FlashcardSet } from '@sn/shared/models';
-import { SharedModule } from '@sn/shared/shared.module';
+import { DrawerService } from '@sn/user/shared/components';
+import { FlashcardSet } from '@sn/user/shared/models';
+import { SharedModule } from '@sn/user/shared/shared.module';
 import { BehaviorSubject, of } from 'rxjs';
 
 import { ViewFlashcardsComponent } from './view-flashcards.component';
 import * as flashcardActions from '../../store/actions';
-import { OverlayContentService } from '@sn/shared/components/overlay-content/overlay-content.service';
-import { PageableSearch } from '@sn/core/models';
-import { DEFAULT_SEARCH_FLASHCARDS_PAGE } from '@sn/core/defaults';
+import { OverlayContentService } from '@sn/user/shared/components/overlay-content/overlay-content.service';
+import { PageableSearch } from '@sn/user/core/models';
+import { DEFAULT_SEARCH_FLASHCARDS_PAGE } from '@sn/user/core/defaults';
 
 describe('ViewFlashcardsComponent', () => {
   let component: ViewFlashcardsComponent;

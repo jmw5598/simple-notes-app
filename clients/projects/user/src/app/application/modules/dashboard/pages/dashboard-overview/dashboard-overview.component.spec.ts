@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
-import { SharedModule } from '@sn/shared/shared.module';
+import { SharedModule } from '@sn/user/shared/shared.module';
 import { DashboardOverviewComponent } from './dashboard-overview.component';
 import { RecentTopicsListComponent } from '../../components/recent-topics-list/recent-topics-list.component';
 import { TodaysCalendarEventsListComponent } from '../../components/todays-calendar-events-list/todays-calendar-events-list.component';

@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { ResponseMessage } from '@sn/core/models';
-import { TodoList } from '@sn/shared/models';
+import { ResponseMessage } from '@sn/user/core/models';
+import { TodoList } from '@sn/user/shared/models';
 
 export const createCalendarTodoList = createAction(
   '[Calendar Todo Lists] Create Calendar Todo List',

@@ -3,20 +3,20 @@ import { FormGroup, ControlContainer } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, Observer, of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, map, withLatestFrom, takeUntil } from 'rxjs/operators';
-import { TopicsService } from '@sn/core/services';
-import { IDocumentsState } from '@sn/application/modules/documents/store/reducers';
+import { TopicsService } from '@sn/user/core/services';
+import { IDocumentsState } from '@sn/user/application/modules/documents/store/reducers';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
-import { getSectionsByTopicId, getSectionsByTopicIdSuccess, setBuilderSearchTopicSelection } from '@sn/application/modules/documents/store/actions';
-import { selectSectionsForSelectedTopic } from '@sn/application/modules/documents/store/selectors';
-import { Page } from '@sn/core/models';
-import { Section, Topic, Document } from '@sn/shared/models';
+import { getSectionsByTopicId, getSectionsByTopicIdSuccess, setBuilderSearchTopicSelection } from '@sn/user/application/modules/documents/store/actions';
+import { selectSectionsForSelectedTopic } from '@sn/user/application/modules/documents/store/selectors';
+import { Page } from '@sn/user/core/models';
+import { Section, Topic, Document } from '@sn/user/shared/models';
 import { DropAction } from '../../../../components/document-builder/models/drop-action.enum';
 
-import * as fromSelectors from '@sn/application/modules/documents/store/selectors';
-import * as fromActions from '@sn/application/modules/documents/store/actions';
-import { DocumentTopic } from '@sn/shared/models/document-topic.model';
-import { DocumentTopicSection } from '@sn/shared/models/document-topic-section.model';
+import * as fromSelectors from '@sn/user/application/modules/documents/store/selectors';
+import * as fromActions from '@sn/user/application/modules/documents/store/actions';
+import { DocumentTopic } from '@sn/user/shared/models/document-topic.model';
+import { DocumentTopicSection } from '@sn/user/shared/models/document-topic-section.model';
 
 @Component({
   selector: 'sn-document-builder-form',

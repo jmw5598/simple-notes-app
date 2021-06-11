@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
-import { DrawerService, OverlayLoaderService } from '@sn/shared/components';
-import { TodoList } from '@sn/shared/models';
+import { DrawerService, OverlayLoaderService } from '@sn/user/shared/components';
+import { TodoList } from '@sn/user/shared/models';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 
 import { ViewTodosComponent } from './view-todos.component';
 import * as todoActions from '../../store/actions';
-import { SharedModule } from '@sn/shared/shared.module';
-import { IPageable, PageableSearch } from '@sn/core/models';
-import { DEFAULT_SEARCH_TODOS_PAGE } from '@sn/core/defaults';
+import { SharedModule } from '@sn/user/shared/shared.module';
+import { IPageable, PageableSearch } from '@sn/user/core/models';
+import { DEFAULT_SEARCH_TODOS_PAGE } from '@sn/user/core/defaults';
 
 describe('ViewTodosComponent', () => {
   let component: ViewTodosComponent;

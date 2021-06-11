@@ -1,6 +1,6 @@
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { environment } from '@env/environment';
+import { environment } from '@sn/user/env/environment';
 import { take } from 'rxjs/operators';
 
 import { ThemesService } from './themes.service';

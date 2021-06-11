@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlContainer, FormGroup } from '@angular/forms';
-import { Flashcard } from '@sn/shared/models';
+import { Flashcard } from '@sn/user/shared/models';
 import { Observable, Subject } from 'rxjs';
 import { FlashcardSetBuilderService } from '../../services/flashcard-set-builder.service';
 

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Section } from '@sn/shared/models';
-import { IPageable, Page } from '@sn/core/models';
-import { environment } from '@env/environment';
+import { Section } from '@sn/user/shared/models';
+import { IPageable, Page } from '@sn/user/core/models';
+import { environment } from '@sn/user/env/environment';
 
 @Injectable({
   providedIn: 'root'

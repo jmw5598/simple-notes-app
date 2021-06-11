@@ -1,9 +1,9 @@
 import { InjectionToken } from '@angular/core';
 import { MetaReducer, Action, ActionReducerMap } from '@ngrx/store';
-import * as fromCore from '@sn/core/store/reducers';
+import * as fromCore from '@sn/user/core/store/reducers';
 import * as fromAuth from '../../auth/store/reducers';
 import * as fromPlans from '../../core/store/reducers';
-import { environment } from '@env/environment';
+import { environment } from '@sn/user/env/environment';
 
 export const rootReducerKey = 'rootReducerKey';
 

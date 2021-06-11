@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { ResponseMessage } from '@sn/core/models';
-import { DrawerService } from '@sn/shared/components';
-import { buildTodoListFormGroup } from '@sn/shared/forms';
-import { Todo, TodoList } from '@sn/shared/models';
+import { ResponseMessage } from '@sn/user/core/models';
+import { DrawerService } from '@sn/user/shared/components';
+import { buildTodoListFormGroup } from '@sn/user/shared/forms';
+import { Todo, TodoList } from '@sn/user/shared/models';
 import { Observable } from 'rxjs';
 import { ITodosState } from '../../store/reducers';
 

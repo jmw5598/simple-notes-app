@@ -4,15 +4,15 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 
 import { ITopicsState } from '../../store/reducers';
-import { Topic } from '@sn/shared/models';
-import { PageableSearch, ResponseMessage } from '@sn/core/models';
-import { fadeAnimation } from '@sn/shared/animations';
+import { Topic } from '@sn/user/shared/models';
+import { PageableSearch, ResponseMessage } from '@sn/user/core/models';
+import { fadeAnimation } from '@sn/user/shared/animations';
 import { selectTopics, selectSearchTopicsResult, selectCreateTopicResponseMessage} from '../../store/selectors';
 import { deleteTopic, searchTopics, searchTopicsResult } from '../../store/actions';
-import { Page, IPageable } from '@sn/core/models';
-import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/core/defaults';
-import { ResponseStatus } from '@sn/core/enums';
-import { AbstractPageOverlayLoader ,DrawerLocation,DrawerService,OverlayLoaderService, TopicCreateComponent } from '@sn/shared/components';
+import { Page, IPageable } from '@sn/user/core/models';
+import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/user/core/defaults';
+import { ResponseStatus } from '@sn/user/core/enums';
+import { AbstractPageOverlayLoader ,DrawerLocation,DrawerService,OverlayLoaderService, TopicCreateComponent } from '@sn/user/shared/components';
 
 @Component({
   selector: 'sn-view-topics',

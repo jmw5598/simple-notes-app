@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { IApplicationState } from '@sn/application/store';
-import { DEFAULT_SEARCH_TODOS_PAGE } from '@sn/core/defaults';
-import { IPageable, Page, PageableSearch } from '@sn/core/models';
-import { TodoList } from '@sn/shared/models';
+import { IApplicationState } from '@sn/user/application/store';
+import { DEFAULT_SEARCH_TODOS_PAGE } from '@sn/user/core/defaults';
+import { IPageable, Page, PageableSearch } from '@sn/user/core/models';
+import { TodoList } from '@sn/user/shared/models';
 import { Observable, of } from 'rxjs';
 import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 
 import * as fromSelectors from '../store/selectors';
 import * as fromActions from '../store/actions';
-import { OverlayLoaderService } from '@sn/shared/components';
+import { OverlayLoaderService } from '@sn/user/shared/components';
 
 @Injectable({
   providedIn: 'root'

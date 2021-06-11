@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
-import { AuthenticatedStatus } from '@sn/core/enums';
-import { AuthenticatedUser, ResponseMessage } from '@sn/core/models';
-import { RegistrationResult } from '@sn/core/dtos';
+import { AuthenticatedStatus } from '@sn/user/core/enums';
+import { AuthenticatedUser, ResponseMessage } from '@sn/user/core/models';
+import { RegistrationResult } from '@sn/user/core/dtos';
 
 
 import * as fromActions from '../actions';

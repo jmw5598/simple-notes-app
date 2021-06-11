@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown'
-import { SharedModule } from '@sn/shared/shared.module';
+import { SharedModule } from '@sn/user/shared/shared.module';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { DocumentsRoutingModule } from './documents-routing.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';

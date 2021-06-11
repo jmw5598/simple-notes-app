@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subject, combineLatest } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { IPageable, Page, PageableSearch } from '@sn/core/models';
-import { Document } from '@sn/shared/models';
-import { fadeAnimation } from '@sn/shared/animations';
+import { IPageable, Page, PageableSearch } from '@sn/user/core/models';
+import { Document } from '@sn/user/shared/models';
+import { fadeAnimation } from '@sn/user/shared/animations';
 
 import { IDocumentsState } from '../../store/reducers/documents.reducers'
-import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/core/defaults';
+import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/user/core/defaults';
 import { takeUntil, tap } from 'rxjs/operators';
-import { DrawerService, DrawerLocation, DrawerSize, OverlayLoaderService, AbstractPageOverlayLoader, DocumentCreateComponent } from '@sn/shared/components';
+import { DrawerService, DrawerLocation, DrawerSize, OverlayLoaderService, AbstractPageOverlayLoader, DocumentCreateComponent } from '@sn/user/shared/components';
 import { DocumentUpdateComponent } from '../../components/document-update/document-update.component';
 
 import * as documentActions from '../../store/actions';

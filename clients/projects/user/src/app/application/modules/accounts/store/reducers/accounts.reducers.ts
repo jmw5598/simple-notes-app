@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { AccountStatus } from '@sn/core/enums';
-import { Account, Profile, Theme } from '@sn/core/models';
+import { AccountStatus } from '@sn/user/core/enums';
+import { Account, Profile, Theme } from '@sn/user/core/models';
 import { from } from 'rxjs';
 import * as fromActions from '../actions/accounts.actions';
 

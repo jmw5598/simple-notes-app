@@ -8,7 +8,7 @@ import { LogoutComponent } from './pages/logout/logout.component';
 import { PasswordRequestComponent } from './pages/password-request/password-request.component';
 import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { PlansGuard } from '@sn/core/guards';
+import { PlansGuard } from '@sn/user/core/guards';
 
 const routes: Routes = [
   {

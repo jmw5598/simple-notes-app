@@ -1,9 +1,9 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { environment } from '@env/environment';
+import { environment } from '@sn/user/env/environment';
 import { take } from 'rxjs/operators';
 
-import { Account, Address, PasswordRequestReset, PasswordReset, Plan, Profile } from '@sn/core/models';
+import { Account, Address, PasswordRequestReset, PasswordReset, Plan, Profile } from '@sn/user/core/models';
 import { AccountsService } from './accounts.service';
 import { Registration, RegistrationUser } from '../dtos';
 

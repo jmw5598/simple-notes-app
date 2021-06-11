@@ -2,10 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { EMPTY, of } from 'rxjs';
 
-import { SharedModule } from '@sn/shared/shared.module';
+import { SharedModule } from '@sn/user/shared/shared.module';
 import { TopicExportComponent } from './topic-export.component';
-import { DrawerService } from '@sn/shared/components';
-import { Topic } from '@sn/shared/models';
+import { DrawerService } from '@sn/user/shared/components';
+import { Topic } from '@sn/user/shared/models';
 import { exportTopic } from '../../store/actions';
 
 describe('TopicExportComponent', () => {

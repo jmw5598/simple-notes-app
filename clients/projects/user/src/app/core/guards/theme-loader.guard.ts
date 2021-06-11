@@ -3,9 +3,9 @@ import { CanActivate, CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot
 import { Observable, of } from 'rxjs';
 import { DynamicThemeService } from '../services';
 import { DEFAULT_THEME_FILE } from '../defaults';
-import { IAuthenticationState } from '@sn/auth/store/reducers';
+import { IAuthenticationState } from '@sn/user/auth/store/reducers';
 import { Store } from '@ngrx/store';
-import { selectAuthenticatedUserSettings } from '@sn/auth/store/selectors';
+import { selectAuthenticatedUserSettings } from '@sn/user/auth/store/selectors';
 import { switchMap } from 'rxjs/operators';
 import { UserSettings } from '../models/user-settings.model';
 

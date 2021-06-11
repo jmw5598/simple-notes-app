@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { handleHttpError } from '@sn/application/store/actions/http-error.actions';
+import { handleHttpError } from '@sn/user/application/store/actions/http-error.actions';
 import { of } from 'rxjs';
 import { exhaustMap, switchMap, map, catchError } from 'rxjs/operators';
 import * as fromActions from '../actions';
-import { DocumentsService } from '@sn/core/services/documents.service';
-import { PageableSearch, ResponseMessage } from '@sn/core/models';
-import { ResponseStatus } from '@sn/core/enums';
-import { SectionsService } from '@sn/core/services';
+import { DocumentsService } from '@sn/user/core/services/documents.service';
+import { PageableSearch, ResponseMessage } from '@sn/user/core/models';
+import { ResponseStatus } from '@sn/user/core/enums';
+import { SectionsService } from '@sn/user/core/services';
 
 @Injectable()
 export class DocumentsEffects {

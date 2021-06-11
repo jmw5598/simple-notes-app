@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { ResponseMessage } from '@sn/core/models';
-import { DrawerService } from '@sn/shared/components';
-import { TodoList } from '@sn/shared/models';
+import { ResponseMessage } from '@sn/user/core/models';
+import { DrawerService } from '@sn/user/shared/components';
+import { TodoList } from '@sn/user/shared/models';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ICalendarEventsState } from '../../store/reducers';
 
 import * as calendarActions from '../../store/actions';
 import * as calendarSelectors from '../../store/selectors';
-import { buildTodoListFormGroup } from '@sn/shared/forms';
+import { buildTodoListFormGroup } from '@sn/user/shared/forms';
 
 @Component({
   selector: 'sn-calendar-todo-list-view',

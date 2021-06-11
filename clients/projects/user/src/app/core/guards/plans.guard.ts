@@ -4,8 +4,8 @@ import { Observable, of } from 'rxjs';
 import { tap, filter, take, switchMap, catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import { Plan } from '@sn/core/models';
-import { IAppState } from '@sn/store/reducers';
+import { Plan } from '@sn/user/core/models';
+import { IAppState } from '@sn/user/store/reducers';
 import { getPlans } from '../store/actions/plans.actions';
 import { selectPlans } from '../store/selectors/plans.selectors';
 

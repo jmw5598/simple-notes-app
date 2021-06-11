@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { skip, take } from 'rxjs/operators';
 import { UserSettings } from '../models/user-settings.model';
 import { DynamicThemeService } from '../services';
-import { Theme } from '@sn/core/models';
+import { Theme } from '@sn/user/core/models';
 
 import { ThemeLoaderGuard } from './theme-loader.guard';
 import { DEFAULT_THEME_FILE } from '../defaults';

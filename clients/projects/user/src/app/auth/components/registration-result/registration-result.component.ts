@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { RegistrationResult } from '@sn/core/dtos';
+import { RegistrationResult } from '@sn/user/core/dtos';
 
 @Component({
   selector: 'sn-registration-result',

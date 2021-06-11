@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { KeyboardShortcutAction, ResponseMessage } from '@sn/core/models';
+import { KeyboardShortcutAction, ResponseMessage } from '@sn/user/core/models';
 
 export const getKeyboardShortcuts = createAction(
   '[Toolbar] Get Keyboard Shortcuts'

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ControlContainer, FormArray, FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Permission } from '@sn/shared/models';
+import { Permission } from '@sn/user/shared/models';
 
 import { TopicFormComponent } from './topic-form.component';
 import { TagInputComponent } from '../../components/tag-input/tag-input.component';

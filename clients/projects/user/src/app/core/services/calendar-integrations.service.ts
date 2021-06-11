@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { AbstractCrudService } from './abstract-crud.service';
 import { CalendarIntegration } from '../models/calendar-integration.model';
 import { CalendarIntegrationType } from '../models/calendar-integration-type.model';
-import { environment } from '@env/environment';
+import { environment } from '@sn/user/env/environment';
 
 @Injectable({
   providedIn: 'root'

@@ -1,18 +1,18 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { ITodosState } from '@sn/application/modules/todos/store/reducers';
-import { ResponseMessage } from '@sn/core/models';
-import { TodoListFormComponent } from '@sn/shared/forms/todo-list-form/todo-list-form.component';
+import { ITodosState } from '@sn/user/application/modules/todos/store/reducers';
+import { ResponseMessage } from '@sn/user/core/models';
+import { TodoListFormComponent } from '@sn/user/shared/forms/todo-list-form/todo-list-form.component';
 import { Observable } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
 import { DrawerService } from '../drawer/drawer.service';
 
-import * as todoSelectors from '@sn/application/modules/todos/store/selectors';
-import * as todoActions from '@sn/application/modules/todos/store/actions';
-import { buildTodoListFormGroup } from '@sn/shared/forms';
-import { TodoList } from '@sn/shared/models';
-import { showHide } from '@sn/shared/animations';
+import * as todoSelectors from '@sn/user/application/modules/todos/store/selectors';
+import * as todoActions from '@sn/user/application/modules/todos/store/actions';
+import { buildTodoListFormGroup } from '@sn/user/shared/forms';
+import { TodoList } from '@sn/user/shared/models';
+import { showHide } from '@sn/user/shared/animations';
 
 
 @Component({
