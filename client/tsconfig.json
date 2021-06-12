@@ -13,5 +13,13 @@
     {
       "path": "./tsconfig.spec.json"
     }
-  ]
+  ],
+  "compilerOptions": {
+    "paths": {
+      "shared-animations": [
+        "dist/shared-animations/shared-animations",
+        "dist/shared-animations"
+      ]
+    }
+  }
 }

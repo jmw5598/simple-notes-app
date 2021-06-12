@@ -16,6 +16,7 @@
     "importHelpers": true,
     "target": "es2017",
     "module": "es2020",
+    "preserveSymlinks": true,
     "lib": [
       "es2018",
       "dom"
@@ -34,7 +35,7 @@
         "projects/admin/src/environments/*"
       ],
       "@sn/core/framing": [
-        "dist/@sn/core/framing/sn-core-framing",
+        "dist/@sn/core/framing/core-framing",
         "dist/@sn/core/framing"
       ],
       "@sn/shared/animations": [
