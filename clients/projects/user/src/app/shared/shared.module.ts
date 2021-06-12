@@ -45,7 +45,6 @@ import { FlashcardSetViewerControlsService } from './components/flashcard-set-vi
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { FlashcardSetViewerHeaderComponent } from './components/flashcard-set-viewer/components/flashcard-set-viewer-header/flashcard-set-viewer-header.component';
 import { FlashcardSetViewerFlipperComponent } from './components/flashcard-set-viewer/components/flashcard-set-viewer-flipper/flashcard-set-viewer-flipper.component';
-import { ToasterComponent } from './components/toaster/toaster.component';
 import { TodoListCreateComponent } from './components/todo-list-create/todo-list-create.component';
 import { TodoListFormComponent } from './forms/todo-list-form/todo-list-form.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
@@ -86,7 +85,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
     FlashcardSetViewerControlsComponent,
     FlashcardSetViewerHeaderComponent,
     FlashcardSetViewerFlipperComponent,
-    ToasterComponent,
     TodoListCreateComponent,
     TodoListFormComponent,
     CheckboxComponent,
@@ -134,7 +132,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
     FlashcardSetCreateComponent,    
     FlashcardSetViewerComponent,
     FlashcardSetBuilderFormComponent,
-    ToasterComponent,
     TodoListCreateComponent,
     TodoListFormComponent,
     CheckboxComponent,

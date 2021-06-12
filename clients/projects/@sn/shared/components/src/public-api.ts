@@ -40,6 +40,11 @@ export * from './lib/overlay-loader/overlay-spinner-size.enum';
 // Empty Data
 export * from './lib/empty-data/empty-data.component';
 
+// Toaster
+export * from './lib/toaster/toast-message.model';
+export * from './lib/toaster/toaster.component';
+export * from './lib/toaster/toaster.service';
+
 // Toolbar
 export * from './lib/toolbar/toolbar/toolbar.component';
 export * from './lib/toolbar/toolbar-button/toolbar-button.component';

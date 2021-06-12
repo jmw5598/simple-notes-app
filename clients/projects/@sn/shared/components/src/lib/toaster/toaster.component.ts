@@ -6,7 +6,7 @@ import { ToastMessage, ToasterLocation } from './toast-message.model';
 import { ToasterService } from './toaster.service';
 
 @Component({
-  selector: 'sn-user-toaster',
+  selector: 'sn-toaster',
   templateUrl: './toaster.component.html',
   styleUrls: ['./toaster.component.scss'],
   animations: [showHide]

@@ -1,7 +1,15 @@
 import { Injectable } from '@angular/core';
-import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DEFAULT_TOAST_MESSAGE_OPTIONS, ToastMessage, ToastMessageOptions } from './toast-message.model';
+
+export function* getIdGenerator() {
+  let id: number = (new Date()).getTime();
+  while (true) {
+    yield id++;
+  }
+}
+
+export const idGenerator: Generator = getIdGenerator();
 
 @Injectable({
   providedIn: 'root'

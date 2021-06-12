@@ -4,8 +4,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as fromActions from '../actions';
-import { ToasterService } from '@sn/user/shared/components/toaster/toaster.service';
-import { ToastMessageOptions } from '@sn/user/shared/components/toaster/toast-message.model';
+
+import { ToasterService, ToastMessageOptions } from '@sn/shared/components';
 
 @Injectable()
 export class HttpErrorEffects {
