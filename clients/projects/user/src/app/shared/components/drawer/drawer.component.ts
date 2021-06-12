@@ -1,7 +1,7 @@
 import { Component, ComponentFactory, Input, OnInit, OnDestroy, Type, ViewChild, ViewContainerRef, ComponentFactoryResolver, HostListener } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { fadeAnimation } from '../../animations';
+import { fadeAnimation } from '@sn/shared/animations';
 import { DrawerOverlayStyle } from './drawer-overlay-style.enum';
 import { DrawerLocation } from './drawer-location.enum';
 import { DrawerService } from './drawer.service';

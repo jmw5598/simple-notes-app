@@ -3,7 +3,7 @@ import { Observable, Subject, combineLatest } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IPageable, Page, PageableSearch } from '@sn/user/core/models';
 import { Document } from '@sn/user/shared/models';
-import { fadeAnimation } from '@sn/user/shared/animations';
+import { fadeAnimation } from '@sn/shared/animations';
 
 import { IDocumentsState } from '../../store/reducers/documents.reducers'
 import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/user/core/defaults';

@@ -8,7 +8,7 @@ import { tap, take } from 'rxjs/operators';
 import { createCalendarEvent, setCreateCalendarEventResponseMessage } from '@sn/user/application/modules/calendar/store/actions';
 import { selectCreateCalendarEventResponseMessage } from '@sn/user/application/modules/calendar/store/selectors';
 import { CalendarEvent, ResponseMessage } from '@sn/user/core/models';
-import { showHide } from '../../animations';
+import { showHide } from '@sn/shared/animations';
 import { buildCalendarEventFormGroup } from '../../forms/calendar-event-form/calendar-event-form.builder';
 import { CalendarEventFormComponent } from '../../forms/calendar-event-form/calendar-event-form.component';
 import { HEX_COLOR_STRING_ARRAY } from '../../defaults/colors.defaults';

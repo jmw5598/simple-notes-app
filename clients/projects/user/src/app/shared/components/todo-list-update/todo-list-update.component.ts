@@ -3,7 +3,7 @@ import { ControlContainer, FormArray, FormControl, FormGroup } from '@angular/fo
 import { ResponseMessage } from '@sn/user/core/models';
 
 import { Todo, TodoList } from '@sn/user/shared/models';
-import { showHide } from '@sn/user/shared/animations';
+import { showHide } from '@sn/shared/animations';
 import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
 
 @Component({

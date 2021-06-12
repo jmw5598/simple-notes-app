@@ -9,7 +9,7 @@ import * as fromActions from '../../store/actions';
 import * as fromSelectors from '../../store/selectors';
 
 import { PasswordRequestReset, ResponseMessage } from '@sn/user/core/models';
-import { fadeAnimation } from '@sn/user/shared/animations';
+import { fadeAnimation } from '@sn/shared/animations';
 
 @Component({
   selector: 'sn-user-password-request',

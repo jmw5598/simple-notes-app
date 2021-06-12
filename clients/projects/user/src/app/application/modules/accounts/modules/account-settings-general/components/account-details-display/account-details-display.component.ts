@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Profile } from '@sn/user/core/models';
-import { fadeAnimation } from '@sn/user/shared/animations'
+import { fadeAnimation } from '@sn/shared/animations'
 
 @Component({
   selector: 'sn-user-account-details-display',

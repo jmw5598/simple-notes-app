@@ -10,7 +10,7 @@ import { selectKeyboardShortcutResponseMessage } from '@sn/user/application/stor
 import { tap } from 'rxjs/operators';
 
 import { DEFAULT_MODIFIER_OPTIONS, KeyboardShortcutModifier } from '@sn/user/shared/defaults';
-import { showHide } from '@sn/user/shared/animations';
+import { showHide } from '@sn/shared/animations';
 import { ResponseStatus } from '@sn/user/core/enums';
 
 @Component({

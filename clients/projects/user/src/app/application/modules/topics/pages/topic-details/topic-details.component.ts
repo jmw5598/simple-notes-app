@@ -7,7 +7,7 @@ import { ISectionsState } from '../../store/reducers';
 import { selectSelectedTopic, selectSearchSectionsResult, selectCreateSectionResponseMessage } from '../../store/selectors';
 import { searchSections, deleteSection, setExportTopicFileResponse, setExportTopicResponseMessage, searchSectionsResult } from '../../store/actions';
 import { FileResponse, Topic, Section } from '@sn/user/shared/models';
-import { fadeAnimation } from '@sn/user/shared/animations';
+import { fadeAnimation } from '@sn/shared/animations';
 import { PageableSearch, Page, IPageable, ResponseMessage } from '@sn/user/core/models';
 import { AbstractPageOverlayLoader, DrawerService, DrawerLocation, OverlayLoaderService } from '@sn/user/shared/components';
 import { DEFAULT_SEARCH_SECTIONS_PAGE } from '@sn/user/core/defaults';

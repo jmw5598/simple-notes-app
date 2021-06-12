@@ -13,7 +13,7 @@ import * as fromAuth from '../../store/reducers';
 import * as fromActions from '../../store/actions';
 import * as fromSelectors from '../../store/selectors';
 
-import { fadeAnimation } from '@sn/user/shared/animations';
+import { fadeAnimation } from '@sn/shared/animations';
 
 @Component({
   selector: 'sn-user-login',

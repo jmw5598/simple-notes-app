@@ -10,7 +10,7 @@ import { ITodosState } from '../../store/reducers';
 import * as todosSelectors from '../../store/selectors';
 import * as todosActions from '../../store/actions';
 import { takeUntil, tap } from 'rxjs/operators';
-import { fadeAnimation } from '@sn/user/shared/animations';
+import { fadeAnimation } from '@sn/shared/animations';
 import { TodoListCreateComponent } from '@sn/user/shared/components/todo-list-create/todo-list-create.component';
 import { TodoListViewComponent } from '../../components/todo-list-view/todo-list-view.component';
 import { TodoListEditComponent } from '../../components/todo-list-edit/todo-list-edit.component';

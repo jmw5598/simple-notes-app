@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { showHide } from '@sn/user/shared/animations';
+import { showHide } from '@sn/shared/animations';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ToastMessage, ToasterLocation } from './toast-message.model';

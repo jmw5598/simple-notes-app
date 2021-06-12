@@ -11,7 +11,7 @@ import { selectSelectedSection, selectUpdateSectionNotesResponseMessage } from '
 import { setSelectedSection, updateSectionNotes } from '../../store/actions';
 import { ResponseMessage } from '@sn/user/core/models';
 import { ResponseStatus } from '@sn/user/core/enums';
-import { fadeAnimation } from '@sn/user/shared/animations';
+import { fadeAnimation } from '@sn/shared/animations';
 import { DEFAULT_EDITOR_OPTIONS } from '@sn/user/core/defaults';
 import { AbstractPageOverlayLoader ,OverlayLoaderService } from '@sn/user/shared/components';
 

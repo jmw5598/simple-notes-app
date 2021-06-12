@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
-import { fadeAnimation } from '@sn/user/shared/animations'
+import { fadeAnimation } from '@sn/shared/animations'
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IAccountsState } from '../../store/reducers';

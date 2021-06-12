@@ -6,7 +6,7 @@ import { takeUntil, tap } from 'rxjs/operators';
 import { ITopicsState } from '../../store/reducers';
 import { Topic } from '@sn/user/shared/models';
 import { PageableSearch, ResponseMessage } from '@sn/user/core/models';
-import { fadeAnimation } from '@sn/user/shared/animations';
+import { fadeAnimation } from '@sn/shared/animations';
 import { selectTopics, selectSearchTopicsResult, selectCreateTopicResponseMessage} from '../../store/selectors';
 import { deleteTopic, searchTopics, searchTopicsResult } from '../../store/actions';
 import { Page, IPageable } from '@sn/user/core/models';

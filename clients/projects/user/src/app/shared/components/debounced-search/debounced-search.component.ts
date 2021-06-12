@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { tap, takeUntil, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { fadeAnimation } from '../../animations';
+import { fadeAnimation } from '@sn/shared/animations';
 
 @Component({
   selector: 'sn-user-debounced-search',

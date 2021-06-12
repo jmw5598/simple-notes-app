@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { ICalendarIntegrationsState } from '../../store/reducers';
 import { authorizeGoogleCalendarIntegration, inactiveCalendarIntegration, refreshCalendarIntegration } from '../../store/actions';
 import { CalendarIntegration, CalendarIntegrationType, IntegrationStatus } from '@sn/user/core/models';
-import { fadeAnimation } from '@sn/user/shared/animations';
+import { fadeAnimation } from '@sn/shared/animations';
 import { selectCalendarIntegrationsGroupedByType } from '../../store/selectors';
 
 @Component({

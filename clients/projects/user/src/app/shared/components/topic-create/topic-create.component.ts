@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 import { ITopicsState } from '@sn/user/application/modules/topics/store/reducers';
 import { createTopic } from '@sn/user/application/modules/topics/store/actions';
 import { Topic } from '@sn/user/shared/models';
-import { showHide } from '@sn/user/shared/animations';
+import { showHide } from '@sn/shared/animations';
 import { ResponseMessage } from '@sn/user/core/models';
 import { selectCreateTopicResponseMessage } from '@sn/user/application/modules/topics/store/selectors';
 import { setCreateTopicResponseMessage } from '@sn/user/application/modules/topics/store/actions';

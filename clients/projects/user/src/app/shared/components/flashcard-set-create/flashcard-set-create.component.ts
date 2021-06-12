@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { Store } from '@ngrx/store';
 import { IFlashcardsState } from '@sn/user/application/modules/flashcards/store/reducers';
 import { ResponseMessage } from '@sn/user/core/models';
-import { showHide } from '@sn/user/shared/animations';
+import { showHide } from '@sn/shared/animations';
 import { Observable, Subject } from 'rxjs';
 import { DrawerService } from '../drawer/drawer.service';
 

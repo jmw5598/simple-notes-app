@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IToolbarState } from '@sn/user/application/store/reducers/toolbar.reducers';
 import { KeyboardShortcutAction } from '@sn/user/core/models';
-import { fadeAnimation } from '@sn/user/shared/animations';
+import { fadeAnimation } from '@sn/shared/animations';
 import { selectKeyboardShortcuts } from '@sn/user/application/store/selectors';
 import { deleteKeyboardShortcut, setKeyboardShortcutResponseMessage } from '@sn/user/application/store/actions';
 import { DrawerService, DrawerLocation } from '@sn/user/shared/components';

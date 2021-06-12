@@ -12,7 +12,7 @@ import * as todoSelectors from '@sn/user/application/modules/todos/store/selecto
 import * as todoActions from '@sn/user/application/modules/todos/store/actions';
 import { buildTodoListFormGroup } from '@sn/user/shared/forms';
 import { TodoList } from '@sn/user/shared/models';
-import { showHide } from '@sn/user/shared/animations';
+import { showHide } from '@sn/shared/animations';
 
 
 @Component({

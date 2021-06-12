@@ -10,7 +10,7 @@ import { buildUserFormGroup, buildProfileFormGroup, buildAccountFormGroup } from
 import { Registration, RegistrationResult } from '@sn/user/core/dtos';
 import { AccountValidators } from '@sn/user/core/validators';
 import { Plan } from '@sn/user/core/models';
-import { fadeAnimation } from '@sn/user/shared/animations';
+import { fadeAnimation } from '@sn/shared/animations';
 import { RegistrationStep } from './registration-step.enum';
 import { selectPlans } from '@sn/user/core/store/selectors';
 

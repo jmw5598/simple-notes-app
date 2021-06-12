@@ -312,6 +312,37 @@
           }
         }
       }
+    },
+    "shared-animations": {
+      "projectType": "library",
+      "root": "projects/@sn/shared/animations",
+      "sourceRoot": "projects/@sn/shared/animations/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/@sn/shared/animations/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/@sn/shared/animations/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/@shared/animations/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/@sn/shared/animations/src/test.ts",
+            "tsConfig": "projects/@sn/shared/animations/tsconfig.spec.json",
+            "karmaConfig": "projects/@sn/shared/animations/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "user"

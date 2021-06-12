@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { fadeAnimation } from '../../animations';
+import { fadeAnimation } from '@sn/shared/animations';
 import { OverlaySpinnerSize } from './overlay-spinner-size.enum';
 import { OverlayLoaderStyle } from './overlay-loader-style.enum';
 import { OverlayLoaderService } from './overlay-loader.service';

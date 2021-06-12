@@ -6,7 +6,7 @@ import { tap, takeUntil } from 'rxjs/operators';
 import { ITopicsState } from '../../store/reducers';
 import { updateTopic } from '../../store/actions';
 import { Topic } from '@sn/user/shared/models';
-import { showHide } from '@sn/user/shared/animations';
+import { showHide } from '@sn/shared/animations';
 import { ResponseMessage } from '@sn/user/core/models';
 import { selectUpdateTopicResponseMessage } from '../../store/selectors';
 import { setUpdateTopicResponseMessage } from '../../store/actions';

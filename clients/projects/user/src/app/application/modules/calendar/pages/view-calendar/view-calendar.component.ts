@@ -6,7 +6,7 @@ import { ICalendarEventsState } from '../../store/reducers';
 import { CalendarOptions, EventInput, EventSourceInput, FullCalendarComponent } from '@fullcalendar/angular';
 import { DrawerService, CalendarEventCreateComponent, OverlayLoaderService } from '@sn/user/shared/components';
 import { CalendarEventViewComponent } from '../../components/calendar-event-view/calendar-event-view.component';
-import { fadeAnimation } from '@sn/user/shared/animations';
+import { fadeAnimation } from '@sn/shared/animations';
 import { CALENDAR_OPTIONS_DEFAULT } from '../../calendar-options.defaults';
 import { CalendarEvent } from '@sn/user/core/models';
 

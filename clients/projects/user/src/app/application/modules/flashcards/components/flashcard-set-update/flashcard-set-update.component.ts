@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ResponseMessage } from '@sn/user/core/models';
-import { showHide } from '@sn/user/shared/animations';
+import { showHide } from '@sn/shared/animations';
 import { DrawerService } from '@sn/user/shared/components';
 import { FlashcardSet } from '@sn/user/shared/models';
 import { Observable, Subject } from 'rxjs';

@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, Renderer2 } from '@angular/core';
 import { FormGroup, ControlContainer } from '@angular/forms';
 import { HEX_COLOR_STRING_ARRAY } from '../../defaults/colors.defaults';
-import { fadeAnimation, showHide } from '../../animations';
+import { fadeAnimation, showHide } from '@sn/shared/animations';
 
 @Component({
   selector: 'sn-user-calendar-event-form',

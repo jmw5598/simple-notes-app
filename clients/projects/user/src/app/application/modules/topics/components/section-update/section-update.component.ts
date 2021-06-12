@@ -10,7 +10,7 @@ import { Section, Topic } from '@sn/user/shared/models';
 import { ResponseMessage } from '@sn/user/core/models';
 import { selectUpdateSectionResponseMessage } from '../../store/selectors';
 import { updateSection } from '../../store/actions';
-import { showHide } from '@sn/user/shared/animations';
+import { showHide } from '@sn/shared/animations';
 
 @Component({
   selector: 'sn-user-section-update',

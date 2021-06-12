@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ITopicsState } from '@sn/user/application/modules/topics/store/reducers';
-import { fadeAnimation } from '@sn/user/shared/animations';
+import { fadeAnimation } from '@sn/shared/animations';
 import { selectSearchTopicsFromDrawerResult } from '@sn/user/application/modules/topics/store/selectors';
 import { Page } from '@sn/user/core/models';
 import { Topic } from '@sn/user/shared/models';

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { fadeAnimation } from '@sn/user/shared/animations';
 import { LayoutSidePanelState, NavigationRouteLink } from '@sn/core/framing';
+import { fadeAnimation } from '@sn/shared/animations';
 import { OverlayLoaderStyle, OverlaySpinnerSize } from '@sn/user/shared/components';
 
 import { NAVIGATION_ROUTES } from './navigation-routes.config';

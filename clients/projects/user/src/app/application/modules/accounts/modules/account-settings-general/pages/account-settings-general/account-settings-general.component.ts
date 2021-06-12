@@ -6,7 +6,7 @@ import { Account, Profile, Theme } from '@sn/user/core/models';
 import { Store } from '@ngrx/store';
 import { IAccountsState } from '../../../../store/reducers';
 import { selectAccountDetails, selectAccountProfile, selectThemes } from '../../../../store/selectors';
-import { fadeAnimation } from '@sn/user/shared/animations';
+import { fadeAnimation } from '@sn/shared/animations';
 import { AccountValidators } from '@sn/user/core/validators';
 import { buildProfileFormGroup } from '@sn/user/shared/forms';
 import { changeAccountTheme, updateAccountProfile } from '../../../../store/actions';
