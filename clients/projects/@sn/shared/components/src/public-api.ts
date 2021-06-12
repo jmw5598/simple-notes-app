@@ -13,6 +13,9 @@ export * from './lib/drawer/drawer-size.enum';
 export * from './lib/drawer/drawer.component';
 export * from './lib/drawer/drawer.service';
 
+// Empty Data
+export * from './lib/empty-data/empty-data.component';
+
 // Toolbar
 export * from './lib/toolbar/toolbar/toolbar.component';
 export * from './lib/toolbar/toolbar-button/toolbar-button.component';

@@ -15,6 +15,8 @@ import { PastDueTodoListsListComponent } from './components/past-due-todo-lists-
 import { TodoListTodosFormComponent } from './components/todo-list-todos-form/todo-list-todos-form.component';
 import { TodosFormComponent } from './components/todo-list-todos-form/components/todos-form/todos-form.component';
 
+import { SharedComponentsModule } from '@sn/shared/components';
+
 @NgModule({
   declarations: [
     DashboardOverviewComponent,
@@ -26,6 +28,7 @@ import { TodosFormComponent } from './components/todo-list-todos-form/components
     TodosFormComponent
   ],
   imports: [
+    SharedComponentsModule,
     CommonModule,
     DashboardRoutingModule,
     SharedModule

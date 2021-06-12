@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 
 @Component({
-  selector: 'sn-user-empty-data',
+  selector: 'sn-empty-data',
   templateUrl: './empty-data.component.html',
   styleUrls: ['./empty-data.component.scss']
 })

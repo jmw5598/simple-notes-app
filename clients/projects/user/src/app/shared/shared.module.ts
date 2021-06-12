@@ -10,7 +10,6 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { TagInputComponent } from './components/tag-input/tag-input.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { DebouncedSearchComponent } from './components/debounced-search/debounced-search.component';
-import { EmptyDataComponent } from './components/empty-data/empty-data.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { FlashcardSetCreateComponent } from './components';
 import { TopicFormComponent } from './forms/topic-form/topic-form.component';
@@ -70,7 +69,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
     TagInputComponent,
     LoadingSpinnerComponent,
     DebouncedSearchComponent,
-    EmptyDataComponent,
     PaginatorComponent,
     TopicFormComponent,
     TopicCreateComponent,
@@ -133,7 +131,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
     TagInputComponent,
     LoadingSpinnerComponent,
     DebouncedSearchComponent,
-    EmptyDataComponent,
     PaginatorComponent,
     TopicFormComponent,
     TopicCreateComponent,

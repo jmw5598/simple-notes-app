@@ -1,8 +1,8 @@
 <div *ngIf="!todoLists || todoLists.length === 0" class="topics-no-data p-3 border-bottom-1">
-  <sn-user-empty-data 
+  <sn-empty-data 
       message="No todo lists to display for today!"
       [extraContent]="createNewButton">
-  </sn-user-empty-data>
+  </sn-empty-data>
   <ng-template #createNewButton>
     <a [routerLink]="['../todos']" class="btn btn-success text-light">Create new todo list</a>
   </ng-template>
