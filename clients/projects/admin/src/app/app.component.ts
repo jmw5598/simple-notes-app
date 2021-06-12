@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: `
+    <router-outlet></router-outlet>
+    <!-- <sn-user-toaster location="bottomright"></sn-user-toaster> -->
+  `,
+  styles: [``]
 })
-export class AppComponent {
-  title = 'admin';
-}
+export class AppComponent { }

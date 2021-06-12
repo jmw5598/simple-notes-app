@@ -1,1 +1,32 @@
-<p>application works!</p>
+<sn-core-framing-layout 
+    
+    [defaultState]="LayoutSidePanelState.COLLAPSE">
+  <div container="sidePanel">
+    <sn-core-framing-navbar-side [links]="links"></sn-core-framing-navbar-side>
+  </div>
+  <div container="navigationBar">
+    <sn-core-framing-navbar>
+      <ul container="navbarNav" class="nav navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="assets/images/default-avatar.svg" class="img-fluid" style="height: 36px" />
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['accounts', 'settings']">
+              <i class="fas fa-cog icon-margin"></i>
+              Account Settings
+            </a>
+            <a class="dropdown-item" [routerLink]="['/auth', 'logout']">
+              <i class="fas fa-unlock-alt icon-margin"></i>
+              Logout
+            </a>
+          </div>
+        </li>
+      </ul>
+    </sn-core-framing-navbar>
+    <!-- <sn-user-global-toolbar></sn-user-global-toolbar> -->
+  </div>
+  <div container="mainContent">
+    <router-outlet></router-outlet>
+  </div>
+</sn-core-framing-layout>
