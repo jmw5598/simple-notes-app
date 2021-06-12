@@ -34,16 +34,16 @@
         "projects/admin/src/environments/*"
       ],
       "@sn/core/framing": [
-        "dist/@sn/core/framing/framing",
+        "dist/@sn/core/framing/sn-core-framing",
         "dist/@sn/core/framing"
       ],
       "@sn/shared/animations": [
-        "dist/@sn/shared/animations/shared-animations",
+        "dist/@sn/shared/animations/sn-shared-animations",
         "dist/@sn/shared/animations"
       ],
-      "shared-components": [
-        "dist/shared-components/shared-components",
-        "dist/shared-components"
+      "@sn/shared/components": [
+        "dist/@sn/shared/components/sn-shared-components",
+        "dist/@sn/shared/components"
       ]
     }
   },

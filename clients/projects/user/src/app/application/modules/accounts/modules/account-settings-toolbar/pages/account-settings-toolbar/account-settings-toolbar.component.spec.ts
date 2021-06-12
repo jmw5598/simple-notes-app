@@ -4,11 +4,12 @@ import { Store } from '@ngrx/store';
 import { deleteKeyboardShortcut, setKeyboardShortcutResponseMessage } from '@sn/user/application/store/actions';
 import { KeyboardShortcutActionType } from '@sn/user/core/enums';
 import { KeyboardShortcutAction } from '@sn/user/core/models';
-import { DrawerService } from '@sn/user/shared/components';
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { ToolbarKeyboardShortcutListComponent } from '../../components/toolbar-keyboard-shortcut-list/toolbar-keyboard-shortcut-list.component';
 
 import { AccountSettingsToolbarComponent } from './account-settings-toolbar.component';
+
+import { DrawerService } from '@sn/shared/components';
 
 describe('AccountSettingsToolbarComponent', () => {
   let component: AccountSettingsToolbarComponent;

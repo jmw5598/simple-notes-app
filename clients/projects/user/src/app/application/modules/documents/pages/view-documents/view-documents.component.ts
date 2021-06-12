@@ -8,12 +8,14 @@ import { fadeAnimation } from '@sn/shared/animations';
 import { IDocumentsState } from '../../store/reducers/documents.reducers'
 import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/user/core/defaults';
 import { takeUntil, tap } from 'rxjs/operators';
-import { DrawerService, DrawerLocation, DrawerSize, OverlayLoaderService, AbstractPageOverlayLoader, DocumentCreateComponent } from '@sn/user/shared/components';
+import { OverlayLoaderService, AbstractPageOverlayLoader, DocumentCreateComponent } from '@sn/user/shared/components';
 import { DocumentUpdateComponent } from '../../components/document-update/document-update.component';
 
 import * as documentActions from '../../store/actions';
 import * as documentSelectors from '../../store/selectors';
 import { DocumentViewComponent } from '../../components/document-view/document-view.component';
+
+import { DrawerService, DrawerLocation, DrawerSize } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-view-documents',

@@ -7,6 +7,8 @@ import { AccountSettingsToolbarComponent } from './pages/account-settings-toolba
 import { ToolbarKeyboardShortcutListComponent } from './components/toolbar-keyboard-shortcut-list/toolbar-keyboard-shortcut-list.component';
 import { ConfigureKeyboardShortcutComponent } from './components/configure-keyboard-shortcut/configure-keyboard-shortcut.component';
 
+import { SharedComponentsModule } from '@sn/shared/components';
+
 @NgModule({
   declarations: [
     AccountSettingsToolbarComponent,
@@ -14,6 +16,7 @@ import { ConfigureKeyboardShortcutComponent } from './components/configure-keybo
     ConfigureKeyboardShortcutComponent
   ],
   imports: [
+    SharedComponentsModule,
     AccountSettingsToolbarRoutingModule,
     CommonModule,
     SharedModule,

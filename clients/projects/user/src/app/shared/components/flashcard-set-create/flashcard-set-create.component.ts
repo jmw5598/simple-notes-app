@@ -5,12 +5,13 @@ import { IFlashcardsState } from '@sn/user/application/modules/flashcards/store/
 import { ResponseMessage } from '@sn/user/core/models';
 import { showHide } from '@sn/shared/animations';
 import { Observable, Subject } from 'rxjs';
-import { DrawerService } from '../drawer/drawer.service';
 
 import * as flashcardActions from '@sn/user/application/modules/flashcards/store/actions';
 import * as flashcardSelectors from '@sn/user/application/modules/flashcards/store/selectors';
 import { debounce, debounceTime, filter, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 import { FlashcardSet } from '@sn/user/shared/models';
+
+import { DrawerService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-flashcard-set-create',

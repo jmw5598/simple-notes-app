@@ -1,5 +1,5 @@
-<sn-user-toolbar>
-  <sn-user-toolbar-button-group>
+<sn-toolbar>
+  <sn-toolbar-button-group>
     <span 
         snToolbarButton 
         (click)="onPreviousRoute()"
@@ -18,8 +18,8 @@
         [delay]="tooltipDelay">
       <i class="fas fa-arrow-right"></i>
     </span>
-  </sn-user-toolbar-button-group>
-  <sn-user-toolbar-button-group>
+  </sn-toolbar-button-group>
+  <sn-toolbar-button-group>
     <span 
         snToolbarButton 
         (click)="onCreateNewTopic()"
@@ -74,12 +74,12 @@
         [delay]="tooltipDelay">
       <i class="fas fa-clipboard-check"></i>
     </span>
-  </sn-user-toolbar-button-group>
-</sn-user-toolbar>
+  </sn-toolbar-button-group>
+</sn-toolbar>
 
-<sn-user-drawer
+<sn-drawer
     [drawerLocation]="DrawerLocation.RIGHT">
-</sn-user-drawer>
+</sn-drawer>
 
 <ng-keyboard-shortcuts 
     [shortcuts]="shortcuts">

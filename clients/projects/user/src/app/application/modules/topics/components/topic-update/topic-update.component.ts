@@ -11,7 +11,8 @@ import { ResponseMessage } from '@sn/user/core/models';
 import { selectUpdateTopicResponseMessage } from '../../store/selectors';
 import { setUpdateTopicResponseMessage } from '../../store/actions';
 import { buildTopicFormGroup } from '@sn/user/shared/forms';
-import { DrawerService } from '@sn/user/shared/components';
+
+import { DrawerService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-topic-update',

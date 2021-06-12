@@ -12,7 +12,9 @@ import { deleteTopic, searchTopics, searchTopicsResult } from '../../store/actio
 import { Page, IPageable } from '@sn/user/core/models';
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/user/core/defaults';
 import { ResponseStatus } from '@sn/user/core/enums';
-import { AbstractPageOverlayLoader ,DrawerLocation,DrawerService,OverlayLoaderService, TopicCreateComponent } from '@sn/user/shared/components';
+import { AbstractPageOverlayLoader, OverlayLoaderService, TopicCreateComponent } from '@sn/user/shared/components';
+
+import { DrawerService, DrawerLocation } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-view-topics',

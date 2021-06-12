@@ -22,6 +22,7 @@ import { environment } from '@sn/user/env/environment';
 import { HttpErrorEffects } from './application/store/effects/http-error.effects';
 
 import { CoreFramingModule } from '@sn/core/framing';
+import { SharedComponentsModule } from '@sn/shared/components';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CoreFramingModule } from '@sn/core/framing';
   ],
   imports: [
     CoreFramingModule.forRoot(),
+    SharedComponentsModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,

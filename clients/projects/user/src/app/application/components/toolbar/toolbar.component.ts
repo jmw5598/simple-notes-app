@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { IToolbarState } from '../../store/reducers';
 import { selectKeyboardShortcuts } from '../../store/selectors';
-import { DrawerService, DrawerLocation, DrawerSize, FlashcardSetCreateComponent } from '@sn/user/shared/components';
+import { FlashcardSetCreateComponent } from '@sn/user/shared/components';
 import { ShortcutInput, AllowIn } from 'ng-keyboard-shortcuts';
 import { getKeyboardShortcuts } from '@sn/user/application/store/actions';
 import { KeyboardShortcutActionType } from '@sn/user/core/enums';
@@ -15,6 +15,8 @@ import {
   CalendarEventCreateComponent,
   DocumentCreateComponent } from '@sn/user/shared/components';
 import { TodoListCreateComponent } from '@sn/user/shared/components/todo-list-create/todo-list-create.component';
+
+import { DrawerService, DrawerLocation, DrawerSize } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-global-toolbar',

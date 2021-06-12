@@ -4,7 +4,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { DrawerService } from '@sn/user/shared/components';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import bootstrapPlugin from '@fullcalendar/bootstrap';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -19,6 +18,8 @@ import { CalendarEventViewComponent } from './components/calendar-event-view/cal
 import { CalendarEventCreateComponent } from '@sn/user/shared/components';
 import { CalendarTodoListViewComponent } from './components/calendar-todo-list-view/calendar-todo-list-view.component';
 import { CalendarEventCreateMenuComponent } from './components/calendar-event-create-menu/calendar-event-create-menu.component';
+
+import { SharedComponentsModule, DrawerService } from '@sn/shared/components';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -36,6 +37,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CalendarEventCreateMenuComponent
   ],
   imports: [
+    SharedComponentsModule,
     CommonModule,
     CalendarRoutingModule,
     FullCalendarModule,

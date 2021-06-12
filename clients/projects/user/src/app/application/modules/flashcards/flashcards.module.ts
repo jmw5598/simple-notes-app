@@ -10,6 +10,8 @@ import { FlashcardSetViewComponent } from './components/flashcard-set-view/flash
 import { FlashcardSetUpdateComponent } from './components/flashcard-set-update/flashcard-set-update.component';
 import { MarkdownModule } from 'ngx-markdown';
 
+import { SharedComponentsModule } from '@sn/shared/components';
+
 @NgModule({
   declarations: [
     ViewFlashcardsComponent,
@@ -18,6 +20,7 @@ import { MarkdownModule } from 'ngx-markdown';
     FlashcardSetUpdateComponent
   ],
   imports: [
+    SharedComponentsModule,
     CommonModule,
     SharedModule,
     FlashcardsRoutingModule,

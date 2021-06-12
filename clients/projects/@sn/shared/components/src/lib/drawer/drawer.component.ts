@@ -6,11 +6,10 @@ import { DrawerOverlayStyle } from './drawer-overlay-style.enum';
 import { DrawerLocation } from './drawer-location.enum';
 import { DrawerService } from './drawer.service';
 import { DrawerOptions } from './drawer-options.model';
-import { DEFAULT_DRAWER_OPTIONS } from './drawer-options.defaults';
 import { DrawerSize } from './drawer-size.enum';
 
 @Component({
-  selector: 'sn-user-drawer',
+  selector: 'sn-drawer',
   templateUrl: './drawer.component.html',
   styleUrls: ['./drawer.component.scss'],
   animations: [fadeAnimation]

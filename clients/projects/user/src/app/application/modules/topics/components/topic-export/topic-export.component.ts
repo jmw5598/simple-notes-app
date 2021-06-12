@@ -6,10 +6,11 @@ import { takeUntil, tap } from 'rxjs/operators';
 import { ITopicsState } from '../../store/reducers';
 import { ResponseMessage } from '@sn/user/core/models';
 import { ExportConfig, ExportFormat, FileResponse, Topic } from '@sn/user/shared/models';
-import { DrawerService } from '@sn/user/shared/components';
 import { showHide } from '@sn/shared/animations';
 import { selectExportTopicResponseMessage, selectExportTopicFile } from '../../store/selectors';
 import { exportTopic } from '../../store/actions';
+
+import { DrawerService } from '@sn/shared/components';
 
 import * as FileSaver from 'file-saver';
 

@@ -11,6 +11,8 @@ import { DocumentListComponent } from './components/document-list/document-list.
 import { DocumentUpdateComponent } from './components/document-update/document-update.component';
 import { DocumentViewComponent } from './components/document-view/document-view.component';
 
+import { SharedComponentsModule } from '@sn/shared/components';
+
 @NgModule({
   declarations: [
     ViewDocumentsComponent,
@@ -19,6 +21,7 @@ import { DocumentViewComponent } from './components/document-view/document-view.
     DocumentViewComponent,
   ],
   imports: [
+    SharedComponentsModule,
     CommonModule,
     DragDropModule,
     DocumentsRoutingModule,

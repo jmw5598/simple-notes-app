@@ -11,7 +11,7 @@ import { IPageable } from '@sn/user/core/models';
 import { PageableSearch } from '@sn/user/core/models'
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/user/core/defaults';
 import { searchTopicsFromDrawer, searchTopicsFromDrawerResult } from '@sn/user/application/modules/topics/store/actions';
-import { DrawerService } from '../drawer/drawer.service';
+import { DrawerService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-topic-search',

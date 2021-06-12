@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
-import { DrawerService } from '@sn/user/shared/components';
 import { showHide } from '@sn/shared/animations';
 import { Store } from '@ngrx/store';
 import { IDocumentsState } from '@sn/user/application/modules/documents/store/reducers';
@@ -11,6 +10,8 @@ import { Document } from '@sn/user/shared/models';
 
 import * as documentSelectors from '@sn/user/application/modules/documents/store/selectors';
 import * as documentActions from '@sn/user/application/modules/documents/store/actions';
+
+import { DrawerService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-document-update',

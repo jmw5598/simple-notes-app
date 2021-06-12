@@ -12,8 +12,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { DebouncedSearchComponent } from './components/debounced-search/debounced-search.component';
 import { EmptyDataComponent } from './components/empty-data/empty-data.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
-import { DrawerComponent } from './components/drawer/drawer.component';
-import { DrawerService, FlashcardSetCreateComponent } from './components';
+import { FlashcardSetCreateComponent } from './components';
 import { TopicFormComponent } from './forms/topic-form/topic-form.component';
 import { TopicCreateComponent } from './components/topic-create/topic-create.component';
 import { TopicSearchComponent } from './components/topic-search/topic-search.component';
@@ -28,10 +27,6 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { DocumentBuilderFormComponent } from './components/document-builder/components/document-builder-form/document-builder-form.component';
 import { DocumentCreateComponent } from './components/document-create/document-create.component';
 import { OverlayLoaderComponent } from './components/overlay-loader/overlay-loader.component';
-import { ToolbarComponent } from './components/toolbar/toolbar/toolbar.component';
-import { ToolbarButtonComponent } from './components/toolbar/toolbar-button/toolbar-button.component';
-import { ToolbarButtonGroupComponent } from './components/toolbar/toolbar-button-group/toolbar-button-group.component';
-import { ToolbarDockComponent } from './components/toolbar/toolbar-dock/toolbar-dock.component';
 
 import { DocumentBuilderSectionContainerComponent } from './components/document-builder/components/document-builder-form/components/document-builder-section-container/document-builder-section-container.component';
 import { DocumentBuilderTopicContainerComponent } from './components/document-builder/components/document-builder-form/components/document-builder-topic-container/document-builder-topic-container.component';
@@ -67,6 +62,8 @@ import { TodoListUpdateComponent } from './components/todo-list-update/todo-list
 
 import { TodoListProgressComponent } from './components/todo-list-progress/todo-list-progress.component';
 
+import { SharedComponentsModule } from '@sn/shared/components';
+
 @NgModule({
   declarations: [
     SpinnerComponent,
@@ -75,7 +72,6 @@ import { TodoListProgressComponent } from './components/todo-list-progress/todo-
     DebouncedSearchComponent,
     EmptyDataComponent,
     PaginatorComponent,
-    DrawerComponent,
     TopicFormComponent,
     TopicCreateComponent,
     TopicSearchComponent,
@@ -86,10 +82,6 @@ import { TodoListProgressComponent } from './components/todo-list-progress/todo-
     DocumentBuilderFormComponent,
     DocumentCreateComponent,
     OverlayLoaderComponent,
-    ToolbarComponent,
-    ToolbarButtonComponent,
-    ToolbarButtonGroupComponent,
-    ToolbarDockComponent,
     DocumentBuilderSectionContainerComponent,
     DocumentBuilderTopicContainerComponent,
     DocumentBuilderDocumentContainerComponent,
@@ -119,6 +111,7 @@ import { TodoListProgressComponent } from './components/todo-list-progress/todo-
     TodoListProgressComponent
   ],
   imports: [
+    SharedComponentsModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -142,7 +135,6 @@ import { TodoListProgressComponent } from './components/todo-list-progress/todo-
     DebouncedSearchComponent,
     EmptyDataComponent,
     PaginatorComponent,
-    DrawerComponent,
     TopicFormComponent,
     TopicCreateComponent,
     TopicSearchComponent,
@@ -153,10 +145,6 @@ import { TodoListProgressComponent } from './components/todo-list-progress/todo-
     DocumentBuilderFormComponent,
     DocumentCreateComponent,
     OverlayLoaderComponent,
-    ToolbarComponent,
-    ToolbarButtonComponent,
-    ToolbarButtonGroupComponent,
-    ToolbarDockComponent,
     DocumentBuilderSectionContainerComponent,
     DocumentBuilderTopicContainerComponent,
     DocumentBuilderDocumentContainerComponent,
@@ -177,7 +165,6 @@ import { TodoListProgressComponent } from './components/todo-list-progress/todo-
     TodoListProgressComponent
   ],
   providers: [
-    DrawerService,
     OverlayContentService,
     FlashcardSetViewerControlsService
   ]

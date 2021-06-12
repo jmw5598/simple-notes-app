@@ -6,8 +6,9 @@ import { KeyboardShortcutAction } from '@sn/user/core/models';
 import { fadeAnimation } from '@sn/shared/animations';
 import { selectKeyboardShortcuts } from '@sn/user/application/store/selectors';
 import { deleteKeyboardShortcut, setKeyboardShortcutResponseMessage } from '@sn/user/application/store/actions';
-import { DrawerService, DrawerLocation } from '@sn/user/shared/components';
 import { ConfigureKeyboardShortcutComponent } from '../../components/configure-keyboard-shortcut/configure-keyboard-shortcut.component';
+
+import { DrawerService, DrawerLocation } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-account-settings-toolbar',

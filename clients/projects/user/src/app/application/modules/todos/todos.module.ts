@@ -9,6 +9,8 @@ import { TodosRoutingModule } from './todos-routing.module';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { TodoListEditComponent } from './components/todo-list-edit/todo-list-edit.component';
 
+import { SharedComponentsModule } from '@sn/shared/components';
+
 @NgModule({
   declarations: [
     ViewTodosComponent,
@@ -17,6 +19,7 @@ import { TodoListEditComponent } from './components/todo-list-edit/todo-list-edi
     TodoListEditComponent
   ],
   imports: [
+    SharedComponentsModule,
     CommonModule,
     TodosRoutingModule,
     SharedModule,

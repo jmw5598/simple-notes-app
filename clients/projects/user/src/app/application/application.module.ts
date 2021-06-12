@@ -22,6 +22,7 @@ import { FlashcardsEffects } from './modules/flashcards/store/effects/flashcards
 import { TodoListsEffects } from './modules/todos/store/effects/todos.effects';
 
 import { CoreFramingModule } from '@sn/core/framing';
+import { SharedComponentsModule } from '@sn/shared/components';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CoreFramingModule } from '@sn/core/framing';
   ],
   imports: [
     CoreFramingModule,
+    SharedComponentsModule,
     CommonModule,
     SharedModule,
     ApplicationRoutingModule,

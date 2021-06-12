@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { DrawerService } from '../drawer/drawer.service';
 import { Store } from '@ngrx/store';
 import { ICalendarEventsState } from '@sn/user/application/modules/calendar/store/reducers';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -12,6 +11,8 @@ import { showHide } from '@sn/shared/animations';
 import { buildCalendarEventFormGroup } from '../../forms/calendar-event-form/calendar-event-form.builder';
 import { CalendarEventFormComponent } from '../../forms/calendar-event-form/calendar-event-form.component';
 import { HEX_COLOR_STRING_ARRAY } from '../../defaults/colors.defaults';
+
+import { DrawerService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-calendar-event-create',

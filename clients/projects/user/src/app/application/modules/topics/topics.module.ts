@@ -21,6 +21,8 @@ import { EditSectionNotesComponent } from './pages/edit-section-notes/edit-secti
 import * as fromTopics from './store/reducers';
 import * as fromTopicsEffects from './store/effects';
 
+import { SharedComponentsModule } from '@sn/shared/components';
+
 @NgModule({
   declarations: [
     ViewTopicsComponent, 
@@ -35,6 +37,7 @@ import * as fromTopicsEffects from './store/effects';
     EditSectionNotesComponent
   ],
   imports: [
+    SharedComponentsModule,
     CommonModule,
     SharedModule,
     TopicsRoutingModule,

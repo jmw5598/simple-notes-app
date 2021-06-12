@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { DEFAULT_SEARCH_FLASHCARDS_PAGE } from '@sn/user/core/defaults';
 import { IPageable, Page, PageableSearch } from '@sn/user/core/models';
 import { fadeAnimation } from '@sn/shared/animations';
-import { AbstractPageOverlayLoader, DrawerLocation, DrawerService, DrawerSize, FlashcardSetCreateComponent, OverlayLoaderService } from '@sn/user/shared/components';
+import { AbstractPageOverlayLoader, FlashcardSetCreateComponent, OverlayLoaderService } from '@sn/user/shared/components';
 import { FlashcardSet } from '@sn/user/shared/models';
 import { Observable, of, Subject } from 'rxjs';
 
@@ -14,6 +14,8 @@ import { FlashcardSetViewComponent } from '../../components/flashcard-set-view/f
 import { FlashcardSetUpdateComponent } from '../../components/flashcard-set-update/flashcard-set-update.component';
 import { OverlayContentService } from '@sn/user/shared/components/overlay-content/overlay-content.service';
 import { takeUntil, tap } from 'rxjs/operators';
+
+import { DrawerLocation, DrawerService, DrawerSize } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-view-flashcards',

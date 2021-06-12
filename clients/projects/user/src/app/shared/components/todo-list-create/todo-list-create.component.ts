@@ -6,7 +6,6 @@ import { ResponseMessage } from '@sn/user/core/models';
 import { TodoListFormComponent } from '@sn/user/shared/forms/todo-list-form/todo-list-form.component';
 import { Observable } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
-import { DrawerService } from '../drawer/drawer.service';
 
 import * as todoSelectors from '@sn/user/application/modules/todos/store/selectors';
 import * as todoActions from '@sn/user/application/modules/todos/store/actions';
@@ -14,6 +13,7 @@ import { buildTodoListFormGroup } from '@sn/user/shared/forms';
 import { TodoList } from '@sn/user/shared/models';
 import { showHide } from '@sn/shared/animations';
 
+import { DrawerService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-todo-list-create',
