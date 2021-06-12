@@ -1,13 +1,13 @@
 import { Component, ComponentFactory, ComponentFactoryResolver, HostListener, Input, OnDestroy, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { fadeAnimation } from '@sn/shared/animations';
 import { Subject } from 'rxjs';
-import { skip, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 import { OverlayContentOptions } from './overlay-content-options.model';
 import { OverlayContentService } from './overlay-content.service';
 
 @Component({
-  selector: 'sn-user-overlay-content',
+  selector: 'sn-overlay-content',
   templateUrl: './overlay-content.component.html',
   styleUrls: ['./overlay-content.component.scss'],
   animations: [fadeAnimation]

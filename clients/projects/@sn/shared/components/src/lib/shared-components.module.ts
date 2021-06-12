@@ -5,6 +5,8 @@ import { DrawerService } from './drawer/drawer.service';
 import { DrawerComponent } from './drawer/drawer.component';
 import { EmptyDataComponent } from './empty-data/empty-data.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { OverlayContentComponent } from './overlay-content/overlay-content.component';
+import { OverlayContentService } from './overlay-content/overlay-content.service';
 import { OverlayLoaderComponent } from './overlay-loader/overlay-loader.component';
 import { ToolbarComponent } from './toolbar/toolbar/toolbar.component';
 import { ToolbarButtonComponent } from './toolbar/toolbar-button/toolbar-button.component';
@@ -17,6 +19,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     DrawerComponent,
     EmptyDataComponent,
     LoadingSpinnerComponent,
+    OverlayContentComponent,
     OverlayLoaderComponent,
     ToolbarComponent,
     ToolbarButtonComponent,
@@ -31,6 +34,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     DrawerComponent,
     EmptyDataComponent,
     LoadingSpinnerComponent,
+    OverlayContentComponent,
     OverlayLoaderComponent,
     ToolbarComponent,
     ToolbarButtonComponent,
@@ -38,7 +42,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     ToolbarDockComponent,
   ],
   providers: [
-    DrawerService
+    DrawerService,
+    OverlayContentService
   ]
 })
 export class SharedComponentsModule { }

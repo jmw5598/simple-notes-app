@@ -12,10 +12,15 @@ import * as flashcardsActions from '../../store/actions';
 import * as flashcardsSelectors from '../../store/selectors';
 import { FlashcardSetViewComponent } from '../../components/flashcard-set-view/flashcard-set-view.component';
 import { FlashcardSetUpdateComponent } from '../../components/flashcard-set-update/flashcard-set-update.component';
-import { OverlayContentService } from '@sn/user/shared/components/overlay-content/overlay-content.service';
 import { takeUntil, tap } from 'rxjs/operators';
 
-import { DrawerLocation, DrawerService, DrawerSize, AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
+import { 
+  AbstractPageOverlayLoader, 
+  DrawerLocation, 
+  DrawerService, 
+  DrawerSize, 
+  OverlayContentService,
+  OverlayLoaderService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-view-flashcards',

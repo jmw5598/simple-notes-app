@@ -17,6 +17,13 @@ export * from './lib/drawer/drawer.service';
 export * from './lib/loading-spinner/loading-spinner.component';
 export * from './lib/loading-spinner/spinner-style.enum';
 
+// Overlay Content
+export * from './lib/overlay-content/overlay-content-options.defaults';
+export * from './lib/overlay-content/overlay-content-options.model';
+export * from './lib/overlay-content/overlay-content.component';
+export * from './lib/overlay-content/overlay-content.service';
+export * from './lib/overlay-content/overlay-style.enum';
+
 // Overlay Loader
 export * from './lib/overlay-loader/abstract-page-overlay-loader.component';
 export * from './lib/overlay-loader/overlay-loader-style.enum';

@@ -40,8 +40,6 @@ import { FlashcardSetBuilderFormComponent } from './components/flashcard-set-bui
 import { FlashcardSetComponent } from './components/flashcard-set-builder/components/flashcard-set-builder-container/components/flashcard-set/flashcard-set.component';
 import { FlashcardSetBuilderContainerComponent } from './components/flashcard-set-builder/components/flashcard-set-builder-container/flashcard-set-builder-container.component';
 import { FlashcardCreateFormComponent } from './components/flashcard-set-builder/components/flashcard-set-builder-form/components/flashcard-create-form/flashcard-create-form.component';
-import { OverlayContentComponent } from './components/overlay-content/overlay-content.component';
-import { OverlayContentService } from './components/overlay-content/overlay-content.service';
 import { FlashcardEditFormComponent } from './components/flashcard-set-builder/components/flashcard-set-builder-form/components/flashcard-edit-form/flashcard-edit-form.component';
 import { FlashcardSetViewerComponent } from './components/flashcard-set-viewer/flashcard-set-viewer.component';
 import { FlashcardSetViewerControlsComponent } from './components/flashcard-set-viewer/components/flashcard-set-viewer-controls/flashcard-set-viewer-controls.component';
@@ -90,7 +88,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
     FlashcardSetComponent,
     FlashcardSetBuilderContainerComponent,
     FlashcardCreateFormComponent,
-    OverlayContentComponent,
     FlashcardEditFormComponent,
     FlashcardSetViewerComponent,
     FlashcardSetViewerControlsComponent,
@@ -144,7 +141,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
     FlipcardComponent,
     FlipcardFrontComponent,
     FlipcardBackComponent,
-    OverlayContentComponent,
     FlashcardSetViewerComponent,
     FlashcardSetBuilderFormComponent,
     ToasterComponent,
@@ -156,7 +152,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
     TodoListProgressComponent
   ],
   providers: [
-    OverlayContentService,
     FlashcardSetViewerControlsService
   ]
 })
