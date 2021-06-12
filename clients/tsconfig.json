@@ -40,6 +40,10 @@
       "@sn/shared/animations": [
         "dist/@sn/shared/animations/shared-animations",
         "dist/@sn/shared/animations"
+      ],
+      "shared-components": [
+        "dist/shared-components/shared-components",
+        "dist/shared-components"
       ]
     }
   },

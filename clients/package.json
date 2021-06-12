@@ -11,6 +11,7 @@
     "build:admin": "ng build admin --prod",
     "build:core-framing": "ng build core-framing --prod",
     "build:shared-animations": "ng build shared-animations --prod",
+    "build:shared-components": "ng build shared-components --prod",
     "build:libs": "ng build lib --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
