@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, SecurityContext } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -30,10 +30,7 @@ import { DocumentBuilderTopicContainerComponent } from './components/document-bu
 import { DocumentBuilderDocumentContainerComponent } from './components/document-builder/components/document-builder-document-container/document-builder-document-container.component';
 import { DocumentBuilderDocumentTopicComponent } from './components/document-builder/components/document-builder-document-container/components/document-builder-document-topic/document-builder-document-topic.component';
 import { DocumentBuilderDocumentSectionComponent } from './components/document-builder/components/document-builder-document-container/components/document-builder-document-section/document-builder-document-section.component';
-import { FlashcardComponent } from './components/cards/flashcard/flashcard.component';
-import { FlipcardComponent } from './components/cards/flipcard/flipcard.component';
-import { FlipcardFrontComponent } from './components/cards/flipcard/flipcard-front.component';
-import { FlipcardBackComponent } from './components/cards/flipcard/flipcard-back.component';
+
 import { AngularMarkdownEditorModule } from 'angular-markdown-editor';
 import { MarkdownModule } from 'ngx-markdown';
 import { FlashcardSetBuilderFormComponent } from './components/flashcard-set-builder/components/flashcard-set-builder-form/flashcard-set-builder-form.component';
@@ -80,10 +77,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
     DocumentBuilderDocumentTopicComponent,
     DocumentBuilderDocumentSectionComponent,
     FlashcardSetCreateComponent,
-    FlashcardComponent,
-    FlipcardComponent,
-    FlipcardFrontComponent,
-    FlipcardBackComponent,
     FlashcardSetBuilderFormComponent,
     FlashcardSetComponent,
     FlashcardSetBuilderContainerComponent,
@@ -114,7 +107,9 @@ import { SharedComponentsModule } from '@sn/shared/components';
     TypeaheadModule,
     ConfirmationPopoverModule,
     AngularMarkdownEditorModule.forRoot({ iconlibrary: 'fa' }),
-    MarkdownModule.forRoot(),
+    MarkdownModule.forRoot({
+      sanitize: SecurityContext.NONE
+    }),
     TooltipModule.forRoot()
   ],
   exports: [
@@ -136,11 +131,7 @@ import { SharedComponentsModule } from '@sn/shared/components';
     DocumentBuilderSectionContainerComponent,
     DocumentBuilderTopicContainerComponent,
     DocumentBuilderDocumentContainerComponent,
-    FlashcardSetCreateComponent,
-    FlashcardComponent,
-    FlipcardComponent,
-    FlipcardFrontComponent,
-    FlipcardBackComponent,
+    FlashcardSetCreateComponent,    
     FlashcardSetViewerComponent,
     FlashcardSetBuilderFormComponent,
     ToasterComponent,

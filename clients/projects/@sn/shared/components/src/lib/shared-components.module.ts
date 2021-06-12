@@ -4,6 +4,12 @@ import { CommonModule } from '@angular/common';
 import { DrawerService } from './drawer/drawer.service';
 import { DrawerComponent } from './drawer/drawer.component';
 import { EmptyDataComponent } from './empty-data/empty-data.component';
+
+import { FlashcardComponent } from './cards/flashcard/flashcard.component';
+import { FlipcardBackComponent } from './cards/flipcard/flipcard-back.component';
+import { FlipcardFrontComponent } from './cards/flipcard/flipcard-front.component';
+import { FlipcardComponent } from './cards/flipcard/flipcard.component';
+
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { OverlayContentComponent } from './overlay-content/overlay-content.component';
 import { OverlayContentService } from './overlay-content/overlay-content.service';
@@ -18,6 +24,10 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
   declarations: [
     DrawerComponent,
     EmptyDataComponent,
+    FlashcardComponent,
+    FlipcardBackComponent,
+    FlipcardComponent,
+    FlipcardFrontComponent,
     LoadingSpinnerComponent,
     OverlayContentComponent,
     OverlayLoaderComponent,
@@ -33,6 +43,10 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
   exports: [
     DrawerComponent,
     EmptyDataComponent,
+    FlashcardComponent,
+    FlipcardBackComponent,
+    FlipcardComponent,
+    FlipcardFrontComponent,
     LoadingSpinnerComponent,
     OverlayContentComponent,
     OverlayLoaderComponent,

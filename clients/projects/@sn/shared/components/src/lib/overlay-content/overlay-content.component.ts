@@ -50,7 +50,7 @@ export class OverlayContentComponent implements OnInit, OnDestroy {
   }
 
   public close($event: any): void {
-    if ($event.srcElement.className.includes('overlay') && this.options.closeOnOverlayClick) {
+    if ($event?.srcElement?.className?.includes('overlay') && this.options.closeOnOverlayClick) {
       this._overlayContentService.close();
     }
   }

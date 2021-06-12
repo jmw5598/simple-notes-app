@@ -1,22 +1,22 @@
 <div class="flashcard-set-viewer-flipper mb-3">
-  <sn-user-flashcard>
-    <sn-user-flipcard [(isFlipped)]="isFlipped">
-      <sn-user-flipcard-front>
+  <sn-flashcard>
+    <sn-flipcard [(isFlipped)]="isFlipped">
+      <sn-flipcard-front>
         <div class="flashcard-content p-4">
           <markdown 
               class="markdown-body" 
               [data]="flashcard?.frontContent">
           </markdown>
         </div>
-      </sn-user-flipcard-front>
-      <sn-user-flipcard-back>
+      </sn-flipcard-front>
+      <sn-flipcard-back>
         <div class="flashcard-content p-4">
           <markdown 
               class="markdown-body" 
               [data]="flashcard?.backContent">
           </markdown>
         </div>
-      </sn-user-flipcard-back>
-    </sn-user-flipcard>
-  </sn-user-flashcard>
+      </sn-flipcard-back>
+    </sn-flipcard>
+  </sn-flashcard>
 </div>

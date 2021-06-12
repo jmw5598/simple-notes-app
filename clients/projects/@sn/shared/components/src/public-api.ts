@@ -13,6 +13,12 @@ export * from './lib/drawer/drawer-size.enum';
 export * from './lib/drawer/drawer.component';
 export * from './lib/drawer/drawer.service';
 
+// Cards
+export * from './lib/cards/flashcard/flashcard.component';
+export * from './lib/cards/flipcard/flipcard-back.component';
+export * from './lib/cards/flipcard/flipcard-front.component';
+export * from './lib/cards/flipcard/flipcard.component';
+
 // Loading Spinner
 export * from './lib/loading-spinner/loading-spinner.component';
 export * from './lib/loading-spinner/spinner-style.enum';
