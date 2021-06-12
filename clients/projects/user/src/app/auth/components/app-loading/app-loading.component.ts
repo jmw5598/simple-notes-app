@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { fadeAnimation } from '@sn/shared/animations';
-import { SpinnerStyle } from '@sn/user/shared/components';
+import { SpinnerStyle } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-app-loading',

@@ -8,7 +8,6 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover'
 
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { TagInputComponent } from './components/tag-input/tag-input.component';
-import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { DebouncedSearchComponent } from './components/debounced-search/debounced-search.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { FlashcardSetCreateComponent } from './components';
@@ -25,7 +24,6 @@ import { ColorTwitterModule } from 'ngx-color/twitter';
 import { PageHeaderComponent } from './components/page-header/page-header.component'; // <color-twitter></color-twitter>
 import { DocumentBuilderFormComponent } from './components/document-builder/components/document-builder-form/document-builder-form.component';
 import { DocumentCreateComponent } from './components/document-create/document-create.component';
-import { OverlayLoaderComponent } from './components/overlay-loader/overlay-loader.component';
 
 import { DocumentBuilderSectionContainerComponent } from './components/document-builder/components/document-builder-form/components/document-builder-section-container/document-builder-section-container.component';
 import { DocumentBuilderTopicContainerComponent } from './components/document-builder/components/document-builder-form/components/document-builder-topic-container/document-builder-topic-container.component';
@@ -67,7 +65,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
   declarations: [
     SpinnerComponent,
     TagInputComponent,
-    LoadingSpinnerComponent,
     DebouncedSearchComponent,
     PaginatorComponent,
     TopicFormComponent,
@@ -79,7 +76,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
     PageHeaderComponent,
     DocumentBuilderFormComponent,
     DocumentCreateComponent,
-    OverlayLoaderComponent,
     DocumentBuilderSectionContainerComponent,
     DocumentBuilderTopicContainerComponent,
     DocumentBuilderDocumentContainerComponent,
@@ -129,7 +125,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
     ReactiveFormsModule,
     SpinnerComponent,
     TagInputComponent,
-    LoadingSpinnerComponent,
     DebouncedSearchComponent,
     PaginatorComponent,
     TopicFormComponent,
@@ -141,7 +136,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
     PageHeaderComponent,
     DocumentBuilderFormComponent,
     DocumentCreateComponent,
-    OverlayLoaderComponent,
     DocumentBuilderSectionContainerComponent,
     DocumentBuilderTopicContainerComponent,
     DocumentBuilderDocumentContainerComponent,

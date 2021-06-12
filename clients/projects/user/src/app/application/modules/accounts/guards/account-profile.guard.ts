@@ -8,7 +8,8 @@ import { Profile } from '@sn/user/core/models';
 import { getAccountProfile } from '../store/actions';
 import { selectAccountProfile } from '../store/selectors';
 import { IAccountsState } from '../store/reducers';
-import { OverlayLoaderService } from '@sn/user/shared/components';
+
+import { OverlayLoaderService } from '@sn/shared/components';
 
 @Injectable({
   providedIn: 'root'

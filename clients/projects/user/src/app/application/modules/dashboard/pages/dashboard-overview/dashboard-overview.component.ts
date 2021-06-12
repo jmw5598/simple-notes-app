@@ -6,8 +6,9 @@ import { fadeAnimation } from '@sn/shared/animations';
 import { selectPastDueTodoLists, selectRecentTopics, selectTodaysEvents, selectTodaysTodoLists } from '../../store/selectors';
 import { CalendarEvent } from '@sn/user/core/models';
 import { TodoList, Topic } from '@sn/user/shared/models';
-import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/user/shared/components';
 import { getPastDueTodoListsSuccess, getRecentTopicsSuccess, getTodaysCalendarEventsSuccess, getTodaysTodoListsSuccess } from '../../store/actions';
+
+import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-dashboard-overview',

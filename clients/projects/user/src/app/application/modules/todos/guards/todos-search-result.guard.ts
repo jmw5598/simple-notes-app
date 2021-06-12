@@ -10,7 +10,8 @@ import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 
 import * as fromSelectors from '../store/selectors';
 import * as fromActions from '../store/actions';
-import { OverlayLoaderService } from '@sn/user/shared/components';
+
+import { OverlayLoaderService } from '@sn/shared/components';
 
 @Injectable({
   providedIn: 'root'

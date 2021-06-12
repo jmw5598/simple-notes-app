@@ -7,7 +7,8 @@ import { IAccountsState } from '../../store/reducers';
 import { Account, Profile } from '@sn/user/core/models';
 import { selectAccountDetails, selectAccountProfile } from '../../store/selectors';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
-import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/user/shared/components';
+
+import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-account-settings',

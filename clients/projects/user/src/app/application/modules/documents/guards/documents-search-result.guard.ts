@@ -9,7 +9,8 @@ import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/user/core/defaults';
 import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 import { selectSearchDocumentsResult } from '../store/selectors';
 import { searchDocuments } from '../store/actions';
-import { OverlayLoaderService } from '@sn/user/shared/components';
+
+import { OverlayLoaderService } from '@sn/shared/components';
 
 @Injectable({
   providedIn: 'root'

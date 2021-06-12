@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { DEFAULT_SEARCH_TODOS_PAGE } from '@sn/user/core/defaults';
 import { IPageable, Page, PageableSearch } from '@sn/user/core/models';
-import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/user/shared/components';
 import { TodoList } from '@sn/user/shared/models';
 import { Observable, Subject } from 'rxjs';
 import { ITodosState } from '../../store/reducers';
@@ -15,7 +14,7 @@ import { TodoListCreateComponent } from '@sn/user/shared/components/todo-list-cr
 import { TodoListViewComponent } from '../../components/todo-list-view/todo-list-view.component';
 import { TodoListEditComponent } from '../../components/todo-list-edit/todo-list-edit.component';
 
-import { DrawerLocation, DrawerService } from '@sn/shared/components';
+import { DrawerLocation, DrawerService, AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-view-todos',

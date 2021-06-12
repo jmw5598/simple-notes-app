@@ -9,7 +9,8 @@ import { Account } from '@sn/user/core/models';
 import { IAccountsState } from '../store/reducers';
 import { getAccountDetails } from '../store/actions';
 import { selectAccountDetails } from '../store/selectors';
-import { OverlayLoaderService } from '@sn/user/shared/components';
+
+import { OverlayLoaderService } from '@sn/shared/components';
 
 @Injectable({
   providedIn: 'root'

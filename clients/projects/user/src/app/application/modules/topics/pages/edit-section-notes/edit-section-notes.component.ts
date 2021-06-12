@@ -13,7 +13,8 @@ import { ResponseMessage } from '@sn/user/core/models';
 import { ResponseStatus } from '@sn/user/core/enums';
 import { fadeAnimation } from '@sn/shared/animations';
 import { DEFAULT_EDITOR_OPTIONS } from '@sn/user/core/defaults';
-import { AbstractPageOverlayLoader ,OverlayLoaderService } from '@sn/user/shared/components';
+
+import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-edit-section-notes',

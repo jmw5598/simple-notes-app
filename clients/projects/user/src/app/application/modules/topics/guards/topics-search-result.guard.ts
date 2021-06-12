@@ -10,7 +10,8 @@ import { Page, PageRequest, PageableSearch, IPageable } from '@sn/user/core/mode
 import { IApplicationState } from '../../../store/index';
 import { searchTopics } from '../store/actions';
 import { selectSearchTopicsResult } from '../store/selectors';
-import { OverlayLoaderService } from '@sn/user/shared/components';
+
+import { OverlayLoaderService } from '@sn/shared/components';
 
 @Injectable({
   providedIn: 'root'

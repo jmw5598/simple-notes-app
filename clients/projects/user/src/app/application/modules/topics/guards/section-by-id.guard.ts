@@ -8,7 +8,8 @@ import { Section } from '@sn/user/shared/models';
 import { getSectionById } from '../store/actions';
 import { selectSelectedSection } from '../store/selectors';
 import { ITopicsState } from '../store/reducers';
-import { OverlayLoaderService } from '@sn/user/shared/components';
+
+import { OverlayLoaderService } from '@sn/shared/components';
 
 @Injectable({
   providedIn: 'root'

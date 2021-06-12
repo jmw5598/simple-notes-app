@@ -7,11 +7,12 @@ import { takeUntil, tap } from 'rxjs/operators';
 import { IDocumentsState } from '../../store/reducers';
 import * as fromSelectors from '../../store/selectors';
 import * as fromActions from '../../store/actions';
-import { SpinnerStyle } from '@sn/user/shared/components';
-import { fadeAnimation, showHide } from '@sn/shared/animations';
 
 import * as FileSaver from 'file-saver';
 import { ResponseMessage } from '@sn/user/core/models';
+
+import { fadeAnimation, showHide } from '@sn/shared/animations';
+import { SpinnerStyle } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-document-view',

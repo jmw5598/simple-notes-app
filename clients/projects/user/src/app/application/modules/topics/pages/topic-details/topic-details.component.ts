@@ -9,7 +9,6 @@ import { searchSections, deleteSection, setExportTopicFileResponse, setExportTop
 import { FileResponse, Topic, Section } from '@sn/user/shared/models';
 import { fadeAnimation } from '@sn/shared/animations';
 import { PageableSearch, Page, IPageable, ResponseMessage } from '@sn/user/core/models';
-import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/user/shared/components';
 import { DEFAULT_SEARCH_SECTIONS_PAGE } from '@sn/user/core/defaults';
 import { TopicExportComponent } from '../../components/topic-export/topic-export.component';
 import { TopicUpdateComponent } from '../../components/topic-update/topic-update.component';
@@ -18,6 +17,7 @@ import { SectionCreateComponent } from '../../components/section-create/section-
 import { ResponseStatus } from '@sn/user/core/enums';
 
 import { DrawerService, DrawerLocation } from '@sn/shared/components';
+import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-user-topic-details',
