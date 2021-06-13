@@ -6,9 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover'
 
-import { SpinnerComponent } from './components/spinner/spinner.component';
-import { TagInputComponent } from './components/tag-input/tag-input.component';
-import { DebouncedSearchComponent } from './components/debounced-search/debounced-search.component';
 import { FlashcardSetCreateComponent } from './components';
 import { TopicFormComponent } from './forms/topic-form/topic-form.component';
 import { TopicCreateComponent } from './components/topic-create/topic-create.component';
@@ -17,10 +14,8 @@ import { CalendarEventFormComponent } from './forms/calendar-event-form/calendar
 import { CalendarEventCreateComponent } from './components/calendar-event-create/calendar-event-create.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-import { DebounceDirective } from './directives/debounce.directive';
 
 import { ColorTwitterModule } from 'ngx-color/twitter';
-import { PageHeaderComponent } from './components/page-header/page-header.component'; // <color-twitter></color-twitter>
 import { DocumentBuilderFormComponent } from './components/document-builder/components/document-builder-form/document-builder-form.component';
 import { DocumentCreateComponent } from './components/document-create/document-create.component';
 
@@ -55,16 +50,11 @@ import { SharedComponentsModule } from '@sn/shared/components';
 
 @NgModule({
   declarations: [
-    SpinnerComponent,
-    TagInputComponent,
-    DebouncedSearchComponent,
     TopicFormComponent,
     TopicCreateComponent,
     TopicSearchComponent,
     CalendarEventFormComponent,
     CalendarEventCreateComponent,
-    DebounceDirective,
-    PageHeaderComponent,
     DocumentBuilderFormComponent,
     DocumentCreateComponent,
     DocumentBuilderSectionContainerComponent,
@@ -109,16 +99,11 @@ import { SharedComponentsModule } from '@sn/shared/components';
   exports: [
     FormsModule,
     ReactiveFormsModule,
-    SpinnerComponent,
-    TagInputComponent,
-    DebouncedSearchComponent,
     TopicFormComponent,
     TopicCreateComponent,
     TopicSearchComponent,
     CalendarEventFormComponent,
     CalendarEventCreateComponent,
-    DebounceDirective,
-    PageHeaderComponent,
     DocumentBuilderFormComponent,
     DocumentCreateComponent,
     DocumentBuilderSectionContainerComponent,

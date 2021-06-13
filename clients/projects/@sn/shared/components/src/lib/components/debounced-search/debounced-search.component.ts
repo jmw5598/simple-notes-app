@@ -4,7 +4,7 @@ import { tap, takeUntil, debounceTime, distinctUntilChanged } from 'rxjs/operato
 import { fadeAnimation } from '@sn/shared/animations';
 
 @Component({
-  selector: 'sn-user-debounced-search',
+  selector: 'sn-debounced-search',
   templateUrl: './debounced-search.component.html',
   styleUrls: ['./debounced-search.component.scss'],
   animations: [fadeAnimation]
