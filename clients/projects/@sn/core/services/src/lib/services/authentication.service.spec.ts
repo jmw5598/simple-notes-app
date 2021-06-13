@@ -1,10 +1,10 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { environment } from '@sn/user/env/environment';
 import { take } from 'rxjs/operators';
 import { AuthenticatedUser, UserCredentials, UserDetails } from '@sn/shared/models';
 
 import { AuthenticationService } from './authentication.service';
+import { CoreServicesConfiguration, CORE_SERVICES_CONFIGURATION } from '../core-services-configuration.model';
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService;
@@ -12,6 +12,11 @@ describe('AuthenticationService', () => {
 
   const AUTH_USER_KEY: string = "AUTHUSER";
   const REMEMBER_ME_KEY: string = "REMEMBERME";
+
+  const mockCoreServicesConfiguration: CoreServicesConfiguration = {
+    auth: { baseUrl: 'http://host:4200/auth' },
+    api: { baseUrl: 'http://host:4200' }
+  };
 
   const credentialsMock: UserCredentials = {
     username: 'username',
@@ -37,6 +42,13 @@ describe('AuthenticationService', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule
+      ],
+      providers: [
+        AuthenticationService,
+        {
+          provide: CORE_SERVICES_CONFIGURATION,
+          useValue: mockCoreServicesConfiguration
+        }
       ]
     });
     service = TestBed.inject(AuthenticationService);
@@ -54,7 +66,7 @@ describe('AuthenticationService', () => {
   });
 
   it('should call POST request to authenticate user with supplied UserCredenticals when authenticateUser is called and store user in localStorage', (done) => {
-    const requestUrl: string = `${environment.auth.baseUrl}/login`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.auth.baseUrl}/login`;
     service.authenticateUser(credentialsMock)
       .pipe(take(1))
       .subscribe(authenticatedUser => {
@@ -70,7 +82,7 @@ describe('AuthenticationService', () => {
   });
 
   it('should call POST request to authenticate user with supplied UserCredenticals when authenticateUser is called and store user in localStorage with rememberMe', (done) => {
-    const requestUrl: string = `${environment.auth.baseUrl}/login`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.auth.baseUrl}/login`;
     const rememberMeCredentials = { ...credentialsMock, rememberMe: true }
     service.authenticateUser(rememberMeCredentials)
       .pipe(take(1))
@@ -87,7 +99,7 @@ describe('AuthenticationService', () => {
   });
 
   it('should call POST request to refresh access token when refreshToken is called', (done) => {
-    const requestUrl: string = `${environment.auth.baseUrl}/token`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.auth.baseUrl}/token`;
     service.refreshToken(authenticatedUserMock.accessToken, authenticatedUserMock.refreshToken)
       .pipe(take(1))
       .subscribe(authenticatedUser => {
@@ -104,7 +116,7 @@ describe('AuthenticationService', () => {
   });
 
   it('should remove logged in user from localStorage when logoutUser is called', (done) => {
-    const requestUrl: string = `${environment.auth.baseUrl}/login`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.auth.baseUrl}/login`;
     service.authenticateUser(credentialsMock)
       .pipe(take(1))
       .subscribe(authenticatedUser => {
@@ -120,7 +132,7 @@ describe('AuthenticationService', () => {
   });
 
   it('should return authenticated user from localStorage when getStoredAuthenticatedUser is called', (done) => {
-    const requestUrl: string = `${environment.auth.baseUrl}/login`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.auth.baseUrl}/login`;
     service.authenticateUser(credentialsMock)
       .pipe(take(1))
       .subscribe(authenticatedUser => {
@@ -136,7 +148,7 @@ describe('AuthenticationService', () => {
   });
 
  it('should return remember me from localStorage when getStoredRememberMe is called', (done) => {
-    const requestUrl: string = `${environment.auth.baseUrl}/login`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.auth.baseUrl}/login`;
     service.authenticateUser(credentialsMock)
       .pipe(take(1))
       .subscribe(authenticatedUser => {

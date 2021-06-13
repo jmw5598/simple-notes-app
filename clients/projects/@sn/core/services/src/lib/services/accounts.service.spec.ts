@@ -1,6 +1,5 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { environment } from '@sn/user/env/environment';
 import { take } from 'rxjs/operators';
 
 import { AccountsService } from './accounts.service';
@@ -14,9 +13,16 @@ import {
   Registration, 
   RegistrationUser } from '@sn/shared/models';
 
+import { CoreServicesConfiguration, CORE_SERVICES_CONFIGURATION } from '../core-services-configuration.model';
+
 describe('AccountsService', () => {
   let service: AccountsService;
   let httpMock: HttpTestingController;
+
+  const mockCoreServicesConfiguration: CoreServicesConfiguration = {
+    auth: { baseUrl: 'http://host:4200/auth' },
+    api: { baseUrl: 'http://host:4200' }
+  };
 
   const accountMock: Account = {
     id: 1,
@@ -47,6 +53,13 @@ describe('AccountsService', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule
+      ],
+      providers: [
+        AccountsService,
+        {
+          provide: CORE_SERVICES_CONFIGURATION,
+          useValue: mockCoreServicesConfiguration
+        }
       ]
     });
     service = TestBed.inject(AccountsService);
@@ -62,7 +75,7 @@ describe('AccountsService', () => {
   });
 
   it('should make POST request to save account when save is called', () => {
-    const requestUrl: string = `${environment.api.baseUrl}/accounts`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.api.baseUrl}/accounts`;
     service.save(accountMock)
       .pipe(take(1))
       .subscribe();
@@ -72,7 +85,7 @@ describe('AccountsService', () => {
   });
 
   it('should make PUT request to update account when update is called', () => {
-    const requestUrl: string = `${environment.api.baseUrl}/accounts/${accountMock.id}`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.api.baseUrl}/accounts/${accountMock.id}`;
     service.update(accountMock.id, accountMock)
       .pipe(take(1))
       .subscribe();
@@ -82,7 +95,7 @@ describe('AccountsService', () => {
   });
 
   it('should make a DELETE request to delete account when delete is called', () => {
-    const requestUrl: string = `${environment.api.baseUrl}/accounts/${accountMock.id}`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.api.baseUrl}/accounts/${accountMock.id}`;
     service.delete(accountMock.id)
       .pipe(take(1))
       .subscribe();
@@ -91,7 +104,7 @@ describe('AccountsService', () => {
   });
 
   it('should make a GET request to find and account by its id when findOne is called', () => {
-    const requestUrl: string = `${environment.api.baseUrl}/accounts/${accountMock.id}`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.api.baseUrl}/accounts/${accountMock.id}`;
     service.findOne(accountMock.id)
       .pipe(take(1))
       .subscribe();
@@ -101,7 +114,7 @@ describe('AccountsService', () => {
   });
 
   it('should make a GET request to find all accounts when findAll is called', () => {
-    const requestUrl: string = `${environment.api.baseUrl}/accounts`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.api.baseUrl}/accounts`;
     service.findAll()
       .pipe(take(1))
       .subscribe();
@@ -110,7 +123,7 @@ describe('AccountsService', () => {
   });
 
   it('should make GET request when getAccountDetails is called', () => {
-    const requestUrl: string = `${environment.api.baseUrl}/accounts/details`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.api.baseUrl}/accounts/details`;
     service.getAccountDetails()
       .pipe(take(1))
       .subscribe();
@@ -119,7 +132,7 @@ describe('AccountsService', () => {
   });
 
   it('should make PUT request to update account when updateAccountDetails is called', () => {
-    const requestUrl: string = `${environment.api.baseUrl}/accounts/details`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.api.baseUrl}/accounts/details`;
     service.updateAccountDetails(accountMock)
       .pipe(take(1))
       .subscribe();
@@ -129,7 +142,7 @@ describe('AccountsService', () => {
   });
 
   it('should make GET requst to get account profile when getAccountProfile is called', () => {
-    const requestUrl: string = `${environment.api.baseUrl}/accounts/profile`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.api.baseUrl}/accounts/profile`;
     service.getAccountProfile()
       .pipe(take(1))
       .subscribe();
@@ -138,7 +151,7 @@ describe('AccountsService', () => {
   });
 
   it('should make PUT request to update account profile when updateAccountProfile is called', () => {
-    const requestUrl: string = `${environment.api.baseUrl}/accounts/profile`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.api.baseUrl}/accounts/profile`;
     service.updateAccountProfile(profileMock)
       .pipe(take(1))
       .subscribe();
@@ -148,7 +161,7 @@ describe('AccountsService', () => {
   });
 
   it('should make POST request to register new account when registerNewAccount is called', () => {
-    const requestUrl: string = `${environment.api.baseUrl}/accounts/register`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.api.baseUrl}/accounts/register`;
     service.registerNewAccount(registrationMock)
       .pipe(take(1))
       .subscribe();
@@ -158,7 +171,7 @@ describe('AccountsService', () => {
   });
 
   it('should  make HEAD request to validate that email is available when validateEmail is called', () => {
-    const requestUrl: string = `${environment.api.baseUrl}/accounts/validate/email?email=${profileMock.email}`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.api.baseUrl}/accounts/validate/email?email=${profileMock.email}`;
     service.validateEmail(profileMock.email)
       .pipe(take(1))
       .subscribe();
@@ -168,7 +181,7 @@ describe('AccountsService', () => {
   });
 
   it('should make HEAD request to validate that username is available when validateUsername is called', () => {
-    const requestUrl: string = `${environment.api.baseUrl}/accounts/validate/username?username=${userMock.username}`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.api.baseUrl}/accounts/validate/username?username=${userMock.username}`;
     service.validateUsername(userMock.username)
       .pipe(take(1))
       .subscribe();
@@ -178,7 +191,7 @@ describe('AccountsService', () => {
   });
 
   it('should make POST request to request a password reset when passwordRequestReset is called', () => {
-    const requestUrl: string = `${environment.api.baseUrl}/accounts/password-request`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.api.baseUrl}/accounts/password-request`;
     const passwordRequestMock: PasswordRequestReset = {
       email: 'johndoe@johndoe.com'
     } as PasswordRequestReset;
@@ -191,7 +204,7 @@ describe('AccountsService', () => {
   });
 
   it('should make POST request to reset passwrod when passwordReset is called', () => {
-    const requestUrl: string = `${environment.api.baseUrl}/accounts/password-reset`;
+    const requestUrl: string = `${mockCoreServicesConfiguration.api.baseUrl}/accounts/password-reset`;
     const passwordResetMock: PasswordReset = {
       password: 'password',
       passwordConfirm: 'password',
