@@ -21,3 +21,7 @@ export * from './lib/services/settings.service';
 export * from './lib/services/themes.service';
 export * from './lib/services/todo-lists.service';
 export * from './lib/services/topics.service';
+
+// Validators
+export * from './lib/validators/account.validators';
+export * from './lib/validators/match.validators';

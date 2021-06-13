@@ -2,6 +2,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CoreServicesConfiguration, CORE_SERVICES_CONFIGURATION } from './core-services-configuration.model';
 
 import { AccountsService } from './services/accounts.service';
+import { AccountValidators } from './validators/account.validators';
 import { AuthenticationService } from './services/authentication.service';
 import { CalendarEventsService } from './services/calendar-events.service';
 import { CalendarIntegrationsService } from './services/calendar-integrations.service';
@@ -31,6 +32,7 @@ export class CoreServicesModule {
           useValue: configuration
         },
         AccountsService,
+        AccountValidators,
         AuthenticationService,
         CalendarEventsService,
         CalendarIntegrationsService,

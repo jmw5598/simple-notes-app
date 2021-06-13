@@ -6,13 +6,12 @@ import { Store } from '@ngrx/store';
 import { IAccountsState } from '../../../../store/reducers';
 import { selectAccountDetails, selectAccountProfile, selectThemes } from '../../../../store/selectors';
 import { fadeAnimation } from '@sn/shared/animations';
-import { AccountValidators } from '@sn/user/core/validators';
 import { buildProfileFormGroup } from '@sn/user/shared/forms';
 import { changeAccountTheme, updateAccountProfile } from '../../../../store/actions';
 import { selectAuthenticatedUserSettings } from '@sn/user/auth/store/selectors';
 
 import { Account, Profile, Theme, UserSettings } from '@sn/shared/models';
-import { DynamicThemeService } from '@sn/core/services';
+import { DynamicThemeService, AccountValidators } from '@sn/core/services';
 
 @Component({
   selector: 'sn-user-account-settings-general',

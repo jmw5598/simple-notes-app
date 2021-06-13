@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { take, tap, filter } from 'rxjs/operators';
 
 import { PasswordReset, ResponseMessage } from '@sn/shared/models';
-import { MatchValidators } from '@sn/user/core/validators';
+import { MatchValidators } from '@sn/core/services';
 import { fadeAnimation } from '@sn/shared/animations';
 
 import * as fromAuth from '../../store/reducers';

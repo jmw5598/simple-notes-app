@@ -8,7 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 import { buildUserFormGroup, buildProfileFormGroup, buildAccountFormGroup } from '@sn/user/shared/forms';
 
 import { Registration, RegistrationResult, Plan } from '@sn/shared/models';
-import { AccountValidators } from '@sn/user/core/validators';
+import { AccountValidators } from '@sn/core/services';
 import { fadeAnimation } from '@sn/shared/animations';
 import { RegistrationStep } from './registration-step.enum';
 import { selectPlans } from '@sn/user/core/store/selectors';
