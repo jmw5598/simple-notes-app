@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
-import { AccountStatus } from '@sn/user/core/enums';
-import { Account, Profile, Theme } from '@sn/user/core/models';
 import { from } from 'rxjs';
 import * as fromActions from '../actions/accounts.actions';
+
+import { Account, Profile, Theme, AccountStatus } from '@sn/shared/models';
 
 export const accountFeatureKey = 'accounts';
 

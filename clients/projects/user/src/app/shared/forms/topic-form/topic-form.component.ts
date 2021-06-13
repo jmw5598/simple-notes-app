@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, Renderer2 } from '@angular/core';
 import { FormArray, FormGroup, ControlContainer } from '@angular/forms';
 
-import { Permission } from '@sn/user/shared/models';
+import { Permission } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-topic-form',

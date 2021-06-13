@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IFlashcardsState } from '@sn/user/application/modules/flashcards/store/reducers';
-import { Flashcard } from '@sn/user/shared/models';
+import { Flashcard } from '@sn/shared/models';
 
 import * as flashcardActions from '@sn/user/application/modules/flashcards/store/actions';
 import * as flashcardSelectors from '@sn/user/application/modules/flashcards/store/selectors';

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Flashcard, FlashcardSet } from '@sn/user/shared/models';
+import { Flashcard, FlashcardSet } from '@sn/shared/models';
 import { Observable } from 'rxjs';
 import { IFlashcardsState } from '../../store/reducers';
 import * as flashcardActions from '../../store/actions';

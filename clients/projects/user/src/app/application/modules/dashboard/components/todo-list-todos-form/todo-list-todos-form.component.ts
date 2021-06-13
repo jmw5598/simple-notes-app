@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { slideUpDownAnimation } from '@sn/shared/animations';
-import { Todo, TodoList } from '@sn/user/shared/models';
+import { Todo, TodoList } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-todo-list-todos-form',

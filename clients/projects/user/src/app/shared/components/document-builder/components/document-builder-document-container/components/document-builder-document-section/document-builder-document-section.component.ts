@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { DocumentTopicSection } from '@sn/user/shared/models/document-topic-section.model';
+import { DocumentTopicSection } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-document-builder-document-section',

@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import * as fromActions from '../actions';
-import { CalendarIntegrationType, CalendarIntegration } from '@sn/user/core/models';
+import { CalendarIntegrationType, CalendarIntegration } from '@sn/shared/models';
 
 export const calendarIntegrationsFeatureKey = 'calendarIntegrations';
 

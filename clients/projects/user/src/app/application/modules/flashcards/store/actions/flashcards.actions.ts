@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { Page, PageableSearch, ResponseMessage } from '@sn/user/core/models';
-import { Flashcard, FlashcardSet } from '@sn/user/shared/models';
+import { Page, PageableSearch, ResponseMessage } from '@sn/shared/models';
+import { Flashcard, FlashcardSet } from '@sn/shared/models';
 
 export const createFlashcardSet = createAction(
   '[Flashcards] Create Flashcard Set',

@@ -1,11 +1,12 @@
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
-import { AuthenticationService, DynamicThemeService } from '../services';
-import { AuthenticatedUser, Theme } from '../models';
 import { IApplicationState } from '@sn/user/application/store/index';
 import * as fromAuthenticationActions from '@sn/user/auth/store/actions';
 import * as fromAuthenticationSelectors from '@sn/user/auth/store/selectors';
 import { DEFAULT_THEME_FILE } from '../defaults';
+
+import { AuthenticationService, DynamicThemeService } from '@sn/core/services';
+import { AuthenticatedUser, Theme } from '@sn/shared/models';
 
 export function authenticatedUserInitializer(
     store: Store<IApplicationState>, 

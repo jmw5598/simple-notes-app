@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ICalendarEventsState } from '../../store/reducers';
 import { tap } from 'rxjs/operators';
-import { CalendarEvent, ResponseMessage } from '@sn/user/core/models';
+import { CalendarEvent, ResponseMessage } from '@sn/shared/models';
 import { buildCalendarEventFormGroup } from '@sn/user/shared/forms';
 import { selectUpdateCalendarEventResponseMessage } from '../../store/selectors';
 import { HEX_COLOR_STRING_ARRAY } from '@sn/user/shared/defaults/colors.defaults';

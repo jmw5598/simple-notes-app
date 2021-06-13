@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { tap, filter, take, switchMap, catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import { Account } from '@sn/user/core/models';
+import { Account } from '@sn/shared/models';
 
 import { IAccountsState } from '../store/reducers';
 import { getAccountDetails } from '../store/actions';

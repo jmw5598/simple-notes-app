@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Topic } from '@sn/user/shared/models';
+import { Topic } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-recent-topics-list',

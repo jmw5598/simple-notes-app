@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FlashcardSet } from '@sn/user/shared/models';
+import { FlashcardSet } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-flashcard-list',

@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { AccountsService, AuthenticationService, SettingsService, ThemesService } from '@sn/user/core/services';
+import { AccountsService, AuthenticationService, SettingsService, ThemesService } from '@sn/core/services';
 import { of } from 'rxjs';
 import { tap, map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 
 import * as fromActions from '../actions';
 import * as fromCore from '@sn/user/core/store/actions';
-import { Theme } from '@sn/user/core/models';
-import { UserSettings } from '@sn/user/core/models/user-settings.model';
 import { updateUserSettingsSuccess } from '@sn/user/auth/store/actions';
+
+import { Theme, UserSettings } from '@sn/shared/models';
 
 @Injectable()
 export class AccountsEffects {

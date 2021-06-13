@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { CalendarEvent } from '@sn/user/core/models';
-import { TodoList, Topic } from '@sn/user/shared/models';
+import { CalendarEvent } from '@sn/shared/models';
+import { TodoList, Topic } from '@sn/shared/models';
 
 import * as fromActions from '../actions';
 

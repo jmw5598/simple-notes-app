@@ -4,7 +4,7 @@ import { SharedModule } from '@sn/user/shared/shared.module';
 import { of } from 'rxjs';
 import { SectionUpdateComponent } from './section-update.component';
 import { SectionFormComponent } from '../section-form/section-form.component';
-import { Section, Topic } from '@sn/user/shared/models';
+import { Section, Topic } from '@sn/shared/models';
 import { updateSection } from '../../store/actions';
 
 describe('SectionUpdateComponent', () => {

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CalendarEvent } from '@sn/user/core/models';
+import { CalendarEvent } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-calendar-event-details',

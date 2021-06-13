@@ -3,8 +3,8 @@ import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angul
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '@sn/user/application/store';
 import { DEFAULT_SEARCH_TODOS_PAGE } from '@sn/user/core/defaults';
-import { IPageable, Page, PageableSearch } from '@sn/user/core/models';
-import { TodoList } from '@sn/user/shared/models';
+import { IPageable, Page, PageableSearch } from '@sn/shared/models';
+import { TodoList } from '@sn/shared/models';
 import { Observable, of } from 'rxjs';
 import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 

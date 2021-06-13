@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { KeyboardShortcutAction } from '@sn/user/core/models';
+import { KeyboardShortcutAction } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-toolbar-keyboard-shortcut-list',

@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { ResponseMessage } from '@sn/user/core/models';
+import { ResponseMessage } from '@sn/shared/models';
 import { showHide } from '@sn/shared/animations';
-import { FlashcardSet } from '@sn/user/shared/models';
+import { FlashcardSet } from '@sn/shared/models';
 import { Observable, Subject } from 'rxjs';
 import { IFlashcardsState } from '../../store/reducers';
 

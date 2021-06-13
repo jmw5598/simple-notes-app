@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Document, DocumentMarkdown, ExportConfig, ExportFormat, FileResponse } from '@sn/user/shared/models';
+import { Document, DocumentMarkdown, ExportConfig, ExportFormat, FileResponse } from '@sn/shared/models';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 
@@ -9,7 +9,7 @@ import * as fromSelectors from '../../store/selectors';
 import * as fromActions from '../../store/actions';
 
 import * as FileSaver from 'file-saver';
-import { ResponseMessage } from '@sn/user/core/models';
+import { ResponseMessage } from '@sn/shared/models';
 
 import { fadeAnimation, showHide } from '@sn/shared/animations';
 import { SpinnerStyle } from '@sn/shared/components';

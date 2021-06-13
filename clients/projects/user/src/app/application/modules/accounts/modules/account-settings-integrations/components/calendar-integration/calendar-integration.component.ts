@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CalendarIntegration, CalendarIntegrationState, IntegrationStatus } from '@sn/user/core/models';
-import { CalendarIntegrationType } from '@sn/user/core/models';
+import { 
+  CalendarIntegration, 
+  CalendarIntegrationState, 
+  IntegrationStatus, 
+  CalendarIntegrationType } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-calendar-integration',

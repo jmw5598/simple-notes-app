@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Flashcard, FlashcardSet } from '@sn/user/shared/models';
+import { Flashcard, FlashcardSet } from '@sn/shared/models';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FlashcardSetViewerControlsService } from './services/flashcard-set-viewer-controls.service';

@@ -5,8 +5,8 @@ import { tap, filter, take, switchMap, catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/user/core//defaults';
-import { Topic } from '@sn/user/shared/models';
-import { Page, PageRequest, PageableSearch, IPageable } from '@sn/user/core/models';
+import { Topic } from '@sn/shared/models';
+import { Page, PageRequest, PageableSearch, IPageable } from '@sn/shared/models';
 import { IApplicationState } from '../../../store/index';
 import { searchTopics } from '../store/actions';
 import { selectSearchTopicsResult } from '../store/selectors';

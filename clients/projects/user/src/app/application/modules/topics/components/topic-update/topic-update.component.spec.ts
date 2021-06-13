@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
-import { Topic } from '@sn/user/shared/models';
+import { Topic } from '@sn/shared/models';
 
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { of } from 'rxjs';

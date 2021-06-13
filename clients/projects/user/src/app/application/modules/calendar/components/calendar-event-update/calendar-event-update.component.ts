@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { FormGroup, ControlContainer } from '@angular/forms';
-import { CalendarEvent, ResponseMessage } from '@sn/user/core/models';
+import { CalendarEvent, ResponseMessage } from '@sn/shared/models';
 import { showHide } from '@sn/shared/animations';
 
 @Component({

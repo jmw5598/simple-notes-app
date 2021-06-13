@@ -4,13 +4,12 @@ import { Observable, Subscription, BehaviorSubject, throwError } from 'rxjs';
 import { catchError, switchMap, filter, take, skip } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import { AuthenticatedStatus } from '../enums';
-import { AuthenticatedUser } from '../models';
 import { IAuthenticationState } from '@sn/user/auth/store/reducers';
-
 import * as fromAuthentication from '@sn/user/auth/store/reducers';
 import * as fromAuthenticationSelectors from '@sn/user/auth/store/selectors';
 import * as fromAuthenticationActions from '@sn/user/auth/store/actions';
+
+import { AuthenticatedStatus, AuthenticatedUser } from '@sn/shared/models';
 
 @Injectable()
 export class JwtTokenInterceptor implements HttpInterceptor, OnDestroy {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Flashcard, FlashcardSet } from '@sn/user/shared/models';
+import { Flashcard, FlashcardSet } from '@sn/shared/models';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()

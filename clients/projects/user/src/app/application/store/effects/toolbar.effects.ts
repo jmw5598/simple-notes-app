@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { SettingsService } from '@sn/user/core/services';
+import { SettingsService } from '@sn/core/services';
 import { of } from 'rxjs';
 import { switchMap, map, catchError, exhaustMap } from 'rxjs/operators';
 import * as fromToolbar from '../actions/toolbar.actions';
 import * as fromHttp from '../actions/http-error.actions';
-import { KeyboardShortcutAction } from '../../../core/models/keyboard-shortcut-action.model';
-import { ResponseMessage } from '@sn/user/core/models';
-import { ResponseStatus } from '@sn/user/core/enums';
+
+import { ResponseMessage, ResponseStatus, KeyboardShortcutAction } from '@sn/shared/models';
 
 @Injectable()
 export class ToolbarEffects {

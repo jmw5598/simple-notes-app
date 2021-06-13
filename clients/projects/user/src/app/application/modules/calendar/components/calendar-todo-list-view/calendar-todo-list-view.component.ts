@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { ResponseMessage } from '@sn/user/core/models';
-import { TodoList } from '@sn/user/shared/models';
+import { ResponseMessage } from '@sn/shared/models';
+import { TodoList } from '@sn/shared/models';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ICalendarEventsState } from '../../store/reducers';

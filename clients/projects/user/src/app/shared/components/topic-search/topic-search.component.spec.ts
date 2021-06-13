@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { TopicSearchComponent } from './topic-search.component';
 import { DrawerService } from '../drawer/drawer.service';
-import { PageableSearch } from '@sn/user/core/models';
+import { PageableSearch } from '@sn/shared/models';
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/user/core/defaults';
 import { searchTopicsFromDrawer, searchTopicsFromDrawerResult } from '@sn/user/application/modules/topics/store/actions';
 import { Router } from '@angular/router';

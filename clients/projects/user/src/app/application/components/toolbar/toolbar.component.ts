@@ -8,7 +8,7 @@ import { selectKeyboardShortcuts } from '../../store/selectors';
 import { FlashcardSetCreateComponent } from '@sn/user/shared/components';
 import { ShortcutInput, AllowIn } from 'ng-keyboard-shortcuts';
 import { getKeyboardShortcuts } from '@sn/user/application/store/actions';
-import { KeyboardShortcutActionType } from '@sn/user/core/enums';
+
 import { 
   TopicCreateComponent, 
   TopicSearchComponent,
@@ -17,6 +17,7 @@ import {
 import { TodoListCreateComponent } from '@sn/user/shared/components/todo-list-create/todo-list-create.component';
 
 import { DrawerService, DrawerLocation, DrawerSize } from '@sn/shared/components';
+import { KeyboardShortcutActionType } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-global-toolbar',

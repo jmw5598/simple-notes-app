@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Section } from '@sn/user/shared/models';
+import { Section } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-section-list',

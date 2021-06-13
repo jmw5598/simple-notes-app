@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ControlContainer, FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { SharedModule } from '@sn/user/shared/shared.module';
-import { CalendarEvent } from '@sn/user/core/models';
+import { CalendarEvent } from '@sn/shared/models';
 import { CalendarEventUpdateComponent } from './calendar-event-update.component';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';

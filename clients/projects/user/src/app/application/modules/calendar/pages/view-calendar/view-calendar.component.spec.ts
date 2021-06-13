@@ -10,7 +10,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { ViewCalendarComponent } from './view-calendar.component';
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { getCalendarEventsBetweenDates, setCurrentCalendarDateRanges, setCurrentCalendarEvents } from '../../store/actions';
-import { CalendarEvent } from '@sn/user/core/models';
+import { CalendarEvent } from '@sn/shared/models';
 import { DrawerService } from '@sn/user/shared/components';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins

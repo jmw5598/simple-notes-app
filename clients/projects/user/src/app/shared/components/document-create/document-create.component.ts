@@ -5,8 +5,8 @@ import { takeUntil, tap } from 'rxjs/operators';
 import { showHide } from '@sn/shared/animations';
 import { Store } from '@ngrx/store';
 import { IDocumentsState } from '@sn/user/application/modules/documents/store/reducers';
-import { ResponseMessage } from '@sn/user/core/models';
-import { Document } from '@sn/user/shared/models';
+import { ResponseMessage } from '@sn/shared/models';
+import { Document } from '@sn/shared/models';
 
 import * as documentSelectors from '@sn/user/application/modules/documents/store/selectors';
 import * as documentActions from '@sn/user/application/modules/documents/store/actions';

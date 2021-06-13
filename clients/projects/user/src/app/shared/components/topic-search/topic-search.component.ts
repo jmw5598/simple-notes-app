@@ -5,10 +5,10 @@ import { Store } from '@ngrx/store';
 import { ITopicsState } from '@sn/user/application/modules/topics/store/reducers';
 import { fadeAnimation } from '@sn/shared/animations';
 import { selectSearchTopicsFromDrawerResult } from '@sn/user/application/modules/topics/store/selectors';
-import { Page } from '@sn/user/core/models';
-import { Topic } from '@sn/user/shared/models';
-import { IPageable } from '@sn/user/core/models';
-import { PageableSearch } from '@sn/user/core/models'
+import { Page } from '@sn/shared/models';
+import { Topic } from '@sn/shared/models';
+import { IPageable } from '@sn/shared/models';
+import { PageableSearch } from '@sn/shared/models'
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/user/core/defaults';
 import { searchTopicsFromDrawer, searchTopicsFromDrawerResult } from '@sn/user/application/modules/topics/store/actions';
 import { DrawerService } from '@sn/shared/components';

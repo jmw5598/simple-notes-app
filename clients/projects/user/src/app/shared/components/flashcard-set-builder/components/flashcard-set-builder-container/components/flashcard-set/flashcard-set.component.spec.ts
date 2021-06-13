@@ -6,7 +6,7 @@ import { FlashcardSetBuilderService } from '@sn/user/shared/components/flashcard
 import { BehaviorSubject } from 'rxjs';
 
 import { FlashcardSetComponent } from './flashcard-set.component';
-import { Flashcard } from '@sn/user/shared/models';
+import { Flashcard } from '@sn/shared/models';
 
 describe('FlashcardSetComponent', () => {
   let component: FlashcardSetComponent;

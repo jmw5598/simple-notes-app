@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ControlContainer, FormControl, FormGroup, FormGroupDirective, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Section } from '@sn/user/shared/models';
+import { Section } from '@sn/shared/models';
 
 import { SectionFormComponent } from './section-form.component';
 

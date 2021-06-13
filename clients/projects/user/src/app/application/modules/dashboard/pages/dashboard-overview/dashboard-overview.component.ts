@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { IDashboardState } from '../../store/reducers';
 import { fadeAnimation } from '@sn/shared/animations';
 import { selectPastDueTodoLists, selectRecentTopics, selectTodaysEvents, selectTodaysTodoLists } from '../../store/selectors';
-import { CalendarEvent } from '@sn/user/core/models';
-import { TodoList, Topic } from '@sn/user/shared/models';
+import { CalendarEvent } from '@sn/shared/models';
+import { TodoList, Topic } from '@sn/shared/models';
 import { getPastDueTodoListsSuccess, getRecentTopicsSuccess, getTodaysCalendarEventsSuccess, getTodaysTodoListsSuccess } from '../../store/actions';
 
 import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';

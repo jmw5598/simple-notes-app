@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IToolbarState } from '@sn/user/application/store/reducers/toolbar.reducers';
-import { KeyboardShortcutAction } from '@sn/user/core/models';
+import { KeyboardShortcutAction } from '@sn/shared/models';
 import { fadeAnimation } from '@sn/shared/animations';
 import { selectKeyboardShortcuts } from '@sn/user/application/store/selectors';
 import { deleteKeyboardShortcut, setKeyboardShortcutResponseMessage } from '@sn/user/application/store/actions';

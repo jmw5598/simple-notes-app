@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { DynamicThemeService } from '../services';
 import { DEFAULT_THEME_FILE } from '../defaults';
 import { IAuthenticationState } from '@sn/user/auth/store/reducers';
 import { Store } from '@ngrx/store';
 import { selectAuthenticatedUserSettings } from '@sn/user/auth/store/selectors';
 import { switchMap } from 'rxjs/operators';
-import { UserSettings } from '../models/user-settings.model';
+
+import { DynamicThemeService } from '@sn/core/services';
+import { UserSettings } from '@sn/shared/models';
 
 @Injectable({
   providedIn: 'root'

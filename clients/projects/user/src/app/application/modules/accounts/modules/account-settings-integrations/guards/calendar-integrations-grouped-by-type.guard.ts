@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { tap, filter, take, switchMap, catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import { CalendarIntegrationType } from '@sn/user/core/models';
+import { CalendarIntegrationType } from '@sn/shared/models';
 import { selectCalendarIntegrationsGroupedByType } from '../store/selectors';
 import { getCalendarIntegrationsGroupedByType } from '../store/actions';
 import { ICalendarIntegrationsState } from '../store/reducers';

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { TodoList } from '@sn/user/shared/models';
+import { TodoList } from '@sn/shared/models';
 import { IDashboardState } from '../../store/reducers';
 
 import * as dashboardActions from '../../store/actions';

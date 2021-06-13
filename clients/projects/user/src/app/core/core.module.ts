@@ -5,7 +5,8 @@ import { Store } from '@ngrx/store';
 
 import { authenticatedUserInitializer } from './initializers/authenticated-user.initializer';
 import { JwtTokenInterceptor, GlobalHttpErrorInterceptor } from './interceptors';
-import { AuthenticationService, DynamicThemeService } from './services';
+
+import { AuthenticationService, DynamicThemeService } from '@sn/core/services';
 
 const jwtTokenInterceptor = {
   provide: HTTP_INTERCEPTORS,

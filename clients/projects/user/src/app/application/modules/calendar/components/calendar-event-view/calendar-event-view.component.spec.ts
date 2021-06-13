@@ -7,7 +7,7 @@ import { SharedModule } from '@sn/user/shared/shared.module'
 import { EMPTY, Observable, of } from 'rxjs';
 import { CalendarEventViewComponent } from './calendar-event-view.component';
 import { CalendarEventDetailsComponent } from '../calendar-event-details/calendar-event-details.component';
-import { CalendarEvent } from '@sn/user/core/models';
+import { CalendarEvent } from '@sn/shared/models';
 import { deleteCalendarEvent } from '../../store/actions';
 
 describe('CalendarEventViewComponent', () => {

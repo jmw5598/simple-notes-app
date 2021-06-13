@@ -2,14 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { IFlashcardsState } from '@sn/user/application/modules/flashcards/store/reducers';
-import { ResponseMessage } from '@sn/user/core/models';
+import { ResponseMessage } from '@sn/shared/models';
 import { showHide } from '@sn/shared/animations';
 import { Observable, Subject } from 'rxjs';
 
 import * as flashcardActions from '@sn/user/application/modules/flashcards/store/actions';
 import * as flashcardSelectors from '@sn/user/application/modules/flashcards/store/selectors';
 import { debounce, debounceTime, filter, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
-import { FlashcardSet } from '@sn/user/shared/models';
+import { FlashcardSet } from '@sn/shared/models';
 
 import { DrawerService } from '@sn/shared/components';
 

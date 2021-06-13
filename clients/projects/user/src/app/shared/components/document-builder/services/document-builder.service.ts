@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { IAppState } from '@sn/user/store/reducers';
 
 import * as documentActions from '@sn/user/application/modules/documents/store/actions';
-import { DocumentTopic, DocumentTopicSection } from '@sn/user/shared/models';
+import { DocumentTopic, DocumentTopicSection } from '@sn/shared/models';
 
 @Injectable({
   providedIn: 'root'

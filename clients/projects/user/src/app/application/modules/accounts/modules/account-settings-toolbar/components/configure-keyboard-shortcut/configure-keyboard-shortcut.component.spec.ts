@@ -3,7 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { createKeyboardShortcut, deleteKeyboardShortcut, updateKeyboardShortcut } from '@sn/user/application/store/actions';
 import { KeyboardShortcutActionType } from '@sn/user/core/enums';
-import { KeyboardShortcutAction } from '@sn/user/core/models';
+import { KeyboardShortcutAction } from '@sn/shared/models';
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { of } from 'rxjs';
 

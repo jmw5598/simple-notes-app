@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { CalendarIntegrationsService } from '@sn/user/core/services';
+import { CalendarIntegrationsService } from '@sn/core/services';
 import { of } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import * as fromActions from '../actions';

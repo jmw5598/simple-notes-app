@@ -6,15 +6,13 @@ import { Store } from '@ngrx/store';
 import { EditorOption } from 'angular-markdown-editor';
 import { ISectionsState } from '../../store/reducers';
 import { EditorMessage } from './editor-message.enum';
-import { Section } from '@sn/user/shared/models';
 import { selectSelectedSection, selectUpdateSectionNotesResponseMessage } from '../../store/selectors';
 import { setSelectedSection, updateSectionNotes } from '../../store/actions';
-import { ResponseMessage } from '@sn/user/core/models';
-import { ResponseStatus } from '@sn/user/core/enums';
 import { fadeAnimation } from '@sn/shared/animations';
 import { DEFAULT_EDITOR_OPTIONS } from '@sn/user/core/defaults';
 
 import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
+import { ResponseMessage, ResponseStatus, Section } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-edit-section-notes',

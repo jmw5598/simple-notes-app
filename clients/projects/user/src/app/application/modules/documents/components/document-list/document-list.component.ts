@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Document } from '@sn/user/shared/models';
+import { Document } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-document-list',

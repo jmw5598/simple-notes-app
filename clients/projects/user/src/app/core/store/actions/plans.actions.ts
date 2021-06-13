@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Plan } from '@sn/user/core/models';
+import { Plan } from '@sn/shared/models';
 
 export const getPlans = createAction(
   '[Plan] Get Plans'

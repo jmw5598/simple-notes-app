@@ -5,14 +5,13 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { AuthenticationService } from '@sn/user/core/services/authentication.service';
-import { AuthenticatedStatus, UserCredentials} from '@sn/shared/models';
-
 import * as fromAuth from '../../store/reducers';
 import * as fromActions from '../../store/actions';
 import * as fromSelectors from '../../store/selectors';
 
 import { fadeAnimation } from '@sn/shared/animations';
+import { AuthenticationService } from '@sn/core/services';
+import { AuthenticatedStatus, UserCredentials} from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-login',

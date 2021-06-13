@@ -1,7 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import * as fromActions from '../actions';
-import { ResponseMessage, Page } from '@sn/user/core/models';
-import { TodoList } from '@sn/user/shared/models';
+import { ResponseMessage, Page, TodoList } from '@sn/shared/models';
 
 export const todosFeatureKey = 'todos';
 

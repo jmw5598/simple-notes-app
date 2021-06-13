@@ -2,14 +2,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { deleteKeyboardShortcut, setKeyboardShortcutResponseMessage } from '@sn/user/application/store/actions';
-import { KeyboardShortcutActionType } from '@sn/user/core/enums';
-import { KeyboardShortcutAction } from '@sn/user/core/models';
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { ToolbarKeyboardShortcutListComponent } from '../../components/toolbar-keyboard-shortcut-list/toolbar-keyboard-shortcut-list.component';
 
 import { AccountSettingsToolbarComponent } from './account-settings-toolbar.component';
 
 import { DrawerService } from '@sn/shared/components';
+import { KeyboardShortcutAction, KeyboardShortcutActionType } from '@sn/shared/models';
 
 describe('AccountSettingsToolbarComponent', () => {
   let component: AccountSettingsToolbarComponent;

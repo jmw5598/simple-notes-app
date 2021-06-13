@@ -5,7 +5,7 @@ import { EMPTY, of } from 'rxjs';
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { TopicExportComponent } from './topic-export.component';
 import { DrawerService } from '@sn/user/shared/components';
-import { Topic } from '@sn/user/shared/models';
+import { Topic } from '@sn/shared/models';
 import { exportTopic } from '../../store/actions';
 
 describe('TopicExportComponent', () => {

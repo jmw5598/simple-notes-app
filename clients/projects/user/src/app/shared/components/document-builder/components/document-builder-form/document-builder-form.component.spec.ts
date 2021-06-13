@@ -5,7 +5,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DocumentBuilderFormComponent } from './document-builder-form.component';
-import { TopicsService } from '@sn/user/core/services';
+import { TopicsService } from '@sn/core/services';
 import { SharedModule } from '@sn/user/shared/shared.module';
 
 describe('DocumentFormComponent', () => {

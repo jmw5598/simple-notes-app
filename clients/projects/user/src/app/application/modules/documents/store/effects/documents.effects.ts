@@ -5,10 +5,9 @@ import { handleHttpError } from '@sn/user/application/store/actions/http-error.a
 import { of } from 'rxjs';
 import { exhaustMap, switchMap, map, catchError } from 'rxjs/operators';
 import * as fromActions from '../actions';
-import { DocumentsService } from '@sn/user/core/services/documents.service';
-import { PageableSearch, ResponseMessage } from '@sn/user/core/models';
-import { ResponseStatus } from '@sn/user/core/enums';
-import { SectionsService } from '@sn/user/core/services';
+
+import { PageableSearch, ResponseMessage, ResponseStatus } from '@sn/shared/models';
+import { SectionsService, DocumentsService } from '@sn/core/services';
 
 @Injectable()
 export class DocumentsEffects {

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Account, Profile, Theme } from '@sn/user/core/models';
 import { Store } from '@ngrx/store';
 import { IAccountsState } from '../../../../store/reducers';
 import { selectAccountDetails, selectAccountProfile, selectThemes } from '../../../../store/selectors';
@@ -10,9 +9,10 @@ import { fadeAnimation } from '@sn/shared/animations';
 import { AccountValidators } from '@sn/user/core/validators';
 import { buildProfileFormGroup } from '@sn/user/shared/forms';
 import { changeAccountTheme, updateAccountProfile } from '../../../../store/actions';
-import { DynamicThemeService } from '@sn/user/core/services';
-import { UserSettings } from '@sn/user/core/models/user-settings.model';
 import { selectAuthenticatedUserSettings } from '@sn/user/auth/store/selectors';
+
+import { Account, Profile, Theme, UserSettings } from '@sn/shared/models';
+import { DynamicThemeService } from '@sn/core/services';
 
 @Component({
   selector: 'sn-user-account-settings-general',

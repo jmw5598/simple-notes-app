@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Account, Profile, Theme } from '@sn/user/core/models';
+import { Account, Profile, Theme } from '@sn/shared/models';
 
 export const getAccountDetails = createAction(
   '[Account] Get Account Details'

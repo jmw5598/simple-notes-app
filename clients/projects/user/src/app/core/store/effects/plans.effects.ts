@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { PlansService } from '../../services';
 import { handleHttpError } from '../actions/http-error.actions';
 import { of } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import * as fromActions from '../actions';
+
+import { PlansService } from '@sn/core/services';
 
 @Injectable()
 export class PlansEffects {

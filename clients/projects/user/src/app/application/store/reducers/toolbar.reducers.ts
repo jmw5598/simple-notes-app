@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { KeyboardShortcutAction, ResponseMessage } from '@sn/user/core/models';
+import { KeyboardShortcutAction, ResponseMessage } from '@sn/shared/models';
 import * as fromActions from '../actions';
 
 export const toolbarFeatureKey = 'toolbar';

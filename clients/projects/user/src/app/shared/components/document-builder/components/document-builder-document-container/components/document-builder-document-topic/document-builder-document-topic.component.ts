@@ -4,7 +4,7 @@ import { DropAction } from '@sn/user/shared/components/document-builder/models/d
 import { DocumentBuilderService } from '@sn/user/shared/components/document-builder/services/document-builder.service';
 import { Observable, of } from 'rxjs';
 
-import { DocumentTopic, DocumentTopicSection } from '@sn/user/shared/models';
+import { DocumentTopic, DocumentTopicSection } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-document-builder-document-topic',

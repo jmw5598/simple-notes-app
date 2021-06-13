@@ -1,7 +1,7 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Document, DocumentTopic } from '@sn/user/shared/models';
+import { Document, DocumentTopic } from '@sn/shared/models';
 import { IAppState } from '@sn/user/store/reducers';
 import { Observable } from 'rxjs';
 import { DropAction } from '../../models/drop-action.enum';

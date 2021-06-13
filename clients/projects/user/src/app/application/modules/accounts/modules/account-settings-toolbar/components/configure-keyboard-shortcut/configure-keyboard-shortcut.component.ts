@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { KeyboardShortcutAction, ResponseMessage } from '@sn/user/core/models';
 import { IToolbarState } from '@sn/user/application/store/reducers';
 import { createKeyboardShortcut, updateKeyboardShortcut, deleteKeyboardShortcut, setKeyboardShortcutResponseMessage, getKeyboardShortcuts } from '@sn/user/application/store/actions';
 import { selectKeyboardShortcutResponseMessage } from '@sn/user/application/store/selectors';
@@ -10,9 +9,9 @@ import { tap } from 'rxjs/operators';
 
 import { DEFAULT_MODIFIER_OPTIONS, KeyboardShortcutModifier } from '@sn/user/shared/defaults';
 import { showHide } from '@sn/shared/animations';
-import { ResponseStatus } from '@sn/user/core/enums';
 
 import { DrawerService } from '@sn/shared/components';
+import { KeyboardShortcutAction, ResponseMessage, ResponseStatus } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-configure-keyboard-shortcut',

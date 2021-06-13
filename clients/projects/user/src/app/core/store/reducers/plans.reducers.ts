@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Plan } from '@sn/user/core/models';
+import { Plan } from '@sn/shared/models';
 import * as fromActions from '../actions';
 
 export const plansFeatureKey = 'plans';

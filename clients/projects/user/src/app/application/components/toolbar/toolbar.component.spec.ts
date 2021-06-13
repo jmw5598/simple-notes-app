@@ -7,7 +7,7 @@ import { EMPTY, of } from 'rxjs';
 import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { ToolbarComponent } from './toolbar.component';
-import { DrawerService } from '@sn/user/shared/components';
+import { DrawerService } from '@sn/shared/components';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 describe('ToolbarComponent', () => {

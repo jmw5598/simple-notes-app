@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DEFAULT_EDITOR_OPTIONS } from '@sn/user/core/defaults';
 import { FlashcardSetBuilderService } from '@sn/user/shared/components/flashcard-set-builder/services/flashcard-set-builder.service';
-import { Flashcard } from '@sn/user/shared/models';
+import { Flashcard } from '@sn/shared/models';
 import { EditorOption } from 'angular-markdown-editor';
 
 import { idGenerator } from '@sn/user/shared/utils/id-generator.util';

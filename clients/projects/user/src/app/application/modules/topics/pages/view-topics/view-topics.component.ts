@@ -8,13 +8,12 @@ import { ITopicsState } from '../../store/reducers';
 import { fadeAnimation } from '@sn/shared/animations';
 import { selectTopics, selectSearchTopicsResult, selectCreateTopicResponseMessage} from '../../store/selectors';
 import { deleteTopic, searchTopics, searchTopicsResult } from '../../store/actions';
-import { Page, IPageable } from '@sn/user/core/models';
+import { Page, IPageable } from '@sn/shared/models';
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/user/core/defaults';
-import { ResponseStatus } from '@sn/user/core/enums';
 import { TopicCreateComponent } from '@sn/user/shared/components';
 
 import { DrawerService, DrawerLocation, AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
-import { PageableSearch, ResponseMessage, Topic } from '@sn/shared/models';
+import { PageableSearch, ResponseMessage, Topic, ResponseStatus } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-view-topics',

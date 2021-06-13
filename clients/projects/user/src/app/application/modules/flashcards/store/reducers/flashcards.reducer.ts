@@ -1,7 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import * as fromActions from '../actions';
-import { ResponseMessage, Page } from '@sn/user/core/models';
-import { Flashcard, FlashcardSet } from '@sn/user/shared/models';
+import { Flashcard, FlashcardSet, ResponseMessage, Page } from '@sn/shared/models';
 
 export const flashcardsFeatureKey = 'flashcards';
 

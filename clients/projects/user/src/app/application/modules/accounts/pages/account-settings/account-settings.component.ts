@@ -4,7 +4,7 @@ import { fadeAnimation } from '@sn/shared/animations'
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IAccountsState } from '../../store/reducers';
-import { Account, Profile } from '@sn/user/core/models';
+import { Account, Profile } from '@sn/shared/models';
 import { selectAccountDetails, selectAccountProfile } from '../../store/selectors';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 

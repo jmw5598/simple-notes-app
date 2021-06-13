@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TodoList } from '@sn/user/shared/models';
+import { TodoList } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-todo-list-progress',

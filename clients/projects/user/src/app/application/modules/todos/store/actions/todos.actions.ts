@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { Page, PageableSearch, ResponseMessage } from '@sn/user/core/models';
-import { TodoList } from '@sn/user/shared/models';
+import { Page, PageableSearch, ResponseMessage } from '@sn/shared/models';
+import { TodoList } from '@sn/shared/models';
 
 export const createTodoList = createAction(
   '[Todo Lists] Create Todo List',

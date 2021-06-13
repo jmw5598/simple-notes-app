@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Topic } from '@sn/user/shared/models';
+import { Topic } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-topic-list',

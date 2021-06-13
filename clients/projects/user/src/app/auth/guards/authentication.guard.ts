@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 
-import { AuthenticationService } from '@sn/user/core/services/authentication.service';
+import { AuthenticationService } from '@sn/core/services';
 import { AuthenticatedStatus } from '@sn/shared/models';
 import { IAuthenticationState } from '../store/reducers';
 import * as fromAuthentication from '@sn/user/auth/store/reducers/authentication.reducers';

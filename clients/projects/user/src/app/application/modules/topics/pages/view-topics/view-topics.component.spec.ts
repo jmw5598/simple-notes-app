@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/user/core/defaults';
-import { IPageable, PageableSearch } from '@sn/user/core/models';
+import { IPageable, PageableSearch } from '@sn/shared/models';
 import { of } from 'rxjs';
 import { deleteTopic, searchTopics } from '../../store/actions';
 
@@ -10,7 +10,7 @@ import { SharedModule } from '@sn/user/shared/shared.module';
 import { TopicListComponent } from '../../components/topic-list/topic-list.component';
 import { ViewTopicsComponent } from './view-topics.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DrawerService } from '@sn/user/shared/components';
+import { DrawerService } from '@sn/shared/components';
 
 describe('ViewTopicsComponent', () => {
   let component: ViewTopicsComponent;
