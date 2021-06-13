@@ -4,6 +4,9 @@
 
 export * from './lib/shared-components.module';
 
+// Checkbox
+export * from './lib/checkbox/checkbox.component';
+
 // Drawer
 export * from './lib/drawer/drawer-location.enum';
 export * from './lib/drawer/drawer-options.defaults';

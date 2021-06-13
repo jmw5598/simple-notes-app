@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { CheckboxComponent } from './checkbox/checkbox.component';
 import { DrawerService } from './drawer/drawer.service';
 import { DrawerComponent } from './drawer/drawer.component';
 import { EmptyDataComponent } from './empty-data/empty-data.component';
@@ -24,6 +25,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [
+    CheckboxComponent,
     DrawerComponent,
     EmptyDataComponent,
     FlashcardComponent,
@@ -45,6 +47,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     TooltipModule
   ],
   exports: [
+    CheckboxComponent,
     DrawerComponent,
     EmptyDataComponent,
     FlashcardComponent,

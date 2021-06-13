@@ -46,7 +46,6 @@ import { FlashcardSetViewerHeaderComponent } from './components/flashcard-set-vi
 import { FlashcardSetViewerFlipperComponent } from './components/flashcard-set-viewer/components/flashcard-set-viewer-flipper/flashcard-set-viewer-flipper.component';
 import { TodoListCreateComponent } from './components/todo-list-create/todo-list-create.component';
 import { TodoListFormComponent } from './forms/todo-list-form/todo-list-form.component';
-import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { TodoListDetailsComponent } from './components/todo-list-details/todo-list-details.component';
 import { TodoListUpdateComponent } from './components/todo-list-update/todo-list-update.component';
 
@@ -85,7 +84,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
     FlashcardSetViewerFlipperComponent,
     TodoListCreateComponent,
     TodoListFormComponent,
-    CheckboxComponent,
     TodoListDetailsComponent,
     TodoListUpdateComponent,
     TodoListProgressComponent
@@ -131,7 +129,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
     FlashcardSetBuilderFormComponent,
     TodoListCreateComponent,
     TodoListFormComponent,
-    CheckboxComponent,
     TodoListDetailsComponent,
     TodoListUpdateComponent,
     TodoListProgressComponent
