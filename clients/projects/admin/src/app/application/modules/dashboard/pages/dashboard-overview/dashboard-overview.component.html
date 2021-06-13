@@ -1,1 +1,45 @@
-<p>dashboard-overview works!</p>
+<div *ngIf="!(isPageLoading$ | async)" class="container-navbar-adjust container-fluid p-0 m-0 height-full" [@fadeAnimation]>
+  <div class="row m-0 p-0 height-full">
+    <!-- New Users Accounts -->
+    <div class="col-sm-12 col-md-12 col-lg-8 m-0 p-0 border-right-1 m-0">
+      <h4 class="font-weight-bold text-primary border-bottom-1 p-3">Recent Signups</h4>
+      <div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Email Confirmed</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-center"><img src="assets/images/default-avatar.svg" class="img-fluid ng-tns-c40-1" style="height: 22px;"></td>
+              <td>Jason White</td>
+              <td>jmw5598@gmail.com</td>
+              <td><span class="badge badge-success">Confirmed</span></td>
+              <td>a</td>
+            </tr>
+            <tr>
+              <td class="text-center"><img src="assets/images/default-avatar.svg" class="img-fluid ng-tns-c40-1" style="height: 22px;"></td>
+              <td>Sandy White</td>
+              <td>sandy5598@gmail.com</td>
+              <td><span class="badge badge-danger">Unconfirmed</span></td>
+              <td>a</td>
+            </tr>
+            <tr>
+              <td class="text-center"><img src="assets/images/default-avatar.svg" class="img-fluid ng-tns-c40-1" style="height: 22px;"></td>
+              <td>Dillard White</td>
+              <td>dill@gmail.com</td>
+              <td><span class="badge badge-success">Confirmed</span></td>
+              <td>a</td>
+            </tr>
+          </tbody>
+        </table>
+        <sn-paginator></sn-paginator>
+      </div>
+    </div>
+  </div>
+</div>
