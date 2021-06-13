@@ -1,0 +1,41 @@
+<sn-toolbar>
+  <sn-toolbar-button-group>
+    <span 
+        snToolbarButton 
+        (click)="onPreviousRoute()"
+        [tooltip]="'Previous Page'" 
+        placement="auto" 
+        container="body"
+        [delay]="tooltipDelay">
+      <i class="fas fa-arrow-left"></i>
+    </span>
+    <span 
+        snToolbarButton 
+        (click)="onNextRoute()"
+        [tooltip]="'Next Page'" 
+        placement="auto" 
+        container="body"
+        [delay]="tooltipDelay">
+      <i class="fas fa-arrow-right"></i>
+    </span>
+  </sn-toolbar-button-group>
+  <sn-toolbar-button-group>
+    <span 
+        snToolbarButton 
+        (click)="onCreateUserAccount()"
+        [tooltip]="'Create User Account'" 
+        placement="auto" 
+        container="body"
+        [delay]="tooltipDelay">
+      <i class="fas fa-user-plus"></i>
+    </span>
+  </sn-toolbar-button-group>
+</sn-toolbar>
+
+<sn-drawer
+    [drawerLocation]="DrawerLocation.RIGHT">
+</sn-drawer>
+
+<!-- <ng-keyboard-shortcuts 
+    [shortcuts]="shortcuts">
+</ng-keyboard-shortcuts> -->

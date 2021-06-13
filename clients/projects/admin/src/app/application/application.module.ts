@@ -3,15 +3,20 @@ import { CommonModule } from '@angular/common';
 import { ApplicationComponent } from './application.component';
 
 import { ApplicationRoutingModule } from './application-routing.module';
-import { CoreFramingModule } from '@sn/core/framing';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+
+import { CoreFramingModule } from '@sn/core/framing';
+import { SharedComponentsModule } from '@sn/shared/components';
 
 @NgModule({
   declarations: [
-    ApplicationComponent
+    ApplicationComponent,
+    ToolbarComponent
   ],
   imports: [
     CoreFramingModule,
+    SharedComponentsModule,
     ApplicationRoutingModule,
     CommonModule,
     TooltipModule.forRoot()
