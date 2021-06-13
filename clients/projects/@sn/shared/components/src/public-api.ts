@@ -37,6 +37,9 @@ export * from './lib/overlay-loader/overlay-loader.component';
 export * from './lib/overlay-loader/overlay-loader.service';
 export * from './lib/overlay-loader/overlay-spinner-size.enum';
 
+// Paginator
+export * from './lib/paginator/paginator.component';
+
 // Empty Data
 export * from './lib/empty-data/empty-data.component';
 

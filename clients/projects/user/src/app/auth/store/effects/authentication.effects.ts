@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 
 import { AccountsService, AuthenticationService } from '@sn/user/core/services';
-import { AuthenticatedUser } from '@sn/user/core/models';
+import { AuthenticatedUser } from '@sn/shared/models';
 import * as fromActions from '../actions';
 
 @Injectable()

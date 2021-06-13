@@ -374,6 +374,68 @@
           }
         }
       }
+    },
+    "shared-models": {
+      "projectType": "library",
+      "root": "projects/@sn/shared/models",
+      "sourceRoot": "projects/@sn/shared/models/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/@sn/shared/models/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/@sn/shared/models/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/@sn/shared/models/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/@sn/shared/models/src/test.ts",
+            "tsConfig": "projects/@sn/shared/models/tsconfig.spec.json",
+            "karmaConfig": "projects/@shared/models/karma.conf.js"
+          }
+        }
+      }
+    },
+    "core-services": {
+      "projectType": "library",
+      "root": "projects/@sn/core/services",
+      "sourceRoot": "projects/@sn/core/services/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/@sn/core/services/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/@sn/core/services/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/@sn/core/services/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/@sn/core/services/src/test.ts",
+            "tsConfig": "projects/@sn/core/services/tsconfig.spec.json",
+            "karmaConfig": "projects/@sn/core/services/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "user"

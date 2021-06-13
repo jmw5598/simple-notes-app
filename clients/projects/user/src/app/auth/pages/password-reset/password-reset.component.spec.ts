@@ -6,7 +6,6 @@ import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
 import { PasswordResetComponent } from './password-reset.component';
-import { PasswordReset } from '@sn/user/core/models';
 import { ActivatedRoute } from '@angular/router';
 
 describe('PasswordResetComponent', () => {

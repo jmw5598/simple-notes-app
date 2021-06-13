@@ -27,12 +27,12 @@
               (onCreate)="onCreate($event)">
           </sn-user-topic-list>
           <div class="p-3">
-            <sn-user-paginator
+            <sn-paginator
                 [page]="(searchTopicsResult$ | async)"
                 (onNextPage)="onGoToPage($event)"
                 (onPreviousPage)="onGoToPage($event)"
                 (onGoToPage)="onGoToPage($event)">
-            </sn-user-paginator>
+            </sn-paginator>
           </div>
         </div>
       </div>

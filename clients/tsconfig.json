@@ -35,7 +35,7 @@
         "projects/admin/src/environments/*"
       ],
       "@sn/core/framing": [
-        "dist/@sn/core/framing/core-framing",
+        "dist/@sn/core/framing/sn-core-framing",
         "dist/@sn/core/framing"
       ],
       "@sn/shared/animations": [
@@ -45,6 +45,14 @@
       "@sn/shared/components": [
         "dist/@sn/shared/components/sn-shared-components",
         "dist/@sn/shared/components"
+      ],
+      "@sn/shared/models": [
+        "dist/@sn/shared/models/sn-shared-models",
+        "dist/@sn/shared/models"
+      ],
+      "@sn/core/services": [
+        "dist/@sn/core/services/sn-core-services",
+        "dist/@sn/core/services"
       ]
     }
   },

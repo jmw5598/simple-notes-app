@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { RegistrationResult } from '@sn/user/core/dtos';
+import { RegistrationResult } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-registration-result',

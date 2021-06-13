@@ -4,8 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 
 import { ITopicsState } from '../../store/reducers';
-import { Topic } from '@sn/user/shared/models';
-import { PageableSearch, ResponseMessage } from '@sn/user/core/models';
+
 import { fadeAnimation } from '@sn/shared/animations';
 import { selectTopics, selectSearchTopicsResult, selectCreateTopicResponseMessage} from '../../store/selectors';
 import { deleteTopic, searchTopics, searchTopicsResult } from '../../store/actions';
@@ -15,6 +14,7 @@ import { ResponseStatus } from '@sn/user/core/enums';
 import { TopicCreateComponent } from '@sn/user/shared/components';
 
 import { DrawerService, DrawerLocation, AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
+import { PageableSearch, ResponseMessage, Topic } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-view-topics',

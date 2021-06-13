@@ -8,7 +8,7 @@ import * as fromAuth from '../../store/reducers';
 import * as fromActions from '../../store/actions';
 import * as fromSelectors from '../../store/selectors';
 
-import { PasswordRequestReset, ResponseMessage } from '@sn/user/core/models';
+import { PasswordRequestReset, ResponseMessage } from '@sn/shared/models';
 import { fadeAnimation } from '@sn/shared/animations';
 
 @Component({

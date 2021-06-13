@@ -14,6 +14,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { OverlayContentComponent } from './overlay-content/overlay-content.component';
 import { OverlayContentService } from './overlay-content/overlay-content.service';
 import { OverlayLoaderComponent } from './overlay-loader/overlay-loader.component';
+import { PaginatorComponent } from './paginator/paginator.component';
 import { ToasterComponent } from './toaster/toaster.component';
 import { ToolbarComponent } from './toolbar/toolbar/toolbar.component';
 import { ToolbarButtonComponent } from './toolbar/toolbar-button/toolbar-button.component';
@@ -32,6 +33,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     LoadingSpinnerComponent,
     OverlayContentComponent,
     OverlayLoaderComponent,
+    PaginatorComponent,
     ToasterComponent,
     ToolbarComponent,
     ToolbarButtonComponent,
@@ -52,6 +54,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     LoadingSpinnerComponent,
     OverlayContentComponent,
     OverlayLoaderComponent,
+    PaginatorComponent,
     ToasterComponent,
     ToolbarComponent,
     ToolbarButtonComponent,

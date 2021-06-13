@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
 import { PasswordRequestComponent } from './password-request.component';
-import { PasswordRequestReset } from '@sn/user/core/models';
+import { PasswordRequestReset } from '@sn/shared/models';
 import { passwordRequestReset, passwordRequestResetResult } from '@sn/user/auth/store/actions';
 
 describe('PasswordRequestComponent', () => {

@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { DEFAULT_SEARCH_FLASHCARDS_PAGE } from '@sn/user/core/defaults';
-import { IPageable, Page, PageableSearch } from '@sn/user/core/models';
+
 import { fadeAnimation } from '@sn/shared/animations';
 import { FlashcardSetCreateComponent } from '@sn/user/shared/components';
-import { FlashcardSet } from '@sn/user/shared/models';
 import { Observable, of, Subject } from 'rxjs';
 
 import { IFlashcardsState } from '../../store/reducers';
@@ -13,6 +12,8 @@ import * as flashcardsSelectors from '../../store/selectors';
 import { FlashcardSetViewComponent } from '../../components/flashcard-set-view/flashcard-set-view.component';
 import { FlashcardSetUpdateComponent } from '../../components/flashcard-set-update/flashcard-set-update.component';
 import { takeUntil, tap } from 'rxjs/operators';
+
+import { IPageable, Page, PageableSearch, FlashcardSet } from '@sn/shared/models';
 
 import { 
   AbstractPageOverlayLoader, 

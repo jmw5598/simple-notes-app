@@ -1,9 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subject, combineLatest } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { IPageable, Page, PageableSearch } from '@sn/user/core/models';
-import { Document } from '@sn/user/shared/models';
-import { fadeAnimation } from '@sn/shared/animations';
 
 import { IDocumentsState } from '../../store/reducers/documents.reducers'
 import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/user/core/defaults';
@@ -15,7 +12,9 @@ import * as documentActions from '../../store/actions';
 import * as documentSelectors from '../../store/selectors';
 import { DocumentViewComponent } from '../../components/document-view/document-view.component';
 
+import { fadeAnimation } from '@sn/shared/animations';
 import { DrawerService, DrawerLocation, DrawerSize, OverlayLoaderService, AbstractPageOverlayLoader } from '@sn/shared/components';
+import { IPageable, Page, PageableSearch, Document } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-view-documents',

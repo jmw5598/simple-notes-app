@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { take, tap, filter } from 'rxjs/operators';
 
-import { PasswordReset, ResponseMessage } from '@sn/user/core/models';
+import { PasswordReset, ResponseMessage } from '@sn/shared/models';
 import { MatchValidators } from '@sn/user/core/validators';
 import { fadeAnimation } from '@sn/shared/animations';
 

@@ -3,7 +3,7 @@ import { AbstractControl, AsyncValidatorFn } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { map, filter, take, switchMap, debounceTime, catchError } from 'rxjs/operators';
 import { AccountsService } from '../services/accounts.service';
-import { ValidatorResult } from '../models/validator-result.model';
+import { ValidatorResult } from '@sn/shared/models';
 
 
 @Injectable({

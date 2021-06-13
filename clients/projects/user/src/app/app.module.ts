@@ -22,7 +22,12 @@ import { environment } from '@sn/user/env/environment';
 import { HttpErrorEffects } from './application/store/effects/http-error.effects';
 
 import { CoreFramingModule } from '@sn/core/framing';
+import { CoreServicesModule, CoreServicesConfiguration } from '@sn/core/services';
 import { SharedComponentsModule } from '@sn/shared/components';
+
+const coreServicesConfiguration: CoreServicesConfiguration = {
+  ...environment
+};
 
 @NgModule({
   declarations: [
@@ -30,6 +35,7 @@ import { SharedComponentsModule } from '@sn/shared/components';
   ],
   imports: [
     CoreFramingModule.forRoot(),
+    CoreServicesModule.forRoot(coreServicesConfiguration),
     SharedComponentsModule,
     AppRoutingModule,
     BrowserModule,

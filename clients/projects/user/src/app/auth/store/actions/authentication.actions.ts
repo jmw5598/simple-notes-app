@@ -1,8 +1,15 @@
 import { createAction, props } from '@ngrx/store';
-import { AuthenticatedUser, UserCredentials, PasswordReset, PasswordRequestReset, ResponseMessage } from '@sn/user/core/models';
-import { RegistrationResult, Registration } from '@sn/user/core/dtos';
 import { HttpErrorResponse } from '@angular/common/http';
-import { UserSettings } from '@sn/user/core/models/user-settings.model';
+
+import { 
+  RegistrationResult, 
+  Registration, 
+  UserSettings,
+  AuthenticatedUser, 
+  UserCredentials, 
+  PasswordReset, 
+  PasswordRequestReset, 
+  ResponseMessage} from '@sn/shared/models';
 
 export const loginUser = createAction(
   '[Authentication] Login User',

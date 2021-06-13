@@ -9,7 +9,6 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover'
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { TagInputComponent } from './components/tag-input/tag-input.component';
 import { DebouncedSearchComponent } from './components/debounced-search/debounced-search.component';
-import { PaginatorComponent } from './components/paginator/paginator.component';
 import { FlashcardSetCreateComponent } from './components';
 import { TopicFormComponent } from './forms/topic-form/topic-form.component';
 import { TopicCreateComponent } from './components/topic-create/topic-create.component';
@@ -60,7 +59,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
     SpinnerComponent,
     TagInputComponent,
     DebouncedSearchComponent,
-    PaginatorComponent,
     TopicFormComponent,
     TopicCreateComponent,
     TopicSearchComponent,
@@ -116,7 +114,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
     SpinnerComponent,
     TagInputComponent,
     DebouncedSearchComponent,
-    PaginatorComponent,
     TopicFormComponent,
     TopicCreateComponent,
     TopicSearchComponent,

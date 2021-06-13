@@ -7,7 +7,7 @@ import { LoginComponent } from './login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { UserCredentials } from '@sn/user/core/models';
+import { UserCredentials } from '@sn/shared/models';
 import { loginUser } from '@sn/user/auth/store/actions';
 
 describe('LoginComponent', () => {

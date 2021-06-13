@@ -49,12 +49,12 @@
             (onCreate)="onCreateSection($event)">
         </sn-user-section-list>
         <div class="p-3">
-          <sn-user-paginator
+          <sn-paginator
               [page]="(searchSectionsResult$ | async)"
               (onNextPage)="onGoToPage($event)"
               (onPreviousPage)="onGoToPage($event)"
               (onGoToPage)="onGoToPage($event)">
-          </sn-user-paginator>
+          </sn-paginator>
         </div>
       </div>
     </div>
