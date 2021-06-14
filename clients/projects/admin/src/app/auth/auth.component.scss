@@ -1,0 +1,58 @@
+.auth-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+
+  .left-col,
+  .right-col {
+    flex: 1 1 0px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+
+  }
+
+  .left-col {
+    .auth-marketing {
+      max-width: 650px;
+      height: 100%;
+      padding: 3rem;
+      margin: auto;
+    }
+  }
+
+  .right-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .auth-outlet {
+      margin: 2rem;
+      width: 50%;
+    }
+  }
+}
+
+@media only screen and (max-width : 992px) {
+  .auth-layout {
+    flex-direction: column;
+
+    .left-col,
+    .right-col {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width : 480px) {
+  .auth-layout {
+    display: block;
+    .right-col {
+      .auth-outlet {
+        width: 90%;
+      }
+    }
+  }
+}

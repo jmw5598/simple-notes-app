@@ -5,9 +5,18 @@ import { OnDemandPreloadStrategy } from '@sn/core/framing';
 
 const routes: Routes = [
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
     path: '',
     loadChildren: () => import('./application/application.module').then(m => m.ApplicationModule),
     data: { breadcrumb: 'Dashboard' }
+  },
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full'
   }
 ];
 
