@@ -2,9 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AuthenticationService } from '@sn/core/services';
 import { fadeAnimation } from '@sn/shared/animations';
-import { UserCredentials } from '@sn/shared/models';
+import { AuthenticatedStatus, UserCredentials } from '@sn/shared/models';
 import { Observable, Subscription } from 'rxjs';
+
+import * as fromAuth from '../../store/reducers';
+import * as fromActions from '../../store/actions';
+import * as fromSelectors  from '../../store/selectors';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'sn-admin-login',
@@ -14,14 +21,14 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
   private _authenticationStateSubscription: Subscription;
-  public authenticationState: any; //fromAuth.IAuthenticationState;
+  public authenticationState: fromAuth.IAuthenticationState;
   public form: FormGroup;
   public queryParamMessage$: Observable<string>;
 
   constructor(
-    // private _authenticationService: AuthenticationService,
+    private _authenticationService: AuthenticationService,
     private _formBuilder: FormBuilder,
-    // private _store: Store<fromAuth.IAuthenticationState>,
+    private _store: Store<fromAuth.IAuthenticationState>,
     private _router: Router,
     private _route: ActivatedRoute
   ) {
@@ -33,6 +40,20 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._authenticationStateSubscription = this._store.select(fromSelectors.selectAuthenticationState)
+      .subscribe(state => {
+        this.authenticationState = state;
+        if(state.authenticatedStatus === AuthenticatedStatus.AUTHENTICATED) {
+          this._router.navigate(['/auth', 'logging-in']);
+        }
+      });
+      
+    this.queryParamMessage$ = this._route.queryParams.pipe(
+      map(params => params['message'])
+    );
+    
+    const rememberMe: UserCredentials = this._authenticationService.getStoredRememberMe();
+    if (rememberMe) this.form.patchValue(rememberMe);
   }
 
   public submitForm(form: any): void {
@@ -41,6 +62,6 @@ export class LoginComponent implements OnInit {
       password: form.password,
       rememberMe: form.rememberMe
     }) as UserCredentials;
-    // this._store.dispatch(fromActions.loginUser({ credentials: user }));
+    this._store.dispatch(fromActions.loginUser({ credentials: user }));
   }
 }

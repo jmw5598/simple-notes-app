@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import * as fromAuth from '../../store/reducers';
+import * as fromActions from '../../store/actions';
 
 @Component({
   selector: 'sn-admin-logout',
@@ -6,10 +10,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logout.component.scss']
 })
 export class LogoutComponent implements OnInit {
-  constructor() { }
-  // constructor(private _store: Store<fromAuth.IAuthenticationState>) { }
+  constructor(private _store: Store<fromAuth.IAuthenticationState>) { }
 
   ngOnInit(): void {
-    // setTimeout(() => this._store.dispatch(fromActions.logoutUser()), 1000);
+    setTimeout(() => this._store.dispatch(fromActions.logoutUser()), 1000);
   }
 }
