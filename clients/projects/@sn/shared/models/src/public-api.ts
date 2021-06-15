@@ -18,6 +18,7 @@ export * from './lib/enums/export-format.enum';
 export * from './lib/enums/keyboard-shortcut-action-type.enum';
 export * from './lib/enums/permission.enum';
 export * from './lib/enums/response-status.enum';
+export * from './lib/enums/roles.enum';
 
 // Models Integration
 export * from './lib/models/integrations/calendar-integration-state.model';

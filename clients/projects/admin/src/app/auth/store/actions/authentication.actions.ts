@@ -1,15 +1,10 @@
 import { createAction, props } from '@ngrx/store';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { 
-  RegistrationResult, 
-  Registration, 
+import {  
   UserSettings,
   AuthenticatedUser, 
-  UserCredentials, 
-  PasswordReset, 
-  PasswordRequestReset, 
-  ResponseMessage} from '@sn/shared/models';
+  UserCredentials } from '@sn/shared/models';
 
 export const loginUser = createAction(
   '[Authentication] Login User',
@@ -24,6 +19,11 @@ export const loginUserSuccess = createAction(
 export const loginUserError = createAction(
   '[Authentication] Login User Error',
   props<{ error: HttpErrorResponse }>()
+);
+
+export const setLoginUserError = createAction(
+  '[Authentication] Set Login User Error',
+  props<{ errorMessage: string }>()
 );
 
 export const logoutUser = createAction(

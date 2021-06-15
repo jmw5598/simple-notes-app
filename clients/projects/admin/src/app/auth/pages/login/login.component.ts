@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AuthenticationService } from '@sn/core/services';
@@ -11,7 +12,7 @@ import { Observable, Subscription } from 'rxjs';
 import * as fromAuth from '../../store/reducers';
 import * as fromActions from '../../store/actions';
 import * as fromSelectors  from '../../store/selectors';
-import { map } from 'rxjs/operators';
+import { Roles } from 'projects/@sn/shared/models/src/public-api';
 
 @Component({
   selector: 'sn-admin-login',
@@ -35,7 +36,8 @@ export class LoginComponent implements OnInit {
     this.form = this._formBuilder.group({
       username: ['demo', [Validators.required]],
       password: ['demo', [Validators.required]],
-      rememberMe: [false, [Validators.required]]
+      rememberMe: [false, [Validators.required]],
+      requestedRole: [Roles.ADMIN, [Validators.required]]
     });
   }
 
@@ -60,7 +62,8 @@ export class LoginComponent implements OnInit {
     const user: UserCredentials = ({ 
       username: form.username, 
       password: form.password,
-      rememberMe: form.rememberMe
+      rememberMe: form.rememberMe,
+      requestedRole: form.requestedRole
     }) as UserCredentials;
     this._store.dispatch(fromActions.loginUser({ credentials: user }));
   }

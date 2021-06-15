@@ -1,5 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { AuthenticatedUser, AuthenticatedStatus } from '@sn/shared/models';
+import { from } from 'rxjs';
 
 
 import * as fromActions from '../actions';
@@ -33,7 +34,15 @@ const _authenticationReducer = createReducer(
       ...state,
       authenticatedUser: null,
       authenticatedStatus: AuthenticatedStatus.UNAUTHENTICATED,
-      errorMessage: error.error.message
+      // errorMessage: error.error.message
+    }
+  }),
+  on(fromActions.setLoginUserError, (state, { errorMessage }) => {
+    return {
+      ...state,
+      authenticatedUser: null,
+      authenticatedStatus: AuthenticatedStatus.UNAUTHENTICATED,
+      errorMessage: errorMessage
     }
   }),
   on(fromActions.logoutUser, (state) => {

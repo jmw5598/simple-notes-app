@@ -10,8 +10,8 @@ import { UserDetails } from './models/user-details.model';
 import { InvalidUsernamePasswordException } from './exceptions/invalid-username-password.exception';
 import { UnconfirmedAccountException } from './exceptions/unconfirmed-account.exception';
 import { UserSettings } from './models/user-settings.model';
-import { Account } from 'src/accounts/entities/account.entity';
 import { ThemeMapper } from 'src/themes/mappers/theme.mapper';
+import { Roles } from './models/roles.enum';
 
 @Injectable()
 export class AuthenticationService {
@@ -21,8 +21,8 @@ export class AuthenticationService {
     private readonly refreshTokensService: RefreshTokensService,
   ) {}
 
-  public async validateUser(username: string, password: string): Promise<any> {
-    const user: User = await this.userService.findByUsername(username.trim().toLowerCase());
+  public async validateUser(username: string, password: string, requestedRole: Roles): Promise<any> {
+    const user: User = await this.userService.findByUsernameAndRequestedRole(username.trim().toLowerCase(), requestedRole);
 
     if (!user || !await bcrypt.compare(password, user.password)) {
       throw new InvalidUsernamePasswordException();

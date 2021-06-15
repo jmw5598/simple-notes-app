@@ -11,7 +11,7 @@ import * as fromSelectors from '../../store/selectors';
 
 import { fadeAnimation } from '@sn/shared/animations';
 import { AuthenticationService } from '@sn/core/services';
-import { AuthenticatedStatus, UserCredentials} from '@sn/shared/models';
+import { AuthenticatedStatus, UserCredentials, Roles } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-login',
@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.form = this._formBuilder.group({
       username: ['demo', [Validators.required]],
       password: ['demo', [Validators.required]],
-      rememberMe: [false, [Validators.required]]
+      rememberMe: [false, [Validators.required]],
+      requestedRole: [Roles.USER, [Validators.required]]
     });
   }
 
@@ -60,7 +61,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     const user: UserCredentials = ({ 
       username: form.username, 
       password: form.password,
-      rememberMe: form.rememberMe
+      rememberMe: form.rememberMe,
+      requestedRole: form.requestedRole
     }) as UserCredentials;
     this._store.dispatch(fromActions.loginUser({ credentials: user }));
   }
