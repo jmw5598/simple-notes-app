@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApplicationComponent } from './application.component';
-
-import { ApplicationRoutingModule } from './application-routing.module';
+import { StoreModule } from '@ngrx/store';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+
+import { ApplicationComponent } from './application.component';
+import { ApplicationRoutingModule } from './application-routing.module';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+
+import { applicationFeatureKey, applicationReducer } from './store';
+import { EffectsModule } from '@ngrx/effects';
+import { AccountsEffects } from './modules/accounts/store/effects';
 
 import { CoreFramingModule } from '@sn/core/framing';
 import { SharedComponentsModule } from '@sn/shared/components';
@@ -19,7 +24,11 @@ import { SharedComponentsModule } from '@sn/shared/components';
     SharedComponentsModule,
     ApplicationRoutingModule,
     CommonModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    StoreModule.forFeature(applicationFeatureKey, applicationReducer),
+    EffectsModule.forFeature([
+      AccountsEffects
+    ])
   ],
   providers:  [
     {

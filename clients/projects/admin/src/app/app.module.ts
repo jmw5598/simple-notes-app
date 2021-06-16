@@ -18,7 +18,6 @@ import { AuthenticationEffects } from './auth/store/effects';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-
 const coreServicesConfiguration: CoreServicesConfiguration = {
   ...environment
 }
