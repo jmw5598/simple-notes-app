@@ -89,13 +89,13 @@ export class AccountsService {
   // @Note This is use by administration portal (can manually set isConfirmed and isEnabled)
   public async createNewAccount(registrationDto: RegistrationDto): Promise<any> {
     // TODO create these two methods for account and user, createUser should assign roles base on http body
-    const account: Account = await this._createNewAccount(registrationDto.account);
-    const user: User = await this._createNewUser(registrationDto.user, account);
-    const profile: Profile = await this._createNewProfile(registrationDto.profile, account);
+    // const account: Account = await this._createNewAccount(registrationDto.account);
+    // const user: User = await this._createNewUser(registrationDto.user, account);
+    // const profile: Profile = await this._createNewProfile(registrationDto.profile, account);
 
-    if (!registrationDto.account.isConfirmed) {
-      this._emailerService.sendConfirmationEmail(profile.email, account.comfirmationToken);
-    }
+    // if (!registrationDto.account.isConfirmed) {
+    //   this._emailerService.sendConfirmationEmail(profile.email, account.comfirmationToken);
+    // }
     
     return {
       status: "SUCCESS",

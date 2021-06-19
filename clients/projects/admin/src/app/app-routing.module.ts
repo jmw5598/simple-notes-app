@@ -5,6 +5,7 @@ import { OnDemandPreloadStrategy } from '@sn/core/framing';
 import { AuthenticationGuard } from './auth/guards';
 import { PlansGuard } from './core/guards';
 import { AdminRoleGuard } from './auth/guards/admin-role.guard';
+import { GetRolesGuard } from './core/guards/get-roles.guard';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       AuthenticationGuard,
       AdminRoleGuard,
       PlansGuard,
+      GetRolesGuard,
     ],
     loadChildren: () => import('./application/application.module').then(m => m.ApplicationModule),
     data: { breadcrumb: 'Dashboard' }

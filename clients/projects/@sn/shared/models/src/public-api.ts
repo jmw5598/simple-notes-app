@@ -67,3 +67,4 @@ export * from './lib/models/user-credentials.model';
 export * from './lib/models/user-details.model';
 export * from './lib/models/user-settings.model';
 export * from './lib/models/validator-result.model';
+export * from './lib/models/role.model';

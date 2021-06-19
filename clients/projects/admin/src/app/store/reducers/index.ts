@@ -10,6 +10,7 @@ export const rootReducerKey = 'rootReducerKey';
 
 export interface IAppState {
   [fromCore.plansFeatureKey]: fromCore.IPlansState,
+  [fromCore.rolesFeatureKey]: fromCore.IRolesState,
   [fromAuth.authenticationFeatureKey]?: fromAuth.IAuthenticationState;
 }
 
@@ -17,6 +18,7 @@ export const ROOT_REDUCERS = new InjectionToken<ActionReducerMap<any, Action>>(
   rootReducerKey, {
     factory: () => ({
       [fromCore.plansFeatureKey]: fromCore.planReducer,
+      [fromCore.rolesFeatureKey]: fromCore.rolesReducer,
       [fromAuth.authenticationFeatureKey]: fromAuth.authenticationReducer
     })
   }

@@ -19,7 +19,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CoreModule } from './core/core.module';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
-import { HttpErrorEffects, PlansEffects } from './core/store/effects';
+import { HttpErrorEffects, PlansEffects, RolesEffects } from './core/store/effects';
 
 const coreServicesConfiguration: CoreServicesConfiguration = {
   ...environment
@@ -50,7 +50,8 @@ const coreServicesConfiguration: CoreServicesConfiguration = {
     EffectsModule.forRoot([
       AuthenticationEffects,
       HttpErrorEffects,
-      PlansEffects
+      PlansEffects,
+      RolesEffects
     ]),
     StoreDevtoolsModule.instrument({
       name: 'Simple Notes Administration App',

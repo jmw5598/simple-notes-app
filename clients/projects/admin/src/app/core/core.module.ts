@@ -1,6 +1,6 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GlobalHttpErrorInterceptor, JwtTokenInterceptor } from '@sn/user/core/interceptors';
 import { authenticatedUserInitializer } from './initializers';
 import { AuthenticationService } from '@sn/core/services';
@@ -28,7 +28,8 @@ const globalHttpErrorInterceptor = {
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [
     jwtTokenInterceptor,
