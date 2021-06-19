@@ -16,6 +16,9 @@ export class Account extends BaseEntity {
   @Column({ name: 'is_confirmed', default: false })
   public isConfirmed: boolean;
 
+  @Column({ name: 'is_enabled', default: true })
+  public isEnabled: boolean;
+
   @Column({ name: 'confirmation_token', nullable: false})
   @Generated('uuid')
   public comfirmationToken: string;

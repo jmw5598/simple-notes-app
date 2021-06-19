@@ -25,7 +25,7 @@ export type CheckboxSize =
   | 'xsmall';
 
 @Component({
-  selector: 'sn-user-checkbox',
+  selector: 'sn-checkbox',
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
   providers: [

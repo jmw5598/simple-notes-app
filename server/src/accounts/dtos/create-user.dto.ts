@@ -1,4 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
+import { Roles } from 'src/authentication/models/roles.enum';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -9,4 +10,6 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   public passwordConfirm: string;
+
+  public roles: Roles[];
 }

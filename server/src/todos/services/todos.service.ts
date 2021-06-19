@@ -91,26 +91,3 @@ export class TodosService {
     return TodosMapper.toTodoDtoList(pastDueTodos);
   }
 }
-
-// where: [
-//         // If start date 
-//         {
-//           account: { id: accountId },
-//           deletedAt: IsNull(),
-//           startDateTime: Between(today.toISOString(), endDate.toISOString())
-//         },
-//         {
-//           account: { id: accountId },
-//           deletedAt: IsNull(),
-//           endDateTime: Between(startDate.toISOString(), endDate.toISOString())
-//         },
-//         {
-//           account: { id: accountId },
-//           deletedAt: IsNull(),
-//           startDateTime: LessThanOrEqual(startDate.toISOString()),
-//           endDateTime: MoreThanOrEqual(endDate.toISOString())
-//         }
-//       ],
-//       order: {
-//         startDateTime: 'ASC'
-//       }

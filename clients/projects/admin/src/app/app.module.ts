@@ -17,6 +17,9 @@ import { ROOT_REDUCERS, metaReducers } from '@sn/user/store/reducers';
 import { AuthenticationEffects } from './auth/store/effects';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CoreModule } from './core/core.module';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { HttpErrorEffects, PlansEffects } from './core/store/effects';
 
 const coreServicesConfiguration: CoreServicesConfiguration = {
   ...environment
@@ -27,6 +30,7 @@ const coreServicesConfiguration: CoreServicesConfiguration = {
     AppComponent
   ],
   imports: [
+    CoreModule,
     CoreFramingModule.forRoot(),
     CoreServicesModule.forRoot(coreServicesConfiguration),
     SharedComponentsModule,
@@ -45,11 +49,17 @@ const coreServicesConfiguration: CoreServicesConfiguration = {
     }),
     EffectsModule.forRoot([
       AuthenticationEffects,
-      // HttpErrorEffects
+      HttpErrorEffects,
+      PlansEffects
     ]),
     StoreDevtoolsModule.instrument({
       name: 'Simple Notes Administration App',
       logOnly: environment.production      
+    }),
+    ConfirmationPopoverModule.forRoot({
+      popoverMessage: 'Are you sure?',
+      cancelButtonType: 'btn-default btn-sm bg-secondary',
+      confirmButtonType: 'btn-primary btn-sm bg-primary text-light'
     }),
   ],
   providers: [],

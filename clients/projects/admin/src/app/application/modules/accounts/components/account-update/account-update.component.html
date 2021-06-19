@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-sm-12 px-4">
+    <h3 class="font-weight-bold text-primary text-right mb-3">Update Account</h3>
+    <hr />
+    <!-- Feedback Message -->
+    <div *ngIf="(responseMessage$ | async)" [@showHide] class="alert alert-success">
+      <span>
+        <strong>{{ (responseMessage$ | async).status | uppercase }}</strong>: {{ (responseMessage$ | async).message }}
+      </span>
+    </div>
+
+    <!-- Account Form -->
+    <!-- Mabye user tabls here like sign up page-->
+    <form (ngSubmit)="submit(form.value)" [formGroup]="form" novalidate>
+      <!-- <sn-user-section-form></sn-user-section-form> -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-4">
+          <fieldset>
+            <h4 class="font-weight-bold mb-2 text-dark">Account</h4>
+            <hr class="p-0 mt-0 mb-2" />
+            <div class="row mb-4">
+              <div class="col-sm-12">
+                <div class="card card-body">
+                  <img src="img-fluid" style="height: 128px;" src="assets/images/default-avatar.svg" />
+                  <div class="mt-4">
+                    <ul class="list-unstyled mb-0">
+                      <li>Created At: <span class="badge badge-dark float-right">{{ account?.createdAt | date:'medium' }}</span></li>
+                      <li>Updated At: <span class="badge badge-dark float-right">{{ account?.updatedAt | date:'medium' }}</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <sn-admin-account-form [plans]="plans$ | async"></sn-admin-account-form>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-4">
+          <fieldset>
+            <h4 class="font-weight-bold mb-2 text-dark">Profile</h4>
+            <hr class="p-0 mt-0 mb-2" />
+            <sn-admin-account-profile-form></sn-admin-account-profile-form>
+          </fieldset>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-4">
+          <fieldset>
+            <h4 class="font-weight-bold mb-2 text-dark">User</h4>
+            <hr class="p-0 mt-0 mb-2" />
+            <sn-admin-account-user-form></sn-admin-account-user-form>
+          </fieldset>
+        </div>
+      </div>
+      <div class="form-group text-right">
+        <button role="button" type="submit" class="btn btn-primary mr-2" [disabled]="!form.valid">Save Account</button>
+        <button role="button" type="button" class="btn btn-secondary" (click)="close()">Close</button>
+      </div>
+    </form>
+  </div>
+</div>

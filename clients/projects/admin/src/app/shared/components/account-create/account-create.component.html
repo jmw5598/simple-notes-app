@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-sm-12 px-4">
+    <h3 class="font-weight-bold text-primary text-right mb-3">Create Account</h3>
+    <hr />
+    <!-- Feedback Message -->
+    <div *ngIf="(responseMessage$ | async)" [@showHide] class="alert alert-success">
+      <span>
+        <strong>{{ (responseMessage$ | async).status | uppercase }}</strong>: {{ (responseMessage$ | async).message }}
+      </span>
+    </div>
+
+    <!-- Account Form -->
+    <form (ngSubmit)="submit(form.value)" [formGroup]="form" novalidate>
+      <!-- <sn-user-section-form></sn-user-section-form> -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-4">
+          <fieldset>
+            <h4 class="font-weight-bold mb-2 text-dark">Account</h4>
+            <hr class="p-0 mt-0 mb-2" />
+            <sn-admin-account-form [plans]="plans$ | async"></sn-admin-account-form>
+          </fieldset>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-4">
+          <fieldset>
+            <h4 class="font-weight-bold mb-2 text-dark">Profile</h4>
+            <hr class="p-0 mt-0 mb-2" />
+            <sn-admin-account-profile-form></sn-admin-account-profile-form>
+          </fieldset>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-4">
+          <fieldset>
+            <h4 class="font-weight-bold mb-2 text-dark">User</h4>
+            <hr class="p-0 mt-0 mb-2" />
+            <sn-admin-account-user-form></sn-admin-account-user-form>
+          </fieldset>
+        </div>
+      </div>
+      <div class="form-group text-right">
+        <button role="button" type="submit" class="btn btn-primary mr-2" [disabled]="!form.valid">Save Account</button>
+        <button role="button" type="button" class="btn btn-secondary" (click)="close()">Close</button>
+      </div>
+    </form>
+  </div>
+</div>

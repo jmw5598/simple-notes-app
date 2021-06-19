@@ -21,14 +21,14 @@
           </span>
         </h4>
         <div>
-          <sn-admin-accounts-list
-              [topics]="(searchTopicsResult$ | async)?.elements"
-              (onDelete)="onDelete($event)"
-              (onCreate)="onCreate($event)">
-          </sn-admin-accounts-list>
+          <sn-admin-accounts-table
+              [accounts]="(searchAccountsResult$ | async)?.elements"
+              (onEdit)="onEdit($event)"
+              (onDelete)="onDelete($event)">
+          </sn-admin-accounts-table>
           <div class="p-3">
             <sn-paginator
-                [page]="(searchTopicsResult$ | async)"
+                [page]="(searchAccountsResult$ | async)"
                 (onNextPage)="onGoToPage($event)"
                 (onPreviousPage)="onGoToPage($event)"
                 (onGoToPage)="onGoToPage($event)">

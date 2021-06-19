@@ -5,6 +5,8 @@ export const buildAccountFormGroup = (
     formBuilder: FormBuilder,
     accountValidators: AccountValidators): FormGroup => {
   return formBuilder.group({
-    plan: ['', [Validators.required]]
+    plan: ['', [Validators.required]],
+    isConfirmed: [false, [Validators.required]],
+    isEnabled: [false, [Validators.required]]
   });
 }

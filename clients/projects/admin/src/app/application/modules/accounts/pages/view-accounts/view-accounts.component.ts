@@ -9,12 +9,15 @@ import * as accountsActions from '../../store/actions';
 import { DEFAULT_SEARCH_ACCOUNTS_PAGE } from '@sn/admin/core/defaults';
 
 import { fadeAnimation } from '@sn/shared/animations';
-import { IPageable, Page, PageableSearch } from '@sn/shared/models';
+import { IPageable, Page, PageableSearch, Account } from '@sn/shared/models';
 import { 
   AbstractPageOverlayLoader, 
   DrawerLocation, 
   DrawerService, 
+  DrawerSize, 
   OverlayLoaderService } from '@sn/shared/components';
+import { AccountCreateComponent } from '@sn/admin/shared/components';
+import { AccountUpdateComponent } from '../../components/account-update/account-update.component';
 
 
 @Component({
@@ -58,7 +61,16 @@ export class ViewAccountsComponent extends AbstractPageOverlayLoader implements 
   }
 
   public onCreate(): void {
-    // this._drawerService.show(AccountCreateComponent, {});
+    this._drawerService.show(AccountCreateComponent, {
+      size: DrawerSize.LARGE
+    });
+  }
+
+  public onEdit(account: Account): void {
+    this._drawerService.show(AccountUpdateComponent, {
+      size: DrawerSize.LARGE,
+      data: account
+    });
   }
 
   public onGoToPage(pageable: IPageable): void {

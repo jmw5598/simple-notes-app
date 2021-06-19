@@ -16,6 +16,7 @@ import { DocumentBuilderModule } from './common/services/document-builder/docume
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { FlashcardsModule } from './flashcards/flashcards.module';
 import { TodosModule } from './todos/todos.module';
+import { RolesModule } from './roles/roles.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { TodosModule } from './todos/todos.module';
     DocumentBuilderModule,
     // CacheModule.register(),
     FlashcardsModule,
-    TodosModule
+    TodosModule,
+    RolesModule
   ],
   controllers: [],
   providers: [

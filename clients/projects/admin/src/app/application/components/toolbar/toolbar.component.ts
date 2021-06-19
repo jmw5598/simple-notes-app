@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DrawerService, DrawerLocation } from '@sn/shared/components';
+import { AccountCreateComponent } from '@sn/admin/shared/components';
+import { DrawerService, DrawerLocation, DrawerSize } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-admin-global-toolbar',
@@ -11,7 +12,9 @@ export class ToolbarComponent implements OnInit {
   public readonly DrawerLocation = DrawerLocation;
   public readonly tooltipDelay: number = 500;
 
-  constructor() { }
+  constructor(
+    private _drawerService: DrawerService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +28,8 @@ export class ToolbarComponent implements OnInit {
   }
 
   public onCreateUserAccount(): void {
-    console.log("Creating new account drawer");
+    this._drawerService.show(AccountCreateComponent, {
+      size: DrawerSize.LARGE
+    });
   }
 }

@@ -3,16 +3,16 @@ import {
   Page,
   PageableSearch,
   ResponseMessage,
-  Account } from '@sn/shared/models';
+  Account, Registration, RegistrationResult } from '@sn/shared/models';
 
 export const createAccount = createAction(
   '[Accounts] Create Account',
-  props<{ account: Account }>()
+  props<{ registration: Registration }>()
 );
 
 export const createAccountSuccess = createAction(
   '[Accounts] Create Account Success',
-  props<{ account: Account }>()
+  props<{ result: RegistrationResult }>()
 );
 
 export const setCreateAccountResponseMessage = createAction(
@@ -51,11 +51,11 @@ export const setDeleteAccountResponseMessage = createAction(
 );
 
 export const searchAccounts = createAction(
-  '[Topic] Search Topic',
+  '[Accounts] Search Accounts',
   props<{ search: PageableSearch }>()
 );
 
 export const searchAccountsResult = createAction(
-  '[Topic] Search Topic Result',
+  '[Accounts] Search Accounts Result',
   props<{ page: Page<Account> }>()
 );

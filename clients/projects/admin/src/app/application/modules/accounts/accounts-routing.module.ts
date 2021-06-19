@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccountsSearchResultGuard } from './guards/accounts-search-result.guard';
 import { ViewAccountsComponent } from './pages/view-accounts/view-accounts.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'view',
+    canActivate: [AccountsSearchResultGuard],
     component: ViewAccountsComponent
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'view',
     pathMatch: 'full'
   }
 ];

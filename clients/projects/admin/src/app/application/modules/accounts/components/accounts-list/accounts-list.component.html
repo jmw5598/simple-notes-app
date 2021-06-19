@@ -11,9 +11,13 @@
     </button>
   </ng-template>
 </div>
+<div class="accounts-list">
+  <sn-admin-accounts-table></sn-admin-accounts-table>
+</div>
 <ng-container *ngIf="accounts">
-  <div *ngFor="let account of account" class="border-bottom-1 p-3">
-    <div class="list-details">
+  <div *ngFor="let account of accounts" class="border-bottom-1 p-3">
+    
+    <!-- <div class="list-details">
       <div class="list-details-title">
         <h5 class="text-primary p-0 m-0">
           <a [routerLink]="[]">account first and last name</a>
@@ -42,6 +46,6 @@
       <p class="list-details-description text-dark font-italic p-0 m-0">Account description will go here...</p>
       <hr class="my-1" />
       <p class="list-details-timestamp text-dark mb-0"><i class="far fa-clock"></i>&nbsp;&nbsp; {{ account.updatedAt | date:'medium' }}</p>
-    </div>
+    </div> -->
   </div>
 </ng-container>

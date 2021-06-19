@@ -11,7 +11,8 @@ import {
   Registration,
   RegistrationResult, 
   ResponseMessage,
-  ValidatorResult } from '@sn/shared/models';
+  ValidatorResult, 
+  IPageable, Page } from '@sn/shared/models';
 
 import { CoreServicesConfiguration, CORE_SERVICES_CONFIGURATION } from '../core-services-configuration.model';
 
@@ -23,6 +24,17 @@ export class AccountsService extends AbstractCrudService<Account, number> {
     protected _http: HttpClient
   ) { 
     super(_http, `${_configuration.api.baseUrl}/accounts`);
+  }
+
+  public searchAccounts(searchTerm: string, page?: IPageable): Observable<Page<Account>> {
+    const params: {[key: string]: any} = !page ? { searchTerm: searchTerm } : {
+      searchTerm: searchTerm,
+      page: page.page,
+      size: page.size,
+      sortCol: page.sort.column,
+      sortDir: page.sort.direction
+    };
+    return this._http.get<Page<Account>>(`${this._base}/search`, { params: params });
   }
 
   public getAccountDetails(): Observable<Account> {

@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, Raw } from 'typeorm';
+import { Repository, Raw, IsNull } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -23,6 +23,11 @@ import { ResponseStatus } from 'src/common/enums/response-status.enum';
 import { UpdateAccountDto } from '../dtos/update-account.dto';
 import { UpdateProfileDto } from '../dtos/update-profile.dto';
 import { AccountNotFoundException } from '../exceptions/account-not-found.exception';
+import { Page } from 'src/common/models/page.model';
+import { AccountDto } from '../dtos/account.dto';
+import { IPageable } from 'src/common/models/pageable.interface';
+import { AccountMapper } from '../mappers/account.mapper';
+import { Roles } from 'src/authentication/models/roles.enum';
 
 @Injectable()
 export class AccountsService {
@@ -81,9 +86,27 @@ export class AccountsService {
     return profile;
   }
 
-  public async registerNewAccount(registrationDto: RegistrationDto): Promise<any> {    
+  // @Note This is use by administration portal (can manually set isConfirmed and isEnabled)
+  public async createNewAccount(registrationDto: RegistrationDto): Promise<any> {
+    // TODO create these two methods for account and user, createUser should assign roles base on http body
     const account: Account = await this._createNewAccount(registrationDto.account);
     const user: User = await this._createNewUser(registrationDto.user, account);
+    const profile: Profile = await this._createNewProfile(registrationDto.profile, account);
+
+    if (!registrationDto.account.isConfirmed) {
+      this._emailerService.sendConfirmationEmail(profile.email, account.comfirmationToken);
+    }
+    
+    return {
+      status: "SUCCESS",
+      message: "Registration was success.  Please check and confirm your email address."
+    } as RegistrationResult;
+  }
+
+  // @Note This is use by user app (isConfirmed, and isEnabled are hard set)
+  public async registerNewAccount(registrationDto: RegistrationDto): Promise<any> {    
+    const account: Account = await this._registerNewAccount(registrationDto.account);
+    const user: User = await this._registerNewUser(registrationDto.user, account);
     const profile: Profile = await this._createNewProfile(registrationDto.profile, account);
     this._emailerService.sendConfirmationEmail(profile.email, account.comfirmationToken);
     return {
@@ -155,6 +178,51 @@ export class AccountsService {
       .then(count => count > 0);
   }
 
+  public async searchAccounts(searchTerm: string, pageable: IPageable): Promise<Page<AccountDto>> {
+    const sort: {[key: string]: string} = pageable.getSort().asKeyValue();
+    const where = await this._generateSearchWhereClause(searchTerm);
+    const result = await this._accountRepository.findAndCount({
+      relations: ['user', 'profile', 'profile.address'],
+      where: where,
+      order: sort,
+      skip: ((pageable.getPageNumber() - 1) * pageable.getPageSize()),
+      take: pageable.getPageSize()
+    });
+    const elements: AccountDto[] = AccountMapper.toAccountDtoList(result[0]);
+    const totalElements: number = result[1];
+    return this._generatePageResult(elements, totalElements, pageable);
+  }
+  
+  // TODO FIgure this out!
+  private async _generateSearchWhereClause(searchTerm: string): Promise<any> {
+    const ilike = Raw(alias => `${alias} ILIKE '%${searchTerm.replace("/\s/g", "%")}%'`)
+    return [
+      // { 
+      //   user: { username: ilike }
+      // },
+      // { 
+      //   profile: { firstName: ilike },
+      // },
+      // { 
+      //   profile: { lastName: ilike },
+      // },
+      // { 
+      //   profile: { email: ilike },
+      // }
+    ];
+  }
+
+  private async _generatePageResult(elements: AccountDto[], totalElements: number, pageable: IPageable): Promise<Page<AccountDto>> {
+    return {
+      elements: elements, 
+      totalElements: totalElements, 
+      totalPages: Math.ceil(totalElements / pageable.getPageSize()),
+      current: pageable,
+      next: pageable.next(totalElements),
+      previous: pageable.previous(totalElements)
+    } as Page<AccountDto>;
+  }
+
   private async _createNewAddress(createAddressDto: CreateAddressDto): Promise<Address> {
     const address: Address = this._addressRepository.create({
       street: createAddressDto.street,
@@ -178,15 +246,17 @@ export class AccountsService {
     return this._profileRepository.save(profile);
   }
 
-  private async _createNewAccount(createAccountDto: CreateAccountDto): Promise<Account> {
+  private async _registerNewAccount(createAccountDto: CreateAccountDto): Promise<Account> {
     const account: Account = this._accountRepository.create({
-      plan: createAccountDto.plan
+      plan: createAccountDto.plan,
+      isConfirmed: false,
+      isEnabled: true
     });
     return this._accountRepository.save(account);
   }
 
-  private async _createNewUser(createUserDto: CreateUserDto, account: Account): Promise<User> {
-    const userRole: Role = await this._roleRepository.findOne({ name: RoleType.USER });
+  private async _registerNewUser(createUserDto: CreateUserDto, account: Account): Promise<User> {
+    const userRole: Role = await this._roleRepository.findOne({ name: Roles.USER });
     const resetTokenExpiration: Date = this._generateResetTokenExpiration();
     const user: User = this._userRepository.create({
       username: createUserDto.username.trim().toLowerCase(),

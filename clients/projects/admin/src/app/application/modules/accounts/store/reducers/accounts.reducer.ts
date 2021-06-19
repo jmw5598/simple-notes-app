@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { ResponseMessage, Page } from '@sn/shared/models';
+import { ResponseMessage, Page, Account, RegistrationResult } from '@sn/shared/models';
 
 import * as fromActions from '../actions';
 
@@ -9,6 +9,7 @@ export interface IAccountsState {
   createAccountResponseMessage: ResponseMessage,
   updateAccountResponseMessage: ResponseMessage,
   deleteAccountResponseMessage: ResponseMessage,
+  newAccountRegistrationResult: RegistrationResult,
   searchAccountsResult: Page<Account>
 }
 
@@ -16,12 +17,13 @@ export const initialAccountsState: IAccountsState = {
   createAccountResponseMessage: null,
   updateAccountResponseMessage: null,
   deleteAccountResponseMessage: null,
+  newAccountRegistrationResult: null,
   searchAccountsResult: null
 }
 
 const onSetCreateAccountResponseMessage = (state, { message }) => ({
   ...state,
-  createAccountResponseMessage: message
+  newAccountRegistrationResult: message
 });
 
 const onSetUpdateAccountResponseMessage = (state, { message }) => ({
