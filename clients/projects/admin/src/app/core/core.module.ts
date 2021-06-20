@@ -1,7 +1,7 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { GlobalHttpErrorInterceptor, JwtTokenInterceptor } from '@sn/user/core/interceptors';
+import { GlobalHttpErrorInterceptor, JwtTokenInterceptor } from '@sn/admin/core/interceptors';
 import { authenticatedUserInitializer } from './initializers';
 import { AuthenticationService } from '@sn/core/services';
 import { Store } from '@ngrx/store';

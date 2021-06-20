@@ -13,7 +13,7 @@ import { CoreServicesModule, CoreServicesConfiguration } from '@sn/core/services
 import { SharedComponentsModule } from '@sn/shared/components';
 import { StoreModule } from '@ngrx/store';
 
-import { ROOT_REDUCERS, metaReducers } from '@sn/user/store/reducers';
+import { ROOT_REDUCERS, metaReducers } from './store/reducers';
 import { AuthenticationEffects } from './auth/store/effects';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';

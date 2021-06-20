@@ -23,6 +23,11 @@ const routes: Routes = [
         loadChildren: () => import('./modules/invoices/invoices.module').then(m => m.InvoicesModule)
       },
       {
+        path: 'settings',
+        data: { preload: true },
+        loadChildren: () => import('./modules/settings/settings.module').then(m => m.SettingsModule)
+      },
+      {
         path: '**',
         redirectTo: 'dashboard',
         pathMatch: 'full'

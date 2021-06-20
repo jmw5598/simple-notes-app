@@ -1,0 +1,7 @@
+<ul class="list-group settings-navigation-list" *ngIf="links?.length">
+  <li class="list-group-item" *ngFor="let link of links">
+    <a [routerLink]="link.routerLink" class="text-dark">
+      <i class="icon-margin" [ngClass]="link.iconClasses"></i> {{ link.label }}
+    </a>
+  </li>
+</ul>

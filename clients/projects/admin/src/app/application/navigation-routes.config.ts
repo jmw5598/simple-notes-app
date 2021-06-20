@@ -20,6 +20,12 @@ export const NAVIGATION_ROUTES: NavigationRouteLink[] = [
     tooltip: 'Invoicing & Payments'
   },
   {
+    label: 'Settings',
+    iconClasses: 'fas fa-cogs',
+    routerLink: ['settings'],
+    tooltip: 'Settings'
+  },
+  {
     label: 'Logout',
     iconClasses: 'fas fa-lock',
     routerLink: ['auth', 'logout'],
