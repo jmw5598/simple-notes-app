@@ -1,7 +1,10 @@
 <div class="row">
   <div class="col-sm-12 px-4">
     <h3 class="font-weight-bold text-primary text-right mb-3">Update Account</h3>
-    <hr />
+    <hr class="mb-0" />
+    <div class="update-account-toolbar mb-3">
+      <sn-admin-account-update-toolbar class="mb-4"></sn-admin-account-update-toolbar>
+    </div>
     <!-- Feedback Message -->
     <div *ngIf="(responseMessage$ | async)" [@showHide] class="alert alert-success">
       <span>
