@@ -11,7 +11,9 @@ RUN npm run build:user
 RUN npm run build:admin
 
 FROM nginx:alpine
-COPY --from=builder /opt/app/dist/user/ /usr/share/nginx/html/user
-COPY --from=builder /opt/app/dist/admin/ /usr/share/nginx/html/admin
+RUN mkdir -p /usr/share/nginx/app
+RUN mkdir -p /usr/share/nginx/admin
+COPY --from=builder /opt/app/dist/user/ /usr/share/nginx/html/app/
+COPY --from=builder /opt/app/dist/admin/ /usr/share/nginx/html/admin/
 COPY --from=builder /opt/app/nginx.conf /etc/nginx/conf.d/default.conf
 CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
