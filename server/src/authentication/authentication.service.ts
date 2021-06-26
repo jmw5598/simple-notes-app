@@ -12,6 +12,7 @@ import { UnconfirmedAccountException } from './exceptions/unconfirmed-account.ex
 import { UserSettings } from './models/user-settings.model';
 import { ThemeMapper } from 'src/themes/mappers/theme.mapper';
 import { Roles } from './models/roles.enum';
+import { AccountDisabledException } from './exceptions/account-disabled.exception';
 
 @Injectable()
 export class AuthenticationService {
@@ -30,6 +31,10 @@ export class AuthenticationService {
 
     if (!user.account.isConfirmed) {
       throw new UnconfirmedAccountException();
+    }
+
+    if (!user.account.isEnabled) {
+      throw new AccountDisabledException();
     }
 
     const { password: storedPassword, resetToken, ...result } = user;
