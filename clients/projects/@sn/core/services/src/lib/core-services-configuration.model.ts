@@ -4,6 +4,8 @@ export const CORE_SERVICES_CONFIGURATION: InjectionToken<string> = new Injection
 
 export interface AuthConfiguration {
   baseUrl: string;
+  authUserKey: string;
+  rememberMeKey: string;
 }
 
 export interface ApiConfiguration {

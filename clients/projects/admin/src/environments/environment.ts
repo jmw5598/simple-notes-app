@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   auth: {
-    baseUrl: 'http://localhost:3000/auth'
+    baseUrl: 'http://localhost:3000/auth',
+    authUserKey: 'ADMIN:AUTHUSER',
+    rememberMeKey: 'ADMIN:REMEMBERME'
   },
   api: {
     baseUrl: 'http://localhost:3000'

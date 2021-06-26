@@ -8,8 +8,8 @@ import { CoreServicesConfiguration, CORE_SERVICES_CONFIGURATION } from '../core-
 
 @Injectable()
 export class AuthenticationService {
-  private readonly AUTH_USER_KEY: string = "AUTHUSER";
-  private readonly REMEMBER_ME_KEY: string = "REMEMBERME";
+  private readonly AUTH_USER_KEY: string;
+  private readonly REMEMBER_ME_KEY: string;
   private _baseUrl: string;
 
   constructor(
@@ -18,6 +18,8 @@ export class AuthenticationService {
     private _http: HttpClient
   ) {
     this._baseUrl = this._configuration.auth.baseUrl;
+    this.AUTH_USER_KEY = this._configuration.auth.authUserKey;
+    this.REMEMBER_ME_KEY = this._configuration.auth.rememberMeKey;
   }
 
   public authenticateUser(credentials: UserCredentials): Observable<AuthenticatedUser> {
