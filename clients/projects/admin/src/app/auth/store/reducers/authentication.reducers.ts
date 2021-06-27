@@ -34,7 +34,7 @@ const _authenticationReducer = createReducer(
       ...state,
       authenticatedUser: null,
       authenticatedStatus: AuthenticatedStatus.UNAUTHENTICATED,
-      // errorMessage: error.error.message
+      errorMessage: error.error.message
     }
   }),
   on(fromActions.setLoginUserError, (state, { errorMessage }) => {

@@ -40,7 +40,7 @@ export class AdminRoleGuard implements CanActivate {
   private _handleIncorrectRole(): void {
     this._store.dispatch(fromAuthenticationActions.logoutUser());
     this._store.dispatch(fromAuthenticationActions.setLoginUserError({
-      errorMessage: 'Not are not authorized to access this application'
+      errorMessage: 'You are not authorized to access this application'
     }));
   }
 }

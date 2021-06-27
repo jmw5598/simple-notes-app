@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminRoleGuard } from '../auth/guards/admin-role.guard';
+import { GetRolesGuard } from '../core/guards';
 import { ApplicationComponent } from './application.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ApplicationComponent,
+    canActivate: [
+      AdminRoleGuard,
+      GetRolesGuard
+    ],
     children: [
       {
         path: 'dashboard',

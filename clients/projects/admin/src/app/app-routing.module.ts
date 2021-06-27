@@ -4,8 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { OnDemandPreloadStrategy } from '@sn/core/framing';
 import { AuthenticationGuard } from './auth/guards';
 import { PlansGuard } from './core/guards';
-import { AdminRoleGuard } from './auth/guards/admin-role.guard';
-import { GetRolesGuard } from './core/guards/get-roles.guard';
 
 const routes: Routes = [
   {
@@ -16,9 +14,7 @@ const routes: Routes = [
     path: '',
     canActivate: [
       AuthenticationGuard,
-      AdminRoleGuard,
-      PlansGuard,
-      GetRolesGuard,
+      PlansGuard
     ],
     loadChildren: () => import('./application/application.module').then(m => m.ApplicationModule),
     data: { breadcrumb: 'Dashboard' }
