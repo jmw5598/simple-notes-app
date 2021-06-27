@@ -5,6 +5,9 @@ export class RolesMapper {
   public static toRoleDto(role: Role): RoleDto {
     return {
       id: role.id,
+      createdAt: role.createdAt,
+      updatedAt: role.updatedAt,
+      deletedAt: role.deletedAt,
       name: role.name
     } as RoleDto
   }

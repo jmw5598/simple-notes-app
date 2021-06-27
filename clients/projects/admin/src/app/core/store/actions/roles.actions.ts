@@ -10,6 +10,15 @@ export const getAllRolesSuccess = createAction(
   props<{ roles: Role[] }>()
 );
 
+export const getActiveRoles = createAction(
+  '[Roles] Get Active Roles'
+);
+
+export const getActiveRolesSuccess = createAction(
+  '[Roles] Get Active Roles Success',
+  props<{ roles: Role[] }>()
+);
+
 export const createRole = createAction(
   '[Roles] Create Role',
   props<{ role: Role }>()

@@ -6,6 +6,7 @@ export const rolesFeatureKey = 'roles';
 
 export interface IRolesState {
   roles: Role[],
+  activeRoles: Role[],
   createRoleResponseMessage: ResponseMessage,
   updateRoleResponseMessage: ResponseMessage,
   deleteRoleResponseMessage: ResponseMessage
@@ -13,6 +14,7 @@ export interface IRolesState {
 
 export const initialRolesState: IRolesState = {
   roles: null,
+  activeRoles: null,
   createRoleResponseMessage: null,
   updateRoleResponseMessage: null,
   deleteRoleResponseMessage: null
@@ -21,6 +23,11 @@ export const initialRolesState: IRolesState = {
 const onGetAllRolesSuccess = (state, { roles }) => ({
   ...state,
   roles: roles
+});
+
+const onGetActiveRolesSuccess = (state, { roles }) => ({
+  ...state,
+  activeRoles: roles
 })
 
 const onSetCreateRoleResponseMessage = (state, { message }) => ({
@@ -41,6 +48,7 @@ const onSetDeleteRoleResponseMessage = (state, { message }) => ({
 const _rolesReducer = createReducer(
   initialRolesState,
   on(fromActions.getAllRolesSuccess, onGetAllRolesSuccess),
+  on(fromActions.getActiveRolesSuccess, onGetActiveRolesSuccess),
   on(fromActions.setCreateRoleResponseMessage, onSetCreateRoleResponseMessage),
   on(fromActions.setUpdateRoleResponseMessage, onSetUpdateRoleResponseMessage),
   on(fromActions.setDeleteRoleResponseMessage, onSetDeleteRoleResponseMessage),

@@ -1,12 +1,14 @@
-import { Controller, Delete, Get, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { JwtAdminRoleGuard } from 'src/authentication/guards/jwt-admin-role.guard';
 import { JwtAuthenticationGuard } from 'src/authentication/guards/jwt-authentication.guard';
 import { SnLoggerService } from '../../logger/sn-logger.service';
+import { CreateRoleDto } from '../dtos/create-role.dto';
 import { RoleDto } from '../dtos/role.dto';
+import { UpdateRoleDto } from '../dtos/update-role.dto';
 import { RolesService } from '../services/roles.service';
 
 @Controller('roles')
-@UseGuards(JwtAuthenticationGuard, JwtAdminRoleGuard)
+// @UseGuards(JwtAuthenticationGuard, JwtAdminRoleGuard)
 export class RolesController {
   constructor(
     private readonly _logger: SnLoggerService,
@@ -25,37 +27,43 @@ export class RolesController {
     }
   }
 
-  // @Post()
-  // public async createRole(): Promise<RoleDto> {
-  //   try {
-  //     return this._rolesService.createRole();
-  //   } catch (error) {
-  //     this._logger.error(`Error creating role`, error);
-  //     throw error;
-  //   }
-  // }
+  @Get('active')
+  public async getActiveRoles(): Promise<RoleDto[]> {
+    try {
+      return this._rolesService.getActiveRoles();
+    } catch (error) {
+      this._logger.error(`Error getting active roles! `, error);
+      throw error;
+    }
+  }
 
-  // @Put(':id')
-  // public async updateRoleById(): Promise<RoleDto> {
-  //   try {
-  //     return this._rolesService.updateRoleById();
-  //   } catch (error) {
-  //     this._logger.error(`Error updating role`, error);
-  //     throw error;
-  //   }
-  // }
+  @Post()
+  public async createRole(@Body() createRoleDto: CreateRoleDto): Promise<RoleDto> {
+    try {
+      return this._rolesService.createRole(createRoleDto);
+    } catch (error) {
+      this._logger.error(`Error creating role`, error);
+      throw error;
+    }
+  }
 
-  // @Delete(':id')
-  // public async updateRoleById(): Promise<RoleDto> {
-  //   try {
-  //     return this._rolesService.deleteRoleById();
-  //   } catch (error) {
-  //     this._logger.error(`Error deleting role`, error);
-  //     throw error;
-  //   }
-  // }
+  @Put(':id')
+  public async updateRoleById(@Param('id') roleId: number, @Body() updateRoleDto: UpdateRoleDto): Promise<RoleDto> {
+    try {
+      return this._rolesService.updateRoleById(roleId, updateRoleDto);
+    } catch (error) {
+      this._logger.error(`Error updating role`, error);
+      throw error;
+    }
+  }
 
-  // TODO :id - PUT - update role
-  // TODO  - POST - create role
-  // TODO :id - DELETE - delete role;
+  @Delete(':id')
+  public async deleteRoleById(@Param('id') roleId: number): Promise<RoleDto> {
+    try {
+      return this._rolesService.deleteRoleById(roleId);
+    } catch (error) {
+      this._logger.error(`Error deleting role`, error);
+      throw error;
+    }
+  }
 }

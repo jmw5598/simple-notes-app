@@ -1,6 +1,6 @@
 import { NotFoundException } from '@nestjs/common';
 
-export class RoleEventNotFoundException extends NotFoundException {
+export class RoleNotFoundException extends NotFoundException {
   constructor() {
     super(`Role with supplied id was not found!`);
   }

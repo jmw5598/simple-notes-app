@@ -17,11 +17,21 @@ export class RolesEffects {
 
   getRoles$ = createEffect(() => this._actions.pipe(
     ofType(fromActions.getAllRoles),
-    switchMap(() => { console.log("calling service ot get roles"); return this._rolesService.findAll()
+    switchMap(() => this._rolesService.findAll()
       .pipe(
         map(roles => fromActions.getAllRolesSuccess({ roles: roles })),
         catchError(error => of(handleHttpError(error)))
       )
-      })
+    )
+  ));
+
+  getActiveRoles$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.getAllRoles),
+    switchMap(() => this._rolesService.getActiveRoles()
+      .pipe(
+        map(roles => fromActions.getActiveRolesSuccess({ roles: roles })),
+        catchError(error => of(handleHttpError(error)))
+      )
+    )
   ));
 }

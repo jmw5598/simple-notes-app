@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Role } from '../../users/entities/role.entity';
-import { Repository } from 'typeorm';
+import { IsNull, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { RoleEventNotFoundException } from '../exceptions/role-not-found.exception';
+import { RoleNotFoundException } from '../exceptions/role-not-found.exception';
 import { RolesMapper } from '../mappers/roles.mapper';
 import { RoleDto } from '../dtos/role.dto';
+import { CreateRoleDto } from '../dtos/create-role.dto';
+import { UpdateRoleDto } from '../dtos/update-role.dto';
 
 @Injectable()
 export class RolesService {
@@ -15,19 +17,48 @@ export class RolesService {
 
   public async getAllRoles(): Promise<RoleDto[]> {
     const roles: Role[] = await this._rolesRepository.find();
-    if (!roles) throw new RoleEventNotFoundException();
+    if (!roles) throw new RoleNotFoundException();
     return RolesMapper.toRoleDtoList(roles);
   }
 
-  // public async createRole(): Promise<RoleDto> {
+  public async getActiveRoles(): Promise<RoleDto[]> {
+    const roles: Role[] = await this._rolesRepository.find({ deletedAt: IsNull() })
+    if (!roles) throw new RoleNotFoundException();
+    return RolesMapper.toRoleDtoList(roles);
+  }
 
-  // }
+  public async createRole(createRoleDto: CreateRoleDto): Promise<RoleDto> {
+    const role: Role = this._rolesRepository.create({
+      name: `ROLE_${createRoleDto?.name?.split(' ').join('_').toUpperCase()}`
+    });
+    return RolesMapper.toRoleDto(
+      await this._rolesRepository.save(role)
+    );
+  }
 
-  // public async updateRoleById(roleId: number): Promise<RoleDto> {
+  public async updateRoleById(roleId: number, updateRoleDto: UpdateRoleDto): Promise<RoleDto> {
+    const existingRole: Role = await this._rolesRepository.findOne({ id: roleId });
+    
+    if (!existingRole) throw new RoleNotFoundException();
 
-  // }
+    const roleMinusPrefix = updateRoleDto.name.split('ROLE_').join();
 
-  // public async deleteRoleById(roleId: number): Promise<RoleDto> {
+    existingRole.name = `ROLE_${roleMinusPrefix.split(' ').join('_').toUpperCase()}`;
 
-  // }
+    return RolesMapper.toRoleDto(
+      await this._rolesRepository.save(existingRole)
+    );
+  }
+
+  public async deleteRoleById(roleId: number): Promise<RoleDto> {
+    const existingRole: Role = await this._rolesRepository.findOne({ id: roleId });
+    
+    if (!existingRole) throw new RoleNotFoundException();
+
+    existingRole.deletedAt = new Date();
+
+    return RolesMapper.toRoleDto(
+      await this._rolesRepository.save(existingRole)
+    );
+  }
 }
