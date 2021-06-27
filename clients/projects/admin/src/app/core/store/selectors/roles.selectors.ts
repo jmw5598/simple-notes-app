@@ -8,6 +8,12 @@ export const selectRoles = createSelector(
   (state: fromRoles.IRolesState) => state.roles
 );
 
+// Update this and just filter all roles where deletedAt is null
+export const selectActivePlans = createSelector(
+  selectRolesState,
+  (state: fromRoles.IRolesState) => state.activeRoles
+);
+
 export const selectCreateRoleResponseMessasge = createSelector(
   selectRolesState,
   (state: fromRoles.IRolesState) => state.createRoleResponseMessage

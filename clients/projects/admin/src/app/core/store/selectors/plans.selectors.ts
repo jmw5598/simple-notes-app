@@ -7,3 +7,24 @@ export const selectPlans = createSelector(
   selectPlanState,
   (state: fromPlans.IPlansState) => state.plans
 );
+
+// Update this and just filter all plans where deletedAt is null
+export const selectActivePlans = createSelector(
+  selectPlanState,
+  (state: fromPlans.IPlansState) => state.activePlans
+);
+
+export const selectCreatePlanResponseMessasge = createSelector(
+  selectPlanState,
+  (state: fromPlans.IPlansState) => state.createPlanResponseMessage
+);
+
+export const selectUpdatePlanResponseMessasge = createSelector(
+  selectPlanState,
+  (state: fromPlans.IPlansState) => state.updatePlanResponseMessage
+);
+
+export const selectDeletePlanResponseMessasge = createSelector(
+  selectPlanState,
+  (state: fromPlans.IPlansState) => state.deletePlanResponseMessage
+);
