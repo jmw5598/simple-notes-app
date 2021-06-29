@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminRoleGuard } from '../auth/guards/admin-role.guard';
-import { GetRolesGuard } from '../core/guards';
+import { GetRolesGuard, PlansGuard } from '../core/guards';
 import { ApplicationComponent } from './application.component';
 
 const routes: Routes = [
@@ -10,7 +10,8 @@ const routes: Routes = [
     component: ApplicationComponent,
     canActivate: [
       AdminRoleGuard,
-      GetRolesGuard
+      GetRolesGuard,
+      PlansGuard
     ],
     children: [
       {
