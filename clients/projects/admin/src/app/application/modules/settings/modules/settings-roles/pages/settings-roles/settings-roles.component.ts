@@ -5,6 +5,7 @@ import { IAppState } from '@sn/user/store/reducers';
 import { Observable } from 'rxjs';
 
 import * as rolesSelectors from '@sn/admin/core/store/selectors';
+import * as rolesActions from '@sn/admin/core/store/actions';
 import { DrawerService, DrawerSize } from '@sn/shared/components';
 import { RolesUpdateComponent } from '../../components/roles-update/roles-update.component';
 import { RolesCreateComponent } from '../../components/roles-create/roles-create.component';
@@ -39,6 +40,10 @@ export class SettingsRolesComponent implements OnInit {
   }
 
   public onDelete(roleId: number): void {
-    console.log("deleting role ", roleId)
+    this._store.dispatch(rolesActions.deleteRole({ roleId: roleId }));
+  }
+
+  public onUndelete(roleId: number): void {
+    this._store.dispatch(rolesActions.undeleteRole({ roleId: roleId }));
   }
 }

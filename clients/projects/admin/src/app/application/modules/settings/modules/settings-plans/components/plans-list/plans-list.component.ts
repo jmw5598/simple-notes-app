@@ -16,6 +16,9 @@ export class PlansListComponent implements OnInit {
   @Output()
   public onDelete: EventEmitter<number> = new EventEmitter<number>();
 
+  @Output()
+  public onUndelete: EventEmitter<number> = new EventEmitter<number>();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -27,5 +30,9 @@ export class PlansListComponent implements OnInit {
 
   public delete(planId: number): void {
     this.onDelete.emit(planId);
+  }
+
+  public undelete(planId: number): void {
+    this.onUndelete.emit(planId);
   }
 }

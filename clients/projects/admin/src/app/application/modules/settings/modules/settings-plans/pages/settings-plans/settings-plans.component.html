@@ -19,7 +19,8 @@
         <sn-admin-plans-list 
             [plans]="allPlans$ | async"
             (onEdit)="onEdit($event)"
-            (onDelete)="onDelete($event)">
+            (onDelete)="onDelete($event)"
+            (onUndelete)="onUndelete($event)">
         </sn-admin-plans-list>
       </div>
     </div>

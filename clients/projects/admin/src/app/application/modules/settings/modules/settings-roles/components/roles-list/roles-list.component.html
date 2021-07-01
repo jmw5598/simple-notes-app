@@ -1,32 +1,48 @@
-<table class="table table-striped accounts-table" *ngIf="roles">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Updated At</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let role of roles">
-      <td>{{ role?.name }}</td>
-      <td>{{ role?.updatedAt | date }}</td>
-      <td class="text-right">
-        <div class="action-buttons text-right">
-          <button 
-              class="btn btn-outline-primary btn-sm btn-border-none"
-              (click)="edit(role)">
-            <i class="fas fa-edit"></i>
-          </button>
-          <button 
+<div class="table-responsive">
+  <table class="table table-striped" *ngIf="roles">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Created At</th>
+        <!-- <th>Updated At</th> -->
+        <th>Deleted At</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let role of roles">
+        <td [ngClass]="{ 'text-danger' : role?.deletedAt }">{{ role?.name }}</td>
+        <td>{{ role?.createdAt | date }}</td>
+        <!-- <td>{{ role?.updatedAt | date }}</td> -->
+        <td>{{ role?.deletedAt | date }}</td>
+        <td class="text-right">
+          <div class="action-buttons text-right">
+            <button 
+                class="btn btn-outline-primary btn-sm btn-border-none"
+                (click)="edit(role)">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button
+              *ngIf="role?.deletedAt"
               mwlConfirmationPopover
               placement="left"
-              (confirm)="delete(role.id)"
-              role="button" 
+              (confirm)="undelete(role.id)"
+              role="button"
               class="btn btn-outline-primary btn-sm btn-border-none">
-            <i class="far fa-trash-alt"></i>
+            <i class="fas fa-undo"></i>
           </button>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+            <button 
+                *ngIf="!role?.deletedAt"
+                mwlConfirmationPopover
+                placement="left"
+                (confirm)="delete(role.id)"
+                role="button" 
+                class="btn btn-outline-primary btn-sm btn-border-none">
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

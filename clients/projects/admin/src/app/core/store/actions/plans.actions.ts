@@ -63,3 +63,13 @@ export const setDeletePlanResponseMessage = createAction(
   '[Plans] Set Delete Plan Response Message',
   props<{ message: ResponseMessage }>()
 );
+
+export const undeletePlan = createAction(
+  '[Plans] Undelete Plan',
+  props<{ planId: number }>()
+);
+
+export const undeletePlanSuccess = createAction(
+  '[Plans] Undelete Plan Success',
+  props<{ plan: Plan }>()
+);

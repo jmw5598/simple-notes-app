@@ -25,12 +25,9 @@ export class GetRolesGuard implements CanActivate {
   }
   
   private _getRolesFromStoreOrApi(): Observable<Role[]> {
-    console.log("checking store for roles");
     return this._store.select(fromSelectors.selectRoles).pipe(
       tap((roles: Role[]) => {
-        console.log("checking store roles values");
         if (!roles) {
-          console.log("role undefined dispatching");
           this._store.dispatch(fromActions.getAllRoles())
         }
       }),

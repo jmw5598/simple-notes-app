@@ -93,4 +93,14 @@ export class RolesEffects {
       )
     )
   ));
+
+  undeleteRole$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.undeleteRole),
+    exhaustMap(({roleId}) => this._rolesService.undelete(roleId)
+      .pipe(
+        map(result => fromActions.undeleteRoleSuccess({ role: result })),
+        catchError(error => of(handleHttpError(error)))
+      )
+    )
+  ));
 }

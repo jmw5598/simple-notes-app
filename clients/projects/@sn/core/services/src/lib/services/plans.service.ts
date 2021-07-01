@@ -20,4 +20,8 @@ export class PlansService extends AbstractCrudService<Plan, number> {
   public getActivePlans(): Observable<Plan[]> {
     return this._http.get<Plan[]>(`${this._base}/active`);
   }
+
+  public undelete(planId: number): Observable<Plan> {
+    return this._http.put<Plan>(`${this._base}/${planId}/undelete`, null);
+  }
 }

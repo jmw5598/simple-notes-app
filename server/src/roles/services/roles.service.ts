@@ -61,4 +61,16 @@ export class RolesService {
       await this._rolesRepository.save(existingRole)
     );
   }
+
+  public async undeleteRoleById(roleId: number): Promise<RoleDto> {
+    const existingRole: Role = await this._rolesRepository.findOne({ id: roleId });
+    
+    if (!existingRole) throw new RoleNotFoundException();
+
+    existingRole.deletedAt = null;
+
+    return RolesMapper.toRoleDto(
+      await this._rolesRepository.save(existingRole)
+    );
+  }
 }

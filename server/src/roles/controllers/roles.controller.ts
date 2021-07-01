@@ -66,4 +66,14 @@ export class RolesController {
       throw error;
     }
   }
+
+  @Put(':id/undelete')
+  public async undeleteRoleById(@Param('id') roleId: number): Promise<RoleDto> {
+    try {
+      return this._rolesService.undeleteRoleById(roleId);
+    } catch (error) {
+      this._logger.error(`Error updating role`, error);
+      throw error;
+    }
+  }
 }

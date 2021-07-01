@@ -40,7 +40,7 @@ export class PlansController {
   
   @Post()
   @UseGuards(JwtAdminRoleGuard)
-  public async createRole(@Body() createPlanDto: CreatePlanDto): Promise<PlanDto> {
+  public async createPlan(@Body() createPlanDto: CreatePlanDto): Promise<PlanDto> {
     try {
       return this._plansService.createPlan(createPlanDto);
     } catch (error) {
@@ -52,7 +52,7 @@ export class PlansController {
   
   @Put(':id')
   @UseGuards(JwtAdminRoleGuard)
-  public async updateRoleById(@Param('id') planId: number, @Body() updatePlanDto: UpdatePlanDto): Promise<PlanDto> {
+  public async updatePlanById(@Param('id') planId: number, @Body() updatePlanDto: UpdatePlanDto): Promise<PlanDto> {
     try {
       return this._plansService.updatePlanById(planId, updatePlanDto);
     } catch (error) {
@@ -64,11 +64,22 @@ export class PlansController {
   
   @Delete(':id')
   @UseGuards(JwtAdminRoleGuard)
-  public async deleteRoleById(@Param('id') planId: number): Promise<PlanDto> {
+  public async deletePlanById(@Param('id') planId: number): Promise<PlanDto> {
     try {
       return this._plansService.deletePlanById(planId);
     } catch (error) {
       this._logger.error(`Error deleting plan`, error);
+      throw error;
+    }
+  }
+
+  @Put(':id/undelete')
+  @UseGuards(JwtAdminRoleGuard)
+  public async undeletePlanById(@Param('id') planId: number): Promise<PlanDto> {
+    try {
+      return this._plansService.undeletePlanById(planId);
+    } catch (error) {
+      this._logger.error(`Error updating plan`, error);
       throw error;
     }
   }

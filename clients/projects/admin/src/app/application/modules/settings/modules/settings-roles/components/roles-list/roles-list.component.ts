@@ -14,7 +14,10 @@ export class RolesListComponent implements OnInit {
   public onEdit: EventEmitter<Role> = new EventEmitter<Role>();
 
   @Output()
-  public onDelete: EventEmitter<number> = new EventEmitter<number>()
+  public onDelete: EventEmitter<number> = new EventEmitter<number>();
+
+  @Output()
+  public onUndelete: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() { }
 
@@ -27,5 +30,9 @@ export class RolesListComponent implements OnInit {
 
   public delete(roleId: number): void {
     this.onDelete.emit(roleId);
+  }
+
+  public undelete(roleId: number): void {
+    this.onUndelete.emit(roleId);
   }
 }

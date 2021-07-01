@@ -63,4 +63,14 @@ export const setDeleteRoleResponseMessage = createAction(
   '[Roles] Set Delete Role Response Message',
   props<{ message: ResponseMessage }>()
 );
+
+export const undeleteRole = createAction(
+  '[Roles] Undelete Role',
+  props<{ roleId: number }>()
+);
+
+export const undeleteRoleSuccess = createAction(
+  '[Roles] Undelete Role Success',
+  props<{ role: Role }>()
+);
  

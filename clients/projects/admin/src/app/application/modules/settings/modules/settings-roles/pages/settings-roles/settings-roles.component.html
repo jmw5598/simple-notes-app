@@ -19,7 +19,8 @@
         <sn-admin-roles-list
             [roles]="allRoles$ | async"
             (onEdit)="onEdit($event)"
-            (onDelete)="onDelete($event)">
+            (onDelete)="onDelete($event)"
+            (onUndelete)="onUndelete($event)">
         </sn-admin-roles-list>
       </div>
     </div>

@@ -35,9 +35,24 @@ const onSetCreateRoleResponseMessage = (state, { message }) => ({
   createRoleResponseMessage: message
 });
 
+const onCreateRoleSuccess = (state, { role }) => ({
+  ...state,
+  roles: [...state.roles, role]
+});
+
 const onSetUpdateRoleResponseMessage = (state, { message }) => ({
   ...state,
   updateRoleResponseMessage: message
+});
+
+const onUpdateRoleSuccess = (state, { role }) => ({
+  ...state,
+  plans: state.roles.map(r => {
+    if (r.id === role.id) {
+      return role
+    }
+    return r;
+  })
 });
 
 const onSetDeleteRoleResponseMessage = (state, { message }) => ({
@@ -45,13 +60,37 @@ const onSetDeleteRoleResponseMessage = (state, { message }) => ({
   deleteRoleResponseMessage: message
 });
 
+const onDeleteRoleSuccess = (state, { role }) => ({
+  ...state,
+  roles: state.roles.map(r => {
+    if (r.id === role.id) {
+      return role
+    }
+    return r;
+  })
+});
+
+const onUndeleteRoleSuccess = (state, { role }) => ({
+  ...state,
+  roles: state.roles.map(r => {
+    if (r.id === role.id) {
+      return role
+    }
+    return r;
+  })
+});
+
 const _rolesReducer = createReducer(
   initialRolesState,
   on(fromActions.getAllRolesSuccess, onGetAllRolesSuccess),
   on(fromActions.getActiveRolesSuccess, onGetActiveRolesSuccess),
+  on(fromActions.createRoleSuccess, onCreateRoleSuccess),
   on(fromActions.setCreateRoleResponseMessage, onSetCreateRoleResponseMessage),
+  on(fromActions.updateRoleSuccess, onUpdateRoleSuccess),
   on(fromActions.setUpdateRoleResponseMessage, onSetUpdateRoleResponseMessage),
+  on(fromActions.deleteRoleSuccess, onDeleteRoleSuccess),
   on(fromActions.setDeleteRoleResponseMessage, onSetDeleteRoleResponseMessage),
+  on(fromActions.undeleteRoleSuccess, onUndeleteRoleSuccess)
 )
 
 export function rolesReducer(state, action) {

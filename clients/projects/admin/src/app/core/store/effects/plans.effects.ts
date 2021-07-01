@@ -92,4 +92,14 @@ export class PlansEffects {
       )
     )
   ));
+
+  undeletePlan$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.undeletePlan),
+    exhaustMap(({planId}) => this._plansService.undelete(planId)
+      .pipe(
+        map(result => fromActions.undeletePlanSuccess({ plan: result })),
+        catchError(error => of(handleHttpError(error)))
+      )
+    )
+  ));
 }

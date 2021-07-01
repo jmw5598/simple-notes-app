@@ -5,6 +5,7 @@ import { IAppState } from '@sn/user/store/reducers';
 import { Observable } from 'rxjs';
 
 import * as plansSelectors from '@sn/admin/core/store/selectors';
+import * as plansActions from '@sn/admin/core/store/actions';
 import { PlansUpdateComponent } from '../../components/plans-update/plans-update.component';
 import { PlansCreateComponent } from '../../components/plans-create/plans-create.component';
 import { DrawerService } from '@sn/shared/components';
@@ -39,6 +40,10 @@ export class SettingsPlansComponent implements OnInit {
   }
 
   public onDelete(planId: number): void {
-    console.log("deleting...");
+    this._store.dispatch(plansActions.deletePlan({ planId: planId }));   
+  }
+
+  public onUndelete(planId: number): void {
+    this._store.dispatch(plansActions.undeletePlan({ planId: planId }));
   }
 }

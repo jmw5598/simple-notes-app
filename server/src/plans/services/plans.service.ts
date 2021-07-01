@@ -59,4 +59,16 @@ export class PlansService {
       await this._plansRepository.save(existingPlan)
     );
   }
+
+  public async undeletePlanById(roleId: number): Promise<PlanDto> {
+    const existingPlan: Plan = await this._plansRepository.findOne({ id: roleId });
+    
+    if (!existingPlan) throw new PlanNotFoundException();
+
+    existingPlan.deletedAt = null;
+
+    return PlansMapper.toPlanDto(
+      await this._plansRepository.save(existingPlan)
+    );
+  }
 }

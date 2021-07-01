@@ -17,4 +17,8 @@ export class RolesService extends AbstractCrudService<Role, number> {
   public getActiveRoles(): Observable<Role[]> {
     return this._http.get<Role[]>(`${this._base}/active`);
   }
+
+  public undelete(roleId: number): Observable<Role> {
+    return this._http.put<Role>(`${this._base}/${roleId}/undelete`, {});
+  }
 }
