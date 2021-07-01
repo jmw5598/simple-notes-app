@@ -48,7 +48,7 @@ export const setUpdatePlanResponseMessage = createAction(
   '[Plans] Set Update Plan Response Message',
   props<{ message: ResponseMessage }>()
 );
- 
+
 export const deletePlan = createAction(
   '[Plans] Delete Plan',
   props<{ planId: number }>()

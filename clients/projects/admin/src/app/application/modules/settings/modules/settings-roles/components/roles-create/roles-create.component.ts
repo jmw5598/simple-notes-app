@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { IRolesState } from '@sn/admin/core/store/reducers';
-import { ResponseMessage } from '@sn/shared/models';
+import { ResponseMessage, Role } from '@sn/shared/models';
 import { Observable } from 'rxjs';
 
 import * as rolesSelectors from '@sn/admin/core/store/selectors';
+import * as rolesActions from '@sn/admin/core/store/actions';
 import { buildRolesForm } from '../roles-form/roles-form.builder';
 import { showHide } from '@sn/shared/animations';
+import { tap } from 'rxjs/operators';
+import { DrawerService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-admin-roles-create',
@@ -21,6 +24,7 @@ export class RolesCreateComponent implements OnInit {
 
   constructor(
     private _store: Store<IRolesState>,
+    private _drawerService: DrawerService,
     private _formBuilder: FormBuilder
   ) { }
 
@@ -33,7 +37,22 @@ export class RolesCreateComponent implements OnInit {
     this.form = buildRolesForm(this._formBuilder);
   }
 
+  public submit(role: Role): void {
+    this._store.dispatch(rolesActions.createRole({
+      role: role
+    }));
+  }
+
+  public close(): void {
+    this._drawerService.close();
+  }
+
   private _selectState(): void {
-    this.responseMessage$ = this._store.select(rolesSelectors.selectCreateRoleResponseMessasge);
+    this.responseMessage$ = this._store.select(rolesSelectors.selectCreateRoleResponseMessasge)
+      .pipe(tap(message => {
+        if (message) {
+          setTimeout(() => this._store.dispatch(rolesActions.setCreateRoleResponseMessage({ message: null })), 3000);
+        }
+      }));
   }
 }

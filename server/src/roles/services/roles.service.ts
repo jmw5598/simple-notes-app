@@ -43,7 +43,7 @@ export class RolesService {
 
     const roleMinusPrefix = updateRoleDto.name.split('ROLE_').join();
 
-    existingRole.name = `ROLE_${roleMinusPrefix.split(' ').join('_').toUpperCase()}`;
+    existingRole.name = (`ROLE_${roleMinusPrefix.split(' ').join('_').toUpperCase()}`).replace(/[^A-Z0-9\_]/g, '');
 
     return RolesMapper.toRoleDto(
       await this._rolesRepository.save(existingRole)

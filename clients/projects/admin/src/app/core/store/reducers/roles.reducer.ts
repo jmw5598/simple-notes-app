@@ -47,7 +47,7 @@ const onSetUpdateRoleResponseMessage = (state, { message }) => ({
 
 const onUpdateRoleSuccess = (state, { role }) => ({
   ...state,
-  plans: state.roles.map(r => {
+  roles: state.roles.map(r => {
     if (r.id === role.id) {
       return role
     }

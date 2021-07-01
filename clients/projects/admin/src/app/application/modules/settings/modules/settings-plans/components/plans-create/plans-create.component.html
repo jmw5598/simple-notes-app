@@ -8,8 +8,12 @@
         <strong>{{ (responseMessage$ | async).status | uppercase }}</strong>: {{ (responseMessage$ | async).message }}
       </span>
     </div>
-    <form [formGroup]="form" novalidate>
+    <form [formGroup]="form" (ngSubmit)="submit(form.value)" novalidate>
       <sn-admin-plans-form></sn-admin-plans-form>
+      <div class="form-group text-right">
+        <button role="button" type="submit" class="btn btn-primary mr-2" [disabled]="!form.valid">Save Plan</button>
+        <button role="button" type="button" class="btn btn-secondary" (click)="close()">Close</button>
+      </div>
     </form>
   </div>
 </div>
