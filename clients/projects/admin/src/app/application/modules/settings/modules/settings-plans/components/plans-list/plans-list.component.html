@@ -1,0 +1,32 @@
+<table class="table table-striped accounts-table" *ngIf="plans">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Updated At</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let plan of plans">
+      <td>{{ plan?.name }}</td>
+      <td>{{ plan?.updatedAt | date }}</td>
+      <td class="text-right">
+        <div class="action-buttons text-right">
+          <button 
+              class="btn btn-outline-primary btn-sm btn-border-none"
+              (click)="edit(plan)">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button 
+              mwlConfirmationPopover
+              placement="left"
+              (confirm)="delete(plan.id)"
+              role="button" 
+              class="btn btn-outline-primary btn-sm btn-border-none">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

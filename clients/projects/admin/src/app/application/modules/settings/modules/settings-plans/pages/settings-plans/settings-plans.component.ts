@@ -5,20 +5,40 @@ import { IAppState } from '@sn/user/store/reducers';
 import { Observable } from 'rxjs';
 
 import * as plansSelectors from '@sn/admin/core/store/selectors';
+import { PlansUpdateComponent } from '../../components/plans-update/plans-update.component';
+import { PlansCreateComponent } from '../../components/plans-create/plans-create.component';
+import { DrawerService } from '@sn/shared/components';
+import { fadeAnimation } from '@sn/shared/animations';
 
 @Component({
   selector: 'sn-admin-settings-plans',
   templateUrl: './settings-plans.component.html',
-  styleUrls: ['./settings-plans.component.scss']
+  styleUrls: ['./settings-plans.component.scss'],
+  animations: [fadeAnimation]
 })
 export class SettingsPlansComponent implements OnInit {
   public allPlans$: Observable<Plan[]>;
 
   constructor(
-    private _store: Store<IAppState>
+    private _store: Store<IAppState>,
+    private _drawerService: DrawerService
   ) { }
 
   ngOnInit(): void {
     this.allPlans$ = this._store.select(plansSelectors.selectPlans);
+  }
+
+  public onEdit(plan: Plan): void {
+    this._drawerService.show(PlansUpdateComponent, {
+      data: plan
+    });
+  }
+
+  public onCreate(): void {
+    this._drawerService.show(PlansCreateComponent);
+  }
+
+  public onDelete(planId: number): void {
+    console.log("deleting...");
   }
 }

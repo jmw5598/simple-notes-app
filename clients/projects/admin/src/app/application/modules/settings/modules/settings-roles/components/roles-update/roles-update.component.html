@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-sm-12 px-4">
+    <h3 class="font-weight-bold text-primary text-right mb-3">Update Role</h3>
+    <hr class="mb-3" />
+    <!-- Feedback Message -->
+    <div *ngIf="(responseMessage$ | async)" [@showHide] class="alert alert-success">
+      <span>
+        <strong>{{ (responseMessage$ | async).status | uppercase }}</strong>: {{ (responseMessage$ | async).message }}
+      </span>
+    </div>
+    <form [formGroup]="form" novalidate>
+      <sn-admin-roles-form></sn-admin-roles-form>
+    </form>
+  </div>
+</div>
+

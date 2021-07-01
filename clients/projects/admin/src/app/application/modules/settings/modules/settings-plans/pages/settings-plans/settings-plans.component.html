@@ -1,1 +1,27 @@
-<pre>{{ (allPlans$ | async) | json }}</pre>
+<div class="row height-full" [@fadeAnimation]>
+  <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 border-right-1">
+    <div class="row">
+      <div class="col-sm-12 pr-0">
+        <h4 class="m-0 p-3 border-bottom-1">
+          <span class="font-weight-bold text-primary">Plans</span>
+          <!-- Header Buttons -->
+          <span class="float-right">
+            <button (click)="onCreate()" role="button" class="btn btn-sm btn-outline-dark btn-border-none">
+              <i class="far fa-file-alt icon-margin"></i>
+              New
+            </button>
+          </span>
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 pr-0">
+        <sn-admin-plans-list 
+            [plans]="allPlans$ | async"
+            (onEdit)="onEdit($event)"
+            (onDelete)="onDelete($event)">
+        </sn-admin-plans-list>
+      </div>
+    </div>
+  </div>
+</div>
