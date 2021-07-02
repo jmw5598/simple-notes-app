@@ -5,6 +5,9 @@ import { OverlayLoaderStyle } from './overlay-loader-style.enum';
 import { OverlayLoaderService } from './overlay-loader.service';
 import { Observable } from 'rxjs';
 
+// export type OverlaySpinnerSize = 'small' | 'medium' | 'large';
+// export type OverlayLoaderStyle = 'transparent' | 'dark' | 'light';
+
 @Component({
   selector: 'sn-overlay-loader',
   templateUrl: './overlay-loader.component.html',

@@ -8,6 +8,10 @@ import { DrawerService } from './drawer.service';
 import { DrawerOptions } from './drawer-options.model';
 import { DrawerSize } from './drawer-size.enum';
 
+// export type DrawerLocation = 'left' | 'right';
+// export type DrawerOverlayStyle = 'transparent' | 'dark' | 'light';
+// export type DrawerSize = 'default' | 'small' | 'medium' | 'large' | 'full';
+
 @Component({
   selector: 'sn-drawer',
   templateUrl: './drawer.component.html',
