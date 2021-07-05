@@ -1,10 +1,20 @@
-<ul class="list-group settings-navigation-list" *ngIf="links?.length">
-  <li 
-      class="list-group-item" 
-      *ngFor="let link of links"
-      (mouseenter)="preloadBundle(link.routerLink)">
-    <a [routerLink]="link.routerLink" class="text-dark">
-      <i class="icon-margin" [ngClass]="link.iconClasses"></i> {{ link.label }}
-    </a>
-  </li>
-</ul>
+<div class="navbar-side-menu">
+  <ul class="list-group navbar-side-menu-list text-dark">
+    <li 
+        *ngFor="let link of links"
+        class="list-group-item p-0 navbar-side-menu-item" 
+        routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}"
+        (mouseenter)="preloadBundle(link.routerLink)">
+      <a [routerLink]="link.routerLink" (click)="navigateTo(link.routerLink)" class="px-4 py-3 d-block">
+        <i 
+          [tooltip]="link.tooltip" 
+          placement="right" 
+          container="body"
+          [delay]="tooltipDelay"
+          [ngClass]="link.iconClasses">
+        </i>
+        <span>{{ link.label }}</span>
+      </a>
+    </li>
+  </ul>
+</div>

@@ -1,12 +1,15 @@
-.settings-navigation-list {
-  border: 0;
-  .list-group-item {
-    border-left: 0;
-    border-right: 0;
+.active {
+  background: #F0F0F0;
+  border-color: rgba(0, 0, 0, 0.125);
+}
 
-    &:first-child {
-      border-top: 0;
+.navbar-side-menu {
+  .navbar-side-menu-list {
+    border: 0 !important;
+    .navbar-side-menu-item {
+      border-left-width: 0;
+      border-right-width: 0;
+      border-top-width: 0;
     }
   }
-  
 }

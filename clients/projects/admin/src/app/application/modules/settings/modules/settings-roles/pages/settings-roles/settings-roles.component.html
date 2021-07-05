@@ -1,7 +1,7 @@
-<div class="row height-full" [@fadeAnimation]>
-  <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 border-right-1">
+<div class="row p-0 m-0 height-full" [@fadeAnimation]>
+  <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 p-0 m-0 border-right-1">
     <div class="row">
-      <div class="col-sm-12 pr-0">
+      <div class="col-sm-12">
         <h4 class="m-0 p-3 border-bottom-1">
           <span class="font-weight-bold text-primary">Roles</span>
           <!-- Header Buttons -->
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-12 pr-0">
+      <div class="col-sm-12">
         <sn-admin-roles-list
             [roles]="allRoles$ | async"
             (onEdit)="onEdit($event)"
