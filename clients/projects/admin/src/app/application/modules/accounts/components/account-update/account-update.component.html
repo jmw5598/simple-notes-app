@@ -52,7 +52,7 @@
           <fieldset>
             <h4 class="font-weight-bold mb-2 text-dark">User</h4>
             <hr class="p-0 mt-0 mb-2" />
-            <sn-admin-account-user-form></sn-admin-account-user-form>
+            <sn-admin-account-user-form [roles]="roles$ | async"></sn-admin-account-user-form>
           </fieldset>
         </div>
       </div>

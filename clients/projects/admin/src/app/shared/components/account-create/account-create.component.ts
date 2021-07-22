@@ -4,17 +4,18 @@ import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 
 import { IAccountsState } from '@sn/admin/application/modules/accounts/store/reducers';
-import * as accountsSelectors from '@sn/admin/application/modules/accounts/store/selectors';
-import * as accountsActions from '@sn/admin/application/modules/accounts/store/actions';
-import * as plansSelectors from '@sn/admin/core/store/selectors';
 import { buildAccountFormGroup, buildAddressFormGroup, buildProfileFormGroup, buildUserFormGroup } from '@sn/admin/shared/forms';
 
 import { DrawerService } from '@sn/shared/components';
 import { AccountValidators } from '@sn/core/services';
-import { Plan, Registration, ResponseMessage } from '@sn/shared/models';
+import { Plan, Registration, ResponseMessage, Role } from '@sn/shared/models';
 import { takeUntil } from 'rxjs/operators';
 
 import * as accountActions from '@sn/admin/application/modules/accounts/store/actions';
+import * as accountsSelectors from '@sn/admin/application/modules/accounts/store/selectors';
+import * as accountsActions from '@sn/admin/application/modules/accounts/store/actions';
+import * as plansSelectors from '@sn/admin/core/store/selectors/plans.selectors';
+import * as rolesSelectors from '@sn/admin/core/store/selectors/roles.selectors'
 
 @Component({
   selector: 'sn-admin-account-create',
@@ -26,6 +27,7 @@ export class AccountCreateComponent implements OnInit {
 
   public responseMessage$: Observable<ResponseMessage>;
   public plans$: Observable<Plan[]>;
+  public roles$: Observable<Role[]>;
   public form: FormGroup;
 
   constructor(
@@ -38,12 +40,11 @@ export class AccountCreateComponent implements OnInit {
   ngOnInit(): void {
     this._selectState();
     this._initializeForm();
-    this._listenForDrawerDataChanges();
   }
 
   public submit(registration: Registration): void {
     console.log("form value is ", registration);
-    this._store.dispatch(accountsActions.createAccount({ registration: registration }))
+    // this._store.dispatch(accountsActions.createAccount({ registration: registration }))
   }
 
   public close(): void {
@@ -53,6 +54,7 @@ export class AccountCreateComponent implements OnInit {
   private _selectState(): void {
     this.responseMessage$ = this._store.select(accountsSelectors.selectUpdateAccountResponseMessage);
     this.plans$ = this._store.select(plansSelectors.selectPlans);
+    this.roles$ = this._store.select(rolesSelectors.selectRoles);
   }
 
   private _initializeForm(): void {
@@ -61,16 +63,6 @@ export class AccountCreateComponent implements OnInit {
       profile: buildProfileFormGroup(this._formBuilder, this._accountValidators),
       user: buildUserFormGroup(this._formBuilder, this._accountValidators)
     });
-  }
-
-  private _listenForDrawerDataChanges(): void {
-    this._drawerService.onDataChange()
-      .pipe(takeUntil(this._subscriptionSubject))
-      .subscribe(data => {
-        if (data) {
-          this.form.patchValue({...data});
-        }
-      });
   }
 
   ngOnDestroy(): void {

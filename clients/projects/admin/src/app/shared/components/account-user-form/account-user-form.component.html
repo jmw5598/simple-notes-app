@@ -27,23 +27,21 @@
   </div>
 
   <!-- Roles -->
-  <div class="form-group">
+  <div class="form-group" [formGroup]="form.get('user')" formArrayName="roles">
     <label for="roles">Allowed Roles</label>
     <div class="card card-body">
-      <div class="d-flex flex-row justify-content-between">
-        <label>User</label>
-        <sn-checkbox 
-            shape="rounded"
-            size="xsmall">
-        </sn-checkbox>
-      </div>
-      <div class="d-flex flex-row justify-content-between">
-        <label>Admin</label>
-        <sn-checkbox 
-            shape="rounded"
-            size="xsmall">
-        </sn-checkbox>
-      </div>
+      <ng-conttainer *ngFor="let roleControl of form?.get('user')?.get('roles')['controls']">
+        <div [formGroup]="roleControl">
+          <sn-checkbox 
+              shape="rounded"
+              color="primary"
+              size="xsmall"
+              formControlName="isChecked"
+              [value]="roleControl?.value?.isChecked"
+              [label]="roleControl?.value?.name">
+          </sn-checkbox>
+        </div>
+      </ng-conttainer>
     </div>
   </div>
 

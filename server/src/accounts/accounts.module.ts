@@ -18,6 +18,7 @@ import { SettingsController } from './controllers/settings.controller';
 import { SettingsService } from './services/settings.service';
 import { ThemesService } from '../themes/services/themes.service';
 import { Theme } from '../themes/entities/theme.entity';
+import { RegistrationService } from './services/registration.service';
 
 @Module({
   controllers: [
@@ -43,7 +44,8 @@ import { Theme } from '../themes/entities/theme.entity';
   providers: [
     AccountsService,
     SettingsService,
-    ThemesService
+    ThemesService,
+    RegistrationService
   ]
 })
 export class AccountsModule {}

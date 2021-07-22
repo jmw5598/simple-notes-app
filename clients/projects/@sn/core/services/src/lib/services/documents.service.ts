@@ -34,7 +34,7 @@ export class DocumentsService extends AbstractCrudService<Document, number> {
   }
 
   public exportDocument(documentId: number, config: ExportConfig): Observable<FileResponse> {
-    const url: string = `${this._base}/documents/${documentId}/download`;
+    const url: string = `${this._base}/${documentId}/download`;
     const options: {[key: string]: any} = { observe: 'response', responseType: 'blob', };
     return this._http.post(url, config, { observe: 'response', responseType: 'blob', })
       .pipe(map(response => this._extractFile(response)));

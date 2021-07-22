@@ -11,7 +11,6 @@ import { Profile } from '../entities/profile.entity';
 
 import { User } from '../../users/entities/user.entity';
 import { Role } from '../../users/entities/role.entity';
-import { RoleType } from '../../users/enums/role-type.enum';
 import { RegistrationDto } from '../dtos/registration.dto';
 import { CreateAccountDto } from '../dtos/create-account.dto';
 import { CreateAddressDto } from '../dtos/create-address.dto';
@@ -86,33 +85,20 @@ export class AccountsService {
     return profile;
   }
 
-  // @Note This is use by administration portal (can manually set isConfirmed and isEnabled)
   public async createNewAccount(registrationDto: RegistrationDto): Promise<any> {
-    // TODO create these two methods for account and user, createUser should assign roles base on http body
-    // const account: Account = await this._createNewAccount(registrationDto.account);
-    // const user: User = await this._createNewUser(registrationDto.user, account);
-    // const profile: Profile = await this._createNewProfile(registrationDto.profile, account);
-
-    // if (!registrationDto.account.isConfirmed) {
-    //   this._emailerService.sendConfirmationEmail(profile.email, account.comfirmationToken);
-    // }
-    
-    return {
-      status: "SUCCESS",
-      message: "Registration was success.  Please check and confirm your email address."
-    } as RegistrationResult;
-  }
-
-  // @Note This is use by user app (isConfirmed, and isEnabled are hard set)
-  public async registerNewAccount(registrationDto: RegistrationDto): Promise<any> {    
-    const account: Account = await this._registerNewAccount(registrationDto.account);
-    const user: User = await this._registerNewUser(registrationDto.user, account);
+    const account: Account = await this._createNewAccount(registrationDto.account);
+    const user: User = await this._createNewUser(registrationDto.user, account);
     const profile: Profile = await this._createNewProfile(registrationDto.profile, account);
-    this._emailerService.sendConfirmationEmail(profile.email, account.comfirmationToken);
+    
+    // Only send confirmation email if isConfirmed is false
+    if (!registrationDto.account.isConfirmed) {
+      this._emailerService.sendConfirmationEmail(profile.email, account.comfirmationToken);
+    }
+
     return {
       status: "SUCCESS",
-      message: "Registration was success.  Please check and confirm your email address."
-    } as RegistrationResult;
+      message: "New account creation was a success."
+    } as RegistrationResult; 
   }
 
   public async confirmAccount(code: string): Promise<ResponseMessage> {
@@ -182,7 +168,7 @@ export class AccountsService {
     const sort: {[key: string]: string} = pageable.getSort().asKeyValue();
     const where = await this._generateSearchWhereClause(searchTerm);
     const result = await this._accountRepository.findAndCount({
-      relations: ['user', 'profile', 'profile.address'],
+      relations: ['user', 'profile', 'profile.address', 'user.roles'],
       where: where,
       order: sort,
       skip: ((pageable.getPageNumber() - 1) * pageable.getPageSize()),
@@ -246,16 +232,16 @@ export class AccountsService {
     return this._profileRepository.save(profile);
   }
 
-  private async _registerNewAccount(createAccountDto: CreateAccountDto): Promise<Account> {
+  private async _createNewAccount(createAccountDto: CreateAccountDto): Promise<Account> {
     const account: Account = this._accountRepository.create({
       plan: createAccountDto.plan,
-      isConfirmed: false,
-      isEnabled: true
+      isConfirmed: createAccountDto.isConfirmed,
+      isEnabled: createAccountDto.isEnabled
     });
     return this._accountRepository.save(account);
   }
 
-  private async _registerNewUser(createUserDto: CreateUserDto, account: Account): Promise<User> {
+  private async _createNewUser(createUserDto: CreateUserDto, account: Account): Promise<User> {
     const userRole: Role = await this._roleRepository.findOne({ name: Roles.USER });
     const resetTokenExpiration: Date = this._generateResetTokenExpiration();
     const user: User = this._userRepository.create({

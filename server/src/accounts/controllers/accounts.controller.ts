@@ -16,29 +16,29 @@ import { Page } from 'src/common/models/page.model';
 import { PageRequest } from 'src/common/models/page-request.model';
 import { IPageable } from 'src/common/models/pageable.interface';
 import { AccountDto } from '../dtos/account.dto';
+import { RegistrationService } from '../services/registration.service';
 
 @Controller('accounts')
 export class AccountsController {
   constructor(
     private readonly _logger: SnLoggerService,
     private readonly _accountsService: AccountsService,
+    private readonly _registrationService: RegistrationService,
     private readonly _configService: ConfigService
   ) {
     this._logger.setContext(this.constructor.name);
   }
 
-  // @Post('')
-  // @UseGuards(JwtAdminRoleGuard)
-  // public async createAccount(@Body() registrationDto: RegistrationDto): Promise<RegistrationResult> {
-  //   try {
-  //     const result: RegistrationResult = await this._accountsService.registerNewAccount(registrationDto);
-  //     const result: RegistrationResult = await this._accountsService.createAccount(registrationDto);
-  //     return result;
-  //   } catch (error) {
-  //     this._logger.error(`Error creating account`, error);
-  //     throw error;
-  //   }
-  // }
+  @Post()
+  @UseGuards(JwtAdminRoleGuard)
+  public async createAccount(@Body() registrationDto: RegistrationDto): Promise<RegistrationResult> {
+    try {
+      return this._accountsService.createNewAccount(registrationDto);
+    } catch (error) {
+      this._logger.error(`Error creating account`, error);
+      throw error;
+    }
+  }
 
   @Get('search')
   @UseGuards(JwtAuthenticationGuard, JwtAdminRoleGuard)
@@ -113,7 +113,7 @@ export class AccountsController {
   @Post('register')
   public async registerAccount(@Body() registrationDto: RegistrationDto): Promise<RegistrationResult> {
     try {
-      const result: RegistrationResult = await this._accountsService.registerNewAccount(registrationDto);
+      const result: RegistrationResult = await this._registrationService.registerNewAccount(registrationDto);
     return result;
     } catch (error) {
       this._logger.error(`Error registering account`, error);

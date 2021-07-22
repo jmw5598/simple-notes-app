@@ -1,5 +1,6 @@
 import { UserDto } from "../dtos/user.dto";
 import { User } from '../../users/entities/user.entity';
+import { RolesMapper } from "src/roles/mappers/roles.mapper";
 
 export class UserMapper {
   public static toUserDto(user: User): UserDto {
@@ -8,7 +9,8 @@ export class UserMapper {
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
       deletedAt: user.deletedAt,
-      username: user.username
+      username: user.username,
+      roles: RolesMapper.toRoleDtoList(user.roles)
     } as UserDto;
   }
 }
