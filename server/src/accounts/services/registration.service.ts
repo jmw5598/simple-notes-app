@@ -18,6 +18,7 @@ import { RegistrationDto } from '../dtos/registration.dto';
 import { CreateProfileDto } from '../dtos/create-profile.dto';
 import { CreateAddressDto } from '../dtos/create-address.dto';
 import { RegistrationResult } from '../dtos/registration-result.dto';
+import { Roles } from '../../authentication/models/roles.enum';
 
 @Injectable()
 export class RegistrationService {
@@ -39,7 +40,7 @@ export class RegistrationService {
     const account: Account = await this._registerNewAccount(registrationDto.account);
     const user: User = await this._registerNewUser(registrationDto.user, account);
     const profile: Profile = await this._registerNewProfile(registrationDto.profile, account);
-    this._emailerService.sendConfirmationEmail(profile.email, account.comfirmationToken);
+    // this._emailerService.sendConfirmationEmail(profile.email, account.comfirmationToken);
     return {
       status: "SUCCESS",
       message: "Registration was success.  Please check and confirm your email address."
@@ -49,14 +50,15 @@ export class RegistrationService {
   private async _registerNewAccount(createAccountDto: CreateAccountDto): Promise<Account> {
     const account: Account = this._accountRepository.create({
       plan: createAccountDto.plan,
-      isConfirmed: false,
+      isConfirmed: true,
       isEnabled: true
     });
     return this._accountRepository.save(account);
   }
 
   private async _registerNewUser(createUserDto: CreateUserDto, account: Account): Promise<User> {
-    const userRole: Role = await this._roleRepository.findOne({ isDefault: true });
+    const userRole: Role = await this._roleRepository.findOne({ name: Roles.USER });
+    console.log("user role", userRole);
     const resetTokenExpiration: Date = this._generateResetTokenExpiration();
     const user: User = this._userRepository.create({
       username: createUserDto.username.trim().toLowerCase(),
