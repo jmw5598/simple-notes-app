@@ -1,7 +1,7 @@
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, Validators, UntypedFormBuilder } from '@angular/forms';
 import { Permission } from '@sn/shared/models';
 
-export const buildTopicFormGroup = (formBuilder: FormBuilder): FormGroup => {
+export const buildTopicFormGroup = (formBuilder: UntypedFormBuilder): UntypedFormGroup => {
   return formBuilder.group({
     id: [''],
     title: ['', [Validators.required]],

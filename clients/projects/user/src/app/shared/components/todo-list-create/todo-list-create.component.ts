@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ITodosState } from '@sn/user/application/modules/todos/store/reducers';
 import { ResponseMessage } from '@sn/shared/models';
@@ -25,13 +25,13 @@ export class TodoListCreateComponent implements OnInit, AfterViewInit {
   @ViewChild(TodoListFormComponent, { static: true })
   public todoListForm: TodoListFormComponent;
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public data$: Observable<any>;
   public responseMessage$: Observable<ResponseMessage>;
 
   constructor(
     private _store: Store<ITodosState>,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _drawerService: DrawerService,
   ) { }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -20,11 +20,11 @@ import * as fromSelectors from '../../store/selectors';
   animations: [fadeAnimation]
 })
 export class PasswordResetComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public passwordResetResult$: Observable<ResponseMessage>;
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _store: Store<fromAuth.IAuthenticationState>,
     private _router: Router,
     private _route: ActivatedRoute

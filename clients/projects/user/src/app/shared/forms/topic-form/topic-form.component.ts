@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, Renderer2 } from '@angular/core';
-import { FormArray, FormGroup, ControlContainer } from '@angular/forms';
+import { UntypedFormArray, UntypedFormGroup, ControlContainer } from '@angular/forms';
 
 import { Permission } from '@sn/shared/models';
 
@@ -9,7 +9,7 @@ import { Permission } from '@sn/shared/models';
   styleUrls: ['./topic-form.component.scss']
 })
 export class TopicFormComponent implements OnInit, AfterViewInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public Permission = Permission;
 
   constructor(
@@ -18,7 +18,7 @@ export class TopicFormComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.form = this._parentControl.control as FormGroup;
+    this.form = this._parentControl.control as UntypedFormGroup;
   }
 
   ngAfterViewInit(): void {
@@ -33,7 +33,7 @@ export class TopicFormComponent implements OnInit, AfterViewInit {
   }
 
   public onRemoveCategory(category: string): void {
-    let categories = this.form.controls["categories"] as FormArray;
+    let categories = this.form.controls["categories"] as UntypedFormArray;
     let control = categories.controls.find(e => e.value.description === category);
     let index = categories.controls.indexOf(control);
     categories.removeAt(index);

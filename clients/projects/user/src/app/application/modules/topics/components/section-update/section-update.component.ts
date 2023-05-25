@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, Observable } from 'rxjs';
 import { tap, takeUntil } from 'rxjs/operators';
@@ -21,13 +21,13 @@ import { DrawerService } from '@sn/shared/components';
 })
 export class SectionUpdateComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<void>;
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public responseMessage$: Observable<ResponseMessage>;
   public selectedTopic: Topic;
   public selectedSection: Section;
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _store: Store<ISectionsState>,
     private _drawerServie: DrawerService
   ) {

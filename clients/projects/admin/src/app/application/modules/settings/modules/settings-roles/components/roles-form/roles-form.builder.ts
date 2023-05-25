@@ -1,6 +1,6 @@
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 
-export const buildRolesForm = (formBuilder: FormBuilder) => {
+export const buildRolesForm = (formBuilder: UntypedFormBuilder) => {
   return formBuilder.group({
     id: [''],
     name: ['', [Validators.required]]

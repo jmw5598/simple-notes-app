@@ -5,9 +5,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import bootstrapPlugin from '@fullcalendar/bootstrap';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
+
 
 import { CalendarRoutingModule } from './calendar-routing.module';
 import { ViewCalendarComponent } from './pages/view-calendar/view-calendar.component';
@@ -21,42 +19,38 @@ import { CalendarEventCreateMenuComponent } from './components/calendar-event-cr
 
 import { SharedComponentsModule, DrawerService } from '@sn/shared/components';
 
-FullCalendarModule.registerPlugins([ // register FullCalendar plugins
-  dayGridPlugin,
-  interactionPlugin,
-  bootstrapPlugin
-]);
+// FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+//   dayGridPlugin,
+//   interactionPlugin,
+//   bootstrapPlugin
+// ]);
 
 @NgModule({
-  declarations: [
-    ViewCalendarComponent,
-    CalendarEventDetailsComponent,
-    CalendarEventUpdateComponent,
-    CalendarEventViewComponent,
-    CalendarTodoListViewComponent,
-    CalendarEventCreateMenuComponent
-  ],
-  imports: [
-    SharedComponentsModule,
-    CommonModule,
-    CalendarRoutingModule,
-    FullCalendarModule,
-    ModalModule.forChild(),
-    SharedModule,
-    TimepickerModule,
-    BsDatepickerModule.forRoot(),
-    ConfirmationPopoverModule.forRoot({
-      popoverMessage: 'Are you sure?',
-      cancelButtonType: 'btn-default btn-sm bg-secondary',
-      confirmButtonType: 'btn-primary btn-sm bg-primary text-light'
-    })
-  ],
-  providers: [
-    DrawerService
-  ],
-  entryComponents: [
-    CalendarEventCreateComponent,
-    CalendarEventViewComponent
-  ]
+    declarations: [
+        ViewCalendarComponent,
+        CalendarEventDetailsComponent,
+        CalendarEventUpdateComponent,
+        CalendarEventViewComponent,
+        CalendarTodoListViewComponent,
+        CalendarEventCreateMenuComponent
+    ],
+    imports: [
+        SharedComponentsModule,
+        CommonModule,
+        CalendarRoutingModule,
+        FullCalendarModule,
+        ModalModule.forChild(),
+        SharedModule,
+        TimepickerModule,
+        BsDatepickerModule.forRoot(),
+        ConfirmationPopoverModule.forRoot({
+            popoverMessage: 'Are you sure?',
+            cancelButtonType: 'btn-default btn-sm bg-secondary',
+            confirmButtonType: 'btn-primary btn-sm bg-primary text-light'
+        })
+    ],
+    providers: [
+        DrawerService
+    ]
 })
 export class CalendarModule { }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'sn-user-tag-input',
@@ -8,7 +8,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class TagInputComponent implements OnInit {
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   @Output()
   onAdd: EventEmitter<string> = new EventEmitter<string>();
@@ -34,7 +34,7 @@ export class TagInputComponent implements OnInit {
   @Input()
   placeholder: string = "Search tags";
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: UntypedFormBuilder) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({

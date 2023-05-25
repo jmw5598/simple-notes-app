@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlContainer, FormGroup } from '@angular/forms';
+import { ControlContainer, UntypedFormGroup } from '@angular/forms';
 import { Flashcard } from '@sn/shared/models';
 import { Observable, Subject } from 'rxjs';
 import { FlashcardSetBuilderService } from '../../services/flashcard-set-builder.service';
@@ -10,7 +10,7 @@ import { FlashcardSetBuilderService } from '../../services/flashcard-set-builder
   styleUrls: ['./flashcard-set-builder-form.component.scss']
 })
 export class FlashcardSetBuilderFormComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   public flashcardBeingEdited$: Observable<Flashcard>;
 
@@ -20,7 +20,7 @@ export class FlashcardSetBuilderFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.form = this._parentControl.control as FormGroup;
+    this.form = this._parentControl.control as UntypedFormGroup;
     this.flashcardBeingEdited$ = this._flashcardSetBuilderService.onFlashcardBeingEditedChanges();
   }
 }

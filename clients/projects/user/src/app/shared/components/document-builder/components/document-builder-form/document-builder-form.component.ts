@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { FormGroup, ControlContainer } from '@angular/forms';
+import { UntypedFormGroup, ControlContainer } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, Observer, of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, map, withLatestFrom, takeUntil } from 'rxjs/operators';
@@ -26,7 +26,7 @@ export class DocumentBuilderFormComponent implements OnInit {
   public DropAction = DropAction
   public drogDataAction = DropAction.CLONE_CONTAINER_ONLY;
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   public selected: string;
   public selectedDocumentTopic$: Observable<DocumentTopic>;
@@ -79,7 +79,7 @@ export class DocumentBuilderFormComponent implements OnInit {
   }
 
   private _initilizeForm(): void {
-    this.form = this._parentControl.control as FormGroup;
+    this.form = this._parentControl.control as UntypedFormGroup;
   }
 
   private _selectState(): void {

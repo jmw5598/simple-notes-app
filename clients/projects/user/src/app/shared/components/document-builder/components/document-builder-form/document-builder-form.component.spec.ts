@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ControlContainer, FormControl, FormGroup, FormGroupDirective, Validators, FormsModule } from '@angular/forms';
+import { ControlContainer, UntypedFormControl, UntypedFormGroup, FormGroupDirective, Validators, FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { of } from 'rxjs';
@@ -13,8 +13,8 @@ describe('DocumentFormComponent', () => {
   let fixture: ComponentFixture<DocumentBuilderFormComponent>;
 
   let testFormGroupDirective: FormGroupDirective = new FormGroupDirective([], []);
-  let testFormGroup: FormGroup = new FormGroup({
-    name: new FormControl('', [Validators.required])
+  let testFormGroup: UntypedFormGroup = new UntypedFormGroup({
+    name: new UntypedFormControl('', [Validators.required])
   });
   testFormGroupDirective.form = testFormGroup;
 

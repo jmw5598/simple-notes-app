@@ -1,9 +1,9 @@
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, Validators, UntypedFormBuilder } from '@angular/forms';
 import { AccountValidators, MatchValidators } from '@sn/core/services';
 
 export const buildUserFormGroup = (
-    formBuilder: FormBuilder,
-    accountValidators: AccountValidators): FormGroup => {
+    formBuilder: UntypedFormBuilder,
+    accountValidators: AccountValidators): UntypedFormGroup => {
   return formBuilder.group({
       username: ['', 
         [

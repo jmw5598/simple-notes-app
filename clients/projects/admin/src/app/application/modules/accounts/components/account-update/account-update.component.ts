@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 
@@ -28,12 +28,12 @@ export class AccountUpdateComponent implements OnInit, OnDestroy {
   public responseMessage$: Observable<ResponseMessage>;
   public plans$: Observable<Plan[]>;
   public roles$: Observable<Role[]>;
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public account: Account;
 
   constructor(
     private _store: Store<IAccountsState>,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _drawerService: DrawerService,
     private _accountValidators: AccountValidators,
     private _changeDetector: ChangeDetectorRef
@@ -89,13 +89,13 @@ export class AccountUpdateComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this._patchCurrentRolesToForm(
             account?.user?.roles || [], 
-            this.form.get('user')?.get('roles') as FormArray
+            this.form.get('user')?.get('roles') as UntypedFormArray
           );
         });
       });
   }
 
-  private _patchCurrentRolesToForm(roles: Role[], rolesFormArray: FormArray): void {
+  private _patchCurrentRolesToForm(roles: Role[], rolesFormArray: UntypedFormArray): void {
     rolesFormArray.controls.forEach(control => {
       const shouldRoleBeChecked: Role = roles.find(role => role.id === control?.value?.id);
       if (!shouldRoleBeChecked) return;

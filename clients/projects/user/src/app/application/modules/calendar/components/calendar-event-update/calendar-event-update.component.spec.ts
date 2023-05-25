@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ControlContainer, FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ControlContainer, UntypedFormControl, UntypedFormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { CalendarEvent } from '@sn/shared/models';
@@ -12,20 +12,20 @@ describe('CalendarEventUpdateComponent', () => {
   let fixture: ComponentFixture<CalendarEventUpdateComponent>;
 
   let testFormGroupDirective: FormGroupDirective = new FormGroupDirective([], []);;
-  let testFormGroup: FormGroup = new FormGroup({
-    id: new FormControl(''),
-    title: new FormControl('', [Validators.required]),
-    startDate: new FormControl('', [Validators.required]),
-    startTime: new FormControl('', [Validators.required]),
-    endDate: new FormControl('', [Validators.required]),
-    endTime: new FormControl('', [Validators.required]),
-    isAllDay: new FormControl(false, [Validators.required]),
-    color: new FormControl('', [
+  let testFormGroup: UntypedFormGroup = new UntypedFormGroup({
+    id: new UntypedFormControl(''),
+    title: new UntypedFormControl('', [Validators.required]),
+    startDate: new UntypedFormControl('', [Validators.required]),
+    startTime: new UntypedFormControl('', [Validators.required]),
+    endDate: new UntypedFormControl('', [Validators.required]),
+    endTime: new UntypedFormControl('', [Validators.required]),
+    isAllDay: new UntypedFormControl(false, [Validators.required]),
+    color: new UntypedFormControl('', [
       Validators.required,
       Validators.pattern(/^[#]{1}[A-Fa-f0-9]{6}$/)
     ]),
-    location: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    location: new UntypedFormControl('', [Validators.required]),
+    description: new UntypedFormControl('', [Validators.required]),
   });
   testFormGroupDirective.form = testFormGroup;
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
@@ -20,7 +20,7 @@ import { DynamicThemeService, AccountValidators } from '@sn/core/services';
   animations: [fadeAnimation]
 })
 export class AccountSettingsGeneralComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public isEditingProfile: boolean;
   public accountDetails$: Observable<Account>;
   public accountProfile$: Observable<Profile>;
@@ -31,7 +31,7 @@ export class AccountSettingsGeneralComponent implements OnInit {
 
   constructor(
     private _store: Store<IAccountsState>,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _accountValidators: AccountValidators,
     private _themeService: DynamicThemeService
   ) {

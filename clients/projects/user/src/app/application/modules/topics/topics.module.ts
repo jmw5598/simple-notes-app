@@ -24,42 +24,36 @@ import * as fromTopicsEffects from './store/effects';
 import { SharedComponentsModule } from '@sn/shared/components';
 
 @NgModule({
-  declarations: [
-    ViewTopicsComponent, 
-    TopicListComponent,
-    TopicDetailsComponent,
-    SectionListComponent,
-    TopicUpdateComponent,
-    TopicExportComponent,
-    SectionCreateComponent,
-    SectionUpdateComponent,
-    SectionFormComponent,
-    EditSectionNotesComponent
-  ],
-  imports: [
-    SharedComponentsModule,
-    CommonModule,
-    SharedModule,
-    TopicsRoutingModule,
-    ConfirmationPopoverModule.forRoot({
-      popoverMessage: 'Are you sure?',
-      cancelButtonType: 'btn-default btn-sm bg-secondary',
-      confirmButtonType: 'btn-primary btn-sm bg-primary text-light'
-    }),
-    StoreModule.forFeature(fromTopics.topicsFeatureKey, fromTopics.topicReducer),
-    StoreModule.forFeature(fromTopics.sectionsFeatureKey, fromTopics.sectionReducer),
-    EffectsModule.forFeature([
-      fromTopicsEffects.SectionsEffects,
-      fromTopicsEffects.TopicsEffects
-    ]),
-    AngularMarkdownEditorModule.forRoot({ iconlibrary: 'fa' }),
-    MarkdownModule.forRoot()
-  ],
-  entryComponents: [
-    TopicExportComponent,
-    TopicUpdateComponent,
-    SectionCreateComponent,
-    SectionUpdateComponent
-  ]
+    declarations: [
+        ViewTopicsComponent,
+        TopicListComponent,
+        TopicDetailsComponent,
+        SectionListComponent,
+        TopicUpdateComponent,
+        TopicExportComponent,
+        SectionCreateComponent,
+        SectionUpdateComponent,
+        SectionFormComponent,
+        EditSectionNotesComponent
+    ],
+    imports: [
+        SharedComponentsModule,
+        CommonModule,
+        SharedModule,
+        TopicsRoutingModule,
+        ConfirmationPopoverModule.forRoot({
+            popoverMessage: 'Are you sure?',
+            cancelButtonType: 'btn-default btn-sm bg-secondary',
+            confirmButtonType: 'btn-primary btn-sm bg-primary text-light'
+        }),
+        StoreModule.forFeature(fromTopics.topicsFeatureKey, fromTopics.topicReducer),
+        StoreModule.forFeature(fromTopics.sectionsFeatureKey, fromTopics.sectionReducer),
+        EffectsModule.forFeature([
+            fromTopicsEffects.SectionsEffects,
+            fromTopicsEffects.TopicsEffects
+        ]),
+        AngularMarkdownEditorModule.forRoot({ iconlibrary: 'fa' }),
+        MarkdownModule.forRoot()
+    ]
 })
 export class TopicsModule { }

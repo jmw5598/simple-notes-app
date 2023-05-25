@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -26,7 +26,7 @@ import * as fromSelectors from '../../store/selectors';
 export class RegisterComponent implements OnInit {
   private _subscriptionSubject$: Subject<void>;
   public RegistrationStep = RegistrationStep;
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public currentStep: number;
   public step: RegistrationStep;
 
@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private _store: Store<fromAuth.IAuthenticationState>,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _accountValidators: AccountValidators,
     private _router: Router
   ) {

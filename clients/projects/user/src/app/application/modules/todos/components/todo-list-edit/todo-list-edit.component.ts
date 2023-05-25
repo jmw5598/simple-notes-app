@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ResponseMessage } from '@sn/shared/models';
 import { buildTodoListFormGroup } from '@sn/user/shared/forms';
@@ -22,10 +22,10 @@ export class TodoListEditComponent implements OnInit {
   public responseMessage$: Observable<ResponseMessage>;
   public data$: Observable<TodoList>;
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _drawerService: DrawerService,
     private _store: Store<ITodosState>
   ) { }

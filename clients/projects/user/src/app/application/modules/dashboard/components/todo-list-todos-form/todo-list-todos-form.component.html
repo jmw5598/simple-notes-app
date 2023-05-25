@@ -4,7 +4,7 @@
       <a [routerLink]="['/topics', todoList.id, 'details']">{{ todoList.title }}</a>
     </h5>
     <div class="action-buttons">
-      <a (click)="isTodoListVisible = !isTodoListVisible" class="btn btn-outline-primary btn-sm btn-border-none" [routerLink]="">
+      <a (click)="isTodoListVisible = !isTodoListVisible" class="btn btn-outline-primary btn-sm btn-border-none" [routerLink]="[]">
         <ng-container *ngIf="isTodoListVisible; else eyeSlashIconTemplate">
           <i class="fas fa-eye"></i>
         </ng-container>

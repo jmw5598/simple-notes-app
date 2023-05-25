@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlContainer, FormGroup } from '@angular/forms';
+import { ControlContainer, UntypedFormGroup } from '@angular/forms';
 import { fadeAnimation } from '@sn/shared/animations';
 import { STATES } from '@sn/user/shared/data';
 
@@ -10,7 +10,7 @@ import { STATES } from '@sn/user/shared/data';
   animations: [fadeAnimation]
 })
 export class AccountDetailsFormComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public states = STATES;
   
   constructor(
@@ -18,6 +18,6 @@ export class AccountDetailsFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.form = this._parentControl.control as FormGroup;
+    this.form = this._parentControl.control as UntypedFormGroup;
   }
 }

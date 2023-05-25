@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, Renderer2 } from '@angular/core';
-import { FormGroup, ControlContainer } from '@angular/forms';
+import { UntypedFormGroup, ControlContainer } from '@angular/forms';
 import { HEX_COLOR_STRING_ARRAY } from '../../defaults/colors.defaults';
 import { fadeAnimation, showHide } from '@sn/shared/animations';
 
@@ -11,7 +11,7 @@ import { fadeAnimation, showHide } from '@sn/shared/animations';
 })
 export class CalendarEventFormComponent implements OnInit, AfterViewInit {
   private readonly ENTER_KEY: number = 13;
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public colors: string[] = HEX_COLOR_STRING_ARRAY;
   public isColorSwatchPickerShown: boolean = false;
 
@@ -27,7 +27,7 @@ export class CalendarEventFormComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.form = this._parentControl.control as FormGroup;
+    this.form = this._parentControl.control as UntypedFormGroup;
     this.form.get('color').patchValue(HEX_COLOR_STRING_ARRAY[0]);
   }
 

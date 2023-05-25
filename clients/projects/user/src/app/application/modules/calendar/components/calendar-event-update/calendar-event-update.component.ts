@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
-import { FormGroup, ControlContainer } from '@angular/forms';
+import { UntypedFormGroup, ControlContainer } from '@angular/forms';
 import { CalendarEvent, ResponseMessage } from '@sn/shared/models';
 import { showHide } from '@sn/shared/animations';
 
@@ -16,14 +16,14 @@ export class CalendarEventUpdateComponent implements OnInit, AfterViewInit {
   @Input()
   public responseMessage: ResponseMessage;
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   constructor(
     private _parentControl: ControlContainer
   ) { }
 
   ngOnInit(): void {
-    this.form = this._parentControl.control as FormGroup;
+    this.form = this._parentControl.control as UntypedFormGroup;
   }
   
   ngAfterViewInit(): void {

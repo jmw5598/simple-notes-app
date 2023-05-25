@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Todo } from '@sn/shared/models';
 import { Subject } from 'rxjs';
 import { debounceTime, skip, takeUntil } from 'rxjs/operators';
@@ -13,7 +13,7 @@ export class TodosFormComponent implements OnInit, OnDestroy, AfterViewInit {
   private readonly FORM_DEBOUNCE_TIME: number = 500;
   private _subscriptionSubject: Subject<void> = new Subject<void>();
   private _todosChangesSubject: Subject<Todo[]> = new Subject<Todo[]>();
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   private _todos: Todo[];
 
@@ -36,7 +36,7 @@ export class TodosFormComponent implements OnInit, OnDestroy, AfterViewInit {
   public onUpdate: EventEmitter<Todo[]> = new EventEmitter<Todo[]>();
 
   constructor(
-    private _formBuilder: FormBuilder
+    private _formBuilder: UntypedFormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -75,7 +75,7 @@ export class TodosFormComponent implements OnInit, OnDestroy, AfterViewInit {
   // TODO This fires update http requests on initial load of component FIX THIS
   private _patchTodosToForm(todos: Todo[]): void {
     if (this.form && todos?.length) {
-      const todosFormArray: FormArray = this.form.get('todos') as FormArray;
+      const todosFormArray: UntypedFormArray = this.form.get('todos') as UntypedFormArray;
       todosFormArray.patchValue(
         todos.map((todo: Todo) => this._createTodoFormGroup(todo)),
         { onlySelf: false, emitEvent: false }
@@ -84,7 +84,7 @@ export class TodosFormComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  private _createTodoFormGroup(todo: Todo): FormGroup {
+  private _createTodoFormGroup(todo: Todo): UntypedFormGroup {
     return this._formBuilder.group({
       id: [todo.id, [Validators.required]],
       description: [todo.description, [Validators.required]],

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Account } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-admin-accounts-table',

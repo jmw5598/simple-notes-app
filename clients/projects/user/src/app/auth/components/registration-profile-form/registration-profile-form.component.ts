@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, ControlContainer } from '@angular/forms';
+import { UntypedFormGroup, ControlContainer } from '@angular/forms';
 
 @Component({
   selector: 'sn-user-registration-profile-form',
@@ -7,11 +7,11 @@ import { FormGroup, ControlContainer } from '@angular/forms';
   styleUrls: ['./registration-profile-form.component.scss']
 })
 export class RegistrationProfileFormComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   constructor(private _parentControl: ControlContainer) { }
 
   ngOnInit(): void {
-    this.form = this._parentControl.control as FormGroup;
+    this.form = this._parentControl.control as UntypedFormGroup;
   }
 }

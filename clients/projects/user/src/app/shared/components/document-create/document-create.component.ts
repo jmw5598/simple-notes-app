@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 import { showHide } from '@sn/shared/animations';
@@ -21,14 +21,14 @@ import { DrawerService } from '@sn/shared/components';
 })
 export class DocumentCreateComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<any> = new Subject<any>();
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public responseMessage$: Observable<ResponseMessage>;
 
   public document: Document;
   public document$: Observable<Document>;
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _store: Store<IDocumentsState>,
     private _drawerService: DrawerService
   ) { }

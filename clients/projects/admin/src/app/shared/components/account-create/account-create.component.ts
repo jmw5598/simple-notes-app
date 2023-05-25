@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 
@@ -28,11 +28,11 @@ export class AccountCreateComponent implements OnInit {
   public responseMessage$: Observable<ResponseMessage>;
   public plans$: Observable<Plan[]>;
   public roles$: Observable<Role[]>;
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   constructor(
     private _store: Store<IAccountsState>,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _drawerService: DrawerService,
     private _accountValidators: AccountValidators
   ) { }

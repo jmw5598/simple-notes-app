@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, Observable } from 'rxjs';
 import { tap, takeUntil } from 'rxjs/operators';
@@ -21,12 +21,12 @@ import { DrawerService } from '@sn/shared/components';
 })
 export class SectionCreateComponent implements OnInit {
   private _subscriptionSubject: Subject<void>;
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public responseMessage$: Observable<ResponseMessage>;
   public selectedTopic: Topic;
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _store: Store<ISectionsState>,
     private _drawerServie: DrawerService
   ) {

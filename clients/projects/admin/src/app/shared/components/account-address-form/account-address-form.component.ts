@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlContainer, FormGroup } from '@angular/forms';
+import { ControlContainer, UntypedFormGroup } from '@angular/forms';
 
 import { STATES, State } from '../../data';
 
@@ -9,7 +9,7 @@ import { STATES, State } from '../../data';
   styleUrls: ['./account-address-form.component.scss']
 })
 export class AccountAddressFormComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public states: State[];
 
   constructor(
@@ -17,7 +17,7 @@ export class AccountAddressFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.form = this._controlContainer.control as FormGroup;
+    this.form = this._controlContainer.control as UntypedFormGroup;
     this.states = STATES;
   }
 }

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ControlContainer, FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ControlContainer, UntypedFormControl, UntypedFormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { RegistrationAddressFormComponent } from './registration-address-form.component';
 
@@ -8,13 +8,13 @@ describe('RegistrationAddressFormComponent', () => {
   let fixture: ComponentFixture<RegistrationAddressFormComponent>;
 
   let testFormGroupDirective: FormGroupDirective = new FormGroupDirective([], []);;
-  let testFormGroup: FormGroup = new FormGroup({
-    address: new FormGroup({
-      street: new FormControl('', [Validators.required]),
-      street2: new FormControl(''),
-      city: new FormControl('', [Validators.required]),
-      state: new FormControl('', [Validators.required]),
-      zip: new FormControl('', [Validators.required])
+  let testFormGroup: UntypedFormGroup = new UntypedFormGroup({
+    address: new UntypedFormGroup({
+      street: new UntypedFormControl('', [Validators.required]),
+      street2: new UntypedFormControl(''),
+      city: new UntypedFormControl('', [Validators.required]),
+      state: new UntypedFormControl('', [Validators.required]),
+      zip: new UntypedFormControl('', [Validators.required])
     })
   });
   testFormGroupDirective.form = testFormGroup;

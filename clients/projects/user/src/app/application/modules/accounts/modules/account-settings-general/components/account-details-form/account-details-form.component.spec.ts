@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ControlContainer, FormBuilder, FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ControlContainer, FormBuilder, UntypedFormControl, UntypedFormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { AccountDetailsFormComponent } from './account-details-form.component';
 import { buildProfileFormGroup } from '@sn/user/shared/forms/profile-form.builder';
@@ -13,17 +13,17 @@ describe('AccountDetailsFormComponent', () => {
   let fixture: ComponentFixture<AccountDetailsFormComponent>;
 
   let testFormGroupDirective: FormGroupDirective = new FormGroupDirective([], []);;
-  let testFormGroup: FormGroup = new FormGroup({
-    profile: new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      address: new FormGroup({
-        street: new FormControl('', [Validators.required]),
-        street2: new FormControl(''),
-        city: new FormControl('', [Validators.required]),
-        state: new FormControl('', [Validators.required]),
-        zip: new FormControl('', [Validators.required])
+  let testFormGroup: UntypedFormGroup = new UntypedFormGroup({
+    profile: new UntypedFormGroup({
+      firstName: new UntypedFormControl('', [Validators.required]),
+      lastName: new UntypedFormControl('', [Validators.required]),
+      email: new UntypedFormControl('', [Validators.required]),
+      address: new UntypedFormGroup({
+        street: new UntypedFormControl('', [Validators.required]),
+        street2: new UntypedFormControl(''),
+        city: new UntypedFormControl('', [Validators.required]),
+        state: new UntypedFormControl('', [Validators.required]),
+        zip: new UntypedFormControl('', [Validators.required])
       })
     })
   });

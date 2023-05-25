@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, Observable } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
@@ -33,12 +33,12 @@ export class TopicExportComponent implements OnInit, OnDestroy {
   public responseMessage$: Observable<ResponseMessage>;
   public exportTopicFile$: Observable<FileResponse>;
   public topic: Topic;
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public ExportFormat = ExportFormat;
 
   constructor(
     private _store: Store<ITopicsState>,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _drawerService: DrawerService,
   ) {
     this._subscriptionSubject = new Subject<void>();

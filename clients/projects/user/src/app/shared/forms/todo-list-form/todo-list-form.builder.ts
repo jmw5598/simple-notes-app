@@ -1,6 +1,6 @@
- import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+ import { UntypedFormGroup, Validators, UntypedFormBuilder } from '@angular/forms';
 
-export const buildTodoListFormGroup = (formBuilder: FormBuilder): FormGroup => {
+export const buildTodoListFormGroup = (formBuilder: UntypedFormBuilder): UntypedFormGroup => {
   return formBuilder.group({
     id: [''],
     title: ['', [Validators.required]],

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IToolbarState } from '@sn/user/application/store/reducers';
@@ -21,7 +21,7 @@ import { KeyboardShortcutAction, ResponseMessage, ResponseStatus } from '@sn/sha
 })
 export class ConfigureKeyboardShortcutComponent implements OnInit, OnDestroy {
   public ResponseStatus = ResponseStatus;
-  public shortcutForm: FormGroup;
+  public shortcutForm: UntypedFormGroup;
   public shortcut$: Observable<KeyboardShortcutAction>;
   public shortcut: KeyboardShortcutAction;
   public responseMessage$: Observable<ResponseMessage>;
@@ -30,7 +30,7 @@ export class ConfigureKeyboardShortcutComponent implements OnInit, OnDestroy {
   constructor(
     private _drawerService: DrawerService,
     private _store: Store<IToolbarState>,
-    private _formBuilder: FormBuilder
+    private _formBuilder: UntypedFormBuilder
   ) { }
 
   ngOnInit(): void {

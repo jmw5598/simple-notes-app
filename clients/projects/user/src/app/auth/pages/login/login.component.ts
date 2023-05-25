@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -22,12 +22,12 @@ import { AuthenticatedStatus, UserCredentials, Roles } from '@sn/shared/models';
 export class LoginComponent implements OnInit, OnDestroy {
   private _authenticationStateSubscription: Subscription;
   public authenticationState: fromAuth.IAuthenticationState;
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public queryParamMessage$: Observable<string>;
 
   constructor(
     private _authenticationService: AuthenticationService,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _store: Store<fromAuth.IAuthenticationState>,
     private _router: Router,
     private _route: ActivatedRoute

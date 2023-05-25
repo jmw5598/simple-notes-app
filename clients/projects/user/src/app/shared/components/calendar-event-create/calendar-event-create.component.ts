@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ICalendarEventsState } from '@sn/user/application/modules/calendar/store/reducers';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap, take } from 'rxjs/operators';
 import { createCalendarEvent, setCreateCalendarEventResponseMessage } from '@sn/user/application/modules/calendar/store/actions';
@@ -24,13 +24,13 @@ export class CalendarEventCreateComponent implements OnInit, AfterViewInit {
   @ViewChild(CalendarEventFormComponent, { static: true })
   public calendarEventForm: CalendarEventFormComponent;
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public data$: Observable<any>;
   public responseMessage$: Observable<ResponseMessage>;
 
   constructor(
     private _store: Store<ICalendarEventsState>,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _drawerService: DrawerService,
   ) { }
 

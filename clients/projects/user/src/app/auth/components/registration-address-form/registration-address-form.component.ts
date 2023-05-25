@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, ControlContainer } from '@angular/forms';
+import { UntypedFormGroup, ControlContainer } from '@angular/forms';
 import { State, STATES } from '@sn/user/shared/data';
 
 @Component({
@@ -8,7 +8,7 @@ import { State, STATES } from '@sn/user/shared/data';
   styleUrls: ['./registration-address-form.component.scss']
 })
 export class RegistrationAddressFormComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public states: State[]; 
 
   constructor(private _parentControl: ControlContainer) {
@@ -16,6 +16,6 @@ export class RegistrationAddressFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form = this._parentControl.control as FormGroup
+    this.form = this._parentControl.control as UntypedFormGroup
   }
 }

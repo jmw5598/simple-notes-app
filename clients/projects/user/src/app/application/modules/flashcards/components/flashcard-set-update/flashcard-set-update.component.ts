@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ResponseMessage } from '@sn/shared/models';
 import { showHide } from '@sn/shared/animations';
@@ -21,7 +21,7 @@ import { DrawerService } from '@sn/shared/components';
 })
 export class FlashcardSetUpdateComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<any> = new Subject<any>();
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   public flashcardSetBuilder$: Observable<FlashcardSet>;
   public flashcardSetBuilder: FlashcardSet;
@@ -29,7 +29,7 @@ export class FlashcardSetUpdateComponent implements OnInit, OnDestroy {
 
   constructor(
     private _drawerService: DrawerService,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _store: Store<IFlashcardsState>
   ) { }
 

@@ -1,10 +1,10 @@
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, Validators, UntypedFormBuilder } from '@angular/forms';
 import { AccountValidators } from '@sn/core/services';
 import { buildAddressFormGroup } from './address-form.builder';
 
 export const buildProfileFormGroup = (
-    formBuilder: FormBuilder,
-    accountValidators: AccountValidators): FormGroup => {
+    formBuilder: UntypedFormBuilder,
+    accountValidators: AccountValidators): UntypedFormGroup => {
   return formBuilder.group({
     firstName: ['', [
       Validators.required, 

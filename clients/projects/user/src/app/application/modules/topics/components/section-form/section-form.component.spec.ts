@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ControlContainer, FormControl, FormGroup, FormGroupDirective, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ControlContainer, UntypedFormControl, UntypedFormGroup, FormGroupDirective, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Section } from '@sn/shared/models';
 
 import { SectionFormComponent } from './section-form.component';
@@ -9,9 +9,9 @@ describe('SectionFormComponent', () => {
   let fixture: ComponentFixture<SectionFormComponent>;
 
   let testFormGroupDirective: FormGroupDirective = new FormGroupDirective([], []);;
-  let testFormGroup: FormGroup = new FormGroup({
-    title: new FormControl('', [Validators.required]),
-    synopsis: new FormControl('', [Validators.required])
+  let testFormGroup: UntypedFormGroup = new UntypedFormGroup({
+    title: new UntypedFormControl('', [Validators.required]),
+    synopsis: new UntypedFormControl('', [Validators.required])
   });
   testFormGroupDirective.form = testFormGroup;
 

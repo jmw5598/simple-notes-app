@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlContainer, FormGroup } from '@angular/forms';
+import { ControlContainer, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'sn-admin-roles-form',
@@ -7,13 +7,13 @@ import { ControlContainer, FormGroup } from '@angular/forms';
   styleUrls: ['./roles-form.component.scss']
 })
 export class RolesFormComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   constructor(
     private _controlContainer: ControlContainer
   ) { }
 
   ngOnInit(): void {
-    this.form = this._controlContainer.control as FormGroup;
+    this.form = this._controlContainer.control as UntypedFormGroup;
   }
 }

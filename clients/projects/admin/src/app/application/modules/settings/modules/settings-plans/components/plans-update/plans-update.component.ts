@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { IRolesState } from '@sn/admin/core/store/reducers';
 import { Plan, ResponseMessage } from '@sn/shared/models';
@@ -20,14 +20,14 @@ import { takeUntil, tap } from 'rxjs/operators';
 })
 export class PlansUpdateComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<void> = new Subject<void>();
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public responseMessage$: Observable<ResponseMessage>;
   private _data$: Observable<Plan>;
 
   constructor(
     private _store: Store<IRolesState>,
     private _drawerService: DrawerService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: UntypedFormBuilder
   ) { }
 
   ngOnInit(): void {

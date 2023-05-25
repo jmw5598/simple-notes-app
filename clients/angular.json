@@ -33,7 +33,6 @@
               "projects/admin/src/favicon.ico",
               "projects/admin/src/assets"
             ],
-            "extractCss": true,
             "styles": [
               {
                 "input": "projects/admin/src/assets/scss/themes/blue/theme.scss",
@@ -146,7 +145,6 @@
               "projects/user/src/favicon.ico",
               "projects/user/src/assets"
             ],
-            "extractCss": true,
             "styles": [
               {
                 "input": "projects/user/src/assets/scss/themes/blue/theme.scss",
@@ -332,7 +330,7 @@
               "tsConfig": "projects/@sn/shared/animations/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/@shared/animations/tsconfig.lib.json"
+              "tsConfig": "projects/@sn/shared/animations/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -440,6 +438,5 @@
         }
       }
     }
-  },
-  "defaultProject": "user"
+  }
 }

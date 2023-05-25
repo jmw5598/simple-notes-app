@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
@@ -23,12 +23,12 @@ import { Roles } from 'projects/@sn/shared/models/src/public-api';
 export class LoginComponent implements OnInit {
   private _authenticationStateSubscription: Subscription;
   public authenticationState: fromAuth.IAuthenticationState;
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public queryParamMessage$: Observable<string>;
 
   constructor(
     private _authenticationService: AuthenticationService,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _store: Store<fromAuth.IAuthenticationState>,
     private _router: Router,
     private _route: ActivatedRoute

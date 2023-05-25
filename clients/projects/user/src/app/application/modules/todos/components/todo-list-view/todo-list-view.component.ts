@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ResponseMessage } from '@sn/shared/models';
 import { buildTodoListFormGroup } from '@sn/user/shared/forms';
@@ -19,12 +19,12 @@ import { DrawerService } from '@sn/shared/components';
   styleUrls: ['./todo-list-view.component.scss']
 })
 export class TodoListViewComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public data$: Observable<TodoList>;
   public responseMessage$: Observable<ResponseMessage>;
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _drawerService: DrawerService,
     private _store: Store<ITodosState>
   ) { }

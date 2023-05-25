@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlContainer, FormGroup } from '@angular/forms';
+import { ControlContainer, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'sn-user-section-form',
@@ -7,11 +7,11 @@ import { ControlContainer, FormGroup } from '@angular/forms';
   styleUrls: ['./section-form.component.scss']
 })
 export class SectionFormComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   constructor(private _parentControl: ControlContainer) { }
 
   ngOnInit(): void {
-    this.form = this._parentControl.control as FormGroup;
+    this.form = this._parentControl.control as UntypedFormGroup;
   }
 }

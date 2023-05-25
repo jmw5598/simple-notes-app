@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ICalendarEventsState } from '../../store/reducers';
@@ -19,14 +19,14 @@ import { DrawerService } from '@sn/shared/components';
   styleUrls: ['./calendar-event-view.component.scss']
 })
 export class CalendarEventViewComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public data$: Observable<CalendarEvent>;
   public responseMessage$: Observable<ResponseMessage>;
   public data: any;
   public calendarEventView: string;
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _drawerService: DrawerService, 
     private _store: Store<ICalendarEventsState>
   ) {

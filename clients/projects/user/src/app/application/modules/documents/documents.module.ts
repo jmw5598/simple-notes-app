@@ -14,24 +14,21 @@ import { DocumentViewComponent } from './components/document-view/document-view.
 import { SharedComponentsModule } from '@sn/shared/components';
 
 @NgModule({
-  declarations: [
-    ViewDocumentsComponent,
-    DocumentListComponent,
-    DocumentUpdateComponent,
-    DocumentViewComponent,
-  ],
-  imports: [
-    SharedComponentsModule,
-    CommonModule,
-    DragDropModule,
-    DocumentsRoutingModule,
-    SharedModule,
-    TypeaheadModule.forRoot(),
-    ConfirmationPopoverModule,
-    MarkdownModule.forRoot()
-  ],
-  entryComponents: [
-    DocumentViewComponent
-  ]
+    declarations: [
+        ViewDocumentsComponent,
+        DocumentListComponent,
+        DocumentUpdateComponent,
+        DocumentViewComponent,
+    ],
+    imports: [
+        SharedComponentsModule,
+        CommonModule,
+        DragDropModule,
+        DocumentsRoutingModule,
+        SharedModule,
+        TypeaheadModule.forRoot(),
+        ConfirmationPopoverModule,
+        MarkdownModule.forRoot()
+    ]
 })
 export class DocumentsModule { }

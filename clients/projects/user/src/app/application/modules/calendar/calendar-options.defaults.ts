@@ -1,4 +1,8 @@
-import { CalendarOptions } from '@fullcalendar/angular';
+import { CalendarOptions } from '@fullcalendar/core';
+
+import bootstrapPlugin from '@fullcalendar/bootstrap';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
 
 // TODO define colors? Enum?
 const TEXT_COLOR_DEFAULT: string = '#FFFFFF';
@@ -17,5 +21,10 @@ export const CALENDAR_OPTIONS_DEFAULT: CalendarOptions = {
   eventBackgroundColor: BACKGROUND_COLOR_DEFAULT,
   eventBorderColor: BORDER_COLOR_DEFAULT,
   eventTextColor: TEXT_COLOR_DEFAULT,
-  editable: true
+  editable: true,
+  plugins: [
+    bootstrapPlugin,
+    dayGridPlugin,
+    interactionPlugin,
+  ]
 };

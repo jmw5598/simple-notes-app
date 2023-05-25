@@ -1,6 +1,6 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
-import { ControlContainer, FormArray, FormControl, FormGroup } from '@angular/forms';
+import { ControlContainer, UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
 
 @Component({
@@ -9,7 +9,7 @@ import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
   styleUrls: ['./todo-list-form.component.scss']
 })
 export class TodoListFormComponent implements OnInit, AfterViewInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   public datepickerConfig = { 
     adaptivePosition: true, 
@@ -23,7 +23,7 @@ export class TodoListFormComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.form = this._parentControl.control as FormGroup;
+    this.form = this._parentControl.control as UntypedFormGroup;
   }
 
   ngAfterViewInit(): void {
@@ -33,28 +33,28 @@ export class TodoListFormComponent implements OnInit, AfterViewInit {
   }
 
   public addTodo(description: string): void {
-    const todosArray: FormArray = this.form.get('todos') as FormArray;
+    const todosArray: UntypedFormArray = this.form.get('todos') as UntypedFormArray;
     todosArray.push(this._createTodo(description));
     this.form.get('description').reset();
     this._renderer.selectRootElement('#description').focus();
   }
 
   public removeTodo(todoValue: any): void {
-    const todosArray: FormArray = this.form.get('todos') as FormArray;
+    const todosArray: UntypedFormArray = this.form.get('todos') as UntypedFormArray;
     const removeIndex: number = todosArray.controls.findIndex(control => control.value.id === todoValue.id);
     if (removeIndex !== -1) {
       todosArray.removeAt(removeIndex);
     }
   }
 
-  public get todos(): FormArray {
-    return this.form.get('todos') as FormArray;
+  public get todos(): UntypedFormArray {
+    return this.form.get('todos') as UntypedFormArray;
   }
 
-  private _createTodo(description: string): FormGroup {
-    return new FormGroup({
-      id: new FormControl(-idGenerator.next().value),
-      description: new FormControl(description)
+  private _createTodo(description: string): UntypedFormGroup {
+    return new UntypedFormGroup({
+      id: new UntypedFormControl(-idGenerator.next().value),
+      description: new UntypedFormControl(description)
     })
   }
 
@@ -67,7 +67,7 @@ export class TodoListFormComponent implements OnInit, AfterViewInit {
   }
 
   public dropTodo(event: CdkDragDrop<any>): void {
-    const todosArrays: FormArray = this.form.get('todos') as FormArray;
+    const todosArrays: UntypedFormArray = this.form.get('todos') as UntypedFormArray;
     const dir = event.currentIndex > event.previousIndex ? 1 : -1;
     const from = event.previousIndex;
     const to = event.currentIndex;

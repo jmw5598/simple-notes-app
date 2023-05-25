@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -19,11 +19,11 @@ import { buildTopicFormGroup } from '../../forms/topic-form/topic-form.builder';
   animations: [showHide]
 })
 export class TopicCreateComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public responseMessage$: Observable<ResponseMessage>;
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _store: Store<ITopicsState>
   ) { }
 
@@ -45,7 +45,7 @@ export class TopicCreateComponent implements OnInit {
   }
 
   private _resetForm(): void {
-    const categories: FormArray = this._formBuilder.array([]);
+    const categories: UntypedFormArray = this._formBuilder.array([]);
     this.form.setControl('categories', categories);
     this.form.reset();
   }

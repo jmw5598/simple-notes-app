@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
@@ -20,13 +20,13 @@ import { tap } from 'rxjs/operators';
   animations: [showHide]
 })
 export class PlansCreateComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public responseMessage$: Observable<ResponseMessage>;
 
   constructor(
     private _store: Store<IRolesState>,
     private _drawerService: DrawerService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: UntypedFormBuilder
   ) { }
 
   ngOnInit(): void {

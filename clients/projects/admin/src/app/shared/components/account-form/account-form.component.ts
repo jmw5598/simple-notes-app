@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, ControlContainer } from '@angular/forms';
+import { UntypedFormGroup, ControlContainer } from '@angular/forms';
 import { Plan } from '@sn/shared/models';
 
 @Component({
@@ -8,7 +8,7 @@ import { Plan } from '@sn/shared/models';
   styleUrls: ['./account-form.component.scss']
 })
 export class AccountFormComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   @Input()
   public plans: Plan[] = [];
@@ -18,6 +18,6 @@ export class AccountFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.form = this._controlContainer.control as FormGroup;    
+    this.form = this._controlContainer.control as UntypedFormGroup;    
   }
 }

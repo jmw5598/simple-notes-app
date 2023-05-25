@@ -18,25 +18,20 @@ import { TodosFormComponent } from './components/todo-list-todos-form/components
 import { SharedComponentsModule } from '@sn/shared/components';
 
 @NgModule({
-  declarations: [
-    DashboardOverviewComponent,
-    RecentTopicsListComponent,
-    TodaysCalendarEventsListComponent,
-    TodaysTodoListsListComponent,
-    PastDueTodoListsListComponent,
-    TodoListTodosFormComponent,
-    TodosFormComponent
-  ],
-  imports: [
-    SharedComponentsModule,
-    CommonModule,
-    DashboardRoutingModule,
-    SharedModule
-  ],
-  entryComponents: [
-    TopicCreateComponent,
-    TopicSearchComponent,
-    CalendarEventCreateComponent
-  ]
+    declarations: [
+        DashboardOverviewComponent,
+        RecentTopicsListComponent,
+        TodaysCalendarEventsListComponent,
+        TodaysTodoListsListComponent,
+        PastDueTodoListsListComponent,
+        TodoListTodosFormComponent,
+        TodosFormComponent
+    ],
+    imports: [
+        SharedComponentsModule,
+        CommonModule,
+        DashboardRoutingModule,
+        SharedModule
+    ]
 })
 export class DashboardModule { }

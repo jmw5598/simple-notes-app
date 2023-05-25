@@ -13,23 +13,19 @@ import { MarkdownModule } from 'ngx-markdown';
 import { SharedComponentsModule } from '@sn/shared/components';
 
 @NgModule({
-  declarations: [
-    ViewFlashcardsComponent,
-    FlashcardListComponent,
-    FlashcardSetViewComponent,
-    FlashcardSetUpdateComponent
-  ],
-  imports: [
-    SharedComponentsModule,
-    CommonModule,
-    SharedModule,
-    FlashcardsRoutingModule,
-    ConfirmationPopoverModule,
-    MarkdownModule.forRoot()
-  ],
-  entryComponents: [
-    FlashcardSetViewComponent,
-    FlashcardSetUpdateComponent
-  ]
+    declarations: [
+        ViewFlashcardsComponent,
+        FlashcardListComponent,
+        FlashcardSetViewComponent,
+        FlashcardSetUpdateComponent
+    ],
+    imports: [
+        SharedComponentsModule,
+        CommonModule,
+        SharedModule,
+        FlashcardsRoutingModule,
+        ConfirmationPopoverModule,
+        MarkdownModule.forRoot()
+    ]
 })
 export class FlashcardsModule { }

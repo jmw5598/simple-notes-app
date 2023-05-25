@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { filter, tap, distinctUntilChanged } from 'rxjs/operators';
@@ -18,11 +18,11 @@ import { fadeAnimation } from '@sn/shared/animations';
   animations: [fadeAnimation]
 })
 export class PasswordRequestComponent implements OnInit, OnDestroy {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public passwordRequestResetResult: Observable<ResponseMessage>;
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _store: Store<fromAuth.IAuthenticationState>
   ) {
     this.form = this._formBuilder.group({

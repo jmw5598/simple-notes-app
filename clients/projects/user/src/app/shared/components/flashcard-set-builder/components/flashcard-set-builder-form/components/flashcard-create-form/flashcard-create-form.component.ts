@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { DEFAULT_EDITOR_OPTIONS } from '@sn/user/core/defaults';
 import { FlashcardSetBuilderService } from '@sn/user/shared/components/flashcard-set-builder/services/flashcard-set-builder.service';
 import { Flashcard } from '@sn/shared/models';
@@ -15,13 +15,13 @@ import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
 export class FlashcardCreateFormComponent implements OnInit {
   private readonly idGenerator: Generator = idGenerator;
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public frontCard: string = '';
   public backCard: string = '';
   public editorOptions: EditorOption = {...DEFAULT_EDITOR_OPTIONS};
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _flashcardSetBuilderService: FlashcardSetBuilderService
   ) { }
 

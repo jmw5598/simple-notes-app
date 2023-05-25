@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { ControlContainer, FormArray, FormControl, FormGroup } from '@angular/forms';
+import { ControlContainer, UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ResponseMessage } from '@sn/shared/models';
 import { showHide } from '@sn/shared/animations';
 import { Todo, TodoList } from '@sn/shared/models';
@@ -18,20 +18,20 @@ export class TodoListDetailsComponent implements OnInit, AfterViewInit {
   @Input()
   public responseMessage: ResponseMessage;
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   constructor(
     private _controlContainer: ControlContainer
   ) { }
 
   ngOnInit(): void {
-    this.form = this._controlContainer.control as FormGroup;
+    this.form = this._controlContainer.control as UntypedFormGroup;
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
       if (this.form && this.todoList) {
-        const todosFormArray: FormArray = this.form.get('todos') as FormArray;
+        const todosFormArray: UntypedFormArray = this.form.get('todos') as UntypedFormArray;
         const startDateTime: Date = new Date(this.todoList.startedBy);
         const endDateTime: Date = new Date(this.todoList.completedBy);
         const formValue: {[key: string]: any} = {
@@ -48,11 +48,11 @@ export class TodoListDetailsComponent implements OnInit, AfterViewInit {
     })
   }
 
-  private _generateTodo(todo: Todo): FormGroup {
-    return new FormGroup({
-      id: new FormControl(todo?.id || idGenerator.next().value),
-      description: new FormControl(todo.description),
-      isComplete: new FormControl(todo?.isComplete || false)
+  private _generateTodo(todo: Todo): UntypedFormGroup {
+    return new UntypedFormGroup({
+      id: new UntypedFormControl(todo?.id || idGenerator.next().value),
+      description: new UntypedFormControl(todo.description),
+      isComplete: new UntypedFormControl(todo?.isComplete || false)
     });
   }
 }

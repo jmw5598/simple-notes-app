@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { DEFAULT_EDITOR_OPTIONS } from '@sn/user/core/defaults';
 import { FlashcardSetBuilderService } from '@sn/user/shared/components/flashcard-set-builder/services/flashcard-set-builder.service';
 import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
@@ -18,13 +18,13 @@ export class FlashcardEditFormComponent implements OnInit, OnDestroy, AfterViewI
   private readonly idGenerator: Generator = idGenerator;
   private _subscriptionSubject: Subject<void> = new Subject<void>();
 
-  public form: FormGroup
+  public form: UntypedFormGroup
   public frontCard: string = '';
   public backCard: string = '';
   public editorOptions: EditorOption = {...DEFAULT_EDITOR_OPTIONS};
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _flashcardSetBuilderService: FlashcardSetBuilderService
   ) { }
 

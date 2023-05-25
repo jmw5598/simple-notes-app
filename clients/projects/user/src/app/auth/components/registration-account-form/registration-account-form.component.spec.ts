@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ControlContainer, FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ControlContainer, UntypedFormControl, UntypedFormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { RegistrationAccountFormComponent } from './registration-account-form.component';
 
@@ -8,9 +8,9 @@ describe('RegistrationAccountFormComponent', () => {
   let fixture: ComponentFixture<RegistrationAccountFormComponent>;
 
   let testFormGroupDirective: FormGroupDirective = new FormGroupDirective([], []);;
-  let testFormGroup: FormGroup = new FormGroup({
-    account: new FormGroup({
-      plan: new FormControl('', [Validators.required])
+  let testFormGroup: UntypedFormGroup = new UntypedFormGroup({
+    account: new UntypedFormGroup({
+      plan: new UntypedFormControl('', [Validators.required])
     })
   });
   testFormGroupDirective.form = testFormGroup;

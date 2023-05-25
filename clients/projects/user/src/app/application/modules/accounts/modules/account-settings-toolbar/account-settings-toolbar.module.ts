@@ -10,24 +10,21 @@ import { ConfigureKeyboardShortcutComponent } from './components/configure-keybo
 import { SharedComponentsModule } from '@sn/shared/components';
 
 @NgModule({
-  declarations: [
-    AccountSettingsToolbarComponent,
-    ToolbarKeyboardShortcutListComponent,
-    ConfigureKeyboardShortcutComponent
-  ],
-  imports: [
-    SharedComponentsModule,
-    AccountSettingsToolbarRoutingModule,
-    CommonModule,
-    SharedModule,
-    ConfirmationPopoverModule.forRoot({
-      popoverMessage: 'Are you sure?',
-      cancelButtonType: 'btn-default btn-sm bg-secondary',
-      confirmButtonType: 'btn-primary btn-sm bg-primary text-light'
-    }),
-  ],
-  entryComponents: [
-    ConfigureKeyboardShortcutComponent
-  ]
+    declarations: [
+        AccountSettingsToolbarComponent,
+        ToolbarKeyboardShortcutListComponent,
+        ConfigureKeyboardShortcutComponent
+    ],
+    imports: [
+        SharedComponentsModule,
+        AccountSettingsToolbarRoutingModule,
+        CommonModule,
+        SharedModule,
+        ConfirmationPopoverModule.forRoot({
+            popoverMessage: 'Are you sure?',
+            cancelButtonType: 'btn-default btn-sm bg-secondary',
+            confirmButtonType: 'btn-primary btn-sm bg-primary text-light'
+        }),
+    ]
 })
 export class AccountSettingsToolbarModule { }
