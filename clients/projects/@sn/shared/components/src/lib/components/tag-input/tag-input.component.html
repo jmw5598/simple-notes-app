@@ -1,9 +1,9 @@
 <form (ngSubmit)="add(form.controls['tag'].value)" [formGroup]="form" novalidate>
-<span class="form-control">
-  <span>
+<span class="flex flex-row flex-wrap gap-1 w-full border rounded-xl text-sm py-2 px-3">
+  <span class="flex flex-row flex-wrap gap-1">
     <ng-container *ngFor="let item of items">
-      <span [ngClass]="tagStyle" (click)="remove(item)">
-        <i class="far fa-times-circle icon-margin"></i>
+      <span class="text-xs text-white bg-primary-500 rounded-full px-2 py-1 me-1 cursor-pointer">
+        <span class="font-bold" (click)="remove(item)">x</span>
         {{ item }}
       </span>
     </ng-container>

@@ -18,10 +18,14 @@ import { SectionUpdateComponent } from './components/section-update/section-upda
 import { SectionFormComponent } from './components/section-form/section-form.component';
 import { EditSectionNotesComponent } from './pages/edit-section-notes/edit-section-notes.component';
 
+import { NgIconsModule } from '@ng-icons/core';
+import { heroDocument, heroEye, heroClock, heroDocumentArrowDown, heroPencil, heroTrash } from '@ng-icons/heroicons/outline';
+
 import * as fromTopics from './store/reducers';
 import * as fromTopicsEffects from './store/effects';
 
 import { SharedComponentsModule } from '@sn/shared/components';
+
 
 @NgModule({
     declarations: [
@@ -52,8 +56,17 @@ import { SharedComponentsModule } from '@sn/shared/components';
             fromTopicsEffects.SectionsEffects,
             fromTopicsEffects.TopicsEffects
         ]),
-        AngularMarkdownEditorModule.forRoot({ iconlibrary: 'fa' }),
-        MarkdownModule.forRoot()
+        // AngularMarkdownEditorModule.forRoot({ iconlibrary: 'fa' }),
+        MarkdownModule.forRoot(),
+        NgIconsModule.withIcons({ 
+            heroDocument, 
+            heroEye, 
+            heroClock, 
+            heroDocumentArrowDown, 
+            heroPencil, 
+            heroTrash, 
+        }),
+        AngularMarkdownEditorModule,
     ]
 })
 export class TopicsModule { }

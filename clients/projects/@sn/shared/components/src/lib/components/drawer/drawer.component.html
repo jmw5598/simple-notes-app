@@ -6,8 +6,15 @@
   </div>
   <div class="side-panel shadow"
     [ngClass]="(drawerLocation || options?.location) + ' ' + (drawerSize || options?.size)">
-    <div class="p-4">
-      <i class="fas fa-times close text-dark" (click)="close()"></i>
+    <div class="pt-4 pl-4 pr-4 text-gray-500 hover:text-gray-700 transition-colors cursor-pointer" (click)="close()">
+      <svg 
+          class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" 
+          fill="none" 
+          viewBox="0 0 24 24" 
+          stroke-width="1.5" 
+          stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
     </div>
     <div class="content py-0 px-4">
       <ng-container #content></ng-container>

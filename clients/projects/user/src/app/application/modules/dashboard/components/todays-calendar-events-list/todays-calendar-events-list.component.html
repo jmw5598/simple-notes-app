@@ -1,29 +1,29 @@
-<div *ngIf="!events || events.length === 0" class="events-no-data p-3 border-bottom-1">
+<div *ngIf="!events || events.length === 0" class="events-no-data p-3 border-b">
   <sn-empty-data 
       message="No calendar events today!"
       [extraContent]="createNewButton">
   </sn-empty-data>
   <ng-template #createNewButton>
-    <a [routerLink]="['../calendar']" class="btn btn-success text-light">Create an event</a>
+    <a [routerLink]="['../calendar']" class="bg-white border border-primary-500 mt-4 py-2 px-4 hover:bg-primary-500 hover:text-white transition-colors rounded-full text-primary-500 font-semibold mb-2">Create an event</a>
   </ng-template>
 </div>
 <ng-container *ngIf="events">
-  <div *ngFor="let event of events" class="border-bottom-1 p-3">
+  <div *ngFor="let event of events" class="border-b p-4">
     <div class="list-details">
       <div class="list-details-title">
-        <h5 class="text-primary p-0 m-0 d-flex flex-row justify-content-between w-100">
+        <h5 class="text-primary-500 p-0 m-0 flex flex-row justify-between w-full">
           <a [routerLink]="['/calendar']">{{ event.title }}</a>
         </h5>
       </div>
-      <p class="list-details-description text-dark font-italic p-0 m-0">{{ event.description }}</p>
+      <p class="list-details-description text-gray-500 italic text-xs p-0 mt-2 mb-1">{{ event.description }}</p>
       <hr class="my-1" />
-      <div class="list-details-timestamp text-dark p-0 m-0 d-flex flex-row">
-        <p class="list-details-timestamp text-dark p-0 m-0 mr-3">
-          <i class="far fa-clock"></i>&nbsp;&nbsp; 
+      <div class="list-details-timestamp text-dark p-0 m-0 flex flex-row">
+        <p class="list-details-timestamp text-gray-500 p-0 m-0 mr-3 flex items-center">
+          <ng-icon name="heroClock" size="0.8rem"></ng-icon>&nbsp;&nbsp; 
           {{ event.startDateTime | date:'shortTime' }} - {{ event.endDateTime | date:'shortTime' }} ({{ event.startDateTime | date:'shortDate' }} - {{ event.endDateTime | date:'shortDate' }})
         </p>
-        <p class="list-details-timestamp text-dark p-0 m-0">
-          <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp; {{ event.location || '' }}
+        <p class="list-details-timestamp text-gray-500 p-0 m-0 flex items-center">
+          <ng-icon name="heroMapPin" size="0.8rem"></ng-icon>&nbsp;&nbsp; {{ event.location || '' }}
         </p>
         <span class="dot-color-swatch ml-auto" [style.background-color]="event?.color"></span>
       </div>

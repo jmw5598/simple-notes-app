@@ -1,47 +1,66 @@
-<div *ngIf="!(isPageLoading$ | async) && (topic$ | async)" [@fadeAnimation] class="container-navbar-adjust container-fluid p-0 m-0 height-full">
-  <div class="row p-0 m-0 height-full">
+<div *ngIf="!(isPageLoading$ | async) && (topic$ | async)" [@fadeAnimation] class="flex w-100 m-0 p-0 h-full p-0 m-0 h-full">
+  
     <!-- Topic Details List -->
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 m-0 p-0 border-right-1 border-bottom-md-1 border-right-md-0 height-full">
-      <div class="p-3 topic-details-heading">
-        <h4 class="text-primary font-weight-bold mb-0 pb-3 mb-3 border-bottom-1">{{ (topic$ | async).title }}</h4>
-        <p class="m-0 p-3 bg-secondary font-italic text-dark">{{ (topic$ | async).synopsis }}</p>
-        <button (click)="onUpdateTopic()" role="button" class="topic-details-edit-button btn btn-sm btn-border-none">
-          <i class="fas fa-info-circle icon-margin"></i>
-        </button>
-      </div>
-      <div class="mx-3 px-3 pb-2">
-        Created: <span class="float-sm-right badge badge-dark">{{ (topic$ | async).createdAt | date:short }}</span>
-      </div>
-      <div class="mx-3 px-3 pb-3">
-        Modified: <span class="float-sm-right badge badge-dark">{{ (topic$ | async).updatedAt| date:short }}</span>
+    <div class="w-1/3 border-bottom-md-1 border-0 md:border-r h-full">
+      <div class="border-b">
+        <div class="topic-details-heading border-b">
+          <div class="flex flex-row items-center justify-between border-b px-4 py-3">
+            <h4 class="text-primary-500 text-xl font-bold">{{ (topic$ | async).title }}</h4>
+            <div class="flex flex-row items-center">
+              <button 
+                  role="button" 
+                  class="flex items-center text-primary-500 text-xs px-4 py-2 mr-1 border border-primary-500 rounded-full"
+                  (click)="onUpdateTopic()" >
+                <ng-icon class="mr-1" name="heroPencil" size="1rem"></ng-icon> Edit
+              </button>
+            </div>
+          </div>
+          <p class="bg-gray-100 rounded-lg text-gray-600 italic text-xs p-4 m-4">{{ (topic$ | async).synopsis }}</p>
+          
+        </div>
+        <div class="flex flex-row justify-between text-sm px-4 pt-2 pb-1">
+          <span>Created: </span>
+          <span class="bg-gray-100 rounded-full text-xs px-2 py-1 border">{{ (topic$ | async).createdAt | date:short }}</span>
+        </div>
+        <div class="flex flex-row justify-between text-sm px-4  pt-1 pb-2">
+          <span>Modified:</span>
+          <span class="bg-gray-100 rounded-full text-xs px-2 py-1 border">{{ (topic$ | async).updatedAt| date:short }}</span>
+        </div>
       </div>
     </div>
 
     <!-- Sections List -->
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8 m-0 p-0">
-      <h4 class="p-3 m-0 border-bottom-1">
-        <span class="font-weight-bold text-primary">Sections</span>
-        <!-- Header Buttons -->
-        <span class="float-right">
-          <button (click)="onCreateSection()" role="button" class="btn btn-sm btn-outline-dark btn-border-none">
-            <i class="far fa-file-alt icon-margin"></i>
-            New
-          </button>
-          <button role="button" class="btn btn-sm btn-outline-dark btn-border-none" (click)="onOpenExportTopic()">
-            <i class="fas fa-download icon-margin"></i>
-            Export
-          </button>
-        </span>
-        <span class="float-right" style="margin-top: -3px">
+    <div class="w-2/3 m-0 p-0">
+      <div class="flex flex-row items-center justify-between border-b px-4 py-3">
+        <h4 class="text-primary-500 text-xl font-bold">Sections</h4>
+        <span class="flex flex-row items-center">
           <sn-debounced-search
-              style="display: inline"
+              class="mr-1"
               debounceTime="500"
               [isSearching]="isSearching"
               (onSearch)="onSearchSections($event)">
           </sn-debounced-search>
+          <span>
+            <button 
+                role="button" 
+                class="flex items-center text-primary-500 text-xs px-4 py-2 mr-1 border border-primary-500 rounded-full" 
+                (click)="onOpenExportTopic()">
+              <ng-icon class="mr-1" name="heroDocumentArrowDown" size="1rem"></ng-icon>
+              Export
+            </button>
+          </span>
+          <span>
+            <button 
+                role="button" 
+                class="flex items-center text-white text-xs px-4 py-2 border border-primary-500 bg-primary-500 rounded-full"
+                (click)="onCreateSection()" >
+              <ng-icon class="mr-1" name="heroDocument" size="1rem"></ng-icon>
+              New
+            </button>
+          </span>
         </span>
-      </h4>
-      <div class="">
+      </div>
+      <div class="border-b">
         <sn-user-section-list
             [sections]="(searchSectionsResult$ | async)?.elements"
             (onDelete)="onDeleteSection($event)"
@@ -57,8 +76,7 @@
           </sn-paginator>
         </div>
       </div>
-    </div>
-  </div>
+  
 </div>
 
 <sn-drawer

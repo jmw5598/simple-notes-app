@@ -1,78 +1,54 @@
-<sn-toolbar>
+<sn-toolbar class="bg-white">
   <sn-toolbar-button-group>
     <span 
         snToolbarButton 
-        (click)="onPreviousRoute()"
-        [tooltip]="'Previous Page'" 
-        placement="auto" 
-        container="body"
-        [delay]="tooltipDelay">
-      <i class="fas fa-arrow-left"></i>
+        class="text-gray-500"
+        (click)="onPreviousRoute()">
+      <ng-icon name="heroArrowSmallLeft" size="1.2rem"></ng-icon>
     </span>
     <span 
         snToolbarButton 
-        (click)="onNextRoute()"
-        [tooltip]="'Next Page'" 
-        placement="auto" 
-        container="body"
-        [delay]="tooltipDelay">
-      <i class="fas fa-arrow-right"></i>
+        class="text-gray-500"
+        (click)="onNextRoute()">
+      <ng-icon name="heroArrowSmallRight" size="1.2rem"></ng-icon>
     </span>
   </sn-toolbar-button-group>
   <sn-toolbar-button-group>
     <span 
         snToolbarButton 
-        (click)="onCreateNewTopic()"
-        [tooltip]="'Create New Topic'" 
-        placement="auto" 
-        container="body"
-        [delay]="tooltipDelay">
-      <i class="fas fa-book-medical"></i>
+        class="text-gray-500"
+        (click)="onCreateNewTopic()">
+      <ng-icon name="heroBookOpen" size="1.2rem"></ng-icon>
     </span>
     <span 
         snToolbarButton 
-        (click)="onCreateNewCalendarEvent()"
-        [tooltip]="'Create New Calendar Event'" 
-        placement="auto" 
-        container="body"
-        [delay]="tooltipDelay">
-      <i class="far fa-calendar-plus"></i>
+        class="text-gray-500"
+        (click)="onCreateNewCalendarEvent()">
+      <ng-icon name="heroCalendarDays" size="1.2rem"></ng-icon>
     </span>
     <span 
         snToolbarButton 
-        (click)="onCreateNewDocument()"
-        [tooltip]="'Create New Document'" 
-        placement="auto" 
-        container="body"
-        [delay]="tooltipDelay">
-      <i class="fas fa-file-medical"></i>
+        class="text-gray-500"
+        (click)="onCreateNewDocument()">
+      <ng-icon name="heroDocument" size="1.2rem"></ng-icon>
     </span>
     <span 
         snToolbarButton 
-        (click)="onSearchTopics()"
-        [tooltip]="'Search Topics'" 
-        placement="auto" 
-        container="body"
-        [delay]="tooltipDelay">
-      <i class="fas fa-search"></i>
+        class="text-gray-500"
+        (click)="onSearchTopics()">
+      <ng-icon name="heroMagnifyingGlass" size="1.2rem"></ng-icon>
     </span>
     <span 
         snToolbarButton 
-        (click)="onCreateFlashcardSet()"
-        [tooltip]="'Create Flashcard Set'" 
-        placement="auto" 
-        container="body"
-        [delay]="tooltipDelay">
-      <i class="far fa-sticky-note"></i>
+        class="text-gray-500"
+        (click)="onCreateFlashcardSet()">
+      <ng-icon name="heroCreditCard" size="1.2rem"></ng-icon>
     </span>
     <span 
         snToolbarButton 
-        (click)="onCreateTodoList()"
-        [tooltip]="'Create New Todo List'" 
-        placement="auto" 
-        container="body"
-        [delay]="tooltipDelay">
-      <i class="fas fa-clipboard-check"></i>
+        class="text-gray-500"
+        (click)="onCreateTodoList()">
+      <ng-icon name="heroClipboardDocumentList" size="1.2rem"></ng-icon>
     </span>
   </sn-toolbar-button-group>
 </sn-toolbar>

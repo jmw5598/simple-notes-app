@@ -102,6 +102,6 @@ export class CheckboxComponent implements ControlValueAccessor {
   }
 
   public get classes(): string {
-    return `${this.labelPosition} ${this.shape} ${this.size} ${this.color}`;
+    return `${this.labelPosition} ${this.shape} ${this.size}`;
   }
 }

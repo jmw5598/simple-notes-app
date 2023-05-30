@@ -26,8 +26,9 @@ import { ToolbarComponent } from './components/toolbar/toolbar/toolbar.component
 import { ToolbarButtonComponent } from './components/toolbar/toolbar-button/toolbar-button.component';
 import { ToolbarButtonGroupComponent } from './components/toolbar/toolbar-button-group/toolbar-button-group.component';
 import { ToolbarDockComponent } from './components/toolbar/toolbar-dock/toolbar-dock.component';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RadioComponent } from './components/radio/radio.component';
+import { MarkdownEasymdeDirective } from './directives/markdown-easymde.directive';
 
 @NgModule({
   declarations: [
@@ -52,10 +53,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ToolbarButtonComponent,
     ToolbarButtonGroupComponent,
     ToolbarDockComponent,
+    RadioComponent,
+    MarkdownEasymdeDirective,
   ],
   imports: [
     CommonModule,
-    TooltipModule,
     ReactiveFormsModule,
     FormsModule
   ],
@@ -81,6 +83,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ToolbarButtonComponent,
     ToolbarButtonGroupComponent,
     ToolbarDockComponent,
+    RadioComponent,
+    MarkdownEasymdeDirective,
   ],
   providers: [
     DrawerService,

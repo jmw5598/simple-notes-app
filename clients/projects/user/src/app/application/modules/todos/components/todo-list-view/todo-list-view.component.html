@@ -4,15 +4,15 @@
         [todoList]="data$ | async"
         [responseMessage]="responseMessage$ | async">
     </sn-user-todo-list-details>
-    <div class="form-group text-right mx-2">
+    <div class="mx-4">
       <button 
-          class="btn btn-primary mr-2" 
+          class="border border-primary-500 hover:bg-white bg-primary-500 text-white hover:text-primary-500 font-bold transition-colors rounded-full py-2 px-4 text-xs me-1" 
           type="submit">
         Save
       </button>
       <button 
           (click)="onCancel()"
-          class="btn btn-secondary" 
+          class="cursor-pointer border border-primary-500 hover:bg-primary-500 text-primary-500 hover:text-white font-bold transition-colors rounded-full py-2 px-4 text-xs" 
           type="button">
         Close
       </button>

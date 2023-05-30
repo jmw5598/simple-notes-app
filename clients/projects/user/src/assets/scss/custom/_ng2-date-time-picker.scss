@@ -1,0 +1,90 @@
+dp-day-calendar,
+dp-month-calendar {
+  .dp-day-calendar-container,
+  .dp-month-calendar-container {
+    @apply text-primary-500;
+  }
+}
+
+dp-day-time-calendar {
+  width: 300px;
+  dp-day-calendar,
+  dp-month-calendar {
+    width: 300px;
+    
+    .dp-day-calendar-container,
+    .dp-month-calendar-container {
+      width: 300px;
+      
+      .dp-calendar-wrapper {
+        width: 300px;
+        @apply border border-gray-200;
+
+        .dp-weekdays {
+          @apply flex flex-row items-center;
+          
+          .dp-calendar-weekday {
+            @apply border-gray-200 grow;
+          }
+        }
+
+        .dp-calendar-week,
+        .dp-months-row {
+          @apply flex flex-row items-center;
+          
+          .dp-calendar-day,
+          .dp-calendar-month {
+            @apply grow;
+            
+            +.dp-selected {
+              @apply bg-primary-500 text-white rounded-full first:bg-primary-500;
+            }
+          }
+        }
+      }
+
+      dp-calendar-nav {
+        .dp-nav-header {
+          @apply flex flex-row justify-between items-center;
+
+          &:first-child {
+            @apply font-bold text-lg px-1;
+          }
+        }
+        
+        .dp-calendar-nav-container {
+          height: 36px;
+          @apply border-t border-l border-r border-gray-200;
+          @apply rounded-t-lg #{!important};
+        }
+      }
+    }
+  }  
+}
+
+
+// @Note this is the selected value on the calendar
+// Odd bug where if you use the full selected (nested) 
+// the first child doesn't receive the styles but the rest
+// do.  When I add this the first child get styles so
+// here we are!
+.dp-selected,
+dp-month-calendar .dp-calendar-month.dp-selected {
+  @apply bg-primary-500 text-white rounded-full first:bg-primary-500;
+}
+
+dp-day-time-calendar dp-time-select {
+  @apply border border-l border-r border-b border-gray-200 text-gray-500 rounded-b-lg #{!important};
+
+  .dp-time-select-controls {
+    @apply rounded-b-lg #{!important};
+  }
+}
+
+.dp-popup {
+  box-shadow: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  @apply rounded-lg shadow-md mt-1 #{!important};
+}

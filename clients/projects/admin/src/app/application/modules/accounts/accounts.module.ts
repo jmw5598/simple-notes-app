@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { SharedModule } from '@sn/admin/shared/shared.module';
 
@@ -26,7 +25,6 @@ import { AccountUpdateToolbarComponent } from './components/account-update-toolb
     CommonModule,
     AccountsRoutingModule,
     SharedComponentsModule,
-    TooltipModule
   ]
 })
 export class AccountsModule { }

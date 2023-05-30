@@ -146,56 +146,8 @@
               "projects/user/src/assets"
             ],
             "styles": [
-              {
-                "input": "projects/user/src/assets/scss/themes/blue/theme.scss",
-                "bundleName": "theme-blue",
-                "inject": false
-              },
-              {
-                "input": "projects/user/src/assets/scss/themes/cyan/theme.scss",
-                "bundleName": "theme-cyan",
-                "inject": false
-              },
-              {
-                "input": "projects/user/src/assets/scss/themes/green/theme.scss",
-                "bundleName": "theme-green",
-                "inject": false
-              },
-              {
-                "input": "projects/user/src/assets/scss/themes/indigo/theme.scss",
-                "bundleName": "theme-indigo",
-                "inject": false
-              },
-              {
-                "input": "projects/user/src/assets/scss/themes/orange/theme.scss",
-                "bundleName": "theme-orange",
-                "inject": false
-              },
-              {
-                "input": "projects/user/src/assets/scss/themes/pink/theme.scss",
-                "bundleName": "theme-pink",
-                "inject": false
-              },
-              {
-                "input": "projects/user/src/assets/scss/themes/purple/theme.scss",
-                "bundleName": "theme-purple",
-                "inject": false
-              },
-              {
-                "input": "projects/user/src/assets/scss/themes/red/theme.scss",
-                "bundleName": "theme-red",
-                "inject": false
-              },
-              {
-                "input": "projects/user/src/assets/scss/themes/teal/theme.scss",
-                "bundleName": "theme-teal",
-                "inject": false
-              },
-              {
-                "input": "projects/user/src/assets/scss/themes/yellow/theme.scss",
-                "bundleName": "theme-yellow",
-                "inject": false
-              },
+              "node_modules/easymde/dist/easymde.min.css",
+              "projects/@assets/scss/main.scss",
               "projects/user/src/assets/scss/styles.scss"
             ],
             "scripts": [

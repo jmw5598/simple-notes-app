@@ -27,7 +27,7 @@
     overflow: hidden;
 
     &.opened {
-      flex: 0 0 350px;
+      flex: 0 0 250px;
     }
 
     &.closed {
@@ -35,7 +35,7 @@
     }
 
     &.collapsed {
-      flex: 0 0 62px;
+      flex: 0 0 64px;
     }
   }
 

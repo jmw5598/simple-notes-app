@@ -1,7 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ControlContainer, UntypedFormControl, UntypedFormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 import { CalendarEventFormComponent } from './calendar-event-form.component';
 
@@ -55,8 +53,6 @@ describe('CalendarEventFormComponent', () => {
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        BsDatepickerModule.forRoot(),
-        TimepickerModule.forRoot()
       ],
       declarations: [
         CalendarEventFormComponent

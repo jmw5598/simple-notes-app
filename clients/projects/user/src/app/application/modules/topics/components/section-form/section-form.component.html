@@ -1,19 +1,20 @@
 <fieldset [formGroup]="form">
   <!-- Title Field Input -->
-  <div class="form-group">
-    <label for="title">Title</label>
+  <div class="flex flex-col justify-center grow w-full mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1" for="title">Title</label>
     <input
-        class="form-control"
+        class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700"
         type="text" name="title"
         formControlName="title"
         [ngClass]="{'is-invalid':!form.controls['title']?.valid && form.controls['title']?.touched  }" />
   </div>
 
   <!-- Synopsis Field Input -->
-  <div class="form-group">
-    <label for="synopsis">Synopsis</label>
+  <div class="flex flex-col justify-center grow w-full mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1">Synopsis</label>
     <textarea
-        class="form-control"
+        rows="6"
+        class="border py-2 px-4 bg-white rounded-xl text-sm focus:outline-none focus:border-gray-400 text-gray-700"
         name="synopsis"
         formControlName="synopsis"
         [ngClass]="{'is-invalid':!form.controls['synopsis']?.valid && form.controls['synopsis']?.touched  }">

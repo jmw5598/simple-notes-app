@@ -22,11 +22,11 @@ export class TodoListProgressComponent implements OnInit {
   public get classProgress(): string {
     const progress: number = this.completedPercent;
     return progress === 100 
-      ? 'bg-success' 
+      ? 'bg-primary-400' 
       : progress >= 66
-        ? 'bg-info' 
+        ? 'bg-info-400' 
         : progress >= 33
-          ? 'bg-warning' 
-          : 'bg-danger';
+          ? 'bg-warning-400' 
+          : 'bg-danger-400';
   }
 }

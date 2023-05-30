@@ -1,50 +1,38 @@
 <div class="flashcard-set-viewer-controls">
   <span 
+      title="First card"
       class="control" 
-      (click)="first()"
-      tooltip="First"
-      [placement]="tooltipPlacement"
-      [delay]="tooltipDelay">
-    <i class="fas fa-angle-double-left"></i>
+      (click)="first()">
+    <ng-icon name="heroChevronDoubleLeft" size="1rem"></ng-icon>
   </span>
   <span 
+      title="Previous card"
       class="control" 
-      (click)="previous()"
-      tooltip="Previous"
-      [placement]="tooltipPlacement"
-      [delay]="tooltipDelay">
-    <i class="fas fa-chevron-left"></i>
+      (click)="previous()">
+    <ng-icon name="heroChevronLeft" size="1rem"></ng-icon>
   </span>
   <span 
+      title="Shuffle cards"
       class="control" 
-      (click)="shuffle()"
-      tooltip="Shuffle"
-      [placement]="tooltipPlacement"
-      [delay]="tooltipDelay">
-    <i class="fas fa-random"></i>
+      (click)="shuffle()">
+    <ng-icon name="heroQuestionMarkCircle" size="1rem"></ng-icon>
   </span>
   <span 
+      title="Flip card"
       class="control" 
-      (click)="flip()"
-      tooltip="Flip"
-      [placement]="tooltipPlacement"
-      [delay]="tooltipDelay">
-    <i class="fas fa-sync-alt"></i>
+      (click)="flip()">
+    <ng-icon name="heroArrowPath" size="1rem"></ng-icon>
   </span>
   <span 
+      title="Next card"
       class="control" 
-      (click)="next()"
-      tooltip="Next"
-      [placement]="tooltipPlacement"
-      [delay]="tooltipDelay">
-    <i class="fas fa-chevron-right"></i>
+      (click)="next()">
+    <ng-icon name="heroChevronRight" size="1rem"></ng-icon>
   </span>
   <span 
+      title="Last card"
       class="control" 
-      (click)="last()"
-      tooltip="Last"
-      [placement]="tooltipPlacement"
-      [delay]="tooltipDelay">
-    <i class="fas fa-angle-double-right"></i>
+      (click)="last()">
+    <ng-icon name="heroChevronDoubleRight" size="1rem"></ng-icon>
   </span>
 </div>

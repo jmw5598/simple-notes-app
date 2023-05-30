@@ -1,18 +1,19 @@
 <div class="toaster mx-4 my-3" [ngClass]="location">
   <ng-container *ngFor="let message of messages">
-    <div 
-        [@showHide] 
-        class="toast-message alert" 
-        [ngClass]="'alert-' + message.options.type">
+    <div  
+        [@showHide]
+        class="toast-message rounded-xl p-4 mb-4"
+        [ngClass]="'bg-' + message.options.type + '-100 text-' + message.options.type + '-700'"
+        role="alert">
       <button 
           *ngIf="message?.options?.isDismissible" 
           type="button" 
-          class="toast-message-close"
-          [ngClass]="message?.options.type === 'light' ? 'text-dark' : 'text-light'"
+          class="toast-message-close text-gray-900"
           (click)="dismiss(message)">
-        <i class="fas fa-times"></i>
+        &#10005;
       </button>
-      <p class="toast-message-content m-0">{{ message?.message || '' }}</p>
+      <p style="max-width: 230px;" *ngIf="message?.title" class="font-bold break-words whitespace-break-spaces">{{ (message?.title || '') | titlecase }}</p>
+      <p style="max-width: 230px;" class="break-words whitespace-break-spaces">{{ (message?.message || '') | titlecase }}</p>
     </div>
   </ng-container>
 </div>

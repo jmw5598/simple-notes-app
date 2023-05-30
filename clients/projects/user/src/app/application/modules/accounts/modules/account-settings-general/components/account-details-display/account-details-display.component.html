@@ -1,23 +1,30 @@
-<ul class="account-bio" [@fadeAnimation]>
-  <li>
-    First Name: <span class="float-right">{{ profile?.firstName || '' }}</span>
-  </li>
-  <li>
-    Last Name: <span class="float-right">{{ profile?.lastName || '' }}</span>
-  </li>
-  <li>
-    Street: <span class="float-right">{{ profile?.address?.street || '' }}</span>
-  </li>
-  <li>
-    City: <span class="float-right">{{ profile?.address?.city || '' }}</span>
-  </li>
-  <li>
-    State: <span class="float-right">{{ profile?.address?.state || '' }}</span>
-  </li>
-  <li>
-    Zip: <span class="float-right">{{ profile?.address?.zip || '' }}</span>
-  </li>
-  <li>
-    Email: <span class="float-right">{{ profile?.email || '' }}</span>
-  </li>
-</ul>
+<div class="account-bio" [@fadeAnimation]>
+  <div class="flex flex-row justify-between items-center mb-2 text-sm">
+    <span>First Name:</span>
+    <span class="float-right">{{ profile?.firstName || '' }}</span>
+  </div>
+  <div class="flex flex-row justify-between items-center mb-2 text-sm">
+    <span>Last Name:</span>
+    <span class="float-right">{{ profile?.lastName || '' }}</span>
+  </div>
+  <div class="flex flex-row justify-between items-center mb-2 text-sm">
+    <span>Street:</span>
+    <span class="float-right">{{ profile?.address?.street || '' }}</span>
+  </div>
+  <div class="flex flex-row justify-between items-center mb-2 text-sm">
+    <span>City:</span>
+    <span class="float-right">{{ profile?.address?.city || '' }}</span>
+  </div>
+  <div class="flex flex-row justify-between items-center mb-2 text-sm">
+    <span>State:</span>
+    <span class="float-right">{{ profile?.address?.state || '' }}</span>
+  </div>
+  <div class="flex flex-row justify-between items-center mb-2 text-sm">
+    <span>Zip:</span>
+    <span class="float-right">{{ profile?.address?.zip || '' }}</span>
+  </div>
+  <div class="flex flex-row justify-between items-center mb-2 text-sm">
+    <span>Email:</span>
+    <span class="float-right">{{ profile?.email || '' }}</span>
+  </div>
+</div>

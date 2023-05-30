@@ -53,7 +53,7 @@ export class FlashcardSetViewerControlsService {
   }
 
   public random(): void {
-    if (this._flashcardSet?.flashcards?.length) {
+    if (this._flashcardSet?.flashcards?.length > 1) {
       this._resetCurrentFlashcardFlipped();
       this._currentFlashcardIndex = this._generateNextRandomFlashcardIndex();
       this._currentFlashcard = this._flashcardSet.flashcards[this._currentFlashcardIndex];

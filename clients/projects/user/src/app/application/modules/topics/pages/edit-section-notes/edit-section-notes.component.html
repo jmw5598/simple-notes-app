@@ -1,17 +1,13 @@
-<div *ngIf="!(isPageLoading$ | async) && (section$ | async)" [@fadeAnimation] class="editor container-navbar-adjust">
-  <div class="editor-left">
-    <angular-markdown-editor
-        textareaId="section-editor-area" 
-        name="markdownText"
-        [options]="editorOptions"
-        [(ngModel)]="sectionNotes"
-        (onFullscreenExit)="hidePreview()"
-        (onChange)="onSectionNotesChangeKeyUp($event)">
-    </angular-markdown-editor>
-  </div>
-  <div class="editor-right">
+<div *ngIf="!(isPageLoading$ | async) && (section$ | async)" [@fadeAnimation] class="editor flex flex-row h-full">
+  <form class="editor-left w-1/2 h-full" [formGroup]="formGroup">
+    <textarea 
+        snMarkdownEasymde 
+        formControlName="notes">
+    </textarea>
+  </form>
+  <div class="editor-right w-1/2 h-full">
     <div class="editor-markdown-preview">
-      <markdown class="markdown-body" [data]="sectionNotes"></markdown>
+      <markdown class="markdown-body" [data]="formGroup?.value?.notes"></markdown>
     </div>
   </div>
 </div>

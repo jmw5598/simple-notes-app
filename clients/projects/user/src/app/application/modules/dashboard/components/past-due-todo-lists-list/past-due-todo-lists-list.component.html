@@ -1,8 +1,8 @@
-<div *ngIf="!todoLists || todoLists.length === 0" class="topics-no-data p-3 border-bottom-1">
+<div *ngIf="!todoLists || todoLists.length === 0" class="topics-no-data p-3 border-b">
   <sn-empty-data message="No past due todo lists to display!"></sn-empty-data>
 </div>
 <ng-container *ngIf="todoLists">
-  <div *ngFor="let todoList of todoLists" class="border-bottom-1 p-3">
+  <div *ngFor="let todoList of todoLists" class="border-b p-4">
     <sn-user-todo-list-todos-form 
         [todoList]="todoList"
         (onUpdate)="onUpdateTodoList($event)">

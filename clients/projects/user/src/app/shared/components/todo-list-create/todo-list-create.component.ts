@@ -67,7 +67,13 @@ export class TodoListCreateComponent implements OnInit, AfterViewInit {
   }
   
   public onSubmit(value: any): void {
-    const todoList: TodoList = { id: null, ...value } as TodoList;
+    const todoList: TodoList = { 
+      id: null, 
+      ...value,
+      startedBy: new Date(value.startedBy),
+      completedBy: new Date(value.completedBy),
+    } as TodoList;
+    
     this._store.dispatch(todoActions.createTodoList({
       todoList: todoList
     }));

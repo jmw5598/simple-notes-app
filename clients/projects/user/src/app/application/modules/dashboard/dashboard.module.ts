@@ -4,6 +4,9 @@ import { SharedModule } from '@sn/user/shared/shared.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardOverviewComponent } from './pages/dashboard-overview/dashboard-overview.component';
 
+import { NgIconsModule } from '@ng-icons/core';
+import { heroEye, heroEyeSlash, heroCalendarDays, heroClock, heroMapPin, } from '@ng-icons/heroicons/outline';
+
 import { 
   TopicCreateComponent, 
   TopicSearchComponent, 
@@ -31,7 +34,14 @@ import { SharedComponentsModule } from '@sn/shared/components';
         SharedComponentsModule,
         CommonModule,
         DashboardRoutingModule,
-        SharedModule
+        SharedModule,
+        NgIconsModule.withIcons({
+            heroEye,
+            heroEyeSlash,
+            heroCalendarDays,
+            heroClock,
+            heroMapPin,
+        })
     ]
 })
 export class DashboardModule { }

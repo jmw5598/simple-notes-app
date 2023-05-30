@@ -1,28 +1,28 @@
-<div *ngIf="!topics || topics.length === 0" class="topics-no-data p-3 border-bottom-1">
+<div *ngIf="!topics || topics.length === 0" class="topics-no-data p-3 border-b">
   <sn-empty-data 
       message="No recent topics to display!"
       [extraContent]="createNewButton">
   </sn-empty-data>
   <ng-template #createNewButton>
-    <a [routerLink]="['../topics']" class="btn btn-success text-light">View topics</a>
+    <a [routerLink]="['../topics']" class="bg-white border border-primary-500 mt-4 py-2 px-4 hover:bg-primary-500 hover:text-white transition-colors rounded-full text-primary-500 font-semibold mb-2">View topics</a>
   </ng-template>
 </div>
 <ng-container *ngIf="topics">
-  <div *ngFor="let topic of topics" class="border-bottom-1 p-3">
+  <div *ngFor="let topic of topics" class="border-b p-4">
     <div class="list-details">
       <div class="list-details-title">
-        <h5 class="text-primary p-0 m-0">
+        <h5 class="text-primary-500 p-0 m-0 mb-2">
           <a [routerLink]="['/topics', topic.id, 'details']">{{ topic.title }}</a>
         </h5>
         <div class="action-buttons">
-          <a class="btn btn-outline-primary btn-sm btn-border-none" [routerLink]="['/topics', topic.id, 'details']">
-            <i class="fas fa-eye"></i>
+          <a class="text-gray-500" [routerLink]="['/topics', topic.id, 'details']">
+            <ng-icon name="heroEye" size="1rem"></ng-icon>
           </a>
         </div>
       </div>
-      <p class="list-details-description text-dark font-italic p-0 m-0">{{ topic.synopsis }}</p>
+      <p class="list-details-description text-gray-600 italic text-xs p-0 m-0">{{ topic.synopsis }}</p>
       <hr class="my-1" />
-      <p class="list-details-timestamp text-dark mb-0"><i class="far fa-clock"></i>&nbsp;&nbsp; {{ topic.updatedAt | date:'medium' }}</p>
+      <p class="list-details-timestamp text-gray-500 mb-0 flex items-center"><ng-icon name="heroClock" size="0.8rem"></ng-icon>&nbsp;&nbsp; {{ topic.updatedAt | date:'medium' }}</p>
     </div>
   </div>
 </ng-container>

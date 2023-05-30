@@ -16,6 +16,7 @@ export type ToasterLocation =
 
 export class ToastMessage {
   public id: number;
+  public title?: string;
   public message: string;
   public options: ToastMessageOptions;
 }

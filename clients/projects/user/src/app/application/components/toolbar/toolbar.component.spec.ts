@@ -8,7 +8,6 @@ import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { ToolbarComponent } from './toolbar.component';
 import { DrawerService } from '@sn/shared/components';
-import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
@@ -26,7 +25,6 @@ describe('ToolbarComponent', () => {
         KeyboardShortcutsModule.forRoot(),
         HttpClientTestingModule,
         SharedModule,
-        TimepickerModule.forRoot()
       ],
       declarations: [
         ToolbarComponent

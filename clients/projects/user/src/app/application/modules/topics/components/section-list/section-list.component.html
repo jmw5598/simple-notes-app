@@ -1,45 +1,48 @@
-<div *ngIf="!sections || sections.length === 0" class="sections-no-data p-3 border-bottom-1">
+<div *ngIf="!sections || sections.length === 0" class="sections-no-data p-4 border-b">
   <sn-empty-data 
       message="No sections found!"
       [extraContent]="createNewButton">
   </sn-empty-data>
   <ng-template #createNewButton>
-    <a (click)="create($event)" class="btn btn-success text-light">Create a section</a>
+    <a (click)="create($event)" 
+        class="bg-white border border-primary-500 mt-4 py-2 px-4 hover:bg-primary-500 hover:text-white transition-colors rounded-full text-primary-500 font-semibold mb-2 cursor-pointer">
+      Create a section
+    </a>
   </ng-template>
 </div>
 <ng-container *ngIf="sections">
-  <div *ngFor="let section of sections" class="border-bottom-1 p-3">
+  <div *ngFor="let section of sections" class="border-b p-4">
     <div class="list-details">
       <div class="list-details-title">
-        <h5 class="text-primary p-0 m-0">
-          <a [routerLink]="['../sections', section.id, 'editor']">{{ section.title }}</a>
+        <h5 class="text-primary-500 p-0 m-0 mb-2">
+          <a class="hover:text-primary-700" [routerLink]="['../sections', section.id, 'editor']">{{ section.title }}</a>
         </h5>
         <div class="action-buttons">
           <button 
               role="button" 
-              class="btn btn-outline-primary btn-sm btn-border-none" 
+              class="text-primary-500 hover:text-primary-700 transition-colors mr-1" 
               [routerLink]="['../sections', section.id, 'editor']">
-            <i class="fas fa-edit"></i>
+            <ng-icon name="heroPencil" size="1rem"></ng-icon>
           </button>
           <button 
               role="button" 
-              class="btn btn-outline-primary btn-sm btn-border-none" 
+              class="text-primary-500 hover:text-primary-700 transition-colors mr-1" 
               (click)="edit(section)">
-            <i class="fas fa-info-circle"></i>
+            <ng-icon name="heroEye" size="1rem"></ng-icon>
           </button>
           <button 
               mwlConfirmationPopover
               placement="left"
               (confirm)="delete(section.id)"
               role="button" 
-              class="btn btn-outline-primary btn-sm btn-border-none">
-            <i class="far fa-trash-alt"></i>
+              class="text-primary-500 hover:text-primary-700 transition-colors mr-3">
+            <ng-icon name="heroTrash" size="1rem"></ng-icon>
           </button>
         </div>
       </div>
-      <p class="list-details-description text-dark font-italic p-0 m-0">{{ section.synopsis }}</p>
+      <p class="list-details-description text-gray-600 italic text-xs p-0 m-0">{{ section.synopsis }}</p>
       <hr class="my-1" />
-      <p class="list-details-timestamp text-dark mb-0"><i class="far fa-clock"></i>&nbsp;&nbsp; {{ section.updatedAt | date:'medium' }}</p>
+      <p class="list-details-timestamp text-gray-500 mb-0 flex items-center"><ng-icon name="heroClock" size="0.8rem"></ng-icon>&nbsp;&nbsp; {{ section.updatedAt | date:'medium' }}</p>
     </div>
   </div>
 </ng-container>

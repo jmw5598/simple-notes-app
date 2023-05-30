@@ -1,0 +1,116 @@
+$default: #e6e8ea;
+$white: #FFFFFF;
+
+@mixin generate-radio-label-positions {
+  &.left {
+    flex-direction: row-reverse;
+    .radio-label {
+      margin-right: 0.25rem;
+    }
+  }
+  
+  &.right {
+    flex-direction: row;
+    justify-content: flex-end;
+    .radio-label {
+      margin-left: 0.25rem;
+    }
+  }
+}
+
+@mixin create-radio-shape($radius) {
+  .radio{
+    border-radius: $radius;
+    .checkmark {
+      border-radius: $radius;
+    }
+  }
+}
+
+@mixin generate-radio-shapes {
+  &.square {
+    @include create-radio-shape(0);
+  }
+
+  &.rounded {
+    @include create-radio-shape(4px);
+  }
+
+  &.circle {
+    @include create-radio-shape(3rem);
+  }
+}
+
+@mixin create-radio-size($radio-size, $font-size) {
+  .radio {
+    width: $radio-size;
+    height:  $radio-size;
+    font-size:  $font-size;
+    .checkmark {
+      line-height: $radio-size;
+    }
+  }
+  .radio-label {
+    font-size: $font-size;
+    line-height: $radio-size;
+  }
+}
+
+@mixin generate-radio-sizes {
+  &.small {
+    @include create-radio-size(22px, 1rem);
+  }
+
+  &.medium {
+    @include create-radio-size(32px, 1.2rem);
+  }
+
+  &.large {
+    @include create-radio-size(42px, 1.5rem);
+  }
+  &.xsmall {
+    @include create-radio-size(16px, 0.8rem);
+  }
+}
+
+.radio-container {
+  display: inline-flex;
+
+  .radio-label,
+  .radio {
+    cursor: pointer;
+  }
+
+  .radio {
+    box-sizing: border-box;
+    background: lighten($default, 20%);
+    color: $white;
+    transition: background 0.2s, visibility 0.2s;
+
+    .checkmark {
+      visibility: hidden;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    &:hover {
+      background: lighten($default, 15%);
+    }
+
+    &:active {
+      background: lighten($default,  10%);
+    }
+
+    &.checked {
+      .checkmark {
+        visibility: visible;
+      }
+    }
+  }
+
+  @include generate-radio-label-positions;
+  @include generate-radio-sizes;
+  @include generate-radio-shapes;
+}

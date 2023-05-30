@@ -5,13 +5,21 @@ import { SharedModule } from '@sn/user/shared/shared.module';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { DocumentsRoutingModule } from './documents-routing.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+
 import { ViewDocumentsComponent } from './pages/view-documents/view-documents.component';
 import { DocumentListComponent } from './components/document-list/document-list.component';
 import { DocumentUpdateComponent } from './components/document-update/document-update.component';
 import { DocumentViewComponent } from './components/document-view/document-view.component';
 
 import { SharedComponentsModule } from '@sn/shared/components';
+
+import { NgIconsModule } from '@ng-icons/core';
+import { 
+    heroEye,
+    heroTrash,
+    heroPencil,
+    heroClock,
+    heroDocument, } from '@ng-icons/heroicons/outline';
 
 @NgModule({
     declarations: [
@@ -26,9 +34,15 @@ import { SharedComponentsModule } from '@sn/shared/components';
         DragDropModule,
         DocumentsRoutingModule,
         SharedModule,
-        TypeaheadModule.forRoot(),
         ConfirmationPopoverModule,
-        MarkdownModule.forRoot()
+        MarkdownModule.forRoot(),
+        NgIconsModule.withIcons({
+            heroEye,
+            heroTrash,
+            heroPencil,
+            heroClock,
+            heroDocument,
+        }),
     ]
 })
 export class DocumentsModule { }

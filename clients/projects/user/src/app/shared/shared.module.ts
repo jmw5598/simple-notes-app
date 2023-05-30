@@ -3,8 +3,24 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover'
+
+import { DpDatePickerModule } from 'ng2-date-picker';
+
+import { NgIconsModule } from "@ng-icons/core";
+import { 
+  heroEye, 
+  heroEyeSlash, 
+  heroCalendarDays, 
+  heroArrowsPointingOut, 
+  heroDocumentDuplicate, 
+  heroTrash,
+  heroChevronLeft,
+  heroChevronRight,
+  heroChevronDoubleLeft,
+  heroChevronDoubleRight,
+  heroArrowPath,
+  heroQuestionMarkCircle } from '@ng-icons/heroicons/outline';
 
 import { FlashcardSetCreateComponent } from './components';
 import { TopicFormComponent } from './forms/topic-form/topic-form.component';
@@ -12,8 +28,6 @@ import { TopicCreateComponent } from './components/topic-create/topic-create.com
 import { TopicSearchComponent } from './components/topic-search/topic-search.component';
 import { CalendarEventFormComponent } from './forms/calendar-event-form/calendar-event-form.component';
 import { CalendarEventCreateComponent } from './components/calendar-event-create/calendar-event-create.component';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 import { ColorTwitterModule } from 'ngx-color/twitter';
 import { DocumentBuilderFormComponent } from './components/document-builder/components/document-builder-form/document-builder-form.component';
@@ -36,7 +50,6 @@ import { FlashcardSetViewerComponent } from './components/flashcard-set-viewer/f
 import { FlashcardSetViewerControlsComponent } from './components/flashcard-set-viewer/components/flashcard-set-viewer-controls/flashcard-set-viewer-controls.component';
 import { FlashcardSetViewerControlsService } from './components/flashcard-set-viewer/services/flashcard-set-viewer-controls.service';
 
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { FlashcardSetViewerHeaderComponent } from './components/flashcard-set-viewer/components/flashcard-set-viewer-header/flashcard-set-viewer-header.component';
 import { FlashcardSetViewerFlipperComponent } from './components/flashcard-set-viewer/components/flashcard-set-viewer-flipper/flashcard-set-viewer-flipper.component';
 import { TodoListCreateComponent } from './components/todo-list-create/todo-list-create.component';
@@ -47,6 +60,7 @@ import { TodoListUpdateComponent } from './components/todo-list-update/todo-list
 import { TodoListProgressComponent } from './components/todo-list-progress/todo-list-progress.component';
 
 import { SharedComponentsModule } from '@sn/shared/components';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -83,18 +97,30 @@ import { SharedComponentsModule } from '@sn/shared/components';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    TimepickerModule,
-    BsDatepickerModule.forRoot(),
     RouterModule,
     ColorTwitterModule,
     DragDropModule,
-    TypeaheadModule,
     ConfirmationPopoverModule,
     AngularMarkdownEditorModule.forRoot({ iconlibrary: 'fa' }),
     MarkdownModule.forRoot({
       sanitize: SecurityContext.NONE
     }),
-    TooltipModule.forRoot()
+    NgIconsModule.withIcons({ 
+      heroEye, 
+      heroEyeSlash, 
+      heroCalendarDays,
+      heroArrowsPointingOut,
+      heroDocumentDuplicate,
+      heroTrash,
+      heroChevronLeft,
+      heroChevronRight,
+      heroChevronDoubleLeft,
+      heroChevronDoubleRight,
+      heroArrowPath,
+      heroQuestionMarkCircle,
+    }),
+    DpDatePickerModule,
+    NgSelectModule,
   ],
   exports: [
     FormsModule,

@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { IAccountsState } from '../../store/reducers';
 import { Account, Profile } from '@sn/shared/models';
 import { selectAccountDetails, selectAccountProfile } from '../../store/selectors';
-import { TabsetComponent } from 'ngx-bootstrap/tabs';
 
 import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
 
@@ -17,11 +16,12 @@ import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/comp
   animations: [fadeAnimation]
 })
 export class AccountSettingsComponent extends AbstractPageOverlayLoader implements OnInit, AfterViewInit {
-  @ViewChild('tabs', { static: false })
-  public tabs: TabsetComponent;
+  // @ViewChild('tabs', { static: false })
 
   public accountProfile$: Observable<Profile>;
   public accountDetails$: Observable<Account>;
+
+  public currentRoute: string = 'general';
 
   constructor(
     private _router: Router,
@@ -42,6 +42,8 @@ export class AccountSettingsComponent extends AbstractPageOverlayLoader implemen
   }
 
   public navigateTo(route: string): void {
+    this.currentRoute = route;
+    console.log("this touer it ", route)
     this._router.navigateByUrl(`/accounts/settings/${route}`);
   }
 
@@ -51,12 +53,12 @@ export class AccountSettingsComponent extends AbstractPageOverlayLoader implemen
   }
 
   private _handleActiveTabRestore(): void {
-    setTimeout(() => {
-      const currentTab: UrlSegment = this._route.firstChild.snapshot.url[0];
-      const tab = this.tabs?.tabs?.find(e => e.id === currentTab.path.toLowerCase());
-      if (tab) {
-        tab.active = true;
-      }
-    });
+    // setTimeout(() => {
+    //   const currentTab: UrlSegment = this._route.firstChild.snapshot.url[0];
+    //   const tab = this.tabs?.tabs?.find(e => e.id === currentTab.path.toLowerCase());
+    //   if (tab) {
+    //     tab.active = true;
+    //   }
+    // });
   }
 }

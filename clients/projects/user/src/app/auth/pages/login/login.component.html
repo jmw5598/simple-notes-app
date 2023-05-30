@@ -1,50 +1,65 @@
-<div class="card" [@fadeAnimation]>
-  <div class="card-body p-5">
-  <h1 class="login-title text-center">Sign In</h1>
-  <form [formGroup]="form" class="login-form" (ngSubmit)="submitForm(form.value)">
-    <!-- TODO Refactor these two alerts into one alert somehow? -->
-    <div class="alert alert-danger" 
-        *ngIf="authenticationState && authenticationState.errorMessage">
-      {{ authenticationState.errorMessage }}
+<form 
+    class="bg-white"
+    novalidate 
+    [formGroup]="form" 
+    [@fadeAnimation]
+    (ngSubmit)="submitForm(form.value)">
+  <h1 class="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>
+  <p class="text-sm font-normal text-gray-600 mb-4">Welcome Back</p>
+
+  <!-- Feedback Messages -->
+  <ng-container [@fadeAnimation] *ngIf="authenticationState && authenticationState.errorMessage">
+    <div class="bg-danger-100 rounded-xl text-danger-700 p-4 mb-4" role="alert">
+      <p class="font-bold">Error</p>
+      <p>{{ authenticationState.errorMessage }}</p>
     </div>
-    <div class="alert alert-success"
-        *ngIf="(queryParamMessage$ | async)">
-      {{ (queryParamMessage$ | async) }}
+  </ng-container>
+  <ng-container [@fadeAnimation] *ngIf="(queryParamMessage$ | async)">
+    <div class="bg-primary-100 rounded-xl text-primary-700 p-4 mb-4" role="alert">
+      <p class="font-bold">Success</p>
+      <p>{{ authenticationState.errorMessage }}</p>
     </div>
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input class="form-control" type="text" formControlName="username" />
-    </div>
-    <div class="form-group">
-      <label for="label">Password</label>
-      <input class="form-control" type="password" formControlName="password" />
-    </div>
-    <div div class="row">
-      <div class="col-sm-6">
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" name="rememberMe" id="rememberMe" formControlName="rememberMe" />
-          <label for="rememberMe">Remember me</label>
-        </div>
-      </div>
-      <div class="col-sm-6 text-right">
-        <a class="login-form-forgot" [routerLink]="['../password-request']">Forgot password</a>
-      </div>
-    </div>
-    <input type="hidden" formControlName="requestedRole" />
-    <div class="row">
-      <div class="col-sm-12">
-        <button 
-            class="col-sm 12 login-form-button login-form-margin btn btn-primary"
-            [disabled]="form.invalid">
-          Login
-        </button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12 mt-4 text-center">
-        Or <a [routerLink]="['../register']"> register now! </a>
-      </div>
-    </div>
-  </form>
+  </ng-container>
+  
+  <!-- Username Input -->
+  <div class="flex items-center border py-2 px-3 rounded-full mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+    </svg>
+    <input 
+        class="pl-2 outline-none border-none" 
+        type="text" 
+        name="username" 
+        id="username" 
+        placeholder="Username"
+        formControlName="username" />
   </div>
-</div>
+
+  <!-- Password Input -->
+  <div class="flex items-center border py-2 px-3 rounded-full">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+    </svg>
+    <input 
+        class="pl-2 outline-none border-none" 
+        type="password" 
+        name="password" 
+        id="password" 
+        placeholder="Password"
+        formControlName="password" />
+  </div>
+
+  <!-- Buttons Controls -->
+  <button 
+      type="submit" 
+      class="block w-full bg-primary-500 mt-4 py-2 rounded-full text-white font-semibold mb-2">
+    Login
+  </button>
+  <div class="text-center">
+    <span 
+        class="text-sm ml-2 hover:text-primary-500 cursor-pointer"
+        routerLink="/auth/password-request">
+      Forgot Password ?
+    </span>
+  </div>
+</form>

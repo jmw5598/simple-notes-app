@@ -1,9 +1,30 @@
 <div class="checkbox-container" [ngClass]="classes">
   <div class="checkbox" 
-      [ngClass]="{ 'checked' : isChecked }" 
+      [ngClass]="{ 
+        'checked' : isChecked,
+        'bg-primary-500': isChecked
+      }" 
       (click)="toggleChecked()">
-    <div class="checkmark">
-      <i class="fas fa-times"></i>
+    <div 
+        class="checkmark flex justify-center items-center"
+        [ngClass]="{ 'bg-primary-500': isChecked }" >
+      <!-- <svg 
+          class="w-4 h-4"  
+          xmlns="http://www.w3.org/2000/svg" 
+          fill="none" 
+          viewBox="0 0 24 24" 
+          stroke-width="1.5" 
+          stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+      </svg> -->
+      <svg 
+          class="w-3 h-3" 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 20 20" 
+          fill="currentColor">
+        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+      </svg>
+
     </div>
   </div>
   <label (click)="toggleChecked()" class="checkbox-label">{{ label || '' }}</label>

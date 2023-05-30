@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { ApplicationRoutingModule } from './application-routing.module';
 import { ApplicationComponent } from './application.component';
@@ -24,10 +23,30 @@ import { TodoListsEffects } from './modules/todos/store/effects/todos.effects';
 import { CoreFramingModule } from '@sn/core/framing';
 import { SharedComponentsModule } from '@sn/shared/components';
 
+import { NgIconsModule } from '@ng-icons/core';
+
+import { 
+  heroBars4, 
+  heroXMark, 
+  heroClipboardDocumentList, 
+  heroCog8Tooth, 
+  heroLockOpen, 
+  heroCalendarDays, 
+  heroCreditCard, 
+  heroDocument,
+  heroRectangleGroup,
+  heroBuildingLibrary,
+  heroArrowSmallLeft,
+  heroArrowSmallRight,
+  heroBookOpen,
+  heroMagnifyingGlass,
+  heroEye,
+  heroEyeSlash, } from '@ng-icons/heroicons/outline';
+
 @NgModule({
   declarations: [
     ApplicationComponent,
-    ToolbarComponent
+    ToolbarComponent,
   ],
   imports: [
     CoreFramingModule,
@@ -50,7 +69,24 @@ import { SharedComponentsModule } from '@sn/shared/components';
       TodoListsEffects
     ]),
     KeyboardShortcutsModule.forRoot(),
-    TooltipModule.forRoot()
+    NgIconsModule.withIcons({
+      heroBars4,
+      heroXMark,
+      heroClipboardDocumentList,
+      heroCog8Tooth,
+      heroLockOpen,
+      heroCalendarDays,
+      heroCreditCard,
+      heroDocument,
+      heroRectangleGroup,
+      heroBuildingLibrary,
+      heroArrowSmallLeft,
+      heroArrowSmallRight,
+      heroBookOpen,
+      heroMagnifyingGlass,
+      heroEye,
+      heroEyeSlash,
+    })
   ],
   providers: [
     {

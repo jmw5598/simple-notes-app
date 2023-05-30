@@ -2,6 +2,8 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
 import { ControlContainer, UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
+import { ECalendarValue, IDatePickerConfig } from 'ng2-date-picker';
+import { DEFAULT_DATE_TIME_PICKER_CONFIG } from '../../defaults';
 
 @Component({
   selector: 'sn-user-todo-list-form',
@@ -11,10 +13,8 @@ import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
 export class TodoListFormComponent implements OnInit, AfterViewInit {
   public form: UntypedFormGroup;
 
-  public datepickerConfig = { 
-    adaptivePosition: true, 
-    containerClass: 'theme-blue',
-    isAnimated: true
+  public datepickerConfig: IDatePickerConfig = {
+    ...DEFAULT_DATE_TIME_PICKER_CONFIG
   };
 
   constructor(

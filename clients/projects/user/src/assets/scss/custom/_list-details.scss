@@ -1,12 +1,10 @@
-@import '../bootswatch/simple-notes/variables';
-
 .list-details {
-  border-left: 2px dotted $gray-300;
+  border-left: 2px dotted #dee2e6;
   padding-left: 1rem;
   transition: border-left 0.3s;
   
   &:hover {
-    border-left: 2px solid $gray-400;
+    border-left: 2px solid #ced4da;
   }
 
   .list-details-title {

@@ -1,43 +1,39 @@
-<h5 class="text-dark font-weight-bold mt-2">Add Flashcards</h5>
+<h5 class="text-gray-700 font-bold text-xl mt-2">Add Flashcards</h5>
 <hr class="mb-2 mt-2" />
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" novalidate id="test">
-  <div class="form-group">
-    <label>Front Content</label>
-    <div class="border">
-      <angular-markdown-editor
-          textareaId="create-front-card" 
-          name="front-card"
-          [options]="editorOptions"
+  <div class="flex flex-col justify-center grow w-full mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1">Front Content</label>
+    <div class="border border-r-0">
+      <textarea
+          snMarkdownEasymde
           formControlName="frontContent">
-      </angular-markdown-editor>
+      </textarea>
     </div>
   </div>
-  <div class="form-group">
-    <label>Back Content</label>
-    <div class="border">
-      <angular-markdown-editor
-          textareaId="create-back-card" 
-          name="back-card"
-          [options]="editorOptions"
+  <div class="flex flex-col justify-center grow w-full mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1">Back Content</label>
+    <div class="border border-r-0">
+      <textarea
+          snMarkdownEasymde
           formControlName="backContent">
-      </angular-markdown-editor>
+      </textarea>
     </div>
   </div>
   
   <div class="form-group text-right">
     <button 
-        class="btn btn-sm btn-outline-primary btn-border-none" 
+        class="cursor-pointer border border-primary-500 hover:bg-white bg-primary-500 text-white hover:text-primary-500 font-bold transition-colors rounded-full py-1 px-2 text-xs me-1" 
         role="button" 
         type="submit"
         [disabled]="form.invalid">
-      <i class="fas fa-plus-circle"></i> Add
+      Add
     </button>
     <button 
-        class="btn btn-sm btn-outline-dark btn-border-none" 
+        class="cursor-pointer border border-primary-500 hover:bg-primary-500 text-primary-500 hover:text-white font-bold transition-colors rounded-full py-1 px-2 text-xs" 
         role="button" 
         type="button"
         (click)="onReset()">
-      <i class="fas fa-undo"></i> Reset
+      Reset
     </button>
   </div>
 </form>

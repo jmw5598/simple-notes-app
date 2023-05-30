@@ -16,18 +16,18 @@
             <sn-flipcard-front>
               <div class="flashcard-content p-4">
                 <div class="flashcard-actions">
-                  <span class="text-dark" (click)="editFlashcard(flashcard)">
-                    <i class="fas fa-edit"></i>
+                  <span class="text-gray-500 hover:gray-700" (click)="editFlashcard(flashcard)">
+                    <ng-icon name="heroPencil" size="1rem"></ng-icon>
                   </span>
-                  <span class="flashcard-handle text-dark" cdkDragHandle>
-                    <i class="fas fa-expand-arrows-alt"></i>
+                  <span class="flashcard-handle text-gray-500 hover:gray-700" cdkDragHandle>
+                    <ng-icon name="heroArrowsPointingOut" size="1rem"></ng-icon>
                   </span>
                   <span 
-                      class="text-dark mr-0"
+                      class="text-gray-500 hover:gray-700"
                       mwlConfirmationPopover
                       placement="left"
                       (confirm)="removeFlashcard(flashcard)">
-                    <i class="fas fa-trash-alt"></i>
+                    <ng-icon name="heroTrash" size="1rem"></ng-icon>
                   </span>
                 </div>
                 <markdown class="markdown-body" [data]="flashcard.frontContent"></markdown>

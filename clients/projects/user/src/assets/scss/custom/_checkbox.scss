@@ -1,44 +1,5 @@
-$default: $gray-500;
-
-@mixin create-checkbox-color($color) {
-  .checkbox {
-    &.checked {
-      background: $color;
-      &:hover {
-        background: darken($color, 10%);
-      }
-      &:active {
-        background: darken($color, 15%);
-      }
-    }
-  }
-}
-
-@mixin generate-checkbox-colors {
-  &.primary {
-    @include create-checkbox-color($primary);
-  }
-
-  &.secondary {
-    @include create-checkbox-color($secondary);
-  }
-
-  &.success {
-    @include create-checkbox-color($success);
-  }
-
-  &.info {
-    @include create-checkbox-color($info);
-  }
-
-  &.warning {
-    @include create-checkbox-color($warning);
-  }
-
-  &.danger {
-    @include create-checkbox-color($danger);
-  }
-}
+$default: #e6e8ea;
+$white: #FFFFFF;
 
 @mixin generate-checkbox-label-positions {
   &.left {
@@ -150,7 +111,6 @@ $default: $gray-500;
   }
 
   @include generate-checkbox-label-positions;
-  @include generate-checkbox-colors;
   @include generate-checkbox-sizes;
   @include generate-checkbox-shapes;
 }

@@ -1,82 +1,89 @@
 <div [formGroup]="form" class="mb-4">
   <!-- Title Input -->
-  <div class="form-group">
-    <label for="title">Title <small class="text-danger">*</small></label>
-    <input type="text" class="form-control" formControlName="title" id="title" />
+  <div class="flex flex-col justify-center grow w-full mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1" for="title">Title <small class="text-danger-500">*</small></label>
+    <input 
+        type="text" 
+        class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
+        formControlName="title" 
+        id="title" />
   </div>
 
   <!-- Start Date & Time Inputs -->
-  <div class="row">
-    <div class="col-sm-12 col-md-6">
-      <div class="form-group">
-        <label for="startedBy">Started By <small class="text-danger">*</small></label>
-        <input type="text"
-            class="form-control"
-            formControlName="startedBy"
-            bsDatepicker
-            [bsConfig]="datepickerConfig">
-      </div>
+  <div class="flex flex-row gap-2 mb-3">
+    <div class="grow w-1/2 flex flex-col justify-center">
+      <label class="text-gray-500 text-xs mb-1 ps-1" for="startedBy">Started By <small class="text-danger-500">*</small></label>
+      <input 
+          autocomplete="off"
+          class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700"
+          name="startedBy" 
+          formControlName="startedBy" 
+          [dpDayPicker]="datepickerConfig"
+          mode="daytime"
+          theme="dp-main" />
     </div>
-    <div class="col-sm-12 col-md-6">
-      <div class="form-group">
-        <label for="completedBy">Completed By <small class="text-danger">*</small></label>
-        <input type="text"
-            class="form-control"
-            formControlName="completedBy"
-            bsDatepicker
-            [bsConfig]="datepickerConfig">
-      </div>
-    </div>
-  </div>
-
-  <h5 class="text-dark font-weight-bold mt-2">Add Todos</h5>
-  <hr class="mb-2 mt-2" />
-
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="form-group mb-0">
-        <label for="description">Description</label>
-        <input autocomplete="off" id="description" type="text" class="form-control" formControlName="description" />
-        <div class="text-right mt-1">
-          <button 
-              role="button" 
-              type="button"
-              class="btn btn-sm btn-outline-primary btn-border-none"
-              (click)="addTodo(form.get('description').value)"
-              [disabled]="!(form.get('description')?.value?.length > 0)">
-            <i class="fas fa-plus-circle"></i> Add 
-          </button>
-        </div>
-      </div>
+    <div class="grow w-1/2 flex flex-col justify-center">
+      <label class="text-gray-500 text-xs mb-1 ps-1" for="completedBy">Completed By <small class="text-danger-500">*</small></label>
+      <input 
+          autocomplete="off"
+          class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700"
+          name="startedBy" 
+          formControlName="completedBy" 
+          [dpDayPicker]="datepickerConfig"
+          mode="daytime"
+          theme="dp-sn" /> 
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <label>Todos</label>
-      <ng-container *ngIf="form?.value?.todos?.length; else noTodosInList">
-        <ul class="list-group" 
-            cdkDropList 
-            [cdkDropListData]="form.get('todos')['control']"
-            (cdkDropListDropped)="dropTodo($event)">
-          <ng-container  
-              formArrayName="todos"
-              *ngFor="let item of form.get('todos')['controls']; let i = index;">
+  <h5 class="text-gray-700 text-md font-bold mt-4 mb-2">Add Todos</h5>
+  
+  <hr class="mb-3" />
 
-            <li class="list-group-item todo-list-item" cdkDrag>
-              <span>
-                <span class="text-dark drag-handle mr-2" cdkDragHandle><i class="fas fa-grip-vertical"></i></span>
-                <span>{{ item.get('description').value }}</span>
-              </span>
-              
-              <span class="btn-remove" (click)="removeTodo(item.value)">
-                <i class="fas fa-times"></i>
-              </span>
-          </li>
-          </ng-container>
-        </ul>
-      </ng-container>
+  <div class="flex flex-col justify-center grow w-full mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1"  for="description">Description</label>
+    <input 
+        autocomplete="off" 
+        id="description" 
+        type="text" 
+        class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
+        formControlName="description" />
+  </div>
+  <div>
+    <div class="text-right mt-1">
+      <button 
+          role="button" 
+          type="button"
+          class="border border-primary-500 hover:bg-primary-500 bg-white text-primary-500 hover:text-white font-bold transition-colors rounded-full py-1 px-4 text-xs me-1 cursor-pointer"
+          (click)="addTodo(form.get('description').value)"
+          [disabled]="!(form.get('description')?.value?.length > 0)">
+        <i class="fas fa-plus-circle"></i> Add 
+      </button>
     </div>
+  </div>
+
+  <div class="flex flex-col">
+    <label class="text-gray-500 text-xs mb-1 ps-1">Todos</label>
+    <ng-container *ngIf="form?.value?.todos?.length; else noTodosInList">
+      <ul class="border rounded-xl" 
+          cdkDropList 
+          [cdkDropListData]="form.get('todos')['control']"
+          (cdkDropListDropped)="dropTodo($event)">
+        <ng-container  
+            formArrayName="todos"
+            *ngFor="let item of form.get('todos')['controls']; let i = index;">
+
+          <li class="border-b last:border-b-0 px-4 py-2 flex flex-row items-center" cdkDrag>
+            <span class="cursor-grab active:cursor-grabbing mt-1 mr-2" cdkDragHandle>
+              <ng-icon name="heroArrowsPointingOut" size="1rem"></ng-icon>
+            </span>
+            <span class="text-gray-700 text-sm grow">{{ item.get('description').value }}</span>
+            <span class="mt-1 cursor-pointer" (click)="removeTodo(item.value)">
+              <ng-icon name="heroXMark" size="1rem"></ng-icon>
+            </span>
+        </li>
+        </ng-container>
+      </ul>
+    </ng-container>
   </div>
 </div>
 

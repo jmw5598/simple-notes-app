@@ -4,8 +4,9 @@
 
 export * from './lib/shared-components.module';
 
-// Checkbox
+// Forms
 export * from './lib/components/checkbox/checkbox.component';
+export * from './lib/components/radio/radio.component';
 
 // Debounced Search
 export * from './lib/directives/debounce.directive';
@@ -69,3 +70,5 @@ export * from './lib/components/toolbar/toolbar/toolbar.component';
 export * from './lib/components/toolbar/toolbar-button/toolbar-button.component';
 export * from './lib/components/toolbar/toolbar-button-group/toolbar-button-group.component';
 export * from './lib/components/toolbar/toolbar-dock/toolbar-dock.component';
+
+export * from './lib/directives/markdown-easymde.directive';

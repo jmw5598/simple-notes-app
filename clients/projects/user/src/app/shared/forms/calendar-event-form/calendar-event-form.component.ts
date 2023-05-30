@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit, Renderer2 } from '@angular/core';
 import { UntypedFormGroup, ControlContainer } from '@angular/forms';
 import { HEX_COLOR_STRING_ARRAY } from '../../defaults/colors.defaults';
 import { fadeAnimation, showHide } from '@sn/shared/animations';
+import { DEFAULT_DATE_TIME_PICKER_CONFIG } from '../../defaults';
+import { IDatePickerConfig } from 'ng2-date-picker';
 
 @Component({
   selector: 'sn-user-calendar-event-form',
@@ -15,10 +17,8 @@ export class CalendarEventFormComponent implements OnInit, AfterViewInit {
   public colors: string[] = HEX_COLOR_STRING_ARRAY;
   public isColorSwatchPickerShown: boolean = false;
 
-  public datepickerConfig = { 
-    adaptivePosition: true, 
-    containerClass: 'theme-blue',
-    isAnimated: true
+  public datepickerConfig: IDatePickerConfig = {
+    ...DEFAULT_DATE_TIME_PICKER_CONFIG
   };
 
   constructor(

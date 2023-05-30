@@ -3,49 +3,49 @@ import { NavigationRouteLink } from '@sn/core/framing';
 export const NAVIGATION_ROUTES: NavigationRouteLink[] = [
   {
     label: 'Dashboard',
-    iconClasses: 'fas fa-chart-bar',
+    iconClasses: 'heroRectangleGroup',
     routerLink: ['dashboard'],
     tooltip: 'Dashboard'
   },
   {
     label: 'Topics',
-    iconClasses: 'fas fa-book',
+    iconClasses: 'heroBuildingLibrary',
     routerLink: ['topics'],
-    tooltip: 'Dashboard'
+    tooltip: 'Topics'
   },
   {
     label: 'Documents',
-    iconClasses: 'far fa-file-alt',
+    iconClasses: 'heroDocument',
     routerLink: ['documents'],
     tooltip: 'Documents'
   },
   {
     label: 'Flashcards',
-    iconClasses: 'far fa-sticky-note',
+    iconClasses: 'heroCreditCard',
     routerLink: ['flashcards'],
     tooltip: 'Flashcards'
   },
   {
     label: 'Todo Lists',
-    iconClasses: 'fas fa-clipboard-check',
+    iconClasses: 'heroClipboardDocumentList',
     routerLink: ['todos'],
     tooltip: 'Todo Lists'
   },
   {
     label: 'Calendar',
-    iconClasses: 'far fa-calendar-alt',
+    iconClasses: 'heroCalendarDays',
     routerLink: ['calendar'],
     tooltip: 'Calendar'
   },
   {
     label: 'Settings',
-    iconClasses: 'far fa-user-circle',
+    iconClasses: 'heroCog8Tooth',
     routerLink: ['accounts'],
     tooltip: 'Settings'
   },
   {
     label: 'Logout',
-    iconClasses: 'fas fa-lock',
+    iconClasses: 'heroLockOpen',
     routerLink: ['auth', 'logout'],
     tooltip: 'Logout'
   }

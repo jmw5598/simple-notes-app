@@ -1,9 +1,9 @@
-<div class="flashcard-set-viewer-header">
+<div class="flashcard-set-viewer-header mb-2">
   <div class="flashcard-set-title">
-    <h3 class="text-white font-weight-bold my-0">{{ flashcardSet?.title }}</h3>
-    <p class="font-italic my-0 text-light">{{ flashcardSet?.synopsis }}</p>
+    <h3 class="text-white font-bold text-2xl my-0">{{ flashcardSet?.title }}</h3>
+    <p class="italic my-0 text-gray-200 text-sm">{{ flashcardSet?.synopsis }}</p>
   </div>
-  <div class="flashcard-set-details text-light">
+  <div class="flashcard-set-details text-white">
     {{ getIndexOfCurrentFlashcard() }} of {{ flashcardSet?.flashcards?.length }}
   </div>
 </div>

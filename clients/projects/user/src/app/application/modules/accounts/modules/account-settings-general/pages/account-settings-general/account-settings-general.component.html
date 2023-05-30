@@ -1,41 +1,57 @@
-<div class="account-settings-general p-3" [@fadeAnimation]>
-  <h4 class="font-weight-bold mb-3">
-    <span *ngIf="isEditingProfile">Editing</span> Profile
+<div class="p-4" [@fadeAnimation]>
+  <div class="flex flex-row justify-between items-center mb-2">
+    <h4 class="font-bold text-gray-700 text-lg">
+      <span *ngIf="isEditingProfile">Editing</span> Profile 
+    </h4>
     <span
         *ngIf="!isEditingProfile" 
         (click)="onEditingProfile(true)"
-        class="btn btn-sm btn-outline-primary btn-border-none float-right">
-      <i class="fas fa-edit icon-margin"></i>
-      Edit
+        class="flex items-center text-primary-500 text-xs px-4 py-2 border border-primary-500 rounded-full cursor-pointer transition-colors">
+      <ng-icon name="heroPencil" size="0.8rem"></ng-icon>
+      &nbsp;&nbsp;Edit
     </span>
-  </h4>
-  <hr />
-  <div class="card calendar-integration-container">
-    <div class="card-body">
-      <form [formGroup]="form" (ngSubmit)="onUpdateProfile(form.value)" novalidate>
-        <ng-container *ngIf="isEditingProfile; else displayProfile">
-          <div id="edit-profile-form">
-            <sn-user-account-details-form
-                (onEditingComplete)="onEditingComplete($event)">
-            </sn-user-account-details-form>
-            <div class="form-group mt-2">
-              <button class="btn btn-primary mr-2" type="submit">Save</button>
-              <button class="btn btn-secondary" type="button" (click)="onEditingProfile(false)">Cancel</button>
-            </div>
+  </div>
+  
+  <hr class="mb-4"/>
+
+  <div class="border rounded-xl bg-white p-4 mb-4">
+    <form [formGroup]="form" (ngSubmit)="onUpdateProfile(form.value)" novalidate>
+      <ng-container *ngIf="isEditingProfile; else displayProfile">
+        <div id="edit-profile-form">
+          <sn-user-account-details-form
+              (onEditingComplete)="onEditingComplete($event)">
+          </sn-user-account-details-form>
+          <div class="flex flex-row justify-end items-center mt-4">
+            <button 
+                class="border border-primary-500 hover:bg-white bg-primary-500 text-white hover:text-primary-500 font-bold transition-colors rounded-full py-2 px-4 text-xs me-1" 
+                type="submit">
+              Save
+            </button>
+            <button 
+                class="border border-primary-500 hover:bg-primary-500 text-primary-500 hover:text-white font-bold transition-colors rounded-full py-2 px-4 text-xs me-1" 
+                type="button" 
+                (click)="onEditingProfile(false)">
+              Cancel
+            </button>
           </div>
-        </ng-container>
-        <ng-template #displayProfile>
-          <sn-user-account-details-display
-              [profile]="(accountProfile$ | async)">
-          </sn-user-account-details-display>
-        </ng-template>
-      </form>
-    </div>
+        </div>
+      </ng-container>
+      <ng-template #displayProfile>
+        <sn-user-account-details-display
+            [profile]="(accountProfile$ | async)">
+        </sn-user-account-details-display>
+      </ng-template>
+    </form>
   </div>
 
-  <h4 class="font-weight-bold mt-4 mb-3">Theme</h4>
-  <hr />
-  <div class="card p-3">
+  
+  <!-- <div class="flex flex-row justify-between items-center">
+    <h4 class="font-bold text-gray-700 text-lg mb-3">Theme</h4>
+  </div> -->
+
+  <!-- <hr class="mb-3" />
+
+  <div class="card">
     <label>Select a color theme:</label>
     <div class="themes-container">
       <ng-container *ngFor="let theme of themes$ | async">
@@ -46,5 +62,5 @@
         </div>
       </ng-container>
     </div>
-  </div>
+  </div> -->
 </div>

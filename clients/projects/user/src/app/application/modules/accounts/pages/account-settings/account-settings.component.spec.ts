@@ -3,7 +3,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Store } from '@ngrx/store';
-import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { AccountSettingsComponent } from './account-settings.component';
 import { AccountUserCardComponent } from '../../components/account-user-card/account-user-card.component';
@@ -25,7 +24,6 @@ describe('AccountSettingsComponent', () => {
       imports: [
         NoopAnimationsModule,
         RouterTestingModule,
-        TabsModule
       ],
       declarations: [
         AccountSettingsComponent,

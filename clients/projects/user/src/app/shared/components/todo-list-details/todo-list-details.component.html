@@ -1,44 +1,39 @@
-<div class="row">
-  <div class="col-sm-12 px-4">
-    <div *ngIf="todoList">
-      <h3 class="font-weight-bold text-primary text-right mb-3">Todo List Details</h3>
-      <hr />
-      <!-- Response Message -->
-      <div *ngIf="responseMessage" [@showHide] class="alert alert-success">
-        <span>
-          <strong>{{ responseMessage?.status | uppercase }}</strong>: {{ responseMessage?.message }}
-        </span>
-      </div>
-      
-      <h4 class="font-weight-bold text-dark mb-2">{{ todoList?.title }}</h4>
+<div class="p-4" *ngIf="todoList">
+  <h3 class="font-bold text-primary-500 text-right text-2xl mb-3">Todo List Details</h3>
+  <hr class="mb-3" />
 
-      <ul class="list-unstyled mb-4 list-style-none">
-        <li class="text-dark mb-3">
-          <div>
-            <i style="width: 1rem;" class="far fa-calendar-alt icon-margin"></i>
-            <span class="font-italic"> {{ todoList?.startedBy | date: 'MM/dd/yyyy hh:mm a' }} - {{ todoList?.completedBy | date: 'MM/dd/yyyy hh:mm a' }}</span>
-          </div>
-        </li>
-        <li>
-          <sn-user-todo-list-progress [todoList]="form?.value"></sn-user-todo-list-progress>
-        </li>     
-      </ul>
-      <form [formGroup]="form" novalidate>
-        <div class="form-group" formArrayName="todos">
-          <ng-container *ngFor="let todoControl of form.get('todos')['controls']">
-            <div [formGroup]="todoControl">
-              <sn-checkbox
-                shape="rounded"
-                color="primary"
-                size="xsmall"
-                formControlName="isComplete"
-                [value]="todoControl?.value?.isComplete"
-                [label]="todoControl?.value?.description">
-              </sn-checkbox>
-            </div>
-          </ng-container>
-        </div>
-      </form>
-    </div>
+  <!-- Response Message -->
+  <div *ngIf="responseMessage" [@showHide] class="bg-info-100 rounded-xl text-info-700 p-4 mb-4" role="alert">
+    <p class="font-bold">{{ responseMessage?.status | titlecase }}</p>
+    <p>{{ responseMessage?.message }}</p>
   </div>
+  
+  <h4 class="font-bold text-gray-700 mb-1 text-xl">{{ todoList?.title }}</h4>
+  
+  <div class="mb-4 text-gray-500 text-xs flex flex-row items-center">
+    <ng-icon name="heroCalendarDays" size="1rem"></ng-icon>&nbsp; &nbsp;
+    <span class="italic"> {{ todoList?.startedBy | date: 'MM/dd/yyyy hh:mm a' }} - {{ todoList?.completedBy | date: 'MM/dd/yyyy hh:mm a' }}</span>
+  </div>
+
+  <div class="mb-4">
+    <sn-user-todo-list-progress [todoList]="form?.value"></sn-user-todo-list-progress>
+  </div>
+  
+  <form [formGroup]="form" novalidate>
+    <div class="form-group" formArrayName="todos">
+      <ng-container *ngFor="let todoControl of form.get('todos')['controls']">
+        <div [formGroup]="todoControl">
+          <sn-checkbox
+            shape="rounded"
+            color="primary"
+            size="xsmall"
+            formControlName="isComplete"
+            [value]="todoControl?.value?.isComplete"
+            [label]="todoControl?.value?.description">
+          </sn-checkbox>
+        </div>
+      </ng-container>
+    </div>
+  </form>
 </div>
+

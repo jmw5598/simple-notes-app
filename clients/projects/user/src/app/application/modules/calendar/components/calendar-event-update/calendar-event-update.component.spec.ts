@@ -4,8 +4,6 @@ import { ControlContainer, UntypedFormControl, UntypedFormGroup, FormGroupDirect
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { CalendarEvent } from '@sn/shared/models';
 import { CalendarEventUpdateComponent } from './calendar-event-update.component';
-import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 describe('CalendarEventUpdateComponent', () => {
   let component: CalendarEventUpdateComponent;
@@ -47,8 +45,6 @@ describe('CalendarEventUpdateComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
-        TimepickerModule.forRoot(),
-        BsDatepickerModule.forRoot(),
         SharedModule
       ],
       declarations: [

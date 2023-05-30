@@ -103,13 +103,13 @@
 
     &.sn-roller-dark {
       div:after {
-        background: $primary
+        background: #000;
       }
     }
 
     &.sn-roller-light {
       div:after {
-        background: $white;
+        background: #FFF;
       }
     }
   }

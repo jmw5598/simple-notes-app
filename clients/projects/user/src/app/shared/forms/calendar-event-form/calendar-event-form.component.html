@@ -1,107 +1,81 @@
 <div [formGroup]="form">
 
   <!-- Title Input -->
-  <div class="form-group">
-    <label for="title">Title <small class="text-danger">*</small></label>
-    <input type="text" class="form-control" formControlName="title" id="title" />
+  <div class="flex flex-col justify-center grow w-full mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1" for="title">Title <small class="text-danger-500">*</small></label>
+    <input 
+        type="text" 
+        class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700"
+        formControlName="title"
+        id="title" />
   </div>
 
   <!-- Start Date & Time Inputs -->
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="form-group">
-        <label for="startDate">Start Date & Time <small class="text-danger">*</small></label>
-        <div class="row">
-          <div class="col-sm-12 col-md-6 mb-3 mb-md-0">
-            <input type="text"
-                class="form-control"
-                formControlName="startDate"
-                bsDatepicker
-                [bsConfig]="datepickerConfig">
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <timepicker 
-                formControlName="startTime"
-                [showSpinners]="false">
-            </timepicker>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="flex flex-col justify-center grow w-full mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1" for="startDate">Start Date & Time <small class="text-danger-500">*</small></label>
+    <input 
+        autocomplete="off"
+        class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700"
+        name="startedBy" 
+        formControlName="startDate" 
+        [dpDayPicker]="datepickerConfig"
+        mode="daytime"
+        theme="dp-main" />
   </div>
-
   <!-- End Date & Time Inputs -->
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="form-group">
-        <label for="endDate">End Date & Time <small class="text-danger">*</small></label>
-        <div class="row">
-          <div class="col-sm-12 col-md-6 mb-3 mb-md-0">
-            <input type="text"
-                class="form-control"
-                formControlName="endDate"
-                bsDatepicker
-                [bsConfig]="datepickerConfig">
-
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <timepicker 
-                formControlName="endTime"
-                showSpinners>
-            </timepicker>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="flex flex-col justify-center grow w-full mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1" for="endDate">End Date & Time <small class="text-danger-500">*</small></label>
+    <input 
+        autocomplete="off"
+        class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700"
+        name="startedBy" 
+        formControlName="endDate" 
+        [dpDayPicker]="datepickerConfig"
+        mode="daytime"
+        theme="dp-main" />
   </div>
 
   <!-- Is All Day Checkbox & Color Swatch Input-->
-  <div class="row">
-    <!-- <div class="col-sm-6">
-       <div class="form-check mb-3">
-        <input class="form-check-input" type="checkbox" name="isAllDay" formControlName="isAllDay">
-        <label class="form-check-label text-right" for="isAllDay">
-          Is all day <small class="text-danger">*</small>
-        </label>
+  <div class="flex flex-row justify-between items-center w-full mb-3 color-swatch">
+    <label class="text-gray-500 text-xs my-1 ps-1" for="color">Color <small class="text-danger-500">*</small></label>
+    <div class="flex flex-row justify-between items-center relative">
+      <div 
+          class="color-swatch-selected"
+          (click)="showColorSwatchPicker()"
+          [style.background-color]="form.get('color').value">
       </div>
-    </div> -->
-    <div class="col-sm-12">
-      <div class="form-group mb-3 color-swatch">
-        <label for="color" class="mr-4">Color <small class="text-danger">*</small></label>
-        <div class="color-swatch-input-container">
-          <div 
-              class="color-swatch-selected mr-3 mt-1"
-              (click)="showColorSwatchPicker()"
-              [style.background-color]="form.get('color').value">
-          </div>
-          <input 
-              type="hidden" 
-              class="form-control text-light color-swatch-input"
-              formControlName="color" />
-          <div class="color-swatch-picker col-3 float-right" *ngIf="isColorSwatchPickerShown" [@showHide]>
-            <color-twitter
-                triangle="top-right"
-                width="312"
-                [color]="form.get('color').value"
-                [colors]="colors"
-                (onChange)="handleColorSwatchChange($event)"
-                (onChangeComplete)="handleColorSwatchChangeComplete($event)">
-            </color-twitter>
-          </div>
-        </div>
+      <input 
+          type="hidden" 
+          class="form-control text-light"
+          formControlName="color" />
+      <div class="absolute -right-4 top-6" *ngIf="isColorSwatchPickerShown" [@fadeAnimation]>
+        <color-twitter
+            triangle="top-right"
+            width="312"
+            [color]="form.get('color').value"
+            [colors]="colors"
+            (onChange)="handleColorSwatchChange($event)"
+            (onChangeComplete)="handleColorSwatchChangeComplete($event)">
+        </color-twitter>
       </div>
     </div>
   </div>
   
   <!-- Location Input -->
-  <div class="form-group">
-    <label for="location">Location <small class="text-danger">*</small></label>
-    <input type="text" class="form-control" formControlName="location" />
+  <div class="flex flex-col justify-center grow w-full mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1" for="location">Location <small class="text-danger-500">*</small></label>
+    <input 
+        type="text" 
+        class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
+        formControlName="location" />
   </div>
 
   <!-- Description Textarea -->
-  <div class="form-group">
-    <label for="Description">Description <small class="text-danger">*</small></label>
-    <textarea class="form-control" rows="6" formControlName="description"></textarea>
+  <div class="flex flex-col justify-center grow w-full mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1" for="Description">Description <small class="text-danger-500">*</small></label>
+    <textarea 
+        class="border py-2 px-4 bg-white rounded-xl text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
+        rows="6" 
+        formControlName="description"></textarea>
   </div>
 </div>

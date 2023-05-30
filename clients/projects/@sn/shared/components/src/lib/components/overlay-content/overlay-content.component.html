@@ -4,8 +4,15 @@
       *ngIf="isContentVisible"
       (click)="close($event)">
   </div>
-  <span class="overlay-content-close text-white text-shadow" (click)="forceClose()">
-    <i class="fas fa-times"></i>
+  <span class="overlay-content-close pt-4 pl-4 pr-4 text-white transition-colors cursor-pointer" (click)="forceClose()">
+    <svg 
+        class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" 
+        fill="none" 
+        viewBox="0 0 24 24" 
+        stroke-width="1.5" 
+        stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
   </span>
   <div class="overlay-content" (click)="close($event)">
     <ng-container #content></ng-container>

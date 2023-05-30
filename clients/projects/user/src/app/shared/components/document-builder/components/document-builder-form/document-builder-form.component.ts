@@ -1,11 +1,10 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { UntypedFormGroup, ControlContainer } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable, Observer, of, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, map, withLatestFrom, takeUntil } from 'rxjs/operators';
+import { concat, Observable, Observer, of, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, map, withLatestFrom, takeUntil, tap, catchError, filter } from 'rxjs/operators';
 import { TopicsService } from '@sn/core/services';
 import { IDocumentsState } from '@sn/user/application/modules/documents/store/reducers';
-import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
 import { getSectionsByTopicId, getSectionsByTopicIdSuccess, setBuilderSearchTopicSelection } from '@sn/user/application/modules/documents/store/actions';
 import { selectSectionsForSelectedTopic } from '@sn/user/application/modules/documents/store/selectors';
@@ -33,7 +32,9 @@ export class DocumentBuilderFormComponent implements OnInit {
   public sectionsForSelectedTopic$: Observable<Section[]>;
   public documentId$: Observable<string[]>;
 
-  public topicsTypeAhead$: Observable<any>;
+  public topicsTypeAhead$: Subject<any> = new Subject<any>();
+  public topics$: Observable<any>;
+  public topicsLoading: boolean = false;
 
   private _subscriptionSubject: Subject<any> = new Subject<any>();
   private _documentNameChanges: Subject<string> = new Subject<any>();
@@ -58,7 +59,7 @@ export class DocumentBuilderFormComponent implements OnInit {
     });
   }
 
-  public onSelectTopic(match: TypeaheadMatch): void {
+  public onSelectTopic(match: any): void {
     const topic: Topic = match.item as Topic;
     const documentTopic: DocumentTopic = {
       topic: topic,
@@ -114,18 +115,21 @@ export class DocumentBuilderFormComponent implements OnInit {
   }
 
   private _initializeTopicTypeAhead(): void {
-    this.topicsTypeAhead$ = new Observable((observer: Observer<string>) => observer.next(this.selected))
-      .pipe(
-        debounceTime(500),
-        distinctUntilChanged(),
-        switchMap((query: string) => {
-          if (query) {
-            return this._topicsService.searchTopics(query)
-              .pipe(map((page: Page<Topic>) => page.elements));
-          }
-          return of([]);
-        })
-      );
+    this.topics$ = concat(
+        of([]),
+        this.topicsTypeAhead$.pipe(
+            distinctUntilChanged(),
+            debounceTime(500),
+            filter(query => !!query),
+            tap(() => this.topicsLoading = true),
+            switchMap((query: string) =>
+              this._topicsService.searchTopics(query)
+                .pipe(
+                  map(page => page.elements),
+                  catchError(() => of([])), // empty list on error
+                  tap(() => this.topicsLoading = false)
+                ))
+        ));
   }
 
   public documentNameChange($event): void {

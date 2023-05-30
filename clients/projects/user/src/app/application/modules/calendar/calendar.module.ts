@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ModalModule } from 'ngx-bootstrap/modal';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
-import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FullCalendarModule } from '@fullcalendar/angular';
 
 
@@ -19,11 +16,9 @@ import { CalendarEventCreateMenuComponent } from './components/calendar-event-cr
 
 import { SharedComponentsModule, DrawerService } from '@sn/shared/components';
 
-// FullCalendarModule.registerPlugins([ // register FullCalendar plugins
-//   dayGridPlugin,
-//   interactionPlugin,
-//   bootstrapPlugin
-// ]);
+import { NgIconsModule } from '@ng-icons/core';
+import { heroXMark, heroMapPin } from '@ng-icons/heroicons/outline';
+
 
 @NgModule({
     declarations: [
@@ -39,14 +34,15 @@ import { SharedComponentsModule, DrawerService } from '@sn/shared/components';
         CommonModule,
         CalendarRoutingModule,
         FullCalendarModule,
-        ModalModule.forChild(),
         SharedModule,
-        TimepickerModule,
-        BsDatepickerModule.forRoot(),
         ConfirmationPopoverModule.forRoot({
             popoverMessage: 'Are you sure?',
             cancelButtonType: 'btn-default btn-sm bg-secondary',
             confirmButtonType: 'btn-primary btn-sm bg-primary text-light'
+        }),
+        NgIconsModule.withIcons({
+            heroXMark,
+            heroMapPin,
         })
     ],
     providers: [

@@ -12,6 +12,14 @@ import { MarkdownModule } from 'ngx-markdown';
 
 import { SharedComponentsModule } from '@sn/shared/components';
 
+import { NgIconsModule } from '@ng-icons/core';
+import { 
+    heroEye,
+    heroTrash,
+    heroPencil,
+    heroClock,
+    heroDocument, } from '@ng-icons/heroicons/outline';
+
 @NgModule({
     declarations: [
         ViewFlashcardsComponent,
@@ -25,7 +33,14 @@ import { SharedComponentsModule } from '@sn/shared/components';
         SharedModule,
         FlashcardsRoutingModule,
         ConfirmationPopoverModule,
-        MarkdownModule.forRoot()
+        MarkdownModule.forRoot(),
+        NgIconsModule.withIcons({
+            heroEye,
+            heroTrash,
+            heroPencil,
+            heroClock,
+            heroDocument,
+        }),
     ]
 })
 export class FlashcardsModule { }

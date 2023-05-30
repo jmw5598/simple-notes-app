@@ -1,30 +1,30 @@
 <ng-container *ngIf="documentTopic; else noTopicTemplate">
-  <div class="card card-body document-builder-topic-container">
+  <div class="border rounded-xl p-4 bg-white document-builder-topic-container">
     <div class="document-builder-topic-container-title">
-      <h4 class="font-weight-bold text-primary">{{ documentTopic?.topic?.title || '' }}</h4>
+      <h4 class="font-bold text-primary-500 text-lg mb-1">{{ documentTopic?.topic?.title || '' }}</h4>
       <div 
           class="document-builder-topic-container-actions"
           cdkDrag
           [cdkDragRootElement]="TOPIC_DRAGGABLE_ROOT_ELEMENT"
           [cdkDragData]="drogDataAction">
         <span 
-            class="text-dark"
+            class="text-gray-700 me-1"
             cdkDragHandle
             (mousedown)="drogDataAction = DropAction.CLONE_WHOLE">
-          <i class="far fa-clone"></i>
+          <ng-icon name="heroDocumentDuplicate" size="1.25rem"></ng-icon>
         </span>
         <span 
             id="search-topic-only"
-            class="text-dark" 
+            class="text-gray-700" 
             cdkDragHandle
             (mousedown)="drogDataAction = DropAction.CLONE_CONTAINER_ONLY">
-          <i class="fas fa-expand-arrows-alt"></i>
+          <ng-icon name="heroArrowsPointingOut" size="1.25rem"></ng-icon>
         </span>
       </div>
     </div>
-    <p class="text-dark font-italic">{{ documentTopic?.topic?.synopsis || '' }}</p>
+    <p class="text-gray-500 text-sm italic mb-3">{{ documentTopic?.topic?.synopsis || '' }}</p>
     <ul 
-        class="list-group"
+        class="border rounded-xl bg-white"
         cdkDropList
         [id]="'topic_' + documentTopic?.topic.id"
         [cdkDropListData]="documentTopic?.documentTopicSections"
@@ -32,7 +32,7 @@
         (cdkDropListDropped)="dropSection($event)">
       <ng-container *ngIf="documentTopic?.documentTopicSections?.length; else noSectionsTemplate">
         <li cdkDrag
-            class="list-group-item"
+            class="px-4 py-2 text-md text-gray-700 border-b last:border-b-0"
             *ngFor="let documentTopicSection of documentTopic?.documentTopicSections">
           <sn-user-document-builder-section-container 
               [documentTopicSection]="documentTopicSection">

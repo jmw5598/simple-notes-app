@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 
 type CalendarEventCreateView = 'menu' | 'event' | 'todo-list';
 
@@ -8,6 +8,9 @@ type CalendarEventCreateView = 'menu' | 'event' | 'todo-list';
   styleUrls: ['./calendar-event-create-menu.component.scss']
 })
 export class CalendarEventCreateMenuComponent implements OnInit {
+  @HostBinding('class')
+  public hostClasses: string = 'relative'
+
   public calendarEventCreateView: CalendarEventCreateView = 'menu';
 
   constructor() { }

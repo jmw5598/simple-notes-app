@@ -1,33 +1,30 @@
-<div class="container-fluid" [formGroup]="form">
-  <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <div class="form-group">
-            <label for="title">Title</label>
-            <input class="form-control" type="text" name="title" formControlName="title" />
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="form-group">
-            <label for="title">Synopsis</label>
-            <input class="form-control" type="text" name="title" formControlName="synopsis" />
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12 col-md-12">
-          <ng-container *ngIf="!(flashcardBeingEdited$ | async); else editFlashcardTemplate">
-            <sn-user-flashcard-create-form></sn-user-flashcard-create-form>
-          </ng-container>
-          <ng-template #editFlashcardTemplate>
-            <sn-user-flashcard-edit-form></sn-user-flashcard-edit-form>
-          </ng-template>
-        </div>
-      </div>
+<div class="flex flex-row w-full gap-4" [formGroup]="form">
+  <div class="grow w-1/2"> 
+    <div class="flex flex-col justify-center grow w-full mb-3">
+      <label class="text-gray-500 text-xs mb-1 ps-1" for="title">Title</label>
+      <input 
+          class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
+          type="text" 
+          name="title" 
+          formControlName="title" />
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
-      <sn-user-flashcard-set-builder-container></sn-user-flashcard-set-builder-container>
+
+    <div class="flex flex-col justify-center grow w-full mb-3">
+      <label class="text-gray-500 text-xs mb-1 ps-1" for="title">Synopsis</label>
+      <input 
+          class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
+          type="text"
+          name="title" 
+          formControlName="synopsis" />
     </div>
+    <ng-container *ngIf="!(flashcardBeingEdited$ | async); else editFlashcardTemplate">
+      <sn-user-flashcard-create-form></sn-user-flashcard-create-form>
+    </ng-container>
+    <ng-template #editFlashcardTemplate>
+      <sn-user-flashcard-edit-form></sn-user-flashcard-edit-form>
+    </ng-template>
+  </div>
+  <div class="grow w-1/2">
+    <sn-user-flashcard-set-builder-container></sn-user-flashcard-set-builder-container>
   </div>
 </div>

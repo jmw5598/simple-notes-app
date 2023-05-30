@@ -1,19 +1,28 @@
-<div class="row">
-  <div class="col-sm-12 px-4">
-    <h3 class="font-weight-bold text-primary text-right mb-3">Update Flashcard Set</h3>
-    <hr />
-    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-      <!-- Response Message -->
-      <div *ngIf="(responseMessage$ | async)" [@showHide] class="alert alert-success">
-        <span>
-          <strong>{{ (responseMessage$ | async).status | uppercase }}</strong>: {{ (responseMessage$ | async).message }}
-        </span>
-      </div>
-      <sn-user-flashcard-set-builder-form></sn-user-flashcard-set-builder-form>
-      <div class="form-group text-right">
-        <button class="btn btn-primary mr-3" type="submit" >Save Flashcard Set</button>
-        <button class="btn btn-secondary" type="button" (click)="onClose()">Cancel</button>
-      </div>
-    </form>
-  </div>
+<div class="p-4">
+  <h3 class="font-bold text-primary-500 text-right text-2xl mb-3">Update Flashcard Set</h3>
+  <hr class="mb-3" />
+
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <!-- Response Message -->
+    <div *ngIf="(responseMessage$ | async)" [@showHide] class="bg-info-100 rounded-xl text-info-700 p-4 mb-4" role="alert">
+      <p class="font-bold">{{ (responseMessage$ | async)?.status | titlecase }}</p>
+      <p>{{ (responseMessage$ | async)?.message }}</p>
+    </div>
+
+    <sn-user-flashcard-set-builder-form></sn-user-flashcard-set-builder-form>
+    
+    <div class="form-group text-right">
+      <button 
+          class="border border-primary-500 hover:bg-white bg-primary-500 text-white hover:text-primary-500 font-bold transition-colors rounded-full py-2 px-4 text-xs me-1" 
+          type="submit">
+        Save Flashcard Set
+      </button>
+      <button 
+          class="cursor-pointer border border-primary-500 hover:bg-primary-500 text-primary-500 hover:text-white font-bold transition-colors rounded-full py-2 px-4 text-xs" 
+          type="button" 
+          (click)="onClose()">
+        Cancel
+      </button>
+    </div>
+  </form>
 </div>

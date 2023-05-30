@@ -7,9 +7,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,9 +40,6 @@ const coreServicesConfiguration: CoreServicesConfiguration = {
     CoreModule,
     HttpClientModule,
     SharedModule,
-    ModalModule.forRoot(),
-    TimepickerModule.forRoot(),
-    BsDatepickerModule.forRoot(),
     StoreModule.forRoot(ROOT_REDUCERS, {
       metaReducers,
       // runtimeChecks: {

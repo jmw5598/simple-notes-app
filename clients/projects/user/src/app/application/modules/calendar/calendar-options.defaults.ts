@@ -6,8 +6,8 @@ import interactionPlugin from '@fullcalendar/interaction';
 
 // TODO define colors? Enum?
 const TEXT_COLOR_DEFAULT: string = '#FFFFFF';
-const BORDER_COLOR_DEFAULT: string = '#127ba3';
-const BACKGROUND_COLOR_DEFAULT: string = '#158cba'
+const BORDER_COLOR_DEFAULT: string = '#14b8a6';
+const BACKGROUND_COLOR_DEFAULT: string = '#14b8a6'
 
 export const CALENDAR_OPTIONS_DEFAULT: CalendarOptions = {
   initialView: 'dayGridMonth',

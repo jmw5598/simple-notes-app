@@ -1,33 +1,16 @@
-@import './assets/scss/bootswatch/simple-notes/variables';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '~@angular/cdk/overlay-prebuilt.css';
+
+// @TODO Remove old SCSS below....
+
+
+// @import './assets/scss/bootswatch/simple-notes/variables';
 
 /* You can add global styles to this file, and also import other style files */
 $border-1: 1px solid rgba(0, 0, 0, 0.125);
-
-.vh {
-  height: 100vh !important;
-}
-
-.icon-margin {
-  margin-right: 4px;
-}
-
-.btn-border-none {
-  border: none !important;
-}
-
-.btn-border-none:hover {
-  margin-top: 0 !important;
-}
-
-.popover-body {
-  p {
-    font-size: 0.9rem;
-  }
-}
-
-bs-datepicker-container { 
-  z-index: 9999 !important;
-}
 
 
 // TODO Refactor into editor component????
@@ -52,78 +35,6 @@ bs-datepicker-container {
     border-top: 0;
     border-left: 0;
     border-bottom: 0;
-  }
-}
-
-.hidden {
-  display: none;
-}
-
-// Full Calendar Overriders 
-.fc-toolbar {
-  padding: 1rem;
-  max-height: 57px;
-  margin-bottom: 0 !important;
-  border-bottom: $border-1;
-}
-
-.fc-scrollgrid {
-  &.table-bordered {
-    border: 0 !important;
-  }
-}
-
-.fc-col-header {
-  height: 52px;
-  line-height: 52px;
-  vertical-align: middle;
-}
-
-// General Purpose Utilities
-
-.border-top-1 {
-  border-top: $border-1;
-}
-
-.border-right-1 {
-  border-right: $border-1;
-}
-
-.border-bottom-1 {
-  border-bottom: $border-1;
-}
-
-.border-left-1 {
-  border-left: $border-1;
-}
-
-.border-all-1 {
-  border: $border-1;
-}
-
-.height-full {
-  height: 100%;
-}
-
-/* Bootstrap tabs overrider */
-.column-header-tabs {
-  ul.nav.nav-tabs {
-    margin-top: 19px;
-  }
-}
-
-/* Media Queries */
-@media screen and (max-width: 767px) {
-  .height-full {
-    height: unset;
-  }
-
-  .border-bottom-md-1 {
-    border-bottom: $border-1;
-  }
-
-  .border-right-md-0 {
-    border-right: 0;
   }
 }
 

@@ -2,14 +2,15 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { NgIconsModule } from '@ng-icons/core';
+import { heroBars4 } from '@ng-icons/heroicons/outline';
+
 import { LayoutComponent } from './components/layout/layout.component';
 import { LayoutService } from './components/layout/layout.service';
 
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { NavbarComponent } from './components/navigation/navbar/navbar.component';
 import { NavbarSideComponent } from './components/navigation/navbar-side/navbar-side.component';
-
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { OnDemandPreloadService } from './preloading-strategies/on-demand-preload.service';
 import { OnDemandPreloadStrategy } from './preloading-strategies/on-demand-preload.strategy';
@@ -19,12 +20,12 @@ import { OnDemandPreloadStrategy } from './preloading-strategies/on-demand-prelo
     LayoutComponent,
     NavbarComponent,
     NavbarSideComponent,
-    NavigationComponent
+    NavigationComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
-    TooltipModule
+    NgIconsModule.withIcons({ heroBars4 })
   ],
   providers: [
     

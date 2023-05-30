@@ -11,6 +11,15 @@ import { TodoListEditComponent } from './components/todo-list-edit/todo-list-edi
 
 import { SharedComponentsModule } from '@sn/shared/components';
 
+import { NgIconsModule } from '@ng-icons/core';
+import { 
+    heroEye,
+    heroTrash,
+    heroPencil,
+    heroClock,
+    heroDocument,
+    heroCalendarDays } from '@ng-icons/heroicons/outline';
+
 @NgModule({
   declarations: [
     ViewTodosComponent,
@@ -23,7 +32,15 @@ import { SharedComponentsModule } from '@sn/shared/components';
     CommonModule,
     TodosRoutingModule,
     SharedModule,
-    ConfirmationPopoverModule
+    ConfirmationPopoverModule,
+    NgIconsModule.withIcons({
+      heroEye,
+      heroTrash,
+      heroPencil,
+      heroClock,
+      heroDocument,
+      heroCalendarDays,
+    }),
   ]
 })
 export class TodosModule { }

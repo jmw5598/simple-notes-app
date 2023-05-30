@@ -1,9 +1,9 @@
 <fieldset [formGroup]="form">
   <!-- Title Field Input -->
-  <div class="form-group">
-    <label for="title">Title</label>
+  <div class="flex flex-col justify-center grow w-full mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1" for="title">Title</label>
     <input
-        class="form-control"
+        class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700"
         type="text" 
         name="title"
         id="title"
@@ -12,20 +12,30 @@
   </div>
 
   <!-- Synopsis Field Input -->
-  <div class="form-group">
-    <label for="synopsis">Synopsis</label>
+  <div class="flex flex-col justify-center grow w-full mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1" for="synopsis">Synopsis</label>
     <textarea
-        class="form-control"
+        class="border py-2 px-4 bg-white rounded-xl text-sm focus:outline-none focus:border-gray-400 text-gray-700"
         name="synopsis"
+        rows="5"
         formControlName="synopsis"
         [ngClass]="{'is-invalid':!form.controls['synopsis'].valid && form.controls['synopsis'].touched  }">
     </textarea>
   </div>
 
   <!-- Permission Field -->
-  <div class="form-group">
-    Permission
-    <div class="form-check">
+  <div class="flex flex-col justify-center grow w-full mb-3">
+    <span class="text-gray-500 text-xs mb-1 ps-1">Permission</span>
+    <div class="flex flex-row gap-2 items-center mb-1">
+      <!-- <sn-radio
+        name="permission"
+        shape="rounded"
+        color="primary"
+        size="xsmall"
+        formControlName="permission"
+        [value]="Permission.PRIVATE"
+        [label]="Permission.PRIVATE | titlecase">
+      </sn-radio> -->
       <input
           id="private"
           class="form-check-input"
@@ -33,11 +43,11 @@
           formControlName="permission"
           type="radio"
           [value]="Permission.PRIVATE" checked>
-      <label class="form-check-label" for="private">
+      <label class="text-sm text-gray-700" for="private">
         {{ Permission.PRIVATE | titlecase }}
       </label>
     </div>
-    <div class="form-check">
+    <div class="flex flex-row gap-2 items-center">
       <input
           id="public"
           class="form-check-input"
@@ -45,16 +55,17 @@
           formControlName="permission"
           type="radio"
           [value]="Permission.PUBLIC">
-      <label class="form-check-label" for="public">
+      <label class="text-sm text-gray-700" for="public">
         {{ Permission.PUBLIC | titlecase }}
       </label>
     </div>
   </div>
 
-  <div class="form-group">
-    <label for="categories">Categories</label>
+  <div class="flex flex-col justify-center grow w-full mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1" for="categories">Categories</label>
     <sn-user-tag-input
         id="categories"
+        [maxTagCount]="10"
         [placeholder]="'Add search tags'"
         (onAdd)="onAddCategory($event)"
         (onRemove)="onRemoveCategory($event)">
