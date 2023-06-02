@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AngularMarkdownEditorModule } from 'angular-markdown-editor';
 import { MarkdownModule } from 'ngx-markdown';
 import { Store } from '@ngrx/store';
 import { FlashcardSetBuilderService } from '@sn/user/shared/components/flashcard-set-builder/services/flashcard-set-builder.service';
@@ -23,7 +22,6 @@ describe('FlashcardCreateFormComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
-        AngularMarkdownEditorModule.forRoot({ iconlibrary: 'fa' })
       ],
       declarations: [
         FlashcardCreateFormComponent

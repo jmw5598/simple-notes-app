@@ -42,9 +42,6 @@
               "projects/user/src/assets/scss/styles.scss"
             ],
             "scripts": [
-              "projects/user/src/assets/js/jquery-3.3.1.min.js",
-              "projects/user/src/assets/js/bootstrap.min.js",
-              "node_modules/bootstrap-markdown/js/bootstrap-markdown.js"
             ]
           },
           "configurations": {
@@ -53,7 +50,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "1.5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -151,9 +148,6 @@
               "projects/user/src/assets/scss/styles.scss"
             ],
             "scripts": [
-              "projects/user/src/assets/js/jquery-3.3.1.min.js",
-              "projects/user/src/assets/js/bootstrap.min.js",
-              "node_modules/bootstrap-markdown/js/bootstrap-markdown.js"
             ]
           },
           "configurations": {

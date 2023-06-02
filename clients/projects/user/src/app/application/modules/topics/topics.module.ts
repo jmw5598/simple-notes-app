@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { AngularMarkdownEditorModule } from 'angular-markdown-editor';
 import { MarkdownModule } from 'ngx-markdown';
 import { ViewTopicsComponent } from './pages/view-topics/view-topics.component';
 import { TopicsRoutingModule } from './topics-routing.module';
@@ -66,7 +65,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
             heroPencil, 
             heroTrash, 
         }),
-        AngularMarkdownEditorModule,
     ]
 })
 export class TopicsModule { }

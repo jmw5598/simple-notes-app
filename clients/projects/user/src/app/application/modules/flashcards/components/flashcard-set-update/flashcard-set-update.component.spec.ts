@@ -5,7 +5,6 @@ import { DrawerService } from '@sn/user/shared/components';
 import { FlashcardSet } from '@sn/shared/models';
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { MarkdownModule } from 'ngx-markdown';
-import { AngularMarkdownEditorModule } from 'angular-markdown-editor';
 import { BehaviorSubject, of } from 'rxjs';
 
 import { FlashcardSetUpdateComponent } from './flashcard-set-update.component';
@@ -36,7 +35,6 @@ describe('FlashcardSetUpdateComponent', () => {
       imports: [
         ReactiveFormsModule,
         SharedModule,
-        AngularMarkdownEditorModule.forRoot({ iconlibrary: 'fa' }),
         MarkdownModule.forRoot()
       ],
       declarations: [

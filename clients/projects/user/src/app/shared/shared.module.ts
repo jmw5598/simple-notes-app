@@ -39,7 +39,6 @@ import { DocumentBuilderDocumentContainerComponent } from './components/document
 import { DocumentBuilderDocumentTopicComponent } from './components/document-builder/components/document-builder-document-container/components/document-builder-document-topic/document-builder-document-topic.component';
 import { DocumentBuilderDocumentSectionComponent } from './components/document-builder/components/document-builder-document-container/components/document-builder-document-section/document-builder-document-section.component';
 
-import { AngularMarkdownEditorModule } from 'angular-markdown-editor';
 import { MarkdownModule } from 'ngx-markdown';
 import { FlashcardSetBuilderFormComponent } from './components/flashcard-set-builder/components/flashcard-set-builder-form/flashcard-set-builder-form.component';
 import { FlashcardSetComponent } from './components/flashcard-set-builder/components/flashcard-set-builder-container/components/flashcard-set/flashcard-set.component';
@@ -101,7 +100,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ColorTwitterModule,
     DragDropModule,
     ConfirmationPopoverModule,
-    AngularMarkdownEditorModule.forRoot({ iconlibrary: 'fa' }),
     MarkdownModule.forRoot({
       sanitize: SecurityContext.NONE
     }),

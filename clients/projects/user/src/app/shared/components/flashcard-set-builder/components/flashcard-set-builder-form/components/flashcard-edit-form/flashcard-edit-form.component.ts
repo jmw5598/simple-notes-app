@@ -4,7 +4,6 @@ import { DEFAULT_EDITOR_OPTIONS } from '@sn/user/core/defaults';
 import { FlashcardSetBuilderService } from '@sn/user/shared/components/flashcard-set-builder/services/flashcard-set-builder.service';
 import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
 import { Flashcard } from '@sn/shared/models';
-import { EditorOption } from 'angular-markdown-editor';
 import { Subject } from 'rxjs';
 
 import { takeUntil } from 'rxjs/operators';
@@ -21,7 +20,7 @@ export class FlashcardEditFormComponent implements OnInit, OnDestroy, AfterViewI
   public form: UntypedFormGroup
   public frontCard: string = '';
   public backCard: string = '';
-  public editorOptions: EditorOption = {...DEFAULT_EDITOR_OPTIONS};
+  public editorOptions: any = {...DEFAULT_EDITOR_OPTIONS};
 
   constructor(
     private _formBuilder: UntypedFormBuilder,

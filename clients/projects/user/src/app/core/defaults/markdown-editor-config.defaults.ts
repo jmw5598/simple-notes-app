@@ -1,6 +1,6 @@
-import { EditorOption } from 'angular-markdown-editor';
 
-export const DEFAULT_EDITOR_OPTIONS: EditorOption = {
+
+export const DEFAULT_EDITOR_OPTIONS: any = {
   autofocus: false,
   disabledButtons: [],
   dropZoneOptions: null,
