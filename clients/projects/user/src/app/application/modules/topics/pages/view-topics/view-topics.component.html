@@ -1,4 +1,4 @@
-<div *ngIf="!(isPageLoading$ | async) && (searchTopicsResult$ | async)" class="flex grow-0 basis-2/3 shrink-0 w-2/3 m-0 p-0 h-full" [@fadeAnimation]>
+<div *ngIf="!(isPageLoading$ | async) && (searchTopicsResult$ | async)" class="w-2/3 m-0 p-0 h-full" [@fadeAnimation]>
   <!-- Topics list -->
   <div class="border-r h-full" *ngIf="(searchTopicsResult$ | async) || []">
     <h4 class="m-0 px-4 py-3 border-b flex flex-row items-center justify-between">
