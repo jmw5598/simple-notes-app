@@ -83,7 +83,6 @@ $white: #FFFFFF;
 
   .checkbox {
     box-sizing: border-box;
-    background: lighten($default, 20%);
     color: $white;
     transition: background 0.2s, visibility 0.2s;
 
@@ -93,14 +92,6 @@ $white: #FFFFFF;
       height: 100%;
       text-align: center;
       vertical-align: middle;
-    }
-
-    &:hover {
-      background: lighten($default, 15%);
-    }
-
-    &:active {
-      background: lighten($default,  10%);
     }
 
     &.checked {
