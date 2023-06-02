@@ -2,32 +2,20 @@
   <sn-toolbar-button-group>
     <span 
         snToolbarButton 
-        (click)="onPreviousRoute()"
-        [tooltip]="'Previous Page'" 
-        placement="auto" 
-        container="body"
-        [delay]="tooltipDelay">
-      <i class="fas fa-arrow-left"></i>
+        (click)="onPreviousRoute()">
+      <ng-icon name="heroArrowSmallLeft" size="1.2rem"></ng-icon>
     </span>
     <span 
         snToolbarButton 
-        (click)="onNextRoute()"
-        [tooltip]="'Next Page'" 
-        placement="auto" 
-        container="body"
-        [delay]="tooltipDelay">
-      <i class="fas fa-arrow-right"></i>
+        (click)="onNextRoute()">
+      <ng-icon name="heroArrowSmallRight" size="1.2rem"></ng-icon>
     </span>
   </sn-toolbar-button-group>
   <sn-toolbar-button-group>
     <span 
         snToolbarButton 
-        (click)="onCreateUserAccount()"
-        [tooltip]="'Create User Account'" 
-        placement="auto" 
-        container="body"
-        [delay]="tooltipDelay">
-      <i class="fas fa-user-plus"></i>
+        (click)="onCreateUserAccount()">
+      <ng-icon name="heroArrowSmallRight" size="1.2rem"></ng-icon>
     </span>
   </sn-toolbar-button-group>
 </sn-toolbar>

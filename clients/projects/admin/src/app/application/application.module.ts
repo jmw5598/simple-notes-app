@@ -13,6 +13,12 @@ import { AccountsEffects } from './modules/accounts/store/effects';
 import { CoreFramingModule } from '@sn/core/framing';
 import { SharedComponentsModule } from '@sn/shared/components';
 
+import { NgIconsModule } from '@ng-icons/core';
+import {
+  heroUserPlus,
+  heroArrowSmallLeft,
+  heroArrowSmallRight } from '@ng-icons/heroicons/outline';
+
 @NgModule({
   declarations: [
     ApplicationComponent,
@@ -26,7 +32,12 @@ import { SharedComponentsModule } from '@sn/shared/components';
     StoreModule.forFeature(applicationFeatureKey, applicationReducer),
     EffectsModule.forFeature([
       AccountsEffects
-    ])
+    ]),
+    NgIconsModule.withIcons({
+      heroUserPlus,
+      heroArrowSmallLeft,
+      heroArrowSmallRight,
+    })
   ],
   providers:  [
     {
