@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CalendarEvent } from '@sn/shared/models';
 
 @Component({
@@ -6,12 +6,7 @@ import { CalendarEvent } from '@sn/shared/models';
   templateUrl: './calendar-event-details.component.html',
   styleUrls: ['./calendar-event-details.component.scss']
 })
-export class CalendarEventDetailsComponent implements OnInit {
+export class CalendarEventDetailsComponent {
   @Input()
   public event: CalendarEvent;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 }

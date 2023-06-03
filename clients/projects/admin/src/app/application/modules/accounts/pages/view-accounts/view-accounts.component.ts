@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -24,6 +24,7 @@ import { AccountUpdateComponent } from '../../components/account-update/account-
   selector: 'sn-admin-view-accounts',
   templateUrl: './view-accounts.component.html',
   styleUrls: ['./view-accounts.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DrawerService],
   animations: [fadeAnimation]
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ControlContainer, UntypedFormGroup } from '@angular/forms';
 
 import { STATES, State } from '../../data';
@@ -6,7 +6,8 @@ import { STATES, State } from '../../data';
 @Component({
   selector: 'sn-admin-account-address-form',
   templateUrl: './account-address-form.component.html',
-  styleUrls: ['./account-address-form.component.scss']
+  styleUrls: ['./account-address-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountAddressFormComponent implements OnInit {
   public form: UntypedFormGroup;

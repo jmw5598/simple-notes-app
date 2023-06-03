@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 export enum FlipAxis {
   X = 'flip-axis-x',
@@ -8,7 +8,8 @@ export enum FlipAxis {
 @Component({
   selector: 'sn-flipcard',
   templateUrl: './flipcard.component.html',
-  styleUrls: ['./flipcard.component.scss']
+  styleUrls: ['./flipcard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FlipcardComponent implements OnInit {
   @Input()

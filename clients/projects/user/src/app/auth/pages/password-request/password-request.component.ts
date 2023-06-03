@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -15,6 +15,7 @@ import { fadeAnimation } from '@sn/shared/animations';
   selector: 'sn-user-password-request',
   templateUrl: './password-request.component.html',
   styleUrls: ['./password-request.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class PasswordRequestComponent implements OnInit, OnDestroy {

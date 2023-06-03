@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
+import { Component, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { fadeAnimation } from '@sn/shared/animations'
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -13,11 +13,10 @@ import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/comp
   selector: 'sn-user-account-settings',
   templateUrl: './account-settings.component.html',
   styleUrls: ['./account-settings.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
-export class AccountSettingsComponent extends AbstractPageOverlayLoader implements OnInit, AfterViewInit {
-  // @ViewChild('tabs', { static: false })
-
+export class AccountSettingsComponent extends AbstractPageOverlayLoader implements AfterViewInit {  
   public accountProfile$: Observable<Profile>;
   public accountDetails$: Observable<Account>;
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, Observable } from 'rxjs';
@@ -17,6 +17,7 @@ import { DrawerService } from '@sn/shared/components';
   selector: 'sn-user-section-create',
   templateUrl: './section-create.component.html',
   styleUrls: ['./section-create.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class SectionCreateComponent implements OnInit {

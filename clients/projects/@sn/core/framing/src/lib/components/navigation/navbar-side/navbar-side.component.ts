@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Input } from '@angular/core';
+import { Component, OnInit, HostListener, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LayoutSidePanelState } from '../../layout/layout-side-panel-state.enum';
 import { LayoutService } from '../../layout/layout.service';
@@ -9,7 +9,8 @@ import { OnDemandPreloadService } from '../../../preloading-strategies/on-demand
 @Component({
   selector: 'sn-core-framing-navbar-side',
   templateUrl: './navbar-side.component.html',
-  styleUrls: ['./navbar-side.component.scss']
+  styleUrls: ['./navbar-side.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarSideComponent implements OnInit {
   public LayoutSidePanelState = LayoutSidePanelState

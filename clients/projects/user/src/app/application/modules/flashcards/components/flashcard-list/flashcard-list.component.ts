@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FlashcardSet } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-flashcard-list',
   templateUrl: './flashcard-list.component.html',
-  styleUrls: ['./flashcard-list.component.scss']
+  styleUrls: ['./flashcard-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FlashcardListComponent implements OnInit {
+export class FlashcardListComponent {
   @Input()
   public flashcardSets: FlashcardSet[];
 
@@ -21,11 +22,6 @@ export class FlashcardListComponent implements OnInit {
 
   @Output()
   public onDelete: EventEmitter<any> = new EventEmitter<any>();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   public create(): void {
     this.onCreate.emit();

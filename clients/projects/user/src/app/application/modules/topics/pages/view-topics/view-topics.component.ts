@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
@@ -19,6 +19,7 @@ import { PageableSearch, ResponseMessage, Topic, ResponseStatus } from '@sn/shar
   selector: 'sn-user-view-topics',
   templateUrl: './view-topics.component.html',
   styleUrls: ['./view-topics.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DrawerService],
   animations: [fadeAnimation]
 })

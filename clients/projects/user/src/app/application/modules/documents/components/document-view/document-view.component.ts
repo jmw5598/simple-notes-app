@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Document, DocumentMarkdown, ExportConfig, ExportFormat, FileResponse } from '@sn/shared/models';
 import { Observable, Subject } from 'rxjs';
@@ -18,6 +18,7 @@ import { SpinnerStyle } from '@sn/shared/components';
   selector: 'sn-user-document-view',
   templateUrl: './document-view.component.html',
   styleUrls: ['./document-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation, showHide]
 })
 export class DocumentViewComponent implements OnInit, OnDestroy {
@@ -30,6 +31,7 @@ export class DocumentViewComponent implements OnInit, OnDestroy {
   public isLoading: boolean = true;
 
   constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
     private _store: Store<IDocumentsState>
   ) { }
 
@@ -63,7 +65,10 @@ export class DocumentViewComponent implements OnInit, OnDestroy {
     this.documentMarkdown$ = this._store.select(fromSelectors.selectDocumentMarkdownPreview)
       .pipe(tap(document => {
         if (document) {
-          setTimeout(() => this.isLoading = false, 500);
+          setTimeout(() => {
+            this.isLoading = false;
+            this._changeDetectorRef.markForCheck();
+          }, 250);
         }
       }));
 
@@ -72,7 +77,6 @@ export class DocumentViewComponent implements OnInit, OnDestroy {
         takeUntil(this._subscriptionSubject),
         tap((file:FileResponse) => {
           if (file) {
-            console.log("downlaoding file");
             FileSaver.saveAs(file.blob, file.filename)
           }
         })

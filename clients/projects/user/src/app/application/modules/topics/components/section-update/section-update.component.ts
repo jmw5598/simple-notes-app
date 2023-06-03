@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, Observable } from 'rxjs';
@@ -8,7 +8,7 @@ import { buildSectionFormGroup } from '../section-form/section-form.builder';
 import { Section, Topic } from '@sn/shared/models';
 import { ResponseMessage } from '@sn/shared/models';
 import { selectUpdateSectionResponseMessage } from '../../store/selectors';
-import { updateSection } from '../../store/actions';
+import { setUpdateSectionResponseMessage, updateSection } from '../../store/actions';
 import { showHide } from '@sn/shared/animations';
 
 import { DrawerService } from '@sn/shared/components';
@@ -17,6 +17,7 @@ import { DrawerService } from '@sn/shared/components';
   selector: 'sn-user-section-update',
   templateUrl: './section-update.component.html',
   styleUrls: ['./section-update.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class SectionUpdateComponent implements OnInit, OnDestroy {
@@ -36,7 +37,15 @@ export class SectionUpdateComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = buildSectionFormGroup(this._formBuilder);
-    this.responseMessage$ = this._store.select(selectUpdateSectionResponseMessage);
+    this.responseMessage$ = this._store.select(selectUpdateSectionResponseMessage)
+      .pipe(tap(message => {
+        if (message) {
+          setTimeout(() => 
+            this._store.dispatch(setUpdateSectionResponseMessage({ message: null })), 
+            2000
+          )
+        }
+      }));
     this._drawerServie.onDataChange()
       .pipe(takeUntil(this._subscriptionSubject))
       .subscribe(data => {

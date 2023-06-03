@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Account } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-admin-accounts-table',
   templateUrl: './accounts-table.component.html',
-  styleUrls: ['./accounts-table.component.scss']
+  styleUrls: ['./accounts-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountsTableComponent implements OnInit {
   @Input()

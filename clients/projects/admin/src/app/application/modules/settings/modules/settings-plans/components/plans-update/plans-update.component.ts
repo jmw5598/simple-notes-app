@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { IRolesState } from '@sn/admin/core/store/reducers';
@@ -16,6 +16,7 @@ import { takeUntil, tap } from 'rxjs/operators';
   selector: 'sn-admin-plans-update',
   templateUrl: './plans-update.component.html',
   styleUrls: ['./plans-update.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class PlansUpdateComponent implements OnInit, OnDestroy {

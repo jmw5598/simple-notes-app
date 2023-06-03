@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -17,6 +17,7 @@ import { KeyboardShortcutAction, ResponseMessage, ResponseStatus } from '@sn/sha
   selector: 'sn-user-configure-keyboard-shortcut',
   templateUrl: './configure-keyboard-shortcut.component.html',
   styleUrls: ['./configure-keyboard-shortcut.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class ConfigureKeyboardShortcutComponent implements OnInit, OnDestroy {

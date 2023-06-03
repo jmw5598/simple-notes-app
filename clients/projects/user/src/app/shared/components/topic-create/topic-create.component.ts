@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -11,14 +11,19 @@ import { ResponseMessage } from '@sn/shared/models';
 import { selectCreateTopicResponseMessage } from '@sn/user/application/modules/topics/store/selectors';
 import { setCreateTopicResponseMessage } from '@sn/user/application/modules/topics/store/actions';
 import { buildTopicFormGroup } from '../../forms/topic-form/topic-form.builder';
+import { TopicFormComponent } from '../../forms/topic-form/topic-form.component';
 
 @Component({
   selector: 'sn-user-topic-create',
   templateUrl: './topic-create.component.html',
   styleUrls: ['./topic-create.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class TopicCreateComponent implements OnInit {
+  @ViewChild(TopicFormComponent, { static: true })
+  public topicFormComponent!: TopicFormComponent;
+
   public form: UntypedFormGroup;
   public responseMessage$: Observable<ResponseMessage>;
 
@@ -45,8 +50,9 @@ export class TopicCreateComponent implements OnInit {
   }
 
   private _resetForm(): void {
-    const categories: UntypedFormArray = this._formBuilder.array([]);
-    this.form.setControl('categories', categories);
+    const defaultFormValue = buildTopicFormGroup(this._formBuilder).value;
     this.form.reset();
+    this.form.patchValue({ ...defaultFormValue });
+    this.topicFormComponent?.reset();
   }
 }

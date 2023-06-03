@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Flashcard, FlashcardSet } from '@sn/shared/models';
 import { Observable } from 'rxjs';
@@ -12,6 +12,7 @@ import { FlashcardSetViewerControlsService } from '@sn/user/shared/components/fl
   selector: 'sn-user-flashcard-set-view',
   templateUrl: './flashcard-set-view.component.html',
   styleUrls: ['./flashcard-set-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [FlashcardSetViewerControlsService]
 })
 export class FlashcardSetViewComponent implements OnInit, OnDestroy {

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Renderer2, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -17,6 +17,7 @@ import { DrawerService } from '@sn/shared/components';
   selector: 'sn-user-topic-search',
   templateUrl: './topic-search.component.html',
   styleUrls: ['./topic-search.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class TopicSearchComponent implements OnInit, OnDestroy, AfterViewInit {

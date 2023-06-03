@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ControlContainer, UntypedFormGroup } from '@angular/forms';
 import { fadeAnimation } from '@sn/shared/animations';
 import { STATES } from '@sn/user/shared/data';
@@ -7,6 +7,7 @@ import { STATES } from '@sn/user/shared/data';
   selector: 'sn-user-account-details-form',
   templateUrl: './account-details-form.component.html',
   styleUrls: ['./account-details-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class AccountDetailsFormComponent implements OnInit {

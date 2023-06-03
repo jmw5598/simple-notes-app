@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { DEFAULT_SEARCH_TODOS_PAGE } from '@sn/user/core/defaults';
 
@@ -20,6 +20,7 @@ import { IPageable, Page, PageableSearch, TodoList } from '@sn/shared/models';
   selector: 'sn-user-view-todos',
   templateUrl: './view-todos.component.html',
   styleUrls: ['./view-todos.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class ViewTodosComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {

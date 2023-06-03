@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { TodoList } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.scss']
+  styleUrls: ['./todo-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent {
   @Input()
   public todoLists: TodoList[];
 
@@ -21,11 +22,6 @@ export class TodoListComponent implements OnInit {
 
   @Output()
   public onDelete: EventEmitter<any> = new EventEmitter<any>();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   public create(): void {
     this.onCreate.emit();

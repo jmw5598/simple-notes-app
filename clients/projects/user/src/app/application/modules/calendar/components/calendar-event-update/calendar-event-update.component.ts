@@ -1,12 +1,14 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { UntypedFormGroup, ControlContainer } from '@angular/forms';
 import { CalendarEvent, ResponseMessage } from '@sn/shared/models';
 import { showHide } from '@sn/shared/animations';
+import { toDateTimePickerFormat } from '@sn/user/shared/utils';
 
 @Component({
   selector: 'sn-user-calendar-event-update',
   templateUrl: './calendar-event-update.component.html',
   styleUrls: ['./calendar-event-update.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class CalendarEventUpdateComponent implements OnInit, AfterViewInit {
@@ -19,7 +21,7 @@ export class CalendarEventUpdateComponent implements OnInit, AfterViewInit {
   public form: UntypedFormGroup;
 
   constructor(
-    private _parentControl: ControlContainer
+    private _parentControl: ControlContainer,
   ) { }
 
   ngOnInit(): void {
@@ -29,14 +31,10 @@ export class CalendarEventUpdateComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     setTimeout(() => {
       if (this.form && this.event) {
-        const startDateTime: Date = new Date(this.event.startDateTime);
-        const endDateTime: Date = new Date(this.event.endDateTime);
         const formValue: {[key: string]: any} = {
           ...this.event,
-          startDate: startDateTime, 
-          startTime: startDateTime,
-          endDate: endDateTime,
-          endTime: endDateTime
+          startDate: toDateTimePickerFormat(new Date(this.event.startDateTime)), 
+          endDate: toDateTimePickerFormat(new Date(this.event.endDateTime))
         }
         this.form.patchValue(formValue);
       }

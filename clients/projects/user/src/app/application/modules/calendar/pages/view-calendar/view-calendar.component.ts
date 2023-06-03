@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil, withLatestFrom } from 'rxjs/operators';
@@ -27,6 +27,7 @@ enum CalendarEventType {
   selector: 'sn-user-view-calendar',
   templateUrl: './view-calendar.component.html',
   styleUrls: ['./view-calendar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DrawerService],
   animations: [fadeAnimation]
 })
@@ -47,13 +48,11 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
     this._configureCalendarOptions();
   }
 
-  // TODO Clean this up.
   ngOnInit(): void {
     this._listenForCurrentCalendarEventsChanges();
     this._listenForCurrentCalendarTodoListsChanges();
     this._listenForSelectedCalendarEventChanges();
     this._listenForSelectedCalendarTodoListChanges();
-    
   }
 
   public handleCalendarEvevntDidMount(args): void {

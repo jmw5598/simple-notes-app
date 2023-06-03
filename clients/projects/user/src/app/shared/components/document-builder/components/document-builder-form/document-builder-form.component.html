@@ -3,6 +3,7 @@
     <div class="flex flex-col justify-center grow w-full mb-3" [formGroup]="form">
       <label class="text-gray-500 text-xs mb-1 ps-1" for="name">Document Name <span class="text-danger-500">*</span></label>
       <input 
+          id="document-title"
           formControlName="name" 
           type="text" 
           class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
@@ -20,6 +21,7 @@
           [items]="topics$ | async"
           [(ngModel)]="selected"
           [typeahead]="topicsTypeAhead$"
+          (ngModelChange)="onSelectTopic($event)"
           bindLabel="title">
       </ng-select>
     </div>

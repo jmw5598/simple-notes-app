@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -17,6 +17,7 @@ import { AuthenticatedStatus, UserCredentials, Roles } from '@sn/shared/models';
   selector: 'sn-user-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class LoginComponent implements OnInit, OnDestroy {
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public queryParamMessage$: Observable<string>;
 
   constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
     private _authenticationService: AuthenticationService,
     private _formBuilder: UntypedFormBuilder,
     private _store: Store<fromAuth.IAuthenticationState>,
@@ -41,12 +43,15 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._authenticationStateSubscription = this._store.select(fromSelectors.selectAuthenticationState)
+    this._authenticationStateSubscription = this._store
+      .select(fromSelectors.selectAuthenticationState)
+      .pipe()
       .subscribe(state => {
         this.authenticationState = state;
         if(state.authenticatedStatus === AuthenticatedStatus.AUTHENTICATED) {
           this._router.navigate(['/auth', 'logging-in']);
         }
+        this._changeDetectorRef.markForCheck();
       });
       
     this.queryParamMessage$ = this._route.queryParams.pipe(

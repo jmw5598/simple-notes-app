@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { LayoutSidePanelState, NavigationRouteLink } from '@sn/core/framing';
 import { OverlaySpinnerSize, OverlayLoaderStyle } from '@sn/shared/components';
 import { fadeAnimation } from '@sn/shared/animations';
@@ -8,6 +8,7 @@ import { NAVIGATION_ROUTES } from './navigation-routes.config';
   selector: 'sn-admin-application',
   templateUrl: './application.component.html',
   styleUrls: ['./application.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class ApplicationComponent {

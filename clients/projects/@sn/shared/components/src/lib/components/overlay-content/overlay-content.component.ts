@@ -1,7 +1,7 @@
-import { Component, ComponentFactory, ComponentFactoryResolver, HostListener, Input, OnDestroy, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ComponentFactory, ComponentFactoryResolver, HostListener, Input, OnDestroy, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { fadeAnimation } from '@sn/shared/animations';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 
 import { OverlayContentOptions } from './overlay-content-options.model';
 import { OverlayContentService } from './overlay-content.service';
@@ -10,6 +10,7 @@ import { OverlayContentService } from './overlay-content.service';
   selector: 'sn-overlay-content',
   templateUrl: './overlay-content.component.html',
   styleUrls: ['./overlay-content.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class OverlayContentComponent implements OnInit, OnDestroy {
@@ -23,6 +24,7 @@ export class OverlayContentComponent implements OnInit, OnDestroy {
   private _subscriptionSubject$: Subject<void>;
 
   constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
     private _componentFactoryResolver: ComponentFactoryResolver,
     private _overlayContentService: OverlayContentService
   ) {
@@ -31,12 +33,18 @@ export class OverlayContentComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._overlayContentService.onOptionsChange()
-      .pipe(takeUntil(this._subscriptionSubject$))
-      .subscribe((options: OverlayContentOptions) => this.options = options);
+      .pipe(
+        takeUntil(this._subscriptionSubject$),
+        tap((options: OverlayContentOptions) => this.options = options)
+      )
+      .subscribe((options: OverlayContentOptions) => this._changeDetectorRef.markForCheck());
 
     this._overlayContentService.onVibilityChange()
-      .pipe(takeUntil(this._subscriptionSubject$))
-      .subscribe((visible: boolean) => this.isContentVisible = visible);
+      .pipe(
+        takeUntil(this._subscriptionSubject$),
+        tap((visible: boolean) => this.isContentVisible = visible)   
+      )
+      .subscribe((visible: boolean) => this._changeDetectorRef.markForCheck());
 
     this._overlayContentService.onContentChange()
       .pipe(takeUntil(this._subscriptionSubject$))
@@ -46,6 +54,7 @@ export class OverlayContentComponent implements OnInit, OnDestroy {
         } else {
           this._removeOverlayContent();
         }
+        setTimeout(() => this._changeDetectorRef.markForCheck());
       });
   }
 

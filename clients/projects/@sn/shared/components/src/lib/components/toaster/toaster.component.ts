@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { showHide } from '@sn/shared/animations';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -9,6 +9,7 @@ import { ToasterService } from './toaster.service';
   selector: 'sn-toaster',
   templateUrl: './toaster.component.html',
   styleUrls: ['./toaster.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class ToasterComponent implements OnInit, OnDestroy {
@@ -19,6 +20,7 @@ export class ToasterComponent implements OnInit, OnDestroy {
   public location: ToasterLocation = 'bottomright';
 
   constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
     private _toasterService: ToasterService
   ) { }
 
@@ -37,6 +39,7 @@ export class ToasterComponent implements OnInit, OnDestroy {
       .subscribe((message: ToastMessage) => {
         if (message) {
           this._pushNewMessage(message);
+          this._changeDetectorRef.markForCheck();
         }
       });
   }
@@ -47,6 +50,7 @@ export class ToasterComponent implements OnInit, OnDestroy {
       .subscribe((message: ToastMessage) => {
         if (message) {
           this.messages = this.messages.filter(m => m.id !== message.id);
+          this._changeDetectorRef.markForCheck();
         }
       });
   }

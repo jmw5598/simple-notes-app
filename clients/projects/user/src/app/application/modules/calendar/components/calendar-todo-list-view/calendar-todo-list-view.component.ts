@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ResponseMessage } from '@sn/shared/models';
@@ -16,7 +16,8 @@ import { DrawerService } from '@sn/shared/components';
 @Component({
   selector: 'sn-user-calendar-todo-list-view',
   templateUrl: './calendar-todo-list-view.component.html',
-  styleUrls: ['./calendar-todo-list-view.component.scss']
+  styleUrls: ['./calendar-todo-list-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarTodoListViewComponent implements OnInit {
   public form: UntypedFormGroup;

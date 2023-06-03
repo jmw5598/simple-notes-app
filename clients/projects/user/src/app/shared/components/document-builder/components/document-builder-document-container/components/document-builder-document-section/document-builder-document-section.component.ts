@@ -1,10 +1,11 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { DocumentTopicSection } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-document-builder-document-section',
   templateUrl: './document-builder-document-section.component.html',
-  styleUrls: ['./document-builder-document-section.component.scss']
+  styleUrls: ['./document-builder-document-section.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocumentBuilderDocumentSectionComponent {
   @Input()

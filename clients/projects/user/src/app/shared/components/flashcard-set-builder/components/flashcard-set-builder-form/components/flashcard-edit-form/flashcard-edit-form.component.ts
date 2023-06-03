@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { DEFAULT_EDITOR_OPTIONS } from '@sn/user/core/defaults';
 import { FlashcardSetBuilderService } from '@sn/user/shared/components/flashcard-set-builder/services/flashcard-set-builder.service';
@@ -11,7 +11,8 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'sn-user-flashcard-edit-form',
   templateUrl: './flashcard-edit-form.component.html',
-  styleUrls: ['./flashcard-edit-form.component.scss']
+  styleUrls: ['./flashcard-edit-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FlashcardEditFormComponent implements OnInit, OnDestroy, AfterViewInit {
   private readonly idGenerator: Generator = idGenerator;

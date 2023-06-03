@@ -5,9 +5,7 @@ export const buildCalendarEventFormGroup = (formBuilder: UntypedFormBuilder): Un
     id: [''],
     title: ['', [Validators.required]],
     startDate: ['', [Validators.required]],
-    startTime: ['', [Validators.required]],
     endDate: ['', [Validators.required]],
-    endTime: ['', [Validators.required]],
     isAllDay: [false, [Validators.required]],
     color: ['', [
       Validators.required, 

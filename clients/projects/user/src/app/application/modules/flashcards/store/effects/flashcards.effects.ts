@@ -8,6 +8,7 @@ import { handleHttpError } from '../../../../store/actions';
 
 import { FlashcardsService } from '@sn/core/services';
 import { PageableSearch, ResponseMessage, ResponseStatus } from '@sn/shared/models';
+import { DEFAULT_SEARCH_FLASHCARDS_PAGE } from '@sn/user/core/defaults';
 
 @Injectable()
 export class FlashcardsEffects {
@@ -96,6 +97,18 @@ export class FlashcardsEffects {
         message: `Successfully created flashcard set!`
       } as ResponseMessage;
       return of(fromActions.setCreateFlashcardSettResponseMessage({ message: message }))
+    })
+  ));
+
+  createFlashcardSetSuccessRefresh$ = createEffect(() => this._actions.pipe(
+    ofType(fromActions.createFlashcardSetSuccess),
+    switchMap(({ flashcardSet }) => {
+      return of(fromActions.searchFlashcardSets({ 
+        search: {
+          searchTerm: '',
+          pageable: DEFAULT_SEARCH_FLASHCARDS_PAGE
+        } as PageableSearch
+      }))
     })
   ));
 

@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { DEFAULT_EDITOR_OPTIONS } from '@sn/user/core/defaults';
 import { FlashcardSetBuilderService } from '@sn/user/shared/components/flashcard-set-builder/services/flashcard-set-builder.service';
 import { Flashcard } from '@sn/shared/models';
 
 import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
+import { Subject } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'sn-user-flashcard-create-form',
   templateUrl: './flashcard-create-form.component.html',
-  styleUrls: ['./flashcard-create-form.component.scss']
+  styleUrls: ['./flashcard-create-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FlashcardCreateFormComponent implements OnInit {
+export class FlashcardCreateFormComponent implements OnInit, OnDestroy {
+  private _destroy$: Subject<void> = new Subject<void>();
   private readonly idGenerator: Generator = idGenerator;
 
   public form: UntypedFormGroup;
@@ -20,6 +24,7 @@ export class FlashcardCreateFormComponent implements OnInit {
   public editorOptions: any = {...DEFAULT_EDITOR_OPTIONS};
 
   constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
     private _formBuilder: UntypedFormBuilder,
     private _flashcardSetBuilderService: FlashcardSetBuilderService
   ) { }
@@ -28,10 +33,15 @@ export class FlashcardCreateFormComponent implements OnInit {
     this.form = this._formBuilder.group({
       frontContent: ['', [Validators.required]],
       backContent: ['', [Validators.required]]
-    })
+    });
+
+    this.form.valueChanges
+      .pipe(takeUntil(this._destroy$), debounceTime(250))
+      .subscribe((value) => this._changeDetectorRef.markForCheck())
   }
 
   public onSubmit(formValue: any): void {
+    console.log("usbmitting", formValue);
     const flashcard: Flashcard = {
       ...formValue,
       id: -this.idGenerator.next().value
@@ -43,7 +53,12 @@ export class FlashcardCreateFormComponent implements OnInit {
   public onReset(): void {
     this.form.patchValue({
       frontContent: '',
-      backContetn: ''
+      backContent: ''
     });
+  }
+
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 }

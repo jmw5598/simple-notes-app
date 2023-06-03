@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 
 export type ToolbarDockLocation = 'top' | 'bottom';
 export type ToolbarDockTogglerLocation = 'start' | 'end' | 'center';
@@ -6,7 +6,8 @@ export type ToolbarDockTogglerLocation = 'start' | 'end' | 'center';
 @Component({
   selector: 'sn-toolbar-dock',
   templateUrl: './toolbar-dock.component.html',
-  styleUrls: ['./toolbar-dock.component.scss']
+  styleUrls: ['./toolbar-dock.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToolbarDockComponent {
   @HostBinding('class.toolbar-dock')

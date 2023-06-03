@@ -1,12 +1,13 @@
-import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 import { Account } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-admin-accounts-list',
   templateUrl: './accounts-list.component.html',
-  styleUrls: ['./accounts-list.component.scss']
+  styleUrls: ['./accounts-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccountsListComponent implements OnInit {
+export class AccountsListComponent {
   @Input()
   public accounts: Account[];
 
@@ -21,11 +22,6 @@ export class AccountsListComponent implements OnInit {
 
   @Output()
   public onCreate: EventEmitter<void> = new EventEmitter<void>();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   public create(): void {
     this.onCreate.emit();

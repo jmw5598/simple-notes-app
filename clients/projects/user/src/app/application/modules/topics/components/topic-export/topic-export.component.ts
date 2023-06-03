@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, Observable } from 'rxjs';
@@ -18,6 +18,7 @@ import * as FileSaver from 'file-saver';
   selector: 'sn-user-topic-export',
   templateUrl: './topic-export.component.html',
   styleUrls: ['./topic-export.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class TopicExportComponent implements OnInit, OnDestroy {

@@ -1,15 +1,14 @@
-<div class="row">
-  <div class="col-sm-12 px-4">
-    <h3 class="font-weight-bold text-primary text-right mb-3">Edit Calendar Event</h3>
-    <hr />
-    <!-- Response Message -->
-    <div *ngIf="responseMessage" [@showHide] class="alert alert-success">
-      <span>
-        <strong>{{ responseMessage?.status | uppercase }}</strong>: {{ responseMessage?.message }}
-      </span>
-    </div>
-    <div [formGroup]="form">
-      <sn-user-calendar-event-form></sn-user-calendar-event-form>   
-    </div>
+<div class="p-4">
+  <h3 class="font-bold text-primary-500 text-right text-2xl mb-3">Edit Calendar Event</h3>
+  <hr class="mb-3" />
+  
+  <!-- Response Message -->
+  <div *ngIf="responseMessage" [@showHide] class="bg-info-100 rounded-xl text-info-700 p-4 mb-4" role="alert">
+    <p class="font-bold">{{ responseMessage?.status | titlecase }}</p>
+    <p>{{ responseMessage?.message }}</p>
+  </div>
+
+  <div [formGroup]="form">
+    <sn-user-calendar-event-form></sn-user-calendar-event-form>   
   </div>
 </div>

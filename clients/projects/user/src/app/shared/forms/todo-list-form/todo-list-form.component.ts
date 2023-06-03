@@ -1,16 +1,20 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
-import { ControlContainer, UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { ControlContainer, FormArray, UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
 import { ECalendarValue, IDatePickerConfig } from 'ng2-date-picker';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { DEFAULT_DATE_TIME_PICKER_CONFIG } from '../../defaults';
 
 @Component({
   selector: 'sn-user-todo-list-form',
   templateUrl: './todo-list-form.component.html',
-  styleUrls: ['./todo-list-form.component.scss']
+  styleUrls: ['./todo-list-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoListFormComponent implements OnInit, AfterViewInit {
+export class TodoListFormComponent implements OnInit, AfterViewInit, OnDestroy {
+  private _destroy$: Subject<void> = new Subject<void>();
   public form: UntypedFormGroup;
 
   public datepickerConfig: IDatePickerConfig = {
@@ -18,18 +22,22 @@ export class TodoListFormComponent implements OnInit, AfterViewInit {
   };
 
   constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
     private _renderer: Renderer2,
     private _parentControl: ControlContainer
   ) { }
 
   ngOnInit(): void {
     this.form = this._parentControl.control as UntypedFormGroup;
+    this.form.valueChanges
+      .pipe(takeUntil(this._destroy$))
+      .subscribe(value => this._changeDetectorRef.markForCheck())
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
       this._setFocusToTitleInput();
-    })
+    });
   }
 
   public addTodo(description: string): void {
@@ -59,7 +67,9 @@ export class TodoListFormComponent implements OnInit, AfterViewInit {
   }
 
   public reset(): void {
-    // TODO reset form
+    this.form.reset();
+    this.form.setControl('todos', new FormArray([]));
+    this._changeDetectorRef.markForCheck();
   }
 
   private _setFocusToTitleInput(): void {
@@ -77,5 +87,10 @@ export class TodoListFormComponent implements OnInit, AfterViewInit {
       todosArrays.setControl(i, current);
     }
     todosArrays.setControl(to, temp);
-  }  
+  }
+
+  ngOnDestroy(): void {
+      this._destroy$.next();
+      this._destroy$.complete();
+  }
 }

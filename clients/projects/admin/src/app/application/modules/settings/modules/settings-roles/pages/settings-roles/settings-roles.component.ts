@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ResponseMessage, Role } from '@sn/shared/models';
 import { IAppState } from '@sn/user/store/reducers';
@@ -15,6 +15,7 @@ import { fadeAnimation } from '@sn/shared/animations';
   selector: 'sn-admin-settings-roles',
   templateUrl: './settings-roles.component.html',
   styleUrls: ['./settings-roles.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class SettingsRolesComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, takeUntil, take, tap, distinctUntilChanged } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { selectSelectedSection, selectUpdateSectionNotesResponseMessage } from '
 import { setSelectedSection, updateSectionNotes } from '../../store/actions';
 import { fadeAnimation } from '@sn/shared/animations';
 
-import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
+import { AbstractPageOverlayLoader, OverlayLoaderService, ToasterService, ToastType } from '@sn/shared/components';
 import { ResponseMessage, ResponseStatus, Section } from '@sn/shared/models';
 import { FormControl, FormGroup } from '@angular/forms';
 
@@ -18,6 +18,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   selector: 'sn-user-edit-section-notes',
   templateUrl: './edit-section-notes.component.html',
   styleUrls: ['./edit-section-notes.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class EditSectionNotesComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {
@@ -33,9 +34,11 @@ export class EditSectionNotesComponent extends AbstractPageOverlayLoader impleme
   });
 
   constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
     private _route: ActivatedRoute,
     private _store: Store<ISectionsState>,
-    protected _overlayLoaderService: OverlayLoaderService
+    protected _overlayLoaderService: OverlayLoaderService,
+    private _toasterService: ToasterService,
   ) {
     super(_overlayLoaderService);
     this._subscriptionSubject$ = new Subject<void>();
@@ -55,7 +58,7 @@ export class EditSectionNotesComponent extends AbstractPageOverlayLoader impleme
         tap((response: ResponseMessage) => {
           if (response) {
             const successMessage: boolean = response.status === ResponseStatus.SUCCESS;
-            this._resetEditorMessage();
+            this._toasterService.push('Saved!', { type: 'primary' })
           }
         })
       ).subscribe();
@@ -63,7 +66,7 @@ export class EditSectionNotesComponent extends AbstractPageOverlayLoader impleme
     this._sectionNoteChangeSubject$
       .pipe(
         takeUntil(this._subscriptionSubject$),
-        debounceTime(2000),
+        debounceTime(1000),
         distinctUntilChanged(),
         tap(notes => this.onSaveSectionNotes(notes))
       ).subscribe();
@@ -71,7 +74,7 @@ export class EditSectionNotesComponent extends AbstractPageOverlayLoader impleme
     this.section$ = this._store.select(selectSelectedSection)
       .pipe(
         tap((section: Section) => 
-          this.formGroup.patchValue({ notes: section.notes })
+          this.formGroup.patchValue({ notes: section.notes }, { emitEvent: false })
         ));
 
     this._route.paramMap.pipe(take(1))
@@ -84,32 +87,22 @@ export class EditSectionNotesComponent extends AbstractPageOverlayLoader impleme
     this.formGroup
       .valueChanges
       .pipe(takeUntil(this._subscriptionSubject$))
-      .subscribe(formValue => this._sectionNoteChangeSubject$.next(formValue?.notes))
-  }
-
-  public hidePreview(): void {
-    
+      .subscribe(formValue => {
+        this._sectionNoteChangeSubject$.next(formValue?.notes);
+        this._changeDetectorRef.markForCheck();
+      })
   }
 
   public onSaveSectionNotes(notes: string): void {
-    // this.editorOptions.footer = EditorMessage.SAVING;
     this._store.dispatch(updateSectionNotes({
       topicId: this._topicId,
       sectionId: this._sectionId,
-      notes: this.formGroup?.value?.notes || null
+      notes: this.formGroup?.value?.notes || ''
     }));
   }
 
   public onSectionNotesChangeKeyUp($event): void {
     this._sectionNoteChangeSubject$.next($event.target.value);
-  }
-
-  private _resetEditorMessage(): void {
-    setTimeout(() => {
-      if (this.saveMessage !== EditorMessage.SAVING) {
-        // this.editorOptions.footer = '';
-      }
-    }, 3000);
   }
 
   ngOnDestroy(): void {

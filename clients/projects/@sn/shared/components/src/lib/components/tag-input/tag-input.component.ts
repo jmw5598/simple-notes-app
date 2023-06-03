@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'sn-user-tag-input',
   templateUrl: './tag-input.component.html',
-  styleUrls: ['./tag-input.component.scss']
+  styleUrls: ['./tag-input.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TagInputComponent implements OnInit {
 
@@ -34,7 +35,10 @@ export class TagInputComponent implements OnInit {
   @Input()
   placeholder: string = "Search tags";
 
-  constructor(private formBuilder: UntypedFormBuilder) { }
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+    private formBuilder: UntypedFormBuilder,
+  ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -78,4 +82,9 @@ export class TagInputComponent implements OnInit {
     this.onRemove.emit(tag);
   }
 
+  reset(): void {
+    this.items = [];
+    this.form.reset();
+    this.changeDetectorRef.markForCheck();
+  }
 }

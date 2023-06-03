@@ -1,9 +1,10 @@
-<div class="account-settings-toolbar p-3" [@fadeAnimation]>
-  <h4 class="font-weight-bold mb-3">Toolbar</h4>
-  <hr />
-  <div class="card calendar-integration-container">
+<div class="p-4" [@fadeAnimation]>
+  <h4 class="font-bold text-gray-700 text-lg mb-3">Toolbar</h4>
+  <hr class="mb-4" />
+  
+  <div class="p-4 border rounded-xl">
     <div class="card-body">
-      <h5 class="font-weight-bold mb-3">Keyboard Shortcuts</h5>
+      <h5 class="font-bold text-gray-700 text-md mb-3">Keyboard Shortcuts</h5>
       <sn-user-toolbar-keyboard-shortcut-list
           [shortcuts]="shortcuts$ | async"
           (onDeleteShortcut)="onDeleteShortcut($event)"

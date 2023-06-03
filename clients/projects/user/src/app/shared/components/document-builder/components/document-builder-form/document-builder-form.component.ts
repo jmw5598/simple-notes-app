@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, Renderer2 } from '@angular/core';
 import { UntypedFormGroup, ControlContainer } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { concat, Observable, Observer, of, Subject } from 'rxjs';
@@ -6,9 +6,8 @@ import { debounceTime, distinctUntilChanged, switchMap, map, withLatestFrom, tak
 import { TopicsService } from '@sn/core/services';
 import { IDocumentsState } from '@sn/user/application/modules/documents/store/reducers';
 
-import { getSectionsByTopicId, getSectionsByTopicIdSuccess, setBuilderSearchTopicSelection } from '@sn/user/application/modules/documents/store/actions';
+import { getSectionsByTopicId, getSectionsByTopicIdSuccess, setBuilderDocument, setBuilderSearchTopicSelection } from '@sn/user/application/modules/documents/store/actions';
 import { selectSectionsForSelectedTopic } from '@sn/user/application/modules/documents/store/selectors';
-import { Page } from '@sn/shared/models';
 import { Section, Topic, Document } from '@sn/shared/models';
 import { DropAction } from '../../../../components/document-builder/models/drop-action.enum';
 
@@ -19,7 +18,8 @@ import { DocumentTopic, DocumentTopicSection } from '@sn/shared/models';
 @Component({
   selector: 'sn-user-document-builder-form',
   templateUrl: './document-builder-form.component.html',
-  styleUrls: ['./document-builder-form.component.scss']
+  styleUrls: ['./document-builder-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocumentBuilderFormComponent implements OnInit {
   public DropAction = DropAction
@@ -59,24 +59,25 @@ export class DocumentBuilderFormComponent implements OnInit {
     });
   }
 
-  public onSelectTopic(match: any): void {
-    const topic: Topic = match.item as Topic;
-    const documentTopic: DocumentTopic = {
-      topic: topic,
-      documentTopicSections: []
-    } as DocumentTopic;   
-    this.selected = topic?.title
-    this._store.dispatch(setBuilderSearchTopicSelection({ documentTopic }))
-    this._store.dispatch(getSectionsByTopicId({ topicId: topic.id }))
+  public onSelectTopic(topic: any): void {
+    const documentTopic: DocumentTopic = { topic: topic, documentTopicSections: [] } as DocumentTopic;   
+    this._store.dispatch(setBuilderSearchTopicSelection({ documentTopic }));
+    this._store.dispatch(getSectionsByTopicId({ topicId: topic.id }));
   }
 
   public formatSelection(item: any): string {
-    console.log("item is ", item);
     return 'testing';
   }
 
+  public resetDocumentBuilder(): void {
+    this.form.reset();
+    this.selected = null;
+    this._store.dispatch(setBuilderSearchTopicSelection({ documentTopic: null }));
+    this._store.dispatch(setBuilderDocument({ document: null }));
+  }
+
   private _setFocusToTitleInput(): void {
-    this._renderer.selectRootElement('#search-topics').focus();
+    this._renderer.selectRootElement('#document-title').focus();
   }
 
   private _initilizeForm(): void {

@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'sn-empty-data',
   templateUrl: './empty-data.component.html',
-  styleUrls: ['./empty-data.component.scss']
+  styleUrls: ['./empty-data.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmptyDataComponent implements OnInit {
   @Input()

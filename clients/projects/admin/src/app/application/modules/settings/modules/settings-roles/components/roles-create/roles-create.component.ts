@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { IRolesState } from '@sn/admin/core/store/reducers';
@@ -16,6 +16,7 @@ import { DrawerService } from '@sn/shared/components';
   selector: 'sn-admin-roles-create',
   templateUrl: './roles-create.component.html',
   styleUrls: ['./roles-create.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class RolesCreateComponent implements OnInit {

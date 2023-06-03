@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IDashboardState } from '../../store/reducers';
@@ -14,6 +14,7 @@ import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/comp
   selector: 'sn-user-dashboard-overview',
   templateUrl: './dashboard-overview.component.html',
   styleUrls: ['./dashboard-overview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class DashboardOverviewComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {

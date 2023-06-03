@@ -1,9 +1,10 @@
-import { Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'span[snToolbarButton],div[snToolbarButton],button[snToolbarButton],input[snToolbarButton]',
   templateUrl: './toolbar-button.component.html',
-  styleUrls: ['./toolbar-button.component.scss']
+  styleUrls: ['./toolbar-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToolbarButtonComponent {
   @HostBinding('class')

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ControlContainer, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'sn-admin-roles-form',
   templateUrl: './roles-form.component.html',
-  styleUrls: ['./roles-form.component.scss']
+  styleUrls: ['./roles-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RolesFormComponent implements OnInit {
   public form: UntypedFormGroup;

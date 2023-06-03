@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Role } from '@sn/shared/models';
 
@@ -6,7 +6,8 @@ import { Role } from '@sn/shared/models';
 @Component({
   selector: 'sn-admin-account-user-form',
   templateUrl: './account-user-form.component.html',
-  styleUrls: ['./account-user-form.component.scss']
+  styleUrls: ['./account-user-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountUserFormComponent implements OnInit {
   public form: UntypedFormGroup;

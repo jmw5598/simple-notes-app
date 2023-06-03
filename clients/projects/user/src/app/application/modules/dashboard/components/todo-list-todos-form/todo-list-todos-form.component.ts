@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { slideUpDownAnimation } from '@sn/shared/animations';
 import { Todo, TodoList } from '@sn/shared/models';
 
@@ -6,9 +6,10 @@ import { Todo, TodoList } from '@sn/shared/models';
   selector: 'sn-user-todo-list-todos-form',
   templateUrl: './todo-list-todos-form.component.html',
   styleUrls: ['./todo-list-todos-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [slideUpDownAnimation]
 })
-export class TodoListTodosFormComponent implements OnInit {
+export class TodoListTodosFormComponent {
   @Input()
   public todoList: TodoList;
 
@@ -17,11 +18,6 @@ export class TodoListTodosFormComponent implements OnInit {
 
   @Output()
   public onUpdate: EventEmitter<TodoList> = new EventEmitter<TodoList>();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   public onUpdateTodos(todos: Todo[]): void {
     this.todoList = { ...this.todoList, todos: todos } ;

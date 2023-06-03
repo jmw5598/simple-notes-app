@@ -1,12 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { KeyboardShortcutAction } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-toolbar-keyboard-shortcut-list',
   templateUrl: './toolbar-keyboard-shortcut-list.component.html',
-  styleUrls: ['./toolbar-keyboard-shortcut-list.component.scss']
+  styleUrls: ['./toolbar-keyboard-shortcut-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ToolbarKeyboardShortcutListComponent implements OnInit {
+export class ToolbarKeyboardShortcutListComponent {
   @Input()
   public shortcuts: KeyboardShortcutAction[];
 
@@ -19,9 +20,6 @@ export class ToolbarKeyboardShortcutListComponent implements OnInit {
   constructor() {
     this.onDeleteShortcut = new EventEmitter<number>();
     this.onConfigureShortcut = new EventEmitter<KeyboardShortcutAction>();
-  }
-
-  ngOnInit(): void {
   }
 
   public deleteShortcut(shortcutId: number): void {

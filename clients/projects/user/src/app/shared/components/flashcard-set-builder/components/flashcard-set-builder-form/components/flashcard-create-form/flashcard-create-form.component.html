@@ -25,7 +25,7 @@
         class="cursor-pointer border border-primary-500 hover:bg-white bg-primary-500 text-white hover:text-primary-500 font-bold transition-colors rounded-full py-1 px-2 text-xs me-1" 
         role="button" 
         type="submit"
-        [disabled]="form.invalid">
+        [disabled]="form.get('frontContent').invalid || form.get('backContent').invalid">
       Add
     </button>
     <button 

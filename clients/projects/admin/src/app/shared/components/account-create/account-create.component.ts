@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
@@ -20,7 +20,8 @@ import * as rolesSelectors from '@sn/admin/core/store/selectors/roles.selectors'
 @Component({
   selector: 'sn-admin-account-create',
   templateUrl: './account-create.component.html',
-  styleUrls: ['./account-create.component.scss']
+  styleUrls: ['./account-create.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountCreateComponent implements OnInit {
   private _subscriptionSubject: Subject<void> = new Subject<void>();

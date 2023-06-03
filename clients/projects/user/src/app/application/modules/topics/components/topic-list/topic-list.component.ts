@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 import { Topic } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-topic-list',
   templateUrl: './topic-list.component.html',
-  styleUrls: ['./topic-list.component.scss']
+  styleUrls: ['./topic-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopicListComponent implements OnInit {
 

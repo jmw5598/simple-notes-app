@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { DEFAULT_SEARCH_FLASHCARDS_PAGE } from '@sn/user/core/defaults';
 
@@ -27,6 +27,7 @@ import {
   selector: 'sn-user-view-flashcards',
   templateUrl: './view-flashcards.component.html',
   styleUrls: ['./view-flashcards.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [OverlayContentService],
   animations: [fadeAnimation]
 })

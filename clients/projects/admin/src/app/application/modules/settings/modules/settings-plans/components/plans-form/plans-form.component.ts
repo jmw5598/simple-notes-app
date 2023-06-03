@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ControlContainer, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'sn-admin-plans-form',
   templateUrl: './plans-form.component.html',
-  styleUrls: ['./plans-form.component.scss']
+  styleUrls: ['./plans-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlansFormComponent implements OnInit {
   public form: UntypedFormGroup;

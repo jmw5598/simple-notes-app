@@ -1,15 +1,17 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ResponseMessage } from '@sn/shared/models';
 
 import { Todo, TodoList } from '@sn/shared/models';
 import { showHide } from '@sn/shared/animations';
 import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
+import { toDateTimePickerFormat } from '../../utils';
 
 @Component({
   selector: 'sn-user-todo-list-update',
   templateUrl: './todo-list-update.component.html',
   styleUrls: ['./todo-list-update.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class TodoListUpdateComponent implements OnInit, AfterViewInit {
@@ -22,6 +24,7 @@ export class TodoListUpdateComponent implements OnInit, AfterViewInit {
   public form: UntypedFormGroup;
 
   constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
     private _controlContainer: ControlContainer,
   ) { }
 
@@ -33,18 +36,17 @@ export class TodoListUpdateComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       if (this.form && this.todoList) {
         const todosFormArray: UntypedFormArray = this.form.get('todos') as UntypedFormArray;
-        const startDateTime: Date = new Date(this.todoList.startedBy);
-        const endDateTime: Date = new Date(this.todoList.completedBy);
         const formValue: {[key: string]: any} = {
           ...this.todoList,
-          startedBy: startDateTime, 
-          completedBy: endDateTime,
+          startedBy: toDateTimePickerFormat(new Date(this.todoList.startedBy)), 
+          completedBy: toDateTimePickerFormat(new Date(this.todoList.completedBy)),
         }
         this.form.patchValue(formValue);
         todosFormArray.clear();
         this.todoList.todos.forEach((todo: Todo) => {
           todosFormArray.push(this._generateTodo(todo));
-        })
+        });
+        this._changeDetectorRef.markForCheck();
       }
     })
   }

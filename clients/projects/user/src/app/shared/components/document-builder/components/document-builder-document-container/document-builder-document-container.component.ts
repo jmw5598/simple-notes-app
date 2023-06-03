@@ -1,5 +1,5 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Document, DocumentTopic } from '@sn/shared/models';
 import { IAppState } from '@sn/user/store/reducers';
@@ -12,7 +12,8 @@ import { DocumentBuilderService } from '../../services/document-builder.service'
 @Component({
   selector: 'sn-user-document-builder-document-container',
   templateUrl: './document-builder-document-container.component.html',
-  styleUrls: ['./document-builder-document-container.component.scss']
+  styleUrls: ['./document-builder-document-container.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocumentBuilderDocumentContainerComponent implements OnInit {
   public document$: Observable<Document>;

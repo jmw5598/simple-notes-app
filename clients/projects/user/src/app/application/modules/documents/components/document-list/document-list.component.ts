@@ -1,12 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Document } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-document-list',
   templateUrl: './document-list.component.html',
-  styleUrls: ['./document-list.component.scss']
+  styleUrls: ['./document-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DocumentListComponent implements OnInit {
+export class DocumentListComponent {
   @Input()
   public documents: Document[];
 
@@ -21,11 +22,6 @@ export class DocumentListComponent implements OnInit {
 
   @Output()
   public onCreate: EventEmitter<void> = new EventEmitter<void>();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   public create(): void {
     this.onCreate.emit();

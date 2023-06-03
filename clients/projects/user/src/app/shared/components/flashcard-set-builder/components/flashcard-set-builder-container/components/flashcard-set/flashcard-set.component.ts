@@ -1,5 +1,5 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
@@ -11,7 +11,8 @@ import { IFlashcardsState } from '@sn/user/application/modules/flashcards/store/
 @Component({
   selector: 'sn-user-flashcard-set',
   templateUrl: './flashcard-set.component.html',
-  styleUrls: ['./flashcard-set.component.scss']
+  styleUrls: ['./flashcard-set.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FlashcardSetComponent implements OnInit {
   public flashcardSetBuilder$: Observable<FlashcardSet>;

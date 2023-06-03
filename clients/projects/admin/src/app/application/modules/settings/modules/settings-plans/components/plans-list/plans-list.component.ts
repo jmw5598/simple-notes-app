@@ -1,12 +1,13 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Plan } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-admin-plans-list',
   templateUrl: './plans-list.component.html',
-  styleUrls: ['./plans-list.component.scss']
+  styleUrls: ['./plans-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlansListComponent implements OnInit {
+export class PlansListComponent {
   @Input()
   public plans: Plan[];
 
@@ -18,11 +19,6 @@ export class PlansListComponent implements OnInit {
 
   @Output()
   public onUndelete: EventEmitter<number> = new EventEmitter<number>();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   public edit(plan: Plan): void {
     this.onEdit.emit(plan);

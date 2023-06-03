@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Flashcard, FlashcardSet } from '@sn/shared/models';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -7,7 +7,8 @@ import { FlashcardSetViewerControlsService } from './services/flashcard-set-view
 @Component({
   selector: 'sn-user-flashcard-set-viewer',
   templateUrl: './flashcard-set-viewer.component.html',
-  styleUrls: ['./flashcard-set-viewer.component.scss']
+  styleUrls: ['./flashcard-set-viewer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FlashcardSetViewerComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<void> = new Subject<void>();

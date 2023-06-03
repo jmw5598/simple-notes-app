@@ -1,5 +1,5 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { DropAction } from '@sn/user/shared/components/document-builder/models/drop-action.enum';
 import { DocumentBuilderService } from '@sn/user/shared/components/document-builder/services/document-builder.service';
 import { Observable, of } from 'rxjs';
@@ -9,7 +9,8 @@ import { DocumentTopic, DocumentTopicSection } from '@sn/shared/models';
 @Component({
   selector: 'sn-user-document-builder-document-topic',
   templateUrl: './document-builder-document-topic.component.html',
-  styleUrls: ['./document-builder-document-topic.component.scss']
+  styleUrls: ['./document-builder-document-topic.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocumentBuilderDocumentTopicComponent implements OnInit {
   public readonly TOPIC_DRAGGABLE_ROOT_ELEMENT: string = '.document-builder-topic-container';

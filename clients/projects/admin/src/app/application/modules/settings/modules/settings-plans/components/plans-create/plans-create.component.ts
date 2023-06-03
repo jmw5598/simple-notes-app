@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -17,6 +17,7 @@ import { tap } from 'rxjs/operators';
   selector: 'sn-admin-plans-create',
   templateUrl: './plans-create.component.html',
   styleUrls: ['./plans-create.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class PlansCreateComponent implements OnInit {

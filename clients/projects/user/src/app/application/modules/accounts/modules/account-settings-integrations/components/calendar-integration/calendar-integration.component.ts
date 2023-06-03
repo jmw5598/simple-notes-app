@@ -1,16 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { 
   CalendarIntegration, 
-  CalendarIntegrationState, 
   IntegrationStatus, 
   CalendarIntegrationType } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-calendar-integration',
   templateUrl: './calendar-integration.component.html',
-  styleUrls: ['./calendar-integration.component.scss']
+  styleUrls: ['./calendar-integration.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CalendarIntegrationComponent implements OnInit {
+export class CalendarIntegrationComponent {
   @Input()
   public integration: CalendarIntegrationType;
 
@@ -29,9 +29,6 @@ export class CalendarIntegrationComponent implements OnInit {
     this.onActivateIntegration = new EventEmitter<CalendarIntegration>();
     this.onInactivateIntegration = new EventEmitter<CalendarIntegration>();
     this.onRefreshIntegration = new EventEmitter<CalendarIntegration>();
-  }
-
-  ngOnInit(): void {
   }
 
   public activateIntegration(): void {

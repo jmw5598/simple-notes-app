@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Todo } from '@sn/shared/models';
 import { Subject } from 'rxjs';
@@ -7,7 +7,8 @@ import { debounceTime, skip, takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'sn-user-todos-form',
   templateUrl: './todos-form.component.html',
-  styleUrls: ['./todos-form.component.scss']
+  styleUrls: ['./todos-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodosFormComponent implements OnInit, OnDestroy, AfterViewInit {
   private readonly FORM_DEBOUNCE_TIME: number = 500;
@@ -36,6 +37,7 @@ export class TodosFormComponent implements OnInit, OnDestroy, AfterViewInit {
   public onUpdate: EventEmitter<Todo[]> = new EventEmitter<Todo[]>();
 
   constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
     private _formBuilder: UntypedFormBuilder
   ) { }
 
@@ -81,6 +83,7 @@ export class TodosFormComponent implements OnInit, OnDestroy, AfterViewInit {
         { onlySelf: false, emitEvent: false }
       )
       todos.forEach(todo => todosFormArray.push(this._createTodoFormGroup(todo)));
+      this._changeDetectorRef.markForCheck();
     }
   }
 

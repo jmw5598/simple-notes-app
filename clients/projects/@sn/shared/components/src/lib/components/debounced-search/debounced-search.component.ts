@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { tap, takeUntil, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { fadeAnimation } from '@sn/shared/animations';
@@ -7,6 +7,7 @@ import { fadeAnimation } from '@sn/shared/animations';
   selector: 'sn-debounced-search',
   templateUrl: './debounced-search.component.html',
   styleUrls: ['./debounced-search.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class DebouncedSearchComponent implements OnInit, OnDestroy {
@@ -14,7 +15,7 @@ export class DebouncedSearchComponent implements OnInit, OnDestroy {
   private _searchTextChangeSubject: Subject<string>
 
   @Input()
-  public debounceTime: number = 700;
+  public debounceTime: number = 250;
 
   @Input()
   public isSearching: boolean;

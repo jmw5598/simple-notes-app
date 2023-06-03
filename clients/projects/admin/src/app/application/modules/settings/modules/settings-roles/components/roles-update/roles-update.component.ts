@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { IRolesState } from '@sn/admin/core/store/reducers';
@@ -16,6 +16,7 @@ import { DrawerService } from '@sn/shared/components';
   selector: 'sn-admin-roles-update',
   templateUrl: './roles-update.component.html',
   styleUrls: ['./roles-update.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class RolesUpdateComponent implements OnInit, OnDestroy {

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ITodosState } from '@sn/user/application/modules/todos/store/reducers';
@@ -14,11 +14,13 @@ import { TodoList } from '@sn/shared/models';
 import { showHide } from '@sn/shared/animations';
 
 import { DrawerService } from '@sn/shared/components';
+import { toDateTimePickerFormat } from '../../utils';
 
 @Component({
   selector: 'sn-user-todo-list-create',
   templateUrl: './todo-list-create.component.html',
   styleUrls: ['./todo-list-create.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class TodoListCreateComponent implements OnInit, AfterViewInit {
@@ -30,6 +32,7 @@ export class TodoListCreateComponent implements OnInit, AfterViewInit {
   public responseMessage$: Observable<ResponseMessage>;
 
   constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
     private _store: Store<ITodosState>,
     private _formBuilder: UntypedFormBuilder,
     private _drawerService: DrawerService,
@@ -42,7 +45,10 @@ export class TodoListCreateComponent implements OnInit, AfterViewInit {
         tap((message: ResponseMessage) => {
           if (message) {
             this.todoListForm.reset();
-            setTimeout(() => this._store.dispatch(todoActions.setCreateTodoListResponseMessage({ message: null })), 3000);
+            setTimeout(() => 
+              this._store.dispatch(todoActions.setCreateTodoListResponseMessage({ message: null })), 
+              3000
+            );
           }
         })
       );
@@ -55,8 +61,9 @@ export class TodoListCreateComponent implements OnInit, AfterViewInit {
         .subscribe(data => {
           if (data && data.date) {
             const selectedDate: Date = new Date(data.date);
-            this.form.get('startedBy').patchValue(selectedDate);
-            this.form.get('completedBy').patchValue(selectedDate);
+            this.form.get('startedBy').patchValue(toDateTimePickerFormat(selectedDate));
+            this.form.get('completedBy').patchValue(toDateTimePickerFormat(selectedDate));
+            this._changeDetectorRef.checkNoChanges();
           }
         })
     })

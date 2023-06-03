@@ -17,7 +17,7 @@ import { CalendarEventCreateMenuComponent } from './components/calendar-event-cr
 import { SharedComponentsModule, DrawerService } from '@sn/shared/components';
 
 import { NgIconsModule } from '@ng-icons/core';
-import { heroXMark, heroMapPin } from '@ng-icons/heroicons/outline';
+import { heroXMark, heroMapPin, heroArrowLeft } from '@ng-icons/heroicons/outline';
 
 
 @NgModule({
@@ -43,6 +43,7 @@ import { heroXMark, heroMapPin } from '@ng-icons/heroicons/outline';
         NgIconsModule.withIcons({
             heroXMark,
             heroMapPin,
+            heroArrowLeft,
         })
     ],
     providers: [

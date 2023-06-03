@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ICalendarEventsState } from '@sn/user/application/modules/calendar/store/reducers';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
@@ -13,11 +13,13 @@ import { CalendarEventFormComponent } from '../../forms/calendar-event-form/cale
 import { HEX_COLOR_STRING_ARRAY } from '../../defaults/colors.defaults';
 
 import { DrawerService } from '@sn/shared/components';
+import { toDateTimePickerFormat } from '../../utils';
 
 @Component({
   selector: 'sn-user-calendar-event-create',
   templateUrl: './calendar-event-create.component.html',
   styleUrls: ['./calendar-event-create.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class CalendarEventCreateComponent implements OnInit, AfterViewInit {
@@ -29,6 +31,7 @@ export class CalendarEventCreateComponent implements OnInit, AfterViewInit {
   public responseMessage$: Observable<ResponseMessage>;
 
   constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
     private _store: Store<ICalendarEventsState>,
     private _formBuilder: UntypedFormBuilder,
     private _drawerService: DrawerService,
@@ -54,8 +57,9 @@ export class CalendarEventCreateComponent implements OnInit, AfterViewInit {
         .subscribe(data => {
           if (data && data.date) {
             const selectedDate: Date = new Date(data.date);
-            this.form.get('startDate').patchValue(selectedDate);
-            this.form.get('endDate').patchValue(selectedDate);
+            this.form.get('startDate').patchValue(toDateTimePickerFormat(selectedDate));
+            this.form.get('endDate').patchValue(toDateTimePickerFormat(selectedDate));
+            this._changeDetectorRef.markForCheck();
           }
         })
     })
@@ -66,17 +70,12 @@ export class CalendarEventCreateComponent implements OnInit, AfterViewInit {
   }
   
   public onSubmit(value: any): void {
-    const startDateTime: Date = this._generateDateTimeValue(
-      new Date(value.startDate), new Date(value.startTime));
-    const endDateTime: Date = this._generateDateTimeValue(
-      new Date(value.endDate), new Date(value.endTime));
-
     const event: CalendarEvent = {
       title: value.title || '',
       location: value.location || '',
       description: value.description || '',
-      startDateTime: startDateTime || new Date(),
-      endDateTime: endDateTime || new Date(),
+      startDateTime: new Date(value.startDate),
+      endDateTime: new Date(value.endDate),
       isAllDay: value.isAllDay || false,
       color: value.color || HEX_COLOR_STRING_ARRAY[0]
     } as CalendarEvent;

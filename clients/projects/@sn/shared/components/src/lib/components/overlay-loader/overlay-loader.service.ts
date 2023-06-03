@@ -14,7 +14,7 @@ export class OverlayLoaderService {
     return this._isLoadingSource.asObservable();
   }
 
-  public setLoadingState(isLoading: boolean, delay: number = 300): void {
+  public setLoadingState(isLoading: boolean, delay: number = 250): void {
     this._isLoading = isLoading;
     if (isLoading) {
       this._isLoadingSource.next(this._isLoading);

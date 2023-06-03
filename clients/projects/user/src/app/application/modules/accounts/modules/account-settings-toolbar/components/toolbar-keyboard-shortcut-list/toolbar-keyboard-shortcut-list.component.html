@@ -1,35 +1,34 @@
-<div class="keyboard-shortcut-list">
-  <ng-container *ngFor="let shortcut of shortcuts">
-    <div class="keyboard-shortcut">
-      <div class="keyboard-shortcut-details">
-        <span class="d-inline-block mr-2">{{shortcut.action}}</span>
-        <ng-container *ngIf="shortcut.shortcutId; else defaultShortcutTemplate">
-          <span class="d-inline-block badge badge-primary">{{ shortcut.shortcut }}</span>
-        </ng-container>
-        <ng-template #defaultShortcutTemplate>
-           <span class="d-inline-block badge badge-secondary">{{ shortcut.defaultShortcut }}</span>
-        </ng-template>
-      </div>
-      <div class="keyboard-shortcut-buttons">
-        <ng-container *ngIf="shortcut.shortcutId">
-          <button 
-              mwlConfirmationPopover
-              placement="left"
-              (confirm)="deleteShortcut(shortcut.shortcutId)"
-              class="btn btn-outline-primary btn-sm btn-border-none"
-              role="button" 
-              type="button">
-            <i class="far fa-trash-alt"></i>
-          </button>
-        </ng-container>
+<ng-container *ngFor="let shortcut of shortcuts">
+  <div class="flex flex-row justify-between items-center">
+    <div class="keyboard-shortcut-details">
+      <span class="text-sm mr-2">{{shortcut.action}}</span>
+      <ng-container *ngIf="shortcut.shortcutId; else defaultShortcutTemplate">
+        <span class="text-info-700 bg-info-100 border border-info-200 text-xs rounded-full px-2">{{ shortcut.shortcut }}</span>
+      </ng-container>
+      <ng-template #defaultShortcutTemplate>
+          <span class="text-gray-700 bg-gray-100 border text-xs rounded-full px-2">{{ shortcut.defaultShortcut }}</span>
+      </ng-template>
+    </div>
+    <div class="flex flex-row gap-1">
+      <ng-container *ngIf="shortcut.shortcutId">
         <button 
-            class="btn btn-outline-primary btn-sm btn-border-none"
+            mwlConfirmationPopover
+            placement="left"
+            (confirm)="deleteShortcut(shortcut.shortcutId)"
+            class="text-danger-400 hover:text-danger-500"
             role="button" 
-            type="button" 
-            (click)="configureShortcut(shortcut)">
-          <i class="fas fa-cog"></i>
+            type="button">
+          <ng-icon name="heroTrashSolid" size="1rem"></ng-icon>
         </button>
-      </div>
-    </div>   
-  </ng-container>
-</div>
+      </ng-container>
+      <button 
+          class="text-gray-500 hover:text-gray-700"
+          role="button" 
+          type="button" 
+          (click)="configureShortcut(shortcut)">
+        <ng-icon name="heroCog8ToothSolid" size="1rem"></ng-icon>
+      </button>
+    </div>
+  </div>   
+</ng-container>
+

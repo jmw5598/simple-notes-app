@@ -1,19 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { TodoList } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-todo-list-progress',
   templateUrl: './todo-list-progress.component.html',
-  styleUrls: ['./todo-list-progress.component.scss']
+  styleUrls: ['./todo-list-progress.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoListProgressComponent implements OnInit {
+export class TodoListProgressComponent {
   @Input()
   public todoList: TodoList;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   public get completedPercent(): number {
     return Math.round(this.todoList?.todos?.filter(t => t.isComplete).length / this.todoList?.todos?.length * 100) || 0;

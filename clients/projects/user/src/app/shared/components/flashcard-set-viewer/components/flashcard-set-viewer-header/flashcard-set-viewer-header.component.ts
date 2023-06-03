@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Flashcard, FlashcardSet } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-flashcard-set-viewer-header',
   templateUrl: './flashcard-set-viewer-header.component.html',
-  styleUrls: ['./flashcard-set-viewer-header.component.scss']
+  styleUrls: ['./flashcard-set-viewer-header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FlashcardSetViewerHeaderComponent implements OnInit {
   @Input()

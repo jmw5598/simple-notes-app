@@ -1,15 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'sn-user-flashcard-set-builder-container',
   templateUrl: './flashcard-set-builder-container.component.html',
-  styleUrls: ['./flashcard-set-builder-container.component.scss']
+  styleUrls: ['./flashcard-set-builder-container.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FlashcardSetBuilderContainerComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class FlashcardSetBuilderContainerComponent { }

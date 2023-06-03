@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IToolbarState } from '@sn/user/application/store/reducers/toolbar.reducers';
@@ -14,6 +14,7 @@ import { DrawerService, DrawerLocation } from '@sn/shared/components';
   selector: 'sn-user-account-settings-toolbar',
   templateUrl: './account-settings-toolbar.component.html',
   styleUrls: ['./account-settings-toolbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DrawerService],
   animations: [fadeAnimation]
 })

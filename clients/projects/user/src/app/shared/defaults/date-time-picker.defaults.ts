@@ -35,5 +35,5 @@ export const DEFAULT_DATE_TIME_PICKER_CONFIG: IDatePickerConfig = {
   unSelectOnClick: true,
   hideOnOutsideClick: true,
   numOfMonthRows: 3,
-  format: 'MM-DD-YYYY HH:mm:ss'
+  format: 'MM/DD/YYYY HH:mm:ss'
 }

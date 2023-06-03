@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'sn-user-logging-in',
   templateUrl: './logging-in.component.html',
-  styleUrls: ['./logging-in.component.scss']
+  styleUrls: ['./logging-in.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoggingInComponent implements OnInit {
   constructor(
@@ -14,6 +15,6 @@ export class LoggingInComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this._router.navigate(['/dashboard', 'overview']);
-    }, 500);
+    }, 200);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -16,7 +16,8 @@ import { DrawerService } from '@sn/shared/components';
 @Component({
   selector: 'sn-user-calendar-event-view',
   templateUrl: './calendar-event-view.component.html',
-  styleUrls: ['./calendar-event-view.component.scss']
+  styleUrls: ['./calendar-event-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarEventViewComponent implements OnInit {
   public form: UntypedFormGroup;

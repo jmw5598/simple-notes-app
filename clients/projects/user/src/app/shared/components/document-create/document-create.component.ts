@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
@@ -12,15 +12,21 @@ import * as documentSelectors from '@sn/user/application/modules/documents/store
 import * as documentActions from '@sn/user/application/modules/documents/store/actions';
 
 import { DrawerService } from '@sn/shared/components';
+import { DocumentBuilderFormComponent } from '../document-builder/components/document-builder-form/document-builder-form.component';
 
 @Component({
   selector: 'sn-user-document-create',
   templateUrl: './document-create.component.html',
   styleUrls: ['./document-create.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class DocumentCreateComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<any> = new Subject<any>();
+
+  @ViewChild(DocumentBuilderFormComponent, { static: true })
+  public documentBuilderFormComponent!: DocumentBuilderFormComponent;
+
   public form: UntypedFormGroup;
   public responseMessage$: Observable<ResponseMessage>;
 
@@ -43,7 +49,7 @@ export class DocumentCreateComponent implements OnInit, OnDestroy {
       .pipe(
         tap((message: ResponseMessage) => {
           if (message) {
-            this.form.reset();
+            this.documentBuilderFormComponent.resetDocumentBuilder();
             setTimeout(() => this._store.dispatch(documentActions.setCreateDocumentResponseMessage({ message: null })), 3000);
           }
         })

@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Section } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-section-list',
   templateUrl: './section-list.component.html',
-  styleUrls: ['./section-list.component.scss']
+  styleUrls: ['./section-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionListComponent implements OnInit {
   @Input()

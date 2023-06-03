@@ -8,6 +8,8 @@ import { ToolbarKeyboardShortcutListComponent } from './components/toolbar-keybo
 import { ConfigureKeyboardShortcutComponent } from './components/configure-keyboard-shortcut/configure-keyboard-shortcut.component';
 
 import { SharedComponentsModule } from '@sn/shared/components';
+import { NgIconsModule } from '@ng-icons/core';
+import { heroCog8ToothSolid, heroTrashSolid } from '@ng-icons/heroicons/solid';
 
 @NgModule({
     declarations: [
@@ -25,6 +27,10 @@ import { SharedComponentsModule } from '@sn/shared/components';
             cancelButtonType: 'btn-default btn-sm bg-secondary',
             confirmButtonType: 'btn-primary btn-sm bg-primary text-light'
         }),
+        NgIconsModule.withIcons({
+            heroTrashSolid,
+            heroCog8ToothSolid,
+        })
     ]
 })
 export class AccountSettingsToolbarModule { }

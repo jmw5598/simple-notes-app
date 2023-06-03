@@ -1,14 +1,19 @@
-import { Component, OnInit, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Renderer2, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { UntypedFormArray, UntypedFormGroup, ControlContainer } from '@angular/forms';
+import { TagInputComponent } from '@sn/shared/components';
 
 import { Permission } from '@sn/shared/models';
 
 @Component({
   selector: 'sn-user-topic-form',
   templateUrl: './topic-form.component.html',
-  styleUrls: ['./topic-form.component.scss']
+  styleUrls: ['./topic-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopicFormComponent implements OnInit, AfterViewInit {
+  @ViewChild(TagInputComponent, { static: true })
+  public tagInputComponent!: TagInputComponent;
+
   public form: UntypedFormGroup;
   public Permission = Permission;
 
@@ -37,6 +42,10 @@ export class TopicFormComponent implements OnInit, AfterViewInit {
     let control = categories.controls.find(e => e.value.description === category);
     let index = categories.controls.indexOf(control);
     categories.removeAt(index);
+  }
+
+  public reset(): void {
+    this.tagInputComponent?.reset();
   }
 
   private _setFocusToTitleInput(): void {

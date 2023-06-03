@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
@@ -17,6 +17,7 @@ import { DrawerService } from '@sn/shared/components';
   selector: 'sn-user-document-update',
   templateUrl: './document-update.component.html',
   styleUrls: ['./document-update.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class DocumentUpdateComponent implements OnInit, OnDestroy {

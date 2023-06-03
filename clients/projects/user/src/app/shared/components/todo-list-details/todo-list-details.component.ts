@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ResponseMessage } from '@sn/shared/models';
 import { showHide } from '@sn/shared/animations';
@@ -9,6 +9,7 @@ import { idGenerator } from '@sn/user/shared/utils/id-generator.util';
   selector: 'sn-user-todo-list-details',
   templateUrl: './todo-list-details.component.html',
   styleUrls: ['./todo-list-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class TodoListDetailsComponent implements OnInit, AfterViewInit {
@@ -21,6 +22,7 @@ export class TodoListDetailsComponent implements OnInit, AfterViewInit {
   public form: UntypedFormGroup;
 
   constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
     private _controlContainer: ControlContainer
   ) { }
 
@@ -43,7 +45,8 @@ export class TodoListDetailsComponent implements OnInit, AfterViewInit {
         todosFormArray.clear();
         this.todoList.todos.forEach((todo: Todo) => {
           todosFormArray.push(this._generateTodo(todo));
-        })
+        });
+        this._changeDetectorRef.markForCheck();
       }
     })
   }

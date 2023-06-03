@@ -1,6 +1,6 @@
-import { Component, ComponentFactory, Input, OnInit, OnDestroy, Type, ViewChild, ViewContainerRef, ComponentFactoryResolver, HostListener } from '@angular/core';
+import { Component, ComponentFactory, Input, OnInit, OnDestroy, Type, ViewChild, ViewContainerRef, ComponentFactoryResolver, HostListener, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 import { fadeAnimation } from '@sn/shared/animations';
 import { DrawerOverlayStyle } from './drawer-overlay-style.enum';
 import { DrawerLocation } from './drawer-location.enum';
@@ -16,6 +16,7 @@ import { DrawerSize } from './drawer-size.enum';
   selector: 'sn-drawer',
   templateUrl: './drawer.component.html',
   styleUrls: ['./drawer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class DrawerComponent implements OnInit, OnDestroy {
@@ -42,8 +43,9 @@ export class DrawerComponent implements OnInit, OnDestroy {
   private _drawerServiceSubject$: Subject<void>;
 
   constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
     private _componentFactoryResolver: ComponentFactoryResolver,
-    private _drawerService: DrawerService
+    private _drawerService: DrawerService,
   ) {
     this._drawerServiceSubject$ = new Subject<void>();
     // this.drawerLocation = DrawerLocation.RIGHT;
@@ -52,12 +54,18 @@ export class DrawerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._drawerService.onDrawerOptionsChange()
-      .pipe(takeUntil(this._drawerServiceSubject$))
-      .subscribe((options: DrawerOptions) => this.options = options);
+      .pipe(
+        takeUntil(this._drawerServiceSubject$),
+        tap((options: DrawerOptions) => this.options = options)
+      )
+      .subscribe((options: DrawerOptions) => this._changeDetectorRef.markForCheck());
 
     this._drawerService.onDrawerVibilityChange()
-      .pipe(takeUntil(this._drawerServiceSubject$))
-      .subscribe((visible: boolean) => this.isDrawerVisible = visible);
+      .pipe(
+        takeUntil(this._drawerServiceSubject$),
+        tap((visible: boolean) => this.isDrawerVisible = visible)  
+      )
+      .subscribe((visible: boolean) => this._changeDetectorRef.markForCheck());
 
     this._drawerService.onContentChange()
       .pipe(takeUntil(this._drawerServiceSubject$))
@@ -67,6 +75,7 @@ export class DrawerComponent implements OnInit, OnDestroy {
         } else {
           this._removeDrawerContent();
         }
+        this._changeDetectorRef.markForCheck();
       });
   }
 

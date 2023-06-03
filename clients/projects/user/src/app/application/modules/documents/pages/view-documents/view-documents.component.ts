@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, Subject, combineLatest } from 'rxjs';
 import { Store } from '@ngrx/store';
 
@@ -20,6 +20,7 @@ import { IPageable, Page, PageableSearch, Document } from '@sn/shared/models';
   selector: 'sn-user-view-documents',
   templateUrl: './view-documents.component.html',
   styleUrls: ['./view-documents.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DrawerService],
   animations: [fadeAnimation]
 })

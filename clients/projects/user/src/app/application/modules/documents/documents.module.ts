@@ -21,6 +21,12 @@ import {
     heroClock,
     heroDocument, } from '@ng-icons/heroicons/outline';
 
+import {
+    bootstrapMarkdown,
+    bootstrapFilePdf,
+    bootstrapArrowCounterclockwise,
+} from '@ng-icons/bootstrap-icons';
+
 @NgModule({
     declarations: [
         ViewDocumentsComponent,
@@ -42,6 +48,9 @@ import {
             heroPencil,
             heroClock,
             heroDocument,
+            bootstrapFilePdf,
+            bootstrapMarkdown,
+            bootstrapArrowCounterclockwise,
         }),
     ]
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { FormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, Observable } from 'rxjs';
@@ -18,6 +18,7 @@ import { DrawerService } from '@sn/shared/components';
   selector: 'sn-user-topic-update',
   templateUrl: './topic-update.component.html',
   styleUrls: ['./topic-update.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class TopicUpdateComponent implements OnInit, OnDestroy {

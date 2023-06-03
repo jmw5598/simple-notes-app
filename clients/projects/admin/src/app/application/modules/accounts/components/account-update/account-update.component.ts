@@ -20,7 +20,7 @@ import * as rolesSelectors from '@sn/admin/core/store/selectors/roles.selectors'
   selector: 'sn-admin-account-update',
   templateUrl: './account-update.component.html',
   styleUrls: ['./account-update.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountUpdateComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<void> = new Subject<void>();

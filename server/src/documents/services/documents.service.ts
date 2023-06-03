@@ -178,8 +178,8 @@ export class DocumentsService {
   private async _findDocumentById(accountId: number, documentId: number): Promise<Document> {
     return this._documentsRepository.createQueryBuilder('doc')
       .innerJoin('doc.account', 'account')
-      .innerJoinAndSelect('doc.documentTopics', 'dt')
-      .innerJoinAndSelect('dt.topic', 'topic')
+      .leftJoinAndSelect('doc.documentTopics', 'dt')
+      .leftJoinAndSelect('dt.topic', 'topic')
       .leftJoinAndSelect('dt.documentTopicSections', 'dts')
       .leftJoinAndSelect('dts.section', 's')
       .where('account.id = :accountId', { accountId: accountId })

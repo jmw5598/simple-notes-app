@@ -1,15 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'sn-user-auth-marketing',
   templateUrl: './auth-marketing.component.html',
-  styleUrls: ['./auth-marketing.component.scss']
+  styleUrls: ['./auth-marketing.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AuthMarketingComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class AuthMarketingComponent { }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { NavigationRouteLink } from '@sn/core/framing';
 
 import { fadeAnimation } from '@sn/shared/animations';
@@ -10,6 +10,7 @@ import { SETTINGS_NAVIGATION_ROUTES } from '../../settings-navigation-routes.con
   selector: 'sn-admin-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class SettingsComponent extends AbstractPageOverlayLoader implements OnInit {

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, ControlContainer } from '@angular/forms';
 
 @Component({
   selector: 'sn-user-registration-user-form',
   templateUrl: './registration-user-form.component.html',
-  styleUrls: ['./registration-user-form.component.scss']
+  styleUrls: ['./registration-user-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegistrationUserFormComponent implements OnInit {
   public form: UntypedFormGroup;

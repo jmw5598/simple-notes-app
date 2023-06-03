@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -17,6 +17,7 @@ import { DynamicThemeService, AccountValidators } from '@sn/core/services';
   selector: 'sn-user-account-settings-general',
   templateUrl: './account-settings-general.component.html',
   styleUrls: ['./account-settings-general.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class AccountSettingsGeneralComponent implements OnInit {

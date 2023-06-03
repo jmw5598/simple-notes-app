@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { ResponseMessage } from '@sn/shared/models';
+import { ResponseMessage, ResponseStatus } from '@sn/shared/models';
 import { showHide } from '@sn/shared/animations';
 import { FlashcardSet } from '@sn/shared/models';
 import { Observable, Subject } from 'rxjs';
@@ -17,6 +17,7 @@ import { DrawerService } from '@sn/shared/components';
   selector: 'sn-user-flashcard-set-update',
   templateUrl: './flashcard-set-update.component.html',
   styleUrls: ['./flashcard-set-update.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class FlashcardSetUpdateComponent implements OnInit, OnDestroy {
@@ -72,14 +73,13 @@ export class FlashcardSetUpdateComponent implements OnInit, OnDestroy {
     this.responseMessage$ = this._store.select(flashcardSelectors.selectUpdateFlashcardSetResponseMessage)
       .pipe(
         tap((message: ResponseMessage) => {
-          console.log("got new response message");
-          if (message) {
+          if (message && message.status === ResponseStatus.SUCCESS) {
             this.form.reset();
-            setTimeout(() => 
+          }
+          setTimeout(() => 
               this._store.dispatch(
                 flashcardActions.setUpdateFlashcardSetResponseMessage({ message: null })
               ), 3000);
-          }
         })
       );
   }

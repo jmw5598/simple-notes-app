@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ICalendarIntegrationsState } from '../../store/reducers';
@@ -11,6 +11,7 @@ import { selectCalendarIntegrationsGroupedByType } from '../../store/selectors';
   selector: 'sn-user-account-settings-integrations',
   templateUrl: './account-settings-integrations.component.html',
   styleUrls: ['./account-settings-integrations.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class AccountSettingsIntegrationsComponent implements OnInit {

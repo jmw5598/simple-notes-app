@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Plan } from '@sn/shared/models';
 import { IAppState } from '@sn/user/store/reducers';
@@ -15,6 +15,7 @@ import { fadeAnimation } from '@sn/shared/animations';
   selector: 'sn-admin-settings-plans',
   templateUrl: './settings-plans.component.html',
   styleUrls: ['./settings-plans.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class SettingsPlansComponent implements OnInit {

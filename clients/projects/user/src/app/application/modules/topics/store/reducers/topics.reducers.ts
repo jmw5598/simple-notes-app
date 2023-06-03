@@ -98,6 +98,17 @@ export const topicReducer = createReducer(
       ...state,
       searchTopicsFromDrawerResult: page
     }
+  }),
+  on(fromActions.updateSectionSuccess, (state, { section }) => {
+    return {
+      ...state,
+      selectedTopic: !state?.selectedTopic ? null : {
+        ...state.selectedTopic,
+        sections: !state?.selectedTopic?.sections 
+          ? [] 
+          : state.selectedTopic.sections.map(s => s.id === section.id ? section : s)
+      } as Topic
+    }
   })
 );
 

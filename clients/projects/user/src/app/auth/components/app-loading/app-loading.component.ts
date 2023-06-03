@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { fadeAnimation } from '@sn/shared/animations';
 import { SpinnerStyle } from '@sn/shared/components';
 
@@ -6,6 +6,7 @@ import { SpinnerStyle } from '@sn/shared/components';
   selector: 'sn-user-app-loading',
   templateUrl: './app-loading.component.html',
   styleUrls: ['./app-loading.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
 export class AppLoadingComponent {

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { IFlashcardsState } from '@sn/user/application/modules/flashcards/store/reducers';
@@ -12,11 +12,13 @@ import { debounce, debounceTime, filter, takeUntil, tap, withLatestFrom } from '
 import { FlashcardSet } from '@sn/shared/models';
 
 import { DrawerService } from '@sn/shared/components';
+import { setFlashcardSetBuilder } from '@sn/user/application/modules/flashcards/store/actions';
 
 @Component({
   selector: 'sn-user-flashcard-set-create',
   templateUrl: './flashcard-set-create.component.html',
   styleUrls: ['./flashcard-set-create.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [showHide]
 })
 export class FlashcardSetCreateComponent implements OnInit, OnDestroy {
@@ -69,8 +71,10 @@ export class FlashcardSetCreateComponent implements OnInit, OnDestroy {
     this.responseMessage$ = this._store.select(flashcardSelectors.selectCreateFlashcardSetResponseMessage)
       .pipe(
         tap((message: ResponseMessage) => {
+          console.log("message")
           if (message) {
             this.form.reset();
+            this._store.dispatch(setFlashcardSetBuilder({ flashcardSetBuilder: null }));
             setTimeout(() => this._store.dispatch(flashcardActions.setCreateFlashcardSettResponseMessage({ message: null })), 3000);
           }
         })
