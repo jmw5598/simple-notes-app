@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 import * as rolesSelectors from '@sn/admin/core/store/selectors';
 import * as rolesActions from '@sn/admin/core/store/actions';
-import { DrawerService, DrawerSize } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 import { RolesUpdateComponent } from '../../components/roles-update/roles-update.component';
 import { RolesCreateComponent } from '../../components/roles-create/roles-create.component';
 import { fadeAnimation } from '@sn/shared/animations';
@@ -23,7 +23,7 @@ export class SettingsRolesComponent implements OnInit {
 
   constructor(
     private _store: Store<IAppState>,
-    private _drawerService: DrawerService
+    private _drawerService: SnDrawerService
   ) { }
 
   ngOnInit(): void {

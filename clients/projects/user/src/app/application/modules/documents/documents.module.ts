@@ -11,8 +11,6 @@ import { DocumentListComponent } from './components/document-list/document-list.
 import { DocumentUpdateComponent } from './components/document-update/document-update.component';
 import { DocumentViewComponent } from './components/document-view/document-view.component';
 
-import { SharedComponentsModule } from '@sn/shared/components';
-
 import { NgIconsModule } from '@ng-icons/core';
 import { 
     heroEye,
@@ -27,6 +25,14 @@ import {
     bootstrapArrowCounterclockwise,
 } from '@ng-icons/bootstrap-icons';
 
+import { SnButtonsModule } from '@sn/button';
+import { SnEmptyModule } from '@sn/empty';
+import { SnDrawerModule } from '@sn/drawer';
+import { SnToolbarModule } from '@sn/toolbar';
+import { SnPaginatorModule } from '@sn/paginator';
+import { SnDebounceSearchModule } from '@sn/debounce-search';
+import { SnLoadingSpinnerModule } from '@sn/loading-spinner';
+
 @NgModule({
     declarations: [
         ViewDocumentsComponent,
@@ -35,7 +41,6 @@ import {
         DocumentViewComponent,
     ],
     imports: [
-        SharedComponentsModule,
         CommonModule,
         DragDropModule,
         DocumentsRoutingModule,
@@ -52,6 +57,13 @@ import {
             bootstrapMarkdown,
             bootstrapArrowCounterclockwise,
         }),
+        SnButtonsModule,
+        SnEmptyModule,
+        SnDrawerModule,
+        SnToolbarModule,
+        SnPaginatorModule,
+        SnDebounceSearchModule,
+        SnLoadingSpinnerModule,
     ]
 })
 export class DocumentsModule { }

@@ -9,6 +9,7 @@ import { PlansFormComponent } from './components/plans-form/plans-form.component
 import { PlansCreateComponent } from './components/plans-create/plans-create.component';
 import { PlansUpdateComponent } from './components/plans-update/plans-update.component';
 import { PlansListComponent } from './components/plans-list/plans-list.component';
+import { SnAlertModule } from '@sn/alert';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PlansListComponent } from './components/plans-list/plans-list.component
     CommonModule,
     SettingsPlansRoutingModule,
     ReactiveFormsModule,
-    ConfirmationPopoverModule
+    ConfirmationPopoverModule,
+    SnAlertModule,
   ]
 })
 export class SettingsPlansModule { }

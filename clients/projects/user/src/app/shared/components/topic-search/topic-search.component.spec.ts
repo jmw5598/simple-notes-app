@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { TopicSearchComponent } from './topic-search.component';
-import { DrawerService } from '../drawer/drawer.service';
+import { SnDrawerService } from '@sn/drawer';
 import { PageableSearch } from '@sn/shared/models';
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/user/core/defaults';
 import { searchTopicsFromDrawer, searchTopicsFromDrawerResult } from '@sn/user/application/modules/topics/store/actions';
@@ -15,7 +15,7 @@ describe('TopicSearchComponent', () => {
   let component: TopicSearchComponent;
   let fixture: ComponentFixture<TopicSearchComponent>;
   let router: Router;
-  let drawerService: DrawerService;
+  let drawerService: SnDrawerService;
   const testStore = {
     select: () => of(),
     dispatch: (action?: any) => {}
@@ -44,7 +44,7 @@ describe('TopicSearchComponent', () => {
     fixture = TestBed.createComponent(TopicSearchComponent);
     component = fixture.componentInstance;
     router = TestBed.inject(Router);
-    drawerService = TestBed.inject(DrawerService);
+    drawerService = TestBed.inject(SnDrawerService);
     fixture.detectChanges();
   });
 

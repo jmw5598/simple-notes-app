@@ -6,7 +6,7 @@ import { Observable, Subject } from 'rxjs';
 import { IAccountsState } from '../../store/reducers';
 import { buildAccountFormGroup, buildAddressFormGroup, buildProfileFormGroup, buildUserFormGroup } from '@sn/admin/shared/forms';
 
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 import { AccountValidators } from '@sn/core/services';
 import { Account, Plan, ResponseMessage, Role } from '@sn/shared/models';
 import { take, takeUntil, withLatestFrom } from 'rxjs/operators';
@@ -34,7 +34,7 @@ export class AccountUpdateComponent implements OnInit, OnDestroy {
   constructor(
     private _store: Store<IAccountsState>,
     private _formBuilder: UntypedFormBuilder,
-    private _drawerService: DrawerService,
+    private _drawerService: SnDrawerService,
     private _accountValidators: AccountValidators,
     private _changeDetector: ChangeDetectorRef
   ) { }

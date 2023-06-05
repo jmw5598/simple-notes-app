@@ -7,12 +7,12 @@ import { EMPTY, of } from 'rxjs';
 import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { ToolbarComponent } from './toolbar.component';
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
   let fixture: ComponentFixture<ToolbarComponent>;
-  let drawerService: DrawerService;
+  let drawerService: SnDrawerService;
   const testStore = {
     select: () => of(),
     dispatch: () => {}
@@ -41,7 +41,7 @@ describe('ToolbarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ToolbarComponent);
     component = fixture.componentInstance;
-    drawerService = fixture.debugElement.injector.get(DrawerService) as any;
+    drawerService = fixture.debugElement.injector.get(SnDrawerService) as any;
     fixture.detectChanges();
   });
 

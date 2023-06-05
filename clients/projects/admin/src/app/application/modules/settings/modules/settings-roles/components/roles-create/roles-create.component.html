@@ -2,12 +2,17 @@
   <div class="col-sm-12 px-4">
     <h3 class="font-weight-bold text-primary text-right mb-3">Create Role</h3>
     <hr class="mb-3" />
-    <!-- Feedback Message -->
-    <div *ngIf="(responseMessage$ | async)" [@showHide] class="alert alert-success">
-      <span>
-        <strong>{{ (responseMessage$ | async).status | uppercase }}</strong>: {{ (responseMessage$ | async).message }}
-      </span>
-    </div>
+    
+    <!-- Response Message -->
+    <ng-container *ngIf="(responseMessage$ | async) as responseMessage">
+      <sn-alert
+          [@showHide]
+          snType="info"
+          snTitle="responseMessage.status"
+          snMessage="responseMessage.message">
+      </sn-alert>
+    </ng-container>
+
     <form [formGroup]="form" (ngSubmit)="submit(form.value)" novalidate>
       <sn-admin-roles-form></sn-admin-roles-form>
       <div class="form-group text-right">

@@ -23,7 +23,13 @@ import { heroDocument, heroEye, heroClock, heroDocumentArrowDown, heroPencil, he
 import * as fromTopics from './store/reducers';
 import * as fromTopicsEffects from './store/effects';
 
-import { SharedComponentsModule } from '@sn/shared/components';
+import { SnButtonsModule } from '@sn/button';
+import { SnAlertModule } from '@sn/alert';
+import { SnEmptyModule } from '@sn/empty';
+import { SnDrawerModule } from '@sn/drawer';
+import { SnPaginatorModule } from '@sn/paginator';
+import { SnDebounceSearchModule } from '@sn/debounce-search';
+import { SnMarkdownModule } from '@sn/markdown';
 
 
 @NgModule({
@@ -40,7 +46,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
         EditSectionNotesComponent
     ],
     imports: [
-        SharedComponentsModule,
         CommonModule,
         SharedModule,
         TopicsRoutingModule,
@@ -65,6 +70,15 @@ import { SharedComponentsModule } from '@sn/shared/components';
             heroPencil, 
             heroTrash, 
         }),
+
+        // Updated under here
+        SnButtonsModule,
+        SnAlertModule,
+        SnEmptyModule,
+        SnDrawerModule,
+        SnPaginatorModule,
+        SnDebounceSearchModule,
+        SnMarkdownModule,
     ]
 })
 export class TopicsModule { }

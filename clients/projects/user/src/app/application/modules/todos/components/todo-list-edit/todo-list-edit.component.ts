@@ -11,7 +11,7 @@ import * as todosActions from '../../store/actions';
 import * as todosSelectors from '../../store/selectors';
 import { tap } from 'rxjs/operators';
 
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 
 @Component({
   selector: 'sn-user-todo-list-edit',
@@ -27,7 +27,7 @@ export class TodoListEditComponent implements OnInit {
 
   constructor(
     private _formBuilder: UntypedFormBuilder,
-    private _drawerService: DrawerService,
+    private _drawerService: SnDrawerService,
     private _store: Store<ITodosState>
   ) { }
 

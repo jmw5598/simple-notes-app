@@ -8,8 +8,6 @@ import { CalendarEvent } from '@sn/shared/models';
 import { TodoList, Topic } from '@sn/shared/models';
 import { getPastDueTodoListsSuccess, getRecentTopicsSuccess, getTodaysCalendarEventsSuccess, getTodaysTodoListsSuccess } from '../../store/actions';
 
-import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
-
 @Component({
   selector: 'sn-user-dashboard-overview',
   templateUrl: './dashboard-overview.component.html',
@@ -17,18 +15,15 @@ import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/comp
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
-export class DashboardOverviewComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {
+export class DashboardOverviewComponent implements OnInit, OnDestroy {
   public todaysEvents$: Observable<CalendarEvent[]>;
   public recentTopics$: Observable<Topic[]>;
   public todaysTodoLists$: Observable<TodoList[]>;
   public pastDueTodoLists$: Observable<TodoList[]>;
 
   constructor(
-    protected _overlayLoaderService: OverlayLoaderService,
     private _store: Store<IDashboardState>
-  ) {
-    super(_overlayLoaderService);
-  }
+  ) { }
 
   ngOnInit(): void {
     this.todaysEvents$ = this._store.select(selectTodaysEvents);

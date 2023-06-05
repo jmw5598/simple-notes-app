@@ -5,13 +5,13 @@ import { tap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as fromActions from '../actions';
 
-import { ToasterService, ToastMessageOptions } from '@sn/shared/components';
+import { SnToasterService, SnToastMessageOptions } from '@sn/toaster';
 
 @Injectable()
 export class HttpErrorEffects {
   constructor(
     private _actions: Actions,
-    private _toasterService: ToasterService
+    private _toasterService: SnToasterService
   ) {}
 
   handleHttpError$ = createEffect(() => this._actions.pipe(
@@ -24,7 +24,7 @@ export class HttpErrorEffects {
 
   private _openNewNotificationError(message: string): void {
     const notificationMessage: string = `We encounted an error trying your request; ${message}`;
-    const toastMessageOptions: ToastMessageOptions = {
+    const toastMessageOptions: SnToastMessageOptions = {
       type: 'danger'
     }
     this._toasterService.push(notificationMessage, toastMessageOptions);

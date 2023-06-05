@@ -9,6 +9,7 @@ import { RolesFormComponent } from './components/roles-form/roles-form.component
 import { RolesCreateComponent } from './components/roles-create/roles-create.component';
 import { RolesUpdateComponent } from './components/roles-update/roles-update.component';
 import { RolesListComponent } from './components/roles-list/roles-list.component';
+import { SnAlertModule } from '@sn/alert';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RolesListComponent } from './components/roles-list/roles-list.component
     CommonModule,
     SettingsRolesRoutingModule,
     ReactiveFormsModule,
-    ConfirmationPopoverModule
+    ConfirmationPopoverModule,
+    SnAlertModule,
   ]
 })
 export class SettingsRolesModule { }

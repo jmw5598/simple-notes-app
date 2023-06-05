@@ -9,15 +9,12 @@ import { getAccountProfile } from '../store/actions';
 import { selectAccountProfile } from '../store/selectors';
 import { IAccountsState } from '../store/reducers';
 
-import { OverlayLoaderService } from '@sn/shared/components';
-
 @Injectable({
   providedIn: 'root'
 })
 export class AccountProfileGuard implements CanActivate {
   constructor(
-    private _store: Store<IAccountsState>,
-    private _overlayLoaderService: OverlayLoaderService
+    private _store: Store<IAccountsState>
   ) {}
 
   canActivate(
@@ -33,7 +30,6 @@ export class AccountProfileGuard implements CanActivate {
     return this._store.select(selectAccountProfile).pipe(
       tap((profile: Profile) => {
         if (!profile) {
-          this._overlayLoaderService.setLoadingState(true);
           this._store.dispatch(getAccountProfile());
         }
       }),

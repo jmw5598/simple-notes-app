@@ -9,14 +9,11 @@ import { getSectionById } from '../store/actions';
 import { selectSelectedSection } from '../store/selectors';
 import { ITopicsState } from '../store/reducers';
 
-import { OverlayLoaderService } from '@sn/shared/components';
-
 @Injectable({
   providedIn: 'root'
 })
 export class SectionByIdGuard implements CanActivate {
   constructor(
-    private _overlayLoaderService: OverlayLoaderService,
     private _store: Store<ITopicsState>
   ) {}
 
@@ -33,7 +30,6 @@ export class SectionByIdGuard implements CanActivate {
     return this._store.select(selectSelectedSection).pipe(
       tap((section: Section) => {
         if (!section || section.id !== sectionId) {
-          this._overlayLoaderService.setLoadingState(true);
           this._store.dispatch(getSectionById({ 
             topicId: topicId,
             sectionId: sectionId

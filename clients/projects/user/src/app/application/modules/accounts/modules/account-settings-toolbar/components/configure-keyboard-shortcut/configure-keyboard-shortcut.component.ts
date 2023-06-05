@@ -10,7 +10,7 @@ import { tap } from 'rxjs/operators';
 import { DEFAULT_MODIFIER_OPTIONS, KeyboardShortcutModifier } from '@sn/user/shared/defaults';
 import { showHide } from '@sn/shared/animations';
 
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 import { KeyboardShortcutAction, ResponseMessage, ResponseStatus } from '@sn/shared/models';
 
 @Component({
@@ -29,7 +29,7 @@ export class ConfigureKeyboardShortcutComponent implements OnInit, OnDestroy {
   public modifierOptions: KeyboardShortcutModifier[] = DEFAULT_MODIFIER_OPTIONS;
 
   constructor(
-    private _drawerService: DrawerService,
+    private _drawerService: SnDrawerService,
     private _store: Store<IToolbarState>,
     private _formBuilder: UntypedFormBuilder
   ) { }

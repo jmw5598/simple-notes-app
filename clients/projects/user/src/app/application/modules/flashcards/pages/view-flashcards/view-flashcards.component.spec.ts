@@ -1,21 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
-import { DrawerService } from '@sn/user/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 import { FlashcardSet } from '@sn/shared/models';
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { BehaviorSubject, of } from 'rxjs';
 
 import { ViewFlashcardsComponent } from './view-flashcards.component';
 import * as flashcardActions from '../../store/actions';
-import { OverlayContentService } from '@sn/user/shared/components/overlay-content/overlay-content.service';
+import { SnOverlayContentService } from '@sn/overlay-content';
 import { PageableSearch } from '@sn/shared/models';
 import { DEFAULT_SEARCH_FLASHCARDS_PAGE } from '@sn/user/core/defaults';
 
 describe('ViewFlashcardsComponent', () => {
   let component: ViewFlashcardsComponent;
   let fixture: ComponentFixture<ViewFlashcardsComponent>;
-  let drawerService: DrawerService
-  let overlayConentService: OverlayContentService;
+  let drawerService: SnDrawerService
+  let overlayConentService: SnOverlayContentService;
 
   const mockFlashcardSet: FlashcardSet = {
     id: 123,
@@ -42,7 +42,7 @@ describe('ViewFlashcardsComponent', () => {
           provide: Store,
           useValue: testStore
         },
-        DrawerService
+        SnDrawerService
       ]
     })
     .compileComponents();
@@ -51,8 +51,8 @@ describe('ViewFlashcardsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ViewFlashcardsComponent);
     component = fixture.componentInstance;
-    drawerService = TestBed.inject(DrawerService);
-    overlayConentService = fixture.debugElement.injector.get(OverlayContentService) as any;
+    drawerService = TestBed.inject(SnDrawerService);
+    overlayConentService = fixture.debugElement.injector.get(SnOverlayContentService) as any;
     fixture.detectChanges();
   });
 

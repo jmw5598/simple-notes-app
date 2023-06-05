@@ -21,18 +21,13 @@
           <sn-user-account-details-form
               (onEditingComplete)="onEditingComplete($event)">
           </sn-user-account-details-form>
-          <div class="flex flex-row justify-end items-center mt-4">
-            <button 
-                class="border border-primary-500 hover:bg-white bg-primary-500 text-white hover:text-primary-500 font-bold transition-colors rounded-full py-2 px-4 text-xs me-1" 
-                type="submit">
+          <div class="flex flex-row gap-1 justify-end items-center mt-4">
+            <sn-button (click)="onUpdateProfile(form.value)">
               Save
-            </button>
-            <button 
-                class="border border-primary-500 hover:bg-primary-500 text-primary-500 hover:text-white font-bold transition-colors rounded-full py-2 px-4 text-xs me-1" 
-                type="button" 
-                (click)="onEditingProfile(false)">
+            </sn-button>
+            <sn-button snType="outline" (click)="onEditingProfile(false)">
               Cancel
-            </button>
+            </sn-button>
           </div>
         </div>
       </ng-container>
@@ -43,24 +38,4 @@
       </ng-template>
     </form>
   </div>
-
-  
-  <!-- <div class="flex flex-row justify-between items-center">
-    <h4 class="font-bold text-gray-700 text-lg mb-3">Theme</h4>
-  </div> -->
-
-  <!-- <hr class="mb-3" />
-
-  <div class="card">
-    <label>Select a color theme:</label>
-    <div class="themes-container">
-      <ng-container *ngFor="let theme of themes$ | async">
-        <div class="theme-swatch" [ngClass]="theme.cssClassName" [class.selected]="(userSettings$ | async)?.theme?.id === theme.id" (click)="onChangeTheme(theme)">
-          <ng-container *ngIf="(userSettings$ | async)?.theme?.id == theme.id">
-            <i class="fas fa-check" [@fadeAnimation]></i>
-          </ng-container>
-        </div>
-      </ng-container>
-    </div>
-  </div> -->
 </div>

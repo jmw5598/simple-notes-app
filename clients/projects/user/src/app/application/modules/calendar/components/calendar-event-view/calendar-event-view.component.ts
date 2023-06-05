@@ -11,7 +11,7 @@ import { HEX_COLOR_STRING_ARRAY } from '@sn/user/shared/defaults/colors.defaults
 
 import * as calendarActions from '../../store/actions';
 
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 
 @Component({
   selector: 'sn-user-calendar-event-view',
@@ -28,7 +28,7 @@ export class CalendarEventViewComponent implements OnInit {
 
   constructor(
     private _formBuilder: UntypedFormBuilder,
-    private _drawerService: DrawerService, 
+    private _drawerService: SnDrawerService, 
     private _store: Store<ICalendarEventsState>
   ) {
     this.calendarEventView = 'display';

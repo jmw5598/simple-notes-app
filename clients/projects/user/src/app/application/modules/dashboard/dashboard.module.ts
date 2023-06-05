@@ -7,10 +7,6 @@ import { DashboardOverviewComponent } from './pages/dashboard-overview/dashboard
 import { NgIconsModule } from '@ng-icons/core';
 import { heroEye, heroEyeSlash, heroCalendarDays, heroClock, heroMapPin, } from '@ng-icons/heroicons/outline';
 
-import { 
-  TopicCreateComponent, 
-  TopicSearchComponent, 
-  CalendarEventCreateComponent } from '@sn/user/shared/components';
 import { RecentTopicsListComponent } from './components/recent-topics-list/recent-topics-list.component';
 import { TodaysCalendarEventsListComponent } from './components/todays-calendar-events-list/todays-calendar-events-list.component';
 import { TodaysTodoListsListComponent } from './components/todays-todo-lists-list/todays-todo-lists-list.component';
@@ -18,7 +14,8 @@ import { PastDueTodoListsListComponent } from './components/past-due-todo-lists-
 import { TodoListTodosFormComponent } from './components/todo-list-todos-form/todo-list-todos-form.component';
 import { TodosFormComponent } from './components/todo-list-todos-form/components/todos-form/todos-form.component';
 
-import { SharedComponentsModule } from '@sn/shared/components';
+import { SnCheckboxModule } from '@sn/checkbox';
+import { SnEmptyModule } from '@sn/empty';
 
 @NgModule({
     declarations: [
@@ -31,7 +28,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
         TodosFormComponent
     ],
     imports: [
-        SharedComponentsModule,
         CommonModule,
         DashboardRoutingModule,
         SharedModule,
@@ -41,7 +37,9 @@ import { SharedComponentsModule } from '@sn/shared/components';
             heroCalendarDays,
             heroClock,
             heroMapPin,
-        })
+        }),
+        SnCheckboxModule,
+        SnEmptyModule,
     ]
 })
 export class DashboardModule { }

@@ -1,23 +1,22 @@
-<div *ngIf="!(isPageLoading$ | async) && (searchTodoListsResult$ | async)" class="w-2/3 m-0 p-0 h-full" [@fadeAnimation]>
+<div *ngIf="(searchTodoListsResult$ | async)" class="w-2/3 m-0 p-0 h-full" [@fadeAnimation]>
   <!-- Todo List -->
   <div class="border-r h-full" *ngIf="(searchTodoListsResult$ | async) || []">
     <h4 class="m-0 px-4 py-3 border-b flex flex-row items-center justify-between">
       <span class="font-bold text-primary-500 text-xl">Todo Lists</span>
       <!-- Header Buttons -->
-      <span class="flex flex-row items-center">
+      <span class="flex flex-row items-center gap-1">
         <sn-debounced-search
             class="mr-1"
             debounceTime="500"
             [isSearching]="isSearching"
             (onSearch)="onSearchTodoLists($event)">
         </sn-debounced-search>
-        <button 
-            role="button" 
-            class="flex items-center text-primary-500 text-xs px-4 py-2 border border-primary-500 rounded-full hover:bg-primary-500 hover:text-white cursor-pointer transition-colors"
+        <sn-button 
+            snType="outline" 
             (click)="onCreate()">
           <ng-icon name="heroDocument" size="1rem"></ng-icon>
           New
-        </button>
+        </sn-button>
       </span>
     </h4>
     <div class="block w-full border-b">
@@ -41,5 +40,5 @@
 </div>
 
 <sn-drawer
-    [drawerLocation]="DrawerLocation.RIGHT">
+    [drawerLocation]="SnDrawerLocation.RIGHT">
 </sn-drawer>

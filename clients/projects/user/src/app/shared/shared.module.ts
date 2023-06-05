@@ -58,8 +58,14 @@ import { TodoListUpdateComponent } from './components/todo-list-update/todo-list
 
 import { TodoListProgressComponent } from './components/todo-list-progress/todo-list-progress.component';
 
-import { SharedComponentsModule } from '@sn/shared/components';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { SnButtonsModule } from '@sn/button';
+import { SnAlertModule } from '@sn/alert';
+import { SnCheckboxModule } from '@sn/checkbox';
+import { SnEmptyModule } from '@sn/empty';
+import { SnCardModule } from '@sn/card';
+import { SnTagInputModule } from '@sn/tag-input';
+import { SnMarkdownModule } from '@sn/markdown';
 
 @NgModule({
   declarations: [
@@ -92,7 +98,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
     TodoListProgressComponent
   ],
   imports: [
-    SharedComponentsModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -119,6 +124,13 @@ import { NgSelectModule } from '@ng-select/ng-select';
     }),
     DpDatePickerModule,
     NgSelectModule,
+    SnButtonsModule,
+    SnAlertModule,
+    SnCheckboxModule,
+    SnEmptyModule,
+    SnCardModule,
+    SnTagInputModule,
+    SnMarkdownModule,
   ],
   exports: [
     FormsModule,

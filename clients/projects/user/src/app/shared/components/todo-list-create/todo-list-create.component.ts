@@ -13,7 +13,7 @@ import { buildTodoListFormGroup } from '@sn/user/shared/forms';
 import { TodoList } from '@sn/shared/models';
 import { showHide } from '@sn/shared/animations';
 
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 import { toDateTimePickerFormat } from '../../utils';
 
 @Component({
@@ -35,7 +35,7 @@ export class TodoListCreateComponent implements OnInit, AfterViewInit {
     private _changeDetectorRef: ChangeDetectorRef,
     private _store: Store<ITodosState>,
     private _formBuilder: UntypedFormBuilder,
-    private _drawerService: DrawerService,
+    private _drawerService: SnDrawerService,
   ) { }
 
   ngOnInit(): void {

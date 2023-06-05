@@ -7,9 +7,12 @@ import { AccountSettingsToolbarComponent } from './pages/account-settings-toolba
 import { ToolbarKeyboardShortcutListComponent } from './components/toolbar-keyboard-shortcut-list/toolbar-keyboard-shortcut-list.component';
 import { ConfigureKeyboardShortcutComponent } from './components/configure-keyboard-shortcut/configure-keyboard-shortcut.component';
 
-import { SharedComponentsModule } from '@sn/shared/components';
 import { NgIconsModule } from '@ng-icons/core';
 import { heroCog8ToothSolid, heroTrashSolid } from '@ng-icons/heroicons/solid';
+
+import { SnButtonsModule } from '@sn/button';
+import { SnAlertModule } from '@sn/alert';
+import { SnDrawerModule } from '@sn/drawer';
 
 @NgModule({
     declarations: [
@@ -18,7 +21,6 @@ import { heroCog8ToothSolid, heroTrashSolid } from '@ng-icons/heroicons/solid';
         ConfigureKeyboardShortcutComponent
     ],
     imports: [
-        SharedComponentsModule,
         AccountSettingsToolbarRoutingModule,
         CommonModule,
         SharedModule,
@@ -30,7 +32,10 @@ import { heroCog8ToothSolid, heroTrashSolid } from '@ng-icons/heroicons/solid';
         NgIconsModule.withIcons({
             heroTrashSolid,
             heroCog8ToothSolid,
-        })
+        }),
+        SnButtonsModule,
+        SnAlertModule,
+        SnDrawerModule,
     ]
 })
 export class AccountSettingsToolbarModule { }

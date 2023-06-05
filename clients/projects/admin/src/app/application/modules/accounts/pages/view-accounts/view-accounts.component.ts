@@ -10,26 +10,21 @@ import { DEFAULT_SEARCH_ACCOUNTS_PAGE } from '@sn/admin/core/defaults';
 
 import { fadeAnimation } from '@sn/shared/animations';
 import { IPageable, Page, PageableSearch, Account } from '@sn/shared/models';
-import { 
-  AbstractPageOverlayLoader, 
-  DrawerLocation, 
-  DrawerService, 
-  DrawerSize, 
-  OverlayLoaderService } from '@sn/shared/components';
 import { AccountCreateComponent } from '@sn/admin/shared/components';
 import { AccountUpdateComponent } from '../../components/account-update/account-update.component';
 
+import { SnDrawerLocation, SnDrawerService, SnDrawerSize } from '@sn/drawer';
 
 @Component({
   selector: 'sn-admin-view-accounts',
   templateUrl: './view-accounts.component.html',
   styleUrls: ['./view-accounts.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DrawerService],
+  providers: [SnDrawerService],
   animations: [fadeAnimation]
 })
-export class ViewAccountsComponent extends AbstractPageOverlayLoader implements OnInit {
-  public DrawerLocation = DrawerLocation;
+export class ViewAccountsComponent implements OnInit {
+  public DrawerLocation = SnDrawerLocation;
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_ACCOUNTS_PAGE;
 
   public searchAccountsResult$: Observable<Page<Account>>;
@@ -38,11 +33,8 @@ export class ViewAccountsComponent extends AbstractPageOverlayLoader implements 
 
   constructor(
     private _store: Store<IAccountsState>,
-    private _drawerService: DrawerService,
-    protected _overlayLoaderService: OverlayLoaderService
-  ) {
-    super(_overlayLoaderService);
-  }
+    private _drawerService: SnDrawerService,
+  ) { }
 
   ngOnInit(): void {
     this._selectState();
@@ -63,13 +55,13 @@ export class ViewAccountsComponent extends AbstractPageOverlayLoader implements 
 
   public onCreate(): void {
     this._drawerService.show(AccountCreateComponent, {
-      size: DrawerSize.LARGE
+      size: SnDrawerSize.LARGE
     });
   }
 
   public onEdit(account: Account): void {
     this._drawerService.show(AccountUpdateComponent, {
-      size: DrawerSize.LARGE,
+      size: SnDrawerSize.LARGE,
       data: account
     });
   }

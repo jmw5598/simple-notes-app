@@ -15,26 +15,21 @@ import { takeUntil, tap } from 'rxjs/operators';
 
 import { IPageable, Page, PageableSearch, FlashcardSet } from '@sn/shared/models';
 
-import { 
-  AbstractPageOverlayLoader, 
-  DrawerLocation, 
-  DrawerService, 
-  DrawerSize, 
-  OverlayContentService,
-  OverlayLoaderService } from '@sn/shared/components';
+import { SnDrawerLocation, SnDrawerService, SnDrawerSize } from '@sn/drawer';
+import { SnOverlayContentService } from '@sn/overlay-content';
 
 @Component({
   selector: 'sn-user-view-flashcards',
   templateUrl: './view-flashcards.component.html',
   styleUrls: ['./view-flashcards.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [OverlayContentService],
+  providers: [SnOverlayContentService],
   animations: [fadeAnimation]
 })
-export class ViewFlashcardsComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {
+export class ViewFlashcardsComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<void> = new Subject<void>();
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_FLASHCARDS_PAGE;
-  public DrawerLocation = DrawerLocation;
+  public DrawerLocation = SnDrawerLocation;
   public isSearching: boolean = false;
 
   public searchFlashcardSetsResult$: Observable<Page<FlashcardSet>>;
@@ -42,12 +37,9 @@ export class ViewFlashcardsComponent extends AbstractPageOverlayLoader implement
 
   constructor(
     private _store: Store<IFlashcardsState>,
-    private _drawerService: DrawerService,
-    protected _overlayLoaderService: OverlayLoaderService,
-    private _overlayContentService: OverlayContentService
-  ) {
-    super(_overlayLoaderService);
-  }
+    private _drawerService: SnDrawerService,
+    private _overlayContentService: SnOverlayContentService
+  ) { }
 
   ngOnInit(): void {
     this.searchFlashcardSetsResult$ = this._store.select(flashcardsSelectors.selectSearchFlashcardSetsResult)
@@ -57,7 +49,7 @@ export class ViewFlashcardsComponent extends AbstractPageOverlayLoader implement
 
   public onCreate(): void {
     this._drawerService.show(FlashcardSetCreateComponent, {
-      size: DrawerSize.LARGE
+      size: SnDrawerSize.LARGE
     });
   }
 
@@ -76,7 +68,7 @@ export class ViewFlashcardsComponent extends AbstractPageOverlayLoader implement
   public onEdit(flashcardSet: FlashcardSet): void {
     this._store.dispatch(flashcardsActions.getFlashcardSetById({ flashcardSetId: flashcardSet.id }));
     this._drawerService.show(FlashcardSetUpdateComponent, {
-      size: DrawerSize.LARGE,
+      size: SnDrawerSize.LARGE,
       data: document 
     });
   }

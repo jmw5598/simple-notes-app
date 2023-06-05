@@ -1,4 +1,4 @@
-<div *ngIf="!(isPageLoading$ | async) && (section$ | async)" [@fadeAnimation] class="editor flex flex-row h-full">
+<div *ngIf="formGroup && (section$ | async)" [@fadeAnimation] class="editor flex flex-row h-full">
   <form class="editor-left w-1/2 h-full" [formGroup]="formGroup">
     <textarea 
         snMarkdownEasymde 

@@ -13,8 +13,9 @@ import { TodoListCreateComponent } from '@sn/user/shared/components/todo-list-cr
 import { TodoListViewComponent } from '../../components/todo-list-view/todo-list-view.component';
 import { TodoListEditComponent } from '../../components/todo-list-edit/todo-list-edit.component';
 
-import { DrawerLocation, DrawerService, AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
 import { IPageable, Page, PageableSearch, TodoList } from '@sn/shared/models';
+
+import { SnDrawerLocation, SnDrawerService } from '@sn/drawer';
 
 @Component({
   selector: 'sn-user-view-todos',
@@ -23,10 +24,10 @@ import { IPageable, Page, PageableSearch, TodoList } from '@sn/shared/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
-export class ViewTodosComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {
+export class ViewTodosComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<void> = new Subject<void>();
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_TODOS_PAGE;
-  public DrawerLocation = DrawerLocation;
+  public SnDrawerLocation = SnDrawerLocation;
   public isSearching: boolean = false;
 
   public searchTodoListsResult$: Observable<Page<TodoList>>;
@@ -34,11 +35,8 @@ export class ViewTodosComponent extends AbstractPageOverlayLoader implements OnI
 
   constructor(
     private _store: Store<ITodosState>,
-    private _drawerService: DrawerService,
-    protected _overlayLoaderService: OverlayLoaderService,
-  ) {
-    super(_overlayLoaderService);
-  }
+    private _drawerService: SnDrawerService,
+  ) { }
 
   ngOnInit(): void {
     this.searchTodoListsResult$ = this._store.select(todosSelectors.selectSearchTodoListsResult)

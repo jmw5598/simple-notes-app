@@ -11,7 +11,7 @@ import { Document } from '@sn/shared/models';
 import * as documentSelectors from '@sn/user/application/modules/documents/store/selectors';
 import * as documentActions from '@sn/user/application/modules/documents/store/actions';
 
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 import { DocumentBuilderFormComponent } from '../document-builder/components/document-builder-form/document-builder-form.component';
 
 @Component({
@@ -36,7 +36,7 @@ export class DocumentCreateComponent implements OnInit, OnDestroy {
   constructor(
     private _formBuilder: UntypedFormBuilder,
     private _store: Store<IDocumentsState>,
-    private _drawerService: DrawerService
+    private _drawerService: SnDrawerService
   ) { }
 
   ngOnInit(): void {

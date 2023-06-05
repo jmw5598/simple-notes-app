@@ -18,7 +18,9 @@ import { PasswordRequestComponent } from './pages/password-request/password-requ
 import { LoggingInComponent } from './pages/logging-in/logging-in.component';
 import { AppLoadingComponent } from './components/app-loading/app-loading.component';
 
-import { SharedComponentsModule } from '@sn/shared/components';
+import { SnButtonsModule } from '@sn/button';
+import { SnAlertModule } from '@sn/alert';
+import { SnLoadingSpinnerModule } from '@sn/loading-spinner';
 
 @NgModule({
   declarations: [
@@ -38,10 +40,12 @@ import { SharedComponentsModule } from '@sn/shared/components';
     AppLoadingComponent,
   ],
   imports: [
-    SharedComponentsModule,
     AuthRoutingModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+    SnButtonsModule,
+    SnAlertModule,
+    SnLoadingSpinnerModule,
   ]
 })
 export class AuthModule { }

@@ -11,7 +11,7 @@ import { IPageable } from '@sn/shared/models';
 import { PageableSearch } from '@sn/shared/models'
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/user/core/defaults';
 import { searchTopicsFromDrawer, searchTopicsFromDrawerResult } from '@sn/user/application/modules/topics/store/actions';
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 
 @Component({
   selector: 'sn-user-topic-search',
@@ -28,7 +28,7 @@ export class TopicSearchComponent implements OnInit, OnDestroy, AfterViewInit {
     private _renderer: Renderer2,
     private _router: Router,
     private _store: Store<ITopicsState>,
-    private _drawerService: DrawerService
+    private _drawerService: SnDrawerService
   ) { }
 
   ngOnInit(): void {

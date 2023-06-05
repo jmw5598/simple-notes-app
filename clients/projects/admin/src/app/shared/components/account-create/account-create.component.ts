@@ -6,7 +6,7 @@ import { Observable, Subject } from 'rxjs';
 import { IAccountsState } from '@sn/admin/application/modules/accounts/store/reducers';
 import { buildAccountFormGroup, buildAddressFormGroup, buildProfileFormGroup, buildUserFormGroup } from '@sn/admin/shared/forms';
 
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 import { AccountValidators } from '@sn/core/services';
 import { Plan, Registration, ResponseMessage, Role } from '@sn/shared/models';
 import { takeUntil } from 'rxjs/operators';
@@ -34,7 +34,7 @@ export class AccountCreateComponent implements OnInit {
   constructor(
     private _store: Store<IAccountsState>,
     private _formBuilder: UntypedFormBuilder,
-    private _drawerService: DrawerService,
+    private _drawerService: SnDrawerService,
     private _accountValidators: AccountValidators
   ) { }
 

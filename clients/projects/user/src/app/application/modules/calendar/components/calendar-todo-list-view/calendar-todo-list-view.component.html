@@ -6,32 +6,27 @@
           [todoList]="data$ | async"
           [responseMessage]="responseMessage$ | async">
       </sn-user-todo-list-details>
-      <div class="flex flex-row justify-end items-center">
-        <button 
-            class="border border-primary-500 hover:bg-white bg-primary-500 text-white hover:text-primary-500 font-bold transition-colors rounded-full py-2 px-4 text-xs me-1" 
-            type="submit">
+      <div class="flex flex-row gap-1 justify-end items-center">
+        <sn-button (click)="onUpdate(form.value)">
           Save
-        </button>
-        <button 
-            class="border border-primary-500 hover:bg-primary-500 text-primary-500 hover:text-white font-bold transition-colors rounded-full py-2 px-4 text-xs me-1" 
-            type="button" 
+        </sn-button>
+        <sn-button 
+            snType="outline"
             (click)="onEdit()">
           Edit
-        </button>
-        <button 
+        </sn-button>
+        <sn-button 
+            snType="outline"
             mwlConfirmationPopover
             placement="left"
-            (confirm)="onDelete()"
-            class="border border-primary-500 hover:bg-primary-500 text-primary-500 hover:text-white font-bold transition-colors rounded-full py-2 px-4 text-xs me-1" 
-            type="button">
+            (confirm)="onDelete()">
           Delete
-        </button>
-        <button 
-              (click)="onCancel()"
-              class="border border-primary-500 hover:bg-primary-500 text-primary-500 hover:text-white font-bold transition-colors rounded-full py-2 px-4 text-xs me-1" 
-              type="button">
-            Cancel
-          </button>
+        </sn-button>
+        <sn-button 
+            snType="outline"
+            (click)="onCancel()">
+          Cancel
+        </sn-button>
       </div>
     </form>
   </ng-container>
@@ -41,18 +36,15 @@
         [todoList]="data$ | async"
         [responseMessage]="responseMessage$ | async">
       </sn-user-todo-list-update>
-      <div class="form-group text-right mx-2">
-        <button 
-            class="border border-primary-500 hover:bg-primary-500 text-primary-500 hover:text-white font-bold transition-colors rounded-full py-2 px-4 text-xs me-1" 
-            type="submit">
+      <div class="flex flex-row justify-end gap-1">
+        <sn-button (click)="onUpdate(form.value)">
           Save
-        </button>
-        <button 
-            (click)="onEdit()"
-            class="border border-primary-500 hover:bg-primary-500 text-primary-500 hover:text-white font-bold transition-colors rounded-full py-2 px-4 text-xs me-1" 
-            type="button">
+        </sn-button>
+        <sn-button 
+            snType="outline"
+            (click)="onEdit()">
           Cancel
-        </button>
+        </sn-button>
       </div>
     </form>
   </ng-container>

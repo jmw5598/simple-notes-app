@@ -12,7 +12,7 @@ import { buildCalendarEventFormGroup } from '../../forms/calendar-event-form/cal
 import { CalendarEventFormComponent } from '../../forms/calendar-event-form/calendar-event-form.component';
 import { HEX_COLOR_STRING_ARRAY } from '../../defaults/colors.defaults';
 
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 import { toDateTimePickerFormat } from '../../utils';
 
 @Component({
@@ -34,7 +34,7 @@ export class CalendarEventCreateComponent implements OnInit, AfterViewInit {
     private _changeDetectorRef: ChangeDetectorRef,
     private _store: Store<ICalendarEventsState>,
     private _formBuilder: UntypedFormBuilder,
-    private _drawerService: DrawerService,
+    private _drawerService: SnDrawerService,
   ) { }
 
   ngOnInit(): void {

@@ -5,8 +5,6 @@ import { SettingsRoutingModule } from './settings-routing.module';
 import { SettingsNavigationComponent } from './components/settings-navigation/settings-navigation.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 
-import { SharedComponentsModule } from '@sn/shared/components';
-
 @NgModule({
   declarations: [
     SettingsNavigationComponent,
@@ -15,7 +13,6 @@ import { SharedComponentsModule } from '@sn/shared/components';
   imports: [
     CommonModule,
     SettingsRoutingModule,
-    SharedComponentsModule
   ]
 })
 export class SettingsModule { }

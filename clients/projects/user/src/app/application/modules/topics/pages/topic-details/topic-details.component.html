@@ -1,82 +1,73 @@
-<div *ngIf="!(isPageLoading$ | async) && (topic$ | async)" [@fadeAnimation] class="flex w-100 p-0 m-0 h-full">
-  
-    <!-- Topic Details List -->
-    <div class="w-1/3 border-bottom-md-1 border-0 md:border-r h-full">
-      <div class="border-b">
-        <div class="topic-details-heading border-b">
-          <div class="flex flex-row items-center justify-between border-b px-4 py-3">
-            <h4 class="text-primary-500 text-xl font-bold">{{ (topic$ | async).title }}</h4>
-            <div class="flex flex-row items-center">
-              <button 
-                  role="button" 
-                  class="flex items-center text-primary-500 text-xs px-4 py-2 mr-1 border border-primary-500 rounded-full"
-                  (click)="onUpdateTopic()" >
-                <ng-icon class="mr-1" name="heroPencil" size="1rem"></ng-icon> Edit
-              </button>
-            </div>
+<div *ngIf="(topic$ | async)" [@fadeAnimation] class="flex w-100 p-0 m-0 h-full">
+  <!-- Topic Details List -->
+  <div class="w-1/3 border-bottom-md-1 border-0 md:border-r h-full">
+    <div class="border-b">
+      <div class="topic-details-heading border-b">
+        <div class="flex flex-row items-center justify-between border-b px-4 py-3">
+          <h4 class="text-primary-500 text-xl font-bold">{{ (topic$ | async).title }}</h4>
+          <div class="flex flex-row items-center">
+            <sn-button snType="outline" (click)="onUpdateTopic()" >
+              <ng-icon class="mr-1" name="heroPencil" size="1rem"></ng-icon>
+              Edit
+            </sn-button>
           </div>
-          <p class="bg-gray-100 rounded-lg text-gray-600 italic text-xs p-4 m-4">{{ (topic$ | async).synopsis }}</p>
-          
         </div>
-        <div class="flex flex-row justify-between text-sm px-4 pt-2 pb-1">
-          <span>Created: </span>
-          <span class="bg-gray-100 rounded-full text-xs px-2 py-1 border">{{ (topic$ | async).createdAt | date:short }}</span>
-        </div>
-        <div class="flex flex-row justify-between text-sm px-4  pt-1 pb-2">
-          <span>Modified:</span>
-          <span class="bg-gray-100 rounded-full text-xs px-2 py-1 border">{{ (topic$ | async).updatedAt| date:short }}</span>
-        </div>
+        <p class="bg-gray-100 rounded-lg text-gray-600 italic text-xs p-4 m-4">{{ (topic$ | async).synopsis }}</p>
+        
+      </div>
+      <div class="flex flex-row justify-between text-sm px-4 pt-2 pb-1">
+        <span>Created: </span>
+        <span class="bg-gray-100 rounded-full text-xs px-2 py-1 border">{{ (topic$ | async).createdAt | date:short }}</span>
+      </div>
+      <div class="flex flex-row justify-between text-sm px-4  pt-1 pb-2">
+        <span>Modified:</span>
+        <span class="bg-gray-100 rounded-full text-xs px-2 py-1 border">{{ (topic$ | async).updatedAt| date:short }}</span>
       </div>
     </div>
+  </div>
 
-    <!-- Sections List -->
-    <div class="w-2/3 m-0 p-0">
-      <div class="flex flex-row items-center justify-between border-b px-4 py-3">
-        <h4 class="text-primary-500 text-xl font-bold">Sections</h4>
-        <span class="flex flex-row items-center">
-          <sn-debounced-search
-              class="mr-1"
-              debounceTime="500"
-              [isSearching]="isSearching"
-              (onSearch)="onSearchSections($event)">
-          </sn-debounced-search>
-          <span>
-            <button 
-                role="button" 
-                class="flex items-center text-primary-500 text-xs px-4 py-2 mr-1 border border-primary-500 rounded-full" 
-                (click)="onOpenExportTopic()">
-              <ng-icon class="mr-1" name="heroDocumentArrowDown" size="1rem"></ng-icon>
-              Export
-            </button>
-          </span>
-          <span>
-            <button 
-                role="button" 
-                class="flex items-center text-white text-xs px-4 py-2 border border-primary-500 bg-primary-500 rounded-full"
-                (click)="onCreateSection()" >
-              <ng-icon class="mr-1" name="heroDocument" size="1rem"></ng-icon>
-              New
-            </button>
-          </span>
+  <!-- Sections List -->
+  <div class="w-2/3 m-0 p-0">
+    <div class="flex flex-row items-center justify-between border-b px-4 py-3">
+      <h4 class="text-primary-500 text-xl font-bold">Sections</h4>
+      <span class="flex flex-row items-center">
+        <sn-debounced-search
+            class="mr-1"
+            debounceTime="500"
+            [isSearching]="isSearching"
+            (onSearch)="onSearchSections($event)">
+        </sn-debounced-search>
+        <span class="me-1">
+          <sn-button snType="outline" (click)="onOpenExportTopic()">
+            <ng-icon class="mr-1" name="heroDocumentArrowDown" size="1rem"></ng-icon>
+            Export
+          </sn-button>
         </span>
+        <span>
+          <sn-button (click)="onCreateSection()" >
+            <ng-icon class="mr-1" name="heroDocument" size="1rem"></ng-icon>
+            New
+          </sn-button>
+        </span>
+      </span>
+    </div>
+    <div class="border-b">
+      <sn-user-section-list
+          [sections]="(searchSectionsResult$ | async)?.elements"
+          (onDelete)="onDeleteSection($event)"
+          (onEdit)="onEditSectionDetails($event)"
+          (onCreate)="onCreateSection($event)">
+      </sn-user-section-list>
+      <div class="p-3">
+        <sn-paginator
+            [page]="(searchSectionsResult$ | async)"
+            (onNextPage)="onGoToPage($event)"
+            (onPreviousPage)="onGoToPage($event)"
+            (onGoToPage)="onGoToPage($event)">
+        </sn-paginator>
       </div>
-      <div class="border-b">
-        <sn-user-section-list
-            [sections]="(searchSectionsResult$ | async)?.elements"
-            (onDelete)="onDeleteSection($event)"
-            (onEdit)="onEditSectionDetails($event)"
-            (onCreate)="onCreateSection($event)">
-        </sn-user-section-list>
-        <div class="p-3">
-          <sn-paginator
-              [page]="(searchSectionsResult$ | async)"
-              (onNextPage)="onGoToPage($event)"
-              (onPreviousPage)="onGoToPage($event)"
-              (onGoToPage)="onGoToPage($event)">
-          </sn-paginator>
-        </div>
-      </div>
-  
+    </div>
+  </div>
 </div>
 
 <sn-drawer

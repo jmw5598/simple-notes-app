@@ -11,15 +11,12 @@ import { searchSections } from '../store/actions';
 import { selectSearchSectionsResult } from '../store/selectors';
 import { ITopicsState } from '../store/reducers';
 
-import { OverlayLoaderService } from '@sn/shared/components';
-
 @Injectable({
   providedIn: 'root'
 })
 export class SectionsSearchResultGuard implements CanActivate {
   constructor(
     private _store: Store<ITopicsState>,
-    private _overlayLoaderService: OverlayLoaderService
   ) {}
 
   canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
@@ -40,7 +37,6 @@ export class SectionsSearchResultGuard implements CanActivate {
     return this._store.select(selectSearchSectionsResult).pipe(
       tap((page: Page<Section>) => {
         if (!page) {
-          this._overlayLoaderService.setLoadingState(true);
           this._store.dispatch(searchSections({
             topicId: topicId,
             search: search

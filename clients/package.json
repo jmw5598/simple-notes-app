@@ -9,7 +9,7 @@
     "build": "ng build",
     "build:user": "ng build user --configuration production --base-href /app/",
     "build:admin": "ng build admin --configuration production --base-href /admin/",
-    "build:libs": "ng build core-framing && ng build shared-models && ng build core-services && ng build shared-animations && ng build shared-components",
+    "build:libs": "ng build core-framing && ng build shared-models && ng build core-services && ng build shared-animations && ng build button && ng build alert && ng build checkbox && ng build drawer && ng build empty && ng build toolbar && ng build toaster && ng build overlay-content && ng build paginator && ng build debounce-search && ng build card && ng build loading-spinner && ng build markdown && ng build tag-input && ng build radio",
     "build:core-framing": "ng build core-framing --configuration production",
     "build:core-services": "ng build core-services --configuration production",
     "build:shared-animations": "ng build shared-animations --configuration production",

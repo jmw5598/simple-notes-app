@@ -10,7 +10,7 @@ import { showHide } from '@sn/shared/animations';
 import { selectExportTopicResponseMessage, selectExportTopicFile } from '../../store/selectors';
 import { exportTopic } from '../../store/actions';
 
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 
 import * as FileSaver from 'file-saver';
 
@@ -40,7 +40,7 @@ export class TopicExportComponent implements OnInit, OnDestroy {
   constructor(
     private _store: Store<ITopicsState>,
     private _formBuilder: UntypedFormBuilder,
-    private _drawerService: DrawerService,
+    private _drawerService: SnDrawerService,
   ) {
     this._subscriptionSubject = new Subject<void>();
   }

@@ -8,14 +8,11 @@ import { getRecentTopics } from '../store/actions';
 import { IDashboardState } from '../store/reducers';
 import { selectRecentTopics } from '../store/selectors';
 
-import { OverlayLoaderService } from '@sn/shared/components';
-
 @Injectable({
   providedIn: 'root'
 })
 export class RecentTopicsGuard implements CanActivate {
   constructor(
-    private _overlayLoaderService: OverlayLoaderService,
     private _store: Store<IDashboardState>
   ) {}
 
@@ -32,7 +29,6 @@ export class RecentTopicsGuard implements CanActivate {
     return this._store.select(selectRecentTopics).pipe(
       tap((topics: Topic[]) => {
         if (!topics) {
-          this._overlayLoaderService.setLoadingState(true);
           this._store.dispatch(getRecentTopics());
         }
       }),

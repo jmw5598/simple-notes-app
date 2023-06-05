@@ -11,7 +11,9 @@ import { AccountProfileFormComponent } from './components/account-profile-form/a
 import { AccountAddressFormComponent } from './components/account-address-form/account-address-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { SharedComponentsModule } from '@sn/shared/components';
+import { SnAlertModule } from '@sn/alert';
+import { SnCheckboxModule } from '@sn/checkbox';
+import { SnEmptyModule } from '@sn/empty';
 
 @NgModule({
   declarations: [
@@ -23,11 +25,13 @@ import { SharedComponentsModule } from '@sn/shared/components';
     AccountAddressFormComponent
   ],
   imports: [
-    SharedComponentsModule,
     CommonModule,
     ConfirmationPopoverModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SnAlertModule,
+    SnCheckboxModule,
+    SnEmptyModule,
   ],
   exports: [
     AccountsTableComponent,

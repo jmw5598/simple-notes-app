@@ -20,7 +20,7 @@ import { HttpErrorEffects } from './application/store/effects/http-error.effects
 
 import { CoreFramingModule } from '@sn/core/framing';
 import { CoreServicesModule, CoreServicesConfiguration } from '@sn/core/services';
-import { SharedComponentsModule } from '@sn/shared/components';
+import { SnToasterModule } from '@sn/toaster';
 
 const coreServicesConfiguration: CoreServicesConfiguration = {
   ...environment
@@ -33,7 +33,6 @@ const coreServicesConfiguration: CoreServicesConfiguration = {
   imports: [
     CoreFramingModule.forRoot(),
     CoreServicesModule.forRoot(coreServicesConfiguration),
-    SharedComponentsModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -63,6 +62,7 @@ const coreServicesConfiguration: CoreServicesConfiguration = {
       cancelButtonType: 'btn-default btn-sm bg-secondary',
       confirmButtonType: 'btn-primary btn-sm bg-primary text-light'
     }),
+    SnToasterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

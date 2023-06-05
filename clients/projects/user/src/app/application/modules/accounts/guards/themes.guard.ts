@@ -8,15 +8,12 @@ import { getThemes } from '../store/actions';
 import { IAccountsState } from '../store/reducers';
 import { selectThemes } from '../store/selectors';
 
-import { OverlayLoaderService } from '@sn/shared/components';
-
 @Injectable({
   providedIn: 'root'
 })
 export class ThemesGuard implements CanActivate {
   constructor(
-    private _store: Store<IAccountsState>,
-    private _overlayLoaderService: OverlayLoaderService
+    private _store: Store<IAccountsState>
   ) {}
 
   canActivate(
@@ -32,7 +29,6 @@ export class ThemesGuard implements CanActivate {
     return this._store.select(selectThemes).pipe(
       tap((themes: Theme[]) => {
         if (!themes) {
-          this._overlayLoaderService.setLoadingState(true);
           this._store.dispatch(getThemes());
         }
       }),

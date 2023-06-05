@@ -3,10 +3,15 @@
   <hr class="mb-3" />
 
   <!-- Response Message -->
-  <div *ngIf="responseMessage" [@showHide] class="bg-info-100 rounded-xl text-info-700 p-4 mb-4" role="alert">
-    <p class="font-bold">{{ responseMessage.status | titlecase }}</p>
-    <p>{{ responseMessage.message }}</p>
-  </div>
+  <ng-container *ngIf="responseMessage">
+    <sn-alert
+        [@showHide]
+        snColor="info"
+        [snTitle]="responseMessage.status"
+        [snMessage]="responseMessage.message">
+    </sn-alert>
+  </ng-container>
+
 
   <div [formGroup]="form">
     <sn-user-todo-list-form></sn-user-todo-list-form>

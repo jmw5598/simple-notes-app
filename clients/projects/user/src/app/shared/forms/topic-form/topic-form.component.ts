@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, Renderer2, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { UntypedFormArray, UntypedFormGroup, ControlContainer } from '@angular/forms';
-import { TagInputComponent } from '@sn/shared/components';
+import { SnTagInputComponent } from '@sn/tag-input';
 
 import { Permission } from '@sn/shared/models';
 
@@ -11,8 +11,8 @@ import { Permission } from '@sn/shared/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopicFormComponent implements OnInit, AfterViewInit {
-  @ViewChild(TagInputComponent, { static: true })
-  public tagInputComponent!: TagInputComponent;
+  @ViewChild(SnTagInputComponent, { static: true })
+  public tagInputComponent!: SnTagInputComponent;
 
   public form: UntypedFormGroup;
   public Permission = Permission;

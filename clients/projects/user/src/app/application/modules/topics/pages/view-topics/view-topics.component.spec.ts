@@ -10,12 +10,12 @@ import { SharedModule } from '@sn/user/shared/shared.module';
 import { TopicListComponent } from '../../components/topic-list/topic-list.component';
 import { ViewTopicsComponent } from './view-topics.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 
 describe('ViewTopicsComponent', () => {
   let component: ViewTopicsComponent;
   let fixture: ComponentFixture<ViewTopicsComponent>;
-  let drawerService: DrawerService;
+  let drawerService: SnDrawerService;
 
   const testStore = {
     select: (selector: any) => of(),
@@ -46,7 +46,7 @@ describe('ViewTopicsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ViewTopicsComponent);
     component = fixture.componentInstance;
-    drawerService = fixture.debugElement.injector.get(DrawerService) as any;
+    drawerService = fixture.debugElement.injector.get(SnDrawerService) as any;
     fixture.detectChanges();
   });
 

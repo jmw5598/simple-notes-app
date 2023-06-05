@@ -14,8 +14,7 @@ import { SectionUpdateComponent } from '../../components/section-update/section-
 import { SectionCreateComponent } from '../../components/section-create/section-create.component';
 
 import { fadeAnimation } from '@sn/shared/animations';
-import { DrawerService, DrawerLocation } from '@sn/shared/components';
-import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
+import { SnDrawerService, SnDrawerLocation } from '@sn/drawer';
 import { PageableSearch, Page, IPageable, ResponseMessage, FileResponse, Topic, Section, ResponseStatus } from '@sn/shared/models';
 
 @Component({
@@ -23,11 +22,11 @@ import { PageableSearch, Page, IPageable, ResponseMessage, FileResponse, Topic, 
   templateUrl: './topic-details.component.html',
   styleUrls: ['./topic-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DrawerService],
+  providers: [SnDrawerService],
   animations: [fadeAnimation]
 })
-export class TopicDetailsComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {
-  public DrawerLocation = DrawerLocation;
+export class TopicDetailsComponent implements OnInit, OnDestroy {
+  public DrawerLocation = SnDrawerLocation;
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_SECTIONS_PAGE;
   private _subscriptionSubject: Subject<void>;
 
@@ -41,10 +40,8 @@ export class TopicDetailsComponent extends AbstractPageOverlayLoader implements 
 
   constructor(
     private _store: Store<ISectionsState>,
-    private _drawerService: DrawerService,
-    protected _overlayLoaderService: OverlayLoaderService
+    private _drawerService: SnDrawerService,
   ) {
-    super(_overlayLoaderService);
     this._subscriptionSubject = new Subject<void>();
   }
 

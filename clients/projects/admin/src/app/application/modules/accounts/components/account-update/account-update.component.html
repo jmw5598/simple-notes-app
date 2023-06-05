@@ -5,12 +5,17 @@
     <div class="update-account-toolbar mb-3">
       <sn-admin-account-update-toolbar class="mb-4"></sn-admin-account-update-toolbar>
     </div>
-    <!-- Feedback Message -->
-    <div *ngIf="(responseMessage$ | async)" [@showHide] class="alert alert-success">
-      <span>
-        <strong>{{ (responseMessage$ | async).status | uppercase }}</strong>: {{ (responseMessage$ | async).message }}
-      </span>
-    </div>
+    
+    <!-- Response Message -->
+    <ng-container *ngIf="(responseMessage$ | async) as responseMessage">
+      <sn-alert
+          [@showHide]
+          snType="info"
+          snTitle="responseMessage.status"
+          snMessage="responseMessage.message">
+      </sn-alert>
+    </ng-container>
+
 
     <!-- Account Form -->
     <!-- Mabye user tabls here like sign up page-->

@@ -18,25 +18,24 @@
         <h5 class="text-primary-500 p-0 m-0 mb-2">
           <a class="hover:text-primary-700" [routerLink]="[]">{{ document.name }}</a>
         </h5>
-        <div class="action-buttons">
-          <button 
-              class="text-primary-500 hover:text-primary-700 transition-colors me-1"
+        <div class="flex flex-row gap-1 items-center">
+          <sn-button
+              snType="blank"
               (click)="edit(document)">
             <ng-icon name="heroPencil" size="1rem"></ng-icon>
-          </button>
-          <button 
-              class="text-primary-500 hover:text-primary-700 transition-colors me-1"
+          </sn-button>
+          <sn-button
+              snType="blank"
               (click)="view(document)">
             <ng-icon name="heroEye" size="1rem"></ng-icon>
-          </button>
-          <button 
+          </sn-button>
+          <sn-button 
+              snType="blank"
               mwlConfirmationPopover
               placement="left"
-              (confirm)="delete(document.id)"
-              role="button" 
-              class="text-primary-500 hover:text-primary-700 transition-colors me-3">
+              (confirm)="delete(document.id)">
             <ng-icon name="heroTrash" size="1rem"></ng-icon>
-          </button>
+          </sn-button>
         </div>
       </div>
       <p class="list-details-description list-details-description text-gray-600 italic text-xs p-0 m-0">Document description will go here...</p>

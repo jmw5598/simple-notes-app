@@ -42,10 +42,6 @@
         "dist/@sn/shared/animations/sn-shared-animations",
         "dist/@sn/shared/animations"
       ],
-      "@sn/shared/components": [
-        "dist/@sn/shared/components/sn-shared-components",
-        "dist/@sn/shared/components"
-      ],
       "@sn/shared/models": [
         "dist/@sn/shared/models/sn-shared-models",
         "dist/@sn/shared/models"
@@ -53,6 +49,51 @@
       "@sn/core/services": [
         "dist/@sn/core/services/sn-core-services",
         "dist/@sn/core/services"
+      ],
+      "@sn/button": [
+        "dist/@sn/button"
+      ],
+      "@sn/alert": [
+        "dist/@sn/alert"
+      ],
+      "@sn/checkbox": [
+        "dist/@sn/checkbox"
+      ],
+      "@sn/drawer": [
+        "dist/@sn/drawer"
+      ],
+      "@sn/empty": [
+        "dist/@sn/empty"
+      ],
+      "@sn/toaster": [
+        "dist/@sn/toaster"
+      ],
+      "@sn/toolbar": [
+        "dist/@sn/toolbar"
+      ],
+      "@sn/overlay-content": [
+        "dist/@sn/overlay-content"
+      ],
+      "@sn/paginator": [
+        "dist/@sn/paginator"
+      ],
+      "@sn/debounce-search": [
+        "dist/@sn/debounce-search"
+      ],
+      "@sn/card": [
+        "dist/@sn/card"
+      ],
+      "@sn/loading-spinner": [
+        "dist/@sn/loading-spinner"
+      ],
+      "@sn/markdown": [
+        "dist/@sn/markdown"
+      ],
+      "@sn/radio": [
+        "dist/@sn/radio"
+      ],
+      "@sn/tag-input": [
+        "dist/@sn/tag-input"
       ]
     },
     "useDefineForClassFields": false

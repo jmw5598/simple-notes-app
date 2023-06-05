@@ -10,14 +10,11 @@ import { searchFlashcardSets } from '../store/actions';
 import { IFlashcardsState } from '../store/reducers';
 import { selectSearchFlashcardSetsResult } from '../store/selectors';
 
-import { OverlayLoaderService } from '@sn/shared/components';
-
 @Injectable({
   providedIn: 'root'
 })
 export class FlashcardsSearchResultGuard implements CanActivate {
   constructor(
-    private _overlayLoaderService: OverlayLoaderService,
     private _store: Store<IFlashcardsState>
   ) {}
 
@@ -39,7 +36,6 @@ export class FlashcardsSearchResultGuard implements CanActivate {
     return this._store.select(selectSearchFlashcardSetsResult).pipe(
       tap((page: Page<FlashcardSet>) => {
         if (!page) {
-          this._overlayLoaderService.setLoadingState(true);
           this._store.dispatch(searchFlashcardSets({ search: search }));
         }
       }),

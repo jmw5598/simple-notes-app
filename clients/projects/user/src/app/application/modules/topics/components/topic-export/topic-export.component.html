@@ -2,18 +2,18 @@
   <div class="col-sm-12 px-4">
     <h3 class="font-weight-bold text-primary text-right mb-3">Export Topic</h3>
     <hr />
-    <!-- Feedback Message -->
-    <div *ngIf="(responseMessage$ | async)" [@showHide] class="alert alert-success">
-      <span>
-        <strong>{{ (responseMessage$ | async).status | uppercase }}</strong>: {{ (responseMessage$ | async).message }}
-      </span><br />
-      <strong *ngIf="exportTopicFile$ | async">Filename: </strong>{{ (exportTopicFile$ | async)?.filename }}
-    </div>
+    
+    <!-- Response Message -->
+    <ng-container *ngIf="(responseMessage$ | async) as responseMessage">
+      <sn-alert
+          [@showHide]
+          snType="info"
+          snTitle="responseMessage.status"
+          snMessage="responseMessage.message">
+      </sn-alert>
+    </ng-container>
+
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" novalidate>
-      <!-- <div *ngIf="message" [@showHide] class="alert alert-success">
-        {{ message.message }} <br />
-        <strong>Filename: </strong>{{ file.filename }}
-      </div> -->
       <div class="form-group mb-4">
         <label for="format">Export Format</label>
         <select class="form-control" id="format" name="format" formControlName="format">

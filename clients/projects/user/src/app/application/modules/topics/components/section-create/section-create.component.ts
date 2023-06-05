@@ -11,7 +11,7 @@ import { selectCreateSectionResponseMessage } from '../../store/selectors';
 import { createSection, setCreateSectionResponseMessage } from '../../store/actions';
 import { showHide } from '@sn/shared/animations';
 
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 
 @Component({
   selector: 'sn-user-section-create',
@@ -29,7 +29,7 @@ export class SectionCreateComponent implements OnInit {
   constructor(
     private _formBuilder: UntypedFormBuilder,
     private _store: Store<ISectionsState>,
-    private _drawerServie: DrawerService
+    private _drawerServie: SnDrawerService
   ) {
     this._subscriptionSubject = new Subject<void>();
   }

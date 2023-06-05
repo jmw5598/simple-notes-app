@@ -8,14 +8,11 @@ import { ITodosState } from '../../todos/store/reducers';
 import { getTodaysTodoLists } from '../store/actions';
 import { selectTodaysTodoLists } from '../store/selectors';
 
-import { OverlayLoaderService } from '@sn/shared/components';
-
 @Injectable({
   providedIn: 'root'
 })
 export class TodaysTodoListsGuard implements CanActivate {
   constructor(
-    private _overlayLoaderService: OverlayLoaderService,
     private _store: Store<ITodosState>
   ) {}
 
@@ -32,7 +29,6 @@ export class TodaysTodoListsGuard implements CanActivate {
     return this._store.select(selectTodaysTodoLists).pipe(
       tap((todoLists: TodoList[]) => {
         if (!todoLists) {
-          this._overlayLoaderService.setLoadingState(true);
           this._store.dispatch(getTodaysTodoLists());
         }
       }),

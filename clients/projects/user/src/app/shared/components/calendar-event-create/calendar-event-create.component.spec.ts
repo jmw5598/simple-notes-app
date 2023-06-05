@@ -5,13 +5,13 @@ import { of } from 'rxjs';
 
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { CalendarEventCreateComponent } from './calendar-event-create.component';
-import { DrawerService } from '../drawer/drawer.service';
+import { SnDrawerService } from '@sn/drawer';
 import { CalendarEventFormComponent } from '../../forms';
 
 describe('CalendarEventCreateComponent', () => {
   let component: CalendarEventCreateComponent;
   let fixture: ComponentFixture<CalendarEventCreateComponent>;
-  let drawerService: DrawerService;
+  let drawerService: SnDrawerService;
   const testStore = {
     select: () => of(),
     dispatch: () => {}
@@ -53,7 +53,7 @@ describe('CalendarEventCreateComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CalendarEventCreateComponent);
     component = fixture.componentInstance;
-    drawerService = TestBed.inject(DrawerService);
+    drawerService = TestBed.inject(SnDrawerService);
     fixture.detectChanges();
   });
 

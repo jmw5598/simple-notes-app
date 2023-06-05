@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
-import { DrawerService, OverlayLoaderService } from '@sn/user/shared/components';
+import { OverlayLoaderService } from '@sn/user/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 import { TodoList } from '@sn/shared/models';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 
@@ -14,7 +15,7 @@ import { DEFAULT_SEARCH_TODOS_PAGE } from '@sn/user/core/defaults';
 describe('ViewTodosComponent', () => {
   let component: ViewTodosComponent;
   let fixture: ComponentFixture<ViewTodosComponent>;
-  let drawerService: DrawerService
+  let drawerService: SnDrawerService
 
   const mockTodoList: TodoList = {
     id: 123,
@@ -42,7 +43,7 @@ describe('ViewTodosComponent', () => {
           provide: Store,
           useValue: testStore
         },
-        DrawerService,
+        SnDrawerService,
         OverlayLoaderService
       ]
     })
@@ -52,7 +53,7 @@ describe('ViewTodosComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ViewTodosComponent);
     component = fixture.componentInstance;
-    drawerService = TestBed.inject(DrawerService);
+    drawerService = TestBed.inject(SnDrawerService);
     fixture.detectChanges();
   });
 

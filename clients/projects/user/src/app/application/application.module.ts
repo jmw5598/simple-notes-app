@@ -21,7 +21,6 @@ import { FlashcardsEffects } from './modules/flashcards/store/effects/flashcards
 import { TodoListsEffects } from './modules/todos/store/effects/todos.effects';
 
 import { CoreFramingModule } from '@sn/core/framing';
-import { SharedComponentsModule } from '@sn/shared/components';
 
 import { NgIconsModule } from '@ng-icons/core';
 
@@ -42,6 +41,8 @@ import {
   heroMagnifyingGlass,
   heroEye,
   heroEyeSlash, } from '@ng-icons/heroicons/outline';
+import { SnDrawerModule } from '@sn/drawer';
+import { SnToolbarModule } from '@sn/toolbar';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,6 @@ import {
   ],
   imports: [
     CoreFramingModule,
-    SharedComponentsModule,
     CommonModule,
     SharedModule,
     ApplicationRoutingModule,
@@ -86,7 +86,9 @@ import {
       heroMagnifyingGlass,
       heroEye,
       heroEyeSlash,
-    })
+    }),
+    SnDrawerModule,
+    SnToolbarModule,
   ],
   providers: [
     {

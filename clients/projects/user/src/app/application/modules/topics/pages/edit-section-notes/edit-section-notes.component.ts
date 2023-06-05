@@ -10,9 +10,10 @@ import { selectSelectedSection, selectUpdateSectionNotesResponseMessage } from '
 import { setSelectedSection, updateSectionNotes } from '../../store/actions';
 import { fadeAnimation } from '@sn/shared/animations';
 
-import { AbstractPageOverlayLoader, OverlayLoaderService, ToasterService, ToastType } from '@sn/shared/components';
 import { ResponseMessage, ResponseStatus, Section } from '@sn/shared/models';
 import { FormControl, FormGroup } from '@angular/forms';
+
+import { SnToasterService } from '@sn/toaster';
 
 @Component({
   selector: 'sn-user-edit-section-notes',
@@ -21,7 +22,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
-export class EditSectionNotesComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {
+export class EditSectionNotesComponent implements OnInit, OnDestroy {
   public section$: Observable<Section>;
   private _subscriptionSubject$: Subject<void>;
   private _sectionNoteChangeSubject$: Subject<string>;
@@ -37,10 +38,8 @@ export class EditSectionNotesComponent extends AbstractPageOverlayLoader impleme
     private _changeDetectorRef: ChangeDetectorRef,
     private _route: ActivatedRoute,
     private _store: Store<ISectionsState>,
-    protected _overlayLoaderService: OverlayLoaderService,
-    private _toasterService: ToasterService,
+    private _toasterService: SnToasterService,
   ) {
-    super(_overlayLoaderService);
     this._subscriptionSubject$ = new Subject<void>();
     this._sectionNoteChangeSubject$ = new Subject<string>();
   }

@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { DrawerService } from '@sn/user/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 import { FlashcardSet } from '@sn/shared/models';
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { MarkdownModule } from 'ngx-markdown';
@@ -46,7 +46,7 @@ describe('FlashcardSetUpdateComponent', () => {
           useValue: testStore
         },
         {
-          provide: DrawerService,
+          provide: SnDrawerService,
           useValue: testDrawerService
         }
       ]

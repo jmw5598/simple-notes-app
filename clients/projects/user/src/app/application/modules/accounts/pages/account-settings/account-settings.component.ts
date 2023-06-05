@@ -7,8 +7,6 @@ import { IAccountsState } from '../../store/reducers';
 import { Account, Profile } from '@sn/shared/models';
 import { selectAccountDetails, selectAccountProfile } from '../../store/selectors';
 
-import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
-
 @Component({
   selector: 'sn-user-account-settings',
   templateUrl: './account-settings.component.html',
@@ -16,7 +14,7 @@ import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/comp
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
-export class AccountSettingsComponent extends AbstractPageOverlayLoader implements AfterViewInit {  
+export class AccountSettingsComponent implements AfterViewInit {  
   public accountProfile$: Observable<Profile>;
   public accountDetails$: Observable<Account>;
 
@@ -26,23 +24,18 @@ export class AccountSettingsComponent extends AbstractPageOverlayLoader implemen
     private _router: Router,
     private _route: ActivatedRoute,
     private _store: Store<IAccountsState>,
-    protected _overlayLoaderService: OverlayLoaderService
-  ) {
-    super(_overlayLoaderService);
-  }
+  ) { }
 
   ngOnInit(): void {
     this._selectState();
   }
 
   ngAfterViewInit(): void {
-    super.ngAfterViewInit();
     this._handleActiveTabRestore();
   }
 
   public navigateTo(route: string): void {
     this.currentRoute = route;
-    console.log("this touer it ", route)
     this._router.navigateByUrl(`/accounts/settings/${route}`);
   }
 

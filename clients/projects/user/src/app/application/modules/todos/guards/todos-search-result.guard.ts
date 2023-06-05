@@ -11,14 +11,11 @@ import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 import * as fromSelectors from '../store/selectors';
 import * as fromActions from '../store/actions';
 
-import { OverlayLoaderService } from '@sn/shared/components';
-
 @Injectable({
   providedIn: 'root'
 })
 export class TodosSearchResultGuard implements CanActivate {
   constructor(
-    private _overlayLoaderService: OverlayLoaderService,
     private _store: Store<IApplicationState>
   ) {}
 
@@ -40,7 +37,6 @@ export class TodosSearchResultGuard implements CanActivate {
     return this._store.select(fromSelectors.selectSearchTodoListsResult).pipe(
       tap((page: Page<TodoList>) => {
         if (!page) {
-          this._overlayLoaderService.setLoadingState(true);
           this._store.dispatch(fromActions.searchTodoLists({
             search: search
           }))

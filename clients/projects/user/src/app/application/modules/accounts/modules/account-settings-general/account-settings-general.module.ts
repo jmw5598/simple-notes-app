@@ -9,6 +9,7 @@ import { AccountSettingsGeneralRoutingModule } from './account-settings-general-
 import { AccountSettingsGeneralComponent } from './pages/account-settings-general/account-settings-general.component';
 import { AccountDetailsDisplayComponent } from './components/account-details-display/account-details-display.component';
 import { AccountDetailsFormComponent } from './components/account-details-form/account-details-form.component';
+import { SnButtonsModule } from '@sn/button';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AccountDetailsFormComponent } from './components/account-details-form/a
     SharedModule,
     NgIconsModule.withIcons({
       heroPencil,
-    })
+    }),
+    SnButtonsModule,
   ]
 })
 export class AccountSettingsGeneralModule { }

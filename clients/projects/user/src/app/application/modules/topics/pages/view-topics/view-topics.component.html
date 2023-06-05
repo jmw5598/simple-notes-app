@@ -1,4 +1,4 @@
-<div *ngIf="!(isPageLoading$ | async) && (searchTopicsResult$ | async)" class="w-2/3 m-0 p-0 h-full" [@fadeAnimation]>
+<div *ngIf="(searchTopicsResult$ | async)" class="w-2/3 m-0 p-0 h-full" [@fadeAnimation]>
   <!-- Topics list -->
   <div class="border-r h-full" *ngIf="(searchTopicsResult$ | async) || []">
     <h4 class="m-0 px-4 py-3 border-b flex flex-row items-center justify-between">
@@ -11,13 +11,10 @@
             [isSearching]="isSearching"
             (onSearch)="onSearchTopics($event)">
         </sn-debounced-search>
-        <button 
-            (click)="onCreate()" 
-            role="button" 
-            class="flex items-center text-primary-500 text-xs px-4 py-2 border border-primary-500 rounded-full">
+        <sn-button snType="outline" (click)="onCreate()">
           <ng-icon name="heroDocument" size="1rem"></ng-icon>
           New
-        </button>
+        </sn-button>
       </span>
     </h4>
     <div class="block w-full border-b">

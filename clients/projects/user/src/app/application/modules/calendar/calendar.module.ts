@@ -14,11 +14,12 @@ import { CalendarEventCreateComponent } from '@sn/user/shared/components';
 import { CalendarTodoListViewComponent } from './components/calendar-todo-list-view/calendar-todo-list-view.component';
 import { CalendarEventCreateMenuComponent } from './components/calendar-event-create-menu/calendar-event-create-menu.component';
 
-import { SharedComponentsModule, DrawerService } from '@sn/shared/components';
-
 import { NgIconsModule } from '@ng-icons/core';
 import { heroXMark, heroMapPin, heroArrowLeft } from '@ng-icons/heroicons/outline';
 
+import { SnButtonsModule } from '@sn/button';
+import { SnAlertModule } from '@sn/alert';
+import { SnDrawerModule, SnDrawerService } from '@sn/drawer';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,6 @@ import { heroXMark, heroMapPin, heroArrowLeft } from '@ng-icons/heroicons/outlin
         CalendarEventCreateMenuComponent
     ],
     imports: [
-        SharedComponentsModule,
         CommonModule,
         CalendarRoutingModule,
         FullCalendarModule,
@@ -44,10 +44,13 @@ import { heroXMark, heroMapPin, heroArrowLeft } from '@ng-icons/heroicons/outlin
             heroXMark,
             heroMapPin,
             heroArrowLeft,
-        })
+        }),
+        SnButtonsModule,
+        SnAlertModule,
+        SnDrawerModule
     ],
     providers: [
-        DrawerService
-    ]
+        SnDrawerService
+    ],
 })
 export class CalendarModule { }

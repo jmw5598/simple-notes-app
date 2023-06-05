@@ -11,14 +11,11 @@ import { IApplicationState } from '../../../store/index';
 import { searchTopics } from '../store/actions';
 import { selectSearchTopicsResult } from '../store/selectors';
 
-import { OverlayLoaderService } from '@sn/shared/components';
-
 @Injectable({
   providedIn: 'root'
 })
 export class TopicsSearchResultGuard implements CanActivate {
   constructor(
-    private _overlayLoaderService: OverlayLoaderService,
     private _store: Store<IApplicationState>
   ) {}
 
@@ -40,7 +37,6 @@ export class TopicsSearchResultGuard implements CanActivate {
     return this._store.select(selectSearchTopicsResult).pipe(
       tap((page: Page<Topic>) => {
         if (!page) {
-          this._overlayLoaderService.setLoadingState(true);
           this._store.dispatch(searchTopics({
             search: search
           }))

@@ -9,8 +9,6 @@ import { TodosRoutingModule } from './todos-routing.module';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { TodoListEditComponent } from './components/todo-list-edit/todo-list-edit.component';
 
-import { SharedComponentsModule } from '@sn/shared/components';
-
 import { NgIconsModule } from '@ng-icons/core';
 import { 
     heroEye,
@@ -19,6 +17,11 @@ import {
     heroClock,
     heroDocument,
     heroCalendarDays } from '@ng-icons/heroicons/outline';
+import { SnButtonsModule } from '@sn/button';
+import { SnEmptyModule } from '@sn/empty';
+import { SnDrawerModule } from '@sn/drawer';
+import { SnPaginatorModule } from '@sn/paginator';
+import { SnDebounceSearchModule } from '@sn/debounce-search';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,6 @@ import {
     TodoListEditComponent
   ],
   imports: [
-    SharedComponentsModule,
     CommonModule,
     TodosRoutingModule,
     SharedModule,
@@ -41,6 +43,11 @@ import {
       heroDocument,
       heroCalendarDays,
     }),
+    SnButtonsModule,
+    SnEmptyModule,
+    SnDrawerModule,
+    SnPaginatorModule,
+    SnDebounceSearchModule,
   ]
 })
 export class TodosModule { }

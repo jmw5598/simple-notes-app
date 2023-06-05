@@ -1,4 +1,4 @@
-<div *ngIf="!(isPageLoading$ | async) && (recentTopics$ | async) && (todaysEvents$ | async)" class="flex flex-row h-full w-full" [@fadeAnimation]>
+<div *ngIf="(recentTopics$ | async) && (todaysEvents$ | async)" class="flex flex-row h-full w-full" [@fadeAnimation]>
   
   <!-- Todays Events Card -->
   <div class="grow basis-1 w-1/3 border-r">

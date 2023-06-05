@@ -10,7 +10,7 @@ import * as rolesActions from '@sn/admin/core/store/actions';
 import { buildRolesForm } from '../roles-form/roles-form.builder';
 import { showHide } from '@sn/shared/animations';
 import { tap } from 'rxjs/operators';
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 
 @Component({
   selector: 'sn-admin-roles-create',
@@ -25,7 +25,7 @@ export class RolesCreateComponent implements OnInit {
 
   constructor(
     private _store: Store<IRolesState>,
-    private _drawerService: DrawerService,
+    private _drawerService: SnDrawerService,
     private _formBuilder: UntypedFormBuilder
   ) { }
 

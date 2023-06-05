@@ -12,7 +12,7 @@ import { selectUpdateTopicResponseMessage } from '../../store/selectors';
 import { setUpdateTopicResponseMessage } from '../../store/actions';
 import { buildTopicFormGroup } from '@sn/user/shared/forms';
 
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 
 @Component({
   selector: 'sn-user-topic-update',
@@ -29,7 +29,7 @@ export class TopicUpdateComponent implements OnInit, OnDestroy {
   constructor(
     private _formBuilder: UntypedFormBuilder,
     private _store: Store<ITopicsState>,
-    private _drawerService: DrawerService
+    private _drawerService: SnDrawerService
   ) {
     this._subscriptionSubject = new Subject<void>();
   }

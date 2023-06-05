@@ -11,7 +11,7 @@ import * as flashcardSelectors from '@sn/user/application/modules/flashcards/sto
 import { debounce, debounceTime, filter, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 import { FlashcardSet } from '@sn/shared/models';
 
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 import { setFlashcardSetBuilder } from '@sn/user/application/modules/flashcards/store/actions';
 
 @Component({
@@ -29,7 +29,7 @@ export class FlashcardSetCreateComponent implements OnInit, OnDestroy {
   public responseMessage$: Observable<ResponseMessage>;
 
   constructor(
-    private _drawerService: DrawerService,
+    private _drawerService: SnDrawerService,
     private _formBuilder: UntypedFormBuilder,
     private _store: Store<IFlashcardsState>
   ) { }

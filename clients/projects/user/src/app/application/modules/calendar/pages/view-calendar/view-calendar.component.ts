@@ -15,8 +15,9 @@ import { TodoList } from '@sn/shared/models';
 import { CalendarTodoListViewComponent } from '../../components/calendar-todo-list-view/calendar-todo-list-view.component';
 import { CalendarEventCreateMenuComponent } from '../../components/calendar-event-create-menu/calendar-event-create-menu.component';
 
-import { DrawerService, OverlayLoaderService } from '@sn/shared/components';
 import { fadeAnimation } from '@sn/shared/animations';
+
+import { SnDrawerService } from '@sn/drawer';
 
 enum CalendarEventType {
   EVENT = 'calendarEvent',
@@ -28,7 +29,7 @@ enum CalendarEventType {
   templateUrl: './view-calendar.component.html',
   styleUrls: ['./view-calendar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DrawerService],
+  providers: [SnDrawerService],
   animations: [fadeAnimation]
 })
 export class ViewCalendarComponent implements OnInit, OnDestroy {
@@ -41,8 +42,7 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
 
   constructor(
     private _store: Store<ICalendarEventsState>,
-    private _drawerService: DrawerService,
-    private _overlayLoaderService: OverlayLoaderService
+    private _drawerService: SnDrawerService,
   ) {
     this._subscriptionSubject = new Subject<void>();
     this._configureCalendarOptions();
@@ -76,7 +76,6 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   } 
 
   public handleCalendarEventsFetch(info, success, error): void {
-    this._overlayLoaderService.setLoadingState(true);
     const startDate: Date = new Date(info.startStr);
     const endDate: Date = new Date(info.endStr);
     this._store.dispatch(calendarActions.setCurrentCalendarEvents({ events: null }));
@@ -89,7 +88,6 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
   }
 
   public handleCalendarTodoListsFetch(info, success, error): void {
-    this._overlayLoaderService.setLoadingState(true);
     const startDate: Date = new Date(info.startStr);
     const endDate: Date = new Date(info.endStr);
     this._store.dispatch(calendarActions.setCurrentCalendarTodoLists({ todoLists: null }));
@@ -230,7 +228,6 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
             events: renderableEvents,
             id: CalendarEventType.EVENT
           })
-          this._overlayLoaderService.setLoadingState(false);
         }
       });
   }
@@ -271,7 +268,6 @@ export class ViewCalendarComponent implements OnInit, OnDestroy {
             events: renderableEvents,
             id: CalendarEventType.TODO_LIST
           } as EventSourceInput)
-          this._overlayLoaderService.setLoadingState(false);
         }
       });
   }

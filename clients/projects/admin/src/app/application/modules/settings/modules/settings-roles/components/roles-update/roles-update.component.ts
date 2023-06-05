@@ -10,7 +10,7 @@ import * as rolesActions from '@sn/admin/core/store/actions';
 import { buildRolesForm } from '../roles-form/roles-form.builder';
 import { showHide } from '@sn/shared/animations';
 import { takeUntil, tap } from 'rxjs/operators';
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 
 @Component({
   selector: 'sn-admin-roles-update',
@@ -27,7 +27,7 @@ export class RolesUpdateComponent implements OnInit, OnDestroy {
 
   constructor(
     private _store: Store<IRolesState>,
-    private _drawerService: DrawerService,
+    private _drawerService: SnDrawerService,
     private _formBuilder: UntypedFormBuilder
   ) { }
 

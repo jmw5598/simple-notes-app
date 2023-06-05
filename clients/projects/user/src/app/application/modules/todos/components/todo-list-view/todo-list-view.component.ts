@@ -11,7 +11,7 @@ import { ITodosState } from '../../store/reducers';
 import * as todosSelectors from '../../store/selectors';
 import * as todosActions from '../../store/actions';
 
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 
 @Component({
   selector: 'sn-user-todo-list-view',
@@ -26,7 +26,7 @@ export class TodoListViewComponent implements OnInit {
 
   constructor(
     private _formBuilder: UntypedFormBuilder,
-    private _drawerService: DrawerService,
+    private _drawerService: SnDrawerService,
     private _store: Store<ITodosState>
   ) { }
 

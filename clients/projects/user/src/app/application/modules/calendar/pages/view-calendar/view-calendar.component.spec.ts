@@ -11,18 +11,14 @@ import { ViewCalendarComponent } from './view-calendar.component';
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { getCalendarEventsBetweenDates, setCurrentCalendarDateRanges, setCurrentCalendarEvents } from '../../store/actions';
 import { CalendarEvent } from '@sn/shared/models';
-import { DrawerService } from '@sn/user/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 
-FullCalendarModule.registerPlugins([ // register FullCalendar plugins
-  dayGridPlugin,
-  interactionPlugin,
-  bootstrapPlugin
-]);
+
 
 describe('ViewCalendarComponent', () => {
   let component: ViewCalendarComponent;
   let fixture: ComponentFixture<ViewCalendarComponent>;
-  let drawerService: DrawerService;
+  let drawerService: SnDrawerService;
 
   const testStore = {
     _data: new BehaviorSubject<any>(null),
@@ -65,7 +61,7 @@ describe('ViewCalendarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ViewCalendarComponent);
     component = fixture.componentInstance;
-    drawerService = fixture.debugElement.injector.get(DrawerService) as any;
+    drawerService = fixture.debugElement.injector.get(SnDrawerService) as any;
     fixture.detectChanges();
   });
 

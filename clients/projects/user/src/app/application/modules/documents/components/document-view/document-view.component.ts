@@ -12,7 +12,7 @@ import * as FileSaver from 'file-saver';
 import { ResponseMessage } from '@sn/shared/models';
 
 import { fadeAnimation, showHide } from '@sn/shared/animations';
-import { SpinnerStyle } from '@sn/shared/components';
+import { SnSpinnerStyle } from '@sn/loading-spinner';
 
 @Component({
   selector: 'sn-user-document-view',
@@ -22,7 +22,7 @@ import { SpinnerStyle } from '@sn/shared/components';
   animations: [fadeAnimation, showHide]
 })
 export class DocumentViewComponent implements OnInit, OnDestroy {
-  public SpinnerStyle = SpinnerStyle;
+  public SnSpinnerStyle = SnSpinnerStyle;
   private _subscriptionSubject: Subject<void> = new Subject<void>();
   public documentMarkdown$: Observable<DocumentMarkdown>;
   public exportDocumentFile$: Observable<FileResponse>;

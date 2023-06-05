@@ -11,13 +11,15 @@ import { EffectsModule } from '@ngrx/effects';
 import { AccountsEffects } from './modules/accounts/store/effects';
 
 import { CoreFramingModule } from '@sn/core/framing';
-import { SharedComponentsModule } from '@sn/shared/components';
 
 import { NgIconsModule } from '@ng-icons/core';
 import {
   heroUserPlus,
   heroArrowSmallLeft,
   heroArrowSmallRight } from '@ng-icons/heroicons/outline';
+  
+import { SnDrawerModule } from '@sn/drawer';
+import { SnToolbarModule } from '@sn/toolbar';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,6 @@ import {
   ],
   imports: [
     CoreFramingModule,
-    SharedComponentsModule,
     ApplicationRoutingModule,
     CommonModule,
     StoreModule.forFeature(applicationFeatureKey, applicationReducer),
@@ -37,7 +38,9 @@ import {
       heroUserPlus,
       heroArrowSmallLeft,
       heroArrowSmallRight,
-    })
+    }),
+    SnDrawerModule,
+    SnToolbarModule,
   ],
   providers:  [
     {

@@ -12,19 +12,20 @@ import { Page, IPageable } from '@sn/shared/models';
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/user/core/defaults';
 import { TopicCreateComponent } from '@sn/user/shared/components';
 
-import { DrawerService, DrawerLocation, AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
 import { PageableSearch, ResponseMessage, Topic, ResponseStatus } from '@sn/shared/models';
+
+import { SnDrawerService, SnDrawerLocation } from '@sn/drawer';
 
 @Component({
   selector: 'sn-user-view-topics',
   templateUrl: './view-topics.component.html',
   styleUrls: ['./view-topics.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DrawerService],
+  providers: [SnDrawerService],
   animations: [fadeAnimation]
 })
-export class ViewTopicsComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {
-  public DrawerLocation = DrawerLocation;
+export class ViewTopicsComponent implements OnInit, OnDestroy {
+  public DrawerLocation = SnDrawerLocation;
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_TOPICS_PAGE;
   private _subscriptionSubject: Subject<void>;
   public topics$: Observable<Topic[]>;
@@ -35,10 +36,8 @@ export class ViewTopicsComponent extends AbstractPageOverlayLoader implements On
 
   constructor(
     private _store: Store<ITopicsState>,
-    private _drawerService: DrawerService,
-    protected _overlayLoaderService: OverlayLoaderService
+    private _drawerService: SnDrawerService,
   ) {
-    super(_overlayLoaderService);
     this._subscriptionSubject = new Subject<void>();
   }
 

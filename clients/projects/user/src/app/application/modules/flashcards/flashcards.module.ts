@@ -10,8 +10,6 @@ import { FlashcardSetViewComponent } from './components/flashcard-set-view/flash
 import { FlashcardSetUpdateComponent } from './components/flashcard-set-update/flashcard-set-update.component';
 import { MarkdownModule } from 'ngx-markdown';
 
-import { SharedComponentsModule } from '@sn/shared/components';
-
 import { NgIconsModule } from '@ng-icons/core';
 import { 
     heroEye,
@@ -19,6 +17,14 @@ import {
     heroPencil,
     heroClock,
     heroDocument, } from '@ng-icons/heroicons/outline';
+    
+import { SnButtonsModule } from '@sn/button';
+import { SnAlertModule } from '@sn/alert';
+import { SnEmptyModule } from '@sn/empty';
+import { SnDrawerModule } from '@sn/drawer';
+import { SnOverlayContentModule } from '@sn/overlay-content';
+import { SnPaginatorModule } from '@sn/paginator';
+import { SnDebounceSearchModule } from '@sn/debounce-search';
 
 @NgModule({
     declarations: [
@@ -28,7 +34,6 @@ import {
         FlashcardSetUpdateComponent
     ],
     imports: [
-        SharedComponentsModule,
         CommonModule,
         SharedModule,
         FlashcardsRoutingModule,
@@ -41,6 +46,13 @@ import {
             heroClock,
             heroDocument,
         }),
+        SnButtonsModule,
+        SnAlertModule,
+        SnEmptyModule,
+        SnDrawerModule,
+        SnOverlayContentModule,
+        SnPaginatorModule,
+        SnDebounceSearchModule,
     ]
 })
 export class FlashcardsModule { }

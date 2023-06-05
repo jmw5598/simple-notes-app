@@ -6,13 +6,13 @@ import { BehaviorSubject, of } from 'rxjs';
 
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { TopicDetailsComponent } from './topic-details.component';
-import { DrawerService } from '@sn/user/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('TopicDetailsComponent', () => {
   let component: TopicDetailsComponent;
   let fixture: ComponentFixture<TopicDetailsComponent>;
-  let drawerService: DrawerService;
+  let drawerService: SnDrawerService;
 
   const mockSection = {
     id: 2 ,
@@ -52,7 +52,7 @@ describe('TopicDetailsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TopicDetailsComponent);
     component = fixture.componentInstance;
-    drawerService = fixture.debugElement.injector.get(DrawerService) as any;
+    drawerService = fixture.debugElement.injector.get(SnDrawerService) as any;
     fixture.detectChanges();
   });
 

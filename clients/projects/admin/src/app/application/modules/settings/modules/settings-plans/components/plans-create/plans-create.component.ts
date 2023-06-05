@@ -10,7 +10,7 @@ import { Plan, ResponseMessage } from '@sn/shared/models';
 import * as plansSelectors from '@sn/admin/core/store/selectors';
 import * as plansActions from '@sn/admin/core/store/actions';
 import { buildPlansForm } from '../plans-form/plans-form.builder';
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 import { tap } from 'rxjs/operators';
 
 @Component({
@@ -26,7 +26,7 @@ export class PlansCreateComponent implements OnInit {
 
   constructor(
     private _store: Store<IRolesState>,
-    private _drawerService: DrawerService,
+    private _drawerService: SnDrawerService,
     private _formBuilder: UntypedFormBuilder
   ) { }
 

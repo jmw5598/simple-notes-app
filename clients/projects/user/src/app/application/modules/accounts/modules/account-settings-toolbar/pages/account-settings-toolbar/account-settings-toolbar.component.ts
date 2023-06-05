@@ -8,23 +8,23 @@ import { selectKeyboardShortcuts } from '@sn/user/application/store/selectors';
 import { deleteKeyboardShortcut, setKeyboardShortcutResponseMessage } from '@sn/user/application/store/actions';
 import { ConfigureKeyboardShortcutComponent } from '../../components/configure-keyboard-shortcut/configure-keyboard-shortcut.component';
 
-import { DrawerService, DrawerLocation } from '@sn/shared/components';
+import { SnDrawerService, SnDrawerLocation } from '@sn/drawer';
 
 @Component({
   selector: 'sn-user-account-settings-toolbar',
   templateUrl: './account-settings-toolbar.component.html',
   styleUrls: ['./account-settings-toolbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DrawerService],
+  providers: [SnDrawerService],
   animations: [fadeAnimation]
 })
 export class AccountSettingsToolbarComponent implements OnInit {
-  public DrawerLocation = DrawerLocation;
+  public DrawerLocation = SnDrawerLocation;
   public shortcuts$: Observable<KeyboardShortcutAction[]>;
 
   constructor(
     private _store: Store<IToolbarState>,
-    private _drawerService: DrawerService
+    private _drawerService: SnDrawerService
   ) { }
 
   ngOnInit(): void {

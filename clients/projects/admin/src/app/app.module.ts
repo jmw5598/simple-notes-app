@@ -10,7 +10,6 @@ import { environment } from '@sn/admin/env/environment';
 
 import { CoreFramingModule } from '@sn/core/framing';
 import { CoreServicesModule, CoreServicesConfiguration } from '@sn/core/services';
-import { SharedComponentsModule } from '@sn/shared/components';
 import { StoreModule } from '@ngrx/store';
 
 import { ROOT_REDUCERS, metaReducers } from './store/reducers';
@@ -20,6 +19,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CoreModule } from './core/core.module';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { HttpErrorEffects, PlansEffects, RolesEffects } from './core/store/effects';
+import { SnToasterModule } from '@sn/toaster';
 
 const coreServicesConfiguration: CoreServicesConfiguration = {
   ...environment
@@ -33,7 +33,6 @@ const coreServicesConfiguration: CoreServicesConfiguration = {
     CoreModule,
     CoreFramingModule.forRoot(),
     CoreServicesModule.forRoot(coreServicesConfiguration),
-    SharedComponentsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     BrowserModule,
@@ -62,6 +61,7 @@ const coreServicesConfiguration: CoreServicesConfiguration = {
       cancelButtonType: 'btn-default btn-sm bg-secondary',
       confirmButtonType: 'btn-primary btn-sm bg-primary text-light'
     }),
+    SnToasterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

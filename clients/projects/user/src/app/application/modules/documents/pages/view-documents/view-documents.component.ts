@@ -13,21 +13,22 @@ import * as documentSelectors from '../../store/selectors';
 import { DocumentViewComponent } from '../../components/document-view/document-view.component';
 
 import { fadeAnimation } from '@sn/shared/animations';
-import { DrawerService, DrawerLocation, DrawerSize, OverlayLoaderService, AbstractPageOverlayLoader } from '@sn/shared/components';
 import { IPageable, Page, PageableSearch, Document } from '@sn/shared/models';
+
+import { SnDrawerService, SnDrawerLocation, SnDrawerSize } from '@sn/drawer';
 
 @Component({
   selector: 'sn-user-view-documents',
   templateUrl: './view-documents.component.html',
   styleUrls: ['./view-documents.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DrawerService],
+  providers: [SnDrawerService],
   animations: [fadeAnimation]
 })
-export class ViewDocumentsComponent extends AbstractPageOverlayLoader implements OnInit, OnDestroy {
+export class ViewDocumentsComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<void> = new Subject<void>();
   private readonly DEFAULT_PAGE: IPageable = DEFAULT_SEARCH_DOCUMENTS_PAGE;
-  public DrawerLocation = DrawerLocation;
+  public DrawerLocation = SnDrawerLocation;
   public searchDocumentsResult$: Observable<Page<Document>>
 
   public searchTerm: string = '';
@@ -35,11 +36,8 @@ export class ViewDocumentsComponent extends AbstractPageOverlayLoader implements
 
   constructor(
     private _store: Store<IDocumentsState>,
-    private _drawerService: DrawerService,
-    protected _overlayLoaderService: OverlayLoaderService
-  ) {
-    super(_overlayLoaderService);
-  }
+    private _drawerService: SnDrawerService,
+  ) { }
 
   ngOnInit(): void {
     this._selectState();
@@ -62,7 +60,7 @@ export class ViewDocumentsComponent extends AbstractPageOverlayLoader implements
   public onEdit(document: Document): void {
     this._store.dispatch(documentActions.getDocumentById({ documentId: document.id }));
     this._drawerService.show(DocumentUpdateComponent, {
-      size: DrawerSize.LARGE,
+      size: SnDrawerSize.LARGE,
       data: document 
     });
   }
@@ -70,14 +68,14 @@ export class ViewDocumentsComponent extends AbstractPageOverlayLoader implements
   public onView(document: Document): void {
     this._store.dispatch(documentActions.getDocumentMarkdownPreviewById({ documentId: document.id }));
     this._drawerService.show(DocumentViewComponent, {
-      size: DrawerSize.MEDIUM,
+      size: SnDrawerSize.MEDIUM,
       data: document 
     });
   }
 
   public onCreate(): void {
     this._drawerService.show(DocumentCreateComponent, {
-      size: DrawerSize.LARGE
+      size: SnDrawerSize.LARGE
     });
   }
 

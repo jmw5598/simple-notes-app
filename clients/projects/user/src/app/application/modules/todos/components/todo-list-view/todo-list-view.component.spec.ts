@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { DrawerService } from '@sn/user/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 import { TodoList } from '@sn/shared/models';
 import { SharedModule } from '@sn/user/shared/shared.module';
 import { BehaviorSubject, of } from 'rxjs';
@@ -46,7 +46,7 @@ describe('TodoListViewComponent', () => {
           useValue: testStore
         },
         {
-          provide: DrawerService,
+          provide: SnDrawerService,
           useValue: testDrawerService
         }
       ]

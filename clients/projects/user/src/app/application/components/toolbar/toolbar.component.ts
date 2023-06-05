@@ -16,7 +16,7 @@ import {
   DocumentCreateComponent } from '@sn/user/shared/components';
 import { TodoListCreateComponent } from '@sn/user/shared/components/todo-list-create/todo-list-create.component';
 
-import { DrawerService, DrawerLocation, DrawerSize } from '@sn/shared/components';
+import { SnDrawerService, SnDrawerLocation, SnDrawerSize } from '@sn/drawer';
 import { KeyboardShortcutActionType } from '@sn/shared/models';
 
 @Component({
@@ -24,19 +24,19 @@ import { KeyboardShortcutActionType } from '@sn/shared/models';
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DrawerService]
+  providers: [SnDrawerService]
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
   private _subscriptionSubject: Subject<void>;
   public tooltipDelay: number = 500;
   public drawerCloseTimeoutBeforeOpen: number = 500;
   public shortcuts: ShortcutInput[] = [];
-  public DrawerLocation = DrawerLocation;
+  public DrawerLocation = SnDrawerLocation;
   private _isDrawerVisible: boolean;
 
   constructor(
     private _store: Store<IToolbarState>,
-    private _drawerService: DrawerService
+    private _drawerService: SnDrawerService
   ) {
     this._subscriptionSubject = new Subject<void>();
   }
@@ -74,11 +74,11 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     if (this._isDrawerVisible) {
       this._drawerService.close();
       setTimeout(() => 
-        this._drawerService.show(DocumentCreateComponent, { size: DrawerSize.LARGE }),
+        this._drawerService.show(DocumentCreateComponent, { size: SnDrawerSize.LARGE }),
         this.drawerCloseTimeoutBeforeOpen
       );
     } else {
-      this._drawerService.show(DocumentCreateComponent, { size: DrawerSize.LARGE });
+      this._drawerService.show(DocumentCreateComponent, { size: SnDrawerSize.LARGE });
     }
   }
 
@@ -106,11 +106,11 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     if (this._isDrawerVisible) {
       this._drawerService.close();
       setTimeout(() => 
-        this._drawerService.show(FlashcardSetCreateComponent, { size: DrawerSize.LARGE }),
+        this._drawerService.show(FlashcardSetCreateComponent, { size: SnDrawerSize.LARGE }),
         this.drawerCloseTimeoutBeforeOpen  
       );
     } else {
-      this._drawerService.show(FlashcardSetCreateComponent, { size: DrawerSize.LARGE });
+      this._drawerService.show(FlashcardSetCreateComponent, { size: SnDrawerSize.LARGE });
     }
   }
 

@@ -17,27 +17,24 @@
         <h5 class="text-primary-500 p-0 m-0 mb-2">
           <a class="hover:text-primary-700" [routerLink]="['../sections', section.id, 'editor']">{{ section.title }}</a>
         </h5>
-        <div class="action-buttons">
-          <button 
-              role="button" 
-              class="text-primary-500 hover:text-primary-700 transition-colors mr-1" 
+        <div class="flex flex-row gap-1 items-center">
+          <sn-button 
+              snType="blank" 
               [routerLink]="['../sections', section.id, 'editor']">
             <ng-icon name="heroPencil" size="1rem"></ng-icon>
-          </button>
-          <button 
-              role="button" 
-              class="text-primary-500 hover:text-primary-700 transition-colors mr-1" 
+          </sn-button>
+          <sn-button 
+              snType="blank"
               (click)="edit(section)">
             <ng-icon name="heroEye" size="1rem"></ng-icon>
-          </button>
-          <button 
+          </sn-button>
+          <sn-button 
+              snType="blank"
               mwlConfirmationPopover
               placement="left"
-              (confirm)="delete(section.id)"
-              role="button" 
-              class="text-primary-500 hover:text-primary-700 transition-colors mr-3">
+              (confirm)="delete(section.id)">
             <ng-icon name="heroTrash" size="1rem"></ng-icon>
-          </button>
+          </sn-button>
         </div>
       </div>
       <p class="list-details-description text-gray-600 italic text-xs p-0 m-0">{{ section.synopsis }}</p>

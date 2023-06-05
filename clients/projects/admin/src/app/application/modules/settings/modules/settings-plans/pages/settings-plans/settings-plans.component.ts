@@ -8,7 +8,7 @@ import * as plansSelectors from '@sn/admin/core/store/selectors';
 import * as plansActions from '@sn/admin/core/store/actions';
 import { PlansUpdateComponent } from '../../components/plans-update/plans-update.component';
 import { PlansCreateComponent } from '../../components/plans-create/plans-create.component';
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 import { fadeAnimation } from '@sn/shared/animations';
 
 @Component({
@@ -23,7 +23,7 @@ export class SettingsPlansComponent implements OnInit {
 
   constructor(
     private _store: Store<IAppState>,
-    private _drawerService: DrawerService
+    private _drawerService: SnDrawerService
   ) { }
 
   ngOnInit(): void {

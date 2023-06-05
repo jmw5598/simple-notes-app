@@ -2,12 +2,16 @@
   <div class="col-sm-12 px-4">
     <h3 class="font-weight-bold text-primary text-right mb-3">Create Account</h3>
     <hr />
-    <!-- Feedback Message -->
-    <div *ngIf="(responseMessage$ | async)" [@showHide] class="alert alert-success">
-      <span>
-        <strong>{{ (responseMessage$ | async).status | uppercase }}</strong>: {{ (responseMessage$ | async).message }}
-      </span>
-    </div>
+    
+    <!-- Response Message -->
+    <ng-container *ngIf="(responseMessage$ | async) as responseMessage">
+      <sn-alert
+          [@showHide]
+          snType="info"
+          snTitle="responseMessage.status"
+          snMessage="responseMessage.message">
+      </sn-alert>
+    </ng-container>
 
     <!-- Account Form -->
     <form (ngSubmit)="submit(form.value)" [formGroup]="form" novalidate>

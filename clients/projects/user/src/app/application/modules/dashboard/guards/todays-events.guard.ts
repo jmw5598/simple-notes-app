@@ -8,14 +8,11 @@ import { ICalendarEventsState } from '../../calendar/store/reducers';
 import { getTodaysCalendarEvents } from '../store/actions';
 import { selectTodaysEvents } from '../store/selectors';
 
-import { OverlayLoaderService } from '@sn/shared/components';
-
 @Injectable({
   providedIn: 'root'
 })
 export class TodaysEventsGuard implements CanActivate {
   constructor(
-    private _overlayLoaderService: OverlayLoaderService,
     private _store: Store<ICalendarEventsState>
   ) {}
 
@@ -32,7 +29,6 @@ export class TodaysEventsGuard implements CanActivate {
     return this._store.select(selectTodaysEvents).pipe(
       tap((events: CalendarEvent[]) => {
         if (!events) {
-          this._overlayLoaderService.setLoadingState(true);
           this._store.dispatch(getTodaysCalendarEvents());
         }
       }),

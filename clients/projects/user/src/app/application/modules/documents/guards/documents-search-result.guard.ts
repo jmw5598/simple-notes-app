@@ -10,14 +10,11 @@ import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 import { selectSearchDocumentsResult } from '../store/selectors';
 import { searchDocuments } from '../store/actions';
 
-import { OverlayLoaderService } from '@sn/shared/components';
-
 @Injectable({
   providedIn: 'root'
 })
 export class DocumentsSearchResultGuard implements CanActivate {
   constructor(
-    private _overlayLoaderService: OverlayLoaderService,
     private _store: Store<IDocumentsState>
   ) {}
 
@@ -40,7 +37,6 @@ export class DocumentsSearchResultGuard implements CanActivate {
     return this._store.select(selectSearchDocumentsResult).pipe(
       tap((page: Page<Document>) => {
         if (!page) {
-          this._overlayLoaderService.setLoadingState(true);
           this._store.dispatch(searchDocuments({ search: search }))
         }
       }),

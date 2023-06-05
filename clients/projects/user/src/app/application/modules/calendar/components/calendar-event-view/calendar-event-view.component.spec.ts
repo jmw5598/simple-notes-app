@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { DrawerService } from '@sn/user/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 
 import { SharedModule } from '@sn/user/shared/shared.module'
 import { EMPTY, Observable, of } from 'rxjs';
@@ -56,7 +56,7 @@ describe('CalendarEventViewComponent', () => {
           useValue: testStore
         },
         {
-          provide: DrawerService,
+          provide: SnDrawerService,
           useValue: testDrawerService
         }
       ]

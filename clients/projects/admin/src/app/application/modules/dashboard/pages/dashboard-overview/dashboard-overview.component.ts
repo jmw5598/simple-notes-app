@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { fadeAnimation } from '@sn/shared/animations';
-import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/components';
 
 @Component({
   selector: 'sn-admin-dashboard-overview',
@@ -10,11 +9,4 @@ import { AbstractPageOverlayLoader, OverlayLoaderService } from '@sn/shared/comp
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
-export class DashboardOverviewComponent extends AbstractPageOverlayLoader {
-
-  constructor(
-    protected _overlayLoaderService: OverlayLoaderService
-  ) {
-    super(_overlayLoaderService);
-  }
-}
+export class DashboardOverviewComponent { }

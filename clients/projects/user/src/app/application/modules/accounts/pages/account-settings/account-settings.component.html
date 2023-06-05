@@ -1,4 +1,4 @@
-<div *ngIf="!(isPageLoading$ | async) && (accountProfile$ | async) && (accountDetails$ | async)" [@fadeAnimation] class="flex flex-row h-full">
+<div *ngIf="(accountProfile$ | async) && (accountDetails$ | async)" [@fadeAnimation] class="flex flex-row h-full">
   <!-- Column Left -->
   <div class="w-5/12 border-r">
     <h4 class="p-4 border-b font-bold text-primary-500 text-xl">Account Details</h4>

@@ -7,13 +7,13 @@ import { ToolbarKeyboardShortcutListComponent } from '../../components/toolbar-k
 
 import { AccountSettingsToolbarComponent } from './account-settings-toolbar.component';
 
-import { DrawerService } from '@sn/shared/components';
+import { SnDrawerService } from '@sn/drawer';
 import { KeyboardShortcutAction, KeyboardShortcutActionType } from '@sn/shared/models';
 
 describe('AccountSettingsToolbarComponent', () => {
   let component: AccountSettingsToolbarComponent;
   let fixture: ComponentFixture<AccountSettingsToolbarComponent>;
-  let testDrawerService: DrawerService;
+  let testDrawerService: SnDrawerService;
 
   const testStore = {
     select(selector: any) {},
@@ -40,7 +40,7 @@ describe('AccountSettingsToolbarComponent', () => {
         ToolbarKeyboardShortcutListComponent
       ],
       providers: [
-        DrawerService,
+        SnDrawerService,
         {
           provide: Store,
           useValue: testStore
@@ -55,7 +55,7 @@ describe('AccountSettingsToolbarComponent', () => {
     component = fixture.componentInstance;
     component.ngOnInit();
     fixture.detectChanges();
-    testDrawerService = TestBed.inject(DrawerService);
+    testDrawerService = TestBed.inject(SnDrawerService);
     jasmine.clock().install();
   });
 

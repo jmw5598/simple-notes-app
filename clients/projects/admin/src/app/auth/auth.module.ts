@@ -11,7 +11,7 @@ import { AuthMarketingComponent } from './components/auth-marketing/auth-marketi
 
 import { AuthRoutingModule } from './auth-routing.module';
 
-import { SharedComponentsModule } from '@sn/shared/components';
+import { SnLoadingSpinnerModule } from 'projects/@sn/loading-spinner/src/public-api';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { SharedComponentsModule } from '@sn/shared/components';
     FormsModule,
     ReactiveFormsModule,
     AuthRoutingModule,
-    SharedComponentsModule,
+    SnLoadingSpinnerModule,
   ]
 })
 export class AuthModule { }
