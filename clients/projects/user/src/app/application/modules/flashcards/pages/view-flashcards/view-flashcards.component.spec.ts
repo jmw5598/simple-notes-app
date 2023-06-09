@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { SnDrawerService } from '@sn/drawer';
 import { FlashcardSet } from '@sn/shared/models';
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { BehaviorSubject, of } from 'rxjs';
 
 import { ViewFlashcardsComponent } from './view-flashcards.component';
@@ -32,7 +31,6 @@ describe('ViewFlashcardsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        SharedModule
       ],
       declarations: [
         ViewFlashcardsComponent

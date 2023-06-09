@@ -3,7 +3,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { AppLoadingComponent } from '@sn/user/auth/components/app-loading/app-loading.component';
 import { logoutUser } from '@sn/user/auth/store/actions';
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { of } from 'rxjs';
 
 import { LogoutComponent } from './logout.component';
@@ -21,7 +20,6 @@ describe('LogoutComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        SharedModule
       ],
       declarations: [
         LogoutComponent,

@@ -9,7 +9,7 @@ import * as todosSelectors from '../../store/selectors';
 import * as todosActions from '../../store/actions';
 import { takeUntil, tap } from 'rxjs/operators';
 import { fadeAnimation } from '@sn/shared/animations';
-import { TodoListCreateComponent } from '@sn/user/shared/components/todo-list-create/todo-list-create.component';
+import { SnTodoListCreateComponent } from '@sn/user/shared/modules/todo-list-create';
 import { TodoListViewComponent } from '../../components/todo-list-view/todo-list-view.component';
 import { TodoListEditComponent } from '../../components/todo-list-edit/todo-list-edit.component';
 
@@ -47,7 +47,7 @@ export class ViewTodosComponent implements OnInit, OnDestroy {
   }
 
   public onCreate(): void {
-    this._drawerService.show(TodoListCreateComponent);
+    this._drawerService.show(SnTodoListCreateComponent);
   }
 
   public onDelete(todoListId: number): void {

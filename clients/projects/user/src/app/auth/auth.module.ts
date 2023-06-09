@@ -12,7 +12,6 @@ import { RegistrationProfileFormComponent } from './components/registration-prof
 import { RegistrationResultComponent } from './components/registration-result/registration-result.component';
 import { RegistrationUserFormComponent } from './components/registration-user-form/registration-user-form.component';
 import { LogoutComponent } from './pages/logout/logout.component';
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
 import { PasswordRequestComponent } from './pages/password-request/password-request.component';
 import { LoggingInComponent } from './pages/logging-in/logging-in.component';
@@ -21,6 +20,7 @@ import { AppLoadingComponent } from './components/app-loading/app-loading.compon
 import { SnButtonsModule } from '@sn/button';
 import { SnAlertModule } from '@sn/alert';
 import { SnLoadingSpinnerModule } from '@sn/loading-spinner';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -41,8 +41,8 @@ import { SnLoadingSpinnerModule } from '@sn/loading-spinner';
   ],
   imports: [
     AuthRoutingModule,
+    ReactiveFormsModule,
     CommonModule,
-    SharedModule,
     SnButtonsModule,
     SnAlertModule,
     SnLoadingSpinnerModule,

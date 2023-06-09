@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown'
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { DocumentsRoutingModule } from './documents-routing.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -33,6 +32,10 @@ import { SnPaginatorModule } from '@sn/paginator';
 import { SnDebounceSearchModule } from '@sn/debounce-search';
 import { SnLoadingSpinnerModule } from '@sn/loading-spinner';
 
+import { SnDocumentBuilderModule } from '@sn/user/shared/modules/document-builder';
+import { SnDocumentCreateModule } from '@sn/user/shared/modules/document-create';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
     declarations: [
         ViewDocumentsComponent,
@@ -42,9 +45,9 @@ import { SnLoadingSpinnerModule } from '@sn/loading-spinner';
     ],
     imports: [
         CommonModule,
+        ReactiveFormsModule,
         DragDropModule,
         DocumentsRoutingModule,
-        SharedModule,
         ConfirmationPopoverModule,
         MarkdownModule.forRoot(),
         NgIconsModule.withIcons({
@@ -64,6 +67,8 @@ import { SnLoadingSpinnerModule } from '@sn/loading-spinner';
         SnPaginatorModule,
         SnDebounceSearchModule,
         SnLoadingSpinnerModule,
+        SnDocumentBuilderModule,
+        SnDocumentCreateModule,
     ]
 })
 export class DocumentsModule { }

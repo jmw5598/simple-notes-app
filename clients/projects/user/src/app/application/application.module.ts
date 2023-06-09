@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { ApplicationRoutingModule } from './application-routing.module';
 import { ApplicationComponent } from './application.component';
 import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
@@ -44,6 +43,13 @@ import {
 import { SnDrawerModule } from '@sn/drawer';
 import { SnToolbarModule } from '@sn/toolbar';
 
+import { SnDocumentCreateModule } from '../shared/modules/document-create';
+import { SnFlashcardSetCreateModule } from '../shared/modules/flashcard-set-create';
+import { SnCalendarEventCreateModule } from '../shared/modules/calendar-event-create';
+import { SnTopicSearchModule } from '../shared/modules/topic-search';
+import { SnTopicCreateModule } from '../shared/modules/topic-create';
+import { SnTodoListCreateModule } from '../shared/modules/todo-list-create';
+
 @NgModule({
   declarations: [
     ApplicationComponent,
@@ -52,7 +58,6 @@ import { SnToolbarModule } from '@sn/toolbar';
   imports: [
     CoreFramingModule,
     CommonModule,
-    SharedModule,
     ApplicationRoutingModule,
     StoreModule.forFeature(applicationFeatureKey, applicationReducer),
     EffectsModule.forFeature([
@@ -89,6 +94,12 @@ import { SnToolbarModule } from '@sn/toolbar';
     }),
     SnDrawerModule,
     SnToolbarModule,
+    SnDocumentCreateModule,
+    SnFlashcardSetCreateModule,
+    SnCalendarEventCreateModule,
+    SnTopicSearchModule,
+    SnTopicCreateModule,
+    SnTodoListCreateModule,
   ],
   providers: [
     {

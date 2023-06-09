@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import { createKeyboardShortcut, deleteKeyboardShortcut, updateKeyboardShortcut } from '@sn/user/application/store/actions';
 import { KeyboardShortcutActionType } from '@sn/user/core/enums';
 import { KeyboardShortcutAction } from '@sn/shared/models';
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { of } from 'rxjs';
 
 import { ConfigureKeyboardShortcutComponent } from './configure-keyboard-shortcut.component';
@@ -36,7 +35,6 @@ describe('ConfigureKeyboardShortcutComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
-        SharedModule
       ],
       declarations: [
         ConfigureKeyboardShortcutComponent

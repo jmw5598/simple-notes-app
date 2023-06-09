@@ -3,7 +3,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { SnDrawerService } from '@sn/drawer';
 
-import { SharedModule } from '@sn/user/shared/shared.module'
 import { EMPTY, Observable, of } from 'rxjs';
 import { CalendarEventViewComponent } from './calendar-event-view.component';
 import { CalendarEventDetailsComponent } from '../calendar-event-details/calendar-event-details.component';
@@ -44,7 +43,6 @@ describe('CalendarEventViewComponent', () => {
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        SharedModule
       ],
       declarations: [
         CalendarEventViewComponent,

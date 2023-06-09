@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ResponseMessage } from '@sn/shared/models';
-import { buildTodoListFormGroup } from '@sn/user/shared/forms';
+import { buildTodoListFormGroup } from '@sn/user/shared/modules/todo-list-create';
 import { Todo, TodoList } from '@sn/shared/models';
 import { Observable } from 'rxjs';
 import { ITodosState } from '../../store/reducers';

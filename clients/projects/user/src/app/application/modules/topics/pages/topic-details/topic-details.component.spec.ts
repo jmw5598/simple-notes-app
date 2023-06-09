@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import { Section, Topic } from '@sn/shared/models';
 import { BehaviorSubject, of } from 'rxjs';
 
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { TopicDetailsComponent } from './topic-details.component';
 import { SnDrawerService } from '@sn/drawer';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -35,7 +34,6 @@ describe('TopicDetailsComponent', () => {
       imports: [
         NoopAnimationsModule,
         RouterTestingModule,
-        SharedModule
       ], declarations: [
         TopicDetailsComponent
       ],

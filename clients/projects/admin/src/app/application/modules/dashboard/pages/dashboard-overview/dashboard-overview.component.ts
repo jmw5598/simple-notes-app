@@ -9,4 +9,17 @@ import { fadeAnimation } from '@sn/shared/animations';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeAnimation]
 })
-export class DashboardOverviewComponent { }
+export class DashboardOverviewComponent {
+  public account: any;
+  public edit(value: any): void {
+
+  }
+
+  public delete(value: any): void {
+    
+  }
+
+  public view(value: any): void {
+    
+  }
+}

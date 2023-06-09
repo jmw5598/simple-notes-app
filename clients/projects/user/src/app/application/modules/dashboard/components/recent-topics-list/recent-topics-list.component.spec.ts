@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { RecentTopicsListComponent } from './recent-topics-list.component';
 
 describe('RecentTopicsListComponent', () => {
@@ -12,7 +11,6 @@ describe('RecentTopicsListComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        SharedModule
       ],
       declarations: [
         RecentTopicsListComponent

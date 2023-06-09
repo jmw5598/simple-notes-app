@@ -10,7 +10,7 @@ import { showHide } from '@sn/shared/animations';
 import { ResponseMessage } from '@sn/shared/models';
 import { selectUpdateTopicResponseMessage } from '../../store/selectors';
 import { setUpdateTopicResponseMessage } from '../../store/actions';
-import { buildTopicFormGroup } from '@sn/user/shared/forms';
+import { buildTopicFormGroup } from '@sn/user/shared/modules/topic-create';
 
 import { SnDrawerService } from '@sn/drawer';
 

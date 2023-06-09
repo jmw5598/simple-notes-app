@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { IDocumentsState } from '../../store/reducers/documents.reducers'
 import { DEFAULT_SEARCH_DOCUMENTS_PAGE } from '@sn/user/core/defaults';
 import { takeUntil, tap } from 'rxjs/operators';
-import { DocumentCreateComponent } from '@sn/user/shared/components';
+import { SnDocumentCreateComponent } from '@sn/user/shared/modules/document-create';
 import { DocumentUpdateComponent } from '../../components/document-update/document-update.component';
 
 import * as documentActions from '../../store/actions';
@@ -74,7 +74,7 @@ export class ViewDocumentsComponent implements OnInit, OnDestroy {
   }
 
   public onCreate(): void {
-    this._drawerService.show(DocumentCreateComponent, {
+    this._drawerService.show(SnDocumentCreateComponent, {
       size: SnDrawerSize.LARGE
     });
   }

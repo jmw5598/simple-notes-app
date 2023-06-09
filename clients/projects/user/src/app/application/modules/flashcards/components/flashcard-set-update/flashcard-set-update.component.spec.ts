@@ -3,7 +3,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { SnDrawerService } from '@sn/drawer';
 import { FlashcardSet } from '@sn/shared/models';
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { MarkdownModule } from 'ngx-markdown';
 import { BehaviorSubject, of } from 'rxjs';
 
@@ -34,7 +33,6 @@ describe('FlashcardSetUpdateComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
-        SharedModule,
         MarkdownModule.forRoot()
       ],
       declarations: [

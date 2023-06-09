@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Section } from '@sn/shared/models';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { SectionListComponent } from './section-list.component';
 
 describe('SectionListComponent', () => {
@@ -19,7 +18,6 @@ describe('SectionListComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        SharedModule
       ],
       declarations: [SectionListComponent]
     })

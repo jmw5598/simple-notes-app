@@ -6,7 +6,6 @@ import { IPageable, PageableSearch } from '@sn/shared/models';
 import { of } from 'rxjs';
 import { deleteTopic, searchTopics } from '../../store/actions';
 
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { TopicListComponent } from '../../components/topic-list/topic-list.component';
 import { ViewTopicsComponent } from './view-topics.component';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -27,7 +26,6 @@ describe('ViewTopicsComponent', () => {
       imports: [
         NoopAnimationsModule,
         RouterTestingModule,
-        SharedModule
       ],
       declarations: [
         ViewTopicsComponent,

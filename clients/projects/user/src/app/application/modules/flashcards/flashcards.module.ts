@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { FlashcardsRoutingModule } from './flashcards-routing.module';
 import { ViewFlashcardsComponent } from './pages/view-flashcards/view-flashcards.component';
@@ -25,6 +24,10 @@ import { SnDrawerModule } from '@sn/drawer';
 import { SnOverlayContentModule } from '@sn/overlay-content';
 import { SnPaginatorModule } from '@sn/paginator';
 import { SnDebounceSearchModule } from '@sn/debounce-search';
+import { SnFlashcardSetViewerModule } from '@sn/user/shared/modules/flashcard-set-viewer';
+import { SnFlashcardSetBuilderModule } from '@sn/user/shared/modules/flashcard-set-builder';
+import { SnFlashcardSetCreateModule } from '@sn/user/shared/modules/flashcard-set-create';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -35,7 +38,7 @@ import { SnDebounceSearchModule } from '@sn/debounce-search';
     ],
     imports: [
         CommonModule,
-        SharedModule,
+        ReactiveFormsModule,
         FlashcardsRoutingModule,
         ConfirmationPopoverModule,
         MarkdownModule.forRoot(),
@@ -53,6 +56,9 @@ import { SnDebounceSearchModule } from '@sn/debounce-search';
         SnOverlayContentModule,
         SnPaginatorModule,
         SnDebounceSearchModule,
+        SnFlashcardSetViewerModule,
+        SnFlashcardSetBuilderModule,
+        SnFlashcardSetCreateModule,
     ]
 })
 export class FlashcardsModule { }

@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FlashcardSet } from '@sn/shared/models';
-import { SharedModule } from '@sn/user/shared/shared.module';
 
 import { FlashcardListComponent } from './flashcard-list.component';
 
@@ -16,7 +15,6 @@ describe('FlashcardListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        SharedModule
       ],
       declarations: [
         FlashcardListComponent

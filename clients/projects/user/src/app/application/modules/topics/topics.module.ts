@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { MarkdownModule } from 'ngx-markdown';
@@ -30,6 +29,8 @@ import { SnDrawerModule } from '@sn/drawer';
 import { SnPaginatorModule } from '@sn/paginator';
 import { SnDebounceSearchModule } from '@sn/debounce-search';
 import { SnMarkdownModule } from '@sn/markdown';
+import { SnTopicCreateModule } from '@sn/user/shared/modules/topic-create';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { SnMarkdownModule } from '@sn/markdown';
     ],
     imports: [
         CommonModule,
-        SharedModule,
+        ReactiveFormsModule,
         TopicsRoutingModule,
         ConfirmationPopoverModule.forRoot({
             popoverMessage: 'Are you sure?',
@@ -79,6 +80,7 @@ import { SnMarkdownModule } from '@sn/markdown';
         SnPaginatorModule,
         SnDebounceSearchModule,
         SnMarkdownModule,
+        SnTopicCreateModule,
     ]
 })
 export class TopicsModule { }

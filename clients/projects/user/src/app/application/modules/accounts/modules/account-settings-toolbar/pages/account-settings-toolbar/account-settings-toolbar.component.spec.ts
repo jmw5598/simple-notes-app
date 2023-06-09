@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { deleteKeyboardShortcut, setKeyboardShortcutResponseMessage } from '@sn/user/application/store/actions';
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { ToolbarKeyboardShortcutListComponent } from '../../components/toolbar-keyboard-shortcut-list/toolbar-keyboard-shortcut-list.component';
 
 import { AccountSettingsToolbarComponent } from './account-settings-toolbar.component';
@@ -33,7 +32,6 @@ describe('AccountSettingsToolbarComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        SharedModule
       ],
       declarations: [
         AccountSettingsToolbarComponent,

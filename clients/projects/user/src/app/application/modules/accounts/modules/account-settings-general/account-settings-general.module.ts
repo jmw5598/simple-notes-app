@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '@sn/user/shared/shared.module';
 
 import { NgIconsModule } from '@ng-icons/core';
 import { heroPencil } from '@ng-icons/heroicons/outline';
@@ -10,6 +9,7 @@ import { AccountSettingsGeneralComponent } from './pages/account-settings-genera
 import { AccountDetailsDisplayComponent } from './components/account-details-display/account-details-display.component';
 import { AccountDetailsFormComponent } from './components/account-details-form/account-details-form.component';
 import { SnButtonsModule } from '@sn/button';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,9 +19,9 @@ import { SnButtonsModule } from '@sn/button';
     AccountDetailsFormComponent
   ],
   imports: [
+    ReactiveFormsModule,
     AccountSettingsGeneralRoutingModule,
     CommonModule,
-    SharedModule,
     NgIconsModule.withIcons({
       heroPencil,
     }),

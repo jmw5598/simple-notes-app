@@ -3,7 +3,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { Topic } from '@sn/shared/models';
 
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { of } from 'rxjs';
 import { updateTopic } from '../../store/actions';
 import { TopicUpdateComponent } from './topic-update.component';
@@ -27,7 +26,6 @@ describe('TopicUpdateComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        SharedModule
       ],
       declarations: [
         TopicUpdateComponent

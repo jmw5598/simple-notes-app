@@ -10,7 +10,7 @@ import { selectTopics, selectSearchTopicsResult, selectCreateTopicResponseMessag
 import { deleteTopic, searchTopics, searchTopicsResult } from '../../store/actions';
 import { Page, IPageable } from '@sn/shared/models';
 import { DEFAULT_SEARCH_TOPICS_PAGE } from '@sn/user/core/defaults';
-import { TopicCreateComponent } from '@sn/user/shared/components';
+import { SnTopicCreateComponent } from '@sn/user/shared/modules/topic-create';
 
 import { PageableSearch, ResponseMessage, Topic, ResponseStatus } from '@sn/shared/models';
 
@@ -69,7 +69,7 @@ export class ViewTopicsComponent implements OnInit, OnDestroy {
   }
 
   public onCreate(): void {
-    this._drawerService.show(TopicCreateComponent, {});
+    this._drawerService.show(SnTopicCreateComponent, {});
   }
 
   public onGoToPage(pageable: IPageable): void {

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { DEFAULT_SEARCH_FLASHCARDS_PAGE } from '@sn/user/core/defaults';
 
 import { fadeAnimation } from '@sn/shared/animations';
-import { FlashcardSetCreateComponent } from '@sn/user/shared/components';
+import { SnFlashcardSetCreateComponent } from '@sn/user/shared/modules/flashcard-set-create';
 import { Observable, of, Subject } from 'rxjs';
 
 import { IFlashcardsState } from '../../store/reducers';
@@ -48,7 +48,7 @@ export class ViewFlashcardsComponent implements OnInit, OnDestroy {
   }
 
   public onCreate(): void {
-    this._drawerService.show(FlashcardSetCreateComponent, {
+    this._drawerService.show(SnFlashcardSetCreateComponent, {
       size: SnDrawerSize.LARGE
     });
   }

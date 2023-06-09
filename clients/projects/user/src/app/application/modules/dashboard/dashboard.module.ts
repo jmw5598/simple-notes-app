@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardOverviewComponent } from './pages/dashboard-overview/dashboard-overview.component';
 
@@ -16,6 +15,8 @@ import { TodosFormComponent } from './components/todo-list-todos-form/components
 
 import { SnCheckboxModule } from '@sn/checkbox';
 import { SnEmptyModule } from '@sn/empty';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SnTodoListCreateModule } from '@sn/user/shared/modules/todo-list-create';
 
 @NgModule({
     declarations: [
@@ -29,8 +30,8 @@ import { SnEmptyModule } from '@sn/empty';
     ],
     imports: [
         CommonModule,
+        ReactiveFormsModule,
         DashboardRoutingModule,
-        SharedModule,
         NgIconsModule.withIcons({
             heroEye,
             heroEyeSlash,
@@ -40,6 +41,7 @@ import { SnEmptyModule } from '@sn/empty';
         }),
         SnCheckboxModule,
         SnEmptyModule,
+        SnTodoListCreateModule,
     ]
 })
 export class DashboardModule { }

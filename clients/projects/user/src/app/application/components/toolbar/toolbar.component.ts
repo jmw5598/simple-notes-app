@@ -5,16 +5,16 @@ import { takeUntil } from 'rxjs/operators';
 
 import { IToolbarState } from '../../store/reducers';
 import { selectKeyboardShortcuts } from '../../store/selectors';
-import { FlashcardSetCreateComponent } from '@sn/user/shared/components';
+import { SnFlashcardSetCreateComponent } from '@sn/user/shared/modules/flashcard-set-create';
 import { ShortcutInput, AllowIn } from 'ng-keyboard-shortcuts';
 import { getKeyboardShortcuts } from '@sn/user/application/store/actions';
 
-import { 
-  TopicCreateComponent, 
-  TopicSearchComponent,
-  CalendarEventCreateComponent,
-  DocumentCreateComponent } from '@sn/user/shared/components';
-import { TodoListCreateComponent } from '@sn/user/shared/components/todo-list-create/todo-list-create.component';
+import { SnTopicCreateComponent } from '@sn/user/shared/modules/topic-create';
+
+import { SnTopicSearchComponent } from '@sn/user/shared/modules/topic-search';
+import { SnCalendarEventCreateComponent } from '@sn/user/shared/modules/calendar-event-create';
+import { SnDocumentCreateComponent } from '@sn/user/shared/modules/document-create';
+import { SnTodoListCreateComponent } from '@sn/user/shared/modules/todo-list-create';
 
 import { SnDrawerService, SnDrawerLocation, SnDrawerSize } from '@sn/drawer';
 import { KeyboardShortcutActionType } from '@sn/shared/models';
@@ -50,11 +50,11 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     if (this._isDrawerVisible) {
       this._drawerService.close();
       setTimeout(() => 
-        this._drawerService.show(TopicCreateComponent),
+        this._drawerService.show(SnTopicCreateComponent),
         this.drawerCloseTimeoutBeforeOpen
       )
     } else {
-    this._drawerService.show(TopicCreateComponent);
+    this._drawerService.show(SnTopicCreateComponent);
     }
   }
 
@@ -62,11 +62,11 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     if (this._isDrawerVisible) {
       this._drawerService.close();
       setTimeout(() => 
-        this._drawerService.show(CalendarEventCreateComponent, { data: { date: new Date() } }),
+        this._drawerService.show(SnCalendarEventCreateComponent, { data: { date: new Date() } }),
         this.drawerCloseTimeoutBeforeOpen  
       )
     } else {
-      this._drawerService.show(CalendarEventCreateComponent, { data: { date: new Date() } });
+      this._drawerService.show(SnCalendarEventCreateComponent, { data: { date: new Date() } });
     }
   }
 
@@ -74,11 +74,11 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     if (this._isDrawerVisible) {
       this._drawerService.close();
       setTimeout(() => 
-        this._drawerService.show(DocumentCreateComponent, { size: SnDrawerSize.LARGE }),
+        this._drawerService.show(SnDocumentCreateComponent, { size: SnDrawerSize.LARGE }),
         this.drawerCloseTimeoutBeforeOpen
       );
     } else {
-      this._drawerService.show(DocumentCreateComponent, { size: SnDrawerSize.LARGE });
+      this._drawerService.show(SnDocumentCreateComponent, { size: SnDrawerSize.LARGE });
     }
   }
 
@@ -94,11 +94,11 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     if (this._isDrawerVisible) {
       this._drawerService.close();
       setTimeout(() => 
-        this._drawerService.show(TopicSearchComponent),
+        this._drawerService.show(SnTopicSearchComponent),
         this.drawerCloseTimeoutBeforeOpen
       );
     } else {
-      this._drawerService.show(TopicSearchComponent);
+      this._drawerService.show(SnTopicSearchComponent);
     }
   }
 
@@ -106,11 +106,11 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     if (this._isDrawerVisible) {
       this._drawerService.close();
       setTimeout(() => 
-        this._drawerService.show(FlashcardSetCreateComponent, { size: SnDrawerSize.LARGE }),
+        this._drawerService.show(SnFlashcardSetCreateComponent, { size: SnDrawerSize.LARGE }),
         this.drawerCloseTimeoutBeforeOpen  
       );
     } else {
-      this._drawerService.show(FlashcardSetCreateComponent, { size: SnDrawerSize.LARGE });
+      this._drawerService.show(SnFlashcardSetCreateComponent, { size: SnDrawerSize.LARGE });
     }
   }
 
@@ -118,11 +118,11 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     if (this._isDrawerVisible) {
       this._drawerService.close();
       setTimeout(() => 
-        this._drawerService.show(TodoListCreateComponent),
+        this._drawerService.show(SnTodoListCreateComponent),
         this.drawerCloseTimeoutBeforeOpen  
       );
     } else {
-      this._drawerService.show(TodoListCreateComponent);
+      this._drawerService.show(SnTodoListCreateComponent);
     }
   }
 

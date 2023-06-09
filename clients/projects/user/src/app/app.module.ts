@@ -10,7 +10,6 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
 import { ROOT_REDUCERS, metaReducers } from '@sn/user/store/reducers';
 import { AuthenticationEffects } from './auth/store/effects';
 import { PlansEffects } from './core/store/effects';
@@ -38,7 +37,6 @@ const coreServicesConfiguration: CoreServicesConfiguration = {
     BrowserAnimationsModule,
     CoreModule,
     HttpClientModule,
-    SharedModule,
     StoreModule.forRoot(ROOT_REDUCERS, {
       metaReducers,
       // runtimeChecks: {

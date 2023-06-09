@@ -8,7 +8,6 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
 import { ViewCalendarComponent } from './view-calendar.component';
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { getCalendarEventsBetweenDates, setCurrentCalendarDateRanges, setCurrentCalendarEvents } from '../../store/actions';
 import { CalendarEvent } from '@sn/shared/models';
 import { SnDrawerService } from '@sn/drawer';
@@ -46,7 +45,6 @@ describe('ViewCalendarComponent', () => {
         imports: [
           NoopAnimationsModule,
           FullCalendarModule,
-          SharedModule
         ],
         declarations: [ViewCalendarComponent],
         providers: [

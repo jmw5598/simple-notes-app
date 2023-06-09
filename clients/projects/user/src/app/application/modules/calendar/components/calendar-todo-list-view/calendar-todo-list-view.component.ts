@@ -9,7 +9,7 @@ import { ICalendarEventsState } from '../../store/reducers';
 
 import * as calendarActions from '../../store/actions';
 import * as calendarSelectors from '../../store/selectors';
-import { buildTodoListFormGroup } from '@sn/user/shared/forms';
+import { buildTodoListFormGroup } from '@sn/user/shared/modules/todo-list-create';
 
 import { SnDrawerService } from '@sn/drawer';
 

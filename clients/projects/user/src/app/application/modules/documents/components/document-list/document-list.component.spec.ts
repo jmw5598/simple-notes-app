@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { DocumentListComponent } from './document-list.component';
 import { Document } from '@sn/shared/models';
 
@@ -11,7 +10,6 @@ describe('DocumentListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        SharedModule,
         RouterTestingModule
       ],
       declarations: [

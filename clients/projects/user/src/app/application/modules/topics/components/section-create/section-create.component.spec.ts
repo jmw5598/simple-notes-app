@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { SectionCreateComponent } from './section-create.component';
 import { Section, Topic } from '@sn/shared/models';
 import { createSection } from '../../store/actions';
@@ -27,7 +26,6 @@ describe('SectionCreateComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        SharedModule
       ],
       declarations: [
         SectionCreateComponent,

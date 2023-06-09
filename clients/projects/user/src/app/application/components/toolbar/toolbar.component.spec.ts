@@ -5,7 +5,6 @@ import { Store } from '@ngrx/store';
 import { EMPTY, of } from 'rxjs';
 
 import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { ToolbarComponent } from './toolbar.component';
 import { SnDrawerService } from '@sn/drawer';
 
@@ -24,7 +23,6 @@ describe('ToolbarComponent', () => {
         NoopAnimationsModule,
         KeyboardShortcutsModule.forRoot(),
         HttpClientTestingModule,
-        SharedModule,
       ],
       declarations: [
         ToolbarComponent

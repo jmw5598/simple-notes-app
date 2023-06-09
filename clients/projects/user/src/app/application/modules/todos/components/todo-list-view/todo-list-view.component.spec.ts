@@ -3,7 +3,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { SnDrawerService } from '@sn/drawer';
 import { TodoList } from '@sn/shared/models';
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { BehaviorSubject, of } from 'rxjs';
 
 import { TodoListViewComponent } from './todo-list-view.component';
@@ -35,7 +34,6 @@ describe('TodoListViewComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
-        SharedModule
       ],
       declarations: [
         TodoListViewComponent

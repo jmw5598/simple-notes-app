@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { EMPTY, of } from 'rxjs';
 
-import { SharedModule } from '@sn/user/shared/shared.module';
 import { TopicExportComponent } from './topic-export.component';
 import { SnDrawerService } from '@sn/drawer';
 import { Topic } from '@sn/shared/models';
@@ -27,7 +26,6 @@ describe('TopicExportComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        SharedModule
       ],
       declarations: [
         TopicExportComponent
