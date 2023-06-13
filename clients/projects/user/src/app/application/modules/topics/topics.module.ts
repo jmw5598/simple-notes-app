@@ -31,6 +31,7 @@ import { SnDebounceSearchModule } from '@sn/debounce-search';
 import { SnMarkdownModule } from '@sn/markdown';
 import { SnTopicCreateModule } from '@sn/user/shared/modules/topic-create';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SnCheckboxModule } from '@sn/checkbox';
 
 
 @NgModule({
@@ -81,6 +82,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         SnDebounceSearchModule,
         SnMarkdownModule,
         SnTopicCreateModule,
+        SnCheckboxModule,
     ]
 })
 export class TopicsModule { }
