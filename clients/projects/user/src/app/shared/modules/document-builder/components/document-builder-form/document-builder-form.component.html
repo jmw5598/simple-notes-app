@@ -1,5 +1,5 @@
-<div class="flex flex-row w-full gap-4">
-  <div class="w-1/2">
+<div class="flex flex-row w-full content-start flex-wrap">
+  <div class="w-full sm:w-full md:w-full lg:w-full xl:w-1/2">
     <div class="flex flex-col justify-center grow w-full mb-3" [formGroup]="form">
       <label class="text-gray-500 text-xs mb-1 ps-1" for="name">Document Name <span class="text-danger-500">*</span></label>
       <input 
@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-  <div class="w-1/2">
+  <div class="w-full sm:w-full md:w-full lg:w-full xl:w-1/2 p-4">
     <sn-user-document-builder-document-container></sn-user-document-builder-document-container>
   </div>
 </div>

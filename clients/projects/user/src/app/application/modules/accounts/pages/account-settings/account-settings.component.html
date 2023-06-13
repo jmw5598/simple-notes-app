@@ -1,8 +1,8 @@
-<div *ngIf="(accountProfile$ | async) && (accountDetails$ | async)" [@fadeAnimation] class="flex flex-row h-full">
+<div *ngIf="(accountProfile$ | async) && (accountDetails$ | async)" [@fadeAnimation] class="flex w-full p-0 m-0 h-full flex-wrap content-start">
   <!-- Column Left -->
-  <div class="w-5/12 border-r">
+  <div class="w-full sm:w-full md:w-full lg:w-1/2 xl:w-5/12 lg:border-r lg:h-full">
     <h4 class="p-4 border-b font-bold text-primary-500 text-xl">Account Details</h4>
-    <div class="p-4">
+    <div class="p-4 border-b">
       <sn-user-account-user-card
           [account]="accountDetails$ | async"
           [profile]="accountProfile$ | async">
@@ -11,7 +11,7 @@
   </div>
 
   <!-- Column Right -->
-  <div class="w-7/12">
+  <div class="w-full sm:w-full md:w-full lg:w-1/2 xl:w-7/12">
     <div class="flex flex-row px-4 py-2 border-b">
       <span 
           class="cursor-pointer border text-gray-500 text-md mr-2 py-2 px-4 rounded-full transition-colors"
