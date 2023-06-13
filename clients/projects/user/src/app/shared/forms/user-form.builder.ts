@@ -8,17 +8,17 @@ export const buildUserFormGroup = (
       username: ['', 
         [
           Validators.required, 
-          // Validators.pattern(/^(?=[a-zA-Z0-9._]{3,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/)
+          Validators.pattern(/^(?=[a-zA-Z0-9._]{3,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/)
         ], 
-        // [accountValidators.validateUsername()]
+        [accountValidators.validateUsername()]
       ],
       password: ['', [
         Validators.required, 
-        // Validators.minLength(8)
+        Validators.minLength(8)
       ]],
       passwordConfirm: ['', [
         Validators.required,
-        // Validators.minLength(8)
+        Validators.minLength(8)
       ]]
     }, { 
       validator: MatchValidators.mustMatch('password', 'passwordConfirm')

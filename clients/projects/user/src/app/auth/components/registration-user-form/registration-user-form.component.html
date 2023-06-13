@@ -1,9 +1,9 @@
-<div [formGroup]="form.get('user')">
+<ng-container [formGroup]="form.get('user')">
   <!-- Username Input -->
-  <div class="form-group">
-    <label for="username">Username</label>
+  <div class="flex flex-col w-full justify-center mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1" for="username">Username</label>
     <input 
-        class="form-control" 
+        class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700"
         formControlName="username" 
         name="username" 
         type="text" 
@@ -11,14 +11,14 @@
         autocomplete="off"
         [ngClass]="{ 'is-invalid':!form.get('user').get('username').valid && form.get('user').get('username').touched  }">
     <small 
-        class="text-danger text-bold" 
+        class="text-danger-500 text-xs ps-2 text-bold" 
         *ngIf="
           form.get('user').get('username').touched  
           && form.get('user').get('username').hasError('required')">
       Username is required!
     </small>
     <small 
-        class="text-danger text-bold" 
+        class="text-danger-500 text-xs ps-2 text-bold"
         *ngIf="
           form.get('user').get('username').touched
           && form.get('user').get('username').hasError('usernameExists')">
@@ -27,24 +27,24 @@
   </div>
 
   <!-- Password Input -->
-  <div class="form-group">
-    <label for="password">Password</label>
+  <div class="flex flex-col w-full justify-center mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1" for="password">Password</label>
     <input 
-        class="form-control" 
+        class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700"
         formControlName="password" 
         name="password" 
         type="password" 
         id="password"
         [ngClass]="{ 'is-invalid':!form.get('user').get('password').valid && form.get('user').get('password').touched  }">
     <small 
-        class="text-danger text-bold" 
+        class="text-danger-500 text-xs ps-2 text-bold"  
         *ngIf="
           form.get('user').get('password').touched  
           && form.get('user').get('password').hasError('required')">
       Password is required!
     </small>
     <small 
-        class="text-danger text-bold" 
+        class="text-danger-500 text-xs ps-2 text-bold" 
         *ngIf="
           form.get('user').get('password').touched  
           && form.get('user').get('password').hasError('minlength')">
@@ -53,28 +53,28 @@
   </div>
 
   <!-- Password Confirm Input -->
-  <div class="form-group">
-    <label for="passwordConfirm">Confirm Password</label>
+  <div class="flex flex-col w-full justify-center mb-3">
+    <label class="text-gray-500 text-xs mb-1 ps-1" for="passwordConfirm">Confirm Password</label>
     <input 
-        class="form-control" 
+        class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700"
         formControlName="passwordConfirm" 
         name="passwordConfirm" 
         type="password" 
         id="passwordConfirm"
         [ngClass]="{ 'is-invalid':!form.get('user').get('passwordConfirm').valid && form.get('user').get('passwordConfirm').touched  }">
     <small 
-        class="text-danger text-bold" 
+        class="text-danger-500 text-xs ps-2 text-bold"  
         *ngIf="
           form.get('user').get('passwordConfirm').touched  
           && form.get('user').get('passwordConfirm').hasError('required')">
       Password confirmation is required!
     </small>
     <small 
-        class="text-danger text-bold" 
+        class="text-danger-500 text-xs ps-2 text-bold"  
         *ngIf="
           form.get('user').get('passwordConfirm').touched  
           && form.get('user').get('passwordConfirm').hasError('mustMatch')">
       Password & Confirmation must match!
     </small>
   </div>
-</div>
+</ng-container>

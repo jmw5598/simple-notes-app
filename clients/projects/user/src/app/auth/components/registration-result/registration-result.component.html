@@ -1,16 +1,24 @@
-<div class="registration-result">
-  <h1 class="registration-result-icon"
+<div class="flex flex-col justify-center items-center mb-5">
+  <h1 class="flex justify-center items-end mt-4"
       [ngClass]="{ 
         'registration-result-success' : isSuccess(),
         'registration-result-error' : !isSuccess()
       }">
     <ng-container *ngIf="isSuccess(); else errorResult">
-      <span class="text-success oi oi-task"></span>
+      <span class="text-primary-500 oi oi-task">
+        <svg class="w-25 h-24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </span>
     </ng-container>
     <ng-template #errorResult>
-      <span class="text-danger oi oi-warning"></span>
+      <span class="text-danger-500 oi oi-warning">
+        <svg class="w-24 h-24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+        </svg>
+      </span>
     </ng-template>
   </h1>
-  <h2 class="registration-result-status">{{ result?.status | titlecase }}</h2>
-  <p class="registration-result-message">{{ result?.message }}</p>
+  <h2 class="text-2xl text-gray-700 font-bold">Success{{ result?.status | titlecase }}</h2>
+  <p class="text-md text-gray-500">Your account has been created!{{ result?.message }}</p>
 </div>

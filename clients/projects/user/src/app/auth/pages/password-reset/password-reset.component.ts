@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -21,6 +21,9 @@ import * as fromSelectors from '../../store/selectors';
   animations: [fadeAnimation]
 })
 export class PasswordResetComponent implements OnInit {
+  @HostBinding('class')
+  public hostClasses: string = 'block w-2/5';
+
   public form: UntypedFormGroup;
   public passwordResetResult$: Observable<ResponseMessage>;
 

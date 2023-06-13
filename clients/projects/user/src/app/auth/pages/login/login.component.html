@@ -55,6 +55,21 @@
         formControlName="password" />
   </div>
 
+  <div class="flex flex-row justify-between items-center mb-4 px-2">
+    <sn-checkbox
+        shape="rounded"
+        color="primary"
+        size="xsmall"
+        formControlName="rememberMe"
+        label="Remember Me">
+    </sn-checkbox>
+    <span 
+        class="text-xs ml-2 text-primary-500 hover:text-primary-700 cursor-pointer"
+        routerLink="/auth/password-request">
+      Forgot Password ?
+    </span>
+  </div>
+
   <!-- Buttons Controls -->
   <div class="block w-full mb-2">
     <button
@@ -67,10 +82,8 @@
     </button>
   </div>
   <div class="text-center">
-    <span 
-        class="text-sm ml-2 hover:text-primary-500 cursor-pointer"
-        routerLink="/auth/password-request">
-      Forgot Password ?
+    <span class="text-sm ml-2 text-gray-700 cursor-pointer">
+      Or <a class="text-primary-500 hover:text-primary-700" routerLink="/auth/register">register now!</a>
     </span>
   </div>
 </form>

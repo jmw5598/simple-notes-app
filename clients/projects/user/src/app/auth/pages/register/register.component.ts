@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, HostBinding, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -25,6 +25,9 @@ import * as fromSelectors from '../../store/selectors';
   animations: [fadeAnimation]
 })
 export class RegisterComponent implements OnInit {
+  @HostBinding('class')
+  public hostClasses: string = 'block w-2/5';
+
   private _subscriptionSubject$: Subject<void>;
   public RegistrationStep = RegistrationStep;
   public form: UntypedFormGroup;
@@ -35,6 +38,7 @@ export class RegisterComponent implements OnInit {
   public plans: Plan[];
 
   constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
     private _store: Store<fromAuth.IAuthenticationState>,
     private _formBuilder: UntypedFormBuilder,
     private _accountValidators: AccountValidators,
@@ -123,7 +127,8 @@ export class RegisterComponent implements OnInit {
       this.registrationResult = result
       this.result();
       this._store.dispatch(fromActions.registerNewAccountResult({ result: null }));
-      setTimeout(() => this._handleRedirectAfterSuccess(), 5000)
+      // setTimeout(() => this._handleRedirectAfterSuccess(), 5000)
+      this._changeDetectorRef.markForCheck();
     }
   }
 

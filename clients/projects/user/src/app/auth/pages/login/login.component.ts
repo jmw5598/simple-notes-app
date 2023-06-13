@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, HostBinding } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -21,6 +21,9 @@ import { AuthenticatedStatus, UserCredentials, Roles } from '@sn/shared/models';
   animations: [fadeAnimation]
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  @HostBinding('class')
+  public hostClasses: string = 'block w-2/5';
+  
   private _authenticationStateSubscription: Subscription;
   public authenticationState: fromAuth.IAuthenticationState;
   public form: UntypedFormGroup;

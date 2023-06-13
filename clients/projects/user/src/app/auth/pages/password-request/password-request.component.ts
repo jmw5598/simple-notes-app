@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -19,6 +19,9 @@ import { fadeAnimation } from '@sn/shared/animations';
   animations: [fadeAnimation]
 })
 export class PasswordRequestComponent implements OnInit, OnDestroy {
+  @HostBinding('class')
+  public hostClasses: string = 'block w-2/5';
+
   public form: UntypedFormGroup;
   public passwordRequestResetResult: Observable<ResponseMessage>;
 

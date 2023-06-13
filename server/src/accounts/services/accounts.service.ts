@@ -145,7 +145,7 @@ export class AccountsService {
       user.resetToken = uuidv4();
       user.resetTokenExpiration = this._generateResetTokenExpiration();
       this._userRepository.save(user);
-      this._emailerService.sendPasswordResetEmail(email, user.resetToken);
+      // this._emailerService.sendPasswordResetEmail(email, user.resetToken);
     }
 
     return {
