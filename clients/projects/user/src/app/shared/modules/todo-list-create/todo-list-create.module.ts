@@ -12,13 +12,14 @@ import { SnAlertModule } from '@sn/alert';
 import { SnButtonsModule } from '@sn/button';
 import { SnCheckboxModule } from '@sn/checkbox';
 import { SnEmptyModule } from '@sn/empty';
+import { SnSectionHeaderModule } from '@sn/section-header';
+import { SnFormModule } from '@sn/form';
 
 import { SnTodoListCreateComponent } from './components/todo-list-create/todo-list-create.component';
 import { SnTodoListDetailsComponent } from './components/todo-list-details/todo-list-details.component';
 import { SnTodoListFormComponent } from './components/todo-list-form/todo-list-form.component';
 import { SnTodoListProgressComponent } from './components/todo-list-progress/todo-list-progress.component';
 import { SnTodoListUpdateComponent } from './components/todo-list-update/todo-list-update.component';
-import { SnSectionHeaderModule } from '@sn/section-header';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { SnSectionHeaderModule } from '@sn/section-header';
     SnCheckboxModule,
     SnEmptyModule,
     SnSectionHeaderModule,
+    SnFormModule,
   ],
   exports: [
     SnTodoListCreateComponent,

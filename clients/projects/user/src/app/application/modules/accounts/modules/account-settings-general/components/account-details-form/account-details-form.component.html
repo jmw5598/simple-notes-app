@@ -1,11 +1,11 @@
 <div [@fadeAnimation] [formGroup]="form.get('profile')">
   
   <!-- First & Last Name Inputs -->
-  <div class="flex flex-row gap-4 mb-3">
-    <div class="flex flex-col justify-center grow w-1/2">
-      <label class="text-gray-500 text-xs mb-1 ps-1" for="firstName">First Name</label>
+  <div class="flex flex-row gap-2 mb-3">
+    <sn-form-group snExtraClasses="w-1/2">
+      <label sn-form-label for="firstName">First Name</label>
       <input 
-          class="border py-2 px-4 rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
+          sn-form-control
           formControlName="firstName" 
           name="firstName" 
           type="text" 
@@ -13,32 +13,32 @@
           autocomplete="off"
           [ngClass]="{ 'is-invalid':!form.get('profile').get('firstName').valid && form.get('profile').get('firstName').touched  }">
       <small 
-          class="text-danger text-bold" 
+          sn-form-control-error
           *ngIf="
             form.get('profile').get('firstName').touched  
             && form.get('profile').get('firstName').hasError('required')">
         First name is required!
       </small>
       <small 
-          class="text-danger text-bold" 
+          sn-form-control-error
           *ngIf="
             form.get('profile').get('firstName').touched  
             && form.get('profile').get('firstName').hasError('minlength')">
         First name must be 3 characters!
       </small>
       <small 
-          class="text-danger text-bold" 
+          sn-form-control-error
           *ngIf="
             form.get('profile').get('firstName').touched  
             && form.get('profile').get('firstName').hasError('pattern')">
         First name must be only characters!
       </small>
-      
-    </div>
-    <div class="flex flex-col justify-center grow w-1/2">
-      <label class="text-gray-500 text-xs mb-1 ps-1" for="lastName">Last Name</label>
+    </sn-form-group>
+
+    <sn-form-group snExtraClasses="w-1/2">
+      <label sn-form-label for="lastName">Last Name</label>
       <input 
-          class="border py-2 px-4 rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
+          sn-form-control
           formControlName="lastName" 
           name="lastName" 
           type="text" 
@@ -46,36 +46,36 @@
           autocomplete="off"
           [ngClass]="{ 'is-invalid':!form.get('profile').get('lastName').valid && form.get('profile').get('lastName').touched  }">
       <small 
-          class="text-danger text-bold" 
+          sn-form-control-error
           *ngIf="
             form.get('profile').get('lastName').touched  
             && form.get('profile').get('lastName').hasError('required')">
         Last name is required!
       </small>
       <small 
-          class="text-danger text-bold" 
+          sn-form-control-error
           *ngIf="
             form.get('profile').get('lastName').touched  
             && form.get('profile').get('lastName').hasError('minlength')">
         Last name must be 3 characters!
       </small>
       <small 
-          class="text-danger text-bold" 
+          sn-form-control-error
           *ngIf="
             form.get('profile').get('lastName').touched  
             && form.get('profile').get('lastName').hasError('pattern')">
         Last name must be only characters!
       </small>
-    </div>
+    </sn-form-group>
   </div>
 
   <!-- Address Form -->
   <ng-container [formGroup]="form.get('profile').get('address')">
     <!-- Street Input -->
-    <div class="flex flex-col justify-center grow w-full mb-3">
-      <label class="text-gray-500 text-xs mb-1 ps-1" for="street">Street</label>
+    <sn-form-group snExtraClasses="mb-3">
+      <label sn-form-label for="street">Street</label>
       <input 
-          class="border py-2 px-4 rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
+          sn-form-control
           formControlName="street" 
           name="street" 
           type="text" 
@@ -83,33 +83,33 @@
           autocomplete="off"
           [ngClass]="{ 'is-invalid':!form?.get('profile')?.get('address')?.get('street')?.valid && form?.get('address')?.get('street')?.touched  }">
       <small 
-          class="text-danger text-bold" 
+          sn-form-control-error 
           *ngIf="
             form.get('profile').get('address').get('street').touched  
             && form.get('profile').get('address').get('street').hasError('required')">
         Street is required!
       </small>
-    </div>
+    </sn-form-group>
 
     <!-- Street 2 Input -->
-    <div class="flex flex-col justify-center grow w-full mb-3">
-      <label class="text-gray-500 text-xs mb-1 ps-1" for="street2">Street 2</label>
+    <sn-form-group snExtraClasses="mb-3">
+      <label sn-form-label for="street2">Street 2</label>
       <input 
-          class="border py-2 px-4 rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
+          sn-form-control
           formControlName="street2" 
           name="street2" 
           type="text" 
           id="street2" 
           autocomplete="off">
-    </div>
+    </sn-form-group>
     
     <!-- City, State Zip Inputs-->
-    <div class="flex flex-row gap-2 mb-3">
+    <div class="flex flex-row gap-2 mb-3 items-start">
       <!-- City -->
-      <div class="flex flex-col justify-center grow w-1/3">
-        <label class="text-gray-500 text-xs mb-1 ps-1" for="city">City</label>
+      <sn-form-group snExtraClasses="w-1/3">
+        <label sn-form-label for="city">City</label>
         <input 
-            class="border py-2 px-4 rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
+            sn-form-control
             formControlName="city" 
             name="city" 
             type="text" 
@@ -117,19 +117,19 @@
             autocomplete="off"
             [ngClass]="{ 'is-invalid':!form?.get('profile')?.get('address')?.get('city')?.valid && form?.get('address')?.get('city')?.touched  }">
         <small 
-            class="text-danger text-bold" 
+            sn-form-control-error 
             *ngIf="
               form.get('profile').get('address').get('city').touched  
               && form.get('profile').get('address').get('city').hasError('required')">
           City is required!
         </small>
-      </div>
+      </sn-form-group>
 
       <!-- State -->
-      <div class="flex flex-col justify-center grow w-1/3">
-        <label class="text-gray-500 text-xs mb-1 ps-1" for="state">State</label>
+      <sn-form-group snExtraClasses="w-1/3">
+        <label sn-form-label for="state">State</label>
         <select 
-            class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
+            sn-form-control
             formControlName="state" 
             name="state" 
             id="state" 
@@ -142,19 +142,19 @@
           </option>
         </select>
         <small 
-            class="text-danger text-bold" 
+            sn-form-control-error 
             *ngIf="
               form.get('profile').get('address').get('state').touched  
               && form.get('profile').get('address').get('state').hasError('required')">
           State is required!
         </small>
-      </div>
+      </sn-form-group>
 
       <!-- Zip -->
-      <div class="flex flex-col justify-center grow w-1/3">
-        <label class="text-gray-500 text-xs mb-1 ps-1" nzSpan="24" nzFor="zip">Zip</label>
+      <sn-form-group snExtraClasses="w-1/3">
+        <label sn-form-label nzSpan="24" nzFor="zip">Zip</label>
         <input 
-            class="border py-2 px-4 rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
+            sn-form-control
             formControlName="zip" 
             name="zip" 
             type="text" 
@@ -162,13 +162,13 @@
             autocomplete="off"
             [ngClass]="{ 'is-invalid':!form?.get('profile')?.get('address')?.get('zip')?.valid && form?.get('address')?.get('zip')?.touched  }">
         <small 
-            class="text-danger text-bold" 
+            sn-form-control-error 
             *ngIf="
               form.get('profile').get('address').get('zip').touched  
               && form.get('profile').get('address').get('zip').hasError('required')">
           Zip is required!
         </small>
-      </div>
+      </sn-form-group>
     </div>
   </ng-container>
   

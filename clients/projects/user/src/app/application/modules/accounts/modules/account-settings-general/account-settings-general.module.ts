@@ -10,6 +10,7 @@ import { AccountDetailsDisplayComponent } from './components/account-details-dis
 import { AccountDetailsFormComponent } from './components/account-details-form/account-details-form.component';
 import { SnButtonsModule } from '@sn/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SnFormModule } from '@sn/form';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
       heroPencil,
     }),
     SnButtonsModule,
+    SnFormModule,
   ]
 })
 export class AccountSettingsGeneralModule { }

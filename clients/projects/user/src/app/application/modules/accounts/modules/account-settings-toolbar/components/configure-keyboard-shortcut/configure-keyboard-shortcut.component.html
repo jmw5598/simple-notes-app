@@ -32,10 +32,10 @@
     <h5 class="font-bold text-gray-700 text-md mb-2">Override Keyboard Shortcut</h5>
     <form [formGroup]="shortcutForm" (ngSubmit)="saveShortcut(shortcutForm.value)" novalidate>
       <!-- Create form array here -->
-      <div class="flex flex-col justify-center grow w-full mb-3">
-        <label class="text-gray-500 text-xs mb-1 ps-1" for="">Modifiers</label>
+      <sn-form-group snExtraClasses="mb-3">
+        <label sn-form-label for="">Modifiers</label>
         <select 
-            class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
+            sn-form-control
             formControlName="modifier">
           <option 
               *ngFor="let modifier of modifierOptions" 
@@ -45,28 +45,29 @@
           </option>
         </select>
         <small 
-            class="text-danger-500 text-xs"
+            sn-form-control-error
             *ngIf="shortcutForm.get('modifier').touched && shortcutForm.get('modifier').hasError('required')">
           Please select a modifier!
         </small>
-      </div>
-      <div class="flex flex-col justify-center grow w-full mb-3">
+      </sn-form-group>
+
+      <sn-form-group snExtraClasses="mb-3">
         <label class="text-gray-500 text-xs mb-1 ps-1" for="">Key</label>
         <input 
+            sn-form-control
             type="text" 
-            class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
             formControlName="key" />
         <small 
-            class="text-danger-500"
+            sn-form-control-error
             *ngIf="shortcutForm.get('key').touched && shortcutForm.get('key').hasError('required')">
           Please enter a key!
         </small>
         <small 
-            class="text-danger-500"
+            sn-form-control-error
             *ngIf="shortcutForm.get('key').touched && shortcutForm.get('key').hasError('maxLength')">
           Must be a single key!
         </small>
-      </div>
+      </sn-form-group>
       <div class="flex flex-row justify-end">
         <sn-button 
             (click)="saveShortcut(shortcutForm.value)"

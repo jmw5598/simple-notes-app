@@ -22,6 +22,7 @@ import { SnAlertModule } from '@sn/alert';
 import { SnLoadingSpinnerModule } from '@sn/loading-spinner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnCheckboxModule } from '@sn/checkbox';
+import { SnFormModule } from '@sn/form';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { SnCheckboxModule } from '@sn/checkbox';
     SnAlertModule,
     SnLoadingSpinnerModule,
     SnCheckboxModule,
+    SnFormModule,
   ]
 })
 export class AuthModule { }

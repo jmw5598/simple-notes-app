@@ -1,43 +1,44 @@
 <div [formGroup]="form">
 
   <!-- Title Input -->
-  <div class="flex flex-col justify-center grow w-full mb-3">
-    <label class="text-gray-500 text-xs mb-1 ps-1" for="title">Title <small class="text-danger-500">*</small></label>
+  <sn-form-group snExtraClasses="mb-3">
+    <label sn-form-label for="title">Title <small class="text-danger-500">*</small></label>
     <input 
+        sn-form-control
         type="text" 
-        class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700"
         formControlName="title"
         id="title" />
-  </div>
+  </sn-form-group>
 
   <!-- Start Date & Time Inputs -->
-  <div class="flex flex-col justify-center grow w-full mb-3">
-    <label class="text-gray-500 text-xs mb-1 ps-1" for="startDate">Start Date & Time <small class="text-danger-500">*</small></label>
+  <sn-form-group snExtraClasses="mb-3">
+    <label sn-form-label for="startDate">Start Date & Time <small class="text-danger-500">*</small></label>
     <input 
+        sn-form-control
         autocomplete="off"
-        class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700"
         name="startedBy" 
         formControlName="startDate" 
         [dpDayPicker]="datepickerConfig"
         mode="daytime"
         theme="dp-main" />
-  </div>
+  </sn-form-group>
+  
   <!-- End Date & Time Inputs -->
-  <div class="flex flex-col justify-center grow w-full mb-3">
-    <label class="text-gray-500 text-xs mb-1 ps-1" for="endDate">End Date & Time <small class="text-danger-500">*</small></label>
+  <sn-form-group snExtraClasses="mb-3">
+    <label sn-form-label for="endDate">End Date & Time <small class="text-danger-500">*</small></label>
     <input 
+        sn-form-control
         autocomplete="off"
-        class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700"
         name="startedBy" 
         formControlName="endDate" 
         [dpDayPicker]="datepickerConfig"
         mode="daytime"
         theme="dp-main" />
-  </div>
+  </sn-form-group>
 
   <!-- Is All Day Checkbox & Color Swatch Input-->
-  <div class="flex flex-row justify-between items-center w-full mb-3 color-swatch">
-    <label class="text-gray-500 text-xs my-1 ps-1" for="color">Color <small class="text-danger-500">*</small></label>
+  <div class="flex flex-row justify-between items-center w-full mb-3 pe-2 color-swatch">
+    <label sn-form-label class="text-gray-500 text-xs my-1 ps-1" for="color">Color <small class="text-danger-500">*</small></label>
     <div class="flex flex-row justify-between items-center relative">
       <div 
           class="color-swatch-selected"
@@ -62,20 +63,22 @@
   </div>
   
   <!-- Location Input -->
-  <div class="flex flex-col justify-center grow w-full mb-3">
-    <label class="text-gray-500 text-xs mb-1 ps-1" for="location">Location <small class="text-danger-500">*</small></label>
+  <sn-form-group snExtraClasses="mb-3">
+    <label sn-form-label for="location">Location <small class="text-danger-500">*</small></label>
     <input 
+        sn-form-control
         type="text" 
-        class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
         formControlName="location" />
-  </div>
+  </sn-form-group>
 
   <!-- Description Textarea -->
-  <div class="flex flex-col justify-center grow w-full mb-3">
-    <label class="text-gray-500 text-xs mb-1 ps-1" for="Description">Description <small class="text-danger-500">*</small></label>
+  <sn-form-group snExtraClasses="mb-3">
+    <label sn-form-label for="Description">Description <small class="text-danger-500">*</small></label>
     <textarea 
-        class="border py-2 px-4 bg-white rounded-xl text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
+        sn-form-control
+        snType="rounded"
         rows="6" 
         formControlName="description"></textarea>
-  </div>
+  </sn-form-group>
+    
 </div>

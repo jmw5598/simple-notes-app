@@ -97,6 +97,9 @@
       ],
       "@sn/section-header": [
         "dist/@sn/section-header"
+      ],
+      "@sn/form": [
+        "dist/@sn/form"
       ]
     },
     "useDefineForClassFields": false

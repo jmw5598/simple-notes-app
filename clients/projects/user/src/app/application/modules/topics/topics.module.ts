@@ -33,6 +33,7 @@ import { SnTopicCreateModule } from '@sn/user/shared/modules/topic-create';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnCheckboxModule } from '@sn/checkbox';
 import { SnSectionHeaderModule } from '@sn/section-header';
+import { SnFormModule } from '@sn/form';
 
 
 @NgModule({
@@ -85,6 +86,7 @@ import { SnSectionHeaderModule } from '@sn/section-header';
         SnTopicCreateModule,
         SnCheckboxModule,
         SnSectionHeaderModule,
+        SnFormModule,
     ]
 })
 export class TopicsModule { }

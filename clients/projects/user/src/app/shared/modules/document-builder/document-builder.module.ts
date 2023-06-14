@@ -17,6 +17,7 @@ import { SnDocumentBuilderDocumentTopicComponent } from './components/document-b
 import { SnDocumentBuilderFormComponent } from './components/document-builder-form/document-builder-form.component';
 import { SnDocumentBuilderSectionContainerComponent } from './components/document-builder-form/components/document-builder-section-container/document-builder-section-container.component';
 import { SnDocumentBuilderTopicContainerComponent } from './components/document-builder-form/components/document-builder-topic-container/document-builder-topic-container.component';
+import { SnFormModule } from '@sn/form';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { SnDocumentBuilderTopicContainerComponent } from './components/document-
     ConfirmationPopoverModule,
     SnAlertModule,
     SnEmptyModule,
+    SnFormModule,
   ],
   exports: [
     SnDocumentBuilderDocumentContainerComponent,

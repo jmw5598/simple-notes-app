@@ -1,21 +1,22 @@
 <div class="flex flex-row w-full content-start flex-wrap">
   <div class="w-full sm:w-full md:w-full lg:w-full xl:w-1/2">
-    <div class="flex flex-col justify-center grow w-full mb-3" [formGroup]="form">
-      <label class="text-gray-500 text-xs mb-1 ps-1" for="name">Document Name <span class="text-danger-500">*</span></label>
+    <sn-form-group snExtraClasses="mb-3" [formGroup]="form">
+      <label sn-form-label for="name">Document Name <span class="text-danger-500">*</span></label>
       <input 
+          sn-form-control
           id="document-title"
           formControlName="name" 
-          type="text" 
-          class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700" 
+          type="text"
           (ngModelChange)="documentNameChange($event)" />
-    </div>
+    </sn-form-group>
 
     <div class="mb-3">
       <h5 class="text-gray-700 font-bold text-xl mt-2">Search Topics</h5>
       <hr class="mb-2 mt-2">
     </div>
-    <div class="flex flex-col justify-center grow w-full mb-3">
-      <label class="text-gray-500 text-xs mb-1 ps-1" for="search-topics">Keywords</label>
+
+    <sn-form-group snExtraClasses="mb-3">
+      <label sn-form-label for="search-topics">Keywords</label>
       <ng-select 
           class="sn-typeahead"
           [items]="topics$ | async"
@@ -24,7 +25,7 @@
           (ngModelChange)="onSelectTopic($event)"
           bindLabel="title">
       </ng-select>
-    </div>
+    </sn-form-group>
     <div cdkDropList
         [cdkDropListData]="[(selectedDocumentTopic$ | async)]"
         [cdkDropListConnectedTo]="documentId$ | async">

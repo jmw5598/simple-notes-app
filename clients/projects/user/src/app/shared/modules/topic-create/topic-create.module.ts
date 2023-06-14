@@ -7,6 +7,7 @@ import { SnTagInputModule } from '@sn/tag-input';
 import { SnButtonsModule } from '@sn/button';
 import { SnAlertModule } from '@sn/alert';
 import { SnSectionHeaderModule } from '@sn/section-header';
+import { SnFormModule } from '@sn/form';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SnSectionHeaderModule } from '@sn/section-header';
     SnButtonsModule,
     SnAlertModule,
     SnSectionHeaderModule,
+    SnFormModule,
   ],
   exports: [
     SnTopicCreateComponent,

@@ -9,6 +9,7 @@ import { SnEmptyModule } from '@sn/empty';
 
 import { SnTopicSearchComponent } from './components/topic-search/topic-search.component';
 import { SnSectionHeaderModule } from '@sn/section-header';
+import { SnFormModule } from '@sn/form';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SnSectionHeaderModule } from '@sn/section-header';
     SnDebounceSearchModule,
     SnEmptyModule,
     SnSectionHeaderModule,
+    SnFormModule,
   ],
   exports: [
     SnTopicSearchComponent,

@@ -11,6 +11,7 @@ import { SnButtonsModule } from '@sn/button';
 import { SnCalendarEventCreateComponent } from './components/calendar-event-create/calendar-event-create.component';
 import { SnCalendarEventFormComponent } from './components/calendar-event-form/calendar-event-form.component';
 import { SnSectionHeaderModule } from '@sn/section-header';
+import { SnFormModule } from '@sn/form';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SnSectionHeaderModule } from '@sn/section-header';
     DpDatePickerModule,
     ColorTwitterModule,
     SnSectionHeaderModule,
+    SnFormModule,
   ],
   exports: [
     SnCalendarEventCreateComponent,

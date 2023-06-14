@@ -13,6 +13,7 @@ import { SnButtonsModule } from '@sn/button';
 import { SnAlertModule } from '@sn/alert';
 import { SnDrawerModule } from '@sn/drawer';
 import { SnSectionHeaderModule } from '@sn/section-header';
+import { SnFormModule } from '@sn/form';
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import { SnSectionHeaderModule } from '@sn/section-header';
         SnAlertModule,
         SnDrawerModule,
         SnSectionHeaderModule,
+        SnFormModule,
     ]
 })
 export class AccountSettingsToolbarModule { }

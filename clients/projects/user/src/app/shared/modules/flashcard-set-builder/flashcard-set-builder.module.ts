@@ -18,6 +18,7 @@ import { SnFlashcardSetBuilderFormComponent } from './components/flashcard-set-b
 import { SnFlashcardCreateFormComponent } from './components/flashcard-set-builder-form/components/flashcard-create-form/flashcard-create-form.component';
 import { SnFlashcardEditFormComponent } from './components/flashcard-set-builder-form/components/flashcard-edit-form/flashcard-edit-form.component';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { SnFormModule } from '@sn/form';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     SnMarkdownModule,
     SnEmptyModule,
     SnCardModule,
+    SnFormModule,
   ],
   exports: [
     SnFlashcardSetBuilderContainerComponent,

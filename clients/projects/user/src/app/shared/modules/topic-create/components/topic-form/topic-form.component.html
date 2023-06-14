@@ -1,41 +1,33 @@
 <fieldset [formGroup]="form">
   <!-- Title Field Input -->
-  <div class="flex flex-col justify-center grow w-full mb-3">
-    <label class="text-gray-500 text-xs mb-1 ps-1" for="title">Title</label>
+  <sn-form-group snExtraClasses="mb-3">
+    <label sn-form-label for="title">Title</label>
     <input
-        class="border py-2 px-4 bg-white rounded-full text-sm focus:outline-none focus:border-gray-400 text-gray-700"
+        sn-form-control
         type="text" 
         name="title"
         id="title"
         formControlName="title"
         [ngClass]="{'is-invalid':!form.controls['title'].valid && form.controls['title'].touched  }" />
-  </div>
+  </sn-form-group>
 
   <!-- Synopsis Field Input -->
-  <div class="flex flex-col justify-center grow w-full mb-3">
-    <label class="text-gray-500 text-xs mb-1 ps-1" for="synopsis">Synopsis</label>
+  <sn-form-group snExtraClasses="mb-3">
+    <label sn-form-label for="title">Title</label>
     <textarea
-        class="border py-2 px-4 bg-white rounded-xl text-sm focus:outline-none focus:border-gray-400 text-gray-700"
+        sn-form-control
+        snType="rounded"
         name="synopsis"
         rows="5"
         formControlName="synopsis"
         [ngClass]="{'is-invalid':!form.controls['synopsis'].valid && form.controls['synopsis'].touched  }">
     </textarea>
-  </div>
+  </sn-form-group>
 
   <!-- Permission Field -->
-  <div class="flex flex-col justify-center grow w-full mb-3">
-    <span class="text-gray-500 text-xs mb-1 ps-1">Permission</span>
-    <div class="flex flex-row gap-2 items-center mb-1">
-      <!-- <sn-radio
-        name="permission"
-        shape="rounded"
-        color="primary"
-        size="xsmall"
-        formControlName="permission"
-        [value]="Permission.PRIVATE"
-        [label]="Permission.PRIVATE | titlecase">
-      </sn-radio> -->
+  <sn-form-group snExtraClasses="mb-3">
+    <label sn-form-label for="permission">Permission</label>
+    <div class="flex flex-row gap-2 items-center mb-1 px-2">
       <input
           id="private"
           class="form-check-input"
@@ -47,7 +39,7 @@
         {{ Permission.PRIVATE | titlecase }}
       </label>
     </div>
-    <div class="flex flex-row gap-2 items-center">
+    <div class="flex flex-row gap-2 items-center px-2">
       <input
           id="public"
           class="form-check-input"
@@ -59,10 +51,10 @@
         {{ Permission.PUBLIC | titlecase }}
       </label>
     </div>
-  </div>
+  </sn-form-group>
 
-  <div class="flex flex-col justify-center grow w-full mb-3">
-    <label class="text-gray-500 text-xs mb-1 ps-1" for="categories">Categories</label>
+  <sn-form-group snExtraClasses="mb-3">
+    <label sn-form-label for="categories">Categories</label>
     <sn-user-tag-input
         id="categories"
         [maxTagCount]="10"
@@ -70,5 +62,5 @@
         (onAdd)="onAddCategory($event)"
         (onRemove)="onRemoveCategory($event)">
     </sn-user-tag-input>
-  </div>
+  </sn-form-group>
 </fieldset>
