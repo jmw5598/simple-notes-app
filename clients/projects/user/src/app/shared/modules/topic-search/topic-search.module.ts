@@ -8,6 +8,7 @@ import { SnDebounceSearchModule } from '@sn/debounce-search';
 import { SnEmptyModule } from '@sn/empty';
 
 import { SnTopicSearchComponent } from './components/topic-search/topic-search.component';
+import { SnSectionHeaderModule } from '@sn/section-header';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SnTopicSearchComponent } from './components/topic-search/topic-search.c
     NgIconsModule.withIcons({ heroEye }),
     SnDebounceSearchModule,
     SnEmptyModule,
+    SnSectionHeaderModule,
   ],
   exports: [
     SnTopicSearchComponent,

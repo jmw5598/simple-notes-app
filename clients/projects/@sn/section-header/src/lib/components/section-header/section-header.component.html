@@ -1,0 +1,8 @@
+<h4 
+    class="font-bold text-primary-500"
+    [ngClass]="'text-' + snSize">
+  <span class="">{{ snTitle }}</span>
+</h4>
+<div *ngIf="snExtraContent" class="flex flex-row items-center">
+  <ng-container *ngTemplateOutlet="snExtraContent"></ng-container>
+</div>

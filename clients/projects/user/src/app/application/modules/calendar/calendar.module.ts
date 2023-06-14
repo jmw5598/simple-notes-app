@@ -22,6 +22,7 @@ import { SnDrawerModule, SnDrawerService } from '@sn/drawer';
 import { SnCalendarEventCreateModule } from '@sn/user/shared/modules/calendar-event-create';
 import { SnTodoListCreateModule } from '@sn/user/shared/modules/todo-list-create';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SnSectionHeaderModule } from '@sn/section-header';
 
 @NgModule({
     declarations: [
@@ -52,6 +53,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         SnDrawerModule,
         SnCalendarEventCreateModule,
         SnTodoListCreateModule,
+        SnSectionHeaderModule,
     ],
     providers: [
         SnDrawerService

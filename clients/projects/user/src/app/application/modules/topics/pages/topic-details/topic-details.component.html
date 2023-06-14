@@ -3,15 +3,17 @@
   <div class="w-full sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/3 border-bottom-md-1 border-0 md:border-r md:h-full">
     <div class="border-b">
       <div class="topic-details-heading border-b">
-        <div class="flex flex-row items-center justify-between border-b px-4 py-3">
-          <h4 class="text-primary-500 text-xl font-bold">{{ (topic$ | async).title }}</h4>
-          <div class="flex flex-row items-center">
-            <sn-button snType="outline" (click)="onUpdateTopic()" >
-              <ng-icon class="mr-1" name="heroPencil" size="1rem"></ng-icon>
-              Edit
-            </sn-button>
-          </div>
-        </div>
+        <sn-section-header 
+            [snTitle]="(topic$ | async).title"
+            snExtraClasses="border-b"
+            [snExtraContent]="topicDetailsHeaderActionButtons">
+        </sn-section-header>
+        <ng-template #topicDetailsHeaderActionButtons>
+          <sn-button snType="outline" (click)="onUpdateTopic()" >
+            <ng-icon class="mr-1" name="heroPencil" size="1rem"></ng-icon>
+            Edit
+          </sn-button>
+        </ng-template>
         <p class="bg-gray-100 rounded-lg text-gray-600 italic text-xs p-4 m-4">{{ (topic$ | async).synopsis }}</p>
         
       </div>
@@ -28,29 +30,32 @@
 
   <!-- Sections List -->
   <div class="w-full sm:w-full md:w-1/2 lg:w-1/2 xl:w-2/3 m-0 p-0">
-    <div class="flex flex-row items-center justify-between border-b px-4 py-3">
-      <h4 class="text-primary-500 text-xl font-bold">Sections</h4>
-      <span class="flex flex-row items-center">
-        <sn-debounced-search
-            class="mr-1"
-            debounceTime="500"
-            [isSearching]="isSearching"
-            (onSearch)="onSearchSections($event)">
-        </sn-debounced-search>
-        <span class="me-1">
-          <sn-button snType="outline" (click)="onOpenExportTopic()">
-            <ng-icon class="mr-1" name="heroDocumentArrowDown" size="1rem"></ng-icon>
-            Export
-          </sn-button>
-        </span>
-        <span>
-          <sn-button (click)="onCreateSection()" >
-            <ng-icon class="mr-1" name="heroDocument" size="1rem"></ng-icon>
-            New
-          </sn-button>
-        </span>
+    <sn-section-header 
+        snTitle="Sections"
+        snExtraClasses="border-b"
+        [snExtraContent]="topicsHeaderActionButtons">
+    </sn-section-header>
+    <ng-template #topicsHeaderActionButtons>
+      <sn-debounced-search
+          class="mr-1"
+          debounceTime="500"
+          [isSearching]="isSearching"
+          (onSearch)="onSearchSections($event)">
+      </sn-debounced-search>
+      <span class="me-1">
+        <sn-button snType="outline" (click)="onOpenExportTopic()">
+          <ng-icon class="mr-1" name="heroDocumentArrowDown" size="1rem"></ng-icon>
+          Export
+        </sn-button>
       </span>
-    </div>
+      <span>
+        <sn-button (click)="onCreateSection()" >
+          <ng-icon class="mr-1" name="heroDocument" size="1rem"></ng-icon>
+          New
+        </sn-button>
+      </span>
+    </ng-template>
+    
     <div class="border-b">
       <sn-user-section-list
           [sections]="(searchSectionsResult$ | async)?.elements"

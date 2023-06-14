@@ -1,18 +1,22 @@
-<div class="p-4" *ngIf="event">
-  <h3 class="font-bold text-primary-500 text-right text-2xl mb-3">Calendar Event Details</h3>
-  <hr class="mb-3" />
+<div class="px-4" *ngIf="event">
+  <sn-section-header 
+      snTitle="Calendar Event Details"
+      snDirectionality="reverse"
+      snSize="2xl"
+      snExtraClasses="border-b mb-4">
+  </sn-section-header>
+
   <h4 class="font-bold text-gray-700 text-xl mb-2">
     <span class="dot-color-swatch mr-1" [style.background-color]="event?.color"></span>
     {{ event?.title }}
     <span *ngIf="event?.isAllDay" class="px-2 py-1 text-xs text-white bg-info-500 float-right">All Day</span>
   </h4>
-
-
   
   <div class="text-xs text-gray-500 flex item-center mb-1">
     <ng-icon name="heroCalendarDays" size="1rem"></ng-icon>&nbsp;
     <span class="italic"> {{ event?.startDateTime | date: 'MM/dd/yyyy hh:mm a' }} - {{ event?.endDateTime | date: 'MM/dd/yyyy hh:mm a' }}</span>
   </div>
+  
   <div class="text-xs text-gray-500 flex items-center mb-3">
     <ng-icon name="heroMapPin" size="1rem"></ng-icon>&nbsp;
     <span class="italic"> {{ event?.location }}</span>

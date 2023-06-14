@@ -1,22 +1,23 @@
 <div *ngIf="(searchTopicsResult$ | async)" class="w-full sm:w-full md:w-full lg:w-3/4 xl:w-2/3 m-0 p-0 md:h-full" [@fadeAnimation]>
   <!-- Topics list -->
   <div class="lg:border-r h-full" *ngIf="(searchTopicsResult$ | async) || []">
-    <h4 class="m-0 px-4 py-3 border-b flex flex-row items-center justify-between">
-      <span class="font-bold text-primary-500 text-xl">Topics</span>
-      <!-- Header Buttons -->
-      <span class="flex flex-row items-center">
-        <sn-debounced-search
-            class="mr-1"
-            debounceTime="500"
-            [isSearching]="isSearching"
-            (onSearch)="onSearchTopics($event)">
-        </sn-debounced-search>
-        <sn-button snType="outline" (click)="onCreate()">
-          <ng-icon name="heroDocument" size="1rem"></ng-icon>
-          New
-        </sn-button>
-      </span>
-    </h4>
+    <sn-section-header 
+        snTitle="Topics"
+        snExtraClasses="border-b"
+        [snExtraContent]="topicsHeaderActionButtons">
+    </sn-section-header>
+    <ng-template #topicsHeaderActionButtons>
+      <sn-debounced-search
+          class="mr-1"
+          debounceTime="500"
+          [isSearching]="isSearching"
+          (onSearch)="onSearchTopics($event)">
+      </sn-debounced-search>
+      <sn-button snType="outline" (click)="onCreate()">
+        <ng-icon name="heroDocument" size="1rem"></ng-icon>
+        New
+      </sn-button>
+    </ng-template>
     <div class="block w-full border-b">
       <sn-user-topic-list
           [topics]="(searchTopicsResult$ | async)?.elements"

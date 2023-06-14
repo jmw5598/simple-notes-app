@@ -2,27 +2,41 @@
   
   <!-- Todays Events Card -->
   <div class="w-full sm:w-full md:w-full lg:w-1/3 lg:border-r lg:h-full">
-    <h4 class="font-bold text-primary-500 border-b p-4 text-xl">Todays Events</h4>
+    <sn-section-header 
+        snTitle="Today's Events"
+        snExtraClasses="border-b py-4">
+    </sn-section-header>
     <sn-user-todays-calendar-events-list
         class="border-b"
         [events]="todaysEvents$ | async">
     </sn-user-todays-calendar-events-list>
   </div>
+
   <!-- Todo Lists -->
   <div class="w-full sm:w-full md:w-full lg:w-1/3 lg:border-r lg:h-full">
-    <h4 class="font-bold text-primary-500 border-b p-4 text-xl">Todays Todo Lists</h4>
+    <sn-section-header 
+        snTitle="Todays Todo Lists"
+        snExtraClasses="border-b py-4">
+    </sn-section-header>
     <sn-user-todays-todo-lists-list
         [todoLists]="todaysTodoLists$ | async">
     </sn-user-todays-todo-lists-list>
 
-    <h4 class="font-bold text-primary-500 border-b p-4 text-xl">Past Due Todo Lists</h4>
+    <sn-section-header 
+        snTitle="Past Due Todo Lists"
+        snExtraClasses="border-b py-4">
+    </sn-section-header>
     <sn-user-past-due-todo-lists-list
         [todoLists]="pastDueTodoLists$ | async">
     </sn-user-past-due-todo-lists-list>
   </div>
+
   <!-- Recent Topics -->
   <div class="w-full sm:w-full md:w-full lg:w-1/3 lg:h-full">
-    <h4 class="font-bold text-primary-500 border-b p-4 text-xl">Recently Updated Topics</h4>
+    <sn-section-header 
+        snTitle="Recently Updated Topics"
+        snExtraClasses="border-b py-4">
+    </sn-section-header>
     <sn-user-recent-topics-list
         [topics]="recentTopics$ | async">
     </sn-user-recent-topics-list>

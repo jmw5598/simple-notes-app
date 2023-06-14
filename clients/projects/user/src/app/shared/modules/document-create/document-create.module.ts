@@ -6,6 +6,7 @@ import { SnDocumentCreateComponent } from './components/document-create/document
 import { SnDocumentBuilderModule } from '../document-builder';
 import { SnAlertModule } from '@sn/alert';
 import { SnButtonsModule } from '@sn/button';
+import { SnSectionHeaderModule } from '@sn/section-header';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SnButtonsModule } from '@sn/button';
     SnDocumentBuilderModule,
     SnAlertModule,
     SnButtonsModule,
+    SnSectionHeaderModule,
   ],
   exports: [
     SnDocumentCreateComponent

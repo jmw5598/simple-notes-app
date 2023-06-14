@@ -1,6 +1,10 @@
-<div class="p-4">
-  <h3 class="font-bold text-primary-500 text-right text-2xl mb-3">Create Document</h3>
-  <hr class="mb-3" />
+<div class="px-4">
+  <sn-section-header 
+      snTitle="Create Document"
+      snDirectionality="reverse"
+      snSize="2xl"
+      snExtraClasses="border-b mb-4">
+  </sn-section-header>
 
   <form class="form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
     <!-- Response Message -->

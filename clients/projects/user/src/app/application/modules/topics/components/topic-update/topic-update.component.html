@@ -1,6 +1,10 @@
-<div class="p-4">
-  <h3 class="font-bold text-primary-500 text-right text-2xl mb-3">Update Topic</h3>
-  <hr class="mb-3" />
+<div class="px-4">
+  <sn-section-header 
+      snTitle="Update Topic"
+      snDirectionality="reverse"
+      snSize="2xl"
+      snExtraClasses="border-b mb-4">
+  </sn-section-header>
   
   <!-- Response Message -->
   <ng-container *ngIf="(responseMessage$ | async) as responseMessage">

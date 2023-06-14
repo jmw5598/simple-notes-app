@@ -17,6 +17,7 @@ import { SnCheckboxModule } from '@sn/checkbox';
 import { SnEmptyModule } from '@sn/empty';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnTodoListCreateModule } from '@sn/user/shared/modules/todo-list-create';
+import { SnSectionHeaderModule } from '@sn/section-header';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import { SnTodoListCreateModule } from '@sn/user/shared/modules/todo-list-create
         SnCheckboxModule,
         SnEmptyModule,
         SnTodoListCreateModule,
+        SnSectionHeaderModule,
     ]
 })
 export class DashboardModule { }

@@ -1,6 +1,10 @@
-<div class="p-4" *ngIf="todoList">
-  <h3 class="font-bold text-primary-500 text-right text-2xl mb-3">Todo List Details</h3>
-  <hr class="mb-3" />
+<div class="px-4" *ngIf="todoList">
+  <sn-section-header 
+      snTitle="Todo List Details"
+      snDirectionality="reverse"
+      snSize="2xl"
+      snExtraClasses="border-b mb-4">
+  </sn-section-header>
 
   <!-- Response Message -->
   <ng-container *ngIf="responseMessage">

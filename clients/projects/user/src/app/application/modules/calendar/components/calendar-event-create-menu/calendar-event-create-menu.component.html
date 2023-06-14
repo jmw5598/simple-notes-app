@@ -6,10 +6,14 @@
     <ng-icon name="heroArrowLeft" size="1.5rem"></ng-icon>
   </div>
   <ng-container [ngSwitch]="calendarEventCreateView">
-    <div class="p-4" *ngSwitchCase="'menu'">
+    <div class="px-4" *ngSwitchCase="'menu'">
       <div>
-        <h3 class="font-bold text-primary-500 text-right text-2xl mb-3">Add to Calendar</h3>
-        <hr class="mb-3" />
+        <sn-section-header 
+            snTitle="Add to Calendar"
+            snDirectionality="reverse"
+            snSize="2xl"
+            snExtraClasses="border-b mb-4">
+        </sn-section-header>
       </div>
       <div>
         <div class="mb-3">

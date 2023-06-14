@@ -12,6 +12,7 @@ import { heroCog8ToothSolid, heroTrashSolid } from '@ng-icons/heroicons/solid';
 import { SnButtonsModule } from '@sn/button';
 import { SnAlertModule } from '@sn/alert';
 import { SnDrawerModule } from '@sn/drawer';
+import { SnSectionHeaderModule } from '@sn/section-header';
 
 @NgModule({
     declarations: [
@@ -34,6 +35,7 @@ import { SnDrawerModule } from '@sn/drawer';
         SnButtonsModule,
         SnAlertModule,
         SnDrawerModule,
+        SnSectionHeaderModule,
     ]
 })
 export class AccountSettingsToolbarModule { }

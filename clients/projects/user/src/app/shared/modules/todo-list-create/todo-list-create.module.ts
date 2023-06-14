@@ -18,6 +18,7 @@ import { SnTodoListDetailsComponent } from './components/todo-list-details/todo-
 import { SnTodoListFormComponent } from './components/todo-list-form/todo-list-form.component';
 import { SnTodoListProgressComponent } from './components/todo-list-progress/todo-list-progress.component';
 import { SnTodoListUpdateComponent } from './components/todo-list-update/todo-list-update.component';
+import { SnSectionHeaderModule } from '@sn/section-header';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SnTodoListUpdateComponent } from './components/todo-list-update/todo-li
     SnButtonsModule,
     SnCheckboxModule,
     SnEmptyModule,
+    SnSectionHeaderModule,
   ],
   exports: [
     SnTodoListCreateComponent,

@@ -35,6 +35,7 @@ import { SnLoadingSpinnerModule } from '@sn/loading-spinner';
 import { SnDocumentBuilderModule } from '@sn/user/shared/modules/document-builder';
 import { SnDocumentCreateModule } from '@sn/user/shared/modules/document-create';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SnSectionHeaderModule } from '@sn/section-header';
 
 @NgModule({
     declarations: [
@@ -69,6 +70,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         SnLoadingSpinnerModule,
         SnDocumentBuilderModule,
         SnDocumentCreateModule,
+        SnSectionHeaderModule,
     ]
 })
 export class DocumentsModule { }

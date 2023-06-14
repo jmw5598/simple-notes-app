@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SnTagInputModule } from '@sn/tag-input';
 import { SnButtonsModule } from '@sn/button';
 import { SnAlertModule } from '@sn/alert';
+import { SnSectionHeaderModule } from '@sn/section-header';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SnAlertModule } from '@sn/alert';
     SnTagInputModule,
     SnButtonsModule,
     SnAlertModule,
+    SnSectionHeaderModule,
   ],
   exports: [
     SnTopicCreateComponent,

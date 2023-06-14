@@ -24,6 +24,7 @@ import { SnPaginatorModule } from '@sn/paginator';
 import { SnDebounceSearchModule } from '@sn/debounce-search';
 import { SnTodoListCreateModule } from '@sn/user/shared/modules/todo-list-create';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SnSectionHeaderModule } from '@sn/section-header';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SnPaginatorModule,
     SnDebounceSearchModule,
     SnTodoListCreateModule,
+    SnSectionHeaderModule,
   ]
 })
 export class TodosModule { }

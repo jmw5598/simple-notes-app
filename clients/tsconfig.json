@@ -94,6 +94,9 @@
       ],
       "@sn/tag-input": [
         "dist/@sn/tag-input"
+      ],
+      "@sn/section-header": [
+        "dist/@sn/section-header"
       ]
     },
     "useDefineForClassFields": false
