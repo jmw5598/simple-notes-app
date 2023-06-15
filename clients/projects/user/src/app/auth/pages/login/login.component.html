@@ -59,11 +59,12 @@
         formControlName="rememberMe"
         label="Remember Me">
     </sn-checkbox>
-    <span 
-        class="text-xs ml-2 text-primary-500 hover:text-primary-700 cursor-pointer"
+    <a 
+        sn-link
+        snSize="xs"
         routerLink="/auth/password-request">
       Forgot Password ?
-    </span>
+    </a>
   </div>
 
   <!-- Buttons Controls -->
@@ -79,7 +80,7 @@
   </div>
   <div class="text-center">
     <span class="text-sm ml-2 text-gray-700 cursor-pointer">
-      Or <a class="text-primary-500 hover:text-primary-700" routerLink="/auth/register">register now!</a>
+      Or <a sn-link routerLink="/auth/register">register now!</a>
     </span>
   </div>
 </form>

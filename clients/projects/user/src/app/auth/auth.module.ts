@@ -23,6 +23,7 @@ import { SnLoadingSpinnerModule } from '@sn/loading-spinner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnCheckboxModule } from '@sn/checkbox';
 import { SnFormModule } from '@sn/form';
+import { SnLinkModule } from '@sn/link';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { SnFormModule } from '@sn/form';
     SnLoadingSpinnerModule,
     SnCheckboxModule,
     SnFormModule,
+    SnLinkModule,
   ]
 })
 export class AuthModule { }

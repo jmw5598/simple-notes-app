@@ -37,6 +37,7 @@ import { SnDocumentCreateModule } from '@sn/user/shared/modules/document-create'
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnSectionHeaderModule } from '@sn/section-header';
 import { SnListModule } from '@sn/list';
+import { SnLinkModule } from '@sn/link';
 
 @NgModule({
     declarations: [
@@ -73,6 +74,7 @@ import { SnListModule } from '@sn/list';
         SnDocumentCreateModule,
         SnSectionHeaderModule,
         SnListModule,
+        SnLinkModule,
     ]
 })
 export class DocumentsModule { }

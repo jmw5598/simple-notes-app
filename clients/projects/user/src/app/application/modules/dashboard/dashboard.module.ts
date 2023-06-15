@@ -20,6 +20,7 @@ import { SnTodoListCreateModule } from '@sn/user/shared/modules/todo-list-create
 import { SnSectionHeaderModule } from '@sn/section-header';
 import { SnListModule } from '@sn/list';
 import { SnButtonsModule } from '@sn/button';
+import { SnLinkModule } from '@sn/link';
 
 @NgModule({
     declarations: [
@@ -48,6 +49,7 @@ import { SnButtonsModule } from '@sn/button';
         SnSectionHeaderModule,
         SnListModule,
         SnButtonsModule,
+        SnLinkModule,
     ]
 })
 export class DashboardModule { }

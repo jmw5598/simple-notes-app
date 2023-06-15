@@ -103,6 +103,9 @@
       ],
       "@sn/list": [
         "dist/@sn/list"
+      ],
+      "@sn/link": [
+        "dist/@sn/link"
       ]
     },
     "useDefineForClassFields": false

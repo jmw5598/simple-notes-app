@@ -26,6 +26,7 @@ import { SnTodoListCreateModule } from '@sn/user/shared/modules/todo-list-create
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnSectionHeaderModule } from '@sn/section-header';
 import { SnListModule } from '@sn/list';
+import { SnLinkModule } from '@sn/link';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { SnListModule } from '@sn/list';
     SnTodoListCreateModule,
     SnSectionHeaderModule,
     SnListModule,
+    SnLinkModule,
   ]
 })
 export class TodosModule { }

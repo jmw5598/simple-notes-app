@@ -15,7 +15,7 @@
 <sn-list *ngIf="documents">
   <sn-list-item *ngFor="let document of documents" snExtraClasses="border-b">
     <sn-list-item-title [snExtraContent]="documentTitleExtraContentTemplate">
-      <a class="hover:text-primary-700" [routerLink]="[]">{{ document?.name | titlecase }}</a>
+      <a sn-link [routerLink]="[]">{{ document?.name | titlecase }}</a>
       <ng-template #documentTitleExtraContentTemplate>
         <div class="flex flex-row gap-1 items-center">
           <sn-button

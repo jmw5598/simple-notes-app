@@ -5,7 +5,7 @@
 <sn-list *ngIf="todoLists">
   <sn-list-item *ngFor="let todoList of todoLists" snExtraClasses="border-b">
     <sn-list-item-title [snExtraContent]="todoListTitleExtraContentTemplate">
-      <a class="hover:text-primary-700" [routerLink]="['/topics', todoList.id, 'details']">{{ todoList?.title | titlecase }}</a>
+      <a sn-link [routerLink]="['/topics', todoList.id, 'details']">{{ todoList?.title | titlecase }}</a>
       <ng-template #todoListTitleExtraContentTemplate>
         <div class="flex flex-row gap-1 items-center">
           <a (click)="isTodoListVisible = !isTodoListVisible" class="text-gray-500 hover:text-primary-500" [routerLink]="[]">

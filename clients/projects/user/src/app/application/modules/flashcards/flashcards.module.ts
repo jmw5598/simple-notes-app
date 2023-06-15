@@ -30,6 +30,7 @@ import { SnFlashcardSetCreateModule } from '@sn/user/shared/modules/flashcard-se
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnSectionHeaderModule } from '@sn/section-header';
 import { SnListModule } from '@sn/list';
+import { SnLinkModule } from '@sn/link';
 
 @NgModule({
     declarations: [
@@ -63,6 +64,7 @@ import { SnListModule } from '@sn/list';
         SnFlashcardSetCreateModule,
         SnSectionHeaderModule,
         SnListModule,
+        SnLinkModule,
     ]
 })
 export class FlashcardsModule { }

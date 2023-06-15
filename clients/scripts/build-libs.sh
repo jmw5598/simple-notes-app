@@ -24,5 +24,6 @@ ng build radio
 ng build section-header
 ng build form
 ng build list
+ng build link
 
 echo "\nProject libs built successfully!\n"

@@ -11,7 +11,7 @@
 <sn-list *ngIf="topics">
   <sn-list-item *ngFor="let topic of topics" snExtraClasses="border-b">
     <sn-list-item-title [snExtraContent]="topicTitleExtraContentTemplate">
-      <a class="hover:text-primary-700" [routerLink]="['/topics', topic.id, 'details']">{{ topic?.title | titlecase }}</a>
+      <a sn-link [routerLink]="['/topics', topic.id, 'details']">{{ topic?.title | titlecase }}</a>
       <ng-template #topicTitleExtraContentTemplate>
         <div class="flex flex-row gap-1 items-center">
           <sn-button

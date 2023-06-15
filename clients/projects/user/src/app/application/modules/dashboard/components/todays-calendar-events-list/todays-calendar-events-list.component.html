@@ -11,7 +11,7 @@
 <sn-list *ngIf="events">
   <sn-list-item *ngFor="let event of events" snExtraClasses="border-b">
     <sn-list-item-title [snExtraContent]="topicTitleExtraContentTemplate">
-      <a class="hover:text-primary-700" [routerLink]="['/calendar']">{{ event?.title | titlecase }}</a>
+      <a sn-link [routerLink]="['/calendar']">{{ event?.title | titlecase }}</a>
       <ng-template #topicTitleExtraContentTemplate>
         <div class="flex flex-row gap-1 items-center">
           <sn-button

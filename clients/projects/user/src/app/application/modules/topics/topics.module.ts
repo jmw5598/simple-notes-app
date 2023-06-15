@@ -35,6 +35,7 @@ import { SnCheckboxModule } from '@sn/checkbox';
 import { SnSectionHeaderModule } from '@sn/section-header';
 import { SnFormModule } from '@sn/form';
 import { SnListModule } from '@sn/list';
+import { SnLinkModule } from '@sn/link';
 
 
 @NgModule({
@@ -89,6 +90,7 @@ import { SnListModule } from '@sn/list';
         SnSectionHeaderModule,
         SnFormModule,
         SnListModule,
+        SnLinkModule,
     ]
 })
 export class TopicsModule { }
