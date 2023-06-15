@@ -18,6 +18,8 @@ import { SnEmptyModule } from '@sn/empty';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnTodoListCreateModule } from '@sn/user/shared/modules/todo-list-create';
 import { SnSectionHeaderModule } from '@sn/section-header';
+import { SnListModule } from '@sn/list';
+import { SnButtonsModule } from '@sn/button';
 
 @NgModule({
     declarations: [
@@ -44,6 +46,8 @@ import { SnSectionHeaderModule } from '@sn/section-header';
         SnEmptyModule,
         SnTodoListCreateModule,
         SnSectionHeaderModule,
+        SnListModule,
+        SnButtonsModule,
     ]
 })
 export class DashboardModule { }

@@ -34,6 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SnCheckboxModule } from '@sn/checkbox';
 import { SnSectionHeaderModule } from '@sn/section-header';
 import { SnFormModule } from '@sn/form';
+import { SnListModule } from '@sn/list';
 
 
 @NgModule({
@@ -87,6 +88,7 @@ import { SnFormModule } from '@sn/form';
         SnCheckboxModule,
         SnSectionHeaderModule,
         SnFormModule,
+        SnListModule,
     ]
 })
 export class TopicsModule { }

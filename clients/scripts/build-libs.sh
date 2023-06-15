@@ -23,5 +23,6 @@ ng build tag-input
 ng build radio
 ng build section-header
 ng build form
+ng build list
 
 echo "\nProject libs built successfully!\n"

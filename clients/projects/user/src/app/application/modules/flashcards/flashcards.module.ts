@@ -29,6 +29,7 @@ import { SnFlashcardSetBuilderModule } from '@sn/user/shared/modules/flashcard-s
 import { SnFlashcardSetCreateModule } from '@sn/user/shared/modules/flashcard-set-create';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnSectionHeaderModule } from '@sn/section-header';
+import { SnListModule } from '@sn/list';
 
 @NgModule({
     declarations: [
@@ -61,6 +62,7 @@ import { SnSectionHeaderModule } from '@sn/section-header';
         SnFlashcardSetBuilderModule,
         SnFlashcardSetCreateModule,
         SnSectionHeaderModule,
+        SnListModule,
     ]
 })
 export class FlashcardsModule { }

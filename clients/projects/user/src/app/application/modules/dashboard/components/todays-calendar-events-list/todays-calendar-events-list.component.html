@@ -7,26 +7,31 @@
     <a [routerLink]="['../calendar']" class="bg-white border border-primary-500 mt-4 py-2 px-4 hover:bg-primary-500 hover:text-white transition-colors rounded-full text-primary-500 font-semibold mb-2">Create an event</a>
   </ng-template>
 </div>
-<ng-container *ngIf="events">
-  <div *ngFor="let event of events" class="border-b p-4">
-    <div class="list-details">
-      <div class="list-details-title">
-        <h5 class="text-primary-500 p-0 m-0 flex flex-row justify-between w-full">
-          <a [routerLink]="['/calendar']">{{ event.title }}</a>
-        </h5>
-      </div>
-      <p class="list-details-description text-gray-500 italic text-xs p-0 mt-2 mb-1">{{ event.description }}</p>
-      <hr class="my-1" />
-      <div class="list-details-timestamp text-dark p-0 m-0 flex flex-row">
-        <p class="list-details-timestamp text-gray-500 p-0 m-0 mr-3 flex items-center">
-          <ng-icon name="heroClock" size="0.8rem"></ng-icon>&nbsp;&nbsp; 
-          {{ event.startDateTime | date:'shortTime' }} - {{ event.endDateTime | date:'shortTime' }} ({{ event.startDateTime | date:'shortDate' }} - {{ event.endDateTime | date:'shortDate' }})
-        </p>
-        <p class="list-details-timestamp text-gray-500 p-0 m-0 flex items-center">
-          <ng-icon name="heroMapPin" size="0.8rem"></ng-icon>&nbsp;&nbsp; {{ event.location || '' }}
-        </p>
-        <span class="dot-color-swatch ml-auto" [style.background-color]="event?.color"></span>
-      </div>
-    </div>
-  </div>
-</ng-container>
+
+<sn-list *ngIf="events">
+  <sn-list-item *ngFor="let event of events" snExtraClasses="border-b">
+    <sn-list-item-title [snExtraContent]="topicTitleExtraContentTemplate">
+      <a class="hover:text-primary-700" [routerLink]="['/calendar']">{{ event?.title | titlecase }}</a>
+      <ng-template #topicTitleExtraContentTemplate>
+        <div class="flex flex-row gap-1 items-center">
+          <sn-button
+              snType="blank"
+              [routerLink]="['/calendar']">
+            <ng-icon name="heroEye" size="1rem"></ng-icon>
+          </sn-button>
+        </div>
+      </ng-template>
+    </sn-list-item-title>
+    <sn-list-item-subtitle>{{ event?.description }}</sn-list-item-subtitle>
+    <sn-list-item-footer>
+      <p class="list-details-timestamp text-gray-500 p-0 m-0 mr-3 flex items-center">
+        <ng-icon name="heroClock" size="0.8rem"></ng-icon>&nbsp;&nbsp; 
+        {{ event.startDateTime | date:'shortTime' }} - {{ event.endDateTime | date:'shortTime' }} ({{ event.startDateTime | date:'shortDate' }} - {{ event.endDateTime | date:'shortDate' }})
+      </p>
+      <p class="list-details-timestamp text-gray-500 p-0 m-0 flex items-center">
+        <ng-icon name="heroMapPin" size="0.8rem"></ng-icon>&nbsp;&nbsp; {{ event.location || '' }}
+      </p>
+      <span class="dot-color-swatch ml-auto" [style.background-color]="event?.color"></span>
+    </sn-list-item-footer>
+  </sn-list-item>
+</sn-list>

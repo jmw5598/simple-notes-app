@@ -7,11 +7,36 @@
     <a [routerLink]="['../todos']" class="bg-white border border-primary-500 mt-4 py-2 px-4 hover:bg-primary-500 hover:text-white transition-colors rounded-full text-primary-500 font-semibold mb-2">Create new todo list</a>
   </ng-template>
 </div>
-<ng-container *ngIf="todoLists">
-  <div *ngFor="let todoList of todoLists" class="border-b p-4">
-    <sn-user-todo-list-todos-form 
-        [todoList]="todoList"
-        (onUpdate)="onUpdateTodoList($event)">
-    </sn-user-todo-list-todos-form>
-  </div>
-</ng-container>
+<sn-list *ngIf="todoLists">
+  <sn-list-item *ngFor="let todoList of todoLists" snExtraClasses="border-b">
+    <sn-list-item-title [snExtraContent]="todoListTitleExtraContentTemplate">
+      <a class="hover:text-primary-700" [routerLink]="['/topics', todoList.id, 'details']">{{ todoList?.title | titlecase }}</a>
+      <ng-template #todoListTitleExtraContentTemplate>
+        <div class="flex flex-row gap-1 items-center">
+          <a (click)="isTodoListVisible = !isTodoListVisible" class="text-gray-500 hover:text-primary-500" [routerLink]="[]">
+            <ng-container *ngIf="isTodoListVisible; else eyeSlashIconTemplate">
+              <ng-icon name="heroEye" size="1rem"></ng-icon>
+            </ng-container>
+            <ng-template #eyeSlashIconTemplate>
+              <ng-icon name="heroEyeSlash" size="1rem"></ng-icon>
+            </ng-template>
+          </a>
+        </div>
+      </ng-template>
+    </sn-list-item-title>
+    <sn-list-item-content>
+      <sn-user-todo-list-todos-form 
+          [todoList]="todoList"
+          (onUpdate)="onUpdateTodoList($event)">
+      </sn-user-todo-list-todos-form>
+    </sn-list-item-content>
+    <sn-list-item-footer>
+      <span class="mr-4 flex items-center">
+        <ng-icon name="heroCalendarDays" size="0.8rem"></ng-icon>&nbsp; {{ todoList?.startedBy | date: 'MM/dd/yyyy' }} - {{ todoList?.completedBy | date: 'MM/dd/yyyy' }}
+      </span>
+      <span class="flex items-center">
+        <ng-icon name="heroClock" size="0.8rem"></ng-icon>&nbsp; {{ todoList.updatedAt | date:'medium' }}
+      </span>
+    </sn-list-item-footer>
+  </sn-list-item>
+</sn-list>

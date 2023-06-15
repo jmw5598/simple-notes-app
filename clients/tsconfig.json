@@ -100,6 +100,9 @@
       ],
       "@sn/form": [
         "dist/@sn/form"
+      ],
+      "@sn/list": [
+        "dist/@sn/list"
       ]
     },
     "useDefineForClassFields": false

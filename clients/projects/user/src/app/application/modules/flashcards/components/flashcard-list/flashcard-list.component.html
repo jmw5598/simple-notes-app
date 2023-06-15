@@ -11,13 +11,12 @@
     </sn-button>
   </ng-template>
 </div>
-<ng-container *ngIf="flashcardSets">
-  <div *ngFor="let flashcardSet of flashcardSets" class="border-b p-4">
-    <div class="list-details">
-      <div class="list-details-title">
-        <h5 class="text-primary-500 p-0 m-0 mb-2">
-          <a class="hover:text-primary-700" [routerLink]="[]">{{ flashcardSet.title }}</a>
-        </h5>
+
+<sn-list *ngIf="flashcardSets">
+  <sn-list-item *ngFor="let flashcardSet of flashcardSets" snExtraClasses="border-b">
+    <sn-list-item-title [snExtraContent]="flashcardSetTitleExtraContentTemplate">
+      <a class="hover:text-primary-700" [routerLink]="[]">{{ flashcardSet?.title | titlecase }}</a>
+      <ng-template #flashcardSetTitleExtraContentTemplate>
         <div class="flex flex-row gap-1 items-center">
           <sn-button 
               snType="blank"
@@ -37,10 +36,11 @@
             <ng-icon name="heroTrash" size="1rem"></ng-icon>
           </sn-button>
         </div>
-      </div>
-      <p class="list-details-description list-details-description text-gray-600 italic text-xs p-0 m-0">{{ flashcardSet.synopsis }}</p>
-      <hr class="my-1" />
-      <p class="list-details-timestamp text-gray-500 mb-0 flex items-center"><ng-icon name="heroClock" size="0.8rem"></ng-icon>&nbsp;&nbsp; {{ flashcardSet.updatedAt | date:'medium' }}</p>
-    </div>
-  </div>
-</ng-container>
+      </ng-template>
+    </sn-list-item-title>
+    <sn-list-item-subtitle>{{ flashcardSet?.synopsis }}</sn-list-item-subtitle>
+    <sn-list-item-footer>
+      <ng-icon name="heroClock" size="0.8rem"></ng-icon>&nbsp;&nbsp; {{ flashcardSet.updatedAt | date:'medium' }}
+    </sn-list-item-footer>
+  </sn-list-item>
+</sn-list>
