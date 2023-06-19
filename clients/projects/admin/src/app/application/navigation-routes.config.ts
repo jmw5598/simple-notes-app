@@ -3,31 +3,31 @@ import { NavigationRouteLink } from '@sn/core/framing';
 export const NAVIGATION_ROUTES: NavigationRouteLink[] = [
   {
     label: 'Dashboard',
-    iconClasses: 'fas fa-chart-bar',
+    iconClasses: 'heroRectangleGroup',
     routerLink: ['dashboard'],
     tooltip: 'Dashboard'
   },
   {
     label: 'Accounts',
-    iconClasses: 'far fa-user-circle',
+    iconClasses: 'heroUserPlus',
     routerLink: ['accounts'],
     tooltip: 'User Accounts'
   },
   {
     label: 'Invoices',
-    iconClasses: 'fas fa-file-invoice-dollar',
+    iconClasses: 'heroCurrencyDollar',
     routerLink: ['invoices'],
     tooltip: 'Invoicing & Payments'
   },
   {
     label: 'Settings',
-    iconClasses: 'fas fa-cogs',
+    iconClasses: 'heroCog8Tooth',
     routerLink: ['settings'],
     tooltip: 'Settings'
   },
   {
     label: 'Logout',
-    iconClasses: 'fas fa-lock',
+    iconClasses: 'heroLockOpen',
     routerLink: ['auth', 'logout'],
     tooltip: 'Logout'
   }

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AccountCreateComponent } from '@sn/admin/shared/components';
+import { AccountCreateComponent } from '@sn/admin/shared/modules/account-create';
 import { SnDrawerService, SnDrawerLocation, SnDrawerSize } from '@sn/drawer';
 
 @Component({

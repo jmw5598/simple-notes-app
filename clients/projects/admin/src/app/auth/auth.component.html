@@ -1,12 +1,8 @@
-<div class="auth-layout" [@fadeAnimation]>
-  <div class="left-col">
-    <div class="auth-marketing">
-      <sn-admin-auth-marketing></sn-admin-auth-marketing>
-    </div>
+<div class="h-screen flex">
+  <div class="flex w-1/2 bg-primary-500 i justify-around items-center">
+    <sn-admin-auth-marketing></sn-admin-auth-marketing>
   </div>
-  <div class="right-col bg-primary">
-    <div class="auth-outlet">
-      <router-outlet></router-outlet>
-    </div>
+  <div class="flex w-1/2 justify-center items-center bg-white">
+    <router-outlet></router-outlet>
   </div>
 </div>

@@ -1,35 +1,35 @@
 <div [formGroup]="form.get('user')">
   <!-- Username Input -->
-  <div class="form-group">
-    <label for="username">Username</label>
+  <sn-form-group snExtraClasses="mb-3">
+    <label sn-form-label  for="username">Username</label>
     <input 
-        class="form-control" 
+        sn-form-control
         formControlName="username" 
         name="username" 
         type="text" 
         id="username" 
         autocomplete="off"
-        [ngClass]="{ 'is-invalid':!form.get('user').get('username').valid && form.get('user').get('username').touched  }">
+        [ngClass]="{ 'border-danger-500':!form.get('user').get('username').valid && form.get('user').get('username').touched  }">
     <small 
-        class="text-danger text-bold" 
+        sn-form-control-error
         *ngIf="
           form.get('user').get('username').touched  
           && form.get('user').get('username').hasError('required')">
       Username is required!
     </small>
     <small 
-        class="text-danger text-bold" 
+        sn-form-control-error
         *ngIf="
           form.get('user').get('username').touched
           && form.get('user').get('username').hasError('usernameExists')">
       Username already exists!
     </small>
-  </div>
+  </sn-form-group>
 
   <!-- Roles -->
-  <div class="form-group" [formGroup]="form.get('user')" formArrayName="roles">
-    <label for="roles">Allowed Roles</label>
-    <div class="card card-body">
+  <sn-form-group snExtraClasses="mb-3" [formGroup]="form.get('user')" formArrayName="roles">
+    <label sn-form-label for="roles">Allowed Roles</label>
+    <!-- <div class="card card-body"> -->
       <ng-conttainer *ngFor="let roleControl of form?.get('user')?.get('roles')['controls']">
         <div [formGroup]="roleControl">
           <sn-checkbox 
@@ -42,58 +42,58 @@
           </sn-checkbox>
         </div>
       </ng-conttainer>
-    </div>
-  </div>
+    <!-- </div> -->
+  </sn-form-group>
 
   <!-- Password Input -->
-  <div class="form-group">
-    <label for="password">Password</label>
+  <sn-form-group snExtraClasses="mb-3">
+    <label sn-form-label  for="password">Password</label>
     <input 
-        class="form-control" 
+        sn-form-control
         formControlName="password" 
         name="password" 
         type="password" 
         id="password"
-        [ngClass]="{ 'is-invalid':!form.get('user').get('password').valid && form.get('user').get('password').touched  }">
+        [ngClass]="{ 'border-danger-500':!form.get('user').get('password').valid && form.get('user').get('password').touched  }">
     <small 
-        class="text-danger text-bold" 
+        sn-form-control-error
         *ngIf="
           form.get('user').get('password').touched  
           && form.get('user').get('password').hasError('required')">
       Password is required!
     </small>
     <small 
-        class="text-danger text-bold" 
+        sn-form-control-error
         *ngIf="
           form.get('user').get('password').touched  
           && form.get('user').get('password').hasError('minlength')">
       Password must be 8 characters!
     </small>
-  </div>
+  </sn-form-group>
 
   <!-- Password Confirm Input -->
-  <div class="form-group">
-    <label for="passwordConfirm">Confirm Password</label>
+  <sn-form-group snExtraClasses="mb-3">
+    <label sn-form-label for="passwordConfirm">Confirm Password</label>
     <input 
-        class="form-control" 
+        sn-form-control
         formControlName="passwordConfirm" 
         name="passwordConfirm" 
         type="password" 
         id="passwordConfirm"
-        [ngClass]="{ 'is-invalid':!form.get('user').get('passwordConfirm').valid && form.get('user').get('passwordConfirm').touched  }">
+        [ngClass]="{ 'border-danger-500':!form.get('user').get('passwordConfirm').valid && form.get('user').get('passwordConfirm').touched  }">
     <small 
-        class="text-danger text-bold" 
+        sn-form-control-error
         *ngIf="
           form.get('user').get('passwordConfirm').touched  
           && form.get('user').get('passwordConfirm').hasError('required')">
       Password confirmation is required!
     </small>
     <small 
-        class="text-danger text-bold" 
+        sn-form-control-error
         *ngIf="
           form.get('user').get('passwordConfirm').touched  
           && form.get('user').get('passwordConfirm').hasError('mustMatch')">
       Password & Confirmation must match!
     </small>
-  </div>
+  </sn-form-group>
 </div>

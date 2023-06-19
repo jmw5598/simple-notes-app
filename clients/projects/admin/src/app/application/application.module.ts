@@ -16,10 +16,15 @@ import { NgIconsModule } from '@ng-icons/core';
 import {
   heroUserPlus,
   heroArrowSmallLeft,
-  heroArrowSmallRight } from '@ng-icons/heroicons/outline';
+  heroArrowSmallRight,
+  heroRectangleGroup,
+  heroCog8Tooth,
+  heroCurrencyDollar,
+  heroLockOpen, } from '@ng-icons/heroicons/outline';
   
 import { SnDrawerModule } from '@sn/drawer';
 import { SnToolbarModule } from '@sn/toolbar';
+import { SnAccountCreateModule } from '../shared/modules/account-create';
 
 @NgModule({
   declarations: [
@@ -38,9 +43,14 @@ import { SnToolbarModule } from '@sn/toolbar';
       heroUserPlus,
       heroArrowSmallLeft,
       heroArrowSmallRight,
+      heroRectangleGroup,
+      heroCurrencyDollar,
+      heroCog8Tooth,
+      heroLockOpen,
     }),
     SnDrawerModule,
     SnToolbarModule,
+    SnAccountCreateModule,
   ],
   providers:  [
     {

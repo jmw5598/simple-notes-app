@@ -6,7 +6,7 @@ module.exports = {
   content: [
     "./projects/@sn/**/*.{html,ts}",
     "./projects/user/src/**/*.{html,ts}",
-    // "./projects/admin/src/**/*.{html,ts}",
+    "./projects/admin/src/**/*.{html,ts}",
   ],
   theme: {
     colors: {

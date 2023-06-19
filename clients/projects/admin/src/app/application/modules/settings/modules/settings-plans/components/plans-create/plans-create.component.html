@@ -1,25 +1,40 @@
-<div class="row">
-  <div class="col-sm-12 px-4">
-    <h3 class="font-weight-bold text-primary text-right mb-3">Create Plan</h3>
-    <hr class="mb-3" />
-    
-    <!-- Response Message -->
-    <ng-container *ngIf="(responseMessage$ | async) as responseMessage">
-      <sn-alert
-          [@showHide]
-          snType="info"
-          [snTitle]="responseMessage.status"
-          [snMessage]="responseMessage.message">
-      </sn-alert>
-    </ng-container>
+<div class="px-4">
+  <sn-section-header 
+      snTitle="Create Plan"
+      snDirectionality="reverse"
+      snSize="2xl"
+      snExtraClasses="border-b mb-4">
+  </sn-section-header>
+
+  <!-- Response Message -->
+  <ng-container *ngIf="(responseMessage$ | async) as responseMessage">
+    <sn-alert
+        [@showHide]
+        snColor="info"
+        [snTitle]="responseMessage.status"
+        [snMessage]="responseMessage.message">
+    </sn-alert>
+  </ng-container>
 
 
-    <form [formGroup]="form" (ngSubmit)="submit(form.value)" novalidate>
-      <sn-admin-plans-form></sn-admin-plans-form>
-      <div class="form-group text-right">
-        <button role="button" type="submit" class="btn btn-primary mr-2" [disabled]="!form.valid">Save Plan</button>
-        <button role="button" type="button" class="btn btn-secondary" (click)="close()">Close</button>
-      </div>
-    </form>
-  </div>
+  <form [formGroup]="form" (ngSubmit)="submit(form.value)" novalidate>
+    <sn-admin-plans-form></sn-admin-plans-form>
+    <div class="flex flex-row justify-end items-center gap-1">
+      <button 
+          sn-button
+          role="button" 
+          type="submit" 
+          [disabled]="!form.valid">
+        Save
+      </button>
+      <button 
+          sn-button
+          snType="outline"
+          role="button" 
+          type="button" 
+          (click)="close()">
+        Close
+      </button>
+    </div>
+  </form>
 </div>

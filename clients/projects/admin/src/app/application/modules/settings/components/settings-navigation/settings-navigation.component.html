@@ -1,21 +1,10 @@
-<div class="navbar-side-menu">
-  <ul class="list-group navbar-side-menu-list text-dark">
-    <li 
-        *ngFor="let link of links"
-        class="list-group-item p-0 navbar-side-menu-item" 
-        routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}"
-        (mouseenter)="preloadBundle(link.routerLink)">
-      <a [routerLink]="link.routerLink" (click)="navigateTo(link.routerLink)" class="px-4 py-3 d-block">
-        <i 
-          [tooltip]="link.tooltip" 
-          placement="right" 
-          container="body"
-          [delay]="tooltipDelay"
-          class="icon-margin"
-          [ngClass]="link.iconClasses">
-        </i>
-        <span>{{ link.label }}</span>
-      </a>
-    </li>
-  </ul>
+<div
+    *ngFor="let link of links"
+    class="text-gray-500 w-full p-4 border-b" 
+    routerLinkActive="text-gray-700 bg-gray-50" [routerLinkActiveOptions]="{exact: false}"
+    (mouseenter)="preloadBundle(link.routerLink)">
+  <a [routerLink]="link.routerLink" class="flex flex-row items-center gap-2">
+    <ng-icon [name]="link.iconClasses"></ng-icon>
+    <span>{{ link.label }}</span>
+  </a>
 </div>

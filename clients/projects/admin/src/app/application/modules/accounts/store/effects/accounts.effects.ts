@@ -20,7 +20,6 @@ export class AccountsEffects {
     ofType(fromActions.searchAccounts),
     switchMap(({search}) => {
       const searchs: PageableSearch = search
-      console.log("serarchin gaccounts in effect");
       return this._accountsService.searchAccounts(searchs.searchTerm, searchs.pageable)
         .pipe(
           map(result => fromActions.searchAccountsResult({ page: result })),

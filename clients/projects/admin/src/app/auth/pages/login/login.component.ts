@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -22,6 +22,9 @@ import { Roles } from 'projects/@sn/shared/models/src/public-api';
   animations: [fadeAnimation]
 })
 export class LoginComponent implements OnInit {
+  @HostBinding('class')
+  public hostClasses: string = 'block w-2/5';
+
   private _authenticationStateSubscription: Subscription;
   public authenticationState: fromAuth.IAuthenticationState;
   public form: UntypedFormGroup;

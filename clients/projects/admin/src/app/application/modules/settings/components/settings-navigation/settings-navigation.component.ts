@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, OnInit } from '@angular/core';
 import { NavigationRouteLink, OnDemandPreloadService } from '@sn/core/framing';
 
 @Component({
@@ -8,6 +8,9 @@ import { NavigationRouteLink, OnDemandPreloadService } from '@sn/core/framing';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsNavigationComponent {
+  @HostBinding('class')
+  public hostClasses: string = 'flex flex-col w-full justify-start items-start';
+
   @Input()
   public links: NavigationRouteLink[];
   

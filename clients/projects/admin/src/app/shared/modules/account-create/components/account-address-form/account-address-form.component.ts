@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ControlContainer, UntypedFormGroup } from '@angular/forms';
 
-import { STATES, State } from '../../data';
+import { STATES, State } from '../../../../data';
 
 @Component({
   selector: 'sn-admin-account-address-form',

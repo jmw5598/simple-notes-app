@@ -1,9 +1,10 @@
 <div [formGroup]="form.get('account')">
-  <div class="form-group">
-    <label>Plan</label>
+  <sn-form-group snExtraClasses="mb-3">
+    <label sn-form-label for="plan">Plan</label>
     <ng-container *ngIf="plans">
       <select 
-          class="form-control" 
+          sn-form-control
+          id="plan"
           formControlName="plan"
           [ngClass]="{ 'is-invalid':!form.get('account').get('plan').valid && form.get('account').get('plan').touched  }">
         <option *ngFor="let plan of plans"
@@ -12,24 +13,26 @@
         </option>
       </select>
     </ng-container>
-  </div>
-  <div class="form-group mb-0 d-flex flex-row justify-content-between">
-    <label>Account Enabled</label>
+  </sn-form-group>
+  <sn-form-group snExtraClasses="mb-3 flex-row">
     <sn-checkbox
+        id="isConfirmed"
         shape="rounded"
         color="primary"
         size="xsmall"
-        formControlName="isConfirmed">
+        label="Account Enabled"
+        formControlName="isEnabled">
     </sn-checkbox>
-  </div>
-  <div class="form-group mb-0 d-flex flex-row justify-content-between">
-    <label>Email Confirmed</label>
+  </sn-form-group>
+  <sn-form-group snExtraClasses="mb-3">
     <sn-checkbox
+        id="isConfirmed"
         shape="rounded"
         color="primary"
         size="xsmall"
+        label="Email Confirmed"
         formControlName="isConfirmed">
     </sn-checkbox>
-  </div>
+  </sn-form-group>
 </div>
 

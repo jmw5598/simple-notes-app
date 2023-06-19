@@ -17,12 +17,12 @@ export const buildUserFormGroup = (
     ],
     roles: formBuilder.array([]),
     password: ['', [
-      // Validators.required, 
-      // Validators.minLength(8)
+      Validators.required, 
+      Validators.minLength(8)
     ]],
     passwordConfirm: ['', [
-      // Validators.required,
-      // Validators.minLength(8)
+      Validators.required,
+      Validators.minLength(8)
     ]]
   }, { 
     validator: MatchValidators.mustMatch('password', 'passwordConfirm')

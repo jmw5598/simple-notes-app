@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 import * as rolesSelectors from '@sn/admin/core/store/selectors';
 import * as rolesActions from '@sn/admin/core/store/actions';
-import { SnDrawerService } from '@sn/drawer';
+import { SnDrawerLocation, SnDrawerService } from '@sn/drawer';
 import { RolesUpdateComponent } from '../../components/roles-update/roles-update.component';
 import { RolesCreateComponent } from '../../components/roles-create/roles-create.component';
 import { fadeAnimation } from '@sn/shared/animations';
@@ -20,6 +20,7 @@ import { fadeAnimation } from '@sn/shared/animations';
 })
 export class SettingsRolesComponent implements OnInit {
   public allRoles$: Observable<Role[]>;
+  public SnDrawerLocation = SnDrawerLocation;
 
   constructor(
     private _store: Store<IAppState>,

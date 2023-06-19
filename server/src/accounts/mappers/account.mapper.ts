@@ -7,13 +7,13 @@ import { UserMapper } from "./user.mapper";
 export class AccountMapper {
   public static toAccountDto(account: Account): AccountDto {
     return {
-      id: account.id ? account.id : -1,
+      id: account?.id ? account.id : -1,
       createdAt: account.createdAt,
       updatedAt: account.updatedAt,
       deletedAt: account.deletedAt,
       isConfirmed: account.isConfirmed,
-      user: UserMapper.toUserDto(account.user),
-      profile: ProfileMapper.toProfileDto(account.profile)
+      user: !account?.user ? null : UserMapper.toUserDto(account.user),
+      profile: !account?.profile ? null : ProfileMapper.toProfileDto(account.profile)
     } as AccountDto;
   }
 

@@ -34,11 +34,6 @@
               "projects/admin/src/assets"
             ],
             "styles": [
-              {
-                "input": "projects/admin/src/assets/scss/themes/blue/theme.scss",
-                "bundleName": "theme-blue",
-                "inject": true
-              },
               "projects/user/src/assets/scss/styles.scss"
             ],
             "scripts": [

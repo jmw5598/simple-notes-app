@@ -8,7 +8,7 @@ import * as plansSelectors from '@sn/admin/core/store/selectors';
 import * as plansActions from '@sn/admin/core/store/actions';
 import { PlansUpdateComponent } from '../../components/plans-update/plans-update.component';
 import { PlansCreateComponent } from '../../components/plans-create/plans-create.component';
-import { SnDrawerService } from '@sn/drawer';
+import { SnDrawerLocation, SnDrawerService } from '@sn/drawer';
 import { fadeAnimation } from '@sn/shared/animations';
 
 @Component({
@@ -20,6 +20,7 @@ import { fadeAnimation } from '@sn/shared/animations';
 })
 export class SettingsPlansComponent implements OnInit {
   public allPlans$: Observable<Plan[]>;
+  public SnDrawerLocation = SnDrawerLocation;
 
   constructor(
     private _store: Store<IAppState>,

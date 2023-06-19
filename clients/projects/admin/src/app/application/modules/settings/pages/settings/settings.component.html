@@ -1,13 +1,12 @@
-<div class="container-navbar-adjust container-fluid p-0 m-0 height-full" [@fadeAnimation]>
-  <div class="row m-0 p-0 height-full">
-    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 m-0 p-0 border-right-1 m-0">
-      <h4 class="m-0 p-3 border-bottom-1">
-        <span class="font-weight-bold text-primary">Settings</span>
-      </h4>
+<div class="flex flex-row p-0 m-0 h-full flex-wrap content-start" [@fadeAnimation]>
+    <div class="md:h-full w-full xs:w-full sm:w-full md:w-1/2 lg:w-1/4 md:border-r">
+      <sn-section-header 
+          snTitle="Settings"
+          snExtraClasses="border-b py-4">
+      </sn-section-header>
       <sn-admin-settings-navigation [links]="links"></sn-admin-settings-navigation>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-10 p-0 m-0">
+    <div class="xs:w-full w-full sm:w-full md:w-1/2 lg:w-3/4">
       <router-outlet></router-outlet>
     </div>
-  </div>
 </div>

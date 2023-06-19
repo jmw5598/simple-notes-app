@@ -1,48 +1,53 @@
-<div class="table-responsive">
-  <table class="table table-striped" *ngIf="roles">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Created At</th>
-        <!-- <th>Updated At</th> -->
-        <th>Deleted At</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let role of roles">
-        <td [ngClass]="{ 'text-danger' : role?.deletedAt }">{{ role?.name }}</td>
-        <td>{{ role?.createdAt | date }}</td>
-        <!-- <td>{{ role?.updatedAt | date }}</td> -->
-        <td>{{ role?.deletedAt | date }}</td>
-        <td class="text-right">
-          <div class="action-buttons text-right">
-            <button 
-                class="btn btn-outline-primary btn-sm btn-border-none"
-                (click)="edit(role)">
-              <i class="fas fa-edit"></i>
-            </button>
-            <button
+<div *ngIf="!roles || roles.length === 0" class="topics-no-data p-4 border-b">
+  <sn-empty-data 
+      message="No roles found!">
+  </sn-empty-data>
+</div>
+
+<sn-list *ngIf="roles">
+  <sn-list-item *ngFor="let role of roles" snExtraClasses="border-b">
+    <sn-list-item-title [snExtraContent]="roleTitleExtraContentTemplate">
+      <a sn-link [routerLink]="[]" [ngClass]="{ 'text-danger-500': role?.deletedAt }">{{ role?.name | uppercase }}</a>
+      <ng-template #roleTitleExtraContentTemplate>
+        <div class="flex flex-row items-center justify-end gap-1">
+          <button 
+              sn-button
+              snType="blank"
+              snExtraClasses="me"
+              (click)="edit(role)">
+            <ng-icon name="heroPencil" size="1rem"></ng-icon>
+          </button>
+          <button
+              sn-button
+              snType="blank"
               *ngIf="role?.deletedAt"
               mwlConfirmationPopover
               placement="left"
               (confirm)="undelete(role.id)"
-              role="button"
-              class="btn btn-outline-primary btn-sm btn-border-none">
-            <i class="fas fa-undo"></i>
+              role="button">
+            <ng-icon name="heroArrowPath" size="1rem"></ng-icon>
           </button>
-            <button 
-                *ngIf="!role?.deletedAt"
-                mwlConfirmationPopover
-                placement="left"
-                (confirm)="delete(role.id)"
-                role="button" 
-                class="btn btn-outline-primary btn-sm btn-border-none">
-              <i class="far fa-trash-alt"></i>
-            </button>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+          <button 
+              sn-button
+              snType="blank"
+              *ngIf="!role?.deletedAt"
+              mwlConfirmationPopover
+              placement="left"
+              (confirm)="delete(role.id)"
+              role="button">
+            <ng-icon name="heroTrash" size="1rem"></ng-icon>
+          </button>
+        </div>
+      </ng-template>
+    </sn-list-item-title>
+    <!-- <sn-list-item-subtitle>{{ topic?.synopsis }}</sn-list-item-subtitle> -->
+    <sn-list-item-footer>
+      <ng-icon name="heroClock" size="0.8rem"></ng-icon>
+        &nbsp;&nbsp; <span class="font-semibold">Created:&nbsp;</span>{{ role.createdAt | date:'medium' }} 
+        &nbsp;&nbsp; <span class="font-semibold">Update:&nbsp;</span>{{ role.updatedAt | date:'medium' }}
+        <ng-container *ngIf="role?.deletedAt">
+          &nbsp;&nbsp; <span class="font-semibold">Deleted:&nbsp;</span>{{ role.deletedAt | date:'medium' }}
+        </ng-container>
+    </sn-list-item-footer>
+  </sn-list-item>
+</sn-list>

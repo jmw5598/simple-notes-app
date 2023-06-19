@@ -12,6 +12,10 @@ import { AuthMarketingComponent } from './components/auth-marketing/auth-marketi
 import { AuthRoutingModule } from './auth-routing.module';
 
 import { SnLoadingSpinnerModule } from 'projects/@sn/loading-spinner/src/public-api';
+import { SnButtonsModule } from '@sn/button';
+import { SnFormModule } from '@sn/form';
+import { SnLinkModule } from '@sn/link';
+import { SnCheckboxModule } from '@sn/checkbox';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,10 @@ import { SnLoadingSpinnerModule } from 'projects/@sn/loading-spinner/src/public-
     ReactiveFormsModule,
     AuthRoutingModule,
     SnLoadingSpinnerModule,
+    SnButtonsModule,
+    SnFormModule,
+    SnLinkModule,
+    SnCheckboxModule,
   ]
 })
 export class AuthModule { }

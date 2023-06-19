@@ -10,7 +10,7 @@ import { DEFAULT_SEARCH_ACCOUNTS_PAGE } from '@sn/admin/core/defaults';
 
 import { fadeAnimation } from '@sn/shared/animations';
 import { IPageable, Page, PageableSearch, Account } from '@sn/shared/models';
-import { AccountCreateComponent } from '@sn/admin/shared/components';
+import { AccountCreateComponent } from '@sn/admin/shared/modules/account-create';
 import { AccountUpdateComponent } from '../../components/account-update/account-update.component';
 
 import { SnDrawerLocation, SnDrawerService, SnDrawerSize } from '@sn/drawer';

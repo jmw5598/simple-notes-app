@@ -1,0 +1,53 @@
+<div *ngIf="!accounts || accounts.length === 0" class="accounts-no-data p-3 border-bottom-1">
+  <sn-empty-data 
+      message="No accounts found!">
+  </sn-empty-data>
+</div>
+<div class="relative overflow-x-auto">
+  <table *ngIf="accounts"  class="border-collapse table-fixed w-full text-sm">
+    <thead class="text-xs text-gray-900 uppercase dark:text-gray-400">
+      <tr class="border-b">
+        <th class="font-semibold border-r last:border-r-0 p-4 pl-8 text-slate-400 text-left">Created</th>
+        <th class="font-semibold border-r last:border-r-0 p-4 pl-8 text-slate-400 text-left">Updated</th>
+        <th class="font-semibold border-r last:border-r-0 p-4 pl-8 text-slate-400 text-left">Deleted</th>
+        <th class="font-semibold border-r last:border-r-0 p-4 pl-8 text-slate-400 text-left">Username</th>
+        <th class="font-semibold border-r last:border-r-0 p-4 pl-8 text-slate-400 text-left">First Name</th>
+        <th class="font-semibold border-r last:border-r-0 p-4 pl-8 text-slate-400 text-left">Last Name</th>
+        <th class="font-semibold border-r last:border-r-0 p-4 pl-8 text-slate-400 text-left">Email</th>
+        <th class="font-semibold border-r last:border-r-0 p-4 pl-8 text-slate-400 text-left">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white">
+      <tr *ngFor="let account of accounts" class="bg-white dark:bg-gray-800 border-b">
+        <td class="border-r last:border-r-0 p-4 pl-8 text-slate-500">{{ account.createdAt | date }}</td>
+        <td class="border-r last:border-r-0 p-4 pl-8 text-slate-500">{{ account.updatedAt | date }}</td>
+        <td class="border-r last:border-r-0 p-4 pl-8 text-slate-500">{{ account.deletedAt | date }}</td>
+        <td class="border-r last:border-r-0 p-4 pl-8 text-slate-500">{{ account?.user?.username }}</td>
+        <td class="border-r last:border-r-0 p-4 pl-8 text-slate-500">{{ account?.profile?.firstName }}</td>
+        <td class="border-r last:border-r-0 p-4 pl-8 text-slate-500">{{ account?.profile?.lastName }}</td>
+        <td class="border-r last:border-r-0 p-4 pl-8 text-slate-500">{{ account?.profile?.email }}</td>
+        <td class="border-r last:border-r-0 p-4 pl-8 text-slate-500">
+          <div class="flex flex-row items-center gap-1 justify-end">
+            <button 
+                sn-button
+                snType="blank"
+                class="btn btn-outline-primary btn-sm btn-border-none"
+                (click)="edit(account)">
+              <ng-icon name="heroPencil" size="1rem"></ng-icon>
+            </button>
+            <button 
+                sn-button
+                snType="blank"
+                mwlConfirmationPopover
+                placement="left"
+                (confirm)="delete(account.id)"
+                role="button" 
+                class="btn btn-outline-primary btn-sm btn-border-none">
+              <ng-icon name="heroTrash" size="1rem"></ng-icon>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

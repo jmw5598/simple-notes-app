@@ -1,46 +1,53 @@
-<div class="table-responsive">
-  <table class="table table-striped" *ngIf="plans">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Created At</th>
-        <th>Deleted At</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let plan of plans">
-        <td [ngClass]="{ 'text-danger' : plan?.deletedAt }">{{ plan?.name }}</td>
-        <td>{{ plan?.createdAt | date }}</td>
-        <td>{{ plan?.deletedAt | date }}</td>
-        <td class="text-right">
-          <div class="action-buttons text-right">
-            <button 
-                class="btn btn-outline-primary btn-sm btn-border-none"
-                (click)="edit(plan)">
-              <i class="fas fa-edit"></i>
-            </button>
-            <button
-                *ngIf="plan?.deletedAt"
-                mwlConfirmationPopover
-                placement="left"
-                (confirm)="undelete(plan.id)"
-                role="button"
-                class="btn btn-outline-primary btn-sm btn-border-none">
-              <i class="fas fa-undo"></i>
-            </button>
-            <button
-                *ngIf="!plan?.deletedAt"
-                mwlConfirmationPopover
-                placement="left"
-                (confirm)="delete(plan.id)"
-                role="button" 
-                class="btn btn-outline-primary btn-sm btn-border-none">
-              <i class="far fa-trash-alt"></i>
-            </button>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div *ngIf="!plans || plans.length === 0" class="topics-no-data p-4 border-b">
+  <sn-empty-data 
+      message="No plans found!">
+  </sn-empty-data>
 </div>
+
+<sn-list *ngIf="plans">
+  <sn-list-item *ngFor="let plan of plans" snExtraClasses="border-b">
+    <sn-list-item-title [snExtraContent]="planTitleExtraContentTemplate">
+      <a sn-link [routerLink]="[]" [ngClass]="{ 'text-danger-500': role?.deletedAt }">{{ plan?.name | titlecase }}</a>
+      <ng-template #planTitleExtraContentTemplate>
+        <div class="flex flex-row items-center justify-end gap-1">
+          <button 
+              sn-button
+              snType="blank"
+              snExtraClasses="me"
+              (click)="edit(plan)">
+            <ng-icon name="heroPencil" size="1rem"></ng-icon>
+          </button>
+          <button
+              sn-button
+              snType="blank"
+              *ngIf="role?.deletedAt"
+              mwlConfirmationPopover
+              placement="left"
+              (confirm)="undelete(plan.id)"
+              role="button">
+            <ng-icon name="heroArrowPath" size="1rem"></ng-icon>
+          </button>
+          <button 
+              sn-button
+              snType="blank"
+              *ngIf="!role?.deletedAt"
+              mwlConfirmationPopover
+              placement="left"
+              (confirm)="delete(plan.id)"
+              role="button">
+            <ng-icon name="heroTrash" size="1rem"></ng-icon>
+          </button>
+        </div>
+      </ng-template>
+    </sn-list-item-title>
+    <!-- <sn-list-item-subtitle>{{ topic?.synopsis }}</sn-list-item-subtitle> -->
+    <sn-list-item-footer>
+      <ng-icon name="heroClock" size="0.8rem"></ng-icon>
+        &nbsp;&nbsp; <span class="font-semibold">Created:&nbsp;</span>{{ plan.createdAt | date:'medium' }} 
+        &nbsp;&nbsp; <span class="font-semibold">Update:&nbsp;</span>{{ plan.updatedAt | date:'medium' }}
+        <ng-container *ngIf="role?.deletedAt">
+          &nbsp;&nbsp; <span class="font-semibold">Deleted:&nbsp;</span>{{ plan.deletedAt | date:'medium' }}
+        </ng-container>
+    </sn-list-item-footer>
+  </sn-list-item>
+</sn-list>

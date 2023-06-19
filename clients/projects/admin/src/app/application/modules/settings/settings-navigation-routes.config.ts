@@ -3,13 +3,13 @@ import { NavigationRouteLink } from '@sn/core/framing';
 export const SETTINGS_NAVIGATION_ROUTES: NavigationRouteLink[] = [
   {
     label: 'Roles',
-    iconClasses: 'fas fa-user-tag',
+    iconClasses: 'heroShieldCheck',
     routerLink: ['roles'],
     tooltip: 'Roles & Permissions'
   },
   {
     label: 'Plans',
-    iconClasses: 'fas fa-money-check-alt',
+    iconClasses: 'heroCurrencyDollar',
     routerLink: ['plans'],
     tooltip: 'Plans'
   },
