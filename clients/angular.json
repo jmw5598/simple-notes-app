@@ -139,7 +139,6 @@
             ],
             "styles": [
               "node_modules/easymde/dist/easymde.min.css",
-              "projects/@assets/scss/main.scss",
               "projects/user/src/assets/scss/styles.scss"
             ],
             "scripts": [

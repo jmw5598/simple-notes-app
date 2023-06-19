@@ -4,40 +4,6 @@
 
 @import '~@angular/cdk/overlay-prebuilt.css';
 
-// @TODO Remove old SCSS below....
-
-
-// @import './assets/scss/bootswatch/simple-notes/variables';
-
-/* You can add global styles to this file, and also import other style files */
-$border-1: 1px solid rgba(0, 0, 0, 0.125);
-
-
-// TODO Refactor into editor component????
-.md-editor {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  border-top: 0;
-  border-left: 0;
-  border-bottom: 0;
-
-  textarea {
-    flex-grow: 1;
-    padding: 0.5rem;  
-    background: #FFFFFF;
-  }
-
-  &.active {
-    outline: none;
-    box-shadow:none !important;
-    border-color: rgba(0, 0, 0, 0.125) !important;
-    border-top: 0;
-    border-left: 0;
-    border-bottom: 0;
-  }
-}
-
 /* Cdk Drop Drop Animations */
 .cdk-drop-list-dragging .cdk-drag {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
