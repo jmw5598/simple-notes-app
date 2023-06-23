@@ -1,39 +1,55 @@
-import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { ChangeDetectionStrategy, Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { map, takeUntil, tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+
 import { Store } from '@ngrx/store';
+
 import { AuthenticationService } from '@sn/core/services';
 import { fadeAnimation } from '@sn/shared/animations';
 import { AuthenticatedStatus, UserCredentials } from '@sn/shared/models';
-import { Observable, Subscription } from 'rxjs';
+import { Roles } from '@sn/shared/models';
+import { SnAlertModule } from '@sn/alert';
+import { SnCheckboxModule } from '@sn/checkbox';
+import { SnButtonsModule } from '@sn/button';
+import { SnLinkModule } from '@sn/link';
 
-import * as fromAuth from '../../store/reducers';
-import * as fromActions from '../../store/actions';
-import * as fromSelectors  from '../../store/selectors';
-import { Roles } from 'projects/@sn/shared/models/src/public-api';
+import { IAuthenticationState, AuthenticationActions, AuthenticationSelectors } from '../../store';
 
 @Component({
   selector: 'sn-admin-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [fadeAnimation]
+  animations: [fadeAnimation],
+  standalone: true,
+  imports: [
+    AsyncPipe,
+    NgIf,
+    ReactiveFormsModule,
+    RouterLink,
+    SnAlertModule,
+    SnButtonsModule,
+    SnCheckboxModule,
+    SnLinkModule,
+  ]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   @HostBinding('class')
   public hostClasses: string = 'block w-2/5';
 
-  private _authenticationStateSubscription: Subscription;
-  public authenticationState: fromAuth.IAuthenticationState;
+  private _destroy$: Subject<void> = new Subject<void>();
+  public authenticationState$: Observable<IAuthenticationState>;
   public form: UntypedFormGroup;
   public queryParamMessage$: Observable<string>;
 
   constructor(
     private _authenticationService: AuthenticationService,
     private _formBuilder: UntypedFormBuilder,
-    private _store: Store<fromAuth.IAuthenticationState>,
+    private _store: Store,
     private _router: Router,
     private _route: ActivatedRoute
   ) {
@@ -46,13 +62,15 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._authenticationStateSubscription = this._store.select(fromSelectors.selectAuthenticationState)
-      .subscribe(state => {
-        this.authenticationState = state;
-        if(state.authenticatedStatus === AuthenticatedStatus.AUTHENTICATED) {
-          this._router.navigate(['/auth', 'logging-in']);
-        }
-      });
+    this.authenticationState$ = this._store.select(AuthenticationSelectors.selectAuthenticationState)
+      .pipe(
+        tap(state => {
+          if(state.authenticatedStatus === AuthenticatedStatus.AUTHENTICATED) {
+            this._router.navigate(['/auth', 'logging-in']);
+          }
+        }),
+        takeUntil(this._destroy$)  
+      );
       
     this.queryParamMessage$ = this._route.queryParams.pipe(
       map(params => params['message'])
@@ -69,6 +87,11 @@ export class LoginComponent implements OnInit {
       rememberMe: form.rememberMe,
       requestedRole: form.requestedRole
     }) as UserCredentials;
-    this._store.dispatch(fromActions.loginUser({ credentials: user }));
+    this._store.dispatch(AuthenticationActions.loginUser({ credentials: user }));
+  }
+
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 }

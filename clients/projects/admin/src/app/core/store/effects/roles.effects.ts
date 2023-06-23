@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { handleHttpError } from '../actions/http-error.actions';
+import { HttpErrorActions, RolesActions } from '../actions';
 import { of } from 'rxjs';
 import { switchMap, map, catchError, exhaustMap } from 'rxjs/operators';
 
-import * as fromActions from '../actions';
 import { RolesService } from '../../services';
 import { ResponseMessage, ResponseStatus } from '@sn/shared/models';
 
@@ -17,89 +16,89 @@ export class RolesEffects {
   ) {}
 
   getRoles$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.getAllRoles),
+    ofType(RolesActions.getAllRoles),
     switchMap(() => this._rolesService.findAll()
       .pipe(
-        map(roles => fromActions.getAllRolesSuccess({ roles: roles })),
-        catchError(error => of(handleHttpError(error)))
+        map(roles => RolesActions.getAllRolesSuccess({ roles: roles })),
+        catchError(error => of(HttpErrorActions.handleHttpError(error)))
       )
     )
   ));
 
   getActiveRoles$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.getAllRoles),
+    ofType(RolesActions.getAllRoles),
     switchMap(() => this._rolesService.getActiveRoles()
       .pipe(
-        map(roles => fromActions.getActiveRolesSuccess({ roles: roles })),
-        catchError(error => of(handleHttpError(error)))
+        map(roles => RolesActions.getActiveRolesSuccess({ roles: roles })),
+        catchError(error => of(HttpErrorActions.handleHttpError(error)))
       )
     )
   ));
 
   createRole$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.createRole),
+    ofType(RolesActions.createRole),
     exhaustMap(({role}) => this._rolesService.save(role)
       .pipe(
-        map(result => fromActions.createRoleSuccess({ role: result })),
-        catchError(error => of(handleHttpError(error)))
+        map(result => RolesActions.createRoleSuccess({ role: result })),
+        catchError(error => of(HttpErrorActions.handleHttpError(error)))
       )
     )
   ));
 
   createRoleSuccess$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.createRoleSuccess),
+    ofType(RolesActions.createRoleSuccess),
     switchMap(({role}) => {
       const message: ResponseMessage = {
         status: ResponseStatus.SUCCESS,
         message: `Successfully create new role!`
       } as ResponseMessage
-      return of(fromActions.setCreateRoleResponseMessage({ message: message }))
+      return of(RolesActions.setCreateRoleResponseMessage({ message: message }))
     })
   ));
 
   updateRole$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.updateRole),
+    ofType(RolesActions.updateRole),
     switchMap(({roleId, role}) => this._rolesService.update(roleId, role)
       .pipe(
-        map(result => fromActions.updateRoleSuccess({ role: result })),
+        map(result => RolesActions.updateRoleSuccess({ role: result })),
         catchError(error => {
           const message: ResponseMessage = {
             status: ResponseStatus.ERROR,
             message: `We encountered an error updating your role, please try again!`
           } as ResponseMessage;
-          return of(fromActions.setUpdatePlanResponseMessage({ message: message }));
+          return of(RolesActions.setUpdateRoleResponseMessage({ message: message }));
         })
       )
     )
   ));
 
   updateRoleSuccess$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.updateRoleSuccess),
+    ofType(RolesActions.updateRoleSuccess),
     switchMap(({role}) => {
       const message: ResponseMessage = {
         status: ResponseStatus.SUCCESS,
         message: `Successfully updated role!`
       } as ResponseMessage
-      return of(fromActions.setUpdateRoleResponseMessage({ message: message }))
+      return of(RolesActions.setUpdateRoleResponseMessage({ message: message }))
     })
   ));
 
   deleteRole$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.deleteRole),
+    ofType(RolesActions.deleteRole),
     exhaustMap(({roleId}) => this._rolesService.delete(roleId)
       .pipe(
-        map(result => fromActions.deleteRoleSuccess({ role: result })),
-        catchError(error => of(handleHttpError(error)))
+        map(result => RolesActions.deleteRoleSuccess({ role: result })),
+        catchError(error => of(HttpErrorActions.handleHttpError(error)))
       )
     )
   ));
 
   undeleteRole$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.undeleteRole),
+    ofType(RolesActions.undeleteRole),
     exhaustMap(({roleId}) => this._rolesService.undelete(roleId)
       .pipe(
-        map(result => fromActions.undeleteRoleSuccess({ role: result })),
-        catchError(error => of(handleHttpError(error)))
+        map(result => RolesActions.undeleteRoleSuccess({ role: result })),
+        catchError(error => of(HttpErrorActions.handleHttpError(error)))
       )
     )
   ));

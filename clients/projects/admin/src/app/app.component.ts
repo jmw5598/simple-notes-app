@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { SnToasterModule } from '@sn/toaster';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +10,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   `,
   styles: [``],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    RouterOutlet,
+    SnToasterModule,
+  ]
 })
 export class AppComponent { }

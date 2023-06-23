@@ -1,20 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { provideEffects } from '@ngrx/effects';
+import { ActionReducerMap, FeatureSlice, provideState } from '@ngrx/store';
 
 import { OnDemandPreloadStrategy } from '@sn/core/framing';
 import { AuthenticationGuard } from './auth/guards';
+import { AuthenticationEffects, authenticationFeature } from './auth/store';
 
-const routes: Routes = [
+export const appRoutes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    providers: [
+      provideState(authenticationFeature),
+      provideEffects(AuthenticationEffects),
+    ],
+    loadChildren: () => import('./auth/auth.routes').then(r => r.authRoutes)
   },
-  {
-    path: '',
-    canActivate: [AuthenticationGuard],
-    loadChildren: () => import('./application/application.module').then(m => m.ApplicationModule),
-    data: { breadcrumb: 'Dashboard' }
-  },
+  // {
+  //   path: '',
+  //   canActivate: [AuthenticationGuard],
+  //   loadChildren: () => import('./application/application.module').then(m => m.ApplicationModule),
+  //   data: { breadcrumb: 'Dashboard' }
+  // },
   {
     path: '**',
     redirectTo: '',
@@ -22,8 +29,8 @@ const routes: Routes = [
   }
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: OnDemandPreloadStrategy })],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+// @NgModule({
+//   imports: [RouterModule.forRoot(routes, { preloadingStrategy: OnDemandPreloadStrategy })],
+//   exports: [RouterModule]
+// })
+// export class AppRoutingModule { }

@@ -1,11 +1,7 @@
-import { createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, on } from '@ngrx/store';
 import { AuthenticatedUser, AuthenticatedStatus } from '@sn/shared/models';
-import { from } from 'rxjs';
 
-
-import * as fromActions from '../actions';
-
-export const authenticationFeatureKey = 'authentication';
+import { AuthenticationActions } from './authentication.actions';
 
 export interface IAuthenticationState {
   authenticatedUser: AuthenticatedUser;
@@ -19,9 +15,11 @@ export const initialAuthenticationState: IAuthenticationState = {
   errorMessage: null,
 }
 
-const _authenticationReducer = createReducer(
-  initialAuthenticationState,
-  on(fromActions.loginUserSuccess, (state, { user }) => {
+export const authenticationFeature = createFeature({
+  name: 'authentication',
+  reducer: createReducer(
+    initialAuthenticationState,
+    on(AuthenticationActions.loginUserSuccess, (state, { user }) => {
     return {
       ...state,
       authenticatedUser: user,
@@ -29,15 +27,15 @@ const _authenticationReducer = createReducer(
       errorMessage: null
     };
   }),
-  on(fromActions.loginUserError, (state, { error }) => {
+  on(AuthenticationActions.loginUserError, (state, { error }) => {
     return {
       ...state,
       authenticatedUser: null,
       authenticatedStatus: AuthenticatedStatus.UNAUTHENTICATED,
-      errorMessage: error.error.message
+      errorMessage: error.message
     }
   }),
-  on(fromActions.setLoginUserError, (state, { errorMessage }) => {
+  on(AuthenticationActions.setLoginUserError, (state, { errorMessage }) => {
     return {
       ...state,
       authenticatedUser: null,
@@ -45,7 +43,7 @@ const _authenticationReducer = createReducer(
       errorMessage: errorMessage
     }
   }),
-  on(fromActions.logoutUser, (state) => {
+  on(AuthenticationActions.logoutUser, (state) => {
     return {
       ...state,
       authenticatedUser: null,
@@ -53,7 +51,7 @@ const _authenticationReducer = createReducer(
       errorMessage: null
     }
   }),
-  on(fromActions.refreshTokenSuccess, (state, { user }) => {
+  on(AuthenticationActions.refreshTokenSuccess, (state, { user }) => {
     return {
       ...state,
       authenticatedUser: user,
@@ -61,13 +59,13 @@ const _authenticationReducer = createReducer(
       errorMessage: null
     }
   }),
-  on(fromActions.setAuthenticatedUser, (state, { user }) => {
+  on(AuthenticationActions.setAuthenticatedUser, (state, { user }) => {
     return {
       ...state,
       authenticatedUser: user 
     }
   }),
-  on(fromActions.updateUserSettingsSuccess, (state, { settings }) => {
+  on(AuthenticationActions.updateUserSettingsSuccess, (state, { settings }) => {
     const newState: IAuthenticationState = JSON.parse(JSON.stringify(state));
     newState.authenticatedUser.userDetails.settings = { 
       ...newState.authenticatedUser.userDetails.settings,
@@ -75,8 +73,5 @@ const _authenticationReducer = createReducer(
     };
     return newState;
   })
-);
-
-export function authenticationReducer(state, action) {
-  return _authenticationReducer(state, action);
-}
+  )
+})

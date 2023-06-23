@@ -1,8 +1,6 @@
-import { createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, on } from '@ngrx/store';
 import { ResponseMessage, Role } from '@sn/shared/models';
-import * as fromActions from '../actions/roles.actions';
-
-export const rolesFeatureKey = 'roles';
+import { RolesActions } from '../actions';
 
 export interface IRolesState {
   roles: Role[],
@@ -80,19 +78,18 @@ const onUndeleteRoleSuccess = (state, { role }) => ({
   })
 });
 
-const _rolesReducer = createReducer(
-  initialRolesState,
-  on(fromActions.getAllRolesSuccess, onGetAllRolesSuccess),
-  on(fromActions.getActiveRolesSuccess, onGetActiveRolesSuccess),
-  on(fromActions.createRoleSuccess, onCreateRoleSuccess),
-  on(fromActions.setCreateRoleResponseMessage, onSetCreateRoleResponseMessage),
-  on(fromActions.updateRoleSuccess, onUpdateRoleSuccess),
-  on(fromActions.setUpdateRoleResponseMessage, onSetUpdateRoleResponseMessage),
-  on(fromActions.deleteRoleSuccess, onDeleteRoleSuccess),
-  on(fromActions.setDeleteRoleResponseMessage, onSetDeleteRoleResponseMessage),
-  on(fromActions.undeleteRoleSuccess, onUndeleteRoleSuccess)
-)
-
-export function rolesReducer(state, action) {
-  return _rolesReducer(state, action);
-}
+export const rolesFeature = createFeature({
+  name: 'roles',
+  reducer: createReducer(
+    initialRolesState,
+    on(RolesActions.getAllRolesSuccess, onGetAllRolesSuccess),
+    on(RolesActions.getActiveRolesSuccess, onGetActiveRolesSuccess),
+    on(RolesActions.createRoleSuccess, onCreateRoleSuccess),
+    on(RolesActions.setCreateRoleResponseMessage, onSetCreateRoleResponseMessage),
+    on(RolesActions.updateRoleSuccess, onUpdateRoleSuccess),
+    on(RolesActions.setUpdateRoleResponseMessage, onSetUpdateRoleResponseMessage),
+    on(RolesActions.deleteRoleSuccess, onDeleteRoleSuccess),
+    on(RolesActions.setDeleteRoleResponseMessage, onSetDeleteRoleResponseMessage),
+    on(RolesActions.undeleteRoleSuccess, onUndeleteRoleSuccess)
+  )
+});

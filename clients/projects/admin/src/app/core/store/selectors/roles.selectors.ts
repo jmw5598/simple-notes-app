@@ -1,29 +1,38 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import * as fromRoles from '../reducers/roles.reducer';
+import { IRolesState, rolesFeature } from '../reducers/roles.reducer';
 
-export const selectRolesState = createFeatureSelector<fromRoles.IRolesState>(fromRoles.rolesFeatureKey);
+export const selectRolesState = createFeatureSelector<IRolesState>(rolesFeature.name);
 
 export const selectRoles = createSelector(
   selectRolesState,
-  (state: fromRoles.IRolesState) => state.roles
+  (state: IRolesState) => state.roles
 );
 
 export const selectActiveRoles = createSelector(
   selectRolesState,
-  (state: fromRoles.IRolesState) => state.roles?.filter(role => !role.deletedAt) || []
+  (state: IRolesState) => state.roles?.filter(role => !role.deletedAt) || []
 );
 
 export const selectCreateRoleResponseMessasge = createSelector(
   selectRolesState,
-  (state: fromRoles.IRolesState) => state.createRoleResponseMessage
+  (state: IRolesState) => state.createRoleResponseMessage
 );
 
 export const selectUpdateRoleResponseMessasge = createSelector(
   selectRolesState,
-  (state: fromRoles.IRolesState) => state.updateRoleResponseMessage
+  (state: IRolesState) => state.updateRoleResponseMessage
 );
 
 export const selectDeleteRoleResponseMessasge = createSelector(
   selectRolesState,
-  (state: fromRoles.IRolesState) => state.deleteRoleResponseMessage
+  (state: IRolesState) => state.deleteRoleResponseMessage
 );
+
+export const RolesSelectors = {
+  selectActiveRoles,
+  selectCreateRoleResponseMessasge,
+  selectDeleteRoleResponseMessasge,
+  selectRoles,
+  selectRolesState,
+  selectUpdateRoleResponseMessasge,
+}

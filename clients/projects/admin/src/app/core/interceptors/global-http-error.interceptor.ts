@@ -11,7 +11,7 @@ import { catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { IAppState } from '@sn/user/store/reducers';
 
-import * as httpActions from '../store/actions/http-error.actions';
+import { HttpErrorActions } from '../store/actions/http-error.actions';
 
 @Injectable()
 export class GlobalHttpErrorInterceptor implements HttpInterceptor {
@@ -26,7 +26,7 @@ export class GlobalHttpErrorInterceptor implements HttpInterceptor {
         catchError((error: HttpErrorResponse) => {
           if (error.status !== 401) {
             this._store.dispatch(
-              httpActions.handleHttpError({
+              HttpErrorActions.handleHttpError({
                 error: error
               })
             );

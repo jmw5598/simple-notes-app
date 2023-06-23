@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 
 import { AuthenticatedStatus } from '@sn/shared/models';
-import { IAuthenticationState } from '../store/reducers';
 import * as fromAuthentication from '@sn/user/auth/store/reducers/authentication.reducers';
 import * as fromAuthenticationSelectors from '@sn/user/auth/store/selectors';
 
@@ -15,7 +14,7 @@ import * as fromAuthenticationSelectors from '@sn/user/auth/store/selectors';
 })
 export class AuthenticationGuard implements CanActivate {
   constructor(
-    private _store: Store<IAuthenticationState>,
+    private _store: Store,
     private _router: Router
   ) { } 
 

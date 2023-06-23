@@ -8,8 +8,9 @@
   <p class="text-sm font-normal text-gray-600 mb-4">Welcome Back</p>
 
   <!-- Feedback Messages -->
-  <ng-container *ngIf="authenticationState && authenticationState.errorMessage">
+  <ng-container *ngIf="(authenticationState$ | async) as authenticationState">
     <sn-alert
+        *ngIf="authenticationState.errorMessage"
         [@fadeAnimation]
         snColor="info"
         snTitle="Error"

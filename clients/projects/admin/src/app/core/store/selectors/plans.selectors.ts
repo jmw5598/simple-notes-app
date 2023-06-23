@@ -1,30 +1,39 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import * as fromPlans from '../reducers/plans.reducers';
+import { IPlansState, plansFeature } from '../reducers/plans.reducers';
 
-export const selectPlanState = createFeatureSelector<fromPlans.IPlansState>(fromPlans.plansFeatureKey);
+export const selectPlanState = createFeatureSelector<IPlansState>(plansFeature.name);
 
 export const selectPlans = createSelector(
   selectPlanState,
-  (state: fromPlans.IPlansState) => state.plans
+  (state: IPlansState) => state.plans
 );
 
 // Update this and just filter all plans where deletedAt is null
 export const selectActivePlans = createSelector(
   selectPlanState,
-  (state: fromPlans.IPlansState) => state.activePlans
+  (state: IPlansState) => state.activePlans
 );
 
 export const selectCreatePlanResponseMessasge = createSelector(
   selectPlanState,
-  (state: fromPlans.IPlansState) => state.createPlanResponseMessage
+  (state: IPlansState) => state.createPlanResponseMessage
 );
 
 export const selectUpdatePlanResponseMessasge = createSelector(
   selectPlanState,
-  (state: fromPlans.IPlansState) => state.updatePlanResponseMessage
+  (state: IPlansState) => state.updatePlanResponseMessage
 );
 
 export const selectDeletePlanResponseMessasge = createSelector(
   selectPlanState,
-  (state: fromPlans.IPlansState) => state.deletePlanResponseMessage
+  (state: IPlansState) => state.deletePlanResponseMessage
 );
+
+export const PlansSelectors = {
+  selectActivePlans,
+  selectCreatePlanResponseMessasge,
+  selectDeletePlanResponseMessasge,
+  selectPlanState,
+  selectPlans,
+  selectUpdatePlanResponseMessasge,
+}

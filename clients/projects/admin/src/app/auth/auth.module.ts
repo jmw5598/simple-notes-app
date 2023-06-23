@@ -9,7 +9,7 @@ import { AppLoadingComponent } from './components/app-loading/app-loading.compon
 import { AuthComponent } from './auth.component';
 import { AuthMarketingComponent } from './components/auth-marketing/auth-marketing.component';
 
-import { AuthRoutingModule } from './auth-routing.module';
+// import { AuthRoutingModule } from './auth-routing.module';
 
 import { SnLoadingSpinnerModule } from 'projects/@sn/loading-spinner/src/public-api';
 import { SnButtonsModule } from '@sn/button';
@@ -30,7 +30,7 @@ import { SnCheckboxModule } from '@sn/checkbox';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AuthRoutingModule,
+    // AuthRoutingModule,
     SnLoadingSpinnerModule,
     SnButtonsModule,
     SnFormModule,

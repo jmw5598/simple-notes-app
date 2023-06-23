@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { createAction, props } from '@ngrx/store';
+import { createActionGroup, props } from '@ngrx/store';
 
-export const handleHttpError = createAction(
-  '[Http Error] Handle Http Error',
-  props<{ error: HttpErrorResponse }>()
-);
+export const HttpErrorActions = createActionGroup({
+  source: 'Http Error',
+  events: {
+    'Handle Http Error': props<{ error: HttpErrorResponse }>(),
+  }
+});

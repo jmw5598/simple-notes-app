@@ -1,8 +1,6 @@
-import { createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, on } from '@ngrx/store';
 import { Plan, ResponseMessage } from '@sn/shared/models';
-import * as fromActions from '../actions';
-
-export const plansFeatureKey = 'plans';
+import { PlansActions } from '../actions';
 
 export interface IPlansState {
   plans: Plan[],
@@ -19,6 +17,7 @@ export const initialPlanState: IPlansState = {
   updatePlanResponseMessage: null,
   deletePlanResponseMessage: null
 };
+
 
 const onGetAllPlansSuccess = (state, { plans }) => ({
   ...state,
@@ -82,17 +81,22 @@ const onSetDeletePlanResponseMessage = (state, { message }) => ({
 
 const _planReducer = createReducer(
   initialPlanState,
-  on(fromActions.getPlansSuccess, onGetAllPlansSuccess),
-  on(fromActions.getActivePlansSuccess, onGetActivePlansSuccess),
-  on(fromActions.createPlanSuccess, onCreatePlanSuccess),
-  on(fromActions.setCreatePlanResponseMessage, onSetCreatePlanResponseMessage),
-  on(fromActions.updatePlanSuccess, onUpdatePlanSuccess),
-  on(fromActions.setUpdatePlanResponseMessage, onSetUpdatePlanResponseMessage),
-  on(fromActions.deletePlanSuccess, onDeletePlanSuccess),
-  on(fromActions.setDeletePlanResponseMessage, onSetDeletePlanResponseMessage),
-  on(fromActions.undeletePlanSuccess, onUndeletePlanSuccess)
+  
 );
 
-export function planReducer(state, action) {
-  return _planReducer(state, action);
-}
+
+export const plansFeature = createFeature({
+  name: 'plans',
+  reducer: createReducer(
+    initialPlanState,
+    on(PlansActions.getPlansSuccess, onGetAllPlansSuccess),
+    on(PlansActions.getActivePlansSuccess, onGetActivePlansSuccess),
+    on(PlansActions.createPlanSuccess, onCreatePlanSuccess),
+    on(PlansActions.setCreatePlanResponseMessage, onSetCreatePlanResponseMessage),
+    on(PlansActions.updatePlanSuccess, onUpdatePlanSuccess),
+    on(PlansActions.setUpdatePlanResponseMessage, onSetUpdatePlanResponseMessage),
+    on(PlansActions.deletePlanSuccess, onDeletePlanSuccess),
+    on(PlansActions.setDeletePlanResponseMessage, onSetDeletePlanResponseMessage),
+    on(PlansActions.undeletePlanSuccess, onUndeletePlanSuccess)
+  )
+});

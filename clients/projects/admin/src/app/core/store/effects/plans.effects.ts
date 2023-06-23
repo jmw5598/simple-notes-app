@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { handleHttpError } from '../actions/http-error.actions';
+import { HttpErrorActions, PlansActions } from '../actions';
 import { of } from 'rxjs';
 import { switchMap, map, catchError, exhaustMap } from 'rxjs/operators';
 import * as fromActions from '../actions';
@@ -17,88 +17,88 @@ export class PlansEffects {
   ) {}
 
   getPlans$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.getPlans),
+    ofType(PlansActions.getPlans),
     switchMap(() => this._plansService.findAll()
       .pipe(
-        map(plans => fromActions.getPlansSuccess({ plans: plans })),
-        catchError(error => of(handleHttpError(error)))
+        map(plans => PlansActions.getPlansSuccess({ plans: plans })),
+        catchError(error => of(HttpErrorActions.handleHttpError(error)))
       )
     )
   ));
 
   getActivePlans$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.getActivePlans),
+    ofType(PlansActions.getActivePlans),
     switchMap(() => this._plansService.getActivePlans()
       .pipe(
-        map(plans => fromActions.getActivePlansSuccess({ plans: plans }))
+        map(plans => PlansActions.getActivePlansSuccess({ plans: plans }))
       )  
     )
   ));
 
   createPlan$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.createPlan),
+    ofType(PlansActions.createPlan),
     exhaustMap(({plan}) => this._plansService.save(plan)
       .pipe(
-        map(result => fromActions.createPlanSuccess({ plan: result })),
-        catchError(error => of(handleHttpError(error)))
+        map(result => PlansActions.createPlanSuccess({ plan: result })),
+        catchError(error => of(HttpErrorActions.handleHttpError(error)))
       )
     )
   ));
 
   createPlanSuccess$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.createPlanSuccess),
+    ofType(PlansActions.createPlanSuccess),
     switchMap(({plan}) => {
       const message: ResponseMessage = {
         status: ResponseStatus.SUCCESS,
         message: `Successfully create new plan!`
       } as ResponseMessage
-      return of(fromActions.setCreatePlanResponseMessage({ message: message }))
+      return of(PlansActions.setCreatePlanResponseMessage({ message: message }))
     })
   ));
 
   updatePlan$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.updatePlan),
+    ofType(PlansActions.updatePlan),
     switchMap(({planId, plan}) => this._plansService.update(planId, plan)
       .pipe(
-        map(result => fromActions.updatePlanSuccess({ plan: result })),
+        map(result => PlansActions.updatePlanSuccess({ plan: result })),
         catchError(error => {
           const message: ResponseMessage = {
             status: ResponseStatus.ERROR,
             message: `We encountered an error updating your plan, please try again!`
           } as ResponseMessage;
-          return of(fromActions.setUpdatePlanResponseMessage({ message: message }));
+          return of(PlansActions.setUpdatePlanResponseMessage({ message: message }));
         })
       )
     )
   ));
 
   updatePlanSuccess$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.updatePlanSuccess),
+    ofType(PlansActions.updatePlanSuccess),
     switchMap(({plan}) => {
       const message: ResponseMessage = {
         status: ResponseStatus.SUCCESS,
         message: `Successfully updated plan!`
       } as ResponseMessage
-      return of(fromActions.setUpdatePlanResponseMessage({ message: message }))
+      return of(PlansActions.setUpdatePlanResponseMessage({ message: message }))
     })
   ));
 
   deletePlan$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.deletePlan),
+    ofType(PlansActions.deletePlan),
     exhaustMap(({planId}) => this._plansService.delete(planId)
       .pipe(
-        map(result => fromActions.deletePlanSuccess({ plan: result })),
-        catchError(error => of(handleHttpError(error)))
+        map(result => PlansActions.deletePlanSuccess({ plan: result })),
+        catchError(error => of(HttpErrorActions.handleHttpError(error)))
       )
     )
   ));
 
   undeletePlan$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.undeletePlan),
+    ofType(PlansActions.undeletePlan),
     exhaustMap(({planId}) => this._plansService.undelete(planId)
       .pipe(
-        map(result => fromActions.undeletePlanSuccess({ plan: result })),
-        catchError(error => of(handleHttpError(error)))
+        map(result => PlansActions.undeletePlanSuccess({ plan: result })),
+        catchError(error => of(HttpErrorActions.handleHttpError(error)))
       )
     )
   ));

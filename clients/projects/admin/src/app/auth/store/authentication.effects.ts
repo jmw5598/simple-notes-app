@@ -6,7 +6,7 @@ import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 
 import { AuthenticationService } from '@sn/core/services';
 import { AuthenticatedUser } from '@sn/shared/models';
-import * as fromActions from '../actions';
+import { AuthenticationActions } from './authentication.actions';
 
 @Injectable()
 export class AuthenticationEffects {
@@ -17,17 +17,17 @@ export class AuthenticationEffects {
   ) { }
 
   loginUser$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.loginUser),
+    ofType(AuthenticationActions.loginUser),
     mergeMap(({ credentials }) => this._authenticationService.authenticateUser(credentials)
       .pipe(
-        map(user => fromActions.loginUserSuccess({ user: user })),
-        catchError(error => of(fromActions.loginUserError({ error: error })))
+        map(user => AuthenticationActions.loginUserSuccess({ user: user })),
+        catchError(error => of(AuthenticationActions.loginUserError({ error: error.error })))
       )
     )
   ));
 
   logoutUser$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.logoutUser),
+    ofType(AuthenticationActions.logoutUser),
     tap(() => {
       this._authenticationService.logoutUser();
       this._router.navigate(['/auth', 'login']);
@@ -35,15 +35,15 @@ export class AuthenticationEffects {
   ), { dispatch: false });
 
   refreshToken$ = createEffect(() => this._actions.pipe(
-    ofType(fromActions.refreshToken),
+    ofType(AuthenticationActions.refreshToken),
     mergeMap(() => {
       const authenticatedUser: AuthenticatedUser = this._authenticationService.getStoredAuthenticatedUser();
       const accessToken: string = authenticatedUser.accessToken;
       const refreshToken: string = authenticatedUser.refreshToken;
       return this._authenticationService.refreshToken(accessToken, refreshToken)
         .pipe(
-          map(user => fromActions.refreshTokenSuccess({ user: user })),
-          catchError(error => of(fromActions.logoutUser()))
+          map(user => AuthenticationActions.refreshTokenSuccess({ user: user })),
+          catchError(error => of(AuthenticationActions.logoutUser()))
         )
     })
   ));
