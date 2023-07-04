@@ -25,10 +25,10 @@ export class SnDebounceDirective implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._valueChangedSubject
       .pipe(
-        takeUntil(this._subscriptionSubject),
         debounceTime(this.debounceTime),
         distinctUntilChanged(),
-        tap(value => this.emitChange(value))
+        tap(value => this.emitChange(value)),
+        takeUntil(this._subscriptionSubject),
       ).subscribe();
   }
 

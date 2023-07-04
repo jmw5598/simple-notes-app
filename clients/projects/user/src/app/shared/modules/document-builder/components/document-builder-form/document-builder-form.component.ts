@@ -95,8 +95,8 @@ export class SnDocumentBuilderFormComponent implements OnInit {
 
     this._store.select(selectSectionsForSelectedTopic)
       .pipe(
+        withLatestFrom(this.selectedDocumentTopic$),
         takeUntil(this._subscriptionSubject),
-        withLatestFrom(this.selectedDocumentTopic$)
       )
       .subscribe(([sections, documentTopic]) => {
         if (sections?.length && documentTopic) {
@@ -140,10 +140,10 @@ export class SnDocumentBuilderFormComponent implements OnInit {
   private _listenForDocumentNameChanges(): void {
     this._documentNameChanges
       .pipe(
-        takeUntil(this._subscriptionSubject),
         debounceTime(500),
         distinctUntilChanged(),
-        withLatestFrom(this._store.select(fromSelectors.selectDocumentBuilderDocument))
+        withLatestFrom(this._store.select(fromSelectors.selectDocumentBuilderDocument)),
+        takeUntil(this._subscriptionSubject),
       )
       .subscribe(([name, document]) => {
         this._store.dispatch(fromActions.setBuilderDocument({

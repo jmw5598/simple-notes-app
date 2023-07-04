@@ -52,22 +52,22 @@ export class EditSectionNotesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._store.select(selectUpdateSectionNotesResponseMessage)
       .pipe(
-        takeUntil(this._subscriptionSubject$),
         distinctUntilChanged(),
         tap((response: ResponseMessage) => {
           if (response) {
             const successMessage: boolean = response.status === ResponseStatus.SUCCESS;
             this._toasterService.push('Saved!', { type: 'primary' })
           }
-        })
+        }),
+        takeUntil(this._subscriptionSubject$),
       ).subscribe();
 
     this._sectionNoteChangeSubject$
       .pipe(
-        takeUntil(this._subscriptionSubject$),
         debounceTime(1000),
         distinctUntilChanged(),
-        tap(notes => this.onSaveSectionNotes(notes))
+        tap(notes => this.onSaveSectionNotes(notes)),
+        takeUntil(this._subscriptionSubject$),
       ).subscribe();
 
     this.section$ = this._store.select(selectSelectedSection)

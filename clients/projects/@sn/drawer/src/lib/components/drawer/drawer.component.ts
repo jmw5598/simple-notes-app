@@ -55,15 +55,15 @@ export class SnDrawerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._drawerService.onDrawerOptionsChange()
       .pipe(
+        tap((options: SnDrawerOptions) => this.options = options),
         takeUntil(this._drawerServiceSubject$),
-        tap((options: SnDrawerOptions) => this.options = options)
       )
       .subscribe((options: SnDrawerOptions) => this._changeDetectorRef.markForCheck());
 
     this._drawerService.onDrawerVibilityChange()
       .pipe(
+        tap((visible: boolean) => this.isDrawerVisible = visible),
         takeUntil(this._drawerServiceSubject$),
-        tap((visible: boolean) => this.isDrawerVisible = visible)  
       )
       .subscribe((visible: boolean) => this._changeDetectorRef.markForCheck());
 

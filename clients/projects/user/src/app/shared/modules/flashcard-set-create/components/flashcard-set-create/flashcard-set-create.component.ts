@@ -84,13 +84,13 @@ export class SnFlashcardSetCreateComponent implements OnInit, OnDestroy {
   private syncFormChangesWithFlashcardState(): void {
     this.form.valueChanges
       .pipe(
-        takeUntil(this._subscriptionSubject),
         debounceTime(500),
         withLatestFrom(this.flashcardSetBuilder$),
         filter(([values, flashcardSetBuilder]) => {
           return flashcardSetBuilder.title !== values.title
             || flashcardSetBuilder.synopsis !== values.synopsis
-        })
+        }),
+        takeUntil(this._subscriptionSubject),
       )
       .subscribe(([values, flashcardBuilderSet]) => {
         this._store.dispatch(flashcardActions.setFlashcardSetBuilder({

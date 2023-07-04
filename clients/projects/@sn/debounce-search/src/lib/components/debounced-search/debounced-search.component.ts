@@ -38,10 +38,10 @@ export class SnDebouncedSearchComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._searchTextChangeSubject
       .pipe(
-        takeUntil(this._subscriptionSubject),
         debounceTime(this.debounceTime),
         distinctUntilChanged(),
-        tap(search => this.search(search))
+        tap(search => this.search(search)),
+        takeUntil(this._subscriptionSubject),
       ).subscribe();
   }
 

@@ -64,8 +64,8 @@ export class TodosFormComponent implements OnInit, OnDestroy, AfterViewInit {
     this._todosChangesSubject
       .pipe(
         skip(1),
+        debounceTime(this.FORM_DEBOUNCE_TIME),
         takeUntil(this._subscriptionSubject),
-        debounceTime(this.FORM_DEBOUNCE_TIME)
       )
       .subscribe(todos => this.onUpdate.emit((todos || []) as Todo[]));
   }

@@ -82,8 +82,8 @@ export class AccountUpdateComponent implements OnInit, OnDestroy {
   private _listenForRolesChanges(): void {
     this.roles$
       .pipe(
+        withLatestFrom(this._drawerService.onDataChange()),
         takeUntil(this._subscriptionSubject),
-        withLatestFrom(this._drawerService.onDataChange())
       )
       .subscribe(([roles, account]) => {
         setTimeout(() => {

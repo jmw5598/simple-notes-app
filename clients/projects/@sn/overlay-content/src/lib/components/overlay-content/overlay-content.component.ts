@@ -34,15 +34,15 @@ export class SnOverlayContentComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._overlayContentService.onOptionsChange()
       .pipe(
+        tap((options: SnOverlayContentOptions) => this.options = options),
         takeUntil(this._subscriptionSubject$),
-        tap((options: SnOverlayContentOptions) => this.options = options)
       )
       .subscribe((options: SnOverlayContentOptions) => this._changeDetectorRef.markForCheck());
 
     this._overlayContentService.onVibilityChange()
       .pipe(
+        tap((visible: boolean) => this.isContentVisible = visible),
         takeUntil(this._subscriptionSubject$),
-        tap((visible: boolean) => this.isContentVisible = visible)   
       )
       .subscribe((visible: boolean) => this._changeDetectorRef.markForCheck());
 
